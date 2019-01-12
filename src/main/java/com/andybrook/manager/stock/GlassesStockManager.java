@@ -6,7 +6,9 @@ import com.andybrook.service.stock.IGlassesStockService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Map;
 import java.util.Objects;
+import java.util.Optional;
 
 @Service
 public class GlassesStockManager implements IGlassesStockManager {
@@ -15,6 +17,16 @@ public class GlassesStockManager implements IGlassesStockManager {
 
     @Autowired
     private IGlassesStockService glassesStockService;
+
+    @Override
+    public Optional<GlassesStockItem> getGlassesStockItem(long id) {
+        return glassesStockService.getGlassesStockItem(id);
+    }
+
+    @Override
+    public Map<Long, GlassesStockItem> getAllGlassesStockItems() {
+        return glassesStockService.getAllGlassesStockItems();
+    }
 
     @Override
     public GlassesStockItem updateGlassesStock(GlassesStockItem item) {

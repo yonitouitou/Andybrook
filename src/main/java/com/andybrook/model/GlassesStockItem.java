@@ -6,6 +6,9 @@ public class GlassesStockItem {
     private Glasses glasses;
     private double quantity;
 
+    private GlassesStockItem() {
+    }
+
     public GlassesStockItem(Long id, Glasses glasses, double quantity) {
         this.id = id;
         this.glasses = glasses;

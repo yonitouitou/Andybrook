@@ -1,5 +1,6 @@
 package com.andybrook.api.rest;
 
+import com.andybrook.api.rest.ctx.GenericRequestById;
 import com.andybrook.manager.stock.IGlassesStockManager;
 import com.andybrook.model.GlassesStockItem;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -7,6 +8,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.lang.System.Logger;
 import java.lang.System.Logger.Level;
+import java.util.*;
 
 import static com.andybrook.util.Const.CONSOLE_LOGGER_NAME;
 
@@ -19,17 +21,42 @@ public class GlassesStockController extends AbstractController {
     @Autowired
     private IGlassesStockManager glassesStockManager;
 
+    @GetMapping(path = "/get/{id}")
+    public GlassesTableRow getGlassesStockItem(@PathVariable long id) {
+        GlassesTableRow glassesTableRow = null;
+        LOGGER.log(Level.INFO, "Request received to get stock glasses : " + id);
+        Optional<GlassesStockItem> glassesStockItemOpt = glassesStockManager.getGlassesStockItem(id);
+        if (glassesStockItemOpt.isPresent()) {
+            glassesTableRow = new GlassesTableRow(glassesStockItemOpt.get());
+        }
+        return glassesTableRow;
+    }
+
+    @GetMapping(path = "/getAll")
+    public GlassesTableRow[] getAllGlassesStockItems() {
+        LOGGER.log(Level.INFO, "Request received to get all stock glasses");
+        Map<Long, GlassesStockItem> items = glassesStockManager.getAllGlassesStockItems();
+        GlassesTableRow[] rows = new GlassesTableRow[items.size()];
+        Collection<GlassesStockItem> values = items.values();
+        int index = 0;
+        for (GlassesStockItem item : values) {
+            GlassesTableRow row = new GlassesTableRow(item);
+            rows[index++] = row;
+        }
+        return rows;
+    }
+
     @PostMapping(path = "/update")
-    public GlassesTableRow updateGlasses(@RequestBody GlassesStockItem item) {
+    public GlassesTableRow updateGlassesStockItem(@RequestBody GlassesStockItem item) {
         LOGGER.log(Level.INFO, "Request received to update stock glasses : " + item);
         GlassesStockItem itemUpdated = glassesStockManager.updateGlassesStock(item);
         return new GlassesTableRow(itemUpdated);
     }
 
     @DeleteMapping(path = "/delete")
-    public boolean removeGlasses(@RequestBody long id) {
-        LOGGER.log(Level.INFO, "Request received to remove stock glasses with Id : " + id);
-        return glassesStockManager.removeGlassesStock(id);
+    public boolean deleteGlassesStockItem(@RequestBody GenericRequestById request) {
+        LOGGER.log(Level.INFO, "Request received to remove stock glasses with Id : " + request.getId());
+        return glassesStockManager.removeGlassesStock(request.getId());
     }
 
 

@@ -1,5 +1,6 @@
 package com.andybrook.dao.stock.jpa;
 
+import com.andybrook.dao.glasses.jpa.GlassesEntity;
 import com.andybrook.model.Glasses;
 import com.andybrook.model.GlassesStockItem;
 
@@ -11,28 +12,30 @@ public class GlassesStockItemEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name="id")
     private Long id;
-    @Column(name="glassesid")
-    private Long glassesId;
+
+    @OneToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "glassesid", nullable = false, referencedColumnName = "id")
+    private GlassesEntity glassesEntity;
+
     @Column(name="quantity")
     private double quantity;
 
-    private GlassesStockItemEntity() {
+    public GlassesStockItemEntity() {
     }
 
-    private GlassesStockItemEntity(Long id, Long glassesId, double quantity) {
+    private GlassesStockItemEntity(Long id, GlassesEntity glassesEntity, double quantity) {
         this.id = id;
-        this.glassesId = glassesId;
+        this.glassesEntity = glassesEntity;
         this.quantity = quantity;
     }
 
     public static GlassesStockItemEntity toEntity(GlassesStockItem item) {
-        return new GlassesStockItemEntity(item.getId(), item.getGlasses().getId(), item.getQuantity());
+        return new GlassesStockItemEntity(item.getId(), GlassesEntity.toEntity(item.getGlasses()), item.getQuantity());
     }
 
-    public static GlassesStockItem toModel(GlassesStockItemEntity entity, Glasses glasses) {
-        return new GlassesStockItem(entity.getId(), glasses, entity.getQuantity());
+    public static GlassesStockItem toModel(GlassesStockItemEntity entity) {
+        return new GlassesStockItem(entity.getId(), GlassesEntity.toModel(entity.getGlassesEntity()), entity.getQuantity());
     }
 
     public Long getId() {
@@ -43,12 +46,12 @@ public class GlassesStockItemEntity {
         this.id = id;
     }
 
-    public Long getGlassesId() {
-        return glassesId;
+    public GlassesEntity getGlassesEntity() {
+        return glassesEntity;
     }
 
-    public void setGlassesId(long glassesId) {
-        this.glassesId = glassesId;
+    public void setGlassesEntity(GlassesEntity glassesEntity) {
+        this.glassesEntity = glassesEntity;
     }
 
     public double getQuantity() {

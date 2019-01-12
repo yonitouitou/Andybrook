@@ -6,6 +6,9 @@ public class Glasses {
     private String name;
     private double price;
 
+    private Glasses() {
+    }
+
     public Glasses(Long id, String name, double price) {
         this.id = id;
         this.name = name;

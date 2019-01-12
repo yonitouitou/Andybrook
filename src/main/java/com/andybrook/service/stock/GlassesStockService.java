@@ -8,6 +8,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.Map;
+import java.util.Optional;
+
 @Service
 public class GlassesStockService implements IGlassesStockService {
 
@@ -29,6 +32,16 @@ public class GlassesStockService implements IGlassesStockService {
     public GlassesStockItem updateGlassesStockItem(GlassesStockItem item) {
         glassesService.updateGlasses(item.getGlasses());
         return glassesStockDao.updateGlassesStockItem(item);
+    }
+
+    @Override
+    public Optional<GlassesStockItem> getGlassesStockItem(long id) {
+        return glassesStockDao.getGlassesStockItem(id);
+    }
+
+    @Override
+    public Map<Long, GlassesStockItem> getAllGlassesStockItems() {
+        return glassesStockDao.getAllGlassesStockItems();
     }
 
     @Override

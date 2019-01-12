@@ -1,22 +1,18 @@
 package com.andybrook.dao.stock;
 
-import com.andybrook.dao.glasses.IGlassesDao;
 import com.andybrook.dao.stock.jpa.GlassesStockItemEntity;
 import com.andybrook.dao.stock.jpa.IGlassesStockCrudRepository;
-import com.andybrook.model.Glasses;
 import com.andybrook.model.GlassesStockItem;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.Optional;
+import java.util.*;
 
 @Service
 public class GlassesStockDao implements IGlassesStockDao {
 
     @Autowired
     private IGlassesStockCrudRepository glassesStockCrudRepository;
-    @Autowired
-    private IGlassesDao glassesDao;
 
     @Override
     public Optional<GlassesStockItem> getGlassesStockItem(long id) {
@@ -24,11 +20,8 @@ public class GlassesStockDao implements IGlassesStockDao {
         Optional<GlassesStockItemEntity> entityOpt = glassesStockCrudRepository.findById(id);
         if (entityOpt.isPresent()) {
             GlassesStockItemEntity entity = entityOpt.get();
-            Optional<Glasses> glassesOpt = glassesDao.getGlasses(entity.getGlassesId());
-            if (glassesOpt.isPresent()) {
-                GlassesStockItem glassesStockItem = GlassesStockItemEntity.toModel(entity, glassesOpt.get());
-                glassesStockItemOpt = Optional.of(glassesStockItem);
-            }
+            GlassesStockItem glassesStockItem = GlassesStockItemEntity.toModel(entity);
+            glassesStockItemOpt = Optional.of(glassesStockItem);
         }
         return glassesStockItemOpt;
     }
@@ -39,6 +32,17 @@ public class GlassesStockDao implements IGlassesStockDao {
         GlassesStockItemEntity entitySaved = glassesStockCrudRepository.save(entity);
         item.setId(entitySaved.getId());
         return item;
+    }
+
+    @Override
+    public Map<Long, GlassesStockItem> getAllGlassesStockItems() {
+        Map<Long, GlassesStockItem> itemsMapById = new HashMap<>();
+        Iterable<GlassesStockItemEntity> entities = glassesStockCrudRepository.findAll();
+        entities.forEach(e -> {
+            GlassesStockItem glassesStockItem = GlassesStockItemEntity.toModel(e);
+            itemsMapById.put(glassesStockItem.getId(), glassesStockItem);
+        });
+        return itemsMapById;
     }
 
     @Override

@@ -10,14 +10,15 @@ public class GlassesEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name="id")
     private Long id;
+
     @Column(name="name")
     private String name;
+
     @Column(name="price")
     private double price;
 
-    private GlassesEntity() {
+    public GlassesEntity() {
     }
 
     private GlassesEntity(Long id, String name, double price) {
