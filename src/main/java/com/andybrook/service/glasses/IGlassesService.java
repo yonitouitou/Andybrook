@@ -7,4 +7,6 @@ public interface IGlassesService {
     Glasses newGlasses(Glasses glasses);
 
     Glasses updateGlasses(Glasses glasses);
+
+    boolean removeGlasses(long id);
 }

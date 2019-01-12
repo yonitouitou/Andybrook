@@ -20,4 +20,9 @@ public class GlassesService implements IGlassesService {
     public Glasses updateGlasses(Glasses glasses) {
         return dao.updateGlasses(glasses);
     }
+
+    @Override
+    public boolean removeGlasses(long id) {
+        return dao.removeGlasses(id);
+    }
 }

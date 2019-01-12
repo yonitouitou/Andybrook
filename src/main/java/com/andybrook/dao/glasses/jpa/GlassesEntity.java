@@ -26,8 +26,12 @@ public class GlassesEntity {
         this.price = price;
     }
 
-    public static GlassesEntity newInstance(Glasses glasses) {
+    public static GlassesEntity toEntity(Glasses glasses) {
         return new GlassesEntity(glasses.getId(), glasses.getName(), glasses.getPrice());
+    }
+
+    public static Glasses toModel(GlassesEntity entity) {
+        return new Glasses(entity.getId(), entity.getName(), entity.getPrice());
     }
 
     public Long getId() {

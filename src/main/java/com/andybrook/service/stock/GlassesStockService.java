@@ -30,4 +30,12 @@ public class GlassesStockService implements IGlassesStockService {
         glassesService.updateGlasses(item.getGlasses());
         return glassesStockDao.updateGlassesStockItem(item);
     }
+
+    @Override
+    @Transactional
+    public boolean removeGlassesStockItem(long id) {
+        glassesStockDao.removeGlassesStockItem(id);
+        glassesService.removeGlasses(id);
+        return true;
+    }
 }

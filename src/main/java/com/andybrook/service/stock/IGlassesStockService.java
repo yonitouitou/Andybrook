@@ -7,4 +7,6 @@ public interface IGlassesStockService {
     GlassesStockItem newGlassesStockItem(GlassesStockItem item);
 
     GlassesStockItem updateGlassesStockItem(GlassesStockItem item);
+
+    boolean removeGlassesStockItem(long id);
 }

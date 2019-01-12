@@ -24,6 +24,11 @@ public class GlassesStockManager implements IGlassesStockManager {
                 : glassesStockService.updateGlassesStockItem(item);
     }
 
+    @Override
+    public boolean removeGlassesStock(long id) {
+        return glassesStockService.removeGlassesStockItem(id);
+    }
+
     private boolean isNewGlassesCreated(Glasses glasses) {
         return glasses.getId() == null;
     }

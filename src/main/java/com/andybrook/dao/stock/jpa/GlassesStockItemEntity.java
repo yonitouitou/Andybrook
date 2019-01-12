@@ -1,5 +1,6 @@
 package com.andybrook.dao.stock.jpa;
 
+import com.andybrook.model.Glasses;
 import com.andybrook.model.GlassesStockItem;
 
 import javax.persistence.*;
@@ -26,8 +27,12 @@ public class GlassesStockItemEntity {
         this.quantity = quantity;
     }
 
-    public static GlassesStockItemEntity newInstance(GlassesStockItem item) {
+    public static GlassesStockItemEntity toEntity(GlassesStockItem item) {
         return new GlassesStockItemEntity(item.getId(), item.getGlasses().getId(), item.getQuantity());
+    }
+
+    public static GlassesStockItem toModel(GlassesStockItemEntity entity, Glasses glasses) {
+        return new GlassesStockItem(entity.getId(), glasses, entity.getQuantity());
     }
 
     public Long getId() {
