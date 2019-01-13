@@ -1,11 +1,16 @@
 package com.andybrook.dao.glasses.jpa;
 
 import com.andybrook.model.Glasses;
+import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.annotation.LastModifiedDate;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import javax.persistence.*;
+import java.time.LocalDateTime;
 
 @Entity
 @Table(name="product_glasses")
+@EntityListeners(AuditingEntityListener.class)
 public class GlassesEntity {
 
     @Id
@@ -17,6 +22,14 @@ public class GlassesEntity {
 
     @Column(name="price")
     private double price;
+
+    @CreatedDate
+    @Column(name = "createddatetime", nullable = false)
+    private LocalDateTime createdDatetime;
+
+    @LastModifiedDate
+    @Column(name = "lastmodifieddatetime", nullable = false)
+    private LocalDateTime lastModifiedDateTime;
 
     public GlassesEntity() {
     }
@@ -57,6 +70,22 @@ public class GlassesEntity {
 
     public void setPrice(double price) {
         this.price = price;
+    }
+
+    public LocalDateTime getCreatedDatetime() {
+        return createdDatetime;
+    }
+
+    public void setCreatedDatetime(LocalDateTime createdDatetime) {
+        this.createdDatetime = createdDatetime;
+    }
+
+    public LocalDateTime getLastModifiedDateTime() {
+        return lastModifiedDateTime;
+    }
+
+    public void setLastModifiedDateTime(LocalDateTime lastModifiedDateTime) {
+        this.lastModifiedDateTime = lastModifiedDateTime;
     }
 
     @Override
