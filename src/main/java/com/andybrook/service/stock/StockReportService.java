@@ -1,5 +1,6 @@
 package com.andybrook.service.stock;
 
+import com.andybrook.dao.stock.IStockItemDao;
 import com.andybrook.dao.stock.IStockReportDao;
 import com.andybrook.exception.StockReportNotFound;
 import com.andybrook.model.Product;
@@ -16,6 +17,8 @@ public class StockReportService implements IStockReportService {
 
     @Autowired
     private IStockReportDao stockReportDao;
+    @Autowired
+    private IStockItemDao stockItemDao;
 
     @Override
     public StockReport newStockReport(String name) {
@@ -30,6 +33,8 @@ public class StockReportService implements IStockReportService {
             StockReport stockReport = stockReportOpt.get();
             stockReport.addItem(item);
             stockReportDao.updateStockReport(stockReport);
+            item = stockItemDao.updateStockItem(stockRepordId, item);
+            stockReport.addItem(item);
         } else {
             throw new StockReportNotFound(stockRepordId);
         }

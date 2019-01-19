@@ -1,5 +1,6 @@
 package com.andybrook.manager.stock;
 
+import com.andybrook.exception.StockReportNotFound;
 import com.andybrook.model.Product;
 import com.andybrook.model.StockItem;
 import com.andybrook.service.stock.IStockItemService;
@@ -19,7 +20,7 @@ public class StockItemManager implements IStockItemManager {
     private IStockItemService glassesStockService;
 
     @Override
-    public StockItem<? extends Product> updateStockItem(long stockReportId, StockItem<? extends Product> item) {
+    public StockItem<? extends Product> updateStockItem(long stockReportId, StockItem<? extends Product> item) throws StockReportNotFound {
         Objects.requireNonNull(item, GLASSES_STOCK_ITEM_ERROR);
         return isNewGlassesCreated(item.getProduct())
                 ? glassesStockService.newStockItem(stockReportId, item)

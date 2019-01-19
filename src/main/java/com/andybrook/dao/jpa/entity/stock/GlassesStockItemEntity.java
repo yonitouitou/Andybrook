@@ -16,6 +16,10 @@ public class GlassesStockItemEntity extends StockItemEntity {
 
     static final String DISCRIMINATOR_VALUE_TYPE_GLASSES = "GLASSES";
 
+    public GlassesStockItemEntity(){
+        super(null, null, ProductType.GLASSES);
+    }
+
     protected GlassesStockItemEntity(Long id, ProductEntity productEntity) {
         super(id, productEntity, ProductType.GLASSES);
     }

@@ -39,6 +39,9 @@ public class StockReportEntity {
     @Column(name = "lastmodifieddatetime")
     protected LocalDateTime lastModifiedDatetime;
 
+    public StockReportEntity() {
+    }
+
     public StockReportEntity(Long id, String name, List<StockItemEntity> items, ReportStatus status) {
         this.id = id;
         this.name = name;

@@ -2,6 +2,7 @@ package com.andybrook.api.rest;
 
 import com.andybrook.api.rest.ctx.GenericRequestById;
 import com.andybrook.api.rest.ctx.StockItemUpdateRequest;
+import com.andybrook.exception.StockReportNotFound;
 import com.andybrook.manager.stock.IStockItemManager;
 import com.andybrook.model.Product;
 import com.andybrook.model.StockItem;
@@ -51,7 +52,7 @@ public class StockItemController extends AbstractController {
     }
 
     @PostMapping(path = "/update")
-    public GlassesTableRow updateGlassesStockItem(@RequestBody StockItemUpdateRequest request) {
+    public GlassesTableRow updateGlassesStockItem(@RequestBody StockItemUpdateRequest request) throws StockReportNotFound {
         LOGGER.log(Level.INFO, "Request received to update stock glasses : " + request.getStockItem());
         StockItem<? extends Product> itemUpdated = glassesStockManager.updateStockItem(request.getStockReportId(), request.getStockItem());
         return new GlassesTableRow(itemUpdated);

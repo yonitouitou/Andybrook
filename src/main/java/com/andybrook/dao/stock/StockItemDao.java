@@ -34,7 +34,6 @@ public class StockItemDao implements IStockItemDao {
 
     @Override
     public <T extends Product> StockItem<T> updateStockItem(long stockReportId, StockItem<T> item) {
-
         StockItemEntity entity = entityFactory.createStockItemEntity(item);
         StockItemEntity entitySaved = glassesStockCrudRepository.save(entity);
         item.setId(entitySaved.getId());
