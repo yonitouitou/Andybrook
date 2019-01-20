@@ -24,8 +24,8 @@ public class StockReportEntity {
     @Column(name = "comment", nullable = true, length = 256)
     protected String comment;
 
-    @OneToMany(fetch = FetchType.LAZY)
-    @JoinColumn(name="stockreportid", referencedColumnName = "id", nullable=false)
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "id", cascade = CascadeType.ALL)
+    //@JoinColumn(name="stockreportid", referencedColumnName = "id", nullable=false)
     protected List<StockItemEntity> items;
 
     @Column(name = "status")

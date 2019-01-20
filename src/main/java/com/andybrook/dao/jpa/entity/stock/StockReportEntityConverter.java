@@ -34,7 +34,7 @@ public class StockReportEntityConverter implements IEntityConverter<StockReport,
 
     @Override
     public StockReportEntity toEntity(StockReport model) {
-        List<StockItemEntity> items = model.getProductsAsList()
+        List<StockItemEntity> items = model.getProducts()
                 .stream()
                 .map(s -> entityFactory.createStockItemEntityByProductType(s))
                 .collect(Collectors.toList());

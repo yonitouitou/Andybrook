@@ -7,5 +7,5 @@ import org.springframework.data.repository.CrudRepository;
 
 public interface IStockItemCrudRepository extends CrudRepository<StockItemEntity, Long> {
 
-    void addItemToReport(long reportId, StockItem<? extends Product> item);
+    //void addItemToReport(long reportId, StockItem<? extends Product> item);
 }

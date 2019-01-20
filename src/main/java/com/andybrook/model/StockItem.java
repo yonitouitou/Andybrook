@@ -7,9 +7,9 @@ public class StockItem<T extends Product> {
     protected Long id;
     protected T product;
     protected ProductType type;
-    protected double quantity;
+    protected int quantity;
 
-    public StockItem(Long id, T product, ProductType productType, double quantity) {
+    public StockItem(Long id, T product, ProductType productType, int quantity) {
         this.id = id;
         this.product = product;
         this.type = productType;
@@ -32,11 +32,11 @@ public class StockItem<T extends Product> {
         this.product = product;
     }
 
-    public double getQuantity() {
+    public int getQuantity() {
         return quantity;
     }
 
-    public void setQuantity(double quantity) {
+    public void setQuantity(int quantity) {
         this.quantity = quantity;
     }
 

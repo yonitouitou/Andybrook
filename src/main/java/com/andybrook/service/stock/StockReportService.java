@@ -32,9 +32,7 @@ public class StockReportService implements IStockReportService {
         if (stockReportOpt.isPresent()) {
             StockReport stockReport = stockReportOpt.get();
             stockReport.addItem(item);
-            stockReportDao.updateStockReport(stockReport);
-            item = stockItemDao.updateStockItem(stockRepordId, item);
-            stockReport.addItem(item);
+            stockReport = stockReportDao.updateStockReport(stockReport);
         } else {
             throw new StockReportNotFound(stockRepordId);
         }

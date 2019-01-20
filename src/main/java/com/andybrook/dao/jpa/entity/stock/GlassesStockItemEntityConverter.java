@@ -26,6 +26,6 @@ public class GlassesStockItemEntityConverter implements IEntityConverter<StockIt
     @Override
     public GlassesStockItemEntity toEntity(StockItem<Glasses> model) {
         GlassesEntity glassesEntity = entityFactory.createProductEntity(model.getProduct());
-        return new GlassesStockItemEntity(model.getId(), glassesEntity);
+        return new GlassesStockItemEntity(model.getId(), glassesEntity, model.getQuantity());
     }
 }

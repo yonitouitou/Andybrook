@@ -20,7 +20,7 @@ public abstract class StockItemEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     protected Long id;
 
-    @OneToOne(fetch = FetchType.LAZY, optional = false, cascade=CascadeType.ALL)
+    @OneToOne(fetch = FetchType.LAZY, optional = false, cascade = CascadeType.ALL)
     @JoinColumn(name = "productid", referencedColumnName = "id", nullable = false)
     protected ProductEntity productEntity;
 
@@ -39,10 +39,11 @@ public abstract class StockItemEntity {
     @Column(name = "lastmodifieddatetime")
     protected LocalDateTime lastModifiedDatetime;
 
-    protected StockItemEntity(Long id, ProductEntity productEntity, ProductType productType) {
+    protected StockItemEntity(Long id, ProductEntity productEntity, ProductType productType, int quantity) {
         this.id = id;
         this.productEntity = productEntity;
         this.productType = productType;
+        this.quantity = quantity;
     }
 
     public Long getId() {

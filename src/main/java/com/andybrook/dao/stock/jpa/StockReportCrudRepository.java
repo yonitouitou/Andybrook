@@ -3,7 +3,6 @@ package com.andybrook.dao.stock.jpa;
 import com.andybrook.dao.jpa.entity.stock.StockItemEntity;
 import com.andybrook.model.Product;
 import com.andybrook.model.StockItem;
-import org.springframework.data.jpa.repository.Query;
 
 import java.util.Optional;
 
@@ -14,10 +13,10 @@ public class StockReportCrudRepository implements IStockItemCrudRepository {
         return save(s);
     }
 
-    @Override
+    /*@Override
     public void addItemToReport(long reportId, StockItem<? extends Product> item) {
 
-    }
+    }*/
 
     @Override
     public <S extends StockItemEntity> Iterable<S> saveAll(Iterable<S> iterable) {

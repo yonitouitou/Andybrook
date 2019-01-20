@@ -15,6 +15,10 @@ public class GlassesEntity extends ProductEntity {
 
     static final String DISCRIMINATOR_VALUE_GLASSES = "GLASSES";
 
+    private GlassesEntity() {
+        super(null, null, 0d, ProductType.GLASSES);
+    }
+
     GlassesEntity(Long id, String name, double price) {
         super(id, name, price, ProductType.GLASSES);
     }

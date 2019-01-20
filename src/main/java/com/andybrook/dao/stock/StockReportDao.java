@@ -25,8 +25,8 @@ public class StockReportDao implements IStockReportDao {
     @Override
     public StockReport updateStockReport(StockReport stockReport) {
         StockReportEntity entity = entityFactory.createStockReportEntity(stockReport);
-        StockReportEntity savedEentity = stockReportCrudRepository.save(entity);
-        return entityFactory.createStockReport(savedEentity);
+        StockReportEntity savedEntity = stockReportCrudRepository.save(entity);
+        return entityFactory.createStockReport(savedEntity);
     }
 
     @Override
