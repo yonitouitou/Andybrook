@@ -76,7 +76,7 @@ public final class EntityFactory {
     }
 
     public final <T extends Product> StockItem<T> createStockItem(StockItemEntity entity) {
-        IEntityConverter converter = entityConverterMapByEntityClass.get(entity.getClass());
+        IEntityConverter converter = entityConverterMapByProductType.get(entity.getProductType());
         return (StockItem<T>) converter.toModel(entity);
     }
 

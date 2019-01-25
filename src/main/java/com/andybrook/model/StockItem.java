@@ -1,6 +1,7 @@
 package com.andybrook.model;
 
 import com.andybrook.enums.ProductType;
+import com.andybrook.util.IdGenerator;
 
 public class StockItem<T extends Product> {
 
@@ -10,10 +11,14 @@ public class StockItem<T extends Product> {
     protected int quantity;
 
     public StockItem(Long id, T product, ProductType productType, int quantity) {
-        this.id = id;
+        this.id = id != null ? id : IdGenerator.generateId();
         this.product = product;
         this.type = productType;
         this.quantity = quantity;
+    }
+
+    public StockItem(T product, ProductType productType, int quantity) {
+        this(IdGenerator.generateId(), product, productType, quantity);
     }
 
     public Long getId() {

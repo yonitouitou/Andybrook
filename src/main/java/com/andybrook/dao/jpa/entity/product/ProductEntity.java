@@ -44,6 +44,9 @@ public abstract class ProductEntity {
     @Column(name = "lastmodifieddatetime", nullable = false)
     private LocalDateTime lastModifiedDateTime;
 
+    protected ProductEntity() {
+    }
+
     public ProductEntity(Long id, String name, double price, ProductType type) {
         this.id = id;
         this.name = name;

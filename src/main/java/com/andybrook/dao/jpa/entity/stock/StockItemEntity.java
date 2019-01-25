@@ -17,10 +17,9 @@ import java.time.LocalDateTime;
 public abstract class StockItemEntity {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     protected Long id;
 
-    @OneToOne(fetch = FetchType.LAZY, optional = false, cascade = CascadeType.ALL)
+    @OneToOne(fetch = FetchType.EAGER, optional = false, cascade = CascadeType.ALL)
     @JoinColumn(name = "productid", referencedColumnName = "id", nullable = false)
     protected ProductEntity productEntity;
 

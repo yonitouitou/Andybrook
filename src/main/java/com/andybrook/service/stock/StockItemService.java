@@ -23,7 +23,7 @@ public class StockItemService implements IStockItemService {
     @Transactional
     public StockItem<? extends Product> newStockItem(long stockReportId, StockItem<? extends Product> item) throws StockReportNotFound {
         stockReportService.addItemToReport(stockReportId, item);
-        return stockItemDao.updateStockItem(stockReportId, item);
+        return item;
     }
 
     @Override
