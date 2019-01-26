@@ -3,7 +3,7 @@ package com.andybrook.dao.stock;
 import com.andybrook.dao.jpa.entity.factory.EntityFactory;
 import com.andybrook.dao.stock.jpa.IStockItemCrudRepository;
 import com.andybrook.dao.jpa.entity.stock.StockItemEntity;
-import com.andybrook.model.Product;
+import com.andybrook.model.product.Product;
 import com.andybrook.model.StockItem;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

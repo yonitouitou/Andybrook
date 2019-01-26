@@ -21,7 +21,7 @@ public class StockReportEntity {
     @Column(name = "name", nullable = false)
     protected String name;
 
-    @Column(name = "comment", nullable = true, length = 256)
+    @Column(name = "comment", length = 256)
     protected String comment;
 
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
@@ -32,7 +32,7 @@ public class StockReportEntity {
     protected ReportStatus status;
 
     @CreatedDate
-    @Column(name = "createddatetime")
+    @Column(name = "createddatetime", nullable = false, updatable = false)
     protected LocalDateTime createdDatetime;
 
     @LastModifiedDate
@@ -42,11 +42,12 @@ public class StockReportEntity {
     public StockReportEntity() {
     }
 
-    public StockReportEntity(Long id, String name, List<StockItemEntity> items, ReportStatus status) {
+    public StockReportEntity(Long id, String name, List<StockItemEntity> items, ReportStatus status, String comment) {
         this.id = id;
         this.name = name;
         this.items = items;
         this.status = status;
+        this.comment = comment;
     }
 
     public Long getId() {
@@ -95,5 +96,13 @@ public class StockReportEntity {
 
     public void setLastModifiedDatetime(LocalDateTime lastModifiedDatetime) {
         this.lastModifiedDatetime = lastModifiedDatetime;
+    }
+
+    public String getComment() {
+        return comment;
+    }
+
+    public void setComment(String comment) {
+        this.comment = comment;
     }
 }

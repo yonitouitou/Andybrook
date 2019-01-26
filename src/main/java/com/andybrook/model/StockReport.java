@@ -1,12 +1,11 @@
 package com.andybrook.model;
 
 import com.andybrook.enums.ReportStatus;
+import com.andybrook.model.product.Product;
 
 import java.time.LocalDateTime;
 import java.util.Collection;
-import java.util.List;
 import java.util.Map;
-import java.util.stream.Collectors;
 
 public class StockReport {
 
@@ -32,6 +31,14 @@ public class StockReport {
 
     public void deleteItem(long stockItemId) {
         products.remove(stockItemId);
+    }
+
+    public boolean isOpen() {
+        return status != ReportStatus.CLOSED;
+    }
+
+    public boolean isClosed() {
+        return status == ReportStatus.CLOSED;
     }
 
     public Long getId() {
@@ -68,12 +75,6 @@ public class StockReport {
 
     public Collection<StockItem<? extends Product>> getProducts() {
         return products.values();
-    }
-
-    public List<StockItem<? extends Product>> getProductsAsList() {
-        return products.values()
-                .stream()
-                .collect(Collectors.toList());
     }
 
     public LocalDateTime getCreatedDateTime() {

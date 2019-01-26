@@ -1,8 +1,8 @@
 package com.andybrook.api.rest.jackson;
 
 import com.andybrook.enums.ProductType;
-import com.andybrook.model.Glasses;
-import com.andybrook.model.Product;
+import com.andybrook.model.product.Glasses;
+import com.andybrook.model.product.Product;
 import com.andybrook.model.StockItem;
 import com.fasterxml.jackson.core.JsonParser;
 import com.fasterxml.jackson.core.JsonProcessingException;

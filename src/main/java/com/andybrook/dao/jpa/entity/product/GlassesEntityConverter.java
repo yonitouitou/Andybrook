@@ -2,7 +2,7 @@ package com.andybrook.dao.jpa.entity.product;
 
 import com.andybrook.annotation.EntityConverter;
 import com.andybrook.dao.jpa.entity.factory.IEntityConverter;
-import com.andybrook.model.Glasses;
+import com.andybrook.model.product.Glasses;
 import org.springframework.stereotype.Component;
 
 @Component

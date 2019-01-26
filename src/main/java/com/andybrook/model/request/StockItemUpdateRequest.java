@@ -1,7 +1,7 @@
-package com.andybrook.api.rest.ctx;
+package com.andybrook.model.request;
 
 import com.andybrook.api.rest.jackson.StockItemJsonSerializer;
-import com.andybrook.model.Product;
+import com.andybrook.model.product.Product;
 import com.andybrook.model.StockItem;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 

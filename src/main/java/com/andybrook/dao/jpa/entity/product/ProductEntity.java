@@ -1,7 +1,6 @@
 package com.andybrook.dao.jpa.entity.product;
 
 import com.andybrook.enums.ProductType;
-import com.andybrook.model.Product;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
@@ -37,7 +36,7 @@ public abstract class ProductEntity {
     protected ProductType type;
 
     @CreatedDate
-    @Column(name = "createddatetime", nullable = false)
+    @Column(name = "createddatetime", nullable = false, updatable = false)
     private LocalDateTime createdDatetime;
 
     @LastModifiedDate

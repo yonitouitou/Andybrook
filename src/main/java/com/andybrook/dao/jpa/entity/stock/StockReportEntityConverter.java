@@ -3,7 +3,7 @@ package com.andybrook.dao.jpa.entity.stock;
 import com.andybrook.annotation.EntityConverter;
 import com.andybrook.dao.jpa.entity.factory.EntityFactory;
 import com.andybrook.dao.jpa.entity.factory.IEntityConverter;
-import com.andybrook.model.Product;
+import com.andybrook.model.product.Product;
 import com.andybrook.model.StockItem;
 import com.andybrook.model.StockReport;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,7 +29,10 @@ public class StockReportEntityConverter implements IEntityConverter<StockReport,
                 .map(e -> entityFactory.createStockItem(e))
                 .collect(Collectors.toMap(StockItem::getId, Function.identity()));
         Map<Long, StockItem<? extends Product>> products = new HashMap<>(items);
-        return new StockReport(entity.getId(), entity.getName(), products);
+        StockReport report = new StockReport(entity.getId(), entity.getName(), products);
+        report.setStatus(entity.getStatus());
+        report.setComment(entity.getComment());
+        return report;
     }
 
     @Override
@@ -38,6 +41,6 @@ public class StockReportEntityConverter implements IEntityConverter<StockReport,
                 .stream()
                 .map(s -> entityFactory.createStockItemEntityByProductType(s))
                 .collect(Collectors.toList());
-        return new StockReportEntity(model.getId(), model.getName(), items, model.getStatus());
+        return new StockReportEntity(model.getId(), model.getName(), items, model.getStatus(), model.getComment());
     }
 }

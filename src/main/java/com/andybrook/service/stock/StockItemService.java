@@ -2,7 +2,7 @@ package com.andybrook.service.stock;
 
 import com.andybrook.dao.stock.IStockItemDao;
 import com.andybrook.exception.StockReportNotFound;
-import com.andybrook.model.Product;
+import com.andybrook.model.product.Product;
 import com.andybrook.model.StockItem;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -28,7 +28,6 @@ public class StockItemService implements IStockItemService {
 
     @Override
     public StockItem<? extends Product> updateStockItem(long stockReportId, StockItem<? extends Product> item) throws StockReportNotFound {
-        //glassesService.updateGlasses(item.getProduct());
         return stockItemDao.updateStockItem(stockReportId, item);
     }
 

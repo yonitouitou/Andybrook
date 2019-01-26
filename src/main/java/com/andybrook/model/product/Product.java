@@ -1,4 +1,4 @@
-package com.andybrook.model;
+package com.andybrook.model.product;
 
 public abstract class Product {
 

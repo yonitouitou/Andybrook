@@ -1,7 +1,7 @@
 package com.andybrook.manager.stock;
 
 import com.andybrook.exception.StockReportNotFound;
-import com.andybrook.model.Product;
+import com.andybrook.model.product.Product;
 import com.andybrook.model.StockItem;
 
 import java.util.Map;

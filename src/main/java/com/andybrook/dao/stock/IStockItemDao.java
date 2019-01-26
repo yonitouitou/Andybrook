@@ -1,6 +1,6 @@
 package com.andybrook.dao.stock;
 
-import com.andybrook.model.Product;
+import com.andybrook.model.product.Product;
 import com.andybrook.model.StockItem;
 
 import java.util.Map;

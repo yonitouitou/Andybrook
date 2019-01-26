@@ -1,6 +1,7 @@
 package com.andybrook.model;
 
 import com.andybrook.enums.ProductType;
+import com.andybrook.model.product.Product;
 import com.andybrook.util.IdGenerator;
 
 public class StockItem<T extends Product> {

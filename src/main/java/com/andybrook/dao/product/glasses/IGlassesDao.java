@@ -1,6 +1,6 @@
 package com.andybrook.dao.product.glasses;
 
-import com.andybrook.model.Glasses;
+import com.andybrook.model.product.Glasses;
 
 import java.util.Optional;
 

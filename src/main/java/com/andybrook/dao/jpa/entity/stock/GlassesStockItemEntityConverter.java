@@ -5,7 +5,7 @@ import com.andybrook.dao.jpa.entity.factory.EntityFactory;
 import com.andybrook.dao.jpa.entity.factory.IEntityConverter;
 import com.andybrook.dao.jpa.entity.product.GlassesEntity;
 import com.andybrook.enums.ProductType;
-import com.andybrook.model.Glasses;
+import com.andybrook.model.product.Glasses;
 import com.andybrook.model.StockItem;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;

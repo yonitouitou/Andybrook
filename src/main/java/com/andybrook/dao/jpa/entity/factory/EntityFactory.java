@@ -6,7 +6,7 @@ import com.andybrook.dao.jpa.entity.product.ProductEntity;
 import com.andybrook.dao.jpa.entity.stock.StockItemEntity;
 import com.andybrook.dao.jpa.entity.stock.StockReportEntity;
 import com.andybrook.enums.ProductType;
-import com.andybrook.model.Product;
+import com.andybrook.model.product.Product;
 import com.andybrook.model.StockItem;
 import com.andybrook.model.StockReport;
 import org.springframework.beans.factory.annotation.Autowired;

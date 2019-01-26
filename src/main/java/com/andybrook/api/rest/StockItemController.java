@@ -1,10 +1,10 @@
 package com.andybrook.api.rest;
 
 import com.andybrook.api.rest.ctx.GenericRequestById;
-import com.andybrook.api.rest.ctx.StockItemUpdateRequest;
+import com.andybrook.model.request.StockItemUpdateRequest;
 import com.andybrook.exception.StockReportNotFound;
 import com.andybrook.manager.stock.IStockItemManager;
-import com.andybrook.model.Product;
+import com.andybrook.model.product.Product;
 import com.andybrook.model.StockItem;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -24,13 +24,13 @@ public class StockItemController extends AbstractController {
     private static Logger LOGGER = System.getLogger(CONSOLE_LOGGER_NAME);
 
     @Autowired
-    private IStockItemManager glassesStockManager;
+    private IStockItemManager stockItemManager;
 
     @GetMapping(path = "/get/{id}")
     public GlassesTableRow getGlassesStockItem(@PathVariable long id) {
         GlassesTableRow glassesTableRow = null;
         LOGGER.log(Level.INFO, "Request received to get stock glasses : " + id);
-        Optional<StockItem<? extends Product>> glassesStockItemOpt = glassesStockManager.getStockItem(id);
+        Optional<StockItem<? extends Product>> glassesStockItemOpt = stockItemManager.getStockItem(id);
         if (glassesStockItemOpt.isPresent()) {
             glassesTableRow = new GlassesTableRow(glassesStockItemOpt.get());
         }
@@ -40,7 +40,7 @@ public class StockItemController extends AbstractController {
     @GetMapping(path = "/getAll")
     public GlassesTableRow[] getAllGlassesStockItems() {
         LOGGER.log(Level.INFO, "Request received to get all stock glasses");
-        Map<Long, StockItem<? extends Product>> items = glassesStockManager.getAllStockItems();
+        Map<Long, StockItem<? extends Product>> items = stockItemManager.getAllStockItems();
         GlassesTableRow[] rows = new GlassesTableRow[items.size()];
         Collection<StockItem<? extends Product>> values = items.values();
         int index = 0;
@@ -54,14 +54,14 @@ public class StockItemController extends AbstractController {
     @PostMapping(path = "/update")
     public GlassesTableRow updateGlassesStockItem(@RequestBody StockItemUpdateRequest request) throws StockReportNotFound {
         LOGGER.log(Level.INFO, "Request received to update stock glasses : " + request.getStockItem());
-        StockItem<? extends Product> itemUpdated = glassesStockManager.updateStockItem(request.getStockReportId(), request.getStockItem());
+        StockItem<? extends Product> itemUpdated = stockItemManager.updateStockItem(request.getStockReportId(), request.getStockItem());
         return new GlassesTableRow(itemUpdated);
     }
 
     @DeleteMapping(path = "/delete")
     public boolean deleteGlassesStockItem(@RequestBody GenericRequestById request) {
         LOGGER.log(Level.INFO, "Request received to remove stock glasses with Id : " + request.getId());
-        return glassesStockManager.removeStockItem(request.getId());
+        return stockItemManager.removeStockItem(request.getId());
     }
 
 

@@ -31,7 +31,7 @@ public abstract class StockItemEntity {
     protected int quantity;
 
     @CreatedDate
-    @Column(name = "createddatetime")
+    @Column(name = "createddatetime", updatable = false)
     protected LocalDateTime createdDatetime;
 
     @LastModifiedDate
