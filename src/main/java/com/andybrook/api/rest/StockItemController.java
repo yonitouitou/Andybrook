@@ -1,11 +1,11 @@
 package com.andybrook.api.rest;
 
 import com.andybrook.api.rest.ctx.GenericRequestById;
-import com.andybrook.model.request.StockItemUpdateRequest;
 import com.andybrook.exception.StockReportNotFound;
 import com.andybrook.manager.stock.IStockItemManager;
-import com.andybrook.model.product.Product;
 import com.andybrook.model.StockItem;
+import com.andybrook.model.product.Product;
+import com.andybrook.model.request.StockItemUpdateRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -15,13 +15,11 @@ import java.util.Collection;
 import java.util.Map;
 import java.util.Optional;
 
-import static com.andybrook.util.Const.CONSOLE_LOGGER_NAME;
-
 @RestController
 @RequestMapping("v1/gstock")
 public class StockItemController extends AbstractController {
 
-    private static Logger LOGGER = System.getLogger(CONSOLE_LOGGER_NAME);
+    private static Logger LOGGER = System.getLogger(StockItemController.class.getSimpleName());
 
     @Autowired
     private IStockItemManager stockItemManager;
