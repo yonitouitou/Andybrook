@@ -53,6 +53,4 @@ public class StockReportController {
         return stockReportManager.getAll();
     }
 
-
-
 }

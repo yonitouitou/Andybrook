@@ -12,25 +12,25 @@ public class StockReport {
     protected Long id;
     protected String name;
     protected String comment;
-    protected Map<Long, StockItem<? extends Product>> products;
+    protected Map<Long, StockItem<? extends Product>> items;
     protected final LocalDateTime createdDateTime;
     protected ReportStatus status;
 
-    public StockReport(Long id, String name, Map<Long, StockItem<? extends Product>> products) {
+    public StockReport(Long id, String name, Map<Long, StockItem<? extends Product>> items) {
         this.id = id;
         this.name = name;
-        this.products = products;
+        this.items = items;
         this.status = ReportStatus.CREATED;
         this.comment = "";
         this.createdDateTime = LocalDateTime.now();
     }
 
     public void addItem(StockItem<? extends Product> item) {
-        products.put(item.getId(), item);
+        items.put(item.getId(), item);
     }
 
     public void deleteItem(long stockItemId) {
-        products.remove(stockItemId);
+        items.remove(stockItemId);
     }
 
     public boolean isOpen() {
@@ -65,16 +65,16 @@ public class StockReport {
         this.comment = comment;
     }
 
-    public void setProducts(Map<Long, StockItem<? extends Product>> products) {
-        this.products = products;
+    public void setItems(Map<Long, StockItem<? extends Product>> items) {
+        this.items = items;
     }
 
     public void setStatus(ReportStatus status) {
         this.status = status;
     }
 
-    public Collection<StockItem<? extends Product>> getProducts() {
-        return products.values();
+    public Collection<StockItem<? extends Product>> getItems() {
+        return items.values();
     }
 
     public LocalDateTime getCreatedDateTime() {
@@ -89,7 +89,7 @@ public class StockReport {
     public String toString() {
         final StringBuilder sb = new StringBuilder("StockReport{");
         sb.append("id=").append(id);
-        sb.append(", products=").append(products);
+        sb.append(", items=").append(items);
         sb.append(", createdDateTime=").append(createdDateTime);
         sb.append(", status=").append(status);
         sb.append('}');
