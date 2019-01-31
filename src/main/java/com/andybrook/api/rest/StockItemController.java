@@ -16,7 +16,7 @@ import java.util.Map;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("v1/gstock")
+@RequestMapping("v1/stock")
 public class StockItemController extends AbstractController {
 
     private static Logger LOGGER = System.getLogger(StockItemController.class.getSimpleName());
