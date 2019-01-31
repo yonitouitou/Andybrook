@@ -170,18 +170,16 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
 /* harmony import */ var _model_StockItem__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../model/StockItem */ "./src/app/model/StockItem.ts");
-/* harmony import */ var _service_stock_report_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../service/stock-report-service */ "./src/app/service/stock-report-service.ts");
-/* harmony import */ var _model_Product__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../model/Product */ "./src/app/model/Product.ts");
-
+/* harmony import */ var _model_Product__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../model/Product */ "./src/app/model/Product.ts");
 
 
 
 
 var ListStockItemComponent = /** @class */ (function () {
-    function ListStockItemComponent(stockReportService) {
-        this.stockReportService = stockReportService;
+    function ListStockItemComponent() {
         this.stockItemArray = [];
         this.areNewStockItemFieldsSet = false;
+        this.stockItemCreatedEvent = new _angular_core__WEBPACK_IMPORTED_MODULE_1__["EventEmitter"]();
     }
     ListStockItemComponent.prototype.ngOnInit = function () {
     };
@@ -191,8 +189,8 @@ var ListStockItemComponent = /** @class */ (function () {
             && this.inputPrice >= 0;
     };
     ListStockItemComponent.prototype.createNewStockItem = function () {
-        var stockItem = new _model_StockItem__WEBPACK_IMPORTED_MODULE_2__["StockItem"](null, this.inputQuantity, new _model_Product__WEBPACK_IMPORTED_MODULE_4__["Product"](null, this.inputName, this.inputPrice));
-        this.stockReportService.addItemToReport(this.stockReportId, stockItem);
+        var stockItem = new _model_StockItem__WEBPACK_IMPORTED_MODULE_2__["StockItem"](undefined, this.inputQuantity, new _model_Product__WEBPACK_IMPORTED_MODULE_3__["Product"](undefined, this.inputName, this.inputPrice));
+        this.stockItemCreatedEvent.emit(stockItem);
         this.resetNewStockitemFields();
     };
     ListStockItemComponent.prototype.deleteStockItem = function (id) {
@@ -212,13 +210,17 @@ var ListStockItemComponent = /** @class */ (function () {
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Input"])(),
         tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:type", Number)
     ], ListStockItemComponent.prototype, "stockReportId", void 0);
+    tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Output"])(),
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:type", Object)
+    ], ListStockItemComponent.prototype, "stockItemCreatedEvent", void 0);
     ListStockItemComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
             selector: 'list-stock-item',
             template: __webpack_require__(/*! ./list-stock-item.component.html */ "./src/app/list-stock-item/list-stock-item.component.html"),
             styles: [__webpack_require__(/*! ./list-stock-item.component.css */ "./src/app/list-stock-item/list-stock-item.component.css")]
         }),
-        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_service_stock_report_service__WEBPACK_IMPORTED_MODULE_3__["StockReportService"]])
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [])
     ], ListStockItemComponent);
     return ListStockItemComponent;
 }());
@@ -262,7 +264,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "StockItem", function() { return StockItem; });
 var Type;
 (function (Type) {
-    Type[Type["GLASSES"] = 0] = "GLASSES";
+    Type["GLASSES"] = "GLASSES";
 })(Type || (Type = {}));
 var StockItem = /** @class */ (function () {
     function StockItem(id, quantity, product) {
@@ -272,6 +274,29 @@ var StockItem = /** @class */ (function () {
         this.product = product;
     }
     return StockItem;
+}());
+
+
+
+/***/ }),
+
+/***/ "./src/app/model/StockReport.ts":
+/*!**************************************!*\
+  !*** ./src/app/model/StockReport.ts ***!
+  \**************************************/
+/*! exports provided: StockReport */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "StockReport", function() { return StockReport; });
+var StockReport = /** @class */ (function () {
+    function StockReport(id, name, comment, items) {
+        this.items = [];
+        this.details = { id: id, name: name, comment: comment };
+        this.items = items;
+    }
+    return StockReport;
 }());
 
 
@@ -391,31 +416,45 @@ var HttpService = /** @class */ (function () {
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "StockReportService", function() { return StockReportService; });
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
-/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
-/* harmony import */ var _http_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./http-service */ "./src/app/service/http-service.ts");
+/* harmony import */ var _model_StockItem__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../model/StockItem */ "./src/app/model/StockItem.ts");
+/* harmony import */ var _model_Product__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../model/Product */ "./src/app/model/Product.ts");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var _http_service__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./http-service */ "./src/app/service/http-service.ts");
+
+
 
 
 
 var StockReportService = /** @class */ (function () {
-    function StockReportService(http) {
-        this.http = http;
+    function StockReportService(httpApi) {
+        this.httpApi = httpApi;
     }
     StockReportService.prototype.getStockReport = function (id) {
         console.log("Get report " + id);
-        return this.http.get("/v1/stockReport/get/" + id);
+        var stockReport;
+        return this.httpApi.get("/v1/stockReport/get/" + id);
     };
     StockReportService.prototype.addItemToReport = function (idReport, item) {
         console.log("Add item[ " + ", " + item.quantity + " to report " + idReport);
+        var stockItem;
         var addStockItemRequest = {
-            "id": idReport,
+            "stockReportId": idReport,
             "stockItem": item,
             "type": item.type
         };
-        this.http.post("/v1/stock/update", addStockItemRequest);
+        this.httpApi.post("/v1/stock/update", addStockItemRequest).subscribe(function (data) {
+            var product = new _model_Product__WEBPACK_IMPORTED_MODULE_2__["Product"](data.item.product.id, data.item.product.name, data.item.product.price);
+            stockItem = new _model_StockItem__WEBPACK_IMPORTED_MODULE_1__["StockItem"](data.item.id, data.item.quantity, product);
+        }, function (error) {
+            debugger;
+            console.log(error);
+        });
+        //this.stockItemChanged.emit(this.stockItems)
+        return stockItem;
     };
     StockReportService = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
-        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Injectable"])(),
-        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_http_service__WEBPACK_IMPORTED_MODULE_2__["HttpService"]])
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_3__["Injectable"])(),
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_http_service__WEBPACK_IMPORTED_MODULE_4__["HttpService"]])
     ], StockReportService);
     return StockReportService;
 }());
@@ -442,7 +481,7 @@ module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div>\n  <h2 style=\"margin: auto\"> {{ reportName }}</h2>\n  <h3></h3>\n  <list-stock-item [stockReportId]=\"reportId\" [stockItems]=\"stockItems\"></list-stock-item>\n</div>"
+module.exports = "<div>\n  <h2 style=\"margin: auto\">REPORT</h2>\n  <h3></h3>\n  <list-stock-item\n    [stockReportId]=\"reportId\"\n    (stockItemCreatedEvent)=\"onNewStockItem()\"\n\n  ></list-stock-item>\n</div>"
 
 /***/ }),
 
@@ -461,6 +500,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _service_stock_report_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../service/stock-report-service */ "./src/app/service/stock-report-service.ts");
 /* harmony import */ var _model_StockItem__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../model/StockItem */ "./src/app/model/StockItem.ts");
 /* harmony import */ var _model_Product__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../model/Product */ "./src/app/model/Product.ts");
+/* harmony import */ var _model_StockReport__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../model/StockReport */ "./src/app/model/StockReport.ts");
+
 
 
 
@@ -469,20 +510,26 @@ __webpack_require__.r(__webpack_exports__);
 var StockReportComponent = /** @class */ (function () {
     function StockReportComponent(stockReportService) {
         this.stockReportService = stockReportService;
-        this.stockItems = [];
+        this.reportId = 1;
     }
     StockReportComponent.prototype.ngOnInit = function () {
         var _this = this;
-        this.stockReportService.getStockReport(1).subscribe(function (data) {
-            _this.reportId = data.id;
-            _this.reportName = data.name;
+        this.stockReportService.getStockReport(this.reportId).subscribe(function (data) {
+            var items = [];
             for (var _i = 0, _a = data.items; _i < _a.length; _i++) {
                 var item = _a[_i];
                 var product = new _model_Product__WEBPACK_IMPORTED_MODULE_4__["Product"](item.product.id, item.product.name, item.product.price);
                 var stockItem = new _model_StockItem__WEBPACK_IMPORTED_MODULE_3__["StockItem"](item.id, item.quantity, product);
-                _this.stockItems.push(stockItem);
+                items.push(stockItem);
             }
+            _this.report = new _model_StockReport__WEBPACK_IMPORTED_MODULE_5__["StockReport"](data.id, data.name, data.comment, items);
+            console.log("1 : " + _this.report);
         });
+        console.log("2 : aaaa");
+    };
+    StockReportComponent.prototype.onNewStockItem = function ($event) {
+        var stockItem = this.stockReportService.addItemToReport(this.reportId, $event);
+        this.report.items.push(stockItem);
     };
     StockReportComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({

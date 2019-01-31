@@ -33,6 +33,10 @@ public class StockReport {
         items.remove(stockItemId);
     }
 
+    public StockItem<? extends Product> getItem(long stockItemId) {
+        return items.get(stockItemId);
+    }
+
     public boolean isOpen() {
         return status != ReportStatus.CLOSED;
     }

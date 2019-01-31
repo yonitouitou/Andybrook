@@ -51,7 +51,7 @@ public class StockItemController extends AbstractController {
 
     @PostMapping(path = "/update")
     public GlassesTableRow updateGlassesStockItem(@RequestBody StockItemUpdateRequest request) throws StockReportNotFound {
-        LOGGER.log(Level.INFO, "Request received to update stock glasses : " + request.getStockItem());
+        LOGGER.log(Level.INFO, "Request received to update stock : " + request);
         StockItem<? extends Product> itemUpdated = stockItemManager.updateStockItem(request.getStockReportId(), request.getStockItem());
         return new GlassesTableRow(itemUpdated);
     }

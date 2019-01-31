@@ -8,6 +8,7 @@ import com.andybrook.model.StockReport;
 import com.andybrook.model.product.Product;
 import com.andybrook.model.request.NewStockReportRequest;
 import com.andybrook.model.request.UpdateStockReportRequest;
+import com.andybrook.util.IdGenerator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -53,8 +54,12 @@ public class StockReportService implements IStockReportService {
         Optional<StockReport> stockReportOpt = stockReportDao.getStockReport(stockReportId);
         if (stockReportOpt.isPresent()) {
             StockReport stockReport = stockReportOpt.get();
+            Product product = item.getProduct();
+            if (product.getId() == null) {
+                product.setId(IdGenerator.generateId());
+            }
             stockReport.addItem(item);
-            stockReport = stockReportDao.updateStockReport(stockReport);
+            stockReportDao.updateStockReport(stockReport);
         } else {
             throw new StockReportNotFound(stockReportId);
         }

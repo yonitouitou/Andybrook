@@ -6,9 +6,9 @@ import com.andybrook.dao.jpa.entity.product.ProductEntity;
 import com.andybrook.dao.jpa.entity.stock.StockItemEntity;
 import com.andybrook.dao.jpa.entity.stock.StockReportEntity;
 import com.andybrook.enums.ProductType;
-import com.andybrook.model.product.Product;
 import com.andybrook.model.StockItem;
 import com.andybrook.model.StockReport;
+import com.andybrook.model.product.Product;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.stereotype.Component;
@@ -20,12 +20,10 @@ import java.util.EnumMap;
 import java.util.HashMap;
 import java.util.Map;
 
-import static com.andybrook.util.Const.CONSOLE_LOGGER_NAME;
-
 @Component
 public final class EntityFactory {
 
-    private static Logger LOGGER = System.getLogger(CONSOLE_LOGGER_NAME);
+    private static Logger LOGGER = System.getLogger(EntityFactory.class.getSimpleName());
     private Map<Class, IEntityConverter> entityConverterMapByModelClass = new HashMap<>();
     private Map<Class, IEntityConverter> entityConverterMapByEntityClass = new HashMap<>();
     private Map<ProductType, IEntityConverter> entityConverterMapByProductType = new EnumMap(ProductType.class);

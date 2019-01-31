@@ -22,7 +22,6 @@ public abstract class ProductEntity {
     static final String DISCRIMINATOR_COLUMN_TYPE = "type";
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     protected Long id;
 
     @Column(name = "name", nullable = false)
