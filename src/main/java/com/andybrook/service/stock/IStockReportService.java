@@ -22,5 +22,5 @@ public interface IStockReportService {
 
     void addItemToReport(long stockRepordId, StockItem<? extends Product> item) throws StockReportNotFound;
 
-    void closeStockReport(long id) throws StockReportNotFound, StockReportClosed;
+    StockReport closeStockReport(long id) throws StockReportNotFound, StockReportClosed;
 }

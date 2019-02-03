@@ -66,12 +66,13 @@ public class StockReportService implements IStockReportService {
     }
 
     @Override
-    public void closeStockReport(long id) throws StockReportNotFound, StockReportClosed {
+    public StockReport closeStockReport(long id) throws StockReportNotFound, StockReportClosed {
         StockReport report = getStockReport(id);
         if (report.isClosed()) {
             throw new StockReportClosed(id);
         }
         stockReportDao.closeStockReport(id);
+        return stockReportDao.getStockReport(id).get();
     }
 
     private StockReport getStockReportById(long id) throws StockReportNotFound {

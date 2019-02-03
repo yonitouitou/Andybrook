@@ -36,7 +36,7 @@ public class StockItemController extends AbstractController {
     }
 
     @GetMapping(path = "/getAll")
-    public GlassesTableRow[] getAllGlassesStockItems() {
+    public GlassesTableRow[] getStockItems() {
         LOGGER.log(Level.INFO, "Request received to get all stock glasses");
         Map<Long, StockItem<? extends Product>> items = stockItemManager.getAllStockItems();
         GlassesTableRow[] rows = new GlassesTableRow[items.size()];
@@ -50,16 +50,16 @@ public class StockItemController extends AbstractController {
     }
 
     @PostMapping(path = "/update")
-    public GlassesTableRow updateGlassesStockItem(@RequestBody StockItemUpdateRequest request) throws StockReportNotFound {
+    public GlassesTableRow updateStockItem(@RequestBody StockItemUpdateRequest request) throws StockReportNotFound {
         LOGGER.log(Level.INFO, "Request received to update stock : " + request);
         StockItem<? extends Product> itemUpdated = stockItemManager.updateStockItem(request.getStockReportId(), request.getStockItem());
         return new GlassesTableRow(itemUpdated);
     }
 
-    @DeleteMapping(path = "/delete")
-    public boolean deleteGlassesStockItem(@RequestBody GenericRequestById request) {
-        LOGGER.log(Level.INFO, "Request received to remove stock glasses with Id : " + request.getId());
-        return stockItemManager.removeStockItem(request.getId());
+    @DeleteMapping(path = "/delete/{id}")
+    public boolean deleteStockItem(@PathVariable long id) {
+        LOGGER.log(Level.INFO, "Request received to remove stock glasses with Id : " + id);
+        return stockItemManager.removeStockItem(id);
     }
 
 
