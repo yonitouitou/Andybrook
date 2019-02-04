@@ -4,6 +4,7 @@ import { Injectable, EventEmitter } from '@angular/core'
 import { HttpService } from './http-service'
 import { StockReport } from '../model/StockReport'
 import { Observable } from "rxjs"
+import { ReportInfo } from '../model/ReportInfo';
 
 @Injectable()
 export class StockReportService {
@@ -73,6 +74,30 @@ export class StockReportService {
                 report.status = "CLOSED" 
             }
         )
+    }
+
+    getAllStockReports(reports: Map<number, ReportInfo>) {
+        console.log("Get all reports")
+        this.httpApi.get("/v1/stockReport/all").subscribe(
+            data => {
+                for (let report of data) {
+                    let itemsQty = report.items.reduce((sum, item) => sum + item.quantity, 0);
+                    let totalPrice = this.getTotalPrice(report.items)
+                    let info = new ReportInfo(report.id, report.name, report.status,
+                                    report.items.length, report.createdDateTime,
+                                    report.comment, itemsQty, totalPrice)
+                    reports.set(info.id, info)
+                }
+            }
+        )
+    }
+
+    private getTotalPrice(items: any) {
+        let total = 0
+        for (let i = 0; i < items.length; i++) {
+            total += items[i].product.price;
+        }
+        return total
     }
 
     private toUpdateRequest(report: StockReport, item: StockItem): any {

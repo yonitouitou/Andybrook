@@ -1,0 +1,30 @@
+<div class="col-md-20 user-container">
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Status</th>
+                <th>Total Product</th>
+                <th>Total Qty</th>
+                <th>Total Price</th>
+                <th>Creation Date</th>
+                <th>Comment</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let report of reports.values()">
+                <td>{{ report.id }}</td>
+                <td>{{ report.name }}</td>
+                <td>{{ report.status }}</td>
+                <td>{{ report.nbProduct }}</td>
+                <td>{{ report.totalItemQty }}</td>
+                <td>{{ report.totalPrice }} €</td>
+                <td>{{ report.createDate }}</td>
+                <td>{{ report.comment }}</td>
+                <td><button class="btn btn-success">Open</button></td>
+            </tr>
+        </tbody>
+    </table>
+</div>

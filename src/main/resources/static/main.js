@@ -30,7 +30,7 @@ webpackEmptyAsyncContext.id = "./src/$$_lazy_route_resource lazy recursive";
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJzcmMvYXBwL2FwcC5jb21wb25lbnQuY3NzIn0= */"
+module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiIuLi8uLi9hcHAuY29tcG9uZW50LmNzcyJ9 */"
 
 /***/ }),
 
@@ -41,7 +41,7 @@ module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"container-fluid\">\n    <mat-toolbar class=\"mat-elevation-z6\" style=\"background-color: steelblue\">  \n        <mat-toolbar-row>\n            <span>First Rowaaaaaaaa</span>\n        </mat-toolbar-row>\n    </mat-toolbar>\n    <h3></h3>\n\n    <div class=\"row\">\n        <div class=\"col-xs-12 col-sm-10 col-md-8 col-sm-offset-1 col-md-offset-2\">\n            <ul class=\"nav nav-tabs\">\n                <li role=\"presentation\" class=\"active\"><a href=\"#\">Home</a></li>\n                <li role=\"presentation\"><a href=\"#\">Admin</a></li>\n            </ul>\n        </div>\n    </div>\n    <div class=\"row\">\n        <div class=\"col-xs-12 col-sm-10 col-md-8 col-sm-offset-1 col-md-offset-2\">\n            <stock-report></stock-report>\n        </div>\n    </div>\n</div>\n\n"
+module.exports = "<div class=\"container-fluid\">\n    <mat-toolbar class=\"mat-elevation-z6\" style=\"background-color: steelblue\">  \n        <mat-toolbar-row>\n            <span>First Rowaaaaaaaa</span>\n        </mat-toolbar-row>\n    </mat-toolbar>\n    <h3></h3>\n\n    <div class=\"row\">\n        <div class=\"col-xs-12 col-sm-10 col-md-8 col-sm-offset-1 col-md-offset-2\">\n            <ul class=\"nav nav-tabs\">\n                <li role=\"presentation\" class=\"active\"><a href=\"#\">Home</a></li>\n                <li role=\"presentation\"><a href=\"#\">Admin</a></li>\n            </ul>\n        </div>\n    </div>\n    <div class=\"row\">\n        <div class=\"col-xs-12 col-sm-10 col-md-8 col-sm-offset-1 col-md-offset-2\">\n            <stock-report></stock-report>\n        </div>\n    </div>\n\n    <div class=\"row\">\n            <div class=\"col-xs-12 col-sm-10 col-md-8 col-sm-offset-1 col-md-offset-2\">\n                <reports-manager></reports-manager>\n            </div>\n        </div>\n</div>\n\n"
 
 /***/ }),
 
@@ -90,16 +90,24 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _angular_platform_browser__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/platform-browser */ "./node_modules/@angular/platform-browser/fesm5/platform-browser.js");
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
 /* harmony import */ var _angular_forms__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/forms */ "./node_modules/@angular/forms/fesm5/forms.js");
-/* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @angular/common/http */ "./node_modules/@angular/common/fesm5/http.js");
-/* harmony import */ var _app_component__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./app.component */ "./src/app/app.component.ts");
-/* harmony import */ var _list_stock_item_list_stock_item_component__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./list-stock-item/list-stock-item.component */ "./src/app/list-stock-item/list-stock-item.component.ts");
-/* harmony import */ var _reports_manager_reports_manager_component__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./reports-manager/reports-manager.component */ "./src/app/reports-manager/reports-manager.component.ts");
-/* harmony import */ var _service_stock_report_service__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./service/stock-report-service */ "./src/app/service/stock-report-service.ts");
-/* harmony import */ var _stock_report_stock_report_component__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./stock-report/stock-report.component */ "./src/app/stock-report/stock-report.component.ts");
-/* harmony import */ var _service_http_service__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./service/http-service */ "./src/app/service/http-service.ts");
-/* harmony import */ var _header_menu_header_menu_component__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./header-menu/header-menu.component */ "./src/app/header-menu/header-menu.component.ts");
-/* harmony import */ var _angular_material_toolbar__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! @angular/material/toolbar */ "./node_modules/@angular/material/esm5/toolbar.es5.js");
-/* harmony import */ var _stock_report_header_stock_report_header_component__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./stock-report-header/stock-report-header.component */ "./src/app/stock-report-header/stock-report-header.component.ts");
+/* harmony import */ var _angular_material__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @angular/material */ "./node_modules/@angular/material/esm5/material.es5.js");
+/* harmony import */ var _angular_material_toolbar__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @angular/material/toolbar */ "./node_modules/@angular/material/esm5/toolbar.es5.js");
+/* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @angular/common/http */ "./node_modules/@angular/common/fesm5/http.js");
+/* harmony import */ var _angular_platform_browser_animations__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @angular/platform-browser/animations */ "./node_modules/@angular/platform-browser/fesm5/animations.js");
+/* harmony import */ var _app_component__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./app.component */ "./src/app/app.component.ts");
+/* harmony import */ var _stock_report_panel_list_stock_item_list_stock_item_component__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./stock-report-panel/list-stock-item/list-stock-item.component */ "./src/app/stock-report-panel/list-stock-item/list-stock-item.component.ts");
+/* harmony import */ var _reports_manager_panel_reports_manager_reports_manager_component__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./reports-manager-panel/reports-manager/reports-manager.component */ "./src/app/reports-manager-panel/reports-manager/reports-manager.component.ts");
+/* harmony import */ var _service_stock_report_service__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./service/stock-report-service */ "./src/app/service/stock-report-service.ts");
+/* harmony import */ var _stock_report_panel_stock_report_stock_report_component__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./stock-report-panel/stock-report/stock-report.component */ "./src/app/stock-report-panel/stock-report/stock-report.component.ts");
+/* harmony import */ var _service_http_service__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./service/http-service */ "./src/app/service/http-service.ts");
+/* harmony import */ var _header_menu_header_menu_component__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./header-menu/header-menu.component */ "./src/app/header-menu/header-menu.component.ts");
+/* harmony import */ var _stock_report_panel_stock_report_header_stock_report_header_component__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ./stock-report-panel/stock-report-header/stock-report-header.component */ "./src/app/stock-report-panel/stock-report-header/stock-report-header.component.ts");
+/* harmony import */ var _reports_manager_panel_list_reports_list_reports_component__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ./reports-manager-panel/list-reports/list-reports.component */ "./src/app/reports-manager-panel/list-reports/list-reports.component.ts");
+/* harmony import */ var _reports_manager_panel_create_report_modal_create_report_modal_component__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! ./reports-manager-panel/create-report-modal/create-report-modal.component */ "./src/app/reports-manager-panel/create-report-modal/create-report-modal.component.ts");
+
+
+
+
 
 
 
@@ -120,21 +128,27 @@ var AppModule = /** @class */ (function () {
     AppModule = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_2__["NgModule"])({
             declarations: [
-                _app_component__WEBPACK_IMPORTED_MODULE_5__["AppComponent"],
-                _list_stock_item_list_stock_item_component__WEBPACK_IMPORTED_MODULE_6__["ListStockItemComponent"],
-                _reports_manager_reports_manager_component__WEBPACK_IMPORTED_MODULE_7__["ReportsManagerComponent"],
-                _stock_report_stock_report_component__WEBPACK_IMPORTED_MODULE_9__["StockReportComponent"],
-                _header_menu_header_menu_component__WEBPACK_IMPORTED_MODULE_11__["HeaderMenuComponent"],
-                _stock_report_header_stock_report_header_component__WEBPACK_IMPORTED_MODULE_13__["StockReportHeaderComponent"]
+                _app_component__WEBPACK_IMPORTED_MODULE_8__["AppComponent"],
+                _stock_report_panel_list_stock_item_list_stock_item_component__WEBPACK_IMPORTED_MODULE_9__["ListStockItemComponent"],
+                _reports_manager_panel_reports_manager_reports_manager_component__WEBPACK_IMPORTED_MODULE_10__["ReportsManagerComponent"],
+                _stock_report_panel_stock_report_stock_report_component__WEBPACK_IMPORTED_MODULE_12__["StockReportComponent"],
+                _header_menu_header_menu_component__WEBPACK_IMPORTED_MODULE_14__["HeaderMenuComponent"],
+                _stock_report_panel_stock_report_header_stock_report_header_component__WEBPACK_IMPORTED_MODULE_15__["StockReportHeaderComponent"],
+                _reports_manager_panel_list_reports_list_reports_component__WEBPACK_IMPORTED_MODULE_16__["ListReportsComponent"],
+                _reports_manager_panel_create_report_modal_create_report_modal_component__WEBPACK_IMPORTED_MODULE_17__["CreateReportModalComponent"]
             ],
+            entryComponents: [_reports_manager_panel_create_report_modal_create_report_modal_component__WEBPACK_IMPORTED_MODULE_17__["CreateReportModalComponent"]],
             imports: [
                 _angular_platform_browser__WEBPACK_IMPORTED_MODULE_1__["BrowserModule"],
-                _angular_common_http__WEBPACK_IMPORTED_MODULE_4__["HttpClientModule"],
+                _angular_common_http__WEBPACK_IMPORTED_MODULE_6__["HttpClientModule"],
                 _angular_forms__WEBPACK_IMPORTED_MODULE_3__["FormsModule"],
-                _angular_material_toolbar__WEBPACK_IMPORTED_MODULE_12__["MatToolbarModule"]
+                _angular_material_toolbar__WEBPACK_IMPORTED_MODULE_5__["MatToolbarModule"],
+                _angular_material__WEBPACK_IMPORTED_MODULE_4__["MatDialogModule"],
+                _angular_platform_browser_animations__WEBPACK_IMPORTED_MODULE_7__["BrowserAnimationsModule"],
+                _angular_platform_browser_animations__WEBPACK_IMPORTED_MODULE_7__["NoopAnimationsModule"]
             ],
-            providers: [_service_stock_report_service__WEBPACK_IMPORTED_MODULE_8__["StockReportService"], _service_http_service__WEBPACK_IMPORTED_MODULE_10__["HttpService"]],
-            bootstrap: [_app_component__WEBPACK_IMPORTED_MODULE_5__["AppComponent"]]
+            providers: [_service_stock_report_service__WEBPACK_IMPORTED_MODULE_11__["StockReportService"], _service_http_service__WEBPACK_IMPORTED_MODULE_13__["HttpService"]],
+            bootstrap: [_app_component__WEBPACK_IMPORTED_MODULE_8__["AppComponent"]]
         })
     ], AppModule);
     return AppModule;
@@ -151,7 +165,7 @@ var AppModule = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJzcmMvYXBwL2hlYWRlci1tZW51L2hlYWRlci1tZW51LmNvbXBvbmVudC5jc3MifQ== */"
+module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiIuLi8uLi9oZWFkZXItbWVudS9oZWFkZXItbWVudS5jb21wb25lbnQuY3NzIn0= */"
 
 /***/ }),
 
@@ -200,21 +214,491 @@ var HeaderMenuComponent = /** @class */ (function () {
 
 /***/ }),
 
-/***/ "./src/app/list-stock-item/list-stock-item.component.css":
-/*!***************************************************************!*\
-  !*** ./src/app/list-stock-item/list-stock-item.component.css ***!
-  \***************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
+/***/ "./src/app/model/Product.ts":
+/*!**********************************!*\
+  !*** ./src/app/model/Product.ts ***!
+  \**********************************/
+/*! exports provided: Product */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
-module.exports = ".table tr.active td {\n    background-color:#275e94 !important;\n    color: white;\n    font-weight: bold;\n  }\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvbGlzdC1zdG9jay1pdGVtL2xpc3Qtc3RvY2staXRlbS5jb21wb25lbnQuY3NzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBO0lBQ0ksbUNBQW1DO0lBQ25DLFlBQVk7SUFDWixpQkFBaUI7RUFDbkIiLCJmaWxlIjoic3JjL2FwcC9saXN0LXN0b2NrLWl0ZW0vbGlzdC1zdG9jay1pdGVtLmNvbXBvbmVudC5jc3MiLCJzb3VyY2VzQ29udGVudCI6WyIudGFibGUgdHIuYWN0aXZlIHRkIHtcbiAgICBiYWNrZ3JvdW5kLWNvbG9yOiMyNzVlOTQgIWltcG9ydGFudDtcbiAgICBjb2xvcjogd2hpdGU7XG4gICAgZm9udC13ZWlnaHQ6IGJvbGQ7XG4gIH0iXX0= */"
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Product", function() { return Product; });
+var Product = /** @class */ (function () {
+    function Product(id, name, price) {
+        this.id = id;
+        this.name = name;
+        this.price = price;
+    }
+    return Product;
+}());
+
+
 
 /***/ }),
 
-/***/ "./src/app/list-stock-item/list-stock-item.component.html":
-/*!****************************************************************!*\
-  !*** ./src/app/list-stock-item/list-stock-item.component.html ***!
-  \****************************************************************/
+/***/ "./src/app/model/ReportInfo.ts":
+/*!*************************************!*\
+  !*** ./src/app/model/ReportInfo.ts ***!
+  \*************************************/
+/*! exports provided: ReportInfo */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ReportInfo", function() { return ReportInfo; });
+var ReportInfo = /** @class */ (function () {
+    function ReportInfo(id, name, status, nbProduct, createDate, comment, totalItemQty, totalPrice) {
+        this.id = id;
+        this.name = name;
+        this.status = status;
+        this.nbProduct = nbProduct;
+        this.createDate = createDate;
+        this.comment = comment;
+        this.totalItemQty = totalItemQty;
+        this.totalPrice = totalPrice;
+    }
+    return ReportInfo;
+}());
+
+
+
+/***/ }),
+
+/***/ "./src/app/model/StockItem.ts":
+/*!************************************!*\
+  !*** ./src/app/model/StockItem.ts ***!
+  \************************************/
+/*! exports provided: StockItem */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "StockItem", function() { return StockItem; });
+var Type;
+(function (Type) {
+    Type["GLASSES"] = "GLASSES";
+})(Type || (Type = {}));
+var StockItem = /** @class */ (function () {
+    function StockItem(id, quantity, product) {
+        this.type = Type.GLASSES;
+        this.id = id;
+        this.quantity = quantity;
+        this.product = product;
+    }
+    return StockItem;
+}());
+
+
+
+/***/ }),
+
+/***/ "./src/app/model/StockReport.ts":
+/*!**************************************!*\
+  !*** ./src/app/model/StockReport.ts ***!
+  \**************************************/
+/*! exports provided: StockReport */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "StockReport", function() { return StockReport; });
+var StockReport = /** @class */ (function () {
+    function StockReport() {
+        this.items = new Map();
+    }
+    return StockReport;
+}());
+
+
+
+/***/ }),
+
+/***/ "./src/app/reports-manager-panel/create-report-modal/create-report-modal.component.css":
+/*!*********************************************************************************************!*\
+  !*** ./src/app/reports-manager-panel/create-report-modal/create-report-modal.component.css ***!
+  \*********************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJjcmVhdGUtcmVwb3J0LW1vZGFsLmNvbXBvbmVudC5jc3MifQ== */"
+
+/***/ }),
+
+/***/ "./src/app/reports-manager-panel/create-report-modal/create-report-modal.component.html":
+/*!**********************************************************************************************!*\
+  !*** ./src/app/reports-manager-panel/create-report-modal/create-report-modal.component.html ***!
+  \**********************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "<ng-template #content let-modal>\n    <div class=\"modal-header\">\n      <h4 class=\"modal-title\" id=\"modal-basic-title\">Profile update</h4>\n      <button type=\"button\" class=\"close\" aria-label=\"Close\">\n        <span aria-hidden=\"true\">&times;</span>\n      </button>\n    </div>\n    <div class=\"modal-body\">\n      <form>\n        <div class=\"form-group\">\n          <label for=\"dateOfBirth\">Date of birth</label>\n          <div class=\"input-group\">\n            <input id=\"dateOfBirth\" class=\"form-control\" placeholder=\"yyyy-mm-dd\" name=\"dp\">\n            <div class=\"input-group-append\">\n              <button class=\"btn btn-outline-secondary calendar\" type=\"button\"></button>\n            </div>\n          </div>\n        </div>\n      </form>\n    </div>\n    <div class=\"modal-footer\">\n      <button type=\"button\" class=\"btn btn-outline-dark\">Save</button>\n    </div>\n  </ng-template>"
+
+/***/ }),
+
+/***/ "./src/app/reports-manager-panel/create-report-modal/create-report-modal.component.ts":
+/*!********************************************************************************************!*\
+  !*** ./src/app/reports-manager-panel/create-report-modal/create-report-modal.component.ts ***!
+  \********************************************************************************************/
+/*! exports provided: CreateReportModalComponent */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "CreateReportModalComponent", function() { return CreateReportModalComponent; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var _angular_material__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/material */ "./node_modules/@angular/material/esm5/material.es5.js");
+/* harmony import */ var src_app_model_ReportInfo__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! src/app/model/ReportInfo */ "./src/app/model/ReportInfo.ts");
+
+
+
+
+var CreateReportModalComponent = /** @class */ (function () {
+    function CreateReportModalComponent(dialogRef, data) {
+        this.dialogRef = dialogRef;
+        this.data = data;
+    }
+    CreateReportModalComponent.prototype.ngOnInit = function () {
+    };
+    CreateReportModalComponent.prototype.onCancelClick = function () {
+        this.dialogRef.close();
+    };
+    CreateReportModalComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
+            selector: 'create-report-modal',
+            template: __webpack_require__(/*! ./create-report-modal.component.html */ "./src/app/reports-manager-panel/create-report-modal/create-report-modal.component.html"),
+            styles: [__webpack_require__(/*! ./create-report-modal.component.css */ "./src/app/reports-manager-panel/create-report-modal/create-report-modal.component.css")]
+        }),
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__param"](1, Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Inject"])(_angular_material__WEBPACK_IMPORTED_MODULE_2__["MAT_DIALOG_DATA"])),
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_angular_material__WEBPACK_IMPORTED_MODULE_2__["MatDialogRef"],
+            src_app_model_ReportInfo__WEBPACK_IMPORTED_MODULE_3__["ReportInfo"]])
+    ], CreateReportModalComponent);
+    return CreateReportModalComponent;
+}());
+
+
+
+/***/ }),
+
+/***/ "./src/app/reports-manager-panel/list-reports/list-reports.component.css":
+/*!*******************************************************************************!*\
+  !*** ./src/app/reports-manager-panel/list-reports/list-reports.component.css ***!
+  \*******************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiIuLi9saXN0LXJlcG9ydHMvbGlzdC1yZXBvcnRzLmNvbXBvbmVudC5jc3MifQ== */"
+
+/***/ }),
+
+/***/ "./src/app/reports-manager-panel/list-reports/list-reports.component.html":
+/*!********************************************************************************!*\
+  !*** ./src/app/reports-manager-panel/list-reports/list-reports.component.html ***!
+  \********************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "<div class=\"col-md-20 user-container\">\n    <table class=\"table table-striped\">\n        <thead>\n            <tr>\n                <th>ID</th>\n                <th>Name</th>\n                <th>Status</th>\n                <th>Total Product</th>\n                <th>Total Qty</th>\n                <th>Total Price</th>\n                <th>Creation Date</th>\n                <th>Comment</th>\n                <th></th>\n            </tr>\n        </thead>\n        <tbody>\n            <tr *ngFor=\"let report of reports.values()\">\n                <td>{{ report.id }}</td>\n                <td>{{ report.name }}</td>\n                <td>{{ report.status }}</td>\n                <td>{{ report.nbProduct }}</td>\n                <td>{{ report.totalItemQty }}</td>\n                <td>{{ report.totalPrice }} €</td>\n                <td>{{ report.createDate }}</td>\n                <td>{{ report.comment }}</td>\n                <td><button class=\"btn btn-success\">Open</button></td>\n            </tr>\n        </tbody>\n    </table>\n</div>"
+
+/***/ }),
+
+/***/ "./src/app/reports-manager-panel/list-reports/list-reports.component.ts":
+/*!******************************************************************************!*\
+  !*** ./src/app/reports-manager-panel/list-reports/list-reports.component.ts ***!
+  \******************************************************************************/
+/*! exports provided: ListReportsComponent */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ListReportsComponent", function() { return ListReportsComponent; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+
+
+var ListReportsComponent = /** @class */ (function () {
+    function ListReportsComponent() {
+    }
+    ListReportsComponent.prototype.ngOnInit = function () {
+    };
+    tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Input"])(),
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:type", Map)
+    ], ListReportsComponent.prototype, "reports", void 0);
+    ListReportsComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
+            selector: 'list-reports',
+            template: __webpack_require__(/*! ./list-reports.component.html */ "./src/app/reports-manager-panel/list-reports/list-reports.component.html"),
+            styles: [__webpack_require__(/*! ./list-reports.component.css */ "./src/app/reports-manager-panel/list-reports/list-reports.component.css")]
+        }),
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [])
+    ], ListReportsComponent);
+    return ListReportsComponent;
+}());
+
+
+
+/***/ }),
+
+/***/ "./src/app/reports-manager-panel/reports-manager/reports-manager.component.css":
+/*!*************************************************************************************!*\
+  !*** ./src/app/reports-manager-panel/reports-manager/reports-manager.component.css ***!
+  \*************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiIuLi9yZXBvcnRzLW1hbmFnZXIvcmVwb3J0cy1tYW5hZ2VyLmNvbXBvbmVudC5jc3MifQ== */"
+
+/***/ }),
+
+/***/ "./src/app/reports-manager-panel/reports-manager/reports-manager.component.html":
+/*!**************************************************************************************!*\
+  !*** ./src/app/reports-manager-panel/reports-manager/reports-manager.component.html ***!
+  \**************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "<div class=\"container-fluid\">\n    <div>\n        <button class=\"btn btn-primary\"\n            (click)=\"openCreateReportModal()\"\n        >New Report</button>\n    </div>\n    <list-reports\n        [reports]=\"reports\"\n    ></list-reports>\n</div>"
+
+/***/ }),
+
+/***/ "./src/app/reports-manager-panel/reports-manager/reports-manager.component.ts":
+/*!************************************************************************************!*\
+  !*** ./src/app/reports-manager-panel/reports-manager/reports-manager.component.ts ***!
+  \************************************************************************************/
+/*! exports provided: ReportsManagerComponent */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ReportsManagerComponent", function() { return ReportsManagerComponent; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var _angular_material__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/material */ "./node_modules/@angular/material/esm5/material.es5.js");
+/* harmony import */ var _create_report_modal_create_report_modal_component__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../create-report-modal/create-report-modal.component */ "./src/app/reports-manager-panel/create-report-modal/create-report-modal.component.ts");
+/* harmony import */ var src_app_service_stock_report_service__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! src/app/service/stock-report-service */ "./src/app/service/stock-report-service.ts");
+
+
+
+
+
+var ReportsManagerComponent = /** @class */ (function () {
+    function ReportsManagerComponent(stockReportService, dialog) {
+        this.stockReportService = stockReportService;
+        this.dialog = dialog;
+        this.reports = new Map();
+    }
+    ReportsManagerComponent.prototype.ngOnInit = function () {
+        this.stockReportService.getAllStockReports(this.reports);
+    };
+    ReportsManagerComponent.prototype.openCreateReportModal = function () {
+        var _this = this;
+        var dialogRef = this.dialog.open(_create_report_modal_create_report_modal_component__WEBPACK_IMPORTED_MODULE_3__["CreateReportModalComponent"], {
+            width: '250px',
+            data: { reportInfo: this.reportInfo }
+        });
+        dialogRef.afterClosed().subscribe(function (result) {
+            console.log('The dialog was closed');
+            _this.reportInfo = result;
+        });
+    };
+    ReportsManagerComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
+            selector: 'reports-manager',
+            template: __webpack_require__(/*! ./reports-manager.component.html */ "./src/app/reports-manager-panel/reports-manager/reports-manager.component.html"),
+            styles: [__webpack_require__(/*! ./reports-manager.component.css */ "./src/app/reports-manager-panel/reports-manager/reports-manager.component.css")]
+        }),
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [src_app_service_stock_report_service__WEBPACK_IMPORTED_MODULE_4__["StockReportService"], _angular_material__WEBPACK_IMPORTED_MODULE_2__["MatDialog"]])
+    ], ReportsManagerComponent);
+    return ReportsManagerComponent;
+}());
+
+
+
+/***/ }),
+
+/***/ "./src/app/service/http-service.ts":
+/*!*****************************************!*\
+  !*** ./src/app/service/http-service.ts ***!
+  \*****************************************/
+/*! exports provided: HttpService */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "HttpService", function() { return HttpService; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
+/* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/common/http */ "./node_modules/@angular/common/fesm5/http.js");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+
+
+
+
+var HttpService = /** @class */ (function () {
+    function HttpService(http) {
+        this.http = http;
+    }
+    HttpService.prototype.get = function (url) {
+        return this.http.get(url);
+    };
+    HttpService.prototype.post = function (url, body) {
+        return this.http.post(url, body, this.getHeaders());
+    };
+    HttpService.prototype.delete = function (url) {
+        return this.http.delete(url, this.getHeaders());
+    };
+    HttpService.prototype.getHeaders = function () {
+        var httpHeaders = new _angular_common_http__WEBPACK_IMPORTED_MODULE_1__["HttpHeaders"]()
+            .set('Content-Type', 'application/json');
+        var options = {
+            headers: httpHeaders
+        };
+        return options;
+    };
+    HttpService = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_2__["Injectable"])(),
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_angular_common_http__WEBPACK_IMPORTED_MODULE_1__["HttpClient"]])
+    ], HttpService);
+    return HttpService;
+}());
+
+
+
+/***/ }),
+
+/***/ "./src/app/service/stock-report-service.ts":
+/*!*************************************************!*\
+  !*** ./src/app/service/stock-report-service.ts ***!
+  \*************************************************/
+/*! exports provided: StockReportService */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "StockReportService", function() { return StockReportService; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
+/* harmony import */ var _model_StockItem__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../model/StockItem */ "./src/app/model/StockItem.ts");
+/* harmony import */ var _model_Product__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../model/Product */ "./src/app/model/Product.ts");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var _http_service__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./http-service */ "./src/app/service/http-service.ts");
+/* harmony import */ var _model_ReportInfo__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../model/ReportInfo */ "./src/app/model/ReportInfo.ts");
+
+
+
+
+
+
+var StockReportService = /** @class */ (function () {
+    function StockReportService(httpApi) {
+        this.httpApi = httpApi;
+    }
+    StockReportService.prototype.getStockReport = function (report, id) {
+        console.log("Get report " + id);
+        this.httpApi.get("/v1/stockReport/get/" + id).subscribe(function (data) {
+            report.id = data.id;
+            report.name = data.name;
+            report.comment = data.comment;
+            report.status = data.status;
+            for (var _i = 0, _a = data.items; _i < _a.length; _i++) {
+                var item = _a[_i];
+                var product = new _model_Product__WEBPACK_IMPORTED_MODULE_2__["Product"](item.product.id, item.product.name, item.product.price);
+                var stockItem = new _model_StockItem__WEBPACK_IMPORTED_MODULE_1__["StockItem"](item.id, item.quantity, product);
+                report.items.set(stockItem.id, stockItem);
+            }
+        });
+    };
+    StockReportService.prototype.addItem = function (report, item) {
+        console.log("Add item[ " + ", " + item.quantity + " to report " + report.id);
+        var stockItem;
+        this.httpApi.post("/v1/stock/update", this.toUpdateRequest(report, item)).subscribe(function (data) {
+            var product = new _model_Product__WEBPACK_IMPORTED_MODULE_2__["Product"](data.item.product.id, data.item.product.name, data.item.product.price);
+            stockItem = new _model_StockItem__WEBPACK_IMPORTED_MODULE_1__["StockItem"](data.item.id, data.item.quantity, product);
+            report.items.set(stockItem.id, stockItem);
+        }, function (error) {
+            debugger;
+            console.log(error);
+        });
+    };
+    StockReportService.prototype.updateStockItem = function (report, itemToUpdate) {
+        console.log("update report " + report.id + " | " + itemToUpdate);
+        this.httpApi.post("/v1/stock/update", this.toUpdateRequest(report, itemToUpdate)).subscribe(function (data) {
+            report.id = data.id;
+            report.name = data.name;
+            report.comment = data.comment;
+            report.status = data.status;
+            var product = new _model_Product__WEBPACK_IMPORTED_MODULE_2__["Product"](data.item.product.id, data.item.product.name, data.item.product.price);
+            var stockItem = new _model_StockItem__WEBPACK_IMPORTED_MODULE_1__["StockItem"](data.item.id, data.item.quantity, product);
+            report.items.set(stockItem.id, stockItem);
+        });
+    };
+    StockReportService.prototype.deleteItem = function (report, stockItemIdToDelete) {
+        console.log("Delete Item : " + stockItemIdToDelete);
+        this.httpApi.delete("/v1/stock/delete/" + stockItemIdToDelete).subscribe(function (data) {
+            console.log(data);
+            report.items.delete(stockItemIdToDelete);
+        });
+    };
+    StockReportService.prototype.closeStockReport = function (report) {
+        console.log("Close stock report : " + report.id);
+        var request = { "id": report.id };
+        this.httpApi.post("/v1/stockReport/close", request).subscribe(function (data) {
+            report.status = "CLOSED";
+        });
+    };
+    StockReportService.prototype.getAllStockReports = function (reports) {
+        var _this = this;
+        console.log("Get all reports");
+        this.httpApi.get("/v1/stockReport/all").subscribe(function (data) {
+            for (var _i = 0, data_1 = data; _i < data_1.length; _i++) {
+                var report = data_1[_i];
+                var itemsQty = report.items.reduce(function (sum, item) { return sum + item.quantity; }, 0);
+                var totalPrice = _this.getTotalPrice(report.items);
+                var info = new _model_ReportInfo__WEBPACK_IMPORTED_MODULE_5__["ReportInfo"](report.id, report.name, report.status, report.items.length, report.createdDateTime, report.comment, itemsQty, totalPrice);
+                reports.set(info.id, info);
+            }
+        });
+    };
+    StockReportService.prototype.getTotalPrice = function (items) {
+        var total = 0;
+        for (var i = 0; i < items.length; i++) {
+            total += items[i].product.price;
+        }
+        return total;
+    };
+    StockReportService.prototype.toUpdateRequest = function (report, item) {
+        return {
+            "stockReportId": report.id,
+            "stockItem": item,
+            "type": item.type
+        };
+    };
+    StockReportService = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_3__["Injectable"])(),
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_http_service__WEBPACK_IMPORTED_MODULE_4__["HttpService"]])
+    ], StockReportService);
+    return StockReportService;
+}());
+
+
+
+/***/ }),
+
+/***/ "./src/app/stock-report-panel/list-stock-item/list-stock-item.component.css":
+/*!**********************************************************************************!*\
+  !*** ./src/app/stock-report-panel/list-stock-item/list-stock-item.component.css ***!
+  \**********************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = ".table tr.active td {\n    background-color:#275e94 !important;\n    color: white;\n    font-weight: bold;\n  }\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi4uLy4uL3N0b2NrLXJlcG9ydC1wYW5lbC9saXN0LXN0b2NrLWl0ZW0vbGlzdC1zdG9jay1pdGVtLmNvbXBvbmVudC5jc3MiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUE7SUFDSSxtQ0FBbUM7SUFDbkMsWUFBWTtJQUNaLGlCQUFpQjtFQUNuQiIsImZpbGUiOiIuLi8uLi9zdG9jay1yZXBvcnQtcGFuZWwvbGlzdC1zdG9jay1pdGVtL2xpc3Qtc3RvY2staXRlbS5jb21wb25lbnQuY3NzIiwic291cmNlc0NvbnRlbnQiOlsiLnRhYmxlIHRyLmFjdGl2ZSB0ZCB7XG4gICAgYmFja2dyb3VuZC1jb2xvcjojMjc1ZTk0ICFpbXBvcnRhbnQ7XG4gICAgY29sb3I6IHdoaXRlO1xuICAgIGZvbnQtd2VpZ2h0OiBib2xkO1xuICB9Il19 */"
+
+/***/ }),
+
+/***/ "./src/app/stock-report-panel/list-stock-item/list-stock-item.component.html":
+/*!***********************************************************************************!*\
+  !*** ./src/app/stock-report-panel/list-stock-item/list-stock-item.component.html ***!
+  \***********************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports) {
 
@@ -222,10 +706,10 @@ module.exports = "<div class=\"col-md-20 user-container\">\n    <table class=\"t
 
 /***/ }),
 
-/***/ "./src/app/list-stock-item/list-stock-item.component.ts":
-/*!**************************************************************!*\
-  !*** ./src/app/list-stock-item/list-stock-item.component.ts ***!
-  \**************************************************************/
+/***/ "./src/app/stock-report-panel/list-stock-item/list-stock-item.component.ts":
+/*!*********************************************************************************!*\
+  !*** ./src/app/stock-report-panel/list-stock-item/list-stock-item.component.ts ***!
+  \*********************************************************************************/
 /*! exports provided: ListStockItemComponent */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -234,8 +718,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ListStockItemComponent", function() { return ListStockItemComponent; });
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
-/* harmony import */ var _model_StockItem__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../model/StockItem */ "./src/app/model/StockItem.ts");
-/* harmony import */ var _model_Product__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../model/Product */ "./src/app/model/Product.ts");
+/* harmony import */ var _model_StockItem__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../model/StockItem */ "./src/app/model/StockItem.ts");
+/* harmony import */ var _model_Product__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../model/Product */ "./src/app/model/Product.ts");
 
 
 
@@ -323,8 +807,8 @@ var ListStockItemComponent = /** @class */ (function () {
     ListStockItemComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
             selector: 'list-stock-item',
-            template: __webpack_require__(/*! ./list-stock-item.component.html */ "./src/app/list-stock-item/list-stock-item.component.html"),
-            styles: [__webpack_require__(/*! ./list-stock-item.component.css */ "./src/app/list-stock-item/list-stock-item.component.css")]
+            template: __webpack_require__(/*! ./list-stock-item.component.html */ "./src/app/stock-report-panel/list-stock-item/list-stock-item.component.html"),
+            styles: [__webpack_require__(/*! ./list-stock-item.component.css */ "./src/app/stock-report-panel/list-stock-item/list-stock-item.component.css")]
         }),
         tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [])
     ], ListStockItemComponent);
@@ -335,293 +819,21 @@ var ListStockItemComponent = /** @class */ (function () {
 
 /***/ }),
 
-/***/ "./src/app/model/Product.ts":
-/*!**********************************!*\
-  !*** ./src/app/model/Product.ts ***!
-  \**********************************/
-/*! exports provided: Product */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Product", function() { return Product; });
-var Product = /** @class */ (function () {
-    function Product(id, name, price) {
-        this.id = id;
-        this.name = name;
-        this.price = price;
-    }
-    return Product;
-}());
-
-
-
-/***/ }),
-
-/***/ "./src/app/model/StockItem.ts":
-/*!************************************!*\
-  !*** ./src/app/model/StockItem.ts ***!
-  \************************************/
-/*! exports provided: StockItem */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "StockItem", function() { return StockItem; });
-var Type;
-(function (Type) {
-    Type["GLASSES"] = "GLASSES";
-})(Type || (Type = {}));
-var StockItem = /** @class */ (function () {
-    function StockItem(id, quantity, product) {
-        this.type = Type.GLASSES;
-        this.id = id;
-        this.quantity = quantity;
-        this.product = product;
-    }
-    return StockItem;
-}());
-
-
-
-/***/ }),
-
-/***/ "./src/app/model/StockReport.ts":
-/*!**************************************!*\
-  !*** ./src/app/model/StockReport.ts ***!
-  \**************************************/
-/*! exports provided: StockReport */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "StockReport", function() { return StockReport; });
-var StockReport = /** @class */ (function () {
-    function StockReport() {
-        this.items = new Map();
-    }
-    return StockReport;
-}());
-
-
-
-/***/ }),
-
-/***/ "./src/app/reports-manager/reports-manager.component.css":
-/*!***************************************************************!*\
-  !*** ./src/app/reports-manager/reports-manager.component.css ***!
-  \***************************************************************/
+/***/ "./src/app/stock-report-panel/stock-report-header/stock-report-header.component.css":
+/*!******************************************************************************************!*\
+  !*** ./src/app/stock-report-panel/stock-report-header/stock-report-header.component.css ***!
+  \******************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJzcmMvYXBwL3JlcG9ydHMtbWFuYWdlci9yZXBvcnRzLW1hbmFnZXIuY29tcG9uZW50LmNzcyJ9 */"
+module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiIuLi8uLi9zdG9jay1yZXBvcnQtcGFuZWwvc3RvY2stcmVwb3J0LWhlYWRlci9zdG9jay1yZXBvcnQtaGVhZGVyLmNvbXBvbmVudC5jc3MifQ== */"
 
 /***/ }),
 
-/***/ "./src/app/reports-manager/reports-manager.component.html":
-/*!****************************************************************!*\
-  !*** ./src/app/reports-manager/reports-manager.component.html ***!
-  \****************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-module.exports = ""
-
-/***/ }),
-
-/***/ "./src/app/reports-manager/reports-manager.component.ts":
-/*!**************************************************************!*\
-  !*** ./src/app/reports-manager/reports-manager.component.ts ***!
-  \**************************************************************/
-/*! exports provided: ReportsManagerComponent */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ReportsManagerComponent", function() { return ReportsManagerComponent; });
-/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
-/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
-
-
-var ReportsManagerComponent = /** @class */ (function () {
-    function ReportsManagerComponent() {
-    }
-    ReportsManagerComponent.prototype.ngOnInit = function () {
-    };
-    ReportsManagerComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
-        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
-            selector: 'reports-manager',
-            template: __webpack_require__(/*! ./reports-manager.component.html */ "./src/app/reports-manager/reports-manager.component.html"),
-            styles: [__webpack_require__(/*! ./reports-manager.component.css */ "./src/app/reports-manager/reports-manager.component.css")]
-        }),
-        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [])
-    ], ReportsManagerComponent);
-    return ReportsManagerComponent;
-}());
-
-
-
-/***/ }),
-
-/***/ "./src/app/service/http-service.ts":
-/*!*****************************************!*\
-  !*** ./src/app/service/http-service.ts ***!
-  \*****************************************/
-/*! exports provided: HttpService */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "HttpService", function() { return HttpService; });
-/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
-/* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/common/http */ "./node_modules/@angular/common/fesm5/http.js");
-/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
-
-
-
-
-var HttpService = /** @class */ (function () {
-    function HttpService(http) {
-        this.http = http;
-    }
-    HttpService.prototype.get = function (url) {
-        return this.http.get(url);
-    };
-    HttpService.prototype.post = function (url, body) {
-        return this.http.post(url, body, this.getHeaders());
-    };
-    HttpService.prototype.delete = function (url) {
-        return this.http.delete(url, this.getHeaders());
-    };
-    HttpService.prototype.getHeaders = function () {
-        var httpHeaders = new _angular_common_http__WEBPACK_IMPORTED_MODULE_1__["HttpHeaders"]()
-            .set('Content-Type', 'application/json');
-        var options = {
-            headers: httpHeaders
-        };
-        return options;
-    };
-    HttpService = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
-        Object(_angular_core__WEBPACK_IMPORTED_MODULE_2__["Injectable"])(),
-        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_angular_common_http__WEBPACK_IMPORTED_MODULE_1__["HttpClient"]])
-    ], HttpService);
-    return HttpService;
-}());
-
-
-
-/***/ }),
-
-/***/ "./src/app/service/stock-report-service.ts":
-/*!*************************************************!*\
-  !*** ./src/app/service/stock-report-service.ts ***!
-  \*************************************************/
-/*! exports provided: StockReportService */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "StockReportService", function() { return StockReportService; });
-/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
-/* harmony import */ var _model_StockItem__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../model/StockItem */ "./src/app/model/StockItem.ts");
-/* harmony import */ var _model_Product__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../model/Product */ "./src/app/model/Product.ts");
-/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
-/* harmony import */ var _http_service__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./http-service */ "./src/app/service/http-service.ts");
-
-
-
-
-
-var StockReportService = /** @class */ (function () {
-    function StockReportService(httpApi) {
-        this.httpApi = httpApi;
-    }
-    StockReportService.prototype.getStockReport = function (report, id) {
-        console.log("Get report " + id);
-        this.httpApi.get("/v1/stockReport/get/" + id).subscribe(function (data) {
-            report.id = data.id;
-            report.name = data.name;
-            report.comment = data.comment;
-            report.status = data.status;
-            for (var _i = 0, _a = data.items; _i < _a.length; _i++) {
-                var item = _a[_i];
-                var product = new _model_Product__WEBPACK_IMPORTED_MODULE_2__["Product"](item.product.id, item.product.name, item.product.price);
-                var stockItem = new _model_StockItem__WEBPACK_IMPORTED_MODULE_1__["StockItem"](item.id, item.quantity, product);
-                report.items.set(stockItem.id, stockItem);
-            }
-        });
-    };
-    StockReportService.prototype.addItem = function (report, item) {
-        console.log("Add item[ " + ", " + item.quantity + " to report " + report.id);
-        var stockItem;
-        this.httpApi.post("/v1/stock/update", this.toUpdateRequest(report, item)).subscribe(function (data) {
-            var product = new _model_Product__WEBPACK_IMPORTED_MODULE_2__["Product"](data.item.product.id, data.item.product.name, data.item.product.price);
-            stockItem = new _model_StockItem__WEBPACK_IMPORTED_MODULE_1__["StockItem"](data.item.id, data.item.quantity, product);
-            report.items.set(stockItem.id, stockItem);
-        }, function (error) {
-            debugger;
-            console.log(error);
-        });
-    };
-    StockReportService.prototype.updateStockItem = function (report, itemToUpdate) {
-        console.log("update report " + report.id + " | " + itemToUpdate);
-        this.httpApi.post("/v1/stock/update", this.toUpdateRequest(report, itemToUpdate)).subscribe(function (data) {
-            report.id = data.id;
-            report.name = data.name;
-            report.comment = data.comment;
-            report.status = data.status;
-            var product = new _model_Product__WEBPACK_IMPORTED_MODULE_2__["Product"](data.item.product.id, data.item.product.name, data.item.product.price);
-            var stockItem = new _model_StockItem__WEBPACK_IMPORTED_MODULE_1__["StockItem"](data.item.id, data.item.quantity, product);
-            report.items.set(stockItem.id, stockItem);
-        });
-    };
-    StockReportService.prototype.deleteItem = function (report, stockItemIdToDelete) {
-        console.log("Delete Item : " + stockItemIdToDelete);
-        this.httpApi.delete("/v1/stock/delete/" + stockItemIdToDelete).subscribe(function (data) {
-            console.log(data);
-            report.items.delete(stockItemIdToDelete);
-        });
-    };
-    StockReportService.prototype.closeStockReport = function (report) {
-        console.log("Close stock report : " + report.id);
-        var request = { "id": report.id };
-        this.httpApi.post("/v1/stockReport/close", request).subscribe(function (data) {
-            report.status = "CLOSED";
-        });
-    };
-    StockReportService.prototype.toUpdateRequest = function (report, item) {
-        return {
-            "stockReportId": report.id,
-            "stockItem": item,
-            "type": item.type
-        };
-    };
-    StockReportService = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
-        Object(_angular_core__WEBPACK_IMPORTED_MODULE_3__["Injectable"])(),
-        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_http_service__WEBPACK_IMPORTED_MODULE_4__["HttpService"]])
-    ], StockReportService);
-    return StockReportService;
-}());
-
-
-
-/***/ }),
-
-/***/ "./src/app/stock-report-header/stock-report-header.component.css":
-/*!***********************************************************************!*\
-  !*** ./src/app/stock-report-header/stock-report-header.component.css ***!
-  \***********************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJzcmMvYXBwL3N0b2NrLXJlcG9ydC1oZWFkZXIvc3RvY2stcmVwb3J0LWhlYWRlci5jb21wb25lbnQuY3NzIn0= */"
-
-/***/ }),
-
-/***/ "./src/app/stock-report-header/stock-report-header.component.html":
-/*!************************************************************************!*\
-  !*** ./src/app/stock-report-header/stock-report-header.component.html ***!
-  \************************************************************************/
+/***/ "./src/app/stock-report-panel/stock-report-header/stock-report-header.component.html":
+/*!*******************************************************************************************!*\
+  !*** ./src/app/stock-report-panel/stock-report-header/stock-report-header.component.html ***!
+  \*******************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports) {
 
@@ -629,10 +841,10 @@ module.exports = "<div class=\"row justify-content-between\">\n  <div class=\"co
 
 /***/ }),
 
-/***/ "./src/app/stock-report-header/stock-report-header.component.ts":
-/*!**********************************************************************!*\
-  !*** ./src/app/stock-report-header/stock-report-header.component.ts ***!
-  \**********************************************************************/
+/***/ "./src/app/stock-report-panel/stock-report-header/stock-report-header.component.ts":
+/*!*****************************************************************************************!*\
+  !*** ./src/app/stock-report-panel/stock-report-header/stock-report-header.component.ts ***!
+  \*****************************************************************************************/
 /*! exports provided: StockReportHeaderComponent */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -641,7 +853,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "StockReportHeaderComponent", function() { return StockReportHeaderComponent; });
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
-/* harmony import */ var _model_StockReport__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../model/StockReport */ "./src/app/model/StockReport.ts");
+/* harmony import */ var _model_StockReport__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../model/StockReport */ "./src/app/model/StockReport.ts");
 
 
 
@@ -665,8 +877,8 @@ var StockReportHeaderComponent = /** @class */ (function () {
     StockReportHeaderComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
             selector: 'stock-report-header',
-            template: __webpack_require__(/*! ./stock-report-header.component.html */ "./src/app/stock-report-header/stock-report-header.component.html"),
-            styles: [__webpack_require__(/*! ./stock-report-header.component.css */ "./src/app/stock-report-header/stock-report-header.component.css")]
+            template: __webpack_require__(/*! ./stock-report-header.component.html */ "./src/app/stock-report-panel/stock-report-header/stock-report-header.component.html"),
+            styles: [__webpack_require__(/*! ./stock-report-header.component.css */ "./src/app/stock-report-panel/stock-report-header/stock-report-header.component.css")]
         }),
         tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [])
     ], StockReportHeaderComponent);
@@ -677,21 +889,21 @@ var StockReportHeaderComponent = /** @class */ (function () {
 
 /***/ }),
 
-/***/ "./src/app/stock-report/stock-report.component.css":
-/*!*********************************************************!*\
-  !*** ./src/app/stock-report/stock-report.component.css ***!
-  \*********************************************************/
+/***/ "./src/app/stock-report-panel/stock-report/stock-report.component.css":
+/*!****************************************************************************!*\
+  !*** ./src/app/stock-report-panel/stock-report/stock-report.component.css ***!
+  \****************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJzcmMvYXBwL3N0b2NrLXJlcG9ydC9zdG9jay1yZXBvcnQuY29tcG9uZW50LmNzcyJ9 */"
+module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiIuLi8uLi9zdG9jay1yZXBvcnQtcGFuZWwvc3RvY2stcmVwb3J0L3N0b2NrLXJlcG9ydC5jb21wb25lbnQuY3NzIn0= */"
 
 /***/ }),
 
-/***/ "./src/app/stock-report/stock-report.component.html":
-/*!**********************************************************!*\
-  !*** ./src/app/stock-report/stock-report.component.html ***!
-  \**********************************************************/
+/***/ "./src/app/stock-report-panel/stock-report/stock-report.component.html":
+/*!*****************************************************************************!*\
+  !*** ./src/app/stock-report-panel/stock-report/stock-report.component.html ***!
+  \*****************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports) {
 
@@ -699,10 +911,10 @@ module.exports = "<div>\n  <stock-report-header\n    [report]=\"report\"\n    (o
 
 /***/ }),
 
-/***/ "./src/app/stock-report/stock-report.component.ts":
-/*!********************************************************!*\
-  !*** ./src/app/stock-report/stock-report.component.ts ***!
-  \********************************************************/
+/***/ "./src/app/stock-report-panel/stock-report/stock-report.component.ts":
+/*!***************************************************************************!*\
+  !*** ./src/app/stock-report-panel/stock-report/stock-report.component.ts ***!
+  \***************************************************************************/
 /*! exports provided: StockReportComponent */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -711,8 +923,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "StockReportComponent", function() { return StockReportComponent; });
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
-/* harmony import */ var _service_stock_report_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../service/stock-report-service */ "./src/app/service/stock-report-service.ts");
-/* harmony import */ var _model_StockReport__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../model/StockReport */ "./src/app/model/StockReport.ts");
+/* harmony import */ var _service_stock_report_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../service/stock-report-service */ "./src/app/service/stock-report-service.ts");
+/* harmony import */ var _model_StockReport__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../model/StockReport */ "./src/app/model/StockReport.ts");
 
 
 
@@ -741,8 +953,8 @@ var StockReportComponent = /** @class */ (function () {
     StockReportComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
             selector: 'stock-report',
-            template: __webpack_require__(/*! ./stock-report.component.html */ "./src/app/stock-report/stock-report.component.html"),
-            styles: [__webpack_require__(/*! ./stock-report.component.css */ "./src/app/stock-report/stock-report.component.css")]
+            template: __webpack_require__(/*! ./stock-report.component.html */ "./src/app/stock-report-panel/stock-report/stock-report.component.html"),
+            styles: [__webpack_require__(/*! ./stock-report.component.css */ "./src/app/stock-report-panel/stock-report/stock-report.component.css")]
         }),
         tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_service_stock_report_service__WEBPACK_IMPORTED_MODULE_2__["StockReportService"]])
     ], StockReportComponent);

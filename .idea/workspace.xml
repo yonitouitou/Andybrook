@@ -2,24 +2,70 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="0d189825-4bd0-483c-a839-2c637b0d6c51" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/andybrook-ui/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/andybrook-ui/README.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/andybrook-ui/angular.json" beforeDir="false" afterPath="$PROJECT_DIR$/andybrook-ui/angular.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/andybrook-ui/e2e/protractor.conf.js" beforeDir="false" afterPath="$PROJECT_DIR$/andybrook-ui/e2e/protractor.conf.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/andybrook-ui/e2e/src/app.e2e-spec.ts" beforeDir="false" afterPath="$PROJECT_DIR$/andybrook-ui/e2e/src/app.e2e-spec.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/andybrook-ui/e2e/src/app.po.ts" beforeDir="false" afterPath="$PROJECT_DIR$/andybrook-ui/e2e/src/app.po.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/andybrook-ui/e2e/tsconfig.e2e.json" beforeDir="false" afterPath="$PROJECT_DIR$/andybrook-ui/e2e/tsconfig.e2e.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/andybrook-ui/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/andybrook-ui/package-lock.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/andybrook-ui/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/andybrook-ui/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/andybrook-ui/src/app/app-routing.module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/andybrook-ui/src/app/app-routing.module.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/andybrook-ui/src/app/app.component.css" beforeDir="false" afterPath="$PROJECT_DIR$/andybrook-ui/src/app/app.component.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/andybrook-ui/src/app/app.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/andybrook-ui/src/app/app.component.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/andybrook-ui/src/app/app.component.spec.ts" beforeDir="false" afterPath="$PROJECT_DIR$/andybrook-ui/src/app/app.component.spec.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/andybrook-ui/src/app/app.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/andybrook-ui/src/app/app.component.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/andybrook-ui/src/app/app.module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/andybrook-ui/src/app/app.module.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/static/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/static/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/andybrook-ui/src/app/header-menu/header-menu.component.css" beforeDir="false" afterPath="$PROJECT_DIR$/andybrook-ui/src/app/header-menu/header-menu.component.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/andybrook-ui/src/app/header-menu/header-menu.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/andybrook-ui/src/app/header-menu/header-menu.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/andybrook-ui/src/app/header-menu/header-menu.component.spec.ts" beforeDir="false" afterPath="$PROJECT_DIR$/andybrook-ui/src/app/header-menu/header-menu.component.spec.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/andybrook-ui/src/app/header-menu/header-menu.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/andybrook-ui/src/app/header-menu/header-menu.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/andybrook-ui/src/app/list-stock-item/list-stock-item.component.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/andybrook-ui/src/app/list-stock-item/list-stock-item.component.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/andybrook-ui/src/app/list-stock-item/list-stock-item.component.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/andybrook-ui/src/app/model/Product.ts" beforeDir="false" afterPath="$PROJECT_DIR$/andybrook-ui/src/app/model/Product.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/andybrook-ui/src/app/model/StockItem.ts" beforeDir="false" afterPath="$PROJECT_DIR$/andybrook-ui/src/app/model/StockItem.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/andybrook-ui/src/app/model/StockReport.ts" beforeDir="false" afterPath="$PROJECT_DIR$/andybrook-ui/src/app/model/StockReport.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/andybrook-ui/src/app/reports-manager/reports-manager.component.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/andybrook-ui/src/app/reports-manager/reports-manager.component.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/andybrook-ui/src/app/reports-manager/reports-manager.component.spec.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/andybrook-ui/src/app/reports-manager/reports-manager.component.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/andybrook-ui/src/app/service/http-service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/andybrook-ui/src/app/service/http-service.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/andybrook-ui/src/app/service/stock-report-service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/andybrook-ui/src/app/service/stock-report-service.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/andybrook-ui/src/app/stock-report-header/stock-report-header.component.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/andybrook-ui/src/app/stock-report-header/stock-report-header.component.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/andybrook-ui/src/app/stock-report-header/stock-report-header.component.spec.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/andybrook-ui/src/app/stock-report-header/stock-report-header.component.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/andybrook-ui/src/app/stock-report/stock-report.component.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/andybrook-ui/src/app/stock-report/stock-report.component.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/andybrook-ui/src/app/stock-report/stock-report.component.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/andybrook-ui/src/assets/.gitkeep" beforeDir="false" afterPath="$PROJECT_DIR$/andybrook-ui/src/assets/.gitkeep" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/andybrook-ui/src/browserslist" beforeDir="false" afterPath="$PROJECT_DIR$/andybrook-ui/src/browserslist" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/andybrook-ui/src/environments/environment.prod.ts" beforeDir="false" afterPath="$PROJECT_DIR$/andybrook-ui/src/environments/environment.prod.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/andybrook-ui/src/environments/environment.ts" beforeDir="false" afterPath="$PROJECT_DIR$/andybrook-ui/src/environments/environment.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/andybrook-ui/src/favicon.ico" beforeDir="false" afterPath="$PROJECT_DIR$/andybrook-ui/src/favicon.ico" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/andybrook-ui/src/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/andybrook-ui/src/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/andybrook-ui/src/karma.conf.js" beforeDir="false" afterPath="$PROJECT_DIR$/andybrook-ui/src/karma.conf.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/andybrook-ui/src/main.ts" beforeDir="false" afterPath="$PROJECT_DIR$/andybrook-ui/src/main.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/andybrook-ui/src/polyfills.ts" beforeDir="false" afterPath="$PROJECT_DIR$/andybrook-ui/src/polyfills.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/andybrook-ui/src/styles.css" beforeDir="false" afterPath="$PROJECT_DIR$/andybrook-ui/src/styles.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/andybrook-ui/src/test.ts" beforeDir="false" afterPath="$PROJECT_DIR$/andybrook-ui/src/test.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/andybrook-ui/src/tsconfig.app.json" beforeDir="false" afterPath="$PROJECT_DIR$/andybrook-ui/src/tsconfig.app.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/andybrook-ui/src/tsconfig.spec.json" beforeDir="false" afterPath="$PROJECT_DIR$/andybrook-ui/src/tsconfig.spec.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/andybrook-ui/src/tslint.json" beforeDir="false" afterPath="$PROJECT_DIR$/andybrook-ui/src/tslint.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/andybrook-ui/tsconfig.json" beforeDir="false" afterPath="$PROJECT_DIR$/andybrook-ui/tsconfig.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/andybrook-ui/tslint.json" beforeDir="false" afterPath="$PROJECT_DIR$/andybrook-ui/tslint.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/andybrook/enums/ReportStatus.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/andybrook/enums/ReportStatus.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/andybrook/model/StockReport.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/andybrook/model/StockReport.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/static/main.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/static/main.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/static/main.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/static/main.js.map" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/static/styles.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/static/styles.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/static/styles.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/static/styles.js.map" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/static/vendor.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/static/vendor.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/static/vendor.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/static/vendor.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/static/main.js" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/static/main.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/static/main.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/static/main.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/static/styles.js" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/static/styles.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/static/styles.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/static/styles.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/static/vendor.js" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/static/vendor.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/static/vendor.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/static/vendor.js.map" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/target/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -31,10 +77,10 @@
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/andybrook/manager/stock/StockReportManager.java">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/andybrook/api/rest/StockReportController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="660">
-              <caret line="57" column="85" selection-start-line="57" selection-start-column="85" selection-end-line="57" selection-end-column="85" />
+            <state relative-caret-position="45">
+              <caret line="34" column="25" selection-start-line="34" selection-start-column="25" selection-end-line="34" selection-end-column="25" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -43,13 +89,22 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/andybrook/model/notification/StockClosedEmailNotification.java">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/andybrook/model/StockReport.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="90">
-              <caret line="12" column="25" selection-start-line="12" selection-start-column="25" selection-end-line="12" selection-end-column="25" />
+            <state relative-caret-position="230">
+              <caret line="29" column="5" lean-forward="true" selection-start-line="29" selection-start-column="5" selection-end-line="29" selection-end-column="5" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/andybrook/enums/ReportStatus.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="45">
+              <caret line="3" column="8" selection-start-line="3" selection-start-column="8" selection-end-line="3" selection-end-column="8" />
             </state>
           </provider>
         </entry>
@@ -73,23 +128,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/andybrook-ui/angular.json">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="225">
               <caret line="15" column="55" selection-start-line="15" selection-start-column="27" selection-end-line="15" selection-end-column="55" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/andybrook/ApplicationProperties.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="75">
-              <caret line="6" column="13" selection-start-line="6" selection-start-column="13" selection-end-line="6" selection-end-column="13" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
             </state>
           </provider>
         </entry>
@@ -181,7 +224,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/main/java/com/andybrook/dao/stock/StockItemDao.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/andybrook/dao/stock/jpa/StockItemCrudRepository.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/andybrook/dao/jpa/entity/stock/GlassesStockItemEntity.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/andybrook/dao/jpa/entity/stock/GlassesStockItemEntityConverter.java" />
@@ -211,7 +253,6 @@
         <option value="$PROJECT_DIR$/src/main/java/com/andybrook/api/rest/ctx/StockReportResponse.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/andybrook/api/rest/StockReportController.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/andybrook/api/rest/jackson/StockItemJsonSerializer.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/andybrook/model/StockReport.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/andybrook/dao/jpa/entity/product/ProductEntity.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/andybrook/service/stock/StockItemService.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/andybrook/dao/jpa/entity/factory/EntityFactory.java" />
@@ -232,6 +273,8 @@
         <option value="$PROJECT_DIR$/src/main/java/com/andybrook/service/stock/StockReportService.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/andybrook/manager/stock/StockReportManager.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/andybrook/service/notification/NotificationService.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/andybrook/model/StockReport.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/andybrook/enums/ReportStatus.java" />
       </list>
     </option>
   </component>
@@ -242,7 +285,7 @@
       </MavenImportingSettings>
     </option>
   </component>
-  <component name="ProjectFrameBounds" extendedState="7">
+  <component name="ProjectFrameBounds" extendedState="6">
     <option name="x" value="223" />
     <option name="y" value="50" />
     <option name="width" value="1370" />
@@ -345,6 +388,16 @@
               <item name="andybrook" type="462c0819:PsiDirectoryNode" />
               <item name="dao" type="462c0819:PsiDirectoryNode" />
               <item name="stock" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="andybrook" type="b2602c69:ProjectViewProjectNode" />
+              <item name="andybrook" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="com" type="462c0819:PsiDirectoryNode" />
+              <item name="andybrook" type="462c0819:PsiDirectoryNode" />
+              <item name="enums" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="andybrook" type="b2602c69:ProjectViewProjectNode" />
@@ -561,10 +614,10 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="223" y="50" width="1370" height="1021" extended-state="0" />
+    <frame x="67" y="27" width="1853" height="1053" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.45406628" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.33296522" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Designer" order="2" />
       <window_info id="Favorites" order="3" side_tool="true" />
@@ -577,7 +630,7 @@
       <window_info anchor="bottom" id="Run" order="6" weight="0.3292683" />
       <window_info anchor="bottom" id="Cvs" order="7" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="8" weight="0.4" />
-      <window_info active="true" anchor="bottom" id="Debug" order="9" visible="true" weight="0.48735633" />
+      <window_info active="true" anchor="bottom" id="Debug" order="9" visible="true" weight="0.51995564" />
       <window_info anchor="bottom" id="TODO" order="10" weight="0.3292683" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
@@ -619,12 +672,6 @@
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/com/andybrook/api/rest/StockReportController.java</url>
-          <line>39</line>
-          <properties />
-          <option name="timeStamp" value="3" />
-        </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/com/andybrook/model/notification/StockClosedEmailNotification.java</url>
           <line>20</line>
@@ -684,13 +731,6 @@
     </expressions>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/andybrook/enums/ReportStatus.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="90">
-          <caret line="6" lean-forward="true" selection-start-line="6" selection-end-line="6" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/andybrook/logging/LoggerFinder.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="90">
@@ -778,16 +818,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="150">
           <caret line="15" column="33" selection-start-line="15" selection-start-column="33" selection-end-line="15" selection-end-column="33" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/andybrook/model/StockReport.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="300">
-          <caret line="35" column="38" selection-start-line="35" selection-start-column="38" selection-end-line="35" selection-end-column="38" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -972,16 +1002,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/andybrook/api/rest/StockReportController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="405">
-          <caret line="39" selection-start-line="39" selection-end-line="39" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/andybrook/manager/stock/StockReportManager.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="660">
@@ -1071,6 +1091,33 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="225">
           <caret line="15" column="55" selection-start-line="15" selection-start-column="27" selection-end-line="15" selection-end-column="55" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/andybrook/api/rest/StockReportController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="45">
+          <caret line="34" column="25" selection-start-line="34" selection-start-column="25" selection-end-line="34" selection-end-column="25" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/andybrook/model/StockReport.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="230">
+          <caret line="29" column="5" lean-forward="true" selection-start-line="29" selection-start-column="5" selection-end-line="29" selection-end-column="5" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/andybrook/enums/ReportStatus.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="45">
+          <caret line="3" column="8" selection-start-line="3" selection-start-column="8" selection-end-line="3" selection-end-column="8" />
         </state>
       </provider>
     </entry>

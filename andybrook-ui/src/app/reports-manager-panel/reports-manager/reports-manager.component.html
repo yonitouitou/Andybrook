@@ -1,0 +1,10 @@
+<div class="container-fluid">
+    <div>
+        <button class="btn btn-primary"
+            (click)="openCreateReportModal()"
+        >New Report</button>
+    </div>
+    <list-reports
+        [reports]="reports"
+    ></list-reports>
+</div>

@@ -20,7 +20,7 @@ public class StockReport {
         this.id = id;
         this.name = name;
         this.items = items;
-        this.status = ReportStatus.CREATED;
+        this.status = ReportStatus.OPEN;
         this.comment = "";
         this.createdDateTime = LocalDateTime.now();
     }

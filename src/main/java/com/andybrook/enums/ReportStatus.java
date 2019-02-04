@@ -1,6 +1,6 @@
 package com.andybrook.enums;
 
 public enum ReportStatus {
-    CREATED,
+    OPEN,
     CLOSED;
 }
