@@ -33,6 +33,19 @@ public class StockReport {
         items.remove(stockItemId);
     }
 
+    public int getTotalQuantity() {
+        return items.values().stream()
+                .mapToInt(StockItem::getQuantity)
+                .sum();
+    }
+
+    public double getTotalPrice() {
+        return items.values().stream()
+                .map(StockItem::getProduct)
+                .mapToDouble(Product::getPrice)
+                .sum();
+    }
+
     public StockItem<? extends Product> getItem(long stockItemId) {
         return items.get(stockItemId);
     }

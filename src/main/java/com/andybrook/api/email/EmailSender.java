@@ -4,25 +4,40 @@ import com.andybrook.model.api.Email;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
+import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Component;
+
+import javax.mail.MessagingException;
+import javax.mail.internet.MimeMessage;
+import java.lang.System.Logger;
+import java.lang.System.Logger.Level;
 
 @Component
 public class EmailSender {
+
+    private static final Logger LOGGER = System.getLogger(EmailSender.class.getSimpleName());
 
     @Autowired
     private JavaMailSender javaMailSender;
 
     public boolean send(Email email) {
-        javaMailSender.send(toSimpleMailMessage(email));
-        return true;
+        boolean isSent = false;
+        try {
+            javaMailSender.send(toMimeMailMessage(email));
+            isSent = true;
+        } catch (MessagingException e) {
+            LOGGER.log(Level.ERROR, "Mail not sent : " + email.getBody(), e);
+        }
+        return isSent;
     }
 
-    private SimpleMailMessage toSimpleMailMessage(Email email) {
-        SimpleMailMessage msg = new SimpleMailMessage();
-        msg.setFrom(email.getFromAddress());
-        msg.setTo(email.getToAddresses());
-        msg.setSubject(email.getSubject());
-        msg.setText(email.getBody());
-        return msg;
+    private MimeMessage toMimeMailMessage(Email email) throws MessagingException {
+        MimeMessage message = javaMailSender.createMimeMessage();
+        MimeMessageHelper helper = new MimeMessageHelper(message, true);
+        helper.setFrom(email.getFromAddress());
+        helper.setTo(email.getToAddresses());
+        helper.setSubject(email.getSubject());
+        helper.setText(email.getBody(), true);
+        return message;
     }
 }
