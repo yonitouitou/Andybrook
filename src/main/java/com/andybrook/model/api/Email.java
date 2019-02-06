@@ -1,5 +1,6 @@
 package com.andybrook.model.api;
 
+import java.nio.file.Path;
 import java.util.Arrays;
 
 public class Email {
@@ -8,12 +9,14 @@ public class Email {
     private final String[] toAddresses;
     private final String subject;
     private final String body;
+    private final Path attachmentFilePath;
 
     Email(Builder builder) {
         fromAddress = builder.fromAddress;
         toAddresses = builder.toAddresses;
         subject = builder.subject;
         body = builder.body;
+        attachmentFilePath = builder.attachmentFilePath;
     }
 
     public String getFromAddress() {
@@ -32,6 +35,10 @@ public class Email {
         return body;
     }
 
+    public Path getAttachmentFilePath() {
+        return attachmentFilePath;
+    }
+
     public static Builder builder() {
         return new Builder();
     }
@@ -41,6 +48,7 @@ public class Email {
         private String[] toAddresses;
         private String subject;
         private String body;
+        private Path attachmentFilePath;
 
         public Builder fromAdress(String address) {
             this.fromAddress = address;
@@ -59,6 +67,11 @@ public class Email {
 
         public Builder withBody(String body) {
             this.body = body;
+            return this;
+        }
+
+        public Builder withAttachmentFile(Path filePath) {
+            this.attachmentFilePath = filePath;
             return this;
         }
 

@@ -85,7 +85,7 @@ export class StockReportService {
                     let totalPrice = this.getTotalPrice(report.items)
                     let info = new ReportInfo(report.id, report.name, report.status,
                                     report.items.length, report.createdDateTime,
-                                    report.comment, itemsQty, totalPrice)
+                                    report.closeDateTime, report.comment, itemsQty, totalPrice)
                     reports.set(info.id, info)
                 }
             }

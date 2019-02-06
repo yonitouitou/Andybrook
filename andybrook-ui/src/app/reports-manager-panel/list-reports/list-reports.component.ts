@@ -15,4 +15,8 @@ export class ListReportsComponent implements OnInit {
   ngOnInit() {
   }
 
+  onClickSeeReport(id: number) {
+    
+  }
+
 }

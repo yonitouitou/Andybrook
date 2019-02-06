@@ -2,7 +2,6 @@ package com.andybrook.api.email;
 
 import com.andybrook.model.api.Email;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Component;
@@ -38,6 +37,7 @@ public class EmailSender {
         helper.setTo(email.getToAddresses());
         helper.setSubject(email.getSubject());
         helper.setText(email.getBody(), true);
+        helper.addAttachment(email.getAttachmentFilePath().getFileName().toString(), email.getAttachmentFilePath().toFile());
         return message;
     }
 }

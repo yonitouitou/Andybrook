@@ -1,6 +1,5 @@
 import { Component, OnInit, Inject } from '@angular/core';
-import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
-import { ReportInfo } from 'src/app/model/ReportInfo';
+import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'create-report-modal',
@@ -9,14 +8,11 @@ import { ReportInfo } from 'src/app/model/ReportInfo';
 })
 export class CreateReportModalComponent implements OnInit {
 
-  constructor(private dialogRef: MatDialogRef<CreateReportModalComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: ReportInfo) { }
+  constructor(public activeModal: NgbActiveModal) {}
 
   ngOnInit() {
+    
   }
 
-  onCancelClick(): void {
-    this.dialogRef.close();
-  }
 
 }

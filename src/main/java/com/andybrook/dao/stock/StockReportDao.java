@@ -12,6 +12,7 @@ import org.springframework.data.domain.Sort;
 import org.springframework.data.domain.Sort.Direction;
 import org.springframework.stereotype.Repository;
 
+import java.time.LocalDateTime;
 import java.util.LinkedHashSet;
 import java.util.Optional;
 import java.util.Set;
@@ -71,6 +72,6 @@ public class StockReportDao implements IStockReportDao {
 
     @Override
     public void closeStockReport(long id) {
-        stockReportCrudRepository.updateStockReportStatus(id, ReportStatus.CLOSED);
+        stockReportCrudRepository.closeStockReport(id, ReportStatus.CLOSED, LocalDateTime.now());
     }
 }

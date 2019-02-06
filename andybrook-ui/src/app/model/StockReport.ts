@@ -6,6 +6,8 @@ export class StockReport {
     name: string
     comment: string
     status: string
+    createDatetime: Date
+    closeDatetime: Date
     items: Map<number, StockItem> = new Map()
 
     constructor() {

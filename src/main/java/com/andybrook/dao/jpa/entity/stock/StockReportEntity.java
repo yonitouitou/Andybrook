@@ -31,6 +31,9 @@ public class StockReportEntity {
     @Column(name = "status")
     protected ReportStatus status;
 
+    @Column(name = "closedatetime")
+    protected LocalDateTime closeDatetime;
+
     @CreatedDate
     @Column(name = "createddatetime", nullable = false, updatable = false)
     protected LocalDateTime createdDatetime;
@@ -42,12 +45,14 @@ public class StockReportEntity {
     public StockReportEntity() {
     }
 
-    public StockReportEntity(Long id, String name, List<StockItemEntity> items, ReportStatus status, String comment) {
+    public StockReportEntity(Long id, String name, List<StockItemEntity> items, ReportStatus status,
+                             String comment, LocalDateTime closeDateTime) {
         this.id = id;
         this.name = name;
         this.items = items;
         this.status = status;
         this.comment = comment;
+        this.closeDatetime = closeDateTime;
     }
 
     public Long getId() {
@@ -104,5 +109,13 @@ public class StockReportEntity {
 
     public void setComment(String comment) {
         this.comment = comment;
+    }
+
+    public LocalDateTime getCloseDatetime() {
+        return closeDatetime;
+    }
+
+    public void setCloseDatetime(LocalDateTime closeDateTime) {
+        this.closeDatetime = closeDateTime;
     }
 }

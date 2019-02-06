@@ -14,6 +14,7 @@ public class StockReport {
     protected String comment;
     protected Map<Long, StockItem<? extends Product>> items;
     protected final LocalDateTime createdDateTime;
+    protected LocalDateTime closeDateTime;
     protected ReportStatus status;
 
     public StockReport(Long id, String name, Map<Long, StockItem<? extends Product>> items) {
@@ -44,6 +45,10 @@ public class StockReport {
                 .map(StockItem::getProduct)
                 .mapToDouble(Product::getPrice)
                 .sum();
+    }
+
+    public LocalDateTime getCloseDateTime() {
+        return closeDateTime;
     }
 
     public StockItem<? extends Product> getItem(long stockItemId) {
@@ -100,6 +105,10 @@ public class StockReport {
 
     public ReportStatus getStatus() {
         return status;
+    }
+
+    public void setCloseDateTime(LocalDateTime closeDateTime) {
+        this.closeDateTime = closeDateTime;
     }
 
     @Override

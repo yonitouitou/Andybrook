@@ -9,6 +9,7 @@
                 <th>Total Qty</th>
                 <th>Total Price</th>
                 <th>Creation Date</th>
+                <th>Close Date</th>
                 <th>Comment</th>
                 <th></th>
             </tr>
@@ -21,9 +22,14 @@
                 <td>{{ report.nbProduct }}</td>
                 <td>{{ report.totalItemQty }}</td>
                 <td>{{ report.totalPrice }} €</td>
-                <td>{{ report.createDate }}</td>
+                <td>{{ report.createDate  | date:'medium' }}</td>
+                <td>{{ report.closeDate  | date:'medium' }}</td>
                 <td>{{ report.comment }}</td>
-                <td><button class="btn btn-success">Open</button></td>
+                <td><button
+                    class="btn btn-success"
+                    [routerLink]="['/stockreport', report.id]"
+                    >See</button>
+                </td>
             </tr>
         </tbody>
     </table>
