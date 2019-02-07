@@ -2,7 +2,7 @@ package com.andybrook.dao.product.glasses;
 
 import com.andybrook.dao.jpa.entity.factory.EntityFactory;
 import com.andybrook.dao.jpa.entity.product.GlassesEntity;
-import com.andybrook.dao.product.glasses.jpa.IProductCrudRepository;
+import com.andybrook.dao.jpa.crudrepository.IProductCrudRepository;
 import com.andybrook.dao.jpa.entity.product.ProductEntity;
 import com.andybrook.model.product.Glasses;
 import org.springframework.beans.factory.annotation.Autowired;

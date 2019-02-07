@@ -4,6 +4,7 @@ import com.andybrook.api.rest.StockItemController;
 import com.andybrook.exception.StockReportClosed;
 import com.andybrook.exception.StockReportNotFound;
 import com.andybrook.manager.notification.INotificationManager;
+import com.andybrook.manager.setting.IAdminSettingManager;
 import com.andybrook.model.request.NewStockReportRequest;
 import com.andybrook.model.request.UpdateStockReportRequest;
 import com.andybrook.model.StockReport;
@@ -24,6 +25,8 @@ public class StockReportManager implements IStockReportManager {
     private IStockReportService stockReportService;
     @Autowired
     private INotificationManager notificationManager;
+    @Autowired
+    private IAdminSettingManager adminSettingManager;
 
     @Override
     public StockReport newStockReport(NewStockReportRequest request) {
@@ -48,7 +51,9 @@ public class StockReportManager implements IStockReportManager {
     @Override
     public void closeStockReport(long id) throws StockReportNotFound, StockReportClosed {
         StockReport stockReport = stockReportService.closeStockReport(id);
-        notify(stockReport);
+        if (adminSettingManager.shouldNotifyOnCloseReport()) {
+            notify(stockReport);
+        }
     }
 
     private void notify(StockReport report) {

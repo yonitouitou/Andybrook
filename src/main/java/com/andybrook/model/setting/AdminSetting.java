@@ -1,16 +1,28 @@
 package com.andybrook.model.setting;
 
+import com.andybrook.model.notification.NotificationPolicy;
+
 public class AdminSetting {
 
-    long id;
+    private Long id;
     private String email;
-    private boolean notifyOnCloseReport;
+    private NotificationPolicy notificationPolicy;
 
-    public long getId() {
+    public AdminSetting(Long id, String email, NotificationPolicy notificationPolicy) {
+        this.id = id;
+        this.email = email;
+        this.notificationPolicy = notificationPolicy;
+    }
+
+    public static AdminSetting getDefaultAdminSetting() {
+        return new AdminSetting(null, null, NotificationPolicy.getDefaultNotificationPolicy());
+    }
+
+    public Long getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -22,12 +34,12 @@ public class AdminSetting {
         this.email = email;
     }
 
-    public boolean isNotifyOnCloseReport() {
-        return notifyOnCloseReport;
+    public NotificationPolicy getNotificationPolicy() {
+        return notificationPolicy;
     }
 
-    public void setNotifyOnCloseReport(boolean notifyOnCloseReport) {
-        this.notifyOnCloseReport = notifyOnCloseReport;
+    public void setNotificationPolicy(NotificationPolicy notificationPolicy) {
+        this.notificationPolicy = notificationPolicy;
     }
 
     @Override
@@ -35,7 +47,7 @@ public class AdminSetting {
         final StringBuilder sb = new StringBuilder("AdminSetting{");
         sb.append("id=").append(id);
         sb.append(", email='").append(email).append('\'');
-        sb.append(", notifyOnCloseReport=").append(notifyOnCloseReport);
+        sb.append(", notificationPolicy=").append(notificationPolicy);
         sb.append('}');
         return sb.toString();
     }

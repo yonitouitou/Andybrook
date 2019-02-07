@@ -2,7 +2,7 @@ package com.andybrook.dao.stock;
 
 import com.andybrook.dao.jpa.entity.factory.EntityFactory;
 import com.andybrook.dao.jpa.entity.stock.StockReportEntity;
-import com.andybrook.dao.stock.jpa.IStockReportCrudRepository;
+import com.andybrook.dao.jpa.crudrepository.IStockReportCrudRepository;
 import com.andybrook.enums.ReportStatus;
 import com.andybrook.exception.StockReportNotFound;
 import com.andybrook.model.StockReport;
