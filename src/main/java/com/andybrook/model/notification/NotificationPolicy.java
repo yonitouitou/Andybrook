@@ -13,6 +13,11 @@ public class NotificationPolicy {
         this.id = id;
     }
 
+    public NotificationPolicy(NotificationPolicy other) {
+        this.id = other.id;
+        this.onCloseReport = other.onCloseReport;
+    }
+
     public static NotificationPolicy getDefaultNotificationPolicy() {
         NotificationPolicy policy = new NotificationPolicy();
         policy.setOnCloseReport(false);
@@ -27,7 +32,7 @@ public class NotificationPolicy {
         this.id = id;
     }
 
-    public boolean onCloseReport() {
+    public boolean getOnCloseReport() {
         return onCloseReport;
     }
 
@@ -38,7 +43,7 @@ public class NotificationPolicy {
     @Override
     public String toString() {
         final StringBuilder sb = new StringBuilder("NotificationPolicy{");
-        sb.append("onCloseReport=").append(onCloseReport);
+        sb.append("getOnCloseReport=").append(onCloseReport);
         sb.append('}');
         return sb.toString();
     }

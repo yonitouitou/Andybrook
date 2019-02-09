@@ -18,5 +18,5 @@ public interface IStockReportManager {
 
     Set<StockReport> getAll();
 
-    void closeStockReport(long id) throws StockReportNotFound, StockReportClosed;
+    StockReport closeStockReport(long id) throws StockReportNotFound, StockReportClosed;
 }

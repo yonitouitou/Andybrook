@@ -3,8 +3,6 @@ import { Product } from '../model/Product'
 import { Injectable, EventEmitter } from '@angular/core'
 import { HttpService } from './http-service'
 import { StockReport } from '../model/StockReport'
-import { Observable } from "rxjs"
-import { ReportInfo } from '../model/ReportInfo';
 
 @Injectable()
 export class StockReportService {
@@ -16,6 +14,7 @@ export class StockReportService {
         this.httpApi.get("/v1/stockReport/get/" + id).subscribe(data => {
             report.id = data.id
             report.name = data.name
+            report.customerName = data.customerName
             report.comment = data.comment
             report.status = data.status
             for (let item of data.items) {
@@ -71,34 +70,23 @@ export class StockReportService {
         let request = { "id" : report.id }
         this.httpApi.post("/v1/stockReport/close", request).subscribe(
             data => {
-                report.status = "CLOSED" 
+                report.closeDatetime = data.closeDateTime
+                report.status = data.status
             }
         )
     }
 
-    getAllStockReports(reports: Map<number, ReportInfo>) {
+    getAllStockReports(reports: Map<number, StockReport>) {
         console.log("Get all reports")
         this.httpApi.get("/v1/stockReport/all").subscribe(
             data => {
                 for (let report of data) {
-                    let itemsQty = report.items.reduce((sum, item) => sum + item.quantity, 0);
-                    let totalPrice = this.getTotalPrice(report.items)
-                    let info = new ReportInfo(report.id, report.name, report.status,
-                                    report.items.length, report.createdDateTime,
-                                    report.closeDateTime, report.comment, itemsQty, totalPrice)
-                    reports.set(info.id, info)
+                    let sr = StockReport.fromJson(report)
+                    reports.set(sr.id, sr)
                 }
             }
         )
-    }
-
-    private getTotalPrice(items: any) {
-        let total = 0
-        for (let i = 0; i < items.length; i++) {
-            total += items[i].product.price;
-        }
-        return total
-    }
+    } 
 
     private toUpdateRequest(report: StockReport, item: StockItem): any {
         return {

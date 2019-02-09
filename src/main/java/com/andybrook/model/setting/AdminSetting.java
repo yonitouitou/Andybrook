@@ -2,6 +2,8 @@ package com.andybrook.model.setting;
 
 import com.andybrook.model.notification.NotificationPolicy;
 
+import java.util.Objects;
+
 public class AdminSetting {
 
     private Long id;
@@ -12,6 +14,13 @@ public class AdminSetting {
         this.id = id;
         this.email = email;
         this.notificationPolicy = notificationPolicy;
+    }
+
+    public AdminSetting(AdminSetting other) {
+        Objects.requireNonNull(other);
+        this.id = other.id;
+        this.email = other.email;
+        this.notificationPolicy = new NotificationPolicy(other.notificationPolicy);
     }
 
     public static AdminSetting getDefaultAdminSetting() {

@@ -13,6 +13,9 @@ public class NotificationPolicyEntity {
     @Column(name = "onclosereport", nullable = false)
     private boolean onCloseReport = false;
 
+    private NotificationPolicyEntity() {
+    }
+
     public NotificationPolicyEntity(Long id, boolean onCloseReport) {
         this.id = id;
         this.onCloseReport = onCloseReport;
@@ -30,7 +33,7 @@ public class NotificationPolicyEntity {
     public String toString() {
         final StringBuilder sb = new StringBuilder("NotificationPolicyEntity{");
         sb.append("id=").append(id);
-        sb.append(", onCloseReport=").append(onCloseReport);
+        sb.append(", getOnCloseReport=").append(onCloseReport);
         sb.append('}');
         return sb.toString();
     }

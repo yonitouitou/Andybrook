@@ -1,6 +1,7 @@
 package com.andybrook.service.stock;
 
 import com.andybrook.dao.stock.IStockReportDao;
+import com.andybrook.enums.ReportStatus;
 import com.andybrook.exception.StockReportClosed;
 import com.andybrook.exception.StockReportNotFound;
 import com.andybrook.model.StockItem;
@@ -12,6 +13,7 @@ import com.andybrook.util.IdGenerator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.util.HashMap;
 import java.util.Optional;
 import java.util.Set;
@@ -24,14 +26,14 @@ public class StockReportService implements IStockReportService {
 
     @Override
     public StockReport newStockReport(NewStockReportRequest request) {
-        StockReport report = new StockReport(null, request.getName(), new HashMap<>());
+        StockReport report = new StockReport(null, request.getName(), request.getCustomerName(), new HashMap<>());
         report.setComment(request.getComment());
         return stockReportDao.newStockReport(report);
     }
 
     @Override
     public void updateStockReport(UpdateStockReportRequest request) throws StockReportNotFound, StockReportClosed {
-        Optional<StockReport> stockReportOpt = stockReportDao.getStockReport(request.getId());
+        Optional<StockReport> stockReportOpt = stockReportDao.findStockReport(request.getId());
         if (stockReportOpt.isPresent() && stockReportOpt.get().isOpen()) {
             stockReportDao.updateStockReport(request, false);
         } else {
@@ -51,7 +53,7 @@ public class StockReportService implements IStockReportService {
 
     @Override
     public void addItemToReport(long stockReportId, StockItem<? extends Product> item) throws StockReportNotFound {
-        Optional<StockReport> stockReportOpt = stockReportDao.getStockReport(stockReportId);
+        Optional<StockReport> stockReportOpt = stockReportDao.findStockReport(stockReportId);
         if (stockReportOpt.isPresent()) {
             StockReport stockReport = stockReportOpt.get();
             Product product = item.getProduct();
@@ -68,21 +70,15 @@ public class StockReportService implements IStockReportService {
     @Override
     public StockReport closeStockReport(long id) throws StockReportNotFound, StockReportClosed {
         StockReport report = getStockReport(id);
-        if (report.isClosed()) {
-            throw new StockReportClosed(id);
-        }
-        stockReportDao.closeStockReport(id);
-        return stockReportDao.getStockReport(id).get();
+        report.close();
+        return stockReportDao.updateStockReport(report);
     }
 
     private StockReport getStockReportById(long id) throws StockReportNotFound {
-        StockReport report;
-        Optional<StockReport> stockReportOpt = stockReportDao.getStockReport(id);
-        if (stockReportOpt.isPresent()) {
-            report = stockReportOpt.get();
-        } else {
+        Optional<StockReport> reportOpt = stockReportDao.findStockReport(id);
+        if (! reportOpt.isPresent()) {
             throw new StockReportNotFound(id);
         }
-        return report;
+        return reportOpt.get();
     }
 }

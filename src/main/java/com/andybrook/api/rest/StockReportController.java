@@ -36,9 +36,9 @@ public class StockReportController {
     }
 
     @PostMapping(path = "/close")
-    public void closeStockReport(@RequestBody GenericRequestById request) throws StockReportNotFound, StockReportClosed {
+    public StockReport closeStockReport(@RequestBody GenericRequestById request) throws StockReportNotFound, StockReportClosed {
         LOGGER.log(Level.INFO, "Close report request received : " + request.toString());
-        stockReportManager.closeStockReport(request.getId());
+        return stockReportManager.closeStockReport(request.getId());
     }
 
     @GetMapping(path = "/get/{id}")

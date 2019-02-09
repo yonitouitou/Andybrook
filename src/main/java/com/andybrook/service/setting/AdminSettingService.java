@@ -1,8 +1,6 @@
 package com.andybrook.service.setting;
 
-import com.andybrook.api.rest.StockItemController;
 import com.andybrook.dao.setting.IAdminSettingDao;
-import com.andybrook.model.notification.NotificationPolicy;
 import com.andybrook.model.setting.AdminSetting;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -34,7 +32,19 @@ public class AdminSettingService implements IAdminSettingService {
     }
 
     @Override
+    public AdminSetting getAdminSetting() {
+        return new AdminSetting(adminSetting);
+    }
+
+    @Override
+    public AdminSetting updateAdminSetting(AdminSetting adminSetting) {
+        this.adminSetting.setEmail(adminSetting.getEmail());
+        this.adminSetting.getNotificationPolicy().setOnCloseReport(adminSetting.getNotificationPolicy().getOnCloseReport());
+        return new AdminSetting(adminSetting);
+    }
+
+    @Override
     public boolean shouldNotifyOnCloseReport() {
-        return adminSetting.getNotificationPolicy().onCloseReport();
+        return adminSetting.getNotificationPolicy().getOnCloseReport();
     }
 }

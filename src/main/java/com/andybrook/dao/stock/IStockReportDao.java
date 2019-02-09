@@ -1,6 +1,5 @@
 package com.andybrook.dao.stock;
 
-import com.andybrook.exception.StockReportClosed;
 import com.andybrook.exception.StockReportNotFound;
 import com.andybrook.model.StockReport;
 import com.andybrook.model.request.UpdateStockReportRequest;
@@ -16,9 +15,11 @@ public interface IStockReportDao {
 
     void updateStockReport(UpdateStockReportRequest request, boolean checkIfExist) throws StockReportNotFound;
 
-    Optional<StockReport> getStockReport(long id);
+    StockReport get(long id);
+
+    Optional<StockReport> findStockReport(long id);
 
     Set<StockReport> getAll();
 
-    void closeStockReport(long id);
+    StockReport closeStockReportAndGet(long id);
 }

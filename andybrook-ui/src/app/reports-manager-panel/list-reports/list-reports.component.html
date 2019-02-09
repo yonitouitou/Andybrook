@@ -4,13 +4,14 @@
             <tr>
                 <th>ID</th>
                 <th>Name</th>
+                <th>Customer</th>
                 <th>Status</th>
                 <th>Total Product</th>
                 <th>Total Qty</th>
                 <th>Total Price</th>
                 <th>Creation Date</th>
                 <th>Close Date</th>
-                <th>Comment</th>
+                <th></th>
                 <th></th>
             </tr>
         </thead>
@@ -18,17 +19,23 @@
             <tr *ngFor="let report of reports.values()">
                 <td>{{ report.id }}</td>
                 <td>{{ report.name }}</td>
+                <td>{{ report.customerName }}</td>
                 <td>{{ report.status }}</td>
                 <td>{{ report.nbProduct }}</td>
                 <td>{{ report.totalItemQty }}</td>
                 <td>{{ report.totalPrice }} €</td>
-                <td>{{ report.createDate  | date:'medium' }}</td>
-                <td>{{ report.closeDate  | date:'medium' }}</td>
-                <td>{{ report.comment }}</td>
+                <td>{{ report.createDatetime  | date:'medium' }}</td>
+                <td>{{ report.closeDatetime  | date:'medium' }}</td>
                 <td><button
                     class="btn btn-success"
                     [routerLink]="['/stockreport', report.id]"
                     >See</button>
+                </td>
+                <td><button
+                    *ngIf="report.status !== 'CLOSED'"
+                    class="btn btn-info"
+                    (click)="onClickCloseReport(report)"
+                    >Close Report</button>
                 </td>
             </tr>
         </tbody>

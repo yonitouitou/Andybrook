@@ -1,13 +1,12 @@
 package com.andybrook.manager.stock;
 
-import com.andybrook.api.rest.StockItemController;
 import com.andybrook.exception.StockReportClosed;
 import com.andybrook.exception.StockReportNotFound;
 import com.andybrook.manager.notification.INotificationManager;
 import com.andybrook.manager.setting.IAdminSettingManager;
+import com.andybrook.model.StockReport;
 import com.andybrook.model.request.NewStockReportRequest;
 import com.andybrook.model.request.UpdateStockReportRequest;
-import com.andybrook.model.StockReport;
 import com.andybrook.service.stock.IStockReportService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -49,11 +48,12 @@ public class StockReportManager implements IStockReportManager {
     }
 
     @Override
-    public void closeStockReport(long id) throws StockReportNotFound, StockReportClosed {
+    public StockReport closeStockReport(long id) throws StockReportNotFound, StockReportClosed {
         StockReport stockReport = stockReportService.closeStockReport(id);
         if (adminSettingManager.shouldNotifyOnCloseReport()) {
             notify(stockReport);
         }
+        return stockReport;
     }
 
     private void notify(StockReport report) {

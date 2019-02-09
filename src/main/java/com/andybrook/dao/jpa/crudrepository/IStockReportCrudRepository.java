@@ -2,15 +2,15 @@ package com.andybrook.dao.jpa.crudrepository;
 
 import com.andybrook.dao.jpa.entity.stock.StockReportEntity;
 import com.andybrook.enums.ReportStatus;
+import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
-import org.springframework.data.repository.PagingAndSortingRepository;
 import org.springframework.data.repository.query.Param;
 
 import javax.transaction.Transactional;
 import java.time.LocalDateTime;
 
-public interface IStockReportCrudRepository extends PagingAndSortingRepository<StockReportEntity, Long> {
+public interface IStockReportCrudRepository extends JpaRepository<StockReportEntity, Long> {
 
     String ENTITY_NAME = "StockReportEntity";
     String COLUMN_ID = "id";

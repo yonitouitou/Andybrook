@@ -9,9 +9,10 @@ import { BrowserAnimationsModule, NoopAnimationsModule } from '@angular/platform
 import { AppComponent } from './app.component';
 import { ListStockItemComponent } from './stock-report-panel/list-stock-item/list-stock-item.component';
 import { ReportsManagerComponent } from './reports-manager-panel/reports-manager/reports-manager.component';
-import { StockReportService } from './service/stock-report-service';
 import { StockReportComponent } from './stock-report-panel/stock-report/stock-report.component';
+import { StockReportService } from './service/stock-report-service';
 import { HttpService } from './service/http-service';
+import { AdminSettingService } from './service/admin-setting-service';
 import { HeaderMenuComponent } from './header-menu/header-menu.component';
 import { StockReportHeaderComponent } from './stock-report-panel/stock-report-header/stock-report-header.component';
 import { ListReportsComponent } from './reports-manager-panel/list-reports/list-reports.component';
@@ -52,7 +53,7 @@ const appRoutes: Routes = [
     NgbModule,
     RouterModule.forRoot(appRoutes)
   ],
-  providers: [StockReportService, HttpService, ModalBuilderComponent],
+  providers: [StockReportService, HttpService, ModalBuilderComponent, AdminSettingService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

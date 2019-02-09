@@ -18,6 +18,6 @@ public class NotificationPolicyConverter implements IEntityConverter<Notificatio
 
     @Override
     public NotificationPolicyEntity toEntity(NotificationPolicy model) {
-        return new NotificationPolicyEntity(model.getId(), model.onCloseReport());
+        return new NotificationPolicyEntity(model.getId(), model.getOnCloseReport());
     }
 }

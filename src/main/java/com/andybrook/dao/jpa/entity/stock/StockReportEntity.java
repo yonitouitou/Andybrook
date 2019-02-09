@@ -21,6 +21,9 @@ public class StockReportEntity {
     @Column(name = "name", nullable = false)
     protected String name;
 
+    @Column(name = "customername", nullable = false)
+    protected String customerName;
+
     @Column(name = "comment", length = 256)
     protected String comment;
 
@@ -45,10 +48,11 @@ public class StockReportEntity {
     public StockReportEntity() {
     }
 
-    public StockReportEntity(Long id, String name, List<StockItemEntity> items, ReportStatus status,
-                             String comment, LocalDateTime closeDateTime) {
+    public StockReportEntity(Long id, String name, String customerName, List<StockItemEntity> items,
+                             ReportStatus status, String comment, LocalDateTime closeDateTime) {
         this.id = id;
         this.name = name;
+        this.customerName = customerName;
         this.items = items;
         this.status = status;
         this.comment = comment;
@@ -117,5 +121,13 @@ public class StockReportEntity {
 
     public void setCloseDatetime(LocalDateTime closeDateTime) {
         this.closeDatetime = closeDateTime;
+    }
+
+    public String getCustomerName() {
+        return customerName;
+    }
+
+    public void setCustomerName(String customerName) {
+        this.customerName = customerName;
     }
 }

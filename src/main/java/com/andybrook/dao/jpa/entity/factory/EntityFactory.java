@@ -13,6 +13,7 @@ import com.andybrook.model.StockReport;
 import com.andybrook.model.notification.NotificationPolicy;
 import com.andybrook.model.product.Product;
 import com.andybrook.model.setting.AdminSetting;
+import org.hibernate.Hibernate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.stereotype.Component;
@@ -93,7 +94,7 @@ public final class EntityFactory {
     }
 
     public final StockReport createStockReport(StockReportEntity entity) {
-        IEntityConverter converter = entityConverterMapByEntityClass.get(entity.getClass());
+        IEntityConverter converter = entityConverterMapByEntityClass.get(Hibernate.getClass(entity));
         return (StockReport) converter.toModel(entity);
     }
 

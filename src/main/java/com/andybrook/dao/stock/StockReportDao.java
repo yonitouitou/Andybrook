@@ -12,6 +12,7 @@ import org.springframework.data.domain.Sort;
 import org.springframework.data.domain.Sort.Direction;
 import org.springframework.stereotype.Repository;
 
+import javax.transaction.Transactional;
 import java.time.LocalDateTime;
 import java.util.LinkedHashSet;
 import java.util.Optional;
@@ -49,7 +50,13 @@ public class StockReportDao implements IStockReportDao {
     }
 
     @Override
-    public Optional<StockReport> getStockReport(long id) {
+    public StockReport get(long id) {
+        StockReportEntity entity = stockReportCrudRepository.getOne(id);
+        return entityFactory.createStockReport(entity);
+    }
+
+    @Override
+    public Optional<StockReport> findStockReport(long id) {
         Optional<StockReportEntity> stockReportEntityOpt = stockReportCrudRepository.findById(id);
         Optional<StockReport> stockReportOpt = Optional.empty();
         if (stockReportEntityOpt.isPresent()) {
@@ -71,7 +78,9 @@ public class StockReportDao implements IStockReportDao {
     }
 
     @Override
-    public void closeStockReport(long id) {
+    public StockReport closeStockReportAndGet(long id) {
         stockReportCrudRepository.closeStockReport(id, ReportStatus.CLOSED, LocalDateTime.now());
+        StockReportEntity entity = stockReportCrudRepository.getOne(id);
+        return entityFactory.createStockReport(entity);
     }
 }

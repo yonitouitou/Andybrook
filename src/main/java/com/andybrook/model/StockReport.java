@@ -1,6 +1,7 @@
 package com.andybrook.model;
 
 import com.andybrook.enums.ReportStatus;
+import com.andybrook.exception.StockReportClosed;
 import com.andybrook.model.product.Product;
 
 import java.time.LocalDateTime;
@@ -12,14 +13,16 @@ public class StockReport {
     protected Long id;
     protected String name;
     protected String comment;
+    protected String customerName;
     protected Map<Long, StockItem<? extends Product>> items;
     protected final LocalDateTime createdDateTime;
     protected LocalDateTime closeDateTime;
     protected ReportStatus status;
 
-    public StockReport(Long id, String name, Map<Long, StockItem<? extends Product>> items) {
+    public StockReport(Long id, String name, String customerName, Map<Long, StockItem<? extends Product>> items) {
         this.id = id;
         this.name = name;
+        this.customerName = customerName;
         this.items = items;
         this.status = ReportStatus.OPEN;
         this.comment = "";
@@ -34,6 +37,14 @@ public class StockReport {
         items.remove(stockItemId);
     }
 
+    public void close() throws StockReportClosed {
+        if (isClosed()) {
+            throw new StockReportClosed(id);
+        }
+        status = ReportStatus.CLOSED;
+        closeDateTime = LocalDateTime.now();
+    }
+
     public int getTotalQuantity() {
         return items.values().stream()
                 .mapToInt(StockItem::getQuantity)
@@ -45,6 +56,14 @@ public class StockReport {
                 .map(StockItem::getProduct)
                 .mapToDouble(Product::getPrice)
                 .sum();
+    }
+
+    public String getCustomerName() {
+        return customerName;
+    }
+
+    public void setCustomerName(String customerName) {
+        this.customerName = customerName;
     }
 
     public LocalDateTime getCloseDateTime() {
@@ -115,8 +134,12 @@ public class StockReport {
     public String toString() {
         final StringBuilder sb = new StringBuilder("StockReport{");
         sb.append("id=").append(id);
+        sb.append(", name='").append(name).append('\'');
+        sb.append(", comment='").append(comment).append('\'');
+        sb.append(", customerName='").append(customerName).append('\'');
         sb.append(", items=").append(items);
         sb.append(", createdDateTime=").append(createdDateTime);
+        sb.append(", closeDateTime=").append(closeDateTime);
         sb.append(", status=").append(status);
         sb.append('}');
         return sb.toString();

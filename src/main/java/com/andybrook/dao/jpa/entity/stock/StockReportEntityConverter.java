@@ -29,7 +29,7 @@ public class StockReportEntityConverter implements IEntityConverter<StockReport,
                 .map(e -> entityFactory.createStockItem(e))
                 .collect(Collectors.toMap(StockItem::getId, Function.identity()));
         Map<Long, StockItem<? extends Product>> products = new HashMap<>(items);
-        StockReport report = new StockReport(entity.getId(), entity.getName(), products);
+        StockReport report = new StockReport(entity.getId(), entity.getName(), entity.getCustomerName(), products);
         report.setStatus(entity.getStatus());
         report.setComment(entity.getComment());
         report.setCloseDateTime(entity.getCloseDatetime());
@@ -42,6 +42,7 @@ public class StockReportEntityConverter implements IEntityConverter<StockReport,
                 .stream()
                 .map(s -> entityFactory.createStockItemEntityByProductType(s))
                 .collect(Collectors.toList());
-        return new StockReportEntity(model.getId(), model.getName(), items, model.getStatus(), model.getComment(), model.getCloseDateTime());
+        return new StockReportEntity(model.getId(), model.getName(), model.getCustomerName(), items,
+                model.getStatus(), model.getComment(), model.getCloseDateTime());
     }
 }

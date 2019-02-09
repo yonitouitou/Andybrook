@@ -19,6 +19,9 @@ public class AdminSettingEntity {
     @JoinColumn(name = "notificationpolicyid", referencedColumnName = "id", nullable = false)
     private NotificationPolicyEntity notificationPolicyEntity;
 
+    private AdminSettingEntity(){
+    }
+
     public AdminSettingEntity(Long id, String email, NotificationPolicyEntity notificationPolicyEntity) {
         this.id = id;
         this.email = email;
