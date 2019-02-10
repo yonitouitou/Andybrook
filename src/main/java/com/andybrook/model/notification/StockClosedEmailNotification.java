@@ -7,6 +7,7 @@ import com.andybrook.model.StockItem;
 import com.andybrook.model.StockReport;
 import com.andybrook.model.api.Email;
 import com.andybrook.model.product.Product;
+import com.andybrook.model.setting.AdminSetting;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.config.BeanDefinition;
 import org.springframework.context.annotation.Scope;
@@ -17,16 +18,11 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.lang.System.Logger;
 import java.lang.System.Logger.Level;
-import java.nio.charset.Charset;
-import java.nio.file.Files;
 import java.nio.file.Path;
-import java.nio.file.StandardOpenOption;
 import java.time.ZoneId;
 import java.time.ZonedDateTime;
 import java.time.format.DateTimeFormatter;
-import java.util.Arrays;
 import java.util.Collection;
-import java.util.StringJoiner;
 
 @Component
 @Scope(BeanDefinition.SCOPE_PROTOTYPE)
@@ -39,10 +35,10 @@ public class StockClosedEmailNotification implements IEmailNotification<StockRep
     private ApplicationProperties applicationProperties;
 
     @Override
-    public Email createEmail(StockReport report) {
+    public Email createEmail(AdminSetting adminSetting, StockReport report) {
         return Email.builder()
                 .fromAdress(applicationProperties.getNotificationEmailFrom())
-                .toAdresses(applicationProperties.getNotificationEmailTo())
+                .toAdresses(adminSetting.getEmails())
                 .withSubject("Report " + report.getId() + " closed")
                 .withBody(getBody(report))
                 .withAttachmentFile(getAttachmentsPaths(report))
@@ -92,7 +88,6 @@ public class StockClosedEmailNotification implements IEmailNotification<StockRep
         } finally {
             writer.close();
         }
-        //Files.writeString(File.createTempFile(fileName, "csv").toPath(), csv, Charset.defaultCharset(), StandardOpenOption.CREATE);
         return tmpFile.toPath();
     }
 
@@ -137,7 +132,7 @@ public class StockClosedEmailNotification implements IEmailNotification<StockRep
                         + "<td>" + report.getId() + "</td>"
                         + "<td>" + report.getName() + "</td>"
                         + "<td>" + report.getTotalQuantity() + "</td>"
-                        + "<td>" + report.getTotalPrice() + " €</td>"
+                        + "<td>" + report.getTotalPrice() * report.getTotalQuantity() + " €</td>"
                 + "</tr>"
         );
 

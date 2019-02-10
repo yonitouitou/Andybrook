@@ -5,10 +5,13 @@ import com.andybrook.exception.StockReportNotFound;
 import com.andybrook.manager.notification.INotificationManager;
 import com.andybrook.manager.setting.IAdminSettingManager;
 import com.andybrook.model.StockReport;
+import com.andybrook.model.notification.event.ctx.CloseReportEvent;
 import com.andybrook.model.request.NewStockReportRequest;
 import com.andybrook.model.request.UpdateStockReportRequest;
 import com.andybrook.service.stock.IStockReportService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.stereotype.Service;
 
 import java.lang.System.Logger;
@@ -24,8 +27,6 @@ public class StockReportManager implements IStockReportManager {
     private IStockReportService stockReportService;
     @Autowired
     private INotificationManager notificationManager;
-    @Autowired
-    private IAdminSettingManager adminSettingManager;
 
     @Override
     public StockReport newStockReport(NewStockReportRequest request) {
@@ -50,17 +51,7 @@ public class StockReportManager implements IStockReportManager {
     @Override
     public StockReport closeStockReport(long id) throws StockReportNotFound, StockReportClosed {
         StockReport stockReport = stockReportService.closeStockReport(id);
-        if (adminSettingManager.shouldNotifyOnCloseReport()) {
-            notify(stockReport);
-        }
+        notificationManager.notifyReportClosed(stockReport);
         return stockReport;
-    }
-
-    private void notify(StockReport report) {
-        try {
-            notificationManager.notifyReportClosed(report);
-        } catch (Exception e) {
-            LOGGER.log(Level.ERROR, "Mail not sent for report " + report.getName(), e);
-        }
     }
 }

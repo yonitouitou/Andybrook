@@ -22,7 +22,7 @@ import java.util.stream.Stream;
 public class CloseReportPdfBuilder implements IPdfBuilder<StockReport> {
 
     private static final int NUMBER_OF_COLUMNS_4 = 4;
-    private static final float BORDER_WITH_2 = 2;
+    private static final float BORDER_WIDTH_1 = 1;
     private static final String[] COLUMNS_NAME = {"ID", "Name", "Quantity", "Price"};
     private static final BaseColor HEADER_BACKGROUND_COLOR = BaseColor.LIGHT_GRAY;
 
@@ -71,7 +71,7 @@ public class CloseReportPdfBuilder implements IPdfBuilder<StockReport> {
                 .forEachOrdered(col -> {
                     PdfPCell header = new PdfPCell();
                     header.setBackgroundColor(HEADER_BACKGROUND_COLOR);
-                    header.setBorderWidth(BORDER_WITH_2);
+                    header.setBorderWidth(BORDER_WIDTH_1);
                     header.setPhrase(new Phrase(col));
                     table.addCell(header);
                 });

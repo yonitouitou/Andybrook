@@ -10,6 +10,8 @@ import com.andybrook.model.setting.AdminSetting;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import java.util.StringJoiner;
+
 @Component
 @EntityConverter(model = AdminSetting.class, entity = AdminSettingEntity.class)
 public class AdminSettingConverter implements IEntityConverter<AdminSetting, AdminSettingEntity> {
@@ -20,12 +22,20 @@ public class AdminSettingConverter implements IEntityConverter<AdminSetting, Adm
     @Override
     public AdminSetting toModel(AdminSettingEntity entity) {
         NotificationPolicy notificationPolicy = entityFactory.createNotificationPolicy(entity.getNotificationPolicyEntity());
-        return new AdminSetting(entity.getId(), entity.getEmail(), notificationPolicy);
+        return new AdminSetting(entity.getId(), entity.getEmail().split(";"), notificationPolicy);
     }
 
     @Override
     public AdminSettingEntity toEntity(AdminSetting model) {
         NotificationPolicyEntity policyEntity = entityFactory.createNotificationPolicyEntity(model.getNotificationPolicy());
-        return new AdminSettingEntity(model.getId(), model.getEmail(), policyEntity);
+        return new AdminSettingEntity(model.getId(), arrayToString(model.getEmails()), policyEntity);
+    }
+
+    private String arrayToString(String[] array) {
+        StringJoiner sj = new StringJoiner(";");
+        for (int i = 0; i < array.length; i++) {
+            sj.add(array[i]);
+        }
+        return sj.toString();
     }
 }

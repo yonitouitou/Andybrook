@@ -17,7 +17,7 @@ export class AdminSettingService {
     updateAdminSetting(adminSetting: AdminSetting) {
         console.log("Update admin setting " + adminSetting)
         this.httpApi.post("v1/admin/setting/update", adminSetting).subscribe(data => {
-            adminSetting.email = data.email
+            adminSetting.emails = data.emails
             adminSetting.notifyOnCloseReport = data.notificationPolicy.onCloseReport
         })
     }

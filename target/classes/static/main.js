@@ -41,7 +41,7 @@ module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"container-fluid\">\n    <form [formGroup]=\"adminForm\" (ngSubmit)=\"onSubmit()\">\n      <div class=\"form-group\">\n          <label class=\"form-check-label\" for=\"exampleCheck1\">Notification &nbsp;</label>\n          <input type=\"checkbox\" formControlName=\"notification\" class=\"form-check-input\" (input)=\"settingChanged()\">\n      </div>\n      <div class=\"form-group\">\n        <label for=\"exampleInputEmail1\">Email address</label>\n        <input type=\"text\" formControlName=\"email\"\n          (input)=\"settingChanged()\"\n          class=\"form-control\"\n          [ngClass]=\"{ 'is-invalid': submitted && f.email.errors }\" />\n        <div *ngIf=\"submitted && f.email.errors\" class=\"invalid-feedback\">\n            <div *ngIf=\"f.email.errors.required\">Email is required</div>\n            <div *ngIf=\"f.email.errors.email\">Email must be a valid email address</div>\n        </div>\n      </div>\n      <div class=\"form-group\">\n        <button type=\"submit\" class=\"btn btn-primary\" [disabled]=\"saveButtonDisabled\">Save</button>\n      </div>\n    </form>\n</div>"
+module.exports = "<div class=\"container-fluid\">\n    <form [formGroup]=\"adminForm\" (ngSubmit)=\"onSubmit()\">\n      <div class=\"form-group\">\n          <label class=\"form-check-label\" for=\"exampleCheck1\">Notification &nbsp;</label>\n          <input type=\"checkbox\" formControlName=\"notification\" class=\"form-check-input\" (input)=\"settingChanged()\">\n      </div>\n      <div class=\"form-group\">\n        <label for=\"exampleInputEmail1\">Email addresses</label>\n        <input type=\"text\" formControlName=\"emails\"\n          (input)=\"settingChanged()\"\n          class=\"form-control\"\n        />\n      </div>\n      <div class=\"form-group\">\n        <button type=\"submit\" class=\"btn btn-primary\" [disabled]=\"saveButtonDisabled\">Save</button>\n      </div>\n    </form>\n</div>"
 
 /***/ }),
 
@@ -76,16 +76,16 @@ var AdminPanelComponent = /** @class */ (function () {
         var _this = this;
         this.adminForm = this.formBuilder.group({
             notification: [],
-            email: [, [_angular_forms__WEBPACK_IMPORTED_MODULE_4__["Validators"].required, _angular_forms__WEBPACK_IMPORTED_MODULE_4__["Validators"].email]]
+            emails: [, [_angular_forms__WEBPACK_IMPORTED_MODULE_4__["Validators"].required]]
         });
         this.adminSetting = new src_app_model_admin_AdminSetting__WEBPACK_IMPORTED_MODULE_3__["AdminSetting"]();
         this.adminSettingService.getAdminSetting(this.adminSetting)
             .subscribe(function (data) {
-            _this.adminSetting.email = data.email;
+            _this.adminSetting.emails = data.emails;
             _this.adminSetting.notifyOnCloseReport = data.notificationPolicy.onCloseReport;
             _this.adminForm.setValue({
                 notification: _this.adminSetting.notifyOnCloseReport,
-                email: _this.adminSetting.email
+                emails: _this.adminSetting.emails
             });
         });
     };
@@ -107,7 +107,7 @@ var AdminPanelComponent = /** @class */ (function () {
             return;
         }
         var values = this.adminForm.value;
-        this.adminSetting.email = values.email;
+        this.adminSetting.emails = values.emails.split(";");
         this.adminSetting.notifyOnCloseReport = values.notification;
         this.adminSettingService.updateAdminSetting(this.adminSetting);
         this.settingSaved();
@@ -146,7 +146,7 @@ module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"container-fluid\">\n    <mat-toolbar class=\"mat-elevation-z6\" style=\"background-color: steelblue\">  \n        <mat-toolbar-row>\n            <span>First Rowaaaaaaaa</span>\n        </mat-toolbar-row>\n    </mat-toolbar>\n    <h3></h3>\n\n    <div class=\"row\">\n        <div class=\"col-xs-12 col-sm-10 col-md-8 col-sm-offset-1 col-md-offset-2\">\n            <ul class=\"nav nav-tabs\">\n                <li role=\"presentation\"\n                    routerLinkActive=\"active\"\n                    [routerLinkActiveOptions]=\"{exact: true}\">\n                        <a routerLink=\"/\">Home</a>\n                </li>\n                <li role=\"presentation\" routerLinkActive=\"active\">\n                    <a routerLink=\"/admin\">Admin</a>\n                </li>\n            </ul>\n        </div>\n    </div>\n    <h5></h5>\n    <div class=\"row\">\n        <div class=\"col-xs-12 col-sm-10 col-md-8 col-sm-offset-1 col-md-offset-2\">\n            <router-outlet></router-outlet>\n        </div>\n    </div>\n</div>\n\n"
+module.exports = "<div class=\"container-fluid\">\n    <mat-toolbar class=\"mat-elevation-z6\" style=\"background-color: steelblue\">  \n        <mat-toolbar-row>\n            <span>HANDYBROOK</span>\n        </mat-toolbar-row>\n    </mat-toolbar>\n    <h3></h3>\n\n    <div class=\"row\">\n        <div class=\"col-xs-12 col-sm-10 col-md-8 col-sm-offset-1 col-md-offset-2\">\n            <ul class=\"nav nav-tabs\">\n                <li role=\"presentation\"\n                    routerLinkActive=\"active\"\n                    [routerLinkActiveOptions]=\"{exact: true}\">\n                        <a routerLink=\"/\">Home</a>\n                </li>\n                <li role=\"presentation\" routerLinkActive=\"active\">\n                    <a routerLink=\"/admin\">Admin</a>\n                </li>\n            </ul>\n        </div>\n    </div>\n    <h5></h5>\n    <div class=\"row\">\n        <div class=\"col-xs-12 col-sm-10 col-md-8 col-sm-offset-1 col-md-offset-2\">\n            <router-outlet></router-outlet>\n        </div>\n    </div>\n</div>\n\n"
 
 /***/ }),
 
@@ -368,11 +368,11 @@ var FilterPipe = /** @class */ (function () {
         if (!items) {
             return new Array[0];
         }
+        var array = Array.from(items);
         if (!field || !value) {
-            return items;
+            return array;
         }
-        var array = new Array(items);
-        return array.filter(function (singleItem) { return singleItem[field].toLowerCase().includes(value.toLowerCase()); });
+        return array.filter(function (singleTerm) { return singleTerm[field].toLowerCase().includes(value.toLowerCase()); });
     };
     FilterPipe = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Pipe"])({
@@ -780,7 +780,7 @@ var AdminSettingService = /** @class */ (function () {
     AdminSettingService.prototype.updateAdminSetting = function (adminSetting) {
         console.log("Update admin setting " + adminSetting);
         this.httpApi.post("v1/admin/setting/update", adminSetting).subscribe(function (data) {
-            adminSetting.email = data.email;
+            adminSetting.emails = data.emails;
             adminSetting.notifyOnCloseReport = data.notificationPolicy.onCloseReport;
         });
     };
@@ -1014,7 +1014,7 @@ module.exports = ".table tr.active td {\n    background-color:#275e94 !important
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"col-md-25 user-container\">\n  <form>\n    <div class=\"form-group\">\n      <div class=\"input-group\">\n        <div class=\"input-group-addon\">\n          <i class=\"glyphicon glyphicon-search\"></i>\n        </div>\n        <input type=\"text\"\n          class=\"form-control\"\n          name=\"searchString\"\n          placeholder=\"Type to search...\"\n          [(ngModel)]=\"searchString\">\n      </div>\n    </div>\n  </form>\n  <table class=\"table table-striped\">\n    <thead>\n      <tr>\n        <th>ID</th>\n        <th>Name</th>\n        <th>Price</th>\n        <th>Quantity</th>\n        <th></th>\n        <th></th>\n        <th></th>\n      </tr>\n    </thead>\n    <tbody>\n      <tr *ngIf=\"stockReportStatus !== 'CLOSED'\">\n        <td></td>\n        <td>\n          <input class=\"form-control\" (blur)=\"onBlurNewItemInput()\" [(ngModel)]=\"inputName\">\n        </td>\n        <td>\n          <input class=\"form-control\" (blur)=\"onBlurNewItemInput()\" [(ngModel)]=\"inputPrice\">\n        </td>\n        <td>\n          <input class=\"form-control\" (blur)=\"onBlurNewItemInput()\" [(ngModel)]=\"inputQuantity\">\n        </td>\n        <td></td>\n        <td></td>\n        <td>\n          <button class=\"btn btn-info\" [disabled]=\"! areNewStockItemFieldsSet\" (click)=\"createNewStockItem()\"> Add\n            Stock Item</button>\n        </td>\n      </tr>\n      <tr *ngFor=\"let item of stockReportItems | filter : 'item.product.name' : searchString; let i = index\" (click)=\"setSelectedRow(i)\"\n        [class.active]=\"i == selectedRow\">\n        <td>{{ item.product.id }}</td>\n        <td contenteditable=\"stockReportStatus !== 'CLOSED'\"\n          (blur)=\"onChangeStockItemName(item, $event)\">\n          {{ item.product.name }}\n        </td>\n        <td class=\"text-right\"\n          contenteditable=\"stockReportStatus !== 'CLOSED'\"\n          (blur)=\"onChangeStockItemPrice(item, $event)\">\n          {{ item.product.price }} €\n        </td>\n        <td class=\"text-right\"\n          contenteditable=\"stockReportStatus !== 'CLOSED'\"\n          (blur)=\"onChangeStockItemQuantity(item, $event)\">\n          {{ item.quantity }}\n        </td>\n        <td></td>\n        <td></td>\n        <td>\n          <button *ngIf=\"stockReportStatus !== 'CLOSED'\" (click)=\"deleteStockItem(item.id)\" class=\"btn btn-danger\">\n            Delete</button>\n        </td>\n      </tr>\n    </tbody>\n  </table>\n</div>"
+module.exports = "<div class=\"col-md-25 user-container\">\n  <form>\n    <div class=\"form-group\">\n      <div class=\"input-group\">\n        <div class=\"input-group-addon\">\n          <i class=\"glyphicon glyphicon-search\"></i>\n        </div>\n        <input type=\"text\"\n          class=\"form-control\"\n          name=\"searchString\"\n          placeholder=\"Type to search...\"\n          [(ngModel)]=\"searchString\">\n      </div>\n    </div>\n  </form>\n  <table class=\"table table-striped\">\n    <thead>\n      <tr>\n        <th>ID</th>\n        <th>Name</th>\n        <th>Price</th>\n        <th>Quantity</th>\n        <th></th>\n        <th></th>\n        <th></th>\n      </tr>\n    </thead>\n    <tbody>\n      <tr *ngIf=\"stockReportStatus !== 'CLOSED'\">\n        <td></td>\n        <td>\n          <input class=\"form-control\" (blur)=\"onBlurNewItemInput()\" [(ngModel)]=\"inputName\">\n        </td>\n        <td>\n          <input class=\"form-control\" (blur)=\"onBlurNewItemInput()\" [(ngModel)]=\"inputPrice\">\n        </td>\n        <td>\n          <input class=\"form-control\" (blur)=\"onBlurNewItemInput()\" [(ngModel)]=\"inputQuantity\">\n        </td>\n        <td></td>\n        <td></td>\n        <td>\n          <button class=\"btn btn-info\" [disabled]=\"! areNewStockItemFieldsSet\" (click)=\"createNewStockItem()\"> Add\n            Stock Item</button>\n        </td>\n      </tr>\n      <tr *ngFor=\"let item of stockReportItems | filter : 'product.name' : searchString; let i = index\" (click)=\"setSelectedRow(i)\"\n        [class.active]=\"i == selectedRow\">\n        <td>{{ item.product.id }}</td>\n        <td contenteditable=\"stockReportStatus !== 'CLOSED'\"\n          (blur)=\"onChangeStockItemName(item, $event)\">\n          {{ item.product.name }}\n        </td>\n        <td\n          contenteditable=\"stockReportStatus !== 'CLOSED'\"\n          (blur)=\"onChangeStockItemPrice(item, $event)\">\n          {{ item.product.price }} €\n        </td>\n        <td\n          contenteditable=\"stockReportStatus !== 'CLOSED'\"\n          (blur)=\"onChangeStockItemQuantity(item, $event)\">\n          {{ item.quantity }}\n        </td>\n        <td></td>\n        <td></td>\n        <td>\n          <button *ngIf=\"stockReportStatus !== 'CLOSED'\" (click)=\"deleteStockItem(item.id)\" class=\"btn btn-danger\">\n            Delete</button>\n        </td>\n      </tr>\n    </tbody>\n  </table>\n</div>"
 
 /***/ }),
 

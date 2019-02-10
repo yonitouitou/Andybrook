@@ -1,6 +1,6 @@
 export class AdminSetting {
 
-    email: string
+    emails: string[]
     notifyOnCloseReport: boolean
 
     constructor() {}

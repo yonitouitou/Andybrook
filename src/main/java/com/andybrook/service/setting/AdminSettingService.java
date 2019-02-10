@@ -38,7 +38,7 @@ public class AdminSettingService implements IAdminSettingService {
 
     @Override
     public AdminSetting updateAdminSetting(AdminSetting adminSetting) {
-        this.adminSetting.setEmail(adminSetting.getEmail());
+        this.adminSetting.setEmails(adminSetting.getEmails());
         this.adminSetting.getNotificationPolicy().setOnCloseReport(adminSetting.getNotificationPolicy().getOnCloseReport());
         this.adminSetting = adminSettingDao.updateAdminSetting(this.adminSetting);
         return new AdminSetting(this.adminSetting);

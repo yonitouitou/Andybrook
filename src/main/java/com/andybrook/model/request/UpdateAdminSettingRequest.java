@@ -3,10 +3,12 @@ package com.andybrook.model.request;
 import com.andybrook.model.notification.NotificationPolicy;
 import com.andybrook.model.setting.AdminSetting;
 
+import java.util.Arrays;
+
 public class UpdateAdminSettingRequest {
 
     private Long id;
-    private String email;
+    private String[] emails;
     private boolean notifyOnCloseReport;
 
     UpdateAdminSettingRequest() {
@@ -15,7 +17,7 @@ public class UpdateAdminSettingRequest {
     public AdminSetting toAdminSetting() {
         NotificationPolicy policy = new NotificationPolicy();
         policy.setOnCloseReport(notifyOnCloseReport);
-        return new AdminSetting(id, email, policy);
+        return new AdminSetting(id, emails, policy);
     }
 
     public Long getId() {
@@ -26,12 +28,12 @@ public class UpdateAdminSettingRequest {
         this.id = id;
     }
 
-    String getEmail() {
-        return email;
+    String[] getEmails() {
+        return emails;
     }
 
-    void setEmail(String email) {
-        this.email = email;
+    void setEmails(String[] emails) {
+        this.emails = emails;
     }
 
     boolean isNotifyOnCloseReport() {
@@ -45,7 +47,7 @@ public class UpdateAdminSettingRequest {
     @Override
     public String toString() {
         final StringBuilder sb = new StringBuilder("UpdateAdminSettingRequest{");
-        sb.append("email='").append(email).append('\'');
+        sb.append("email='").append(Arrays.toString(emails)).append('\'');
         sb.append(", notifyOnCloseReport=").append(notifyOnCloseReport);
         sb.append('}');
         return sb.toString();

@@ -44,19 +44,19 @@
             Stock Item</button>
         </td>
       </tr>
-      <tr *ngFor="let item of stockReportItems | filter : 'item.product.name' : searchString; let i = index" (click)="setSelectedRow(i)"
+      <tr *ngFor="let item of stockReportItems | filter : 'product.name' : searchString; let i = index" (click)="setSelectedRow(i)"
         [class.active]="i == selectedRow">
         <td>{{ item.product.id }}</td>
         <td contenteditable="stockReportStatus !== 'CLOSED'"
           (blur)="onChangeStockItemName(item, $event)">
           {{ item.product.name }}
         </td>
-        <td class="text-right"
+        <td
           contenteditable="stockReportStatus !== 'CLOSED'"
           (blur)="onChangeStockItemPrice(item, $event)">
           {{ item.product.price }} €
         </td>
-        <td class="text-right"
+        <td
           contenteditable="stockReportStatus !== 'CLOSED'"
           (blur)="onChangeStockItemQuantity(item, $event)">
           {{ item.quantity }}

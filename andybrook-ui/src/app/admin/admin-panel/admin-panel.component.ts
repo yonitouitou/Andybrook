@@ -21,18 +21,18 @@ export class AdminPanelComponent implements OnInit {
   ngOnInit() {
     this.adminForm = this.formBuilder.group({
       notification: [],
-      email: [, [Validators.required, Validators.email]]
+      emails: [, [Validators.required]]
     });
 
     this.adminSetting = new AdminSetting()
     this.adminSettingService.getAdminSetting(this.adminSetting)
         .subscribe(data => {
-          this.adminSetting.email = data.email
+          this.adminSetting.emails = data.emails
           this.adminSetting.notifyOnCloseReport = data.notificationPolicy.onCloseReport
 
           this.adminForm.setValue({
             notification: this.adminSetting.notifyOnCloseReport,
-            email: this.adminSetting.email
+            emails: this.adminSetting.emails
       })
     })
   }
@@ -54,7 +54,7 @@ export class AdminPanelComponent implements OnInit {
           return;
       }
       let values = this.adminForm.value
-      this.adminSetting.email = values.email
+      this.adminSetting.emails = values.emails.split(";")
       this.adminSetting.notifyOnCloseReport = values.notification
       this.adminSettingService.updateAdminSetting(this.adminSetting)
       this.settingSaved()

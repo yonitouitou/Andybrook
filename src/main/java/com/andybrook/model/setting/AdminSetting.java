@@ -2,24 +2,25 @@ package com.andybrook.model.setting;
 
 import com.andybrook.model.notification.NotificationPolicy;
 
+import java.util.Arrays;
 import java.util.Objects;
 
 public class AdminSetting {
 
     private Long id;
-    private String email;
+    private String[] emails;
     private NotificationPolicy notificationPolicy;
 
-    public AdminSetting(Long id, String email, NotificationPolicy notificationPolicy) {
+    public AdminSetting(Long id, String[] email, NotificationPolicy notificationPolicy) {
         this.id = id;
-        this.email = email;
+        this.emails = email;
         this.notificationPolicy = notificationPolicy;
     }
 
     public AdminSetting(AdminSetting other) {
         Objects.requireNonNull(other);
         this.id = other.id;
-        this.email = other.email;
+        this.emails = other.emails;
         this.notificationPolicy = new NotificationPolicy(other.notificationPolicy);
     }
 
@@ -35,12 +36,12 @@ public class AdminSetting {
         this.id = id;
     }
 
-    public String getEmail() {
-        return email;
+    public String[] getEmails() {
+        return emails;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
+    public void setEmails(String[] emails) {
+        this.emails = emails;
     }
 
     public NotificationPolicy getNotificationPolicy() {
@@ -55,7 +56,7 @@ public class AdminSetting {
     public String toString() {
         final StringBuilder sb = new StringBuilder("AdminSetting{");
         sb.append("id=").append(id);
-        sb.append(", email='").append(email).append('\'');
+        sb.append(", email='").append(Arrays.toString(emails)).append('\'');
         sb.append(", notificationPolicy=").append(notificationPolicy);
         sb.append('}');
         return sb.toString();

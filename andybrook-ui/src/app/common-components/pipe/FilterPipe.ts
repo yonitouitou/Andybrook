@@ -6,14 +6,14 @@ import {Pipe, PipeTransform, Injectable } from '@angular/core'
 @Injectable()
 export class FilterPipe implements PipeTransform {
 
-    transform(items: IterableIterator<any>, field: string, value: string): IterableIterator<any> {
+    transform(items: IterableIterator<any>, field: string, value: string): Array<any> {
         if (!items) {
             return new Array[0]
         }
+        let array = Array.from(items)
         if (!field || !value) {
-            return items
+            return array
         }
-        let array = new Array(items)
-        return array.filter(singleItem => singleItem[field].toLowerCase().includes(value.toLowerCase()))
+        return array.filter(singleTerm => singleTerm[field].toLowerCase().includes(value.toLowerCase()))
     }
 }
