@@ -9,14 +9,14 @@ public class Email {
     private final String[] toAddresses;
     private final String subject;
     private final String body;
-    private final Path attachmentFilePath;
+    private final Path[] attachmentFilePath;
 
     Email(Builder builder) {
         fromAddress = builder.fromAddress;
         toAddresses = builder.toAddresses;
         subject = builder.subject;
         body = builder.body;
-        attachmentFilePath = builder.attachmentFilePath;
+        attachmentFilePath = builder.attachmentFilesPath;
     }
 
     public String getFromAddress() {
@@ -35,7 +35,7 @@ public class Email {
         return body;
     }
 
-    public Path getAttachmentFilePath() {
+    public Path[] getAttachmentFilePath() {
         return attachmentFilePath;
     }
 
@@ -48,7 +48,7 @@ public class Email {
         private String[] toAddresses;
         private String subject;
         private String body;
-        private Path attachmentFilePath;
+        private Path[] attachmentFilesPath;
 
         public Builder fromAdress(String address) {
             this.fromAddress = address;
@@ -70,8 +70,8 @@ public class Email {
             return this;
         }
 
-        public Builder withAttachmentFile(Path filePath) {
-            this.attachmentFilePath = filePath;
+        public Builder withAttachmentFile(Path[] filePath) {
+            this.attachmentFilesPath = filePath;
             return this;
         }
 

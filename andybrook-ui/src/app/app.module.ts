@@ -20,6 +20,8 @@ import { CreateReportModalComponent } from './reports-manager-panel/create-repor
 import { ModalBuilderComponent } from "./common-components/modal-builder-component/modalBuilderComponent";
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { AdminPanelComponent } from './admin/admin-panel/admin-panel.component';
+import { FilterPipe } from './common-components/pipe/FilterPipe'
+import { SharedModule } from './shared.module';
 
 const appRoutes: Routes = [
   { path: '', component: ReportsManagerComponent },
@@ -38,7 +40,7 @@ const appRoutes: Routes = [
     ListReportsComponent,
     CreateReportModalComponent,
     ModalBuilderComponent,
-    AdminPanelComponent
+    AdminPanelComponent,
   ],
   entryComponents: [CreateReportModalComponent],
   imports: [
@@ -51,6 +53,7 @@ const appRoutes: Routes = [
     NoopAnimationsModule,
     ReactiveFormsModule,
     NgbModule,
+    SharedModule,
     RouterModule.forRoot(appRoutes)
   ],
   providers: [StockReportService, HttpService, ModalBuilderComponent, AdminSettingService],

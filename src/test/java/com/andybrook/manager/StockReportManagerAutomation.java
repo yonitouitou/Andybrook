@@ -18,7 +18,7 @@ public class StockReportManagerAutomation {
 
     @Test
     public void create10StockReports() {
-        for (int i = 0; i < 10; i++) {
+        for (int i = 0; i < 200; i++) {
             long suffix = Clock.millis();
             NewStockReportRequest request = new NewStockReportRequest();
             request.setName("StockReport_" + suffix);

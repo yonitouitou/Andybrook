@@ -214,6 +214,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _common_components_modal_builder_component_modalBuilderComponent__WEBPACK_IMPORTED_MODULE_20__ = __webpack_require__(/*! ./common-components/modal-builder-component/modalBuilderComponent */ "./src/app/common-components/modal-builder-component/modalBuilderComponent.ts");
 /* harmony import */ var _ng_bootstrap_ng_bootstrap__WEBPACK_IMPORTED_MODULE_21__ = __webpack_require__(/*! @ng-bootstrap/ng-bootstrap */ "./node_modules/@ng-bootstrap/ng-bootstrap/fesm5/ng-bootstrap.js");
 /* harmony import */ var _admin_admin_panel_admin_panel_component__WEBPACK_IMPORTED_MODULE_22__ = __webpack_require__(/*! ./admin/admin-panel/admin-panel.component */ "./src/app/admin/admin-panel/admin-panel.component.ts");
+/* harmony import */ var _shared_module__WEBPACK_IMPORTED_MODULE_23__ = __webpack_require__(/*! ./shared.module */ "./src/app/shared.module.ts");
+
 
 
 
@@ -257,7 +259,7 @@ var AppModule = /** @class */ (function () {
                 _reports_manager_panel_list_reports_list_reports_component__WEBPACK_IMPORTED_MODULE_18__["ListReportsComponent"],
                 _reports_manager_panel_create_report_modal_create_report_modal_component__WEBPACK_IMPORTED_MODULE_19__["CreateReportModalComponent"],
                 _common_components_modal_builder_component_modalBuilderComponent__WEBPACK_IMPORTED_MODULE_20__["ModalBuilderComponent"],
-                _admin_admin_panel_admin_panel_component__WEBPACK_IMPORTED_MODULE_22__["AdminPanelComponent"]
+                _admin_admin_panel_admin_panel_component__WEBPACK_IMPORTED_MODULE_22__["AdminPanelComponent"],
             ],
             entryComponents: [_reports_manager_panel_create_report_modal_create_report_modal_component__WEBPACK_IMPORTED_MODULE_19__["CreateReportModalComponent"]],
             imports: [
@@ -270,6 +272,7 @@ var AppModule = /** @class */ (function () {
                 _angular_platform_browser_animations__WEBPACK_IMPORTED_MODULE_8__["NoopAnimationsModule"],
                 _angular_forms__WEBPACK_IMPORTED_MODULE_3__["ReactiveFormsModule"],
                 _ng_bootstrap_ng_bootstrap__WEBPACK_IMPORTED_MODULE_21__["NgbModule"],
+                _shared_module__WEBPACK_IMPORTED_MODULE_23__["SharedModule"],
                 _angular_router__WEBPACK_IMPORTED_MODULE_7__["RouterModule"].forRoot(appRoutes)
             ],
             providers: [_service_stock_report_service__WEBPACK_IMPORTED_MODULE_13__["StockReportService"], _service_http_service__WEBPACK_IMPORTED_MODULE_14__["HttpService"], _common_components_modal_builder_component_modalBuilderComponent__WEBPACK_IMPORTED_MODULE_20__["ModalBuilderComponent"], _service_admin_setting_service__WEBPACK_IMPORTED_MODULE_15__["AdminSettingService"]],
@@ -338,6 +341,46 @@ var ModalBuilderComponent = /** @class */ (function () {
         tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_ng_bootstrap_ng_bootstrap__WEBPACK_IMPORTED_MODULE_2__["NgbModal"]])
     ], ModalBuilderComponent);
     return ModalBuilderComponent;
+}());
+
+
+
+/***/ }),
+
+/***/ "./src/app/common-components/pipe/FilterPipe.ts":
+/*!******************************************************!*\
+  !*** ./src/app/common-components/pipe/FilterPipe.ts ***!
+  \******************************************************/
+/*! exports provided: FilterPipe */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "FilterPipe", function() { return FilterPipe; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+
+
+var FilterPipe = /** @class */ (function () {
+    function FilterPipe() {
+    }
+    FilterPipe.prototype.transform = function (items, field, value) {
+        if (!items) {
+            return new Array[0];
+        }
+        if (!field || !value) {
+            return items;
+        }
+        var array = new Array(items);
+        return array.filter(function (singleItem) { return singleItem[field].toLowerCase().includes(value.toLowerCase()); });
+    };
+    FilterPipe = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Pipe"])({
+            name: 'filter',
+        }),
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Injectable"])()
+    ], FilterPipe);
+    return FilterPipe;
 }());
 
 
@@ -909,6 +952,50 @@ var StockReportService = /** @class */ (function () {
 
 /***/ }),
 
+/***/ "./src/app/shared.module.ts":
+/*!**********************************!*\
+  !*** ./src/app/shared.module.ts ***!
+  \**********************************/
+/*! exports provided: SharedModule */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "SharedModule", function() { return SharedModule; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var _angular_platform_browser__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/platform-browser */ "./node_modules/@angular/platform-browser/fesm5/platform-browser.js");
+/* harmony import */ var _common_components_pipe_FilterPipe__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./common-components/pipe/FilterPipe */ "./src/app/common-components/pipe/FilterPipe.ts");
+
+
+
+
+var SharedModule = /** @class */ (function () {
+    function SharedModule() {
+    }
+    SharedModule = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["NgModule"])({
+            imports: [
+                _angular_platform_browser__WEBPACK_IMPORTED_MODULE_2__["BrowserModule"]
+            ],
+            declarations: [
+                _common_components_pipe_FilterPipe__WEBPACK_IMPORTED_MODULE_3__["FilterPipe"]
+            ],
+            providers: [
+            // service
+            ],
+            exports: [
+                _common_components_pipe_FilterPipe__WEBPACK_IMPORTED_MODULE_3__["FilterPipe"]
+            ],
+        })
+    ], SharedModule);
+    return SharedModule;
+}());
+
+
+
+/***/ }),
+
 /***/ "./src/app/stock-report-panel/list-stock-item/list-stock-item.component.css":
 /*!**********************************************************************************!*\
   !*** ./src/app/stock-report-panel/list-stock-item/list-stock-item.component.css ***!
@@ -927,7 +1014,7 @@ module.exports = ".table tr.active td {\n    background-color:#275e94 !important
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"col-md-20 user-container\">\n    <table class=\"table table-striped\">\n        <thead>\n        <tr>\n          <th>ID</th>\n          <th>Name</th>\n          <th>Price</th>\n          <th>Quantity</th>\n          <th></th>\n          <th></th>\n          <th></th>\n        </tr>\n        </thead>\n        <tbody>\n        <tr *ngIf=\"stockReportStatus !== 'CLOSED'\">\n          <td></td>\n          <td>\n            <input class=\"form-control\" (blur)=\"onBlurNewItemInput()\" [(ngModel)]=\"inputName\">\n          </td>\n          <td>\n            <input class=\"form-control\" (blur)=\"onBlurNewItemInput()\" [(ngModel)]=\"inputPrice\">\n          </td>\n          <td>\n            <input class=\"form-control\" (blur)=\"onBlurNewItemInput()\" [(ngModel)]=\"inputQuantity\">\n          </td>\n          <td></td>\n          <td></td>\n          <td>\n            <button\n              class=\"btn btn-info\"\n              [disabled]=\"! areNewStockItemFieldsSet\"\n              (click)=\"createNewStockItem()\"> Add Stock Item</button>\n          </td>\n        </tr>\n        <tr *ngFor=\"let item of stockReportItems; let i = index\" (click)=\"setSelectedRow(i)\" [class.active]=\"i == selectedRow\">\n          <td>{{ item.product.id }}</td>\n          <td contenteditable=\"stockReportStatus !== 'CLOSED'\"\n             (blur)=\"onChangeStockItemName(item, $event)\"\n          >{{ item.product.name }}</td>\n          <td contenteditable=\"stockReportStatus !== 'CLOSED'\"\n              (blur)=\"onChangeStockItemPrice(item, $event)\"\n          >{{ item.product.price }} €</td>\n          <td contenteditable=\"stockReportStatus !== 'CLOSED'\"\n              (blur)=\"onChangeStockItemQuantity(item, $event)\"\n          >{{ item.quantity }}</td>\n          <td></td>\n          <td></td>\n          <td>\n            <button *ngIf=\"stockReportStatus !== 'CLOSED'\" (click)=\"deleteStockItem(item.id)\" class=\"btn btn-danger\"> Delete</button>\n          </td>\n        </tr>\n        </tbody>\n      </table>\n    \n</div>"
+module.exports = "<div class=\"col-md-25 user-container\">\n  <form>\n    <div class=\"form-group\">\n      <div class=\"input-group\">\n        <div class=\"input-group-addon\">\n          <i class=\"glyphicon glyphicon-search\"></i>\n        </div>\n        <input type=\"text\"\n          class=\"form-control\"\n          name=\"searchString\"\n          placeholder=\"Type to search...\"\n          [(ngModel)]=\"searchString\">\n      </div>\n    </div>\n  </form>\n  <table class=\"table table-striped\">\n    <thead>\n      <tr>\n        <th>ID</th>\n        <th>Name</th>\n        <th>Price</th>\n        <th>Quantity</th>\n        <th></th>\n        <th></th>\n        <th></th>\n      </tr>\n    </thead>\n    <tbody>\n      <tr *ngIf=\"stockReportStatus !== 'CLOSED'\">\n        <td></td>\n        <td>\n          <input class=\"form-control\" (blur)=\"onBlurNewItemInput()\" [(ngModel)]=\"inputName\">\n        </td>\n        <td>\n          <input class=\"form-control\" (blur)=\"onBlurNewItemInput()\" [(ngModel)]=\"inputPrice\">\n        </td>\n        <td>\n          <input class=\"form-control\" (blur)=\"onBlurNewItemInput()\" [(ngModel)]=\"inputQuantity\">\n        </td>\n        <td></td>\n        <td></td>\n        <td>\n          <button class=\"btn btn-info\" [disabled]=\"! areNewStockItemFieldsSet\" (click)=\"createNewStockItem()\"> Add\n            Stock Item</button>\n        </td>\n      </tr>\n      <tr *ngFor=\"let item of stockReportItems | filter : 'item.product.name' : searchString; let i = index\" (click)=\"setSelectedRow(i)\"\n        [class.active]=\"i == selectedRow\">\n        <td>{{ item.product.id }}</td>\n        <td contenteditable=\"stockReportStatus !== 'CLOSED'\"\n          (blur)=\"onChangeStockItemName(item, $event)\">\n          {{ item.product.name }}\n        </td>\n        <td class=\"text-right\"\n          contenteditable=\"stockReportStatus !== 'CLOSED'\"\n          (blur)=\"onChangeStockItemPrice(item, $event)\">\n          {{ item.product.price }} €\n        </td>\n        <td class=\"text-right\"\n          contenteditable=\"stockReportStatus !== 'CLOSED'\"\n          (blur)=\"onChangeStockItemQuantity(item, $event)\">\n          {{ item.quantity }}\n        </td>\n        <td></td>\n        <td></td>\n        <td>\n          <button *ngIf=\"stockReportStatus !== 'CLOSED'\" (click)=\"deleteStockItem(item.id)\" class=\"btn btn-danger\">\n            Delete</button>\n        </td>\n      </tr>\n    </tbody>\n  </table>\n</div>"
 
 /***/ }),
 
@@ -1132,7 +1219,7 @@ module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div>\n  <stock-report-header\n    [report]=\"report\"\n    (onCloseStockReportEvent)=\"onCloseStockReport()\"\n  ></stock-report-header>\n  <h5></h5>\n  <list-stock-item\n    [stockReportId]=\"reportId\"\n    [stockReportItems]=\"report.items.values()\"\n    [stockReportStatus]=\"report.status\"\n    (onCreateStockItemEvent)=\"onNewStockItem($event)\"\n    (onChangeStockItemEvent)=\"onChangeStockItem($event)\"\n    (onDeleteStockItemEvent)=\"onDeleteStockItem($event)\"\n  ></list-stock-item>\n  <h3></h3>\n  <div class=\"container=fluid\">\n    <button class=\"btn btn-primary\"\n        (click)=\"onClickBack()\"\n        style=\"float: right\"\n    >Back</button>\n</div>\n</div>"
+module.exports = "<div>\n  <stock-report-header\n    [report]=\"report\"\n    (onCloseStockReportEvent)=\"onCloseStockReport()\"\n  ></stock-report-header>\n  <br>\n  <br>\n  <list-stock-item\n    [stockReportId]=\"reportId\"\n    [stockReportItems]=\"report.items.values()\"\n    [stockReportStatus]=\"report.status\"\n    (onCreateStockItemEvent)=\"onNewStockItem($event)\"\n    (onChangeStockItemEvent)=\"onChangeStockItem($event)\"\n    (onDeleteStockItemEvent)=\"onDeleteStockItem($event)\"\n  ></list-stock-item>\n  <h3></h3>\n  <div class=\"container=fluid\">\n    <button class=\"btn btn-primary\"\n        (click)=\"onClickBack()\"\n        style=\"float: right\"\n    >Back</button>\n</div>\n</div>"
 
 /***/ }),
 

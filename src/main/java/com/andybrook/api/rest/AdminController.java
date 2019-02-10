@@ -1,7 +1,6 @@
 package com.andybrook.api.rest;
 
 import com.andybrook.manager.setting.IAdminSettingManager;
-import com.andybrook.model.notification.NotificationPolicy;
 import com.andybrook.model.request.UpdateAdminSettingRequest;
 import com.andybrook.model.setting.AdminSetting;
 import org.springframework.beans.factory.annotation.Autowired;

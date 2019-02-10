@@ -1,55 +1,73 @@
-<div class="col-md-20 user-container">
-    <table class="table table-striped">
-        <thead>
-        <tr>
-          <th>ID</th>
-          <th>Name</th>
-          <th>Price</th>
-          <th>Quantity</th>
-          <th></th>
-          <th></th>
-          <th></th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr *ngIf="stockReportStatus !== 'CLOSED'">
-          <td></td>
-          <td>
-            <input class="form-control" (blur)="onBlurNewItemInput()" [(ngModel)]="inputName">
-          </td>
-          <td>
-            <input class="form-control" (blur)="onBlurNewItemInput()" [(ngModel)]="inputPrice">
-          </td>
-          <td>
-            <input class="form-control" (blur)="onBlurNewItemInput()" [(ngModel)]="inputQuantity">
-          </td>
-          <td></td>
-          <td></td>
-          <td>
-            <button
-              class="btn btn-info"
-              [disabled]="! areNewStockItemFieldsSet"
-              (click)="createNewStockItem()"> Add Stock Item</button>
-          </td>
-        </tr>
-        <tr *ngFor="let item of stockReportItems; let i = index" (click)="setSelectedRow(i)" [class.active]="i == selectedRow">
-          <td>{{ item.product.id }}</td>
-          <td contenteditable="stockReportStatus !== 'CLOSED'"
-             (blur)="onChangeStockItemName(item, $event)"
-          >{{ item.product.name }}</td>
-          <td contenteditable="stockReportStatus !== 'CLOSED'"
-              (blur)="onChangeStockItemPrice(item, $event)"
-          >{{ item.product.price }} €</td>
-          <td contenteditable="stockReportStatus !== 'CLOSED'"
-              (blur)="onChangeStockItemQuantity(item, $event)"
-          >{{ item.quantity }}</td>
-          <td></td>
-          <td></td>
-          <td>
-            <button *ngIf="stockReportStatus !== 'CLOSED'" (click)="deleteStockItem(item.id)" class="btn btn-danger"> Delete</button>
-          </td>
-        </tr>
-        </tbody>
-      </table>
-    
+<div class="col-md-25 user-container">
+  <form>
+    <div class="form-group">
+      <div class="input-group">
+        <div class="input-group-addon">
+          <i class="glyphicon glyphicon-search"></i>
+        </div>
+        <input type="text"
+          class="form-control"
+          name="searchString"
+          placeholder="Type to search..."
+          [(ngModel)]="searchString">
+      </div>
+    </div>
+  </form>
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Price</th>
+        <th>Quantity</th>
+        <th></th>
+        <th></th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngIf="stockReportStatus !== 'CLOSED'">
+        <td></td>
+        <td>
+          <input class="form-control" (blur)="onBlurNewItemInput()" [(ngModel)]="inputName">
+        </td>
+        <td>
+          <input class="form-control" (blur)="onBlurNewItemInput()" [(ngModel)]="inputPrice">
+        </td>
+        <td>
+          <input class="form-control" (blur)="onBlurNewItemInput()" [(ngModel)]="inputQuantity">
+        </td>
+        <td></td>
+        <td></td>
+        <td>
+          <button class="btn btn-info" [disabled]="! areNewStockItemFieldsSet" (click)="createNewStockItem()"> Add
+            Stock Item</button>
+        </td>
+      </tr>
+      <tr *ngFor="let item of stockReportItems | filter : 'item.product.name' : searchString; let i = index" (click)="setSelectedRow(i)"
+        [class.active]="i == selectedRow">
+        <td>{{ item.product.id }}</td>
+        <td contenteditable="stockReportStatus !== 'CLOSED'"
+          (blur)="onChangeStockItemName(item, $event)">
+          {{ item.product.name }}
+        </td>
+        <td class="text-right"
+          contenteditable="stockReportStatus !== 'CLOSED'"
+          (blur)="onChangeStockItemPrice(item, $event)">
+          {{ item.product.price }} €
+        </td>
+        <td class="text-right"
+          contenteditable="stockReportStatus !== 'CLOSED'"
+          (blur)="onChangeStockItemQuantity(item, $event)">
+          {{ item.quantity }}
+        </td>
+        <td></td>
+        <td></td>
+        <td>
+          <button *ngIf="stockReportStatus !== 'CLOSED'" (click)="deleteStockItem(item.id)" class="btn btn-danger">
+            Delete</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
 </div>

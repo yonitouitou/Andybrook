@@ -1,6 +1,8 @@
 package com.andybrook.model.notification;
 
 import com.andybrook.ApplicationProperties;
+import com.andybrook.api.pdf.CloseReportPdfBuilder;
+import com.andybrook.api.pdf.IPdfBuilder;
 import com.andybrook.model.StockItem;
 import com.andybrook.model.StockReport;
 import com.andybrook.model.api.Email;
@@ -22,6 +24,7 @@ import java.nio.file.StandardOpenOption;
 import java.time.ZoneId;
 import java.time.ZonedDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.Arrays;
 import java.util.Collection;
 import java.util.StringJoiner;
 
@@ -42,9 +45,20 @@ public class StockClosedEmailNotification implements IEmailNotification<StockRep
                 .toAdresses(applicationProperties.getNotificationEmailTo())
                 .withSubject("Report " + report.getId() + " closed")
                 .withBody(getBody(report))
-                .withAttachmentFile(generateCsvFile(report))
+                .withAttachmentFile(getAttachmentsPaths(report))
                 .build();
 
+    }
+
+    private Path[] getAttachmentsPaths(StockReport report) {
+        Path csvPath = generateCsvFile(report);
+        Path pdfPath = generatePdfFile(report);
+        return new Path[] {csvPath, pdfPath};
+    }
+
+    private Path generatePdfFile(StockReport report) {
+        IPdfBuilder<StockReport> builder = new CloseReportPdfBuilder();
+        return builder.generatePdf(report);
     }
 
     private Path generateCsvFile(StockReport report) {

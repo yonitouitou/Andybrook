@@ -14,6 +14,7 @@ export class ListStockItemComponent implements OnInit {
   inputPrice: number
   selectedRow: number
   areNewStockItemFieldsSet = false
+  searchString: string
 
   @Input() stockReportItems: IterableIterator<StockItem>
   @Input() stockReportId: number
