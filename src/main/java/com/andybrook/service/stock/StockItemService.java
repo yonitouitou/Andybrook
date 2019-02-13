@@ -1,9 +1,11 @@
 package com.andybrook.service.stock;
 
 import com.andybrook.dao.stock.IStockItemDao;
+import com.andybrook.exception.StockReportClosed;
 import com.andybrook.exception.StockReportNotFound;
-import com.andybrook.model.product.Product;
 import com.andybrook.model.StockItem;
+import com.andybrook.model.StockReport;
+import com.andybrook.model.product.Product;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -21,14 +23,30 @@ public class StockItemService implements IStockItemService {
 
     @Override
     @Transactional
-    public StockItem<? extends Product> newStockItem(long stockReportId, StockItem<? extends Product> item) throws StockReportNotFound {
-        stockReportService.addItemToReport(stockReportId, item);
+    public StockItem<? extends Product> newStockItem(long stockReportId, StockItem<? extends Product> item)
+            throws StockReportNotFound, StockReportClosed {
+        StockReport stockReport = stockReportService.getStockReport(stockReportId);
+        if (! stockReport.isClosed()) {
+            stockReportService.addItemToReport(stockReportId, item);
+        } else {
+            throw new StockReportClosed(stockReportId);
+        }
         return item;
     }
 
     @Override
-    public StockItem<? extends Product> updateStockItem(long stockReportId, StockItem<? extends Product> item) throws StockReportNotFound {
-        return stockItemDao.updateStockItem(stockReportId, item);
+    @Transactional
+    public StockItem<? extends Product> updateStockItem(long stockReportId, StockItem<? extends Product> item)
+            throws StockReportNotFound, StockReportClosed {
+
+        StockItem<? extends Product> stockItem;
+        StockReport stockReport = stockReportService.getStockReport(stockReportId);
+        if (! stockReport.isClosed()) {
+            stockItem = stockItemDao.updateStockItem(stockReportId, item);
+        } else {
+            throw new StockReportClosed(stockReportId);
+        }
+        return stockItem;
     }
 
     @Override

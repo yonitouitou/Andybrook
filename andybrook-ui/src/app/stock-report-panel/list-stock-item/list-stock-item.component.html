@@ -44,7 +44,7 @@
             Stock Item</button>
         </td>
       </tr>
-      <tr *ngFor="let item of stockReportItems | filter : 'product.name' : searchString; let i = index" (click)="setSelectedRow(i)"
+      <tr *ngFor="let item of stockReportItems | filter : 'name' : searchString; let i = index" (click)="setSelectedRow(i)"
         [class.active]="i == selectedRow">
         <td>{{ item.product.id }}</td>
         <td contenteditable="stockReportStatus !== 'CLOSED'"

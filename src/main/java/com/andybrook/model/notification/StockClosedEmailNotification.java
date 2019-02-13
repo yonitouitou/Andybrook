@@ -10,6 +10,7 @@ import com.andybrook.model.product.Product;
 import com.andybrook.model.setting.AdminSetting;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.config.BeanDefinition;
+import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
@@ -33,6 +34,8 @@ public class StockClosedEmailNotification implements IEmailNotification<StockRep
 
     @Autowired
     private ApplicationProperties applicationProperties;
+    @Autowired
+    private ApplicationContext applicationContext;
 
     @Override
     public Email createEmail(AdminSetting adminSetting, StockReport report) {
@@ -53,7 +56,7 @@ public class StockClosedEmailNotification implements IEmailNotification<StockRep
     }
 
     private Path generatePdfFile(StockReport report) {
-        IPdfBuilder<StockReport> builder = new CloseReportPdfBuilder();
+        IPdfBuilder<StockReport> builder = applicationContext.getBean(CloseReportPdfBuilder.class);
         return builder.generatePdf(report);
     }
 

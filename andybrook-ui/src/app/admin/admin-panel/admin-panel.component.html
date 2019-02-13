@@ -5,7 +5,9 @@
           <input type="checkbox" formControlName="notification" class="form-check-input" (input)="settingChanged()">
       </div>
       <div class="form-group">
-        <label for="exampleInputEmail1">Email addresses</label>
+        <label for="exampleInputEmail1">Email addresses
+          <span style="font-size: 80%; font-style: italic">(Use comma ',' delimiter for multiple emails)</span
+        ></label>
         <input type="text" formControlName="emails"
           (input)="settingChanged()"
           class="form-control"
@@ -15,4 +17,5 @@
         <button type="submit" class="btn btn-primary" [disabled]="saveButtonDisabled">Save</button>
       </div>
     </form>
+    <ngb-alert *ngIf="alertMessage" type="success" (close)="alertMessage = null">{{ alertMessage }}</ngb-alert>
 </div>

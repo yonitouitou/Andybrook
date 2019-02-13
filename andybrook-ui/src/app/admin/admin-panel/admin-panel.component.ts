@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { AdminSettingService } from '../../service/admin-setting-service'
 import { AdminSetting } from 'src/app/model/admin/AdminSetting';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Subject } from 'rxjs'
+import { debounceTime } from 'rxjs/operators'
 
 @Component({
   selector: 'admin-panel',
@@ -10,10 +12,13 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 })
 export class AdminPanelComponent implements OnInit {
 
+  private _success = new Subject<string>()
   private adminSetting: AdminSetting
   adminForm: FormGroup;
   submitted = false;
   saveButtonDisabled = true
+
+  alertMessage: string
 
   constructor(private formBuilder: FormBuilder,
               private adminSettingService: AdminSettingService) { }
@@ -35,6 +40,13 @@ export class AdminPanelComponent implements OnInit {
             emails: this.adminSetting.emails
       })
     })
+
+    this._success.subscribe((msg) => this.alertMessage = msg)
+    this._success.pipe(debounceTime(5000)).subscribe(() => this.alertMessage = null)
+  }
+
+  public changeAlertMessage() {
+    this._success.next("Setting saved successully")
   }
 
   settingChanged() {
@@ -43,6 +55,7 @@ export class AdminPanelComponent implements OnInit {
 
   settingSaved() {
     this.saveButtonDisabled = true
+    this.changeAlertMessage()
   }
 
   // convenience getter for easy access to form fields
@@ -54,9 +67,10 @@ export class AdminPanelComponent implements OnInit {
           return;
       }
       let values = this.adminForm.value
-      this.adminSetting.emails = values.emails.split(";")
+      this.adminSetting.emails = values.emails.split(",")
       this.adminSetting.notifyOnCloseReport = values.notification
       this.adminSettingService.updateAdminSetting(this.adminSetting)
       this.settingSaved()
+
   }
 }

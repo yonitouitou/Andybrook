@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter, PipeTransform } from '@angular/core';
 import { StockItem } from '../../model/StockItem'
 import { Product } from '../../model/Product';
 
@@ -54,6 +54,10 @@ export class ListStockItemComponent implements OnInit {
       this.onChangeStockItemEvent.emit(item)
     } 
   }
+
+  // search(text: string, pipe: PipeTransform) : any[] {
+  //   return Array.from(stockReportItems) 
+  // }
 
   onChangeStockItemQuantity(stockItem: StockItem, event: any) {
     let newQuantity = event.target.textContent

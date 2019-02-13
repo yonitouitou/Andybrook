@@ -14,6 +14,8 @@ export class FilterPipe implements PipeTransform {
         if (!field || !value) {
             return array
         }
-        return array.filter(singleTerm => singleTerm[field].toLowerCase().includes(value.toLowerCase()))
+        return array.filter(
+            singleTerm => singleTerm['product'][field].toLowerCase().includes(value.toLowerCase())
+        )
     }
 }
