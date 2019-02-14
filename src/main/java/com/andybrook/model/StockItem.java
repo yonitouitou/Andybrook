@@ -22,6 +22,10 @@ public class StockItem<T extends Product> {
         this(IdGenerator.generateId(), product, productType, quantity);
     }
 
+    public double getTotalPrice() {
+        return quantity * product.getPrice();
+    }
+
     public Long getId() {
         return id;
     }

@@ -6,12 +6,12 @@ import com.andybrook.model.StockReport;
 import com.andybrook.model.product.Product;
 import com.itextpdf.text.*;
 import com.itextpdf.text.Font.FontFamily;
-import com.itextpdf.text.Font.FontStyle;
 import com.itextpdf.text.pdf.PdfPCell;
 import com.itextpdf.text.pdf.PdfPTable;
 import com.itextpdf.text.pdf.PdfWriter;
 import com.itextpdf.text.pdf.draw.LineSeparator;
 import org.springframework.stereotype.Component;
+import org.springframework.util.ResourceUtils;
 
 import javax.annotation.PostConstruct;
 import java.io.FileOutputStream;
@@ -28,15 +28,17 @@ import java.util.stream.Stream;
 public class CloseReportPdfBuilder extends AbstractPdfBuilder implements IPdfBuilder<StockReport> {
 
     private static final Logger LOGGER = System.getLogger(CloseReportPdfBuilder.class.getSimpleName());
-    private static final int NUMBER_OF_COLUMNS_4 = 4;
+    private static final int NUMBER_OF_COLUMNS_5 = 5;
     private static final float PADDING_3 = 3;
-    private static final float TITLE_FONT_SIZE_14 = 14;
+    private static final float TITLE_FONT_SIZE_20 = 20;
+    private static final float SUB_TITLE_FONT_SIZE_15 = 15;
     private static final float TEXT_FONT_SIZE_11 = 11;
-    private static final String[] COLUMNS_NAME_ITEMS = new String[4];
+    private static final String[] COLUMNS_NAME_ITEMS = new String[5];
     private static final String[] COLUMNS_NAME_CUSTOMER_MAIN_DETAILS = new String[2];
     private static final String[] COLUNS_NAME_CUSTOMER_CONTACT_DETAILS = new String[3];
     private static final BaseColor HEADER_BACKGROUND_COLOR = new BaseColor(206, 206, 206);
     private static final BaseColor TEXT_COLOR_BLACK = BaseColor.BLACK;
+    private static final FontFamily FONT_TYPE_TIMES_ROMAN = FontFamily.TIMES_ROMAN;
 
     @PostConstruct
     private void init() {
@@ -49,7 +51,7 @@ public class CloseReportPdfBuilder extends AbstractPdfBuilder implements IPdfBui
     public Path generatePdf(StockReport report) {
         String fileName = report.getName() + LocalDateTime.now().format(DateTimeFormatter.ISO_LOCAL_DATE_TIME);
         Path pdfFilePath = null;
-        Document document = new Document(PageSize.A4);
+        Document document = new Document(PageSize.A4, 20f, 20f, 7f, 7f);
         PdfWriter writer = null;
         try {
             pdfFilePath = Files.createTempFile(fileName, ".pdf");
@@ -59,13 +61,15 @@ public class CloseReportPdfBuilder extends AbstractPdfBuilder implements IPdfBui
 
             document.open();
 
+            Element logo = importLogoAndybrook();
             Element title = createTitle(report);
             Element customerTable1 = createCustomerMainDetailsTable(report);
             Element customerTable2 = createCustomerContactDetailsTable(report);
             Element itemsTable = createItemsTable(report);
 
+            document.add(logo);
             document.add(title);
-            addEmptyRow(document, 4);
+            addEmptyRow(document, 2);
             document.add(customerTable1);
             document.add(customerTable2);
             addEmptyRow(document, 1);
@@ -87,11 +91,13 @@ public class CloseReportPdfBuilder extends AbstractPdfBuilder implements IPdfBui
         String id = languageResolver.get(Pdf.ID);
         String name = languageResolver.get(Pdf.NAME);
         String quantity = languageResolver.get(Pdf.QUANTITY);
-        String price = languageResolver.get(Pdf.PRICE);
+        String price = languageResolver.get(Pdf.UNIT_PRICE);
+        String ttlPrice = languageResolver.get(Pdf.TOTAL);
         COLUMNS_NAME_ITEMS[0] = id;
         COLUMNS_NAME_ITEMS[1] = name;
         COLUMNS_NAME_ITEMS[2] = quantity;
         COLUMNS_NAME_ITEMS[3] = price;
+        COLUMNS_NAME_ITEMS[4] = ttlPrice;
     }
 
     private void initColumnsCustomerMainDetails() {
@@ -110,20 +116,28 @@ public class CloseReportPdfBuilder extends AbstractPdfBuilder implements IPdfBui
         COLUNS_NAME_CUSTOMER_CONTACT_DETAILS[2] = email;
     }
 
+    private Element importLogoAndybrook() throws IOException, DocumentException {
+        Image logo = Image.getInstance(ResourceUtils.getFile("classpath:images/andybrook-logo.jpg").getAbsolutePath());
+        logo.setAlignment(Element.ALIGN_CENTER);
+        logo.setWidthPercentage(20);
+        logo.setScaleToFitHeight(true);
+        return logo;
+    }
+
 
     private Element createTitle(StockReport report) {
         Paragraph title = new Paragraph();
 
-        Paragraph subTitleId = new Paragraph(languageResolver.get(Pdf.ORDER_FORM) + " #" + report.getId());
-        subTitleId.setAlignment(Element.ALIGN_CENTER);
-        subTitleId.setFont(new Font(FontFamily.TIMES_ROMAN, TITLE_FONT_SIZE_14, FontStyle.UNDERLINE.ordinal(), TEXT_COLOR_BLACK));
-        subTitleId.add(Chunk.NEWLINE);
+        Chunk subTitleId = new Chunk(languageResolver.get(Pdf.ORDER_FORM).toUpperCase() + " #" + report.getId());
+        subTitleId.setUnderline(0.1f, -2f);
+        subTitleId.setFont(new Font(FONT_TYPE_TIMES_ROMAN, TITLE_FONT_SIZE_20, Font.BOLD, TEXT_COLOR_BLACK));
 
-        Paragraph subTitleName = new Paragraph(report.getName());
-        subTitleName.setAlignment(Element.ALIGN_CENTER);
-        subTitleName.setFont(new Font(FontFamily.TIMES_ROMAN, TITLE_FONT_SIZE_14, FontStyle.UNDERLINE.ordinal(), TEXT_COLOR_BLACK));
+        Chunk subTitleName = new Chunk(report.getName());
+        subTitleName.setFont(new Font(FONT_TYPE_TIMES_ROMAN, SUB_TITLE_FONT_SIZE_15, Font.ITALIC, TEXT_COLOR_BLACK));
 
+        title.setAlignment(Element.ALIGN_CENTER);
         title.add(subTitleId);
+        title.add(Chunk.NEWLINE);
         title.add(subTitleName);
 
         return title;
@@ -153,12 +167,12 @@ public class CloseReportPdfBuilder extends AbstractPdfBuilder implements IPdfBui
     }
 
     private Element createItemsTable(StockReport report) throws DocumentException {
-        PdfPTable table = new PdfPTable(NUMBER_OF_COLUMNS_4);
+        PdfPTable table = new PdfPTable(NUMBER_OF_COLUMNS_5);
         table.setWidthPercentage(100);
         table.setSpacingBefore(10f);
         table.setSpacingAfter(10f);
 
-        float[] columnWidths = {1f, 2f, 0.5f, 0.5f};
+        float[] columnWidths = {1f, 2f, 0.5f, 0.5f, 0.5f};
         table.setWidths(columnWidths);
 
         addTableHeader(table, COLUMNS_NAME_ITEMS);
@@ -168,14 +182,14 @@ public class CloseReportPdfBuilder extends AbstractPdfBuilder implements IPdfBui
     }
 
     private void addCustomerDetailsFirstRow(PdfPTable table, StockReport report) {
-        addStringCell(table, report.getCustomerName());
-        addStringCell(table, "Jonathan Uta");
+        table.addCell(getStringCell(report.getCustomerName()));
+        table.addCell(getStringCell("Jonathan Uta"));
     }
 
     private void addCustomerDetailsSecondRow(PdfPTable table, StockReport report) {
-        addStringCell(table, "12 avenue du 8 mai 1945 - 95200 Sarcelles");
-        addStringCell(table, "01 39 90 12 47");
-        addStringCell(table, "yoni@gmail.com");
+        table.addCell(getStringCell("12 avenue du 8 mai 1945 - 95200 Sarcelles"));
+        table.addCell(getStringCell("01 39 90 12 47"));
+        table.addCell(getStringCell("yoni@gmail.com"));
     }
 
     private void addTableHeader(PdfPTable table, String[] columnsName) {
@@ -193,40 +207,53 @@ public class CloseReportPdfBuilder extends AbstractPdfBuilder implements IPdfBui
 
     private void addRows(PdfPTable table, StockReport report) {
         for (StockItem<? extends Product> item : report.getItems()) {
-            addStringCell(table, String.valueOf(item.getId()));
-            addStringCell(table, item.getProduct().getName());
-            addNumericCell(table, String.valueOf(item.getQuantity()));
-            addNumericCell(table, item.getProduct().getPrice() + "€");
+            table.addCell(getStringCell(String.valueOf(item.getId())));;
+            table.addCell(getStringCell(item.getProduct().getName()));
+            table.addCell(getNumericCell(String.valueOf(item.getQuantity())));
+            table.addCell(getNumericCell(item.getProduct().getPrice() + "€"));
+            table.addCell(getNumericCell(report.getItem(item.getId()).getTotalPrice() + "€"));
         }
+        PdfPCell totalCell = getStringCell(languageResolver.get(Pdf.TOTAL).toUpperCase());
+        totalCell.getPhrase().setFont(new Font(FontFamily.TIMES_ROMAN, TEXT_FONT_SIZE_11, Font.BOLD));
+        totalCell.setHorizontalAlignment(Element.ALIGN_RIGHT);
+        totalCell.setColspan(2);
+        table.addCell(totalCell);
+
+        PdfPCell emptyCell = getEmptyCell();
+        emptyCell.setColspan(2);
+        emptyCell.setBackgroundColor(BaseColor.LIGHT_GRAY);
+        table.addCell(emptyCell);
+
+        PdfPCell ttlPriceCell = getNumericCell(report.getTotalPrice() + "€");
+        ttlPriceCell.getPhrase().setFont(new Font(FontFamily.TIMES_ROMAN, TEXT_FONT_SIZE_11, Font.BOLD));
+        table.addCell(ttlPriceCell);
     }
 
-    private void addNumericCell(PdfPTable table, String value) {
-        Phrase phrase = new Phrase(value);
-        phrase.setFont(new Font(FontFamily.TIMES_ROMAN, TEXT_FONT_SIZE_11));
+    private PdfPCell getEmptyCell() {
+        return new PdfPCell();
+    }
+
+    private PdfPCell getNumericCell(String value) {
+        Phrase phrase = new Phrase(value, new Font(FontFamily.TIMES_ROMAN, TEXT_FONT_SIZE_11));
         PdfPCell cell = new PdfPCell(phrase);
         cell.setHorizontalAlignment(Element.ALIGN_RIGHT);
         cell.setVerticalAlignment(Element.ALIGN_CENTER);
         cell.setPadding(PADDING_3);
-        table.addCell(cell);
+        return cell;
     }
 
-    private void addStringCell(PdfPTable table, String value) {
-        Phrase phrase = new Phrase(value);
-        phrase.setFont(new Font(FontFamily.TIMES_ROMAN, TEXT_FONT_SIZE_11));
+    private PdfPCell getStringCell(String value) {
+        Phrase phrase = new Phrase(value, new Font(FontFamily.TIMES_ROMAN, TEXT_FONT_SIZE_11));
         PdfPCell cell = new PdfPCell(phrase);
         cell.setHorizontalAlignment(Element.ALIGN_LEFT);
         cell.setVerticalAlignment(Element.ALIGN_CENTER);
         cell.setPadding(PADDING_3);
-        table.addCell(cell);
+        return cell;
     }
 
     private void addLineSeparator(Document document) throws DocumentException {
         LineSeparator line = new LineSeparator();
         document.add(line);
-    }
-
-    private void addImage(Document document, String filePath) throws IOException, DocumentException {
-        document.add(Image.getInstance(filePath));
     }
 
     private void addEmptyRow(Document document, int nb) throws DocumentException {

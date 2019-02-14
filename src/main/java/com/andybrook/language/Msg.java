@@ -6,7 +6,8 @@ public class Msg {
         public static final String ID = "pdf.id";
         public static final String NAME = "pdf.name";
         public static final String QUANTITY = "pdf.quantity";
-        public static final String PRICE = "pdf.price";
+        public static final String UNIT_PRICE = "pdf.unit.price";
+        public static final String TOTAL = "pdf.total";
         public static final String ORDER_FORM = "pdf.order.form";
         public static final String SHOP_NAME = "pdf.shop.name";
         public static final String OWNER_NAME = "pdf.owner.name";

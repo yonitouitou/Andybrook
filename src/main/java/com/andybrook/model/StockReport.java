@@ -53,8 +53,7 @@ public class StockReport {
 
     public double getTotalPrice() {
         return items.values().stream()
-                .map(StockItem::getProduct)
-                .mapToDouble(Product::getPrice)
+                .mapToDouble(StockItem::getTotalPrice)
                 .sum();
     }
 
