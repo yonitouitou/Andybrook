@@ -1,5 +1,6 @@
 package com.andybrook.dao.jpa.entity.stock;
 
+import com.andybrook.dao.jpa.entity.customer.CustomerEntity;
 import com.andybrook.enums.ReportStatus;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
@@ -21,8 +22,9 @@ public class StockReportEntity {
     @Column(name = "name", nullable = false)
     protected String name;
 
-    @Column(name = "customername", nullable = false)
-    protected String customerName;
+    @ManyToOne
+    @JoinColumn(name = "customerid", nullable = false)
+    protected CustomerEntity customerEntity;
 
     @Column(name = "comment", length = 256)
     protected String comment;
@@ -48,11 +50,11 @@ public class StockReportEntity {
     public StockReportEntity() {
     }
 
-    public StockReportEntity(Long id, String name, String customerName, List<StockItemEntity> items,
+    public StockReportEntity(Long id, String name, CustomerEntity customerEntity, List<StockItemEntity> items,
                              ReportStatus status, String comment, LocalDateTime closeDateTime) {
         this.id = id;
         this.name = name;
-        this.customerName = customerName;
+        this.customerEntity = customerEntity;
         this.items = items;
         this.status = status;
         this.comment = comment;
@@ -123,11 +125,11 @@ public class StockReportEntity {
         this.closeDatetime = closeDateTime;
     }
 
-    public String getCustomerName() {
-        return customerName;
+    public CustomerEntity getCustomerEntity() {
+        return customerEntity;
     }
 
-    public void setCustomerName(String customerName) {
-        this.customerName = customerName;
+    public void setCustomerEntity(CustomerEntity customerEntity) {
+        this.customerEntity = customerEntity;
     }
 }

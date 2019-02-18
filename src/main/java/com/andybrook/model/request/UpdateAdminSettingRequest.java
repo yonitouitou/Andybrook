@@ -8,6 +8,7 @@ import java.util.Arrays;
 public class UpdateAdminSettingRequest {
 
     private Long id;
+    private int ordersNbToShow;
     private String[] emails;
     private boolean notifyOnCloseReport;
 
@@ -17,7 +18,7 @@ public class UpdateAdminSettingRequest {
     public AdminSetting toAdminSetting() {
         NotificationPolicy policy = new NotificationPolicy();
         policy.setOnCloseReport(notifyOnCloseReport);
-        return new AdminSetting(id, emails, policy);
+        return new AdminSetting(id, emails, policy, ordersNbToShow);
     }
 
     public Long getId() {
@@ -44,10 +45,20 @@ public class UpdateAdminSettingRequest {
         this.notifyOnCloseReport = notifyOnCloseReport;
     }
 
+    public int getOrdersNbToShow() {
+        return ordersNbToShow;
+    }
+
+    public void setOrdersNbToShow(int ordersNbToShow) {
+        this.ordersNbToShow = ordersNbToShow;
+    }
+
     @Override
     public String toString() {
         final StringBuilder sb = new StringBuilder("UpdateAdminSettingRequest{");
-        sb.append("email='").append(Arrays.toString(emails)).append('\'');
+        sb.append("id=").append(id);
+        sb.append(", ordersNbToShow=").append(ordersNbToShow);
+        sb.append(", emails=").append(Arrays.toString(emails));
         sb.append(", notifyOnCloseReport=").append(notifyOnCloseReport);
         sb.append('}');
         return sb.toString();

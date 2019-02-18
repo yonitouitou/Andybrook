@@ -2,6 +2,7 @@ package com.andybrook.service.stock;
 
 import com.andybrook.exception.StockReportClosed;
 import com.andybrook.exception.StockReportNotFound;
+import com.andybrook.exception.StoreNotFound;
 import com.andybrook.model.product.Product;
 import com.andybrook.model.StockItem;
 import com.andybrook.model.StockReport;
@@ -12,7 +13,7 @@ import java.util.Set;
 
 public interface IStockReportService {
 
-    StockReport newStockReport(NewStockReportRequest request);
+    StockReport newStockReport(NewStockReportRequest request) throws StoreNotFound;
 
     void updateStockReport(UpdateStockReportRequest request) throws StockReportNotFound, StockReportClosed;
 

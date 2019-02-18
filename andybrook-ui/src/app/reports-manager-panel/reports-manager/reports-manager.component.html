@@ -5,10 +5,12 @@
 <div class="container-fluid">
     <div>
         <button class="btn btn-primary"
-            (click)="openCreateReportModal(content)"
+            (click)="openCreateReportModal()"
         >New Report</button>
     </div>
+    <h3 style="color: dimgray" *ngIf="reports.length == 0">{{ noOrdersFoundMessage }}</h3>
     <list-reports
+        *ngIf="reports.length > 0"
         [reports]="reports"
     ></list-reports>
 </div>

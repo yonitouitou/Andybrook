@@ -2,20 +2,16 @@ package com.andybrook.manager.stock;
 
 import com.andybrook.exception.StockReportClosed;
 import com.andybrook.exception.StockReportNotFound;
+import com.andybrook.exception.StoreNotFound;
 import com.andybrook.manager.notification.INotificationManager;
-import com.andybrook.manager.setting.IAdminSettingManager;
 import com.andybrook.model.StockReport;
-import com.andybrook.model.notification.event.ctx.CloseReportEvent;
 import com.andybrook.model.request.NewStockReportRequest;
 import com.andybrook.model.request.UpdateStockReportRequest;
 import com.andybrook.service.stock.IStockReportService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.ApplicationContext;
-import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.stereotype.Service;
 
 import java.lang.System.Logger;
-import java.lang.System.Logger.Level;
 import java.util.Set;
 
 @Service
@@ -29,7 +25,7 @@ public class StockReportManager implements IStockReportManager {
     private INotificationManager notificationManager;
 
     @Override
-    public StockReport newStockReport(NewStockReportRequest request) {
+    public StockReport newStockReport(NewStockReportRequest request) throws StoreNotFound {
         return stockReportService.newStockReport(request);
     }
 

@@ -2,14 +2,20 @@ package com.andybrook.dao.jpa.entity.factory;
 
 import com.andybrook.annotation.EntityConverter;
 import com.andybrook.annotation.StockItemEntityConverterByProductType;
+import com.andybrook.dao.jpa.entity.customer.CustomerEntity;
+import com.andybrook.dao.jpa.entity.customer.OwnerEntity;
 import com.andybrook.dao.jpa.entity.product.ProductEntity;
 import com.andybrook.dao.jpa.entity.setting.AdminSettingEntity;
 import com.andybrook.dao.jpa.entity.setting.notification.NotificationPolicyEntity;
 import com.andybrook.dao.jpa.entity.stock.StockItemEntity;
 import com.andybrook.dao.jpa.entity.stock.StockReportEntity;
+import com.andybrook.dao.jpa.entity.store.StoreEntity;
 import com.andybrook.enums.ProductType;
+import com.andybrook.model.customer.Customer;
+import com.andybrook.model.customer.Owner;
 import com.andybrook.model.StockItem;
 import com.andybrook.model.StockReport;
+import com.andybrook.model.customer.Store;
 import com.andybrook.model.notification.NotificationPolicy;
 import com.andybrook.model.product.Product;
 import com.andybrook.model.setting.AdminSetting;
@@ -116,5 +122,35 @@ public final class EntityFactory {
     public final NotificationPolicyEntity createNotificationPolicyEntity(NotificationPolicy model) {
         IEntityConverter converter = entityConverterMapByModelClass.get(model.getClass());
         return (NotificationPolicyEntity) converter.toEntity(model);
+    }
+
+    public final OwnerEntity createOwnerEntity(Owner model) {
+        IEntityConverter converter = entityConverterMapByModelClass.get(model.getClass());
+        return (OwnerEntity) converter.toEntity(model);
+    }
+
+    public final Owner createOwner(OwnerEntity entity) {
+        IEntityConverter converter = entityConverterMapByEntityClass.get(entity.getClass());
+        return (Owner) converter.toModel(entity);
+    }
+
+    public final StoreEntity createStoreEntity(Store model) {
+        IEntityConverter converter = entityConverterMapByModelClass.get(model.getClass());
+        return (StoreEntity) converter.toEntity(model);
+    }
+
+    public final Store createStore(StoreEntity entity) {
+        IEntityConverter converter = entityConverterMapByEntityClass.get(entity.getClass());
+        return (Store) converter.toModel(entity);
+    }
+
+    public final CustomerEntity createCustomerEntity(Customer model) {
+        IEntityConverter converter = entityConverterMapByModelClass.get(model.getClass());
+        return (CustomerEntity) converter.toEntity(model);
+    }
+
+    public final Customer createCustomer(CustomerEntity entity) {
+        IEntityConverter converter = entityConverterMapByEntityClass.get(entity.getClass());
+        return (Customer) converter.toModel(entity);
     }
 }

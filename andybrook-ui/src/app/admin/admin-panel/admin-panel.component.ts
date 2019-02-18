@@ -26,18 +26,21 @@ export class AdminPanelComponent implements OnInit {
   ngOnInit() {
     this.adminForm = this.formBuilder.group({
       notification: [],
-      emails: [, [Validators.required]]
+      ordersNbToShow: ['', Validators.min(1)],
+      emails: ['', [Validators.required]]
     });
 
     this.adminSetting = new AdminSetting()
     this.adminSettingService.getAdminSetting(this.adminSetting)
         .subscribe(data => {
           this.adminSetting.emails = data.emails
+          this.adminSetting.ordersNbToShow = data.ordersNbToShow
           this.adminSetting.notifyOnCloseReport = data.notificationPolicy.onCloseReport
 
           this.adminForm.setValue({
             notification: this.adminSetting.notifyOnCloseReport,
-            emails: this.adminSetting.emails
+            emails: this.adminSetting.emails.join(),
+            ordersNbToShow: this.adminSetting.ordersNbToShow
       })
     })
 
@@ -53,7 +56,7 @@ export class AdminPanelComponent implements OnInit {
     this.saveButtonDisabled = false
   }
 
-  settingSaved() {
+  settingSaved(successfully: boolean) {
     this.saveButtonDisabled = true
     this.changeAlertMessage()
   }
@@ -68,9 +71,13 @@ export class AdminPanelComponent implements OnInit {
       }
       let values = this.adminForm.value
       this.adminSetting.emails = values.emails.split(",")
+      this.adminSetting.ordersNbToShow = values.ordersNbToShow
       this.adminSetting.notifyOnCloseReport = values.notification
-      this.adminSettingService.updateAdminSetting(this.adminSetting)
-      this.settingSaved()
-
+      this.adminSettingService.updateAdminSetting(this.adminSetting).subscribe(data => {
+        this.adminSetting.emails = data.emails
+        this.adminSetting.ordersNbToShow = data.ordersNbToShow
+        this.adminSetting.notifyOnCloseReport = data.notificationPolicy.onCloseReport
+        this.settingSaved(true)
+    })
   }
 }

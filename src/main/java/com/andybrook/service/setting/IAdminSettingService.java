@@ -9,4 +9,6 @@ public interface IAdminSettingService {
     AdminSetting updateAdminSetting(AdminSetting adminSetting);
 
     boolean shouldNotifyOnCloseReport();
+
+    int getOrdersNbToShow();
 }

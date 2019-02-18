@@ -39,6 +39,7 @@ public class AdminSettingService implements IAdminSettingService {
     @Override
     public AdminSetting updateAdminSetting(AdminSetting adminSetting) {
         this.adminSetting.setEmails(adminSetting.getEmails());
+        this.adminSetting.setOrdersNbToShow(adminSetting.getOrdersNbToShow());
         this.adminSetting.getNotificationPolicy().setOnCloseReport(adminSetting.getNotificationPolicy().getOnCloseReport());
         this.adminSetting = adminSettingDao.updateAdminSetting(this.adminSetting);
         return new AdminSetting(this.adminSetting);
@@ -47,5 +48,10 @@ public class AdminSettingService implements IAdminSettingService {
     @Override
     public boolean shouldNotifyOnCloseReport() {
         return adminSetting.getNotificationPolicy().getOnCloseReport();
+    }
+
+    @Override
+    public int getOrdersNbToShow() {
+        return adminSetting.getOrdersNbToShow();
     }
 }

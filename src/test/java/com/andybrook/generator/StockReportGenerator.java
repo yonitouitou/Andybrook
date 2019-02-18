@@ -23,6 +23,6 @@ public class StockReportGenerator {
             StockItem<Glasses> item = new StockItem(System.nanoTime(), glasses, ProductType.GLASSES, RANDOM.nextInt(1, 150));
             items.put(item.getId(), item);
         }
-        return new StockReport(System.currentTimeMillis(), "MyReport", "CustomerName", items);
+        return new StockReport(System.currentTimeMillis(), "MyReport", CustomerGenerator.generateCustomer(), items);
     }
 }

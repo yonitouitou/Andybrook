@@ -22,13 +22,14 @@ public class AdminSettingConverter implements IEntityConverter<AdminSetting, Adm
     @Override
     public AdminSetting toModel(AdminSettingEntity entity) {
         NotificationPolicy notificationPolicy = entityFactory.createNotificationPolicy(entity.getNotificationPolicyEntity());
-        return new AdminSetting(entity.getId(), entity.getEmail().split(";"), notificationPolicy);
+        AdminSetting adminSetting = new AdminSetting(entity.getId(), entity.getEmail().split(";"), notificationPolicy, entity.getOrdersNbToShow());
+        return adminSetting;
     }
 
     @Override
     public AdminSettingEntity toEntity(AdminSetting model) {
         NotificationPolicyEntity policyEntity = entityFactory.createNotificationPolicyEntity(model.getNotificationPolicy());
-        return new AdminSettingEntity(model.getId(), arrayToString(model.getEmails()), policyEntity);
+        return new AdminSettingEntity(model.getId(), model.getOrdersNbToShow(), arrayToString(model.getEmails()), policyEntity);
     }
 
     private String arrayToString(String[] array) {

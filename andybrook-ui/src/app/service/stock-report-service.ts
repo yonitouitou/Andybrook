@@ -3,26 +3,16 @@ import { Product } from '../model/Product'
 import { Injectable, EventEmitter } from '@angular/core'
 import { HttpService } from './http-service'
 import { StockReport } from '../model/StockReport'
+import { Observable } from 'rxjs';
 
 @Injectable()
 export class StockReportService {
 
     constructor(private httpApi: HttpService){}
 
-    getStockReport(report: StockReport, id: number) {
+    getStockReport(report: StockReport, id: number): Observable<any> {
         console.log("Get report " + id)
-        this.httpApi.get("/v1/stockReport/get/" + id).subscribe(data => {
-            report.id = data.id
-            report.name = data.name
-            report.customerName = data.customerName
-            report.comment = data.comment
-            report.status = data.status
-            for (let item of data.items) {
-              let product = new Product(item.product.id, item.product.name, item.product.price)
-              let stockItem = new StockItem(item.id, item.quantity, product)
-              report.items.set(stockItem.id, stockItem)
-            }
-        })
+        return this.httpApi.get("/v1/stockReport/get/" + id)
     }
 
     addItem(report: StockReport, item: StockItem) {
@@ -76,16 +66,9 @@ export class StockReportService {
         )
     }
 
-    getAllStockReports(reports: Map<number, StockReport>) {
+    getAllStockReports(): Observable<any> {
         console.log("Get all reports")
-        this.httpApi.get("/v1/stockReport/all").subscribe(
-            data => {
-                for (let report of data) {
-                    let sr = StockReport.fromJson(report)
-                    reports.set(sr.id, sr)
-                }
-            }
-        )
+        return this.httpApi.get("/v1/stockReport/all")
     } 
 
     private toUpdateRequest(report: StockReport, item: StockItem): any {

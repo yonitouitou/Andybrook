@@ -19,7 +19,7 @@ public interface IStockReportDao {
 
     Optional<StockReport> findStockReport(long id);
 
-    Set<StockReport> getAll();
+    Set<StockReport> getAll(int limit);
 
     StockReport closeStockReportAndGet(long id);
 }

@@ -22,11 +22,13 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { AdminPanelComponent } from './admin/admin-panel/admin-panel.component';
 import { FilterPipe } from './common-components/pipe/FilterPipe'
 import { SharedModule } from './shared.module';
+import { CustomerPanelComponent } from './customer/customer-panel/customer-panel.component';
 
 const appRoutes: Routes = [
   { path: '', component: ReportsManagerComponent },
   { path: 'stockreport/:id', component: StockReportComponent },
-  { path: 'admin', component: AdminPanelComponent}
+  { path: 'admin', component: AdminPanelComponent},
+  { path: 'customers', component: CustomerPanelComponent}
 ];
 
 @NgModule({
@@ -41,6 +43,7 @@ const appRoutes: Routes = [
     CreateReportModalComponent,
     ModalBuilderComponent,
     AdminPanelComponent,
+    CustomerPanelComponent
   ],
   entryComponents: [CreateReportModalComponent],
   imports: [

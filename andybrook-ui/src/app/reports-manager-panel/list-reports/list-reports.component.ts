@@ -1,6 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { StockReport } from 'src/app/model/StockReport';
 import { StockReportService } from 'src/app/service/stock-report-service';
+import { ReportsManagerComponent } from '../reports-manager/reports-manager.component';
 
 @Component({
   selector: 'list-reports',
@@ -9,14 +10,24 @@ import { StockReportService } from 'src/app/service/stock-report-service';
 })
 export class ListReportsComponent implements OnInit {
 
-  @Input() reports:Map<number, StockReport>
+  @Input() reports: StockReport[]
+
+  page: number = 1
+  pageSize: number = 4
+  collectionSize: number
 
   constructor(private stockReportService: StockReportService) {}
 
   ngOnInit() {
+    this.collectionSize = this.reports.length
   }
 
   onClickCloseReport(reportInfo: StockReport) {
       this.stockReportService.closeStockReport(reportInfo)
+  }
+
+  get stockReportsArray(): StockReport[] {
+    return this.reports
+              .slice((this.page - 1) * this.pageSize, (this.page -1) * this.pageSize + this.pageSize)
   }
 }

@@ -14,11 +14,8 @@ export class AdminSettingService {
         return this.httpApi.get("/v1/admin/setting/get")
     }
 
-    updateAdminSetting(adminSetting: AdminSetting) {
+    updateAdminSetting(adminSetting: AdminSetting): Observable<any> {
         console.log("Update admin setting " + adminSetting)
-        this.httpApi.post("v1/admin/setting/update", adminSetting).subscribe(data => {
-            adminSetting.emails = data.emails
-            adminSetting.notifyOnCloseReport = data.notificationPolicy.onCloseReport
-        })
+        return this.httpApi.post("v1/admin/setting/update", adminSetting)
     }
 }

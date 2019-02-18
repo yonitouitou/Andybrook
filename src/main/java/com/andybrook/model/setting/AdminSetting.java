@@ -7,25 +7,30 @@ import java.util.Objects;
 
 public class AdminSetting {
 
+    private static final int DEFAULT_ORDERS_TO_SHOW_10 = 10;
+
     private Long id;
+    private int ordersNbToShow;
     private String[] emails;
     private NotificationPolicy notificationPolicy;
 
-    public AdminSetting(Long id, String[] email, NotificationPolicy notificationPolicy) {
+    public AdminSetting(Long id, String[] email, NotificationPolicy notificationPolicy, int ordersNbToShow) {
         this.id = id;
         this.emails = email;
         this.notificationPolicy = notificationPolicy;
+        this.ordersNbToShow = ordersNbToShow > 0 ? ordersNbToShow : DEFAULT_ORDERS_TO_SHOW_10;
     }
 
     public AdminSetting(AdminSetting other) {
         Objects.requireNonNull(other);
         this.id = other.id;
         this.emails = other.emails;
+        this.ordersNbToShow = other.ordersNbToShow;
         this.notificationPolicy = new NotificationPolicy(other.notificationPolicy);
     }
 
     public static AdminSetting getDefaultAdminSetting() {
-        return new AdminSetting(null, null, NotificationPolicy.getDefaultNotificationPolicy());
+        return new AdminSetting(null, new String[0], NotificationPolicy.getDefaultNotificationPolicy(), DEFAULT_ORDERS_TO_SHOW_10);
     }
 
     public Long getId() {
@@ -52,11 +57,20 @@ public class AdminSetting {
         this.notificationPolicy = notificationPolicy;
     }
 
+    public int getOrdersNbToShow() {
+        return ordersNbToShow;
+    }
+
+    public void setOrdersNbToShow(int ordersNbToShow) {
+        this.ordersNbToShow = ordersNbToShow;
+    }
+
     @Override
     public String toString() {
         final StringBuilder sb = new StringBuilder("AdminSetting{");
         sb.append("id=").append(id);
-        sb.append(", email='").append(Arrays.toString(emails)).append('\'');
+        sb.append(", ordersNbToShow=").append(ordersNbToShow);
+        sb.append(", emails=").append(Arrays.toString(emails));
         sb.append(", notificationPolicy=").append(notificationPolicy);
         sb.append('}');
         return sb.toString();

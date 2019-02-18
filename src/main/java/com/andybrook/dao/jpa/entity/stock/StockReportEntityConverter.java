@@ -1,8 +1,12 @@
 package com.andybrook.dao.jpa.entity.stock;
 
 import com.andybrook.annotation.EntityConverter;
+import com.andybrook.dao.jpa.entity.customer.CustomerEntity;
 import com.andybrook.dao.jpa.entity.factory.EntityFactory;
 import com.andybrook.dao.jpa.entity.factory.IEntityConverter;
+import com.andybrook.dao.jpa.entity.store.StoreEntity;
+import com.andybrook.model.customer.Customer;
+import com.andybrook.model.customer.Store;
 import com.andybrook.model.product.Product;
 import com.andybrook.model.StockItem;
 import com.andybrook.model.StockReport;
@@ -28,8 +32,9 @@ public class StockReportEntityConverter implements IEntityConverter<StockReport,
                 .stream()
                 .map(e -> entityFactory.createStockItem(e))
                 .collect(Collectors.toMap(StockItem::getId, Function.identity()));
+        Customer customer = entityFactory.createCustomer(entity.getCustomerEntity());
         Map<Long, StockItem<? extends Product>> products = new HashMap<>(items);
-        StockReport report = new StockReport(entity.getId(), entity.getName(), entity.getCustomerName(), products);
+        StockReport report = new StockReport(entity.getId(), entity.getName(), customer, products);
         report.setStatus(entity.getStatus());
         report.setComment(entity.getComment());
         report.setCloseDateTime(entity.getCloseDatetime());
@@ -42,7 +47,8 @@ public class StockReportEntityConverter implements IEntityConverter<StockReport,
                 .stream()
                 .map(s -> entityFactory.createStockItemEntityByProductType(s))
                 .collect(Collectors.toList());
-        return new StockReportEntity(model.getId(), model.getName(), model.getCustomerName(), items,
+        CustomerEntity customerEntity = entityFactory.createCustomerEntity(model.getCustomer());
+        return new StockReportEntity(model.getId(), model.getName(), customerEntity, items,
                 model.getStatus(), model.getComment(), model.getCloseDateTime());
     }
 }

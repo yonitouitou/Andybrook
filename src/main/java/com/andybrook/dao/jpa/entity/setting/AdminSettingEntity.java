@@ -8,9 +8,14 @@ import javax.persistence.*;
 @Table(name = "setting_admin")
 public class AdminSettingEntity {
 
+    private static final int DEFAULT_ORDERS_TO_SHOW_10 = 10;
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+    @Column(name = "ordersnbtoshow")
+    private int ordersNbToShow = DEFAULT_ORDERS_TO_SHOW_10;
 
     @Column(name = "email")
     private String email;
@@ -22,9 +27,10 @@ public class AdminSettingEntity {
     private AdminSettingEntity(){
     }
 
-    public AdminSettingEntity(Long id, String email, NotificationPolicyEntity notificationPolicyEntity) {
+    public AdminSettingEntity(Long id, int ordersNbToShow, String email, NotificationPolicyEntity notificationPolicyEntity) {
         this.id = id;
         this.email = email;
+        this.ordersNbToShow = ordersNbToShow > 0 ? ordersNbToShow : DEFAULT_ORDERS_TO_SHOW_10;
         this.notificationPolicyEntity = notificationPolicyEntity;
     }
 
@@ -52,10 +58,19 @@ public class AdminSettingEntity {
         this.notificationPolicyEntity = notificationPolicyEntity;
     }
 
+    public int getOrdersNbToShow() {
+        return ordersNbToShow;
+    }
+
+    public void setOrdersNbToShow(int ordersNbToShow) {
+        this.ordersNbToShow = ordersNbToShow;
+    }
+
     @Override
     public String toString() {
         final StringBuilder sb = new StringBuilder("AdminSettingEntity{");
         sb.append("id=").append(id);
+        sb.append(", ordersNbToShow=").append(ordersNbToShow);
         sb.append(", email='").append(email).append('\'');
         sb.append(", notificationPolicyEntity=").append(notificationPolicyEntity);
         sb.append('}');

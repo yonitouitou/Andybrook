@@ -2,6 +2,12 @@ package com.andybrook.language;
 
 public class Msg {
 
+    public class Error {
+        public static final String STOCK_REPORT_NOT_FOUND = "error.stock.report.not.found";
+        public static final String STOCK_REPORT_ALREADY_CLOSED = "error.stock.report.already.closed";
+        public static final String STORE_NOT_FOUND = "error.store.not.found";
+    }
+
     public class Pdf {
         public static final String ID = "pdf.id";
         public static final String NAME = "pdf.name";

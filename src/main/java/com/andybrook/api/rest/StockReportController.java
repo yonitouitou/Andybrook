@@ -3,6 +3,7 @@ package com.andybrook.api.rest;
 import com.andybrook.api.rest.ctx.GenericRequestById;
 import com.andybrook.exception.StockReportClosed;
 import com.andybrook.exception.StockReportNotFound;
+import com.andybrook.exception.StoreNotFound;
 import com.andybrook.manager.stock.IStockReportManager;
 import com.andybrook.model.StockReport;
 import com.andybrook.model.request.NewStockReportRequest;
@@ -16,7 +17,7 @@ import java.util.Set;
 
 @RestController
 @RequestMapping("/v1/stockReport")
-public class StockReportController {
+public class StockReportController extends AbstractController {
 
     private static Logger LOGGER = System.getLogger(StockReportController.class.getSimpleName());
 
@@ -24,7 +25,7 @@ public class StockReportController {
     private IStockReportManager stockReportManager;
 
     @PostMapping(path = "/add")
-    public StockReport newStockReport(@RequestBody NewStockReportRequest request) {
+    public StockReport newStockReport(@RequestBody NewStockReportRequest request) throws StoreNotFound {
         LOGGER.log(Level.INFO, "Add report request received : " + request.toString());
         return stockReportManager.newStockReport(request);
     }

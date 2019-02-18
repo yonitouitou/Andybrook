@@ -5,10 +5,17 @@
           <input type="checkbox" formControlName="notification" class="form-check-input" (input)="settingChanged()">
       </div>
       <div class="form-group">
-        <label for="exampleInputEmail1">Email addresses
+        <label for="Email">Email addresses
           <span style="font-size: 80%; font-style: italic">(Use comma ',' delimiter for multiple emails)</span
         ></label>
         <input type="text" formControlName="emails"
+          (input)="settingChanged()"
+          class="form-control"
+        />
+      </div>
+      <div class="form-group">
+        <label for="ordersNbToShow">Orders number to show by default</label>
+        <input type="text" formControlName="ordersNbToShow"
           (input)="settingChanged()"
           class="form-control"
         />

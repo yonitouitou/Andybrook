@@ -5,7 +5,7 @@
   ></stock-report-header>
   <br>
   <br>
-  <list-stock-item
+  <list-stock-item *ngIf="report"
     [stockReportId]="reportId"
     [stockReportItems]="report.items.values()"
     [stockReportStatus]="report.status"

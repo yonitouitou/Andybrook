@@ -1,12 +1,13 @@
 import { StockItem } from '../model/StockItem'
+import { Customer } from './Customer';
 
 export class StockReport {
     
     id: number
     name: string
-    customerName: string
     comment: string
     status: string
+    customer: Customer = new Customer()
     createDatetime: Date
     closeDatetime: Date
     items: Map<number, StockItem> = new Map()
@@ -17,13 +18,13 @@ export class StockReport {
     constructor() {
     }
 
-    static fromJson(data) : StockReport {
+    static fromJson(data: any) : StockReport {
         let itemsQty = data.items.reduce((sum, item) => sum + item.quantity, 0);
         let totalPrice = this.getTotalPrice(data.items)
         let sr = new StockReport()
         sr.id = data.id
         sr.name = data.name
-        sr.customerName = data.customerName
+        sr.customer = data.customer
         sr.status = data.status,
         sr.nbProduct = data.items.length
         sr.createDatetime = data.createdDateTime

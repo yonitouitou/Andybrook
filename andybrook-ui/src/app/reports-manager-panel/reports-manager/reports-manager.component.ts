@@ -11,14 +11,28 @@ import { ModalBuilderComponent } from 'src/app/common-components/modal-builder-c
 })
 export class ReportsManagerComponent implements OnInit {
 
-  reports = new Map<number, StockReport>()
+  reports: StockReport[] = []
+  noOrdersFoundMessage: string
 
   constructor(private stockReportService: StockReportService,
               private modalBuilder: ModalBuilderComponent,
               ) { }
 
   ngOnInit() {
-    this.stockReportService.getAllStockReports(this.reports)
+    this.stockReportService.getAllStockReports().subscribe(
+      data => {
+          let reportsReceived = []
+          for (let report of data) {
+              let sr = StockReport.fromJson(report)
+              reportsReceived.push(sr)
+          }
+          this.reports = reportsReceived
+          if (this.reports.length == 0) {
+            this.noOrdersFoundMessage = "No order found"
+          }
+      }
+  )
+    
   }
 
   openCreateReportModal() {

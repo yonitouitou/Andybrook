@@ -1,8 +1,10 @@
 package com.andybrook.api.pdf;
 
 import com.andybrook.language.Msg.Pdf;
+import com.andybrook.model.customer.Owner;
 import com.andybrook.model.StockItem;
 import com.andybrook.model.StockReport;
+import com.andybrook.model.customer.Store;
 import com.andybrook.model.product.Product;
 import com.itextpdf.text.*;
 import com.itextpdf.text.Font.FontFamily;
@@ -182,8 +184,10 @@ public class CloseReportPdfBuilder extends AbstractPdfBuilder implements IPdfBui
     }
 
     private void addCustomerDetailsFirstRow(PdfPTable table, StockReport report) {
-        table.addCell(getStringCell(report.getCustomerName()));
-        table.addCell(getStringCell("Jonathan Uta"));
+        Store store = report.getCustomer().getStore();
+        Owner owner = store.getOwner();
+        table.addCell(getStringCell(store.getName()));
+        table.addCell(getStringCell(owner.getFirstName() + " " + owner.getLastName()));
     }
 
     private void addCustomerDetailsSecondRow(PdfPTable table, StockReport report) {

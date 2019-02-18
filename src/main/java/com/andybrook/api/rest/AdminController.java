@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("v1/admin")
-public class AdminController {
+public class AdminController extends AbstractController {
 
     @Autowired
     private IAdminSettingManager adminSettingManager;
