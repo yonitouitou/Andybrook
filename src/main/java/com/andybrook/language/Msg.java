@@ -20,6 +20,8 @@ public class Msg {
         public static final String ADDRESS = "pdf.address";
         public static final String PHONE_NUMBER = "pdf.phone.number";
         public static final String EMAIL_ADDRESS = "pdf.email.address";
+        public static final String DONE_ON_DATE = "pdf.done.on.date";
+        public static final String SIGNATURE = "pdf.signature";
     }
 
 }

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { StockReportService } from '../../service/stock-report-service';
 import { StockItem } from '../../model/StockItem'
 import { StockReport } from '../../model/StockReport';
@@ -10,7 +10,8 @@ import { Product } from '../../model/Product'
   
   selector: 'stock-report',
   templateUrl: './stock-report.component.html',
-  styleUrls: ['./stock-report.component.css']
+  styleUrls: ['./stock-report.component.css'],
+  changeDetection: ChangeDetectionStrategy.Default
 })
 export class StockReportComponent implements OnInit {
 

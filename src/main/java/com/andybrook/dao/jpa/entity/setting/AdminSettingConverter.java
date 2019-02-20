@@ -10,6 +10,7 @@ import com.andybrook.model.setting.AdminSetting;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import java.awt.*;
 import java.util.StringJoiner;
 
 @Component
@@ -22,14 +23,28 @@ public class AdminSettingConverter implements IEntityConverter<AdminSetting, Adm
     @Override
     public AdminSetting toModel(AdminSettingEntity entity) {
         NotificationPolicy notificationPolicy = entityFactory.createNotificationPolicy(entity.getNotificationPolicyEntity());
-        AdminSetting adminSetting = new AdminSetting(entity.getId(), entity.getEmail().split(";"), notificationPolicy, entity.getOrdersNbToShow());
+        AdminSetting adminSetting = new AdminSetting(
+                entity.getId(),
+                entity.getEmail().split(";"),
+                notificationPolicy,
+                entity.getOrdersNbToShow(),
+                new Color(entity.getDocumentBackgroundHeaderTableColorRgb()),
+                new Color(entity.getDocumentTextHeaderTableColorRgb())
+        );
         return adminSetting;
     }
 
     @Override
     public AdminSettingEntity toEntity(AdminSetting model) {
         NotificationPolicyEntity policyEntity = entityFactory.createNotificationPolicyEntity(model.getNotificationPolicy());
-        return new AdminSettingEntity(model.getId(), model.getOrdersNbToShow(), arrayToString(model.getEmails()), policyEntity);
+        return new AdminSettingEntity(
+                model.getId(),
+                model.getOrdersNbToShow(),
+                arrayToString(model.getEmails()),
+                policyEntity,
+                model.getDocumentHeaderTableBackgroundColor().getRGB(),
+                model.getDocumentHeaderTableTextColor().getRGB()
+        );
     }
 
     private String arrayToString(String[] array) {

@@ -1,9 +1,9 @@
 package com.andybrook.api.pdf;
 
 import com.andybrook.language.Msg.Pdf;
-import com.andybrook.model.customer.Owner;
 import com.andybrook.model.StockItem;
 import com.andybrook.model.StockReport;
+import com.andybrook.model.customer.Owner;
 import com.andybrook.model.customer.Store;
 import com.andybrook.model.product.Product;
 import com.itextpdf.text.*;
@@ -22,6 +22,8 @@ import java.lang.System.Logger;
 import java.lang.System.Logger.Level;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.text.DecimalFormat;
+import java.text.NumberFormat;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.stream.Stream;
@@ -30,6 +32,8 @@ import java.util.stream.Stream;
 public class CloseReportPdfBuilder extends AbstractPdfBuilder implements IPdfBuilder<StockReport> {
 
     private static final Logger LOGGER = System.getLogger(CloseReportPdfBuilder.class.getSimpleName());
+    private static final NumberFormat PRICE_FORMATTER = new DecimalFormat("#0.00");
+    private static final DateTimeFormatter DATE_FORMATTER = DateTimeFormatter.ofPattern("dd/MM/yyyy");
     private static final int NUMBER_OF_COLUMNS_5 = 5;
     private static final float PADDING_3 = 3;
     private static final float TITLE_FONT_SIZE_20 = 20;
@@ -38,12 +42,16 @@ public class CloseReportPdfBuilder extends AbstractPdfBuilder implements IPdfBui
     private static final String[] COLUMNS_NAME_ITEMS = new String[5];
     private static final String[] COLUMNS_NAME_CUSTOMER_MAIN_DETAILS = new String[2];
     private static final String[] COLUNS_NAME_CUSTOMER_CONTACT_DETAILS = new String[3];
-    private static final BaseColor HEADER_BACKGROUND_COLOR = new BaseColor(206, 206, 206);
-    private static final BaseColor TEXT_COLOR_BLACK = BaseColor.BLACK;
     private static final FontFamily FONT_TYPE_TIMES_ROMAN = FontFamily.TIMES_ROMAN;
 
+    private static BaseColor headerBackgroundColor;
+    private static BaseColor headerTextColor;
+
     @PostConstruct
-    private void init() {
+    protected void init() {
+        super.init();
+        headerBackgroundColor = new BaseColor(adminSetting.getDocumentHeaderTableBackgroundColor().getRGB());
+        headerTextColor = new BaseColor(adminSetting.getDocumentHeaderTableTextColor().getRGB());
         initColumnsNameItems();
         initColumnsCustomerMainDetails();
         initColumnsCustomerContactDetails();
@@ -68,14 +76,19 @@ public class CloseReportPdfBuilder extends AbstractPdfBuilder implements IPdfBui
             Element customerTable1 = createCustomerMainDetailsTable(report);
             Element customerTable2 = createCustomerContactDetailsTable(report);
             Element itemsTable = createItemsTable(report);
+            Element doneDate = createDoneDate();
+            Element signature = createSignatureTable();
 
             document.add(logo);
             document.add(title);
-            addEmptyRow(document, 2);
+            addEmptyRow(document, 1);
             document.add(customerTable1);
             document.add(customerTable2);
             addEmptyRow(document, 1);
             document.add(itemsTable);
+            addEmptyRow(document, 1);
+            document.add(doneDate);
+            document.add(signature);
         } catch (Exception e) {
             LOGGER.log(Level.ERROR, "PDF Generation failed", e);
         } finally {
@@ -132,10 +145,10 @@ public class CloseReportPdfBuilder extends AbstractPdfBuilder implements IPdfBui
 
         Chunk subTitleId = new Chunk(languageResolver.get(Pdf.ORDER_FORM).toUpperCase() + " #" + report.getId());
         subTitleId.setUnderline(0.1f, -2f);
-        subTitleId.setFont(new Font(FONT_TYPE_TIMES_ROMAN, TITLE_FONT_SIZE_20, Font.BOLD, TEXT_COLOR_BLACK));
+        subTitleId.setFont(new Font(FONT_TYPE_TIMES_ROMAN, TITLE_FONT_SIZE_20, Font.BOLD, headerTextColor));
 
         Chunk subTitleName = new Chunk(report.getName());
-        subTitleName.setFont(new Font(FONT_TYPE_TIMES_ROMAN, SUB_TITLE_FONT_SIZE_15, Font.ITALIC, TEXT_COLOR_BLACK));
+        subTitleName.setFont(new Font(FONT_TYPE_TIMES_ROMAN, SUB_TITLE_FONT_SIZE_15, Font.ITALIC, headerTextColor));
 
         title.setAlignment(Element.ALIGN_CENTER);
         title.add(subTitleId);
@@ -200,10 +213,10 @@ public class CloseReportPdfBuilder extends AbstractPdfBuilder implements IPdfBui
         Stream.of(columnsName)
                 .forEachOrdered(col -> {
                     PdfPCell header = new PdfPCell();
-                    header.setBackgroundColor(HEADER_BACKGROUND_COLOR);
+                    header.setBackgroundColor(headerBackgroundColor);
                     header.setHorizontalAlignment(Element.ALIGN_CENTER);
                     header.setVerticalAlignment(Element.ALIGN_CENTER);
-                    header.setPhrase(new Phrase(col, new Font(FontFamily.TIMES_ROMAN, TEXT_FONT_SIZE_11)));
+                    header.setPhrase(new Phrase(col, new Font(FontFamily.TIMES_ROMAN, TEXT_FONT_SIZE_11, Font.BOLD, headerTextColor)));
                     header.setPadding(PADDING_3);
                     table.addCell(header);
                 });
@@ -214,12 +227,15 @@ public class CloseReportPdfBuilder extends AbstractPdfBuilder implements IPdfBui
             table.addCell(getStringCell(String.valueOf(item.getId())));;
             table.addCell(getStringCell(item.getProduct().getName()));
             table.addCell(getNumericCell(String.valueOf(item.getQuantity())));
-            table.addCell(getNumericCell(item.getProduct().getPrice() + "€"));
-            table.addCell(getNumericCell(report.getItem(item.getId()).getTotalPrice() + "€"));
+            table.addCell(getNumericCell(PRICE_FORMATTER.format(item.getProduct().getPrice()) + "€"));
+            table.addCell(getNumericCell(PRICE_FORMATTER.format(report.getItem(item.getId()).getTotalPrice()) + "€"));
         }
-        PdfPCell totalCell = getStringCell(languageResolver.get(Pdf.TOTAL).toUpperCase());
-        totalCell.getPhrase().setFont(new Font(FontFamily.TIMES_ROMAN, TEXT_FONT_SIZE_11, Font.BOLD));
+        PdfPCell totalCell = new PdfPCell(new Phrase
+                                (languageResolver.get(Pdf.TOTAL).toUpperCase(),
+                                new Font(FontFamily.TIMES_ROMAN, TEXT_FONT_SIZE_11, Font.BOLD)));
         totalCell.setHorizontalAlignment(Element.ALIGN_RIGHT);
+        totalCell.setVerticalAlignment(Element.ALIGN_CENTER);
+        totalCell.setPadding(PADDING_3);
         totalCell.setColspan(2);
         table.addCell(totalCell);
 
@@ -228,9 +244,42 @@ public class CloseReportPdfBuilder extends AbstractPdfBuilder implements IPdfBui
         emptyCell.setBackgroundColor(BaseColor.LIGHT_GRAY);
         table.addCell(emptyCell);
 
-        PdfPCell ttlPriceCell = getNumericCell(report.getTotalPrice() + "€");
-        ttlPriceCell.getPhrase().setFont(new Font(FontFamily.TIMES_ROMAN, TEXT_FONT_SIZE_11, Font.BOLD));
+        PdfPCell ttlPriceCell = new PdfPCell(new Phrase(
+                        PRICE_FORMATTER.format(report.getTotalPrice()) + "€",
+                                new Font(FontFamily.TIMES_ROMAN, TEXT_FONT_SIZE_11, Font.BOLD)));
+        ttlPriceCell.setHorizontalAlignment(Element.ALIGN_RIGHT);
+        ttlPriceCell.setVerticalAlignment(Element.ALIGN_CENTER);
+        ttlPriceCell.setPadding(PADDING_3);
         table.addCell(ttlPriceCell);
+    }
+
+    private Element createDoneDate() {
+        Paragraph p = new Paragraph();
+        String msg = languageResolver.get(Pdf.DONE_ON_DATE) + " " + languageResolver.getNowDateByZone().format(DATE_FORMATTER);
+        Element phrase = new Phrase(msg, new Font(FontFamily.TIMES_ROMAN, TEXT_FONT_SIZE_11, Font.ITALIC));
+        p.add(phrase);
+        p.setAlignment(Element.ALIGN_RIGHT);
+        p.setSpacingAfter(3f);
+        return p;
+    }
+
+    private Element createSignatureTable() { ;
+        PdfPTable table = new PdfPTable(1);
+        table.setWidthPercentage(50);
+        table.setHorizontalAlignment(Element.ALIGN_RIGHT);
+        PdfPCell signCell = new PdfPCell(new Phrase(languageResolver.get(Pdf.SIGNATURE) + " :", new Font(FontFamily.TIMES_ROMAN, TEXT_FONT_SIZE_11, Font.ITALIC)));
+        signCell.setPadding(5f);
+        signCell.setBorder(Rectangle.TOP | Rectangle.LEFT | Rectangle.RIGHT);
+        signCell.setBorderWidth(1f);
+
+        PdfPCell emptyCell = getEmptyCell();
+        emptyCell.setBorder(Rectangle.BOTTOM | Rectangle.LEFT | Rectangle.RIGHT);
+        emptyCell.setBorderWidth(1f);
+        emptyCell.setFixedHeight(55f);
+
+        table.addCell(signCell);
+        table.addCell(emptyCell);
+        return table;
     }
 
     private PdfPCell getEmptyCell() {

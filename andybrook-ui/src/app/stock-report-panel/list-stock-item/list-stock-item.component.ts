@@ -15,7 +15,7 @@ export class ListStockItemComponent implements OnInit {
   selectedRow: number
   areNewStockItemFieldsSet = false
   searchString: string
-  items: IterableIterator<StockItem>
+
 
 
   @Input() stockReportItems: IterableIterator<StockItem>
@@ -29,7 +29,7 @@ export class ListStockItemComponent implements OnInit {
   constructor() {}
 
   ngOnInit() {
-    this.items = this.stockReportItems;
+    
   }
 
   onBlurNewItemInput() {

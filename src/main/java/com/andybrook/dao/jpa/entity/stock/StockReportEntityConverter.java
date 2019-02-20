@@ -4,12 +4,10 @@ import com.andybrook.annotation.EntityConverter;
 import com.andybrook.dao.jpa.entity.customer.CustomerEntity;
 import com.andybrook.dao.jpa.entity.factory.EntityFactory;
 import com.andybrook.dao.jpa.entity.factory.IEntityConverter;
-import com.andybrook.dao.jpa.entity.store.StoreEntity;
-import com.andybrook.model.customer.Customer;
-import com.andybrook.model.customer.Store;
-import com.andybrook.model.product.Product;
 import com.andybrook.model.StockItem;
 import com.andybrook.model.StockReport;
+import com.andybrook.model.customer.Customer;
+import com.andybrook.model.product.Product;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 

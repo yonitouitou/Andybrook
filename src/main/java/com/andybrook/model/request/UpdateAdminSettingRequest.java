@@ -3,6 +3,7 @@ package com.andybrook.model.request;
 import com.andybrook.model.notification.NotificationPolicy;
 import com.andybrook.model.setting.AdminSetting;
 
+import java.awt.*;
 import java.util.Arrays;
 
 public class UpdateAdminSettingRequest {
@@ -18,7 +19,7 @@ public class UpdateAdminSettingRequest {
     public AdminSetting toAdminSetting() {
         NotificationPolicy policy = new NotificationPolicy();
         policy.setOnCloseReport(notifyOnCloseReport);
-        return new AdminSetting(id, emails, policy, ordersNbToShow);
+        return new AdminSetting(id, emails, policy, ordersNbToShow, Color.LIGHT_GRAY, Color.BLACK);
     }
 
     public Long getId() {
