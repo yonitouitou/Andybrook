@@ -17,12 +17,11 @@ import { HeaderMenuComponent } from './header-menu/header-menu.component';
 import { StockReportHeaderComponent } from './stock-report-panel/stock-report-header/stock-report-header.component';
 import { ListReportsComponent } from './reports-manager-panel/list-reports/list-reports.component';
 import { CreateReportModalComponent } from './reports-manager-panel/create-report-modal/create-report-modal.component';
-import { ModalBuilderComponent } from "./common-components/modal-builder-component/modalBuilderComponent";
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { AdminPanelComponent } from './admin/admin-panel/admin-panel.component';
-import { FilterPipe } from './common-components/pipe/FilterPipe'
 import { SharedModule } from './shared.module';
 import { CustomerPanelComponent } from './customer/customer-panel/customer-panel.component';
+import { NotificationService } from './service/notification-service';
 
 const appRoutes: Routes = [
   { path: '', component: ReportsManagerComponent },
@@ -41,7 +40,6 @@ const appRoutes: Routes = [
     StockReportHeaderComponent,
     ListReportsComponent,
     CreateReportModalComponent,
-    ModalBuilderComponent,
     AdminPanelComponent,
     CustomerPanelComponent
   ],
@@ -59,7 +57,7 @@ const appRoutes: Routes = [
     SharedModule,
     RouterModule.forRoot(appRoutes)
   ],
-  providers: [StockReportService, HttpService, ModalBuilderComponent, AdminSettingService],
+  providers: [StockReportService, HttpService, AdminSettingService, NotificationService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

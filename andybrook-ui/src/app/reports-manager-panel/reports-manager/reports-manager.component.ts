@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { CreateReportModalComponent } from '../create-report-modal/create-report-modal.component'
 import { StockReportService } from 'src/app/service/stock-report-service';
 import { StockReport } from '../../model/StockReport'
-import { ModalBuilderComponent } from 'src/app/common-components/modal-builder-component/modalBuilderComponent';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'reports-manager',
@@ -13,9 +13,10 @@ export class ReportsManagerComponent implements OnInit {
 
   reports: StockReport[] = []
   noOrdersFoundMessage: string
+  searchButtonDisabled: boolean = false
 
   constructor(private stockReportService: StockReportService,
-              private modalBuilder: ModalBuilderComponent,
+              private modalService: NgbModal,
               ) { }
 
   ngOnInit() {
@@ -31,12 +32,32 @@ export class ReportsManagerComponent implements OnInit {
             this.noOrdersFoundMessage = "No order found"
           }
       }
-  )
-    
+    ) 
+  }
+
+  onClickSearch(value: string) {
+    if (value.length > 0) {
+      this.searchButtonDisabled = true
+      this.stockReportService.getStockReportByName(value).subscribe(
+        data => {
+          let orders: StockReport[] = []
+          for (let i = 0; i < data.length ; i++) {
+            let item = StockReport.fromJson(data[i]);
+            orders.push(item)
+          }
+          this.reports = orders
+          this.searchButtonDisabled = false
+        }
+      )
+    }
   }
 
   openCreateReportModal() {
-    this.modalBuilder.open(CreateReportModalComponent)
+    const modalRef = this.modalService.open(CreateReportModalComponent, {
+      size: 'lg'
+    });
+    modalRef.componentInstance.name = 'World'
+    
   }
 
 }

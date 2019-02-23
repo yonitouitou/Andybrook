@@ -4,9 +4,8 @@ import com.andybrook.dao.jpa.entity.factory.EntityFactory;
 import com.andybrook.dao.jpa.entity.stock.StockReportEntity;
 import com.andybrook.dao.jpa.crudrepository.IStockReportCrudRepository;
 import com.andybrook.enums.ReportStatus;
-import com.andybrook.exception.StockReportNotFound;
+import com.andybrook.exception.OrderNotFound;
 import com.andybrook.language.LanguageResolver;
-import com.andybrook.language.Msg;
 import com.andybrook.language.Msg.Error;
 import com.andybrook.model.StockReport;
 import com.andybrook.model.request.UpdateStockReportRequest;
@@ -16,11 +15,9 @@ import org.springframework.data.domain.Sort;
 import org.springframework.data.domain.Sort.Direction;
 import org.springframework.stereotype.Repository;
 
-import javax.transaction.Transactional;
 import java.time.LocalDateTime;
-import java.util.LinkedHashSet;
-import java.util.Optional;
-import java.util.Set;
+import java.util.*;
+import java.util.stream.Collectors;
 
 @Repository
 public class StockReportDao implements IStockReportDao {
@@ -45,11 +42,11 @@ public class StockReportDao implements IStockReportDao {
     }
 
     @Override
-    public void updateStockReport(UpdateStockReportRequest request, boolean checkIfExist) throws StockReportNotFound {
+    public void updateStockReport(UpdateStockReportRequest request, boolean checkIfExist) throws OrderNotFound {
         if (checkIfExist) {
             boolean isExist = stockReportCrudRepository.existsById(request.getId());
             if (! isExist) {
-                throw new StockReportNotFound(languageResolver.get(Error.STOCK_REPORT_NOT_FOUND + " : " + request.getId()));
+                throw new OrderNotFound(languageResolver.get(Error.STOCK_REPORT_NOT_FOUND + " : " + request.getId()));
             }
         }
         stockReportCrudRepository.updateExistingStockReport(request.getId(), request.getName(), request.getComment());
@@ -74,7 +71,7 @@ public class StockReportDao implements IStockReportDao {
 
     @Override
     public Set<StockReport> getAll(int limit) {
-        Sort sortedByStatusAndCreationDatetime = new Sort(Direction.DESC, "status").and(new Sort(Direction.ASC, "createdDatetime"));
+        Sort sortedByStatusAndCreationDatetime = new Sort(Direction.ASC, "status").and(new Sort(Direction.ASC, "createdDatetime"));
         Iterable<StockReportEntity> allIterable = stockReportCrudRepository.findAll(PageRequest.of(0, limit, sortedByStatusAndCreationDatetime));
         Set<StockReport> all = new LinkedHashSet<>();
         allIterable.forEach(entity -> {
@@ -89,5 +86,21 @@ public class StockReportDao implements IStockReportDao {
         stockReportCrudRepository.closeStockReport(id, ReportStatus.CLOSED, LocalDateTime.now());
         StockReportEntity entity = stockReportCrudRepository.getOne(id);
         return entityFactory.createStockReport(entity);
+    }
+
+    @Override
+    public List<StockReport> getByName(String name) {
+        List<StockReportEntity> ordersEntity = stockReportCrudRepository.findByName(name);
+        return ordersEntity.stream()
+                .map(entityFactory::createStockReport)
+                .collect(Collectors.toList());
+    }
+
+    @Override
+    public List<StockReport> getByNameContaining(String name) {
+        List<StockReportEntity> ordersEntity = stockReportCrudRepository.findByNameContaining(name);
+        return ordersEntity.stream()
+                .map(entityFactory::createStockReport)
+                .collect(Collectors.toList());
     }
 }

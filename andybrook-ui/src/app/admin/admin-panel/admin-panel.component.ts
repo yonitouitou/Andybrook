@@ -4,6 +4,9 @@ import { AdminSetting } from 'src/app/model/admin/AdminSetting';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Subject } from 'rxjs'
 import { debounceTime } from 'rxjs/operators'
+import { RGB } from 'src/app/model/RGB';
+import { CreateReportModalComponent } from 'src/app/reports-manager-panel/create-report-modal/create-report-modal.component';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'admin-panel',
@@ -14,14 +17,16 @@ export class AdminPanelComponent implements OnInit {
 
   private _success = new Subject<string>()
   private adminSetting: AdminSetting
+  private headerTableBackgroundColor: RGB
+  private headerTableTextColor: RGB
   adminForm: FormGroup;
   submitted = false;
   saveButtonDisabled = true
-
   alertMessage: string
 
   constructor(private formBuilder: FormBuilder,
-              private adminSettingService: AdminSettingService) { }
+              private adminSettingService: AdminSettingService,
+              private modalService: NgbModal) { }
 
   ngOnInit() {
     this.adminForm = this.formBuilder.group({

@@ -25,7 +25,7 @@ export class StockReportComponent implements OnInit {
   ngOnInit() {
     this.report = new StockReport()
     let stockReportId = parseInt(this.route.snapshot.paramMap.get('id'))
-    this.stockReportService.getStockReport(this.report, stockReportId).subscribe(data => {
+    this.stockReportService.getStockReport(stockReportId).subscribe(data => {
       this.report.id = data.id
       this.report.name = data.name
       this.report.comment = data.comment

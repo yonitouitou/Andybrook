@@ -2,7 +2,7 @@ package com.andybrook.api.rest;
 
 import com.andybrook.api.rest.ctx.GenericRequestById;
 import com.andybrook.exception.StockReportClosed;
-import com.andybrook.exception.StockReportNotFound;
+import com.andybrook.exception.OrderNotFound;
 import com.andybrook.exception.StoreNotFound;
 import com.andybrook.manager.stock.IStockReportManager;
 import com.andybrook.model.StockReport;
@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.lang.System.Logger;
 import java.lang.System.Logger.Level;
+import java.util.List;
 import java.util.Set;
 
 @RestController
@@ -31,21 +32,27 @@ public class StockReportController extends AbstractController {
     }
 
     @PostMapping(path = "/update")
-    public void updateStockReport(@RequestBody UpdateStockReportRequest request) throws StockReportNotFound, StockReportClosed {
+    public void updateStockReport(@RequestBody UpdateStockReportRequest request) throws OrderNotFound, StockReportClosed {
         LOGGER.log(Level.INFO, "Update report request received : " + request.toString());
         stockReportManager.updateStockReport(request);
     }
 
     @PostMapping(path = "/close")
-    public StockReport closeStockReport(@RequestBody GenericRequestById request) throws StockReportNotFound, StockReportClosed {
+    public StockReport closeStockReport(@RequestBody GenericRequestById request) throws OrderNotFound, StockReportClosed {
         LOGGER.log(Level.INFO, "Close report request received : " + request.toString());
         return stockReportManager.closeStockReport(request.getId());
     }
 
     @GetMapping(path = "/get/{id}")
-    public StockReport get(@PathVariable Long id) throws StockReportNotFound {
+    public StockReport get(@PathVariable Long id) throws OrderNotFound {
         LOGGER.log(Level.INFO, "Get report request received for id : " + id);
         return stockReportManager.getStockReport(id);
+    }
+
+    @GetMapping(path = "/getByName/{name}")
+    public List<StockReport> getByName(@PathVariable String name) {
+        LOGGER.log(Level.INFO, "Get report request received for name : " + name);
+        return stockReportManager.getOrdersByNameContaining(name.trim());
     }
 
     @GetMapping(path = "/all")

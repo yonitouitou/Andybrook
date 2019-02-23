@@ -10,9 +10,14 @@ export class StockReportService {
 
     constructor(private httpApi: HttpService){}
 
-    getStockReport(report: StockReport, id: number): Observable<any> {
+    getStockReport(id: number): Observable<any> {
         console.log("Get report " + id)
         return this.httpApi.get("/v1/stockReport/get/" + id)
+    }
+
+    getStockReportByName(name: string): Observable<any> {
+        console.log("Get report by name : " + name)
+        return this.httpApi.get("/v1/stockReport/getByName/" + name)
     }
 
     addItem(report: StockReport, item: StockItem) {

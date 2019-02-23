@@ -62,6 +62,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _angular_forms__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @angular/forms */ "./node_modules/@angular/forms/fesm5/forms.js");
 /* harmony import */ var rxjs__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! rxjs */ "./node_modules/rxjs/_esm5/index.js");
 /* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! rxjs/operators */ "./node_modules/rxjs/_esm5/operators/index.js");
+/* harmony import */ var _ng_bootstrap_ng_bootstrap__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @ng-bootstrap/ng-bootstrap */ "./node_modules/@ng-bootstrap/ng-bootstrap/fesm5/ng-bootstrap.js");
+
 
 
 
@@ -70,9 +72,10 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var AdminPanelComponent = /** @class */ (function () {
-    function AdminPanelComponent(formBuilder, adminSettingService) {
+    function AdminPanelComponent(formBuilder, adminSettingService, modalService) {
         this.formBuilder = formBuilder;
         this.adminSettingService = adminSettingService;
+        this.modalService = modalService;
         this._success = new rxjs__WEBPACK_IMPORTED_MODULE_5__["Subject"]();
         this.submitted = false;
         this.saveButtonDisabled = true;
@@ -139,7 +142,8 @@ var AdminPanelComponent = /** @class */ (function () {
             styles: [__webpack_require__(/*! ./admin-panel.component.css */ "./src/app/admin/admin-panel/admin-panel.component.css")]
         }),
         tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_angular_forms__WEBPACK_IMPORTED_MODULE_4__["FormBuilder"],
-            _service_admin_setting_service__WEBPACK_IMPORTED_MODULE_2__["AdminSettingService"]])
+            _service_admin_setting_service__WEBPACK_IMPORTED_MODULE_2__["AdminSettingService"],
+            _ng_bootstrap_ng_bootstrap__WEBPACK_IMPORTED_MODULE_7__["NgbModal"]])
     ], AdminPanelComponent);
     return AdminPanelComponent;
 }());
@@ -231,11 +235,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _stock_report_panel_stock_report_header_stock_report_header_component__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! ./stock-report-panel/stock-report-header/stock-report-header.component */ "./src/app/stock-report-panel/stock-report-header/stock-report-header.component.ts");
 /* harmony import */ var _reports_manager_panel_list_reports_list_reports_component__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! ./reports-manager-panel/list-reports/list-reports.component */ "./src/app/reports-manager-panel/list-reports/list-reports.component.ts");
 /* harmony import */ var _reports_manager_panel_create_report_modal_create_report_modal_component__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(/*! ./reports-manager-panel/create-report-modal/create-report-modal.component */ "./src/app/reports-manager-panel/create-report-modal/create-report-modal.component.ts");
-/* harmony import */ var _common_components_modal_builder_component_modalBuilderComponent__WEBPACK_IMPORTED_MODULE_20__ = __webpack_require__(/*! ./common-components/modal-builder-component/modalBuilderComponent */ "./src/app/common-components/modal-builder-component/modalBuilderComponent.ts");
-/* harmony import */ var _ng_bootstrap_ng_bootstrap__WEBPACK_IMPORTED_MODULE_21__ = __webpack_require__(/*! @ng-bootstrap/ng-bootstrap */ "./node_modules/@ng-bootstrap/ng-bootstrap/fesm5/ng-bootstrap.js");
-/* harmony import */ var _admin_admin_panel_admin_panel_component__WEBPACK_IMPORTED_MODULE_22__ = __webpack_require__(/*! ./admin/admin-panel/admin-panel.component */ "./src/app/admin/admin-panel/admin-panel.component.ts");
-/* harmony import */ var _shared_module__WEBPACK_IMPORTED_MODULE_23__ = __webpack_require__(/*! ./shared.module */ "./src/app/shared.module.ts");
-/* harmony import */ var _customer_customer_panel_customer_panel_component__WEBPACK_IMPORTED_MODULE_24__ = __webpack_require__(/*! ./customer/customer-panel/customer-panel.component */ "./src/app/customer/customer-panel/customer-panel.component.ts");
+/* harmony import */ var _ng_bootstrap_ng_bootstrap__WEBPACK_IMPORTED_MODULE_20__ = __webpack_require__(/*! @ng-bootstrap/ng-bootstrap */ "./node_modules/@ng-bootstrap/ng-bootstrap/fesm5/ng-bootstrap.js");
+/* harmony import */ var _admin_admin_panel_admin_panel_component__WEBPACK_IMPORTED_MODULE_21__ = __webpack_require__(/*! ./admin/admin-panel/admin-panel.component */ "./src/app/admin/admin-panel/admin-panel.component.ts");
+/* harmony import */ var _shared_module__WEBPACK_IMPORTED_MODULE_22__ = __webpack_require__(/*! ./shared.module */ "./src/app/shared.module.ts");
+/* harmony import */ var _customer_customer_panel_customer_panel_component__WEBPACK_IMPORTED_MODULE_23__ = __webpack_require__(/*! ./customer/customer-panel/customer-panel.component */ "./src/app/customer/customer-panel/customer-panel.component.ts");
+/* harmony import */ var _service_notification_service__WEBPACK_IMPORTED_MODULE_24__ = __webpack_require__(/*! ./service/notification-service */ "./src/app/service/notification-service.ts");
 
 
 
@@ -264,8 +268,8 @@ __webpack_require__.r(__webpack_exports__);
 var appRoutes = [
     { path: '', component: _reports_manager_panel_reports_manager_reports_manager_component__WEBPACK_IMPORTED_MODULE_11__["ReportsManagerComponent"] },
     { path: 'stockreport/:id', component: _stock_report_panel_stock_report_stock_report_component__WEBPACK_IMPORTED_MODULE_12__["StockReportComponent"] },
-    { path: 'admin', component: _admin_admin_panel_admin_panel_component__WEBPACK_IMPORTED_MODULE_22__["AdminPanelComponent"] },
-    { path: 'customers', component: _customer_customer_panel_customer_panel_component__WEBPACK_IMPORTED_MODULE_24__["CustomerPanelComponent"] }
+    { path: 'admin', component: _admin_admin_panel_admin_panel_component__WEBPACK_IMPORTED_MODULE_21__["AdminPanelComponent"] },
+    { path: 'customers', component: _customer_customer_panel_customer_panel_component__WEBPACK_IMPORTED_MODULE_23__["CustomerPanelComponent"] }
 ];
 var AppModule = /** @class */ (function () {
     function AppModule() {
@@ -281,9 +285,8 @@ var AppModule = /** @class */ (function () {
                 _stock_report_panel_stock_report_header_stock_report_header_component__WEBPACK_IMPORTED_MODULE_17__["StockReportHeaderComponent"],
                 _reports_manager_panel_list_reports_list_reports_component__WEBPACK_IMPORTED_MODULE_18__["ListReportsComponent"],
                 _reports_manager_panel_create_report_modal_create_report_modal_component__WEBPACK_IMPORTED_MODULE_19__["CreateReportModalComponent"],
-                _common_components_modal_builder_component_modalBuilderComponent__WEBPACK_IMPORTED_MODULE_20__["ModalBuilderComponent"],
-                _admin_admin_panel_admin_panel_component__WEBPACK_IMPORTED_MODULE_22__["AdminPanelComponent"],
-                _customer_customer_panel_customer_panel_component__WEBPACK_IMPORTED_MODULE_24__["CustomerPanelComponent"]
+                _admin_admin_panel_admin_panel_component__WEBPACK_IMPORTED_MODULE_21__["AdminPanelComponent"],
+                _customer_customer_panel_customer_panel_component__WEBPACK_IMPORTED_MODULE_23__["CustomerPanelComponent"]
             ],
             entryComponents: [_reports_manager_panel_create_report_modal_create_report_modal_component__WEBPACK_IMPORTED_MODULE_19__["CreateReportModalComponent"]],
             imports: [
@@ -295,76 +298,15 @@ var AppModule = /** @class */ (function () {
                 _angular_platform_browser_animations__WEBPACK_IMPORTED_MODULE_8__["BrowserAnimationsModule"],
                 _angular_platform_browser_animations__WEBPACK_IMPORTED_MODULE_8__["NoopAnimationsModule"],
                 _angular_forms__WEBPACK_IMPORTED_MODULE_3__["ReactiveFormsModule"],
-                _ng_bootstrap_ng_bootstrap__WEBPACK_IMPORTED_MODULE_21__["NgbModule"],
-                _shared_module__WEBPACK_IMPORTED_MODULE_23__["SharedModule"],
+                _ng_bootstrap_ng_bootstrap__WEBPACK_IMPORTED_MODULE_20__["NgbModule"],
+                _shared_module__WEBPACK_IMPORTED_MODULE_22__["SharedModule"],
                 _angular_router__WEBPACK_IMPORTED_MODULE_7__["RouterModule"].forRoot(appRoutes)
             ],
-            providers: [_service_stock_report_service__WEBPACK_IMPORTED_MODULE_13__["StockReportService"], _service_http_service__WEBPACK_IMPORTED_MODULE_14__["HttpService"], _common_components_modal_builder_component_modalBuilderComponent__WEBPACK_IMPORTED_MODULE_20__["ModalBuilderComponent"], _service_admin_setting_service__WEBPACK_IMPORTED_MODULE_15__["AdminSettingService"]],
+            providers: [_service_stock_report_service__WEBPACK_IMPORTED_MODULE_13__["StockReportService"], _service_http_service__WEBPACK_IMPORTED_MODULE_14__["HttpService"], _service_admin_setting_service__WEBPACK_IMPORTED_MODULE_15__["AdminSettingService"], _service_notification_service__WEBPACK_IMPORTED_MODULE_24__["NotificationService"]],
             bootstrap: [_app_component__WEBPACK_IMPORTED_MODULE_9__["AppComponent"]]
         })
     ], AppModule);
     return AppModule;
-}());
-
-
-
-/***/ }),
-
-/***/ "./src/app/common-components/modal-builder-component/modal-builder-component.css":
-/*!***************************************************************************************!*\
-  !*** ./src/app/common-components/modal-builder-component/modal-builder-component.css ***!
-  \***************************************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJzcmMvYXBwL2NvbW1vbi1jb21wb25lbnRzL21vZGFsLWJ1aWxkZXItY29tcG9uZW50L21vZGFsLWJ1aWxkZXItY29tcG9uZW50LmNzcyJ9 */"
-
-/***/ }),
-
-/***/ "./src/app/common-components/modal-builder-component/modal-builder-component.html":
-/*!****************************************************************************************!*\
-  !*** ./src/app/common-components/modal-builder-component/modal-builder-component.html ***!
-  \****************************************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-module.exports = "<p>\n  modal-builder-component works!\n</p>\n"
-
-/***/ }),
-
-/***/ "./src/app/common-components/modal-builder-component/modalBuilderComponent.ts":
-/*!************************************************************************************!*\
-  !*** ./src/app/common-components/modal-builder-component/modalBuilderComponent.ts ***!
-  \************************************************************************************/
-/*! exports provided: ModalBuilderComponent */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ModalBuilderComponent", function() { return ModalBuilderComponent; });
-/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
-/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
-/* harmony import */ var _ng_bootstrap_ng_bootstrap__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @ng-bootstrap/ng-bootstrap */ "./node_modules/@ng-bootstrap/ng-bootstrap/fesm5/ng-bootstrap.js");
-
-
-
-var ModalBuilderComponent = /** @class */ (function () {
-    function ModalBuilderComponent(modalService) {
-        this.modalService = modalService;
-    }
-    ModalBuilderComponent.prototype.open = function (component) {
-        var modalRef = this.modalService.open(component);
-        modalRef.componentInstance.name = 'World';
-    };
-    ModalBuilderComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
-        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
-            selector: 'modal-builder-component',
-            template: __webpack_require__(/*! ./modal-builder-component.html */ "./src/app/common-components/modal-builder-component/modal-builder-component.html"),
-            styles: [__webpack_require__(/*! ./modal-builder-component.css */ "./src/app/common-components/modal-builder-component/modal-builder-component.css")]
-        }),
-        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_ng_bootstrap_ng_bootstrap__WEBPACK_IMPORTED_MODULE_2__["NgbModal"]])
-    ], ModalBuilderComponent);
-    return ModalBuilderComponent;
 }());
 
 
@@ -812,7 +754,7 @@ module.exports = "select.custom-select {\n    -webkit-appearance: menulist\n}\n/
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"col-md-20 user-container\">\n    <table class=\"table table-striped\">\n        <thead>\n            <tr>\n                <th>ID</th>\n                <th>Name</th>\n                <th>Customer</th>\n                <th>Status</th>\n                <th>Total Product</th>\n                <th>Total Qty</th>\n                <th>Total Price</th>\n                <th>Creation Date</th>\n                <th>Close Date</th>\n                <th></th>\n                <th></th>\n            </tr>\n        </thead>\n        <tbody>\n            <tr *ngFor=\"let report of stockReportsArray\">\n                <td>{{ report.id }}</td>\n                <td>{{ report.name }}</td>\n                <td>{{ report.customerName }}</td>\n                <td>{{ report.status }}</td>\n                <td>{{ report.nbProduct }}</td>\n                <td>{{ report.totalItemQty }}</td>\n                <td>{{ report.totalPrice }} €</td>\n                <td>{{ report.createDatetime  | date:'medium' }}</td>\n                <td>{{ report.closeDatetime  | date:'medium' }}</td>\n                <td><button\n                    class=\"btn btn-success\"\n                    [routerLink]=\"['/stockreport', report.id]\"\n                    >See</button>\n                </td>\n                <td><button\n                    *ngIf=\"report.status !== 'CLOSED'\"\n                    class=\"btn btn-info\"\n                    (click)=\"onClickCloseReport(report)\"\n                    >Close Report</button>\n                </td>\n            </tr>\n        </tbody>\n    </table>\n    <div class=\"d-flex justify-content-between p-2\">\n        <ngb-pagination [collectionSize]=\"collectionSize\" [(page)]=\"page\" [pageSize]=\"pageSize\"></ngb-pagination>\n    </div>\n    <select class=\"custom-select\" [(ngModel)]=\"pageSize\">\n        <option [ngValue]=\"5\">5 items per page</option>\n        <option [ngValue]=\"10\">10 items per page</option>\n        <option [ngValue]=\"20\">20 items per page</option>\n    </select>\n</div>"
+module.exports = "<div class=\"col-md-20 user-container\">\n    <table class=\"table table-striped\">\n        <thead>\n            <tr>\n                <th>ID</th>\n                <th>Name</th>\n                <th>Store</th>\n                <th>Status</th>\n                <th>Total Product</th>\n                <th>Total Qty</th>\n                <th>Total Price</th>\n                <th>Creation Date</th>\n                <th>Close Date</th>\n                <th></th>\n                <th></th>\n            </tr>\n        </thead>\n        <tbody>\n            <tr *ngFor=\"let report of stockReportsArray\">\n                <td>{{ report.id }}</td>\n                <td>{{ report.name }}</td>\n                <td>{{ report.customer.store.name }}</td>\n                <td>{{ report.status }}</td>\n                <td>{{ report.nbProduct }}</td>\n                <td>{{ report.totalItemQty }}</td>\n                <td>{{ report.totalPrice }} €</td>\n                <td>{{ report.createDatetime  | date:'medium' }}</td>\n                <td>{{ report.closeDatetime  | date:'medium' }}</td>\n                <td><button\n                    class=\"btn btn-success\"\n                    [routerLink]=\"['/stockreport', report.id]\"\n                    >See</button>\n                </td>\n                <td><button\n                    *ngIf=\"report.status !== 'CLOSED'\"\n                    class=\"btn btn-info\"\n                    (click)=\"onClickCloseReport(report)\"\n                    >Close Report</button>\n                    <button\n                        *ngIf=\"report.status === 'CLOSED'\"\n                        class=\"btn btn-primary\"\n                        (click)=\"onClickNotify(report.id)\"\n                    >Notify</button>\n                </td>\n            </tr>\n        </tbody>\n    </table>\n    <div class=\"d-flex justify-content-between p-2\">\n        <ngb-pagination [collectionSize]=\"collectionSize\" [(page)]=\"page\" [pageSize]=\"pageSize\"></ngb-pagination>\n    </div>\n    <select class=\"custom-select\" [(ngModel)]=\"pageSize\">\n        <option [ngValue]=\"5\">5 items per page</option>\n        <option [ngValue]=\"10\">10 items per page</option>\n        <option [ngValue]=\"20\">20 items per page</option>\n    </select>\n</div>"
 
 /***/ }),
 
@@ -829,12 +771,15 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
 /* harmony import */ var src_app_service_stock_report_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! src/app/service/stock-report-service */ "./src/app/service/stock-report-service.ts");
+/* harmony import */ var src_app_service_notification_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! src/app/service/notification-service */ "./src/app/service/notification-service.ts");
+
 
 
 
 var ListReportsComponent = /** @class */ (function () {
-    function ListReportsComponent(stockReportService) {
+    function ListReportsComponent(stockReportService, notificationService) {
         this.stockReportService = stockReportService;
+        this.notificationService = notificationService;
         this.page = 1;
         this.pageSize = 4;
     }
@@ -843,6 +788,9 @@ var ListReportsComponent = /** @class */ (function () {
     };
     ListReportsComponent.prototype.onClickCloseReport = function (reportInfo) {
         this.stockReportService.closeStockReport(reportInfo);
+    };
+    ListReportsComponent.prototype.onClickNotify = function (orderId) {
+        this.notificationService.notifyOrder(orderId).subscribe(function (data) { return console.log("Notify done : " + data); });
     };
     Object.defineProperty(ListReportsComponent.prototype, "stockReportsArray", {
         get: function () {
@@ -862,7 +810,8 @@ var ListReportsComponent = /** @class */ (function () {
             template: __webpack_require__(/*! ./list-reports.component.html */ "./src/app/reports-manager-panel/list-reports/list-reports.component.html"),
             styles: [__webpack_require__(/*! ./list-reports.component.css */ "./src/app/reports-manager-panel/list-reports/list-reports.component.css")]
         }),
-        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [src_app_service_stock_report_service__WEBPACK_IMPORTED_MODULE_2__["StockReportService"]])
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [src_app_service_stock_report_service__WEBPACK_IMPORTED_MODULE_2__["StockReportService"],
+            src_app_service_notification_service__WEBPACK_IMPORTED_MODULE_3__["NotificationService"]])
     ], ListReportsComponent);
     return ListReportsComponent;
 }());
@@ -889,7 +838,7 @@ module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "\n<ng-template #content let-modal>\n    <p>aaa</p>\n</ng-template>\n<div class=\"container-fluid\">\n    <div>\n        <button class=\"btn btn-primary\"\n            (click)=\"openCreateReportModal()\"\n        >New Report</button>\n    </div>\n    <h3 style=\"color: dimgray\" *ngIf=\"reports.length == 0\">{{ noOrdersFoundMessage }}</h3>\n    <list-reports\n        *ngIf=\"reports.length > 0\"\n        [reports]=\"reports\"\n    ></list-reports>\n</div>"
+module.exports = "\n<ng-template #content let-modal>\n    <p>aaa</p>\n</ng-template>\n<div class=\"container-fluid\">\n    <div>\n        <button class=\"btn btn-primary\"\n            (click)=\"openCreateReportModal()\"\n        >New Report</button>\n    </div>\n    <br>\n    <div class=\"row\">\n        <div class=\"col-md-4\">\n            <input #searchString type=\"text\"\n                class=\"form-control\"\n                (keyup.enter)=\"onClickSearch(searchString.value)\"\n                placeholder=\"Type to search order...\">\n        </div>\n        <div class=\"col-md-2\">\n            <button\n                [disabled]=\"searchButtonDisabled\"\n                class=\"btn btn-info\"\n                (click)=\"onClickSearch(searchString.value)\"\n            >Search</button>\n        </div>\n    </div>\n    <br>\n    <h3 style=\"color: dimgray\" *ngIf=\"reports.length == 0\">{{ noOrdersFoundMessage }}</h3>\n    <div *ngIf=\"reports.length > 0\">\n        <list-reports\n            [reports]=\"reports\"\n        ></list-reports>\n    </div>\n</div>"
 
 /***/ }),
 
@@ -908,7 +857,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _create_report_modal_create_report_modal_component__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../create-report-modal/create-report-modal.component */ "./src/app/reports-manager-panel/create-report-modal/create-report-modal.component.ts");
 /* harmony import */ var src_app_service_stock_report_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! src/app/service/stock-report-service */ "./src/app/service/stock-report-service.ts");
 /* harmony import */ var _model_StockReport__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../model/StockReport */ "./src/app/model/StockReport.ts");
-/* harmony import */ var src_app_common_components_modal_builder_component_modalBuilderComponent__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! src/app/common-components/modal-builder-component/modalBuilderComponent */ "./src/app/common-components/modal-builder-component/modalBuilderComponent.ts");
+/* harmony import */ var _ng_bootstrap_ng_bootstrap__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @ng-bootstrap/ng-bootstrap */ "./node_modules/@ng-bootstrap/ng-bootstrap/fesm5/ng-bootstrap.js");
 
 
 
@@ -916,10 +865,11 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var ReportsManagerComponent = /** @class */ (function () {
-    function ReportsManagerComponent(stockReportService, modalBuilder) {
+    function ReportsManagerComponent(stockReportService, modalService) {
         this.stockReportService = stockReportService;
-        this.modalBuilder = modalBuilder;
+        this.modalService = modalService;
         this.reports = [];
+        this.searchButtonDisabled = false;
     }
     ReportsManagerComponent.prototype.ngOnInit = function () {
         var _this = this;
@@ -936,8 +886,26 @@ var ReportsManagerComponent = /** @class */ (function () {
             }
         });
     };
+    ReportsManagerComponent.prototype.onClickSearch = function (value) {
+        var _this = this;
+        if (value.length > 0) {
+            this.searchButtonDisabled = true;
+            this.stockReportService.getStockReportByName(value).subscribe(function (data) {
+                var orders = [];
+                for (var i = 0; i < data.length; i++) {
+                    var item = _model_StockReport__WEBPACK_IMPORTED_MODULE_4__["StockReport"].fromJson(data[i]);
+                    orders.push(item);
+                }
+                _this.reports = orders;
+                _this.searchButtonDisabled = false;
+            });
+        }
+    };
     ReportsManagerComponent.prototype.openCreateReportModal = function () {
-        this.modalBuilder.open(_create_report_modal_create_report_modal_component__WEBPACK_IMPORTED_MODULE_2__["CreateReportModalComponent"]);
+        var modalRef = this.modalService.open(_create_report_modal_create_report_modal_component__WEBPACK_IMPORTED_MODULE_2__["CreateReportModalComponent"], {
+            size: 'lg'
+        });
+        modalRef.componentInstance.name = 'World';
     };
     ReportsManagerComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
@@ -946,7 +914,7 @@ var ReportsManagerComponent = /** @class */ (function () {
             styles: [__webpack_require__(/*! ./reports-manager.component.css */ "./src/app/reports-manager-panel/reports-manager/reports-manager.component.css")]
         }),
         tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [src_app_service_stock_report_service__WEBPACK_IMPORTED_MODULE_3__["StockReportService"],
-            src_app_common_components_modal_builder_component_modalBuilderComponent__WEBPACK_IMPORTED_MODULE_5__["ModalBuilderComponent"]])
+            _ng_bootstrap_ng_bootstrap__WEBPACK_IMPORTED_MODULE_5__["NgbModal"]])
     ], ReportsManagerComponent);
     return ReportsManagerComponent;
 }());
@@ -1042,6 +1010,41 @@ var HttpService = /** @class */ (function () {
 
 /***/ }),
 
+/***/ "./src/app/service/notification-service.ts":
+/*!*************************************************!*\
+  !*** ./src/app/service/notification-service.ts ***!
+  \*************************************************/
+/*! exports provided: NotificationService */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "NotificationService", function() { return NotificationService; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var _http_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./http-service */ "./src/app/service/http-service.ts");
+
+
+
+var NotificationService = /** @class */ (function () {
+    function NotificationService(httpApi) {
+        this.httpApi = httpApi;
+    }
+    NotificationService.prototype.notifyOrder = function (id) {
+        var request = { "id": id };
+        return this.httpApi.post("v1/notification/report", request);
+    };
+    NotificationService = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Injectable"])(),
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_http_service__WEBPACK_IMPORTED_MODULE_2__["HttpService"]])
+    ], NotificationService);
+    return NotificationService;
+}());
+
+
+
+/***/ }),
+
 /***/ "./src/app/service/stock-report-service.ts":
 /*!*************************************************!*\
   !*** ./src/app/service/stock-report-service.ts ***!
@@ -1066,9 +1069,13 @@ var StockReportService = /** @class */ (function () {
     function StockReportService(httpApi) {
         this.httpApi = httpApi;
     }
-    StockReportService.prototype.getStockReport = function (report, id) {
+    StockReportService.prototype.getStockReport = function (id) {
         console.log("Get report " + id);
         return this.httpApi.get("/v1/stockReport/get/" + id);
+    };
+    StockReportService.prototype.getStockReportByName = function (name) {
+        console.log("Get report by name : " + name);
+        return this.httpApi.get("/v1/stockReport/getByName/" + name);
     };
     StockReportService.prototype.addItem = function (report, item) {
         console.log("Add item[ " + ", " + item.quantity + " to report " + report.id);
@@ -1442,7 +1449,7 @@ var StockReportComponent = /** @class */ (function () {
         var _this = this;
         this.report = new _model_StockReport__WEBPACK_IMPORTED_MODULE_4__["StockReport"]();
         var stockReportId = parseInt(this.route.snapshot.paramMap.get('id'));
-        this.stockReportService.getStockReport(this.report, stockReportId).subscribe(function (data) {
+        this.stockReportService.getStockReport(stockReportId).subscribe(function (data) {
             _this.report.id = data.id;
             _this.report.name = data.name;
             _this.report.comment = data.comment;

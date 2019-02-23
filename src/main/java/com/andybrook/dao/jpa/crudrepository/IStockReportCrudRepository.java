@@ -9,6 +9,7 @@ import org.springframework.data.repository.query.Param;
 
 import javax.transaction.Transactional;
 import java.time.LocalDateTime;
+import java.util.List;
 
 public interface IStockReportCrudRepository extends JpaRepository<StockReportEntity, Long> {
 
@@ -18,6 +19,9 @@ public interface IStockReportCrudRepository extends JpaRepository<StockReportEnt
     String COLUMN_COMMENT = "comment";
     String COLUMN_STATUS = "status";
     String COLUMN_CLOSE_DATETIME = "closeDatetime";
+
+    List<StockReportEntity> findByName(String name);
+    List<StockReportEntity> findByNameContaining(String name);
 
     String UPDATE_EXISTING_STOCK_REPORT_QUERY =
             "UPDATE " + ENTITY_NAME + " s SET " +

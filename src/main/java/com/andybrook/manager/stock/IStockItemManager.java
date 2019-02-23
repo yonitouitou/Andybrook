@@ -1,7 +1,7 @@
 package com.andybrook.manager.stock;
 
 import com.andybrook.exception.StockReportClosed;
-import com.andybrook.exception.StockReportNotFound;
+import com.andybrook.exception.OrderNotFound;
 import com.andybrook.model.product.Product;
 import com.andybrook.model.StockItem;
 
@@ -15,7 +15,7 @@ public interface IStockItemManager {
     Map<Long, StockItem<? extends Product>> getAllStockItems();
 
     StockItem<? extends Product> updateStockItem(long stockReportId, StockItem<? extends Product> item)
-            throws StockReportNotFound, StockReportClosed;
+            throws OrderNotFound, StockReportClosed;
 
     boolean removeStockItem(long id);
 }

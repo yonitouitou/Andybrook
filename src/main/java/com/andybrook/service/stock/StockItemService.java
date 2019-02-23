@@ -2,7 +2,7 @@ package com.andybrook.service.stock;
 
 import com.andybrook.dao.stock.IStockItemDao;
 import com.andybrook.exception.StockReportClosed;
-import com.andybrook.exception.StockReportNotFound;
+import com.andybrook.exception.OrderNotFound;
 import com.andybrook.model.StockItem;
 import com.andybrook.model.StockReport;
 import com.andybrook.model.product.Product;
@@ -19,12 +19,12 @@ public class StockItemService implements IStockItemService {
     @Autowired
     private IStockItemDao stockItemDao;
     @Autowired
-    private IStockReportService stockReportService;
+    private IOrderService stockReportService;
 
     @Override
     @Transactional
     public StockItem<? extends Product> newStockItem(long stockReportId, StockItem<? extends Product> item)
-            throws StockReportNotFound, StockReportClosed {
+            throws OrderNotFound, StockReportClosed {
         StockReport stockReport = stockReportService.getStockReport(stockReportId);
         if (! stockReport.isClosed()) {
             stockReportService.addItemToReport(stockReportId, item);
@@ -37,7 +37,7 @@ public class StockItemService implements IStockItemService {
     @Override
     @Transactional
     public StockItem<? extends Product> updateStockItem(long stockReportId, StockItem<? extends Product> item)
-            throws StockReportNotFound, StockReportClosed {
+            throws OrderNotFound, StockReportClosed {
 
         StockItem<? extends Product> stockItem;
         StockReport stockReport = stockReportService.getStockReport(stockReportId);

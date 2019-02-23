@@ -135,7 +135,7 @@ public class StockClosedEmailNotification implements IEmailNotification<StockRep
                         + "<td>" + report.getId() + "</td>"
                         + "<td>" + report.getName() + "</td>"
                         + "<td>" + report.getTotalQuantity() + "</td>"
-                        + "<td>" + report.getTotalPrice() * report.getTotalQuantity() + " €</td>"
+                        + "<td>" + report.getTotalPrice() + " €</td>"
                 + "</tr>"
         );
 

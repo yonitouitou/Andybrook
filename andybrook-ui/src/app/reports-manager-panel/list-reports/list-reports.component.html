@@ -4,7 +4,7 @@
             <tr>
                 <th>ID</th>
                 <th>Name</th>
-                <th>Customer</th>
+                <th>Store</th>
                 <th>Status</th>
                 <th>Total Product</th>
                 <th>Total Qty</th>
@@ -19,7 +19,7 @@
             <tr *ngFor="let report of stockReportsArray">
                 <td>{{ report.id }}</td>
                 <td>{{ report.name }}</td>
-                <td>{{ report.customerName }}</td>
+                <td>{{ report.customer.store.name }}</td>
                 <td>{{ report.status }}</td>
                 <td>{{ report.nbProduct }}</td>
                 <td>{{ report.totalItemQty }}</td>
@@ -36,6 +36,11 @@
                     class="btn btn-info"
                     (click)="onClickCloseReport(report)"
                     >Close Report</button>
+                    <button
+                        *ngIf="report.status === 'CLOSED'"
+                        class="btn btn-primary"
+                        (click)="onClickNotify(report.id)"
+                    >Notify</button>
                 </td>
             </tr>
         </tbody>

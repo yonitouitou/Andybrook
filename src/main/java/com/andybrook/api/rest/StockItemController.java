@@ -1,7 +1,7 @@
 package com.andybrook.api.rest;
 
 import com.andybrook.exception.StockReportClosed;
-import com.andybrook.exception.StockReportNotFound;
+import com.andybrook.exception.OrderNotFound;
 import com.andybrook.manager.stock.IStockItemManager;
 import com.andybrook.model.StockItem;
 import com.andybrook.model.product.Product;
@@ -50,7 +50,7 @@ public class StockItemController extends AbstractController {
     }
 
     @PostMapping(path = "/update")
-    public GlassesTableRow updateStockItem(@RequestBody StockItemUpdateRequest request) throws StockReportNotFound, StockReportClosed {
+    public GlassesTableRow updateStockItem(@RequestBody StockItemUpdateRequest request) throws OrderNotFound, StockReportClosed {
         LOGGER.log(Level.INFO, "Request received to update stock : " + request);
         StockItem<? extends Product> itemUpdated = stockItemManager.updateStockItem(request.getStockReportId(), request.getStockItem());
         return new GlassesTableRow(itemUpdated);
