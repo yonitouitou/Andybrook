@@ -22,7 +22,7 @@ import java.util.Optional;
 
 public class PdfTestConfig {
 
-    private AdminSetting setting = new AdminSetting(new Long(1), null, null, 10, Color.LIGHT_GRAY, Color.BLACK);
+    private AdminSetting setting = new AdminSetting(1L, null, null, 10, Color.LIGHT_GRAY, Color.BLACK);
 
     @MockBean
     IAdminSettingRepository adminSettingRepository;

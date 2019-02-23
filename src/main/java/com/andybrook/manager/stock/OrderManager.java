@@ -16,9 +16,9 @@ import java.util.List;
 import java.util.Set;
 
 @Service
-public class StockReportManager implements IStockReportManager {
+public class OrderManager implements IOrderManager {
 
-    private static Logger LOGGER = System.getLogger(StockReportManager.class.getSimpleName());
+    private static Logger LOGGER = System.getLogger(OrderManager.class.getSimpleName());
 
     @Autowired
     private IOrderService stockReportService;
@@ -51,6 +51,11 @@ public class StockReportManager implements IStockReportManager {
     }
 
     @Override
+    public List<StockReport> getOrders(List<Long> ids) {
+        return stockReportService.getOrders(ids);
+    }
+
+    @Override
     public Set<StockReport> getAll() {
         return stockReportService.getAll();
     }
@@ -61,4 +66,6 @@ public class StockReportManager implements IStockReportManager {
         notificationManager.notifyOrderClosed(stockReport);
         return stockReport;
     }
+
+
 }

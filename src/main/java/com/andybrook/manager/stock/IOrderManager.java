@@ -10,7 +10,7 @@ import com.andybrook.model.StockReport;
 import java.util.List;
 import java.util.Set;
 
-public interface IStockReportManager {
+public interface IOrderManager {
 
     StockReport newStockReport(NewStockReportRequest request) throws StoreNotFound;
 
@@ -25,4 +25,6 @@ public interface IStockReportManager {
     List<StockReport> getOrdersByName(String name);
 
     List<StockReport> getOrdersByNameContaining(String name);
+
+    List<StockReport> getOrders(List<Long> ids);
 }

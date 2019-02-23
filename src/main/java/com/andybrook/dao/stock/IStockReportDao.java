@@ -27,4 +27,6 @@ public interface IStockReportDao {
     List<StockReport> getByName(String name);
 
     List<StockReport> getByNameContaining(String name);
+
+    List<StockReport> getOrders(List<Long> ids);
 }

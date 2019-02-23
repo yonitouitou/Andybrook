@@ -29,4 +29,6 @@ public interface IOrderService {
     List<StockReport> getOrdersByName(String name);
 
     List<StockReport> getOrderByNameContaining(String name);
+
+    List<StockReport> getOrders(List<Long> ids);
 }

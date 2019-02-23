@@ -103,4 +103,12 @@ public class StockReportDao implements IStockReportDao {
                 .map(entityFactory::createStockReport)
                 .collect(Collectors.toList());
     }
+
+    @Override
+    public List<StockReport> getOrders(List<Long> ids) {
+        List<StockReportEntity> ordersEntity = stockReportCrudRepository.findByIdIn(ids);
+        return ordersEntity.stream()
+                .map(entityFactory::createStockReport)
+                .collect(Collectors.toList());
+    }
 }

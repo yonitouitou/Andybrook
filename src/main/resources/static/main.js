@@ -613,7 +613,7 @@ var StockReport = /** @class */ (function () {
     StockReport.getTotalPrice = function (items) {
         var total = 0;
         for (var i = 0; i < items.length; i++) {
-            total += items[i].product.price;
+            total += items[i].product.price * items[i].quantity;
         }
         return total;
     };
@@ -858,6 +858,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var src_app_service_stock_report_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! src/app/service/stock-report-service */ "./src/app/service/stock-report-service.ts");
 /* harmony import */ var _model_StockReport__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../model/StockReport */ "./src/app/model/StockReport.ts");
 /* harmony import */ var _ng_bootstrap_ng_bootstrap__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @ng-bootstrap/ng-bootstrap */ "./node_modules/@ng-bootstrap/ng-bootstrap/fesm5/ng-bootstrap.js");
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
+
 
 
 
@@ -865,41 +867,56 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var ReportsManagerComponent = /** @class */ (function () {
-    function ReportsManagerComponent(stockReportService, modalService) {
+    function ReportsManagerComponent(stockReportService, modalService, route) {
         this.stockReportService = stockReportService;
         this.modalService = modalService;
+        this.route = route;
         this.reports = [];
         this.searchButtonDisabled = false;
     }
     ReportsManagerComponent.prototype.ngOnInit = function () {
+        this.getAllOrders();
+    };
+    ReportsManagerComponent.prototype.onClickSearch = function (value) {
+        if (value.length > 0) {
+            this.searchButtonDisabled = true;
+            this.getOrderByName(value);
+        }
+        else if (value.length == 0 && this.reports.length == 0) {
+            this.searchButtonDisabled = true;
+            this.getAllOrders();
+        }
+    };
+    ReportsManagerComponent.prototype.getOrderById = function (id) {
+        var _this = this;
+        this.stockReportService.getStockReport(id).subscribe(function (data) {
+            _this.reports = _this.parseOrderIntoArray(data);
+            _this.searchButtonDisabled = false;
+        });
+    };
+    ReportsManagerComponent.prototype.getOrderByName = function (name) {
+        var _this = this;
+        this.stockReportService.getStockReportByName(name).subscribe(function (data) {
+            _this.reports = _this.parseOrderIntoArray(data);
+            _this.searchButtonDisabled = false;
+        });
+    };
+    ReportsManagerComponent.prototype.getAllOrders = function () {
         var _this = this;
         this.stockReportService.getAllStockReports().subscribe(function (data) {
-            var reportsReceived = [];
-            for (var _i = 0, data_1 = data; _i < data_1.length; _i++) {
-                var report = data_1[_i];
-                var sr = _model_StockReport__WEBPACK_IMPORTED_MODULE_4__["StockReport"].fromJson(report);
-                reportsReceived.push(sr);
-            }
-            _this.reports = reportsReceived;
+            _this.reports = _this.parseOrderIntoArray(data);
             if (_this.reports.length == 0) {
                 _this.noOrdersFoundMessage = "No order found";
             }
         });
     };
-    ReportsManagerComponent.prototype.onClickSearch = function (value) {
-        var _this = this;
-        if (value.length > 0) {
-            this.searchButtonDisabled = true;
-            this.stockReportService.getStockReportByName(value).subscribe(function (data) {
-                var orders = [];
-                for (var i = 0; i < data.length; i++) {
-                    var item = _model_StockReport__WEBPACK_IMPORTED_MODULE_4__["StockReport"].fromJson(data[i]);
-                    orders.push(item);
-                }
-                _this.reports = orders;
-                _this.searchButtonDisabled = false;
-            });
+    ReportsManagerComponent.prototype.parseOrderIntoArray = function (data) {
+        var orders = [];
+        for (var i = 0; i < data.length; i++) {
+            var item = _model_StockReport__WEBPACK_IMPORTED_MODULE_4__["StockReport"].fromJson(data[i]);
+            orders.push(item);
         }
+        return orders;
     };
     ReportsManagerComponent.prototype.openCreateReportModal = function () {
         var modalRef = this.modalService.open(_create_report_modal_create_report_modal_component__WEBPACK_IMPORTED_MODULE_2__["CreateReportModalComponent"], {
@@ -914,7 +931,8 @@ var ReportsManagerComponent = /** @class */ (function () {
             styles: [__webpack_require__(/*! ./reports-manager.component.css */ "./src/app/reports-manager-panel/reports-manager/reports-manager.component.css")]
         }),
         tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [src_app_service_stock_report_service__WEBPACK_IMPORTED_MODULE_3__["StockReportService"],
-            _ng_bootstrap_ng_bootstrap__WEBPACK_IMPORTED_MODULE_5__["NgbModal"]])
+            _ng_bootstrap_ng_bootstrap__WEBPACK_IMPORTED_MODULE_5__["NgbModal"],
+            _angular_router__WEBPACK_IMPORTED_MODULE_6__["ActivatedRoute"]])
     ], ReportsManagerComponent);
     return ReportsManagerComponent;
 }());

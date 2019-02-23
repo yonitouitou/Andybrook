@@ -1,7 +1,7 @@
 package com.andybrook.init;
 
 import com.andybrook.exception.StoreNotFound;
-import com.andybrook.manager.stock.StockReportManager;
+import com.andybrook.manager.stock.OrderManager;
 import com.andybrook.model.customer.Customer;
 import com.andybrook.model.customer.Owner;
 import com.andybrook.model.customer.Store;
@@ -21,7 +21,7 @@ public class InitSystemTest {
     @Autowired
     private ICustomerService customerService;
     @Autowired
-    private StockReportManager stockReportManager;
+    private OrderManager stockReportManager;
 
     @Test
     public void initSystem() throws Exception {

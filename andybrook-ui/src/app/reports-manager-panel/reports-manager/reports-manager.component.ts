@@ -3,6 +3,7 @@ import { CreateReportModalComponent } from '../create-report-modal/create-report
 import { StockReportService } from 'src/app/service/stock-report-service';
 import { StockReport } from '../../model/StockReport'
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'reports-manager',
@@ -17,17 +18,45 @@ export class ReportsManagerComponent implements OnInit {
 
   constructor(private stockReportService: StockReportService,
               private modalService: NgbModal,
+              private route: ActivatedRoute
               ) { }
 
   ngOnInit() {
+      this.getAllOrders()
+  }
+
+  onClickSearch(value: string) {
+    if (value.length > 0) {
+      this.searchButtonDisabled = true
+      this.getOrderByName(value) 
+    } else if (value.length == 0 && this.reports.length == 0) {
+      this.searchButtonDisabled = true
+      this.getAllOrders()
+    }
+  }
+
+  private getOrderById(id: number) {
+    this.stockReportService.getStockReport(id).subscribe(
+      data => {
+        this.reports = this.parseOrderIntoArray(data)
+        this.searchButtonDisabled = false
+      }
+    )
+  }
+
+  private getOrderByName(name: string) {
+    this.stockReportService.getStockReportByName(name).subscribe(
+      data => {
+        this.reports = this.parseOrderIntoArray(data)
+        this.searchButtonDisabled = false
+      }
+    )
+  }
+
+  private getAllOrders() {
     this.stockReportService.getAllStockReports().subscribe(
       data => {
-          let reportsReceived = []
-          for (let report of data) {
-              let sr = StockReport.fromJson(report)
-              reportsReceived.push(sr)
-          }
-          this.reports = reportsReceived
+          this.reports = this.parseOrderIntoArray(data)
           if (this.reports.length == 0) {
             this.noOrdersFoundMessage = "No order found"
           }
@@ -35,21 +64,13 @@ export class ReportsManagerComponent implements OnInit {
     ) 
   }
 
-  onClickSearch(value: string) {
-    if (value.length > 0) {
-      this.searchButtonDisabled = true
-      this.stockReportService.getStockReportByName(value).subscribe(
-        data => {
-          let orders: StockReport[] = []
-          for (let i = 0; i < data.length ; i++) {
-            let item = StockReport.fromJson(data[i]);
-            orders.push(item)
-          }
-          this.reports = orders
-          this.searchButtonDisabled = false
-        }
-      )
+  private parseOrderIntoArray(data: any) : StockReport[] {
+    let orders: StockReport[] = []
+    for (let i = 0; i < data.length ; i++) {
+      let item = StockReport.fromJson(data[i]);
+      orders.push(item)
     }
+    return orders
   }
 
   openCreateReportModal() {

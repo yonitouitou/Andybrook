@@ -9,6 +9,7 @@ import org.springframework.data.repository.query.Param;
 
 import javax.transaction.Transactional;
 import java.time.LocalDateTime;
+import java.util.Collection;
 import java.util.List;
 
 public interface IStockReportCrudRepository extends JpaRepository<StockReportEntity, Long> {
@@ -22,6 +23,7 @@ public interface IStockReportCrudRepository extends JpaRepository<StockReportEnt
 
     List<StockReportEntity> findByName(String name);
     List<StockReportEntity> findByNameContaining(String name);
+    List<StockReportEntity> findByIdIn(Collection<Long> ids);
 
     String UPDATE_EXISTING_STOCK_REPORT_QUERY =
             "UPDATE " + ENTITY_NAME + " s SET " +

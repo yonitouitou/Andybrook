@@ -38,7 +38,7 @@ export class StockReport {
     private static getTotalPrice(items: any) {
         let total = 0
         for (let i = 0; i < items.length; i++) {
-            total += items[i].product.price;
+            total += items[i].product.price * items[i].quantity;
         }
         return total
     }

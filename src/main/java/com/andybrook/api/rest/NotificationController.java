@@ -13,7 +13,7 @@ import java.lang.System.Logger.Level;
 @RequestMapping("v1/notification")
 public class NotificationController extends AbstractController {
 
-    private static Logger LOGGER = System.getLogger(StockReportController.class.getSimpleName());
+    private static Logger LOGGER = System.getLogger(OrderController.class.getSimpleName());
 
     @Autowired
     private INotificationManager notificationManager;

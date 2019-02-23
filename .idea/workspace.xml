@@ -2,70 +2,38 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="0d189825-4bd0-483c-a839-2c637b0d6c51" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/andybrook/api/rest/NotificationController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/com/andybrook/init/InitSystemTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/andybrook/api/rest/ctx/GenericRequestByIds.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/andybrook-ui/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/andybrook-ui/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/andybrook-ui/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/andybrook-ui/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/andybrook-ui/src/app/admin/admin-panel/admin-panel.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/andybrook-ui/src/app/admin/admin-panel/admin-panel.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/andybrook-ui/src/app/app.module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/andybrook-ui/src/app/app.module.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/andybrook-ui/src/app/common-components/modal-builder-component/modal-builder-component.component.spec.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/andybrook-ui/src/app/common-components/modal-builder-component/modal-builder-component.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/andybrook-ui/src/app/common-components/modal-builder-component/modal-builder-component.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/andybrook-ui/src/app/common-components/modal-builder-component/modalBuilderComponent.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/andybrook-ui/src/app/reports-manager-panel/list-reports/list-reports.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/andybrook-ui/src/app/reports-manager-panel/list-reports/list-reports.component.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/andybrook-ui/src/app/reports-manager-panel/list-reports/list-reports.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/andybrook-ui/src/app/reports-manager-panel/list-reports/list-reports.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/andybrook-ui/src/app/reports-manager-panel/reports-manager/reports-manager.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/andybrook-ui/src/app/reports-manager-panel/reports-manager/reports-manager.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/andybrook-ui/src/app/model/StockReport.ts" beforeDir="false" afterPath="$PROJECT_DIR$/andybrook-ui/src/app/model/StockReport.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/andybrook-ui/src/app/reports-manager-panel/reports-manager/reports-manager.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/andybrook-ui/src/app/reports-manager-panel/reports-manager/reports-manager.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/andybrook-ui/src/app/service/stock-report-service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/andybrook-ui/src/app/service/stock-report-service.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/andybrook-ui/src/app/stock-report-panel/stock-report/stock-report.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/andybrook-ui/src/app/stock-report-panel/stock-report/stock-report.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/andybrook/api/rest/StockItemController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/andybrook/api/rest/StockItemController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/andybrook/api/rest/StockReportController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/andybrook/api/rest/StockReportController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/andybrook/api/rest/NotificationController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/andybrook/api/rest/NotificationController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/andybrook/api/rest/StockReportController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/andybrook/api/rest/OrderController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/andybrook/dao/jpa/crudrepository/IStockReportCrudRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/andybrook/dao/jpa/crudrepository/IStockReportCrudRepository.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/andybrook/dao/stock/IStockReportDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/andybrook/dao/stock/IStockReportDao.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/andybrook/dao/stock/StockReportDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/andybrook/dao/stock/StockReportDao.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/andybrook/exception/StockReportNotFound.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/andybrook/exception/OrderNotFound.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/andybrook/manager/notification/INotificationManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/andybrook/manager/notification/INotificationManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/andybrook/manager/notification/NotificationManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/andybrook/manager/notification/NotificationManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/andybrook/manager/stock/IStockItemManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/andybrook/manager/stock/IStockItemManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/andybrook/manager/stock/IStockReportManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/andybrook/manager/stock/IStockReportManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/andybrook/manager/stock/StockItemManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/andybrook/manager/stock/StockItemManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/andybrook/manager/stock/StockReportManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/andybrook/manager/stock/StockReportManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/andybrook/model/notification/StockClosedEmailNotification.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/andybrook/model/notification/StockClosedEmailNotification.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/andybrook/service/notification/INotificationService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/andybrook/service/notification/INotificationService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/andybrook/service/notification/NotificationService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/andybrook/service/notification/NotificationService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/andybrook/service/stock/IStockItemService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/andybrook/service/stock/IStockItemService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/andybrook/service/stock/IStockReportService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/andybrook/service/stock/IOrderService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/andybrook/service/stock/StockItemService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/andybrook/service/stock/StockItemService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/andybrook/service/stock/StockReportService.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/andybrook/manager/stock/IStockReportManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/andybrook/manager/stock/IOrderManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/andybrook/manager/stock/StockReportManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/andybrook/manager/stock/OrderManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/andybrook/service/stock/IOrderService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/andybrook/service/stock/IOrderService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/andybrook/service/stock/OrderService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/andybrook/service/stock/OrderService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/static/main.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/static/main.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/static/main.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/static/main.js.map" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/com/andybrook/manager/StockReportManagerTest.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/com/andybrook/service/CustomerServiceTest.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/application.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/andybrook/api/rest/StockItemController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/andybrook/api/rest/StockItemController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/andybrook/api/rest/StockReportController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/andybrook/api/rest/StockReportController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/com/andybrook/api/pdf/PdfTestConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/andybrook/api/pdf/PdfTestConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/com/andybrook/init/InitSystemTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/andybrook/init/InitSystemTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/META-INF/andybrook.kotlin_module" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/andybrook/api/rest/NotificationController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/andybrook/api/rest/NotificationController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/andybrook/api/rest/StockReportController.class" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/andybrook/dao/jpa/crudrepository/IStockReportCrudRepository.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/andybrook/dao/jpa/crudrepository/IStockReportCrudRepository.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/andybrook/dao/stock/IStockReportDao.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/andybrook/dao/stock/IStockReportDao.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/andybrook/dao/stock/StockReportDao.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/andybrook/dao/stock/StockReportDao.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/andybrook/exception/StockReportNotFound.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/andybrook/manager/notification/INotificationManager.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/andybrook/manager/notification/INotificationManager.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/andybrook/manager/notification/NotificationManager.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/andybrook/manager/notification/NotificationManager.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/andybrook/manager/stock/IStockItemManager.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/andybrook/manager/stock/IStockItemManager.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/andybrook/manager/stock/IStockReportManager.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/andybrook/manager/stock/IStockReportManager.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/andybrook/manager/stock/StockItemManager.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/andybrook/manager/stock/StockItemManager.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/andybrook/manager/stock/StockReportManager.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/andybrook/manager/stock/StockReportManager.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/andybrook/service/notification/INotificationService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/andybrook/service/notification/INotificationService.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/andybrook/service/notification/NotificationService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/andybrook/service/notification/NotificationService.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/andybrook/service/stock/IStockItemService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/andybrook/service/stock/IStockItemService.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/andybrook/service/stock/IStockReportService.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/andybrook/service/stock/StockItemService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/andybrook/service/stock/StockItemService.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/andybrook/service/stock/StockReportService.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/andybrook/manager/stock/IStockReportManager.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/andybrook/manager/stock/StockReportManager.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/andybrook/service/stock/IOrderService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/andybrook/service/stock/IOrderService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/andybrook/service/stock/OrderService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/andybrook/service/stock/OrderService.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/static/main.js" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/static/main.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/static/main.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/static/main.js.map" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/test-classes/com/andybrook/manager/StockReportManagerTest.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/test-classes/com/andybrook/service/CustomerServiceTest.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/META-INF/andybrook.kotlin_module" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/com/andybrook/api/pdf/PdfTestConfig.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/com/andybrook/api/pdf/PdfTestConfig.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/com/andybrook/init/InitSystemTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/com/andybrook/init/InitSystemTest.class" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/target/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -79,11 +47,95 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/andybrook/model/notification/StockClosedEmailNotification.java">
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/andybrook/api/rest/OrderController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="389">
-              <caret line="137" column="57" selection-start-line="137" selection-start-column="57" selection-end-line="137" selection-end-column="57" />
+            <state relative-caret-position="298">
+              <caret line="55" column="32" selection-start-line="55" selection-start-column="32" selection-end-line="55" selection-end-column="32" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/andybrook/manager/stock/IOrderManager.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="300">
+              <caret line="28" column="48" selection-start-line="28" selection-start-column="48" selection-end-line="28" selection-end-column="48" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/andybrook/manager/stock/OrderManager.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="288">
+              <caret line="54" column="43" selection-start-line="54" selection-start-column="43" selection-end-line="54" selection-end-column="43" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/andybrook/service/stock/IOrderService.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="330">
+              <caret line="32" column="48" selection-start-line="32" selection-start-column="48" selection-end-line="32" selection-end-column="48" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/andybrook/service/stock/OrderService.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="468">
+              <caret line="108" column="45" selection-start-line="108" selection-start-column="45" selection-end-line="108" selection-end-column="45" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/andybrook/dao/stock/IStockReportDao.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="360">
+              <caret line="30" column="48" selection-start-line="30" selection-start-column="48" selection-end-line="30" selection-end-column="48" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/andybrook/dao/stock/StockReportDao.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="420">
+              <caret line="111" column="46" selection-start-line="111" selection-start-column="46" selection-end-line="111" selection-end-column="46" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/test/java/com/andybrook/api/pdf/PdfTestConfig.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="405">
+              <caret line="45" column="38" selection-start-line="45" selection-start-column="38" selection-end-line="45" selection-end-column="38" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/andybrook-ui/.gitignore">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="253">
+              <caret line="21" column="19" lean-forward="true" selection-start-line="21" selection-start-column="19" selection-end-line="21" selection-end-column="19" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/andybrook/dao/jpa/crudrepository/IStockReportCrudRepository.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="191">
+              <caret line="25" column="61" selection-start-line="25" selection-start-column="61" selection-end-line="25" selection-end-column="61" />
             </state>
           </provider>
         </entry>
@@ -142,10 +194,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/main/java/com/andybrook/service/setting/IAdminSettingService.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/andybrook/service/setting/AdminSettingService.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/andybrook/service/stock/StockReportService.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/andybrook/service/customer/ICustomerService.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/andybrook/dao/customer/ICustomerDao.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/andybrook/manager/customer/CustomerManager.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/andybrook/manager/customer/ICustomerManager.java" />
@@ -171,28 +219,32 @@
         <option value="$PROJECT_DIR$/src/main/java/com/andybrook/model/request/UpdateAdminSettingRequest.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/andybrook/api/pdf/AbstractPdfBuilder.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/andybrook/api/pdf/CloseReportPdfBuilder.java" />
-        <option value="$PROJECT_DIR$/src/test/java/com/andybrook/api/pdf/PdfTestConfig.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/andybrook/dao/jpa/entity/setting/AdminSettingEntity.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/andybrook/model/setting/AdminSetting.java" />
         <option value="$PROJECT_DIR$/src/test/java/com/andybrook/service/CustomerServiceTest.java" />
         <option value="$PROJECT_DIR$/src/test/java/com/andybrook/init/InitSystemTest.java" />
         <option value="$PROJECT_DIR$/src/test/java/com/andybrook/manager/StockReportManagerTest.java" />
-        <option value="$PROJECT_DIR$/src/main/resources/application.properties" />
         <option value="$PROJECT_DIR$/src/main/java/com/andybrook/service/stock/IStockReportService.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/andybrook/service/notification/INotificationService.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/andybrook/service/notification/NotificationService.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/andybrook/manager/notification/NotificationManager.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/andybrook/manager/notification/INotificationManager.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/andybrook/api/rest/NotificationController.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/andybrook/dao/stock/IStockReportDao.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/andybrook/dao/stock/StockReportDao.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/andybrook/service/stock/IOrderService.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/andybrook/service/stock/OrderService.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/andybrook/manager/stock/IStockReportManager.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/andybrook/manager/stock/StockReportManager.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/andybrook/api/rest/StockReportController.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/andybrook/dao/jpa/crudrepository/IStockReportCrudRepository.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/andybrook/model/notification/StockClosedEmailNotification.java" />
+        <option value="$PROJECT_DIR$/src/main/resources/application.properties" />
+        <option value="$PROJECT_DIR$/src/main/java/com/andybrook/api/rest/StockReportController.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/andybrook/api/rest/ctx/GenericRequestByIds.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/andybrook/api/rest/OrderController.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/andybrook/manager/stock/IOrderManager.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/andybrook/manager/stock/OrderManager.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/andybrook/service/stock/IOrderService.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/andybrook/service/stock/OrderService.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/andybrook/dao/stock/IStockReportDao.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/andybrook/dao/jpa/crudrepository/IStockReportCrudRepository.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/andybrook/dao/stock/StockReportDao.java" />
+        <option value="$PROJECT_DIR$/src/test/java/com/andybrook/api/pdf/PdfTestConfig.java" />
       </list>
     </option>
   </component>
@@ -240,6 +292,11 @@
             <path>
               <item name="andybrook" type="b2602c69:ProjectViewProjectNode" />
               <item name="andybrook" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="andybrook" type="b2602c69:ProjectViewProjectNode" />
+              <item name="andybrook" type="462c0819:PsiDirectoryNode" />
+              <item name="andybrook-ui" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="andybrook" type="b2602c69:ProjectViewProjectNode" />
@@ -712,6 +769,27 @@
               <item name="java" type="462c0819:PsiDirectoryNode" />
               <item name="com" type="462c0819:PsiDirectoryNode" />
               <item name="andybrook" type="462c0819:PsiDirectoryNode" />
+              <item name="api" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="andybrook" type="b2602c69:ProjectViewProjectNode" />
+              <item name="andybrook" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="test" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="com" type="462c0819:PsiDirectoryNode" />
+              <item name="andybrook" type="462c0819:PsiDirectoryNode" />
+              <item name="api" type="462c0819:PsiDirectoryNode" />
+              <item name="pdf" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="andybrook" type="b2602c69:ProjectViewProjectNode" />
+              <item name="andybrook" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="test" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="com" type="462c0819:PsiDirectoryNode" />
+              <item name="andybrook" type="462c0819:PsiDirectoryNode" />
               <item name="init" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -1044,9 +1122,8 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="67" y="27" width="1853" height="1053" extended-state="6" />
-    <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.19491993" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.19491993" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Designer" order="2" />
       <window_info id="Favorites" order="3" side_tool="true" />
@@ -1060,7 +1137,7 @@
       <window_info anchor="bottom" id="Run" order="6" weight="0.41241685" />
       <window_info anchor="bottom" id="Cvs" order="7" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="8" weight="0.4" />
-      <window_info anchor="bottom" id="Debug" order="9" visible="true" weight="0.383592" />
+      <window_info active="true" anchor="bottom" id="Debug" order="9" visible="true" weight="0.383592" />
       <window_info anchor="bottom" id="TODO" order="10" weight="0.3292683" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
@@ -1179,21 +1256,6 @@
     </expressions>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/main/resources/language/messages_fr_FR.properties">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="240">
-          <caret line="16" column="14" lean-forward="true" selection-start-line="16" selection-start-column="14" selection-end-line="16" selection-end-column="14" />
-        </state>
-      </provider>
-      <provider editor-type-id="ResourceBundle" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/andybrook/language/LanguageResolver.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="22" selection-start-line="22" selection-end-line="22" />
-        </state>
-      </provider>
-    </entry>
     <entry file="jar://$MAVEN_REPOSITORY$/com/itextpdf/itextpdf/5.5.13/itextpdf-5.5.13.jar!/com/itextpdf/text/pdf/PdfContentByte.class">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="15">
@@ -1303,13 +1365,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="339">
           <caret line="77" column="11" selection-start-line="77" selection-start-column="11" selection-end-line="77" selection-end-column="11" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/test/java/com/andybrook/api/pdf/PdfTestConfig.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="90">
-          <caret line="24" column="110" selection-start-line="24" selection-start-column="110" selection-end-line="24" selection-end-column="110" />
         </state>
       </provider>
     </entry>
@@ -1435,13 +1490,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/application.properties">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="345">
-          <caret line="23" column="20" selection-start-line="23" selection-start-column="20" selection-end-line="23" selection-end-column="20" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/andybrook/api/rest/ctx/GenericRequestById.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="30">
@@ -1459,65 +1507,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/andybrook/api/rest/StockReportController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="283">
-          <caret line="54" column="49" selection-start-line="54" selection-start-column="49" selection-end-line="54" selection-end-column="49" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/andybrook/manager/stock/IStockReportManager.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="270">
-          <caret line="26" column="22" selection-start-line="26" selection-start-column="22" selection-end-line="26" selection-end-column="22" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/andybrook/manager/stock/StockReportManager.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="191">
-          <caret line="49" column="41" lean-forward="true" selection-start-line="49" selection-start-column="41" selection-end-line="49" selection-end-column="41" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/andybrook/service/stock/IOrderService.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="300">
-          <caret line="30" column="22" selection-start-line="30" selection-start-column="22" selection-end-line="30" selection-end-column="22" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/andybrook/service/stock/OrderService.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="371">
-          <caret line="103" column="40" lean-forward="true" selection-start-line="103" selection-start-column="40" selection-end-line="103" selection-end-column="40" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/andybrook/dao/stock/IStockReportDao.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="330">
-          <caret line="28" column="22" selection-start-line="28" selection-start-column="22" selection-end-line="28" selection-end-column="22" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/andybrook/dao/stock/StockReportDao.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="326">
-          <caret line="100" column="78" selection-start-line="100" selection-start-column="78" selection-end-line="100" selection-end-column="78" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/andybrook/dao/jpa/crudrepository/IStockReportCrudRepository.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="168">
-          <caret line="23" column="38" selection-start-line="23" selection-start-column="38" selection-end-line="23" selection-end-column="38" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/andybrook/service/notification/NotificationService.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="330">
@@ -1530,8 +1519,98 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/andybrook/model/notification/StockClosedEmailNotification.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="389">
-          <caret line="137" column="57" selection-start-line="137" selection-start-column="57" selection-end-line="137" selection-end-column="57" />
+        <state relative-caret-position="374">
+          <caret line="136" column="61" selection-start-line="136" selection-start-column="61" selection-end-line="136" selection-end-column="61" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/application.properties">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="270">
+          <caret line="18" lean-forward="true" selection-start-line="18" selection-end-line="18" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/andybrook/api/rest/ctx/GenericRequestByIds.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="195">
+          <caret line="15" column="20" selection-start-line="15" selection-start-column="20" selection-end-line="15" selection-end-column="20" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/andybrook/api/rest/OrderController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="298">
+          <caret line="55" column="32" selection-start-line="55" selection-start-column="32" selection-end-line="55" selection-end-column="32" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/andybrook/manager/stock/IOrderManager.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="300">
+          <caret line="28" column="48" selection-start-line="28" selection-start-column="48" selection-end-line="28" selection-end-column="48" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/andybrook/manager/stock/OrderManager.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="288">
+          <caret line="54" column="43" selection-start-line="54" selection-start-column="43" selection-end-line="54" selection-end-column="43" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/andybrook/service/stock/IOrderService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="330">
+          <caret line="32" column="48" selection-start-line="32" selection-start-column="48" selection-end-line="32" selection-end-column="48" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/andybrook/service/stock/OrderService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="468">
+          <caret line="108" column="45" selection-start-line="108" selection-start-column="45" selection-end-line="108" selection-end-column="45" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/andybrook/dao/stock/IStockReportDao.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="360">
+          <caret line="30" column="48" selection-start-line="30" selection-start-column="48" selection-end-line="30" selection-end-column="48" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/andybrook/dao/jpa/crudrepository/IStockReportCrudRepository.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="191">
+          <caret line="25" column="61" selection-start-line="25" selection-start-column="61" selection-end-line="25" selection-end-column="61" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/andybrook/dao/stock/StockReportDao.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="420">
+          <caret line="111" column="46" selection-start-line="111" selection-start-column="46" selection-end-line="111" selection-end-column="46" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/java/com/andybrook/api/pdf/PdfTestConfig.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="405">
+          <caret line="45" column="38" selection-start-line="45" selection-start-column="38" selection-end-line="45" selection-end-column="38" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/andybrook-ui/.gitignore">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="253">
+          <caret line="21" column="19" lean-forward="true" selection-start-line="21" selection-start-column="19" selection-end-line="21" selection-end-column="19" />
         </state>
       </provider>
     </entry>

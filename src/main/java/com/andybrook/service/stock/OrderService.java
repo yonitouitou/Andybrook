@@ -103,4 +103,9 @@ public class OrderService implements IOrderService {
     public List<StockReport> getOrderByNameContaining(String name) {
         return stockReportDao.getByNameContaining(name);
     }
+
+    @Override
+    public List<StockReport> getOrders(List<Long> ids) {
+        return stockReportDao.getOrders(ids);
+    }
 }
