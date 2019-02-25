@@ -15,6 +15,7 @@ export class ReportsManagerComponent implements OnInit {
   reports: StockReport[] = []
   noOrdersFoundMessage: string
   searchButtonDisabled: boolean = false
+  isOrderListFiltered: boolean = false
 
   constructor(private stockReportService: StockReportService,
               private modalService: NgbModal,
@@ -22,16 +23,18 @@ export class ReportsManagerComponent implements OnInit {
               ) { }
 
   ngOnInit() {
-      this.getAllOrders()
+    this.getAllOrders()
   }
 
   onClickSearch(value: string) {
     if (value.length > 0) {
       this.searchButtonDisabled = true
-      this.getOrderByName(value) 
-    } else if (value.length == 0 && this.reports.length == 0) {
+      this.isOrderListFiltered = true
+      this.getOrderByName(value)
+    } else if (value.length == 0 && this.isOrderListFiltered) {
       this.searchButtonDisabled = true
       this.getAllOrders()
+      this.isOrderListFiltered = false
     }
   }
 

@@ -170,7 +170,7 @@ module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"container-fluid\">\n    <mat-toolbar class=\"mat-elevation-z6\" style=\"background-color: steelblue\">  \n        <mat-toolbar-row>\n            <span>HANDYBROOK</span>\n        </mat-toolbar-row>\n    </mat-toolbar>\n    <h3></h3>\n\n    <div class=\"row\">\n        <div class=\"col-xs-12 col-sm-10 col-md-8 col-sm-offset-1 col-md-offset-2\">\n            <ul class=\"nav nav-tabs\">\n                <li role=\"presentation\"\n                    routerLinkActive=\"active\"\n                    [routerLinkActiveOptions]=\"{exact: true}\">\n                        <a routerLink=\"/\">Home</a>\n                </li>\n                <li role=\"presentation\" routerLinkActive=\"active\">\n                    <a routerLink=\"/admin\">Admin</a>\n                </li>\n                <li role=\"presentation\" routerLinkActive=\"active\">\n                    <a routerLink=\"/customers\">Customers</a>\n                </li>\n            </ul>\n        </div>\n    </div>\n    <h5></h5>\n    <div class=\"row\">\n        <div class=\"col-xs-12 col-sm-10 col-md-8 col-sm-offset-1 col-md-offset-2\">\n            <router-outlet></router-outlet>\n        </div>\n    </div>\n</div>\n\n"
+module.exports = "<div class=\"container-fluid\">\n    <mat-toolbar class=\"mat-elevation-z6\" style=\"background-color: steelblue\">  \n        <mat-toolbar-row>\n            <span>HANDYBROOK</span>\n        </mat-toolbar-row>\n    </mat-toolbar>\n    <h3></h3>\n    <div class=\"row justify-content-between\">\n        <div class=\"col-4\" style=\"background-color: yellow\">25%</div>\n        <div class=\"col-4\" style=\"background-color: orange\">25%</div>\n    </div>\n    <div class=\"row\">\n        <div>\n            <ul class=\"nav nav-tabs\">\n                <li role=\"presentation\"\n                    routerLinkActive=\"active\"\n                    [routerLinkActiveOptions]=\"{exact: true}\">\n                        <a routerLink=\"/\">Home</a>\n                </li>\n                <li role=\"presentation\" routerLinkActive=\"active\">\n                    <a routerLink=\"/admin\">Admin</a>\n                </li>\n                <li role=\"presentation\" routerLinkActive=\"active\">\n                    <a routerLink=\"/customers\">Customers</a>\n                </li>\n            </ul>\n        </div>\n    </div>\n    <h5></h5>\n    <div class=\"row\">\n        <div>\n            <router-outlet></router-outlet>\n        </div>\n    </div>\n</div>\n\n"
 
 /***/ }),
 
@@ -873,6 +873,7 @@ var ReportsManagerComponent = /** @class */ (function () {
         this.route = route;
         this.reports = [];
         this.searchButtonDisabled = false;
+        this.isOrderListFiltered = false;
     }
     ReportsManagerComponent.prototype.ngOnInit = function () {
         this.getAllOrders();
@@ -880,11 +881,13 @@ var ReportsManagerComponent = /** @class */ (function () {
     ReportsManagerComponent.prototype.onClickSearch = function (value) {
         if (value.length > 0) {
             this.searchButtonDisabled = true;
+            this.isOrderListFiltered = true;
             this.getOrderByName(value);
         }
-        else if (value.length == 0 && this.reports.length == 0) {
+        else if (value.length == 0 && this.isOrderListFiltered) {
             this.searchButtonDisabled = true;
             this.getAllOrders();
+            this.isOrderListFiltered = false;
         }
     };
     ReportsManagerComponent.prototype.getOrderById = function (id) {
@@ -1356,7 +1359,7 @@ module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"row justify-content-between\">\n  <div class=\"col\">\n    <h2>{{ report.name }}</h2>\n    <p>{{ report.comment }}</p>\n    <div style=\"overflow: hidden;\">\n      <p style=\"float: left\">Customer : &nbsp;</p>\n      <p style=\"float: left; font-weight: bold\"> {{ report.customer.store.name }}</p>\n    </div>\n    <div style=\"overflow: hidden;\">\n      <p style=\"float: left;\">Status :&nbsp;</p>\n      <p style=\"float: left; font-weight: bold\"> {{ report.status }}</p>\n    </div>\n  </div>\n  <div class=\"col\">\n      <button\n        class=\"btn btn-outline-info\"\n        (click)=\"onClickCloseReport()\"\n        [disabled]=\"report.status === 'CLOSED'\"\n      >Close the report</button>\n  </div>\n</div>"
+module.exports = "<div class=\"container-fluid\">\n  <div class=\"row justify-content-between\">\n    <div class=\"col-md-4\">\n      <h2>{{ report.name }}</h2>\n      <p>Description/Comment : {{ report.comment }}</p>\n      <div style=\"overflow: hidden;\">\n        <p style=\"float: left\">Customer : &nbsp;</p>\n        <p style=\"float: left; font-weight: bold\"> {{ report.customer.store.name }}</p>\n      </div>\n      <div style=\"overflow: hidden;\">\n        <p style=\"float: left;\">Status :&nbsp;</p>\n        <p style=\"float: left; font-weight: bold\"> {{ report.status }}</p>\n      </div>\n    </div>\n    <div class=\"col-md-6\">\n        <button\n          style=\"float: right\"\n          class=\"btn btn-outline-info\"\n          (click)=\"onClickCloseReport()\"\n          [disabled]=\"report.status === 'CLOSED'\"\n        >Close the report</button>\n    </div>\n  </div>\n</div>"
 
 /***/ }),
 

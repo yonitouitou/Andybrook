@@ -1,6 +1,6 @@
 package com.andybrook.service.stock;
 
-import com.andybrook.dao.stock.IStockReportDao;
+import com.andybrook.dao.stock.IOrderDao;
 import com.andybrook.exception.StockReportClosed;
 import com.andybrook.exception.OrderNotFound;
 import com.andybrook.language.LanguageResolver;
@@ -27,7 +27,7 @@ import static com.andybrook.language.Msg.Error.STOCK_REPORT_NOT_FOUND;
 public class OrderService implements IOrderService {
 
     @Autowired
-    private IStockReportDao stockReportDao;
+    private IOrderDao stockReportDao;
     @Autowired
     private ICustomerService customerService;
     @Autowired
