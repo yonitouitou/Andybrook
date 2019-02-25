@@ -26,7 +26,7 @@
       </tr>
     </thead>
     <tbody>
-      <tr *ngIf="stockReportStatus !== 'CLOSED'">
+      <tr *ngIf="orderStatus !== 'CLOSED'">
         <td></td>
         <td>
           <input class="form-control" (blur)="onBlurNewItemInput()" [(ngModel)]="inputName">
@@ -44,27 +44,27 @@
             Stock Item</button>
         </td>
       </tr>
-      <tr *ngFor="let item of stockReportItems | filter : 'name' : searchString; let i = index" (click)="setSelectedRow(i)"
+      <tr *ngFor="let item of stockItems | filter : 'name' : searchString; let i = index" (click)="setSelectedRow(i)"
         [class.active]="i == selectedRow">
         <td>{{ item.product.id }}</td>
-        <td contenteditable="stockReportStatus !== 'CLOSED'"
+        <td contenteditable="orderStatus !== 'CLOSED'"
           (blur)="onChangeStockItemName(item, $event)">
           {{ item.product.name }}
         </td>
         <td
-          contenteditable="stockReportStatus !== 'CLOSED'"
+          contenteditable="orderStatus !== 'CLOSED'"
           (blur)="onChangeStockItemPrice(item, $event)">
           {{ item.product.price }} €
         </td>
         <td
-          contenteditable="stockReportStatus !== 'CLOSED'"
+          contenteditable="orderStatus !== 'CLOSED'"
           (blur)="onChangeStockItemQuantity(item, $event)">
           {{ item.quantity }}
         </td>
         <td></td>
         <td></td>
         <td>
-          <button *ngIf="stockReportStatus !== 'CLOSED'" (click)="deleteStockItem(item.id)" class="btn btn-danger">
+          <button *ngIf="orderStatus !== 'CLOSED'" (click)="deleteStockItem(item.id)" class="btn btn-danger">
             Delete</button>
         </td>
       </tr>

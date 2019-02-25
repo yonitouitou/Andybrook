@@ -1,25 +1,23 @@
 import { Component, OnInit } from '@angular/core';
 import { CreateReportModalComponent } from '../create-report-modal/create-report-modal.component'
-import { StockReportService } from 'src/app/service/stock-report-service';
-import { StockReport } from '../../model/StockReport'
+import { OrderService } from 'src/app/service/order-service';
+import { Order } from "../../model/Order";
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import { ActivatedRoute } from '@angular/router';
 
 @Component({
-  selector: 'reports-manager',
-  templateUrl: './reports-manager.component.html',
-  styleUrls: ['./reports-manager.component.css']
+  selector: 'orders-manager',
+  templateUrl: './orders-manager.component.html',
+  styleUrls: ['./orders-manager.component.css']
 })
-export class ReportsManagerComponent implements OnInit {
+export class OrdersManagerComponent implements OnInit {
 
-  reports: StockReport[] = []
+  orders: Order[] = []
   noOrdersFoundMessage: string
   searchButtonDisabled: boolean = false
   isOrderListFiltered: boolean = false
 
-  constructor(private stockReportService: StockReportService,
-              private modalService: NgbModal,
-              private route: ActivatedRoute
+  constructor(private orderService: OrderService,
+              private modalService: NgbModal
               ) { }
 
   ngOnInit() {
@@ -39,38 +37,38 @@ export class ReportsManagerComponent implements OnInit {
   }
 
   private getOrderById(id: number) {
-    this.stockReportService.getStockReport(id).subscribe(
+    this.orderService.getOrder(id).subscribe(
       data => {
-        this.reports = this.parseOrderIntoArray(data)
+        this.orders = this.parseOrderIntoArray(data)
         this.searchButtonDisabled = false
       }
     )
   }
 
   private getOrderByName(name: string) {
-    this.stockReportService.getStockReportByName(name).subscribe(
+    this.orderService.getOrderByName(name).subscribe(
       data => {
-        this.reports = this.parseOrderIntoArray(data)
+        this.orders = this.parseOrderIntoArray(data)
         this.searchButtonDisabled = false
       }
     )
   }
 
   private getAllOrders() {
-    this.stockReportService.getAllStockReports().subscribe(
+    this.orderService.getAllOrders().subscribe(
       data => {
-          this.reports = this.parseOrderIntoArray(data)
-          if (this.reports.length == 0) {
+          this.orders = this.parseOrderIntoArray(data)
+          if (this.orders.length == 0) {
             this.noOrdersFoundMessage = "No order found"
           }
       }
     ) 
   }
 
-  private parseOrderIntoArray(data: any) : StockReport[] {
-    let orders: StockReport[] = []
+  private parseOrderIntoArray(data: any) : Order[] {
+    let orders: Order[] = []
     for (let i = 0; i < data.length ; i++) {
-      let item = StockReport.fromJson(data[i]);
+      let item = Order.fromJson(data[i]);
       orders.push(item)
     }
     return orders

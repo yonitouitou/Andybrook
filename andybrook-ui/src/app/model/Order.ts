@@ -1,7 +1,7 @@
-import { StockItem } from '../model/StockItem'
+import { StockItem } from './StockItem'
 import { Customer } from './Customer';
 
-export class StockReport {
+export class Order {
     
     id: number
     name: string
@@ -18,10 +18,10 @@ export class StockReport {
     constructor() {
     }
 
-    static fromJson(data: any) : StockReport {
+    static fromJson(data: any) : Order {
         let itemsQty = data.items.reduce((sum, item) => sum + item.quantity, 0);
         let totalPrice = this.getTotalPrice(data.items)
-        let sr = new StockReport()
+        let sr = new Order()
         sr.id = data.id
         sr.name = data.name
         sr.customer = data.customer

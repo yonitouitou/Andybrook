@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ListReportsComponent } from './list-reports.component';
+import { CloseReportModalComponent } from './close-report-modal.component';
 
-describe('ListReportsComponent', () => {
-  let component: ListReportsComponent;
-  let fixture: ComponentFixture<ListReportsComponent>;
+describe('CloseReportModalComponent', () => {
+  let component: CloseReportModalComponent;
+  let fixture: ComponentFixture<CloseReportModalComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ ListReportsComponent ]
+      declarations: [ CloseReportModalComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(ListReportsComponent);
+    fixture = TestBed.createComponent(CloseReportModalComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

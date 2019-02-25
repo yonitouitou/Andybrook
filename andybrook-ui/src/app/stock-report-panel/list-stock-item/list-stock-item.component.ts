@@ -18,9 +18,9 @@ export class ListStockItemComponent implements OnInit {
 
 
 
-  @Input() stockReportItems: IterableIterator<StockItem>
-  @Input() stockReportId: number
-  @Input() stockReportStatus: string
+  @Input() stockItems: IterableIterator<StockItem>
+  @Input() orderId: number
+  @Input() orderStatus: string
 
   @Output() onCreateStockItemEvent = new EventEmitter<StockItem>()
   @Output() onChangeStockItemEvent = new EventEmitter<StockItem>()
@@ -57,10 +57,6 @@ export class ListStockItemComponent implements OnInit {
       this.onChangeStockItemEvent.emit(item)
     } 
   }
-
-  // search(text: string, pipe: PipeTransform) : any[] {
-  //   return Array.from(stockReportItems) 
-  // }
 
   onChangeStockItemQuantity(stockItem: StockItem, event: any) {
     let newQuantity = event.target.textContent

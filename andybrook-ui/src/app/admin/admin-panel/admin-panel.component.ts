@@ -5,7 +5,6 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Subject } from 'rxjs'
 import { debounceTime } from 'rxjs/operators'
 import { RGB } from 'src/app/model/RGB';
-import { CreateReportModalComponent } from 'src/app/reports-manager-panel/create-report-modal/create-report-modal.component';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({

@@ -2,33 +2,33 @@ import { StockItem } from '../model/StockItem'
 import { Product } from '../model/Product'
 import { Injectable, EventEmitter } from '@angular/core'
 import { HttpService } from './http-service'
-import { StockReport } from '../model/StockReport'
+import { Order } from "../model/Order";
 import { Observable } from 'rxjs';
 
 @Injectable()
-export class StockReportService {
+export class OrderService {
 
     constructor(private httpApi: HttpService){}
 
-    getStockReport(id: number): Observable<any> {
+    getOrder(id: number): Observable<any> {
         console.log("Get report " + id)
         return this.httpApi.get("/v1/stockReport/get/" + id)
     }
 
-    getStockReportByName(name: string): Observable<any> {
+    getOrderByName(name: string): Observable<any> {
         console.log("Get report by name : " + name)
         return this.httpApi.get("/v1/stockReport/getByName/" + name)
     }
 
-    addItem(report: StockReport, item: StockItem) {
-        console.log("Add item[ " + ", " + item.quantity + " to report " + report.id)
+    addItem(order: Order, item: StockItem) {
+        console.log("Add item[ " + ", " + item.quantity + " to order " + order.id)
         let stockItem
         
-        this.httpApi.post("/v1/stock/update", this.toUpdateRequest(report, item)).subscribe(
+        this.httpApi.post("/v1/stock/update", this.toUpdateRequest(order, item)).subscribe(
             data => {
                 let product = new Product(data.item.product.id, data.item.product.name, data.item.product.price)
                 stockItem = new StockItem(data.item.id, data.item.quantity, product)
-                report.items.set(stockItem.id, stockItem)
+                order.items.set(stockItem.id, stockItem)
             },
             error => {
                 debugger;
@@ -37,48 +37,48 @@ export class StockReportService {
         )
     }
 
-    updateStockItem(report: StockReport, itemToUpdate: StockItem) {
-        console.log("update report " + report.id + " | " + itemToUpdate)
-        this.httpApi.post("/v1/stock/update", this.toUpdateRequest(report, itemToUpdate)).subscribe(data => {
-            report.id = data.id
-            report.name = data.name
-            report.comment = data.comment
-            report.status = data.status
+    updateStockItem(order: Order, itemToUpdate: StockItem) {
+        console.log("update order " + order.id + " | " + itemToUpdate)
+        this.httpApi.post("/v1/stock/update", this.toUpdateRequest(order, itemToUpdate)).subscribe(data => {
+            order.id = data.id
+            order.name = data.name
+            order.comment = data.comment
+            order.status = data.status
             let product = new Product(data.item.product.id, data.item.product.name, data.item.product.price)
             let stockItem = new StockItem(data.item.id, data.item.quantity, product)
-            report.items.set(stockItem.id, stockItem)
+            order.items.set(stockItem.id, stockItem)
         })
     }
 
-    deleteItem(report: StockReport, stockItemIdToDelete: number) {
+    deleteItem(order: Order, stockItemIdToDelete: number) {
         console.log("Delete Item : " + stockItemIdToDelete)
         this.httpApi.delete("/v1/stock/delete/" + stockItemIdToDelete).subscribe(
             data => {
                 console.log(data)
-                report.items.delete(stockItemIdToDelete)
+                order.items.delete(stockItemIdToDelete)
             }
         )
     }
 
-    closeStockReport(report: StockReport) {
-        console.log("Close stock report : " + report.id)
-        let request = { "id" : report.id }
+    closeOrder(order: Order) {
+        console.log("Close order : " + order.id)
+        let request = { "id" : order.id }
         this.httpApi.post("/v1/stockReport/close", request).subscribe(
             data => {
-                report.closeDatetime = data.closeDateTime
-                report.status = data.status
+                order.closeDatetime = data.closeDateTime
+                order.status = data.status
             }
         )
     }
 
-    getAllStockReports(): Observable<any> {
+    getAllOrders(): Observable<any> {
         console.log("Get all reports")
         return this.httpApi.get("/v1/stockReport/all")
     } 
 
-    private toUpdateRequest(report: StockReport, item: StockItem): any {
+    private toUpdateRequest(order: Order, item: StockItem): any {
         return {
-            "stockReportId" : report.id,
+            "stockReportId" : order.id,
             "stockItem" : item,
             "type" : item.type
         }

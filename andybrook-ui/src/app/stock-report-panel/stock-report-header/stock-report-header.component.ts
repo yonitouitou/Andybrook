@@ -1,5 +1,8 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import { StockReport } from '../../model/StockReport';
+import { Order } from "../../model/Order";
+import { ModalBuilder } from 'src/app/common-components/modal-builder';
+import { CloseReportModalComponent } from 'src/app/modal/close-report-modal/close-report-modal.component';
+import { OrderService } from 'src/app/service/order-service';
 
 @Component({
   selector: 'stock-report-header',
@@ -8,16 +11,27 @@ import { StockReport } from '../../model/StockReport';
 })
 export class StockReportHeaderComponent implements OnInit {
 
-  @Input() report: StockReport
+  @Input() order: Order
 
-  @Output() onCloseStockReportEvent = new EventEmitter()
+  @Output() onCloseOrderEvent = new EventEmitter()
 
-  constructor() { }
+  constructor(private modalBuilder: ModalBuilder,
+              private orderService: OrderService) { }
 
   ngOnInit() {
   }
 
-  onClickCloseReport() {
-    this.onCloseStockReportEvent.emit()
+  onClickCloseOrder() {
+    let modalRef = this.modalBuilder.open(CloseReportModalComponent)
+    modalRef.componentInstance.title = "Close Report Confirmation"
+    modalRef.componentInstance.message = "Are you sure you want to close the order "
+          + this.order.name + " for the store " + this.order.customer.store.name
+
+    modalRef.result.then((response) => {
+      if (response) {
+        this.orderService.closeOrder(this.order)
+      }
+    })
   }
+
 }

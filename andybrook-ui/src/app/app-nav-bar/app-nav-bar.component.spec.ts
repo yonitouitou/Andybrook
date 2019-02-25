@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ReportsManagerComponent } from './reports-manager.component';
+import { AppNavBarComponent } from './app-nav-bar.component';
 
-describe('ReportsManagerComponent', () => {
-  let component: ReportsManagerComponent;
-  let fixture: ComponentFixture<ReportsManagerComponent>;
+describe('AppNavBarComponent', () => {
+  let component: AppNavBarComponent;
+  let fixture: ComponentFixture<AppNavBarComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ ReportsManagerComponent ]
+      declarations: [ AppNavBarComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(ReportsManagerComponent);
+    fixture = TestBed.createComponent(AppNavBarComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

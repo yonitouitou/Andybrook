@@ -1,0 +1,37 @@
+
+<ng-template #content let-modal>
+    <p>aaa</p>
+</ng-template>
+<div class="container-fluid">
+    <div class="row justify-content-between">
+        <div class="col-4">
+            <button class="btn btn-primary"
+                (click)="openCreateReportModal()"
+            >New Order</button>
+        </div>
+        <div class="col-6">
+            <div class="row justify-content-end">
+                <div class="col-6">
+                    <input #searchString type="text"
+                        class="form-control"
+                        (keyup.enter)="onClickSearch(searchString.value)"
+                        placeholder="Type to search order...">
+                </div>
+                <div class="col-4">
+                    <button
+                        [disabled]="searchButtonDisabled"
+                        class="btn btn-info search_button"
+                        (click)="onClickSearch(searchString.value)"
+                    >Search</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <br>
+    <h3 style="color: dimgray" *ngIf="orders.length == 0">{{ noOrdersFoundMessage }}</h3>
+    <div *ngIf="orders.length > 0">
+        <list-orders
+            [orders]="orders"
+        ></list-orders>
+    </div>
+</div>

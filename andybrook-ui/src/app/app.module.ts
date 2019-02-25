@@ -8,23 +8,26 @@ import { Routes, RouterModule } from '@angular/router'
 import { BrowserAnimationsModule, NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { AppComponent } from './app.component';
 import { ListStockItemComponent } from './stock-report-panel/list-stock-item/list-stock-item.component';
-import { ReportsManagerComponent } from './reports-manager-panel/reports-manager/reports-manager.component';
+import { OrdersManagerComponent } from './orders-manager-panel/orders-manager/orders-manager.component';
 import { StockReportComponent } from './stock-report-panel/stock-report/stock-report.component';
-import { StockReportService } from './service/stock-report-service';
+import { OrderService } from './service/order-service';
 import { HttpService } from './service/http-service';
 import { AdminSettingService } from './service/admin-setting-service';
 import { HeaderMenuComponent } from './header-menu/header-menu.component';
 import { StockReportHeaderComponent } from './stock-report-panel/stock-report-header/stock-report-header.component';
-import { ListReportsComponent } from './reports-manager-panel/list-reports/list-reports.component';
-import { CreateReportModalComponent } from './reports-manager-panel/create-report-modal/create-report-modal.component';
+import { ListOrdersComponent } from './orders-manager-panel/list-orders/list-orders.component';
+import { CreateReportModalComponent } from './orders-manager-panel/create-report-modal/create-report-modal.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { AdminPanelComponent } from './admin/admin-panel/admin-panel.component';
 import { SharedModule } from './shared.module';
 import { CustomerPanelComponent } from './customer/customer-panel/customer-panel.component';
 import { NotificationService } from './service/notification-service';
+import { AppNavBarComponent } from './app-nav-bar/app-nav-bar.component';
+import { CloseReportModalComponent } from './modal/close-report-modal/close-report-modal.component';
+import { ModalBuilder } from './common-components/modal-builder';
 
 const appRoutes: Routes = [
-  { path: '', component: ReportsManagerComponent },
+  { path: '', component: OrdersManagerComponent },
   { path: 'stockreport/:id', component: StockReportComponent },
   { path: 'admin', component: AdminPanelComponent},
   { path: 'customers', component: CustomerPanelComponent}
@@ -34,16 +37,18 @@ const appRoutes: Routes = [
   declarations: [
     AppComponent,
     ListStockItemComponent,
-    ReportsManagerComponent,
+    OrdersManagerComponent,
     StockReportComponent,
     HeaderMenuComponent,
     StockReportHeaderComponent,
-    ListReportsComponent,
+    ListOrdersComponent,
     CreateReportModalComponent,
     AdminPanelComponent,
-    CustomerPanelComponent
+    CustomerPanelComponent,
+    AppNavBarComponent,
+    CloseReportModalComponent
   ],
-  entryComponents: [CreateReportModalComponent],
+  entryComponents: [CreateReportModalComponent, CloseReportModalComponent],
   imports: [
     BrowserModule,
     HttpClientModule,
@@ -57,7 +62,7 @@ const appRoutes: Routes = [
     SharedModule,
     RouterModule.forRoot(appRoutes)
   ],
-  providers: [StockReportService, HttpService, AdminSettingService, NotificationService],
+  providers: [OrderService, HttpService, AdminSettingService, NotificationService, ModalBuilder],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

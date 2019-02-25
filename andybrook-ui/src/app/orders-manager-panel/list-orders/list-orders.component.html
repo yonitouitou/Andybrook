@@ -1,0 +1,60 @@
+<div class="col-md-20 user-container">
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Store</th>
+                <th>Status</th>
+                <th>Total Product</th>
+                <th>Total Qty</th>
+                <th>Total Price</th>
+                <th>Creation Date</th>
+                <th>Close Date</th>
+                <th></th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let order of ordersArray">
+                <td>{{ order.id }}</td>
+                <td>{{ order.name }}</td>
+                <td>{{ order.customer.store.name }}</td>
+                <td>{{ order.status }}</td>
+                <td>{{ order.nbProduct }}</td>
+                <td>{{ order.totalItemQty }}</td>
+                <td>{{ order.totalPrice }} €</td>
+                <td>{{ order.createDatetime  | date:'medium' }}</td>
+                <td>{{ order.closeDatetime  | date:'medium' }}</td>
+                <td><button
+                    class="btn btn-success"
+                    [routerLink]="['/stockreport', order.id]"
+                    >See</button>
+                </td>
+                <td><button
+                    *ngIf="order.status !== 'CLOSED'"
+                    class="btn btn-info"
+                    (click)="onClickCloseOrder(order)"
+                    >Close Order</button>
+                    <button
+                        *ngIf="order.status === 'CLOSED'"
+                        class="btn btn-primary"
+                        (click)="onClickNotify(order.id)"
+                    >Notify</button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <div class="row justify-content-between">
+        <div class="col-4">
+            <ngb-pagination [collectionSize]="collectionSize" [(page)]="page" [pageSize]="pageSize"></ngb-pagination>
+        </div>
+        <div class="col-2">
+            <select class="custom-select" [(ngModel)]="pageSize">
+                <option [ngValue]="5">5 items per page</option>
+                <option [ngValue]="10">10 items per page</option>
+                <option [ngValue]="20">20 items per page</option>
+            </select>
+        </div>
+    </div>
+</div>

@@ -1,36 +1,8 @@
+<app-app-nav-bar></app-app-nav-bar>
+<br>
+<br>
+<br>
 <div class="container-fluid">
-    <mat-toolbar class="mat-elevation-z6" style="background-color: steelblue">  
-        <mat-toolbar-row>
-            <span>HANDYBROOK</span>
-        </mat-toolbar-row>
-    </mat-toolbar>
-    <h3></h3>
-    <div class="row justify-content-between">
-        <div class="col-4" style="background-color: yellow">25%</div>
-        <div class="col-4" style="background-color: orange">25%</div>
-    </div>
-    <div class="row">
-        <div>
-            <ul class="nav nav-tabs">
-                <li role="presentation"
-                    routerLinkActive="active"
-                    [routerLinkActiveOptions]="{exact: true}">
-                        <a routerLink="/">Home</a>
-                </li>
-                <li role="presentation" routerLinkActive="active">
-                    <a routerLink="/admin">Admin</a>
-                </li>
-                <li role="presentation" routerLinkActive="active">
-                    <a routerLink="/customers">Customers</a>
-                </li>
-            </ul>
-        </div>
-    </div>
-    <h5></h5>
-    <div class="row">
-        <div>
-            <router-outlet></router-outlet>
-        </div>
-    </div>
+    <router-outlet></router-outlet>
 </div>
 
