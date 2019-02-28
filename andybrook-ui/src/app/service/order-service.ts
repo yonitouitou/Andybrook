@@ -10,6 +10,15 @@ export class OrderService {
 
     constructor(private httpApi: HttpService){}
 
+    addOrder(order: Order): Observable<any> {
+        const request = {
+            "name": order.name,
+            "customerId": order.customer.id,
+            "comment": order.comment
+        }
+        return this.httpApi.post("/v1/stockReport/add", request)
+    }
+
     getOrder(id: number): Observable<any> {
         console.log("Get report " + id)
         return this.httpApi.get("/v1/stockReport/get/" + id)

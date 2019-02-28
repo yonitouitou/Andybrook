@@ -1,7 +1,7 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { Order } from "../../model/Order";
 import { ModalBuilder } from 'src/app/common-components/modal-builder';
-import { CloseReportModalComponent } from 'src/app/modal/close-report-modal/close-report-modal.component';
+import { ConfirmModalComponent } from 'src/app/modal/confirm-modal/confirm-modal-component';
 import { OrderService } from 'src/app/service/order-service';
 
 @Component({
@@ -22,7 +22,7 @@ export class StockReportHeaderComponent implements OnInit {
   }
 
   onClickCloseOrder() {
-    let modalRef = this.modalBuilder.open(CloseReportModalComponent)
+    let modalRef = this.modalBuilder.open(ConfirmModalComponent)
     modalRef.componentInstance.title = "Close Report Confirmation"
     modalRef.componentInstance.message = "Are you sure you want to close the order "
           + this.order.name + " for the store " + this.order.customer.store.name

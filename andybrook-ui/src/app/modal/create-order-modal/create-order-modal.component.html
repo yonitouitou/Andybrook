@@ -1,0 +1,35 @@
+<div class="modal-header">
+  <h4 class="modal-title" id="modal-basic-title">New Order</h4>
+  <button type="button" class="close" aria-label="Close" (click)="onClose()">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+<form [formGroup]="createOrderForm" (ngSubmit)="onSubmit()">
+<div class="modal-body">
+    <div class="form-group">
+      <label for="Name">Name</label>
+      <input type="text" formControlName="name"
+        (input)="settingChanged()"
+        class="form-control"/>
+        <label *ngIf="isFormSubmitted && createOrderForm.get('name').invalid" class="text-danger">A name is required.</label>
+    </div>
+    <div class="form-group">
+      <label for="comment">Comment/Description</label>
+      <input type="text" formControlName="comment"
+        (input)="settingChanged()"
+        class="form-control"/>
+    </div>
+    <div class="form-group">
+      <label for="customer">Customer</label>
+      <select type="text" formControlName="customers"
+        (input)="settingChanged()"
+        class="form-control">
+        <option *ngFor="let customer of customersArray"
+        [ngValue]="customer">{{customer.id}} | {{ customer.store.name }} | {{ customer.store.owner.firstName }} {{ customer.store.owner.lastName }}</option>
+      </select>
+      <label *ngIf="isFormSubmitted && createOrderForm.get('customers').invalid" class="text-danger">A customer is required.</label>
+    </div>
+</div>
+<div class="modal-footer">
+  <button type="submit" class="btn btn-outline-dark" >Create</button>
+</div></form>

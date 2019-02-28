@@ -62,8 +62,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _angular_forms__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @angular/forms */ "./node_modules/@angular/forms/fesm5/forms.js");
 /* harmony import */ var rxjs__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! rxjs */ "./node_modules/rxjs/_esm5/index.js");
 /* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! rxjs/operators */ "./node_modules/rxjs/_esm5/operators/index.js");
-/* harmony import */ var _ng_bootstrap_ng_bootstrap__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @ng-bootstrap/ng-bootstrap */ "./node_modules/@ng-bootstrap/ng-bootstrap/fesm5/ng-bootstrap.js");
-
 
 
 
@@ -72,10 +70,9 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var AdminPanelComponent = /** @class */ (function () {
-    function AdminPanelComponent(formBuilder, adminSettingService, modalService) {
+    function AdminPanelComponent(formBuilder, adminSettingService) {
         this.formBuilder = formBuilder;
         this.adminSettingService = adminSettingService;
-        this.modalService = modalService;
         this._success = new rxjs__WEBPACK_IMPORTED_MODULE_5__["Subject"]();
         this.submitted = false;
         this.saveButtonDisabled = true;
@@ -142,8 +139,7 @@ var AdminPanelComponent = /** @class */ (function () {
             styles: [__webpack_require__(/*! ./admin-panel.component.css */ "./src/app/admin/admin-panel/admin-panel.component.css")]
         }),
         tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_angular_forms__WEBPACK_IMPORTED_MODULE_4__["FormBuilder"],
-            _service_admin_setting_service__WEBPACK_IMPORTED_MODULE_2__["AdminSettingService"],
-            _ng_bootstrap_ng_bootstrap__WEBPACK_IMPORTED_MODULE_7__["NgbModal"]])
+            _service_admin_setting_service__WEBPACK_IMPORTED_MODULE_2__["AdminSettingService"]])
     ], AdminPanelComponent);
     return AdminPanelComponent;
 }());
@@ -291,15 +287,17 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _header_menu_header_menu_component__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ./header-menu/header-menu.component */ "./src/app/header-menu/header-menu.component.ts");
 /* harmony import */ var _stock_report_panel_stock_report_header_stock_report_header_component__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! ./stock-report-panel/stock-report-header/stock-report-header.component */ "./src/app/stock-report-panel/stock-report-header/stock-report-header.component.ts");
 /* harmony import */ var _orders_manager_panel_list_orders_list_orders_component__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! ./orders-manager-panel/list-orders/list-orders.component */ "./src/app/orders-manager-panel/list-orders/list-orders.component.ts");
-/* harmony import */ var _orders_manager_panel_create_report_modal_create_report_modal_component__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(/*! ./orders-manager-panel/create-report-modal/create-report-modal.component */ "./src/app/orders-manager-panel/create-report-modal/create-report-modal.component.ts");
-/* harmony import */ var _ng_bootstrap_ng_bootstrap__WEBPACK_IMPORTED_MODULE_20__ = __webpack_require__(/*! @ng-bootstrap/ng-bootstrap */ "./node_modules/@ng-bootstrap/ng-bootstrap/fesm5/ng-bootstrap.js");
-/* harmony import */ var _admin_admin_panel_admin_panel_component__WEBPACK_IMPORTED_MODULE_21__ = __webpack_require__(/*! ./admin/admin-panel/admin-panel.component */ "./src/app/admin/admin-panel/admin-panel.component.ts");
-/* harmony import */ var _shared_module__WEBPACK_IMPORTED_MODULE_22__ = __webpack_require__(/*! ./shared.module */ "./src/app/shared.module.ts");
-/* harmony import */ var _customer_customer_panel_customer_panel_component__WEBPACK_IMPORTED_MODULE_23__ = __webpack_require__(/*! ./customer/customer-panel/customer-panel.component */ "./src/app/customer/customer-panel/customer-panel.component.ts");
-/* harmony import */ var _service_notification_service__WEBPACK_IMPORTED_MODULE_24__ = __webpack_require__(/*! ./service/notification-service */ "./src/app/service/notification-service.ts");
-/* harmony import */ var _app_nav_bar_app_nav_bar_component__WEBPACK_IMPORTED_MODULE_25__ = __webpack_require__(/*! ./app-nav-bar/app-nav-bar.component */ "./src/app/app-nav-bar/app-nav-bar.component.ts");
-/* harmony import */ var _modal_close_report_modal_close_report_modal_component__WEBPACK_IMPORTED_MODULE_26__ = __webpack_require__(/*! ./modal/close-report-modal/close-report-modal.component */ "./src/app/modal/close-report-modal/close-report-modal.component.ts");
-/* harmony import */ var _common_components_modal_builder__WEBPACK_IMPORTED_MODULE_27__ = __webpack_require__(/*! ./common-components/modal-builder */ "./src/app/common-components/modal-builder.ts");
+/* harmony import */ var _ng_bootstrap_ng_bootstrap__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(/*! @ng-bootstrap/ng-bootstrap */ "./node_modules/@ng-bootstrap/ng-bootstrap/fesm5/ng-bootstrap.js");
+/* harmony import */ var _admin_admin_panel_admin_panel_component__WEBPACK_IMPORTED_MODULE_20__ = __webpack_require__(/*! ./admin/admin-panel/admin-panel.component */ "./src/app/admin/admin-panel/admin-panel.component.ts");
+/* harmony import */ var _shared_module__WEBPACK_IMPORTED_MODULE_21__ = __webpack_require__(/*! ./shared.module */ "./src/app/shared.module.ts");
+/* harmony import */ var _customer_customer_panel_customer_panel_component__WEBPACK_IMPORTED_MODULE_22__ = __webpack_require__(/*! ./customer/customer-panel/customer-panel.component */ "./src/app/customer/customer-panel/customer-panel.component.ts");
+/* harmony import */ var _service_notification_service__WEBPACK_IMPORTED_MODULE_23__ = __webpack_require__(/*! ./service/notification-service */ "./src/app/service/notification-service.ts");
+/* harmony import */ var _app_nav_bar_app_nav_bar_component__WEBPACK_IMPORTED_MODULE_24__ = __webpack_require__(/*! ./app-nav-bar/app-nav-bar.component */ "./src/app/app-nav-bar/app-nav-bar.component.ts");
+/* harmony import */ var _modal_confirm_modal_confirm_modal_component__WEBPACK_IMPORTED_MODULE_25__ = __webpack_require__(/*! ./modal/confirm-modal/confirm-modal-component */ "./src/app/modal/confirm-modal/confirm-modal-component.ts");
+/* harmony import */ var _common_components_modal_builder__WEBPACK_IMPORTED_MODULE_26__ = __webpack_require__(/*! ./common-components/modal-builder */ "./src/app/common-components/modal-builder.ts");
+/* harmony import */ var _modal_create_order_modal_create_order_modal_component__WEBPACK_IMPORTED_MODULE_27__ = __webpack_require__(/*! ./modal/create-order-modal/create-order-modal.component */ "./src/app/modal/create-order-modal/create-order-modal.component.ts");
+/* harmony import */ var _service_customer_service__WEBPACK_IMPORTED_MODULE_28__ = __webpack_require__(/*! ./service/customer-service */ "./src/app/service/customer-service.ts");
+
 
 
 
@@ -331,8 +329,8 @@ __webpack_require__.r(__webpack_exports__);
 var appRoutes = [
     { path: '', component: _orders_manager_panel_orders_manager_orders_manager_component__WEBPACK_IMPORTED_MODULE_11__["OrdersManagerComponent"] },
     { path: 'stockreport/:id', component: _stock_report_panel_stock_report_stock_report_component__WEBPACK_IMPORTED_MODULE_12__["StockReportComponent"] },
-    { path: 'admin', component: _admin_admin_panel_admin_panel_component__WEBPACK_IMPORTED_MODULE_21__["AdminPanelComponent"] },
-    { path: 'customers', component: _customer_customer_panel_customer_panel_component__WEBPACK_IMPORTED_MODULE_23__["CustomerPanelComponent"] }
+    { path: 'admin', component: _admin_admin_panel_admin_panel_component__WEBPACK_IMPORTED_MODULE_20__["AdminPanelComponent"] },
+    { path: 'customers', component: _customer_customer_panel_customer_panel_component__WEBPACK_IMPORTED_MODULE_22__["CustomerPanelComponent"] }
 ];
 var AppModule = /** @class */ (function () {
     function AppModule() {
@@ -347,13 +345,13 @@ var AppModule = /** @class */ (function () {
                 _header_menu_header_menu_component__WEBPACK_IMPORTED_MODULE_16__["HeaderMenuComponent"],
                 _stock_report_panel_stock_report_header_stock_report_header_component__WEBPACK_IMPORTED_MODULE_17__["StockReportHeaderComponent"],
                 _orders_manager_panel_list_orders_list_orders_component__WEBPACK_IMPORTED_MODULE_18__["ListOrdersComponent"],
-                _orders_manager_panel_create_report_modal_create_report_modal_component__WEBPACK_IMPORTED_MODULE_19__["CreateReportModalComponent"],
-                _admin_admin_panel_admin_panel_component__WEBPACK_IMPORTED_MODULE_21__["AdminPanelComponent"],
-                _customer_customer_panel_customer_panel_component__WEBPACK_IMPORTED_MODULE_23__["CustomerPanelComponent"],
-                _app_nav_bar_app_nav_bar_component__WEBPACK_IMPORTED_MODULE_25__["AppNavBarComponent"],
-                _modal_close_report_modal_close_report_modal_component__WEBPACK_IMPORTED_MODULE_26__["CloseReportModalComponent"]
+                _admin_admin_panel_admin_panel_component__WEBPACK_IMPORTED_MODULE_20__["AdminPanelComponent"],
+                _customer_customer_panel_customer_panel_component__WEBPACK_IMPORTED_MODULE_22__["CustomerPanelComponent"],
+                _app_nav_bar_app_nav_bar_component__WEBPACK_IMPORTED_MODULE_24__["AppNavBarComponent"],
+                _modal_confirm_modal_confirm_modal_component__WEBPACK_IMPORTED_MODULE_25__["ConfirmModalComponent"],
+                _modal_create_order_modal_create_order_modal_component__WEBPACK_IMPORTED_MODULE_27__["CreateOrderModalComponent"]
             ],
-            entryComponents: [_orders_manager_panel_create_report_modal_create_report_modal_component__WEBPACK_IMPORTED_MODULE_19__["CreateReportModalComponent"], _modal_close_report_modal_close_report_modal_component__WEBPACK_IMPORTED_MODULE_26__["CloseReportModalComponent"]],
+            entryComponents: [_modal_create_order_modal_create_order_modal_component__WEBPACK_IMPORTED_MODULE_27__["CreateOrderModalComponent"], _modal_confirm_modal_confirm_modal_component__WEBPACK_IMPORTED_MODULE_25__["ConfirmModalComponent"]],
             imports: [
                 _angular_platform_browser__WEBPACK_IMPORTED_MODULE_1__["BrowserModule"],
                 _angular_common_http__WEBPACK_IMPORTED_MODULE_6__["HttpClientModule"],
@@ -363,11 +361,11 @@ var AppModule = /** @class */ (function () {
                 _angular_platform_browser_animations__WEBPACK_IMPORTED_MODULE_8__["BrowserAnimationsModule"],
                 _angular_platform_browser_animations__WEBPACK_IMPORTED_MODULE_8__["NoopAnimationsModule"],
                 _angular_forms__WEBPACK_IMPORTED_MODULE_3__["ReactiveFormsModule"],
-                _ng_bootstrap_ng_bootstrap__WEBPACK_IMPORTED_MODULE_20__["NgbModule"],
-                _shared_module__WEBPACK_IMPORTED_MODULE_22__["SharedModule"],
+                _ng_bootstrap_ng_bootstrap__WEBPACK_IMPORTED_MODULE_19__["NgbModule"],
+                _shared_module__WEBPACK_IMPORTED_MODULE_21__["SharedModule"],
                 _angular_router__WEBPACK_IMPORTED_MODULE_7__["RouterModule"].forRoot(appRoutes)
             ],
-            providers: [_service_order_service__WEBPACK_IMPORTED_MODULE_13__["OrderService"], _service_http_service__WEBPACK_IMPORTED_MODULE_14__["HttpService"], _service_admin_setting_service__WEBPACK_IMPORTED_MODULE_15__["AdminSettingService"], _service_notification_service__WEBPACK_IMPORTED_MODULE_24__["NotificationService"], _common_components_modal_builder__WEBPACK_IMPORTED_MODULE_27__["ModalBuilder"]],
+            providers: [_service_order_service__WEBPACK_IMPORTED_MODULE_13__["OrderService"], _service_http_service__WEBPACK_IMPORTED_MODULE_14__["HttpService"], _service_admin_setting_service__WEBPACK_IMPORTED_MODULE_15__["AdminSettingService"], _service_notification_service__WEBPACK_IMPORTED_MODULE_23__["NotificationService"], _common_components_modal_builder__WEBPACK_IMPORTED_MODULE_26__["ModalBuilder"], _service_customer_service__WEBPACK_IMPORTED_MODULE_28__["CustomerService"]],
             bootstrap: [_app_component__WEBPACK_IMPORTED_MODULE_9__["AppComponent"]]
         })
     ], AppModule);
@@ -399,8 +397,7 @@ var ModalBuilder = /** @class */ (function () {
         this.modalService = modalService;
     }
     ModalBuilder.prototype.open = function (component) {
-        var modalRef = this.modalService.open(component);
-        return modalRef;
+        return this.modalService.open(component);
     };
     ModalBuilder = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_2__["Injectable"])(),
@@ -565,21 +562,21 @@ var HeaderMenuComponent = /** @class */ (function () {
 
 /***/ }),
 
-/***/ "./src/app/modal/close-report-modal/close-report-modal.component.css":
-/*!***************************************************************************!*\
-  !*** ./src/app/modal/close-report-modal/close-report-modal.component.css ***!
-  \***************************************************************************/
+/***/ "./src/app/modal/confirm-modal/confirm-modal-component.css":
+/*!*****************************************************************!*\
+  !*** ./src/app/modal/confirm-modal/confirm-modal-component.css ***!
+  \*****************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJzcmMvYXBwL21vZGFsL2Nsb3NlLXJlcG9ydC1tb2RhbC9jbG9zZS1yZXBvcnQtbW9kYWwuY29tcG9uZW50LmNzcyJ9 */"
+module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJzcmMvYXBwL21vZGFsL2NvbmZpcm0tbW9kYWwvY29uZmlybS1tb2RhbC1jb21wb25lbnQuY3NzIn0= */"
 
 /***/ }),
 
-/***/ "./src/app/modal/close-report-modal/close-report-modal.component.html":
-/*!****************************************************************************!*\
-  !*** ./src/app/modal/close-report-modal/close-report-modal.component.html ***!
-  \****************************************************************************/
+/***/ "./src/app/modal/confirm-modal/confirm-modal-component.html":
+/*!******************************************************************!*\
+  !*** ./src/app/modal/confirm-modal/confirm-modal-component.html ***!
+  \******************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports) {
 
@@ -587,51 +584,171 @@ module.exports = "<div class=\"modal-header\">\n    <h4 class=\"modal-title\" id
 
 /***/ }),
 
-/***/ "./src/app/modal/close-report-modal/close-report-modal.component.ts":
-/*!**************************************************************************!*\
-  !*** ./src/app/modal/close-report-modal/close-report-modal.component.ts ***!
-  \**************************************************************************/
-/*! exports provided: CloseReportModalComponent */
+/***/ "./src/app/modal/confirm-modal/confirm-modal-component.ts":
+/*!****************************************************************!*\
+  !*** ./src/app/modal/confirm-modal/confirm-modal-component.ts ***!
+  \****************************************************************/
+/*! exports provided: ConfirmModalComponent */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "CloseReportModalComponent", function() { return CloseReportModalComponent; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ConfirmModalComponent", function() { return ConfirmModalComponent; });
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
 /* harmony import */ var _ng_bootstrap_ng_bootstrap__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @ng-bootstrap/ng-bootstrap */ "./node_modules/@ng-bootstrap/ng-bootstrap/fesm5/ng-bootstrap.js");
 
 
 
-var CloseReportModalComponent = /** @class */ (function () {
-    function CloseReportModalComponent(modal) {
+var ConfirmModalComponent = /** @class */ (function () {
+    function ConfirmModalComponent(modal) {
         this.modal = modal;
     }
-    CloseReportModalComponent.prototype.ngOnInit = function () {
+    ConfirmModalComponent.prototype.ngOnInit = function () {
     };
-    CloseReportModalComponent.prototype.onClickYes = function () {
+    ConfirmModalComponent.prototype.onClickYes = function () {
         this.modal.close(true);
     };
-    CloseReportModalComponent.prototype.onClickClose = function () {
+    ConfirmModalComponent.prototype.onClickClose = function () {
         this.modal.close(false);
     };
     tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Input"])(),
         tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:type", String)
-    ], CloseReportModalComponent.prototype, "title", void 0);
+    ], ConfirmModalComponent.prototype, "title", void 0);
     tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Input"])(),
         tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:type", String)
-    ], CloseReportModalComponent.prototype, "message", void 0);
-    CloseReportModalComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+    ], ConfirmModalComponent.prototype, "message", void 0);
+    ConfirmModalComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
-            selector: 'close-report-modal',
-            template: __webpack_require__(/*! ./close-report-modal.component.html */ "./src/app/modal/close-report-modal/close-report-modal.component.html"),
-            styles: [__webpack_require__(/*! ./close-report-modal.component.css */ "./src/app/modal/close-report-modal/close-report-modal.component.css")]
+            selector: 'confirm-modal',
+            template: __webpack_require__(/*! ./confirm-modal-component.html */ "./src/app/modal/confirm-modal/confirm-modal-component.html"),
+            styles: [__webpack_require__(/*! ./confirm-modal-component.css */ "./src/app/modal/confirm-modal/confirm-modal-component.css")]
         }),
         tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_ng_bootstrap_ng_bootstrap__WEBPACK_IMPORTED_MODULE_2__["NgbActiveModal"]])
-    ], CloseReportModalComponent);
-    return CloseReportModalComponent;
+    ], ConfirmModalComponent);
+    return ConfirmModalComponent;
+}());
+
+
+
+/***/ }),
+
+/***/ "./src/app/modal/create-order-modal/create-order-modal.component.css":
+/*!***************************************************************************!*\
+  !*** ./src/app/modal/create-order-modal/create-order-modal.component.css ***!
+  \***************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJzcmMvYXBwL21vZGFsL2NyZWF0ZS1vcmRlci1tb2RhbC9jcmVhdGUtb3JkZXItbW9kYWwuY29tcG9uZW50LmNzcyJ9 */"
+
+/***/ }),
+
+/***/ "./src/app/modal/create-order-modal/create-order-modal.component.html":
+/*!****************************************************************************!*\
+  !*** ./src/app/modal/create-order-modal/create-order-modal.component.html ***!
+  \****************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "<div class=\"modal-header\">\n  <h4 class=\"modal-title\" id=\"modal-basic-title\">New Order</h4>\n  <button type=\"button\" class=\"close\" aria-label=\"Close\" (click)=\"onClose()\">\n    <span aria-hidden=\"true\">&times;</span>\n  </button>\n</div>\n<form [formGroup]=\"createOrderForm\" (ngSubmit)=\"onSubmit()\">\n<div class=\"modal-body\">\n    <div class=\"form-group\">\n      <label for=\"Name\">Name</label>\n      <input type=\"text\" formControlName=\"name\"\n        (input)=\"settingChanged()\"\n        class=\"form-control\"/>\n        <label *ngIf=\"isFormSubmitted && createOrderForm.get('name').invalid\" class=\"text-danger\">A name is required.</label>\n    </div>\n    <div class=\"form-group\">\n      <label for=\"comment\">Comment/Description</label>\n      <input type=\"text\" formControlName=\"comment\"\n        (input)=\"settingChanged()\"\n        class=\"form-control\"/>\n    </div>\n    <div class=\"form-group\">\n      <label for=\"customer\">Customer</label>\n      <select type=\"text\" formControlName=\"customers\"\n        (input)=\"settingChanged()\"\n        class=\"form-control\">\n        <option *ngFor=\"let customer of customersArray\"\n        [ngValue]=\"customer\">{{customer.id}} | {{ customer.store.name }} | {{ customer.store.owner.firstName }} {{ customer.store.owner.lastName }}</option>\n      </select>\n      <label *ngIf=\"isFormSubmitted && createOrderForm.get('customers').invalid\" class=\"text-danger\">A customer is required.</label>\n    </div>\n</div>\n<div class=\"modal-footer\">\n  <button type=\"submit\" class=\"btn btn-outline-dark\" >Create</button>\n</div></form>"
+
+/***/ }),
+
+/***/ "./src/app/modal/create-order-modal/create-order-modal.component.ts":
+/*!**************************************************************************!*\
+  !*** ./src/app/modal/create-order-modal/create-order-modal.component.ts ***!
+  \**************************************************************************/
+/*! exports provided: CreateOrderModalComponent */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "CreateOrderModalComponent", function() { return CreateOrderModalComponent; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var _ng_bootstrap_ng_bootstrap__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @ng-bootstrap/ng-bootstrap */ "./node_modules/@ng-bootstrap/ng-bootstrap/fesm5/ng-bootstrap.js");
+/* harmony import */ var _angular_forms__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/forms */ "./node_modules/@angular/forms/fesm5/forms.js");
+/* harmony import */ var src_app_model_Customer__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! src/app/model/Customer */ "./src/app/model/Customer.ts");
+/* harmony import */ var src_app_service_customer_service__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! src/app/service/customer-service */ "./src/app/service/customer-service.ts");
+/* harmony import */ var src_app_model_Order__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! src/app/model/Order */ "./src/app/model/Order.ts");
+/* harmony import */ var src_app_service_order_service__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! src/app/service/order-service */ "./src/app/service/order-service.ts");
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
+
+
+
+
+
+
+
+
+
+var CreateOrderModalComponent = /** @class */ (function () {
+    function CreateOrderModalComponent(modal, customerService, orderService, router, formBuilder) {
+        this.modal = modal;
+        this.customerService = customerService;
+        this.orderService = orderService;
+        this.router = router;
+        this.formBuilder = formBuilder;
+        this.customersArray = [];
+        this.isFormSubmitted = false;
+    }
+    CreateOrderModalComponent.prototype.ngOnInit = function () {
+        var _this = this;
+        this.createOrderForm = this.formBuilder.group({
+            name: ['', [_angular_forms__WEBPACK_IMPORTED_MODULE_3__["Validators"].required]],
+            customers: [[], [_angular_forms__WEBPACK_IMPORTED_MODULE_3__["Validators"].required]],
+            comment: ['']
+        });
+        this.customerService.getAllCustomers().subscribe(function (data) {
+            console.log(data);
+            for (var i = 0; i < data.length; i++) {
+                _this.customersArray.push(src_app_model_Customer__WEBPACK_IMPORTED_MODULE_4__["Customer"].fromJson(data[i]));
+            }
+            _this.createOrderForm.setValue({
+                name: '',
+                comment: '',
+                customers: _this.customersArray
+            });
+        });
+    };
+    CreateOrderModalComponent.prototype.settingChanged = function () {
+    };
+    CreateOrderModalComponent.prototype.onSubmit = function () {
+        var _this = this;
+        this.isFormSubmitted = true;
+        var customer = this.createOrderForm.get("customers").value;
+        var orderName = this.createOrderForm.get("name").value;
+        var comment = this.createOrderForm.get("comment").value;
+        var order = new src_app_model_Order__WEBPACK_IMPORTED_MODULE_6__["Order"]();
+        order.name = orderName;
+        order.comment = comment;
+        order.customer = customer;
+        this.orderService.addOrder(order).subscribe(function (data) {
+            _this.modal.close(true);
+            _this.router.navigate(['/stockreport', data.id]);
+        }, function (error) {
+            console.log("ERROOoooooooooooooooooooR " + error);
+        });
+    };
+    CreateOrderModalComponent.prototype.onClose = function () {
+        this.modal.close(false);
+    };
+    CreateOrderModalComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
+            selector: 'app-create-order-modal',
+            template: __webpack_require__(/*! ./create-order-modal.component.html */ "./src/app/modal/create-order-modal/create-order-modal.component.html"),
+            styles: [__webpack_require__(/*! ./create-order-modal.component.css */ "./src/app/modal/create-order-modal/create-order-modal.component.css")]
+        }),
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_ng_bootstrap_ng_bootstrap__WEBPACK_IMPORTED_MODULE_2__["NgbActiveModal"],
+            src_app_service_customer_service__WEBPACK_IMPORTED_MODULE_5__["CustomerService"],
+            src_app_service_order_service__WEBPACK_IMPORTED_MODULE_7__["OrderService"],
+            _angular_router__WEBPACK_IMPORTED_MODULE_8__["Router"],
+            _angular_forms__WEBPACK_IMPORTED_MODULE_3__["FormBuilder"]])
+    ], CreateOrderModalComponent);
+    return CreateOrderModalComponent;
 }());
 
 
@@ -656,6 +773,7 @@ var Customer = /** @class */ (function () {
     }
     Customer.fromJson = function (data) {
         var customer = new Customer();
+        customer.id = data.id;
         customer.store = _Store__WEBPACK_IMPORTED_MODULE_0__["Store"].fromJson(data.store);
         return customer;
     };
@@ -850,65 +968,6 @@ var AdminSetting = /** @class */ (function () {
 
 /***/ }),
 
-/***/ "./src/app/orders-manager-panel/create-report-modal/create-report-modal.component.css":
-/*!********************************************************************************************!*\
-  !*** ./src/app/orders-manager-panel/create-report-modal/create-report-modal.component.css ***!
-  \********************************************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJzcmMvYXBwL29yZGVycy1tYW5hZ2VyLXBhbmVsL2NyZWF0ZS1yZXBvcnQtbW9kYWwvY3JlYXRlLXJlcG9ydC1tb2RhbC5jb21wb25lbnQuY3NzIn0= */"
-
-/***/ }),
-
-/***/ "./src/app/orders-manager-panel/create-report-modal/create-report-modal.component.html":
-/*!*********************************************************************************************!*\
-  !*** ./src/app/orders-manager-panel/create-report-modal/create-report-modal.component.html ***!
-  \*********************************************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-module.exports = "<div class=\"modal-header\">\n  <p>aaaaaaaaaaaa</p>\n</div>"
-
-/***/ }),
-
-/***/ "./src/app/orders-manager-panel/create-report-modal/create-report-modal.component.ts":
-/*!*******************************************************************************************!*\
-  !*** ./src/app/orders-manager-panel/create-report-modal/create-report-modal.component.ts ***!
-  \*******************************************************************************************/
-/*! exports provided: CreateReportModalComponent */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "CreateReportModalComponent", function() { return CreateReportModalComponent; });
-/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
-/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
-/* harmony import */ var _ng_bootstrap_ng_bootstrap__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @ng-bootstrap/ng-bootstrap */ "./node_modules/@ng-bootstrap/ng-bootstrap/fesm5/ng-bootstrap.js");
-
-
-
-var CreateReportModalComponent = /** @class */ (function () {
-    function CreateReportModalComponent(activeModal) {
-        this.activeModal = activeModal;
-    }
-    CreateReportModalComponent.prototype.ngOnInit = function () {
-    };
-    CreateReportModalComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
-        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
-            selector: 'create-report-modal',
-            template: __webpack_require__(/*! ./create-report-modal.component.html */ "./src/app/orders-manager-panel/create-report-modal/create-report-modal.component.html"),
-            styles: [__webpack_require__(/*! ./create-report-modal.component.css */ "./src/app/orders-manager-panel/create-report-modal/create-report-modal.component.css")]
-        }),
-        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_ng_bootstrap_ng_bootstrap__WEBPACK_IMPORTED_MODULE_2__["NgbActiveModal"]])
-    ], CreateReportModalComponent);
-    return CreateReportModalComponent;
-}());
-
-
-
-/***/ }),
-
 /***/ "./src/app/orders-manager-panel/list-orders/list-orders.component.css":
 /*!****************************************************************************!*\
   !*** ./src/app/orders-manager-panel/list-orders/list-orders.component.css ***!
@@ -927,7 +986,7 @@ module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"col-md-20 user-container\">\n    <table class=\"table table-striped\">\n        <thead>\n            <tr>\n                <th>ID</th>\n                <th>Name</th>\n                <th>Store</th>\n                <th>Status</th>\n                <th>Total Product</th>\n                <th>Total Qty</th>\n                <th>Total Price</th>\n                <th>Creation Date</th>\n                <th>Close Date</th>\n                <th></th>\n                <th></th>\n            </tr>\n        </thead>\n        <tbody>\n            <tr *ngFor=\"let order of ordersArray\">\n                <td>{{ order.id }}</td>\n                <td>{{ order.name }}</td>\n                <td>{{ order.customer.store.name }}</td>\n                <td>{{ order.status }}</td>\n                <td>{{ order.nbProduct }}</td>\n                <td>{{ order.totalItemQty }}</td>\n                <td>{{ order.totalPrice }} €</td>\n                <td>{{ order.createDatetime  | date:'medium' }}</td>\n                <td>{{ order.closeDatetime  | date:'medium' }}</td>\n                <td><button\n                    class=\"btn btn-success\"\n                    [routerLink]=\"['/stockreport', order.id]\"\n                    >See</button>\n                </td>\n                <td><button\n                    *ngIf=\"order.status !== 'CLOSED'\"\n                    class=\"btn btn-info\"\n                    (click)=\"onClickCloseOrder(order)\"\n                    >Close Order</button>\n                    <button\n                        *ngIf=\"order.status === 'CLOSED'\"\n                        class=\"btn btn-primary\"\n                        (click)=\"onClickNotify(order.id)\"\n                    >Notify</button>\n                </td>\n            </tr>\n        </tbody>\n    </table>\n    <div class=\"row justify-content-between\">\n        <div class=\"col-4\">\n            <ngb-pagination [collectionSize]=\"collectionSize\" [(page)]=\"page\" [pageSize]=\"pageSize\"></ngb-pagination>\n        </div>\n        <div class=\"col-2\">\n            <select class=\"custom-select\" [(ngModel)]=\"pageSize\">\n                <option [ngValue]=\"5\">5 items per page</option>\n                <option [ngValue]=\"10\">10 items per page</option>\n                <option [ngValue]=\"20\">20 items per page</option>\n            </select>\n        </div>\n    </div>\n</div>"
+module.exports = "<div class=\"col-md-20 user-container\">\n    <table class=\"table table-striped\">\n        <thead>\n            <tr>\n                <th>ID</th>\n                <th>Name</th>\n                <th>Store</th>\n                <th>Status</th>\n                <th>Total Product</th>\n                <th>Total Qty</th>\n                <th>Total Price</th>\n                <th>Creation Date</th>\n                <th>Close Date</th>\n                <th></th>\n                <th></th>\n            </tr>\n        </thead>\n        <tbody>\n            <tr *ngFor=\"let order of ordersArray\">\n                <td>{{ order.id }}</td>\n                <td>{{ order.name }}</td>\n                <td>{{ order.customer.store.name }}</td>\n                <td>{{ order.status }}</td>\n                <td>{{ order.nbProduct }}</td>\n                <td>{{ order.totalItemQty }}</td>\n                <td>{{ order.totalPrice }} €</td>\n                <td>{{ order.createDatetime  | date:'medium' }}</td>\n                <td>{{ order.closeDatetime  | date:'medium' }}</td>\n                <td><button\n                    class=\"btn btn-success\"\n                    [routerLink]=\"['/stockreport', order.id]\"\n                    >See</button>\n                </td>\n                <td><button\n                    *ngIf=\"order.status !== 'CLOSED'\"\n                    class=\"btn btn-info\"\n                    (click)=\"onClickCloseOrder(order)\"\n                    >Close Order</button>\n                    <button\n                        *ngIf=\"order.status === 'CLOSED'\"\n                        class=\"btn btn-primary\"\n                        (click)=\"onClickNotify(order)\"\n                    >Notify</button>\n                </td>\n            </tr>\n        </tbody>\n    </table>\n    <div class=\"row justify-content-between\">\n        <div class=\"col-4\">\n            <ngb-pagination [collectionSize]=\"collectionSize\" [(page)]=\"page\" [pageSize]=\"pageSize\"></ngb-pagination>\n        </div>\n        <div class=\"col-2\">\n            <select class=\"custom-select\" [(ngModel)]=\"pageSize\">\n                <option [ngValue]=\"5\">5 items per page</option>\n                <option [ngValue]=\"10\">10 items per page</option>\n                <option [ngValue]=\"20\">20 items per page</option>\n            </select>\n        </div>\n    </div>\n</div>"
 
 /***/ }),
 
@@ -946,7 +1005,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var src_app_service_order_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! src/app/service/order-service */ "./src/app/service/order-service.ts");
 /* harmony import */ var src_app_service_notification_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! src/app/service/notification-service */ "./src/app/service/notification-service.ts");
 /* harmony import */ var src_app_common_components_modal_builder__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! src/app/common-components/modal-builder */ "./src/app/common-components/modal-builder.ts");
-/* harmony import */ var src_app_modal_close_report_modal_close_report_modal_component__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! src/app/modal/close-report-modal/close-report-modal.component */ "./src/app/modal/close-report-modal/close-report-modal.component.ts");
+/* harmony import */ var src_app_modal_confirm_modal_confirm_modal_component__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! src/app/modal/confirm-modal/confirm-modal-component */ "./src/app/modal/confirm-modal/confirm-modal-component.ts");
 
 
 
@@ -966,7 +1025,7 @@ var ListOrdersComponent = /** @class */ (function () {
     };
     ListOrdersComponent.prototype.onClickCloseOrder = function (orderToClose) {
         var _this = this;
-        var modalRef = this.modalBuilder.open(src_app_modal_close_report_modal_close_report_modal_component__WEBPACK_IMPORTED_MODULE_5__["CloseReportModalComponent"]);
+        var modalRef = this.modalBuilder.open(src_app_modal_confirm_modal_confirm_modal_component__WEBPACK_IMPORTED_MODULE_5__["ConfirmModalComponent"]);
         modalRef.componentInstance.title = "Close Report Confirmation";
         modalRef.componentInstance.message = "Are you sure you want to close the order "
             + orderToClose.name + " for the store " + orderToClose.customer.store.name;
@@ -976,8 +1035,16 @@ var ListOrdersComponent = /** @class */ (function () {
             }
         });
     };
-    ListOrdersComponent.prototype.onClickNotify = function (orderId) {
-        this.notificationService.notifyOrder(orderId).subscribe(function (data) { return console.log("Notify done : " + data); });
+    ListOrdersComponent.prototype.onClickNotify = function (order) {
+        var _this = this;
+        var modalRef = this.modalBuilder.open(src_app_modal_confirm_modal_confirm_modal_component__WEBPACK_IMPORTED_MODULE_5__["ConfirmModalComponent"]);
+        modalRef.componentInstance.title = "Notification Confirmation";
+        modalRef.componentInstance.message = "Are you sure you want to get notification about the order " + order.name + " ?";
+        modalRef.result.then(function (response) {
+            if (response) {
+                _this.notificationService.notifyOrder(order.id).subscribe(function (data) { return console.log("Notify done : " + data); });
+            }
+        });
     };
     Object.defineProperty(ListOrdersComponent.prototype, "ordersArray", {
         get: function () {
@@ -1026,7 +1093,7 @@ module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "\n<ng-template #content let-modal>\n    <p>aaa</p>\n</ng-template>\n<div class=\"container-fluid\">\n    <div class=\"row justify-content-between\">\n        <div class=\"col-4\">\n            <button class=\"btn btn-primary\"\n                (click)=\"openCreateReportModal()\"\n            >New Order</button>\n        </div>\n        <div class=\"col-6\">\n            <div class=\"row justify-content-end\">\n                <div class=\"col-6\">\n                    <input #searchString type=\"text\"\n                        class=\"form-control\"\n                        (keyup.enter)=\"onClickSearch(searchString.value)\"\n                        placeholder=\"Type to search order...\">\n                </div>\n                <div class=\"col-4\">\n                    <button\n                        [disabled]=\"searchButtonDisabled\"\n                        class=\"btn btn-info search_button\"\n                        (click)=\"onClickSearch(searchString.value)\"\n                    >Search</button>\n                </div>\n            </div>\n        </div>\n    </div>\n    <br>\n    <h3 style=\"color: dimgray\" *ngIf=\"orders.length == 0\">{{ noOrdersFoundMessage }}</h3>\n    <div *ngIf=\"orders.length > 0\">\n        <list-orders\n            [orders]=\"orders\"\n        ></list-orders>\n    </div>\n</div>"
+module.exports = "<div class=\"container-fluid\">\n    <div class=\"row justify-content-between\">\n        <div class=\"col-4\">\n            <button class=\"btn btn-primary\"\n                (click)=\"openCreateReportModal()\"\n            >New Order</button>\n        </div>\n        <div class=\"col-6\">\n            <div class=\"row justify-content-end\">\n                <div class=\"col-6\">\n                    <input #searchString type=\"text\"\n                        class=\"form-control\"\n                        (keyup.enter)=\"onClickSearch(searchString.value)\"\n                        placeholder=\"Type to search order...\">\n                </div>\n                <div class=\"col-4\">\n                    <button\n                        [disabled]=\"searchButtonDisabled\"\n                        class=\"btn btn-info search_button\"\n                        (click)=\"onClickSearch(searchString.value)\"\n                    >Search</button>\n                </div>\n            </div>\n        </div>\n    </div>\n    <br>\n    <h3 style=\"color: dimgray\" *ngIf=\"orders.length == 0\">{{ noOrdersFoundMessage }}</h3>\n    <div *ngIf=\"orders.length > 0\">\n        <list-orders\n            [orders]=\"orders\"\n        ></list-orders>\n    </div>\n</div>"
 
 /***/ }),
 
@@ -1042,10 +1109,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "OrdersManagerComponent", function() { return OrdersManagerComponent; });
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
-/* harmony import */ var _create_report_modal_create_report_modal_component__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../create-report-modal/create-report-modal.component */ "./src/app/orders-manager-panel/create-report-modal/create-report-modal.component.ts");
-/* harmony import */ var src_app_service_order_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! src/app/service/order-service */ "./src/app/service/order-service.ts");
-/* harmony import */ var _model_Order__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../model/Order */ "./src/app/model/Order.ts");
-/* harmony import */ var _ng_bootstrap_ng_bootstrap__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @ng-bootstrap/ng-bootstrap */ "./node_modules/@ng-bootstrap/ng-bootstrap/fesm5/ng-bootstrap.js");
+/* harmony import */ var src_app_service_order_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! src/app/service/order-service */ "./src/app/service/order-service.ts");
+/* harmony import */ var _model_Order__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../model/Order */ "./src/app/model/Order.ts");
+/* harmony import */ var src_app_common_components_modal_builder__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! src/app/common-components/modal-builder */ "./src/app/common-components/modal-builder.ts");
+/* harmony import */ var src_app_modal_create_order_modal_create_order_modal_component__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! src/app/modal/create-order-modal/create-order-modal.component */ "./src/app/modal/create-order-modal/create-order-modal.component.ts");
 
 
 
@@ -1053,9 +1120,9 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var OrdersManagerComponent = /** @class */ (function () {
-    function OrdersManagerComponent(orderService, modalService) {
+    function OrdersManagerComponent(orderService, modalBuilder) {
         this.orderService = orderService;
-        this.modalService = modalService;
+        this.modalBuilder = modalBuilder;
         this.orders = [];
         this.searchButtonDisabled = false;
         this.isOrderListFiltered = false;
@@ -1101,16 +1168,13 @@ var OrdersManagerComponent = /** @class */ (function () {
     OrdersManagerComponent.prototype.parseOrderIntoArray = function (data) {
         var orders = [];
         for (var i = 0; i < data.length; i++) {
-            var item = _model_Order__WEBPACK_IMPORTED_MODULE_4__["Order"].fromJson(data[i]);
+            var item = _model_Order__WEBPACK_IMPORTED_MODULE_3__["Order"].fromJson(data[i]);
             orders.push(item);
         }
         return orders;
     };
     OrdersManagerComponent.prototype.openCreateReportModal = function () {
-        var modalRef = this.modalService.open(_create_report_modal_create_report_modal_component__WEBPACK_IMPORTED_MODULE_2__["CreateReportModalComponent"], {
-            size: 'lg'
-        });
-        modalRef.componentInstance.name = 'World';
+        var modalRef = this.modalBuilder.open(src_app_modal_create_order_modal_create_order_modal_component__WEBPACK_IMPORTED_MODULE_5__["CreateOrderModalComponent"]);
     };
     OrdersManagerComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
@@ -1118,8 +1182,8 @@ var OrdersManagerComponent = /** @class */ (function () {
             template: __webpack_require__(/*! ./orders-manager.component.html */ "./src/app/orders-manager-panel/orders-manager/orders-manager.component.html"),
             styles: [__webpack_require__(/*! ./orders-manager.component.css */ "./src/app/orders-manager-panel/orders-manager/orders-manager.component.css")]
         }),
-        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [src_app_service_order_service__WEBPACK_IMPORTED_MODULE_3__["OrderService"],
-            _ng_bootstrap_ng_bootstrap__WEBPACK_IMPORTED_MODULE_5__["NgbModal"]])
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [src_app_service_order_service__WEBPACK_IMPORTED_MODULE_2__["OrderService"],
+            src_app_common_components_modal_builder__WEBPACK_IMPORTED_MODULE_4__["ModalBuilder"]])
     ], OrdersManagerComponent);
     return OrdersManagerComponent;
 }());
@@ -1161,6 +1225,40 @@ var AdminSettingService = /** @class */ (function () {
         tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_http_service__WEBPACK_IMPORTED_MODULE_2__["HttpService"]])
     ], AdminSettingService);
     return AdminSettingService;
+}());
+
+
+
+/***/ }),
+
+/***/ "./src/app/service/customer-service.ts":
+/*!*********************************************!*\
+  !*** ./src/app/service/customer-service.ts ***!
+  \*********************************************/
+/*! exports provided: CustomerService */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "CustomerService", function() { return CustomerService; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
+/* harmony import */ var _http_service__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./http-service */ "./src/app/service/http-service.ts");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+
+
+
+var CustomerService = /** @class */ (function () {
+    function CustomerService(http) {
+        this.http = http;
+    }
+    CustomerService.prototype.getAllCustomers = function () {
+        return this.http.get("v1/customer/all");
+    };
+    CustomerService = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_2__["Injectable"])(),
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_http_service__WEBPACK_IMPORTED_MODULE_1__["HttpService"]])
+    ], CustomerService);
+    return CustomerService;
 }());
 
 
@@ -1274,6 +1372,14 @@ var OrderService = /** @class */ (function () {
     function OrderService(httpApi) {
         this.httpApi = httpApi;
     }
+    OrderService.prototype.addOrder = function (order) {
+        var request = {
+            "name": order.name,
+            "customerId": order.customer.id,
+            "comment": order.comment
+        };
+        return this.httpApi.post("/v1/stockReport/add", request);
+    };
     OrderService.prototype.getOrder = function (id) {
         console.log("Get report " + id);
         return this.httpApi.get("/v1/stockReport/get/" + id);
@@ -1405,7 +1511,7 @@ module.exports = ".table tr.active td {\n    background-color:#275e94 !important
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"col-md-25 user-container\">\n  <form>\n    <div class=\"form-group\">\n      <div class=\"input-group\">\n        <div class=\"input-group-addon\">\n          <i class=\"glyphicon glyphicon-search\"></i>\n        </div>\n        <input type=\"text\"\n          class=\"form-control\"\n          name=\"searchString\"\n          placeholder=\"Type to search...\"\n          [(ngModel)]=\"searchString\">\n      </div>\n    </div>\n  </form>\n  <table class=\"table table-striped\">\n    <thead>\n      <tr>\n        <th>ID</th>\n        <th>Name</th>\n        <th>Price</th>\n        <th>Quantity</th>\n        <th></th>\n        <th></th>\n        <th></th>\n      </tr>\n    </thead>\n    <tbody>\n      <tr *ngIf=\"orderStatus !== 'CLOSED'\">\n        <td></td>\n        <td>\n          <input class=\"form-control\" (blur)=\"onBlurNewItemInput()\" [(ngModel)]=\"inputName\">\n        </td>\n        <td>\n          <input class=\"form-control\" (blur)=\"onBlurNewItemInput()\" [(ngModel)]=\"inputPrice\">\n        </td>\n        <td>\n          <input class=\"form-control\" (blur)=\"onBlurNewItemInput()\" [(ngModel)]=\"inputQuantity\">\n        </td>\n        <td></td>\n        <td></td>\n        <td>\n          <button class=\"btn btn-info\" [disabled]=\"! areNewStockItemFieldsSet\" (click)=\"createNewStockItem()\"> Add\n            Stock Item</button>\n        </td>\n      </tr>\n      <tr *ngFor=\"let item of stockItems | filter : 'name' : searchString; let i = index\" (click)=\"setSelectedRow(i)\"\n        [class.active]=\"i == selectedRow\">\n        <td>{{ item.product.id }}</td>\n        <td contenteditable=\"orderStatus !== 'CLOSED'\"\n          (blur)=\"onChangeStockItemName(item, $event)\">\n          {{ item.product.name }}\n        </td>\n        <td\n          contenteditable=\"orderStatus !== 'CLOSED'\"\n          (blur)=\"onChangeStockItemPrice(item, $event)\">\n          {{ item.product.price }} €\n        </td>\n        <td\n          contenteditable=\"orderStatus !== 'CLOSED'\"\n          (blur)=\"onChangeStockItemQuantity(item, $event)\">\n          {{ item.quantity }}\n        </td>\n        <td></td>\n        <td></td>\n        <td>\n          <button *ngIf=\"orderStatus !== 'CLOSED'\" (click)=\"deleteStockItem(item.id)\" class=\"btn btn-danger\">\n            Delete</button>\n        </td>\n      </tr>\n    </tbody>\n  </table>\n</div>"
+module.exports = "<div class=\"user-container\">\n  <form>\n    <div class=\"form-group\">\n      <div class=\"input-group\">\n        <div class=\"input-group-addon\">\n          <i class=\"glyphicon glyphicon-search\"></i>\n        </div>\n        <input type=\"text\"\n          class=\"form-control\"\n          name=\"searchString\"\n          placeholder=\"Type to search...\"\n          [(ngModel)]=\"searchString\">\n      </div>\n    </div>\n  </form>\n  <table class=\"table table-striped\">\n    <thead>\n      <tr>\n        <th>ID</th>\n        <th>Name</th>\n        <th>Price</th>\n        <th>Quantity</th>\n        <th></th>\n        <th></th>\n        <th></th>\n      </tr>\n    </thead>\n    <tbody>\n      <tr *ngIf=\"orderStatus !== 'CLOSED'\">\n        <td></td>\n        <td>\n          <input class=\"form-control\" (blur)=\"onBlurNewItemInput()\" [(ngModel)]=\"inputName\">\n        </td>\n        <td>\n          <input class=\"form-control\" (blur)=\"onBlurNewItemInput()\" [(ngModel)]=\"inputPrice\">\n        </td>\n        <td>\n          <input class=\"form-control\" (blur)=\"onBlurNewItemInput()\" [(ngModel)]=\"inputQuantity\">\n        </td>\n        <td></td>\n        <td></td>\n        <td>\n          <button class=\"btn btn-info\" [disabled]=\"! areNewStockItemFieldsSet\" (click)=\"createNewStockItem()\"> Add\n            Stock Item</button>\n        </td>\n      </tr>\n      <tr *ngFor=\"let item of stockItems | filter : 'name' : searchString; let i = index\" (click)=\"setSelectedRow(i)\"\n        [class.active]=\"i == selectedRow\">\n        <td>{{ item.product.id }}</td>\n        <td contenteditable=\"orderStatus !== 'CLOSED'\"\n          (blur)=\"onChangeStockItemName(item, $event)\">\n          {{ item.product.name }}\n        </td>\n        <td\n          contenteditable=\"orderStatus !== 'CLOSED'\"\n          (blur)=\"onChangeStockItemPrice(item, $event)\">\n          {{ item.product.price }} €\n        </td>\n        <td\n          contenteditable=\"orderStatus !== 'CLOSED'\"\n          (blur)=\"onChangeStockItemQuantity(item, $event)\">\n          {{ item.quantity }}\n        </td>\n        <td></td>\n        <td></td>\n        <td>\n          <button *ngIf=\"orderStatus !== 'CLOSED'\" (click)=\"deleteStockItem(item.id)\" class=\"btn btn-danger\">\n            Delete</button>\n        </td>\n      </tr>\n    </tbody>\n  </table>\n</div>"
 
 /***/ }),
 
@@ -1540,7 +1646,7 @@ module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"container-fluid\">\n  <div class=\"row justify-content-between\">\n    <div class=\"col-md-4\">\n      <h2>{{ order.name }}</h2>\n      <p>Description/Comment : {{ order.comment }}</p>\n      <div style=\"overflow: hidden;\">\n        <p style=\"float: left\">Customer : &nbsp;</p>\n        <p style=\"float: left; font-weight: bold\"> {{ order.customer.store.name }}</p>\n      </div>\n      <div style=\"overflow: hidden;\">\n        <p style=\"float: left;\">Status :&nbsp;</p>\n        <p style=\"float: left; font-weight: bold\"> {{ order.status }}</p>\n      </div>\n    </div>\n    <div class=\"col-md-6\">\n        <button\n          style=\"float: right\"\n          class=\"btn btn-outline-info\"\n          (click)=\"onClickCloseOrder()\"\n          [disabled]=\"order.status === 'CLOSED'\"\n        >Close the order</button>\n    </div>\n  </div>\n</div>"
+module.exports = "<div class=\"container-fluid\" style=\"background-color: ivory; border-bottom: 6px solid red; border-radius: 5px;\">\n  <div class=\"row justify-content-between\">\n    <div class=\"col-md-4\">\n      <h2>{{ order.name }}</h2>\n      <p>Description/Comment : {{ order.comment }}</p>\n      <div style=\"overflow: hidden;\">\n        <p style=\"float: left\">Customer : &nbsp;</p>\n        <p style=\"float: left; font-weight: bold\"> {{ order.customer.store.name }}</p>\n      </div>\n      <div style=\"overflow: hidden;\">\n        <p style=\"float: left;\">Status :&nbsp;</p>\n        <p style=\"float: left; font-weight: bold\"> {{ order.status }}</p>\n      </div>\n    </div>\n    <div class=\"col-md-6\">\n        <button\n          style=\"float: right\"\n          class=\"btn btn-outline-info\"\n          (click)=\"onClickCloseOrder()\"\n          [disabled]=\"order.status === 'CLOSED'\"\n        >Close the order</button>\n    </div>\n  </div>\n</div>"
 
 /***/ }),
 
@@ -1558,7 +1664,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
 /* harmony import */ var _model_Order__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../model/Order */ "./src/app/model/Order.ts");
 /* harmony import */ var src_app_common_components_modal_builder__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! src/app/common-components/modal-builder */ "./src/app/common-components/modal-builder.ts");
-/* harmony import */ var src_app_modal_close_report_modal_close_report_modal_component__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! src/app/modal/close-report-modal/close-report-modal.component */ "./src/app/modal/close-report-modal/close-report-modal.component.ts");
+/* harmony import */ var src_app_modal_confirm_modal_confirm_modal_component__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! src/app/modal/confirm-modal/confirm-modal-component */ "./src/app/modal/confirm-modal/confirm-modal-component.ts");
 /* harmony import */ var src_app_service_order_service__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! src/app/service/order-service */ "./src/app/service/order-service.ts");
 
 
@@ -1576,7 +1682,7 @@ var StockReportHeaderComponent = /** @class */ (function () {
     };
     StockReportHeaderComponent.prototype.onClickCloseOrder = function () {
         var _this = this;
-        var modalRef = this.modalBuilder.open(src_app_modal_close_report_modal_close_report_modal_component__WEBPACK_IMPORTED_MODULE_4__["CloseReportModalComponent"]);
+        var modalRef = this.modalBuilder.open(src_app_modal_confirm_modal_confirm_modal_component__WEBPACK_IMPORTED_MODULE_4__["ConfirmModalComponent"]);
         modalRef.componentInstance.title = "Close Report Confirmation";
         modalRef.componentInstance.message = "Are you sure you want to close the order "
             + this.order.name + " for the store " + this.order.customer.store.name;
@@ -1628,7 +1734,7 @@ module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div>\n  <stock-report-header\n    [order]=\"order\"\n    (onCloseOrderEvent)=\"onCloseOrder()\"\n  ></stock-report-header>\n  <br>\n  <br>\n  <list-stock-item *ngIf=\"order\"\n    [orderId]=\"orderId\"\n    [stockItems]=\"order.items.values()\"\n    [orderStatus]=\"order.status\"\n    (onCreateStockItemEvent)=\"onNewStockItem($event)\"\n    (onChangeStockItemEvent)=\"onChangeStockItem($event)\"\n    (onDeleteStockItemEvent)=\"onDeleteStockItem($event)\"\n  ></list-stock-item>\n  <h3></h3>\n  <div class=\"container=fluid\">\n    <button class=\"btn btn-primary\"\n        (click)=\"onClickBack()\"\n        style=\"float: right\"\n    >Back</button>\n</div>\n</div>"
+module.exports = "<div>\n  <stock-report-header\n    [order]=\"order\"\n    (onCloseOrderEvent)=\"onCloseOrder()\"\n  ></stock-report-header>\n  <list-stock-item *ngIf=\"order\"\n    [orderId]=\"orderId\"\n    [stockItems]=\"order.items.values()\"\n    [orderStatus]=\"order.status\"\n    (onCreateStockItemEvent)=\"onNewStockItem($event)\"\n    (onChangeStockItemEvent)=\"onChangeStockItem($event)\"\n    (onDeleteStockItemEvent)=\"onDeleteStockItem($event)\"\n  ></list-stock-item>\n  <div class=\"container=fluid\">\n    <button class=\"btn btn-primary\"\n        (click)=\"onClickBack()\"\n        style=\"float: right\"\n    >Back</button>\n</div>\n</div>"
 
 /***/ }),
 

@@ -24,8 +24,7 @@ export class AdminPanelComponent implements OnInit {
   alertMessage: string
 
   constructor(private formBuilder: FormBuilder,
-              private adminSettingService: AdminSettingService,
-              private modalService: NgbModal) { }
+              private adminSettingService: AdminSettingService) { }
 
   ngOnInit() {
     this.adminForm = this.formBuilder.group({

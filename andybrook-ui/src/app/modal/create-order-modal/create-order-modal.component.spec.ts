@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { CreateReportModalComponent } from './create-report-modal.component';
+import { CreateOrderModalComponent } from './create-order-modal.component';
 
-describe('CreateReportModalComponent', () => {
-  let component: CreateReportModalComponent;
-  let fixture: ComponentFixture<CreateReportModalComponent>;
+describe('CreateOrderModalComponent', () => {
+  let component: CreateOrderModalComponent;
+  let fixture: ComponentFixture<CreateOrderModalComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ CreateReportModalComponent ]
+      declarations: [ CreateOrderModalComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(CreateReportModalComponent);
+    fixture = TestBed.createComponent(CreateOrderModalComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

@@ -10,7 +10,6 @@ export class ModalBuilder {
     }
 
     open(component: any): NgbModalRef  {
-        let modalRef = this.modalService.open(component)
-        return modalRef
+        return this.modalService.open(component)
     }
 }

@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { CreateReportModalComponent } from '../create-report-modal/create-report-modal.component'
 import { OrderService } from 'src/app/service/order-service';
 import { Order } from "../../model/Order";
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { ModalBuilder } from 'src/app/common-components/modal-builder';
+import { CreateOrderModalComponent } from 'src/app/modal/create-order-modal/create-order-modal.component';
 
 @Component({
   selector: 'orders-manager',
@@ -17,8 +18,7 @@ export class OrdersManagerComponent implements OnInit {
   isOrderListFiltered: boolean = false
 
   constructor(private orderService: OrderService,
-              private modalService: NgbModal
-              ) { }
+              private modalBuilder: ModalBuilder) { }
 
   ngOnInit() {
     this.getAllOrders()
@@ -75,11 +75,7 @@ export class OrdersManagerComponent implements OnInit {
   }
 
   openCreateReportModal() {
-    const modalRef = this.modalService.open(CreateReportModalComponent, {
-      size: 'lg'
-    });
-    modalRef.componentInstance.name = 'World'
-    
+    const modalRef = this.modalBuilder.open(CreateOrderModalComponent)
   }
 
 }

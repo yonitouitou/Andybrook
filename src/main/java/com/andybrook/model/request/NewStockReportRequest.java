@@ -37,7 +37,7 @@ public final class NewStockReportRequest {
     public String toString() {
         final StringBuilder sb = new StringBuilder("NewStockReportRequest{");
         sb.append("name='").append(name).append('\'');
-        sb.append(", custoemrId=").append(customerId);
+        sb.append(", customerId=").append(customerId);
         sb.append(", comment='").append(comment).append('\'');
         sb.append('}');
         return sb.toString();

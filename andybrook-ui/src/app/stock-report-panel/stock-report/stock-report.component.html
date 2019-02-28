@@ -3,8 +3,6 @@
     [order]="order"
     (onCloseOrderEvent)="onCloseOrder()"
   ></stock-report-header>
-  <br>
-  <br>
   <list-stock-item *ngIf="order"
     [orderId]="orderId"
     [stockItems]="order.items.values()"
@@ -13,7 +11,6 @@
     (onChangeStockItemEvent)="onChangeStockItem($event)"
     (onDeleteStockItemEvent)="onDeleteStockItem($event)"
   ></list-stock-item>
-  <h3></h3>
   <div class="container=fluid">
     <button class="btn btn-primary"
         (click)="onClickBack()"

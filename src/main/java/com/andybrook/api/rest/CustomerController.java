@@ -4,11 +4,11 @@ import com.andybrook.manager.customer.ICustomerManager;
 import com.andybrook.model.customer.Customer;
 import com.andybrook.model.customer.Owner;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.lang.System.Logger;
 import java.lang.System.Logger.Level;
+import java.util.List;
 
 @RestController
 @RequestMapping("v1/customer")
@@ -19,8 +19,16 @@ public class CustomerController extends AbstractController {
     @Autowired
     private ICustomerManager customerManager;
 
-    public Customer newCustomer(Customer customer) {
+    @PostMapping(path = "/add")
+    public Customer newCustomer(@RequestBody Customer customer) {
         LOGGER.log(Level.INFO, "New Customer request : " + customer);
         return customerManager.newCustomer(customer);
     }
+
+    @GetMapping(path = "/all")
+    public List<Customer> getAll() {
+        LOGGER.log(Level.INFO, "Get All customer request.");
+        return customerManager.getAll();
+    }
+
 }

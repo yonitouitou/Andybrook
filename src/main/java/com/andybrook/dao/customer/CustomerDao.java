@@ -6,9 +6,13 @@ import com.andybrook.dao.jpa.entity.factory.EntityFactory;
 import com.andybrook.exception.CustomerNotFound;
 import com.andybrook.model.customer.Customer;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.domain.Sort.Direction;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Repository
 public class CustomerDao implements ICustomerDao {
@@ -35,5 +39,13 @@ public class CustomerDao implements ICustomerDao {
             throw new CustomerNotFound(id);
         }
         return customer;
+    }
+
+    @Override
+    public List<Customer> getAll() {
+        List<CustomerEntity> entities = customerJpaRepository.findAll(new Sort(Direction.ASC, "storeEntity.name"));
+        return entities.stream()
+                .map(entityFactory::createCustomer)
+                .collect(Collectors.toList());
     }
 }

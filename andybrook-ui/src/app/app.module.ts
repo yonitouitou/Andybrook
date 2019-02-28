@@ -16,15 +16,16 @@ import { AdminSettingService } from './service/admin-setting-service';
 import { HeaderMenuComponent } from './header-menu/header-menu.component';
 import { StockReportHeaderComponent } from './stock-report-panel/stock-report-header/stock-report-header.component';
 import { ListOrdersComponent } from './orders-manager-panel/list-orders/list-orders.component';
-import { CreateReportModalComponent } from './orders-manager-panel/create-report-modal/create-report-modal.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { AdminPanelComponent } from './admin/admin-panel/admin-panel.component';
 import { SharedModule } from './shared.module';
 import { CustomerPanelComponent } from './customer/customer-panel/customer-panel.component';
 import { NotificationService } from './service/notification-service';
 import { AppNavBarComponent } from './app-nav-bar/app-nav-bar.component';
-import { CloseReportModalComponent } from './modal/close-report-modal/close-report-modal.component';
+import { ConfirmModalComponent } from './modal/confirm-modal/confirm-modal-component';
 import { ModalBuilder } from './common-components/modal-builder';
+import { CreateOrderModalComponent } from './modal/create-order-modal/create-order-modal.component';
+import { CustomerService } from './service/customer-service';
 
 const appRoutes: Routes = [
   { path: '', component: OrdersManagerComponent },
@@ -42,13 +43,13 @@ const appRoutes: Routes = [
     HeaderMenuComponent,
     StockReportHeaderComponent,
     ListOrdersComponent,
-    CreateReportModalComponent,
     AdminPanelComponent,
     CustomerPanelComponent,
     AppNavBarComponent,
-    CloseReportModalComponent
+    ConfirmModalComponent,
+    CreateOrderModalComponent
   ],
-  entryComponents: [CreateReportModalComponent, CloseReportModalComponent],
+  entryComponents: [CreateOrderModalComponent, ConfirmModalComponent],
   imports: [
     BrowserModule,
     HttpClientModule,
@@ -62,7 +63,7 @@ const appRoutes: Routes = [
     SharedModule,
     RouterModule.forRoot(appRoutes)
   ],
-  providers: [OrderService, HttpService, AdminSettingService, NotificationService, ModalBuilder],
+  providers: [OrderService, HttpService, AdminSettingService, NotificationService, ModalBuilder, CustomerService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
