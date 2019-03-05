@@ -25,6 +25,12 @@ public class CustomerController extends AbstractController {
         return customerManager.newCustomer(customer);
     }
 
+    @PostMapping(path = "/update")
+    public Customer updateCustomer(@RequestBody Customer customer) {
+        LOGGER.log(Level.INFO, "Update Customer request : " + customer);
+        return customerManager.updateCustomer(customer);
+    }
+
     @GetMapping(path = "/all")
     public List<Customer> getAll() {
         LOGGER.log(Level.INFO, "Get All customer request.");

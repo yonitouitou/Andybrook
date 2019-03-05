@@ -2,7 +2,7 @@ package com.andybrook.api.rest;
 
 import com.andybrook.api.rest.ctx.GenericRequestById;
 import com.andybrook.api.rest.ctx.GenericRequestByIds;
-import com.andybrook.exception.StockReportClosed;
+import com.andybrook.exception.OrderClosed;
 import com.andybrook.exception.OrderNotFound;
 import com.andybrook.exception.StoreNotFound;
 import com.andybrook.manager.stock.IOrderManager;
@@ -33,13 +33,13 @@ public class OrderController extends AbstractController {
     }
 
     @PostMapping(path = "/update")
-    public void updateOrder(@RequestBody UpdateStockReportRequest request) throws OrderNotFound, StockReportClosed {
+    public void updateOrder(@RequestBody UpdateStockReportRequest request) throws OrderNotFound, OrderClosed {
         LOGGER.log(Level.INFO, "Update report request received : " + request.toString());
         orderManager.updateStockReport(request);
     }
 
     @PostMapping(path = "/close")
-    public StockReport closeOrder(@RequestBody GenericRequestById request) throws OrderNotFound, StockReportClosed {
+    public StockReport closeOrder(@RequestBody GenericRequestById request) throws OrderNotFound, OrderClosed {
         LOGGER.log(Level.INFO, "Close report request received : " + request.toString());
         return orderManager.closeStockReport(request.getId());
     }

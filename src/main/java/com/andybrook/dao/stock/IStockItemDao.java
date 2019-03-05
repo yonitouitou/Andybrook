@@ -10,7 +10,7 @@ public interface IStockItemDao{
 
     <T extends Product> Optional<StockItem<T>> getStockItem(long id);
 
-    <T extends Product> StockItem<T> updateStockItem(long stockReportId, StockItem<T> item);
+    <T extends Product> StockItem<T> updateStockItem(StockItem<T> item);
 
     <T extends Product> Map<Long, StockItem<T>> getAllStockItems();
 

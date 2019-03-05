@@ -9,4 +9,6 @@ public interface ICustomerManager {
     Customer newCustomer(Customer customer);
 
     List<Customer> getAll();
+
+    Customer updateCustomer(Customer customer);
 }

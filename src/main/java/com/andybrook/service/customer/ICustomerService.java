@@ -11,5 +11,7 @@ public interface ICustomerService {
     Customer getById(long id);
 
     List<Customer> getAll();
+
+    Customer updateCustomer(Customer customer);
 }
 

@@ -26,6 +26,10 @@ public class StockItem<T extends Product> {
         return quantity * product.getPrice();
     }
 
+    public void incrementQuantity() {
+        quantity = quantity + 1;
+    }
+
     public Long getId() {
         return id;
     }

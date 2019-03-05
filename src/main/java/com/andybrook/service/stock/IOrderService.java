@@ -1,6 +1,6 @@
 package com.andybrook.service.stock;
 
-import com.andybrook.exception.StockReportClosed;
+import com.andybrook.exception.OrderClosed;
 import com.andybrook.exception.OrderNotFound;
 import com.andybrook.exception.StoreNotFound;
 import com.andybrook.model.product.Product;
@@ -16,19 +16,21 @@ public interface IOrderService {
 
     StockReport newStockReport(NewStockReportRequest request) throws StoreNotFound;
 
-    void updateStockReport(UpdateStockReportRequest request) throws OrderNotFound, StockReportClosed;
+    void updateStockReport(UpdateStockReportRequest request) throws OrderNotFound, OrderClosed;
 
-    StockReport getStockReport(long id) throws OrderNotFound;
+    StockReport getOrder(long id) throws OrderNotFound;
 
     Set<StockReport> getAll();
 
     void addItemToReport(long stockRepordId, StockItem<? extends Product> item) throws OrderNotFound;
 
-    StockReport closeStockReport(long id) throws OrderNotFound, StockReportClosed;
+    StockReport closeStockReport(long id) throws OrderNotFound, OrderClosed;
 
     List<StockReport> getOrdersByName(String name);
 
     List<StockReport> getOrderByNameContaining(String name);
 
     List<StockReport> getOrders(List<Long> ids);
+
+    boolean canModifyOrder(long id) throws OrderNotFound;
 }

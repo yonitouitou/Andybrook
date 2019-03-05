@@ -1,6 +1,6 @@
 package com.andybrook.manager.stock;
 
-import com.andybrook.exception.StockReportClosed;
+import com.andybrook.exception.OrderClosed;
 import com.andybrook.exception.OrderNotFound;
 import com.andybrook.exception.StoreNotFound;
 import com.andybrook.model.request.NewStockReportRequest;
@@ -14,13 +14,13 @@ public interface IOrderManager {
 
     StockReport newStockReport(NewStockReportRequest request) throws StoreNotFound;
 
-    void updateStockReport(UpdateStockReportRequest updateRequest) throws OrderNotFound, StockReportClosed;
+    void updateStockReport(UpdateStockReportRequest updateRequest) throws OrderNotFound, OrderClosed;
 
     StockReport getStockReport(long id) throws OrderNotFound;
 
     Set<StockReport> getAll();
 
-    StockReport closeStockReport(long id) throws OrderNotFound, StockReportClosed;
+    StockReport closeStockReport(long id) throws OrderNotFound, OrderClosed;
 
     List<StockReport> getOrdersByName(String name);
 

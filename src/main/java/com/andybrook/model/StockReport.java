@@ -1,9 +1,8 @@
 package com.andybrook.model;
 
 import com.andybrook.enums.ReportStatus;
-import com.andybrook.exception.StockReportClosed;
+import com.andybrook.exception.OrderClosed;
 import com.andybrook.model.customer.Customer;
-import com.andybrook.model.customer.Store;
 import com.andybrook.model.product.Product;
 
 import java.time.LocalDateTime;
@@ -39,9 +38,9 @@ public class StockReport {
         items.remove(stockItemId);
     }
 
-    public void close() throws StockReportClosed {
+    public void close() throws OrderClosed {
         if (isClosed()) {
-            throw new StockReportClosed(id);
+            throw new OrderClosed(id);
         }
         status = ReportStatus.CLOSED;
         closeDateTime = LocalDateTime.now();

@@ -15,7 +15,7 @@ public class CustomerService implements ICustomerService {
 
     @Override
     public Customer newCustomer(Customer customer) {
-        return dao.update(customer);
+        return update(customer);
     }
 
     @Override
@@ -26,5 +26,14 @@ public class CustomerService implements ICustomerService {
     @Override
     public List<Customer> getAll() {
         return dao.getAll();
+    }
+
+    @Override
+    public Customer updateCustomer(Customer customer) {
+        return update(customer);
+    }
+
+    private Customer update(Customer customer) {
+        return dao.update(customer);
     }
 }

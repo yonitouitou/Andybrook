@@ -24,4 +24,9 @@ public class CustomerManager implements ICustomerManager {
     public List<Customer> getAll() {
         return customerService.getAll();
     }
+
+    @Override
+    public Customer updateCustomer(Customer customer) {
+        return customerService.updateCustomer(customer);
+    }
 }

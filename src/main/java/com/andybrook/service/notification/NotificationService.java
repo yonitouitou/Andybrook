@@ -21,7 +21,7 @@ public class NotificationService implements INotificationService {
 
     @Override
     public void notifyOrder(long orderId) throws OrderNotFound {
-        StockReport order = orderService.getStockReport(orderId);
+        StockReport order = orderService.getOrder(orderId);
         notifyOrderClosed(order);
     }
 

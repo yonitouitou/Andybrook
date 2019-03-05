@@ -1,6 +1,6 @@
 package com.andybrook.manager.stock;
 
-import com.andybrook.exception.StockReportClosed;
+import com.andybrook.exception.OrderClosed;
 import com.andybrook.exception.OrderNotFound;
 import com.andybrook.exception.StoreNotFound;
 import com.andybrook.manager.notification.INotificationManager;
@@ -31,13 +31,13 @@ public class OrderManager implements IOrderManager {
     }
 
     @Override
-    public void updateStockReport(UpdateStockReportRequest updateRequest) throws OrderNotFound, StockReportClosed {
+    public void updateStockReport(UpdateStockReportRequest updateRequest) throws OrderNotFound, OrderClosed {
         stockReportService.updateStockReport(updateRequest);
     }
 
     @Override
     public StockReport getStockReport(long id) throws OrderNotFound {
-        return stockReportService.getStockReport(id);
+        return stockReportService.getOrder(id);
     }
 
     @Override
@@ -61,7 +61,7 @@ public class OrderManager implements IOrderManager {
     }
 
     @Override
-    public StockReport closeStockReport(long id) throws OrderNotFound, StockReportClosed {
+    public StockReport closeStockReport(long id) throws OrderNotFound, OrderClosed {
         StockReport stockReport = stockReportService.closeStockReport(id);
         notificationManager.notifyOrderClosed(stockReport);
         return stockReport;

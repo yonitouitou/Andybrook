@@ -1,7 +1,7 @@
 package com.andybrook.service.stock;
 
 import com.andybrook.dao.stock.IOrderDao;
-import com.andybrook.exception.StockReportClosed;
+import com.andybrook.exception.OrderClosed;
 import com.andybrook.exception.OrderNotFound;
 import com.andybrook.language.LanguageResolver;
 import com.andybrook.model.StockItem;
@@ -27,7 +27,7 @@ import static com.andybrook.language.Msg.Error.STOCK_REPORT_NOT_FOUND;
 public class OrderService implements IOrderService {
 
     @Autowired
-    private IOrderDao stockReportDao;
+    private IOrderDao orderDao;
     @Autowired
     private ICustomerService customerService;
     @Autowired
@@ -40,32 +40,32 @@ public class OrderService implements IOrderService {
         Customer customer = customerService.getById(request.getCustomerId());
         StockReport report = new StockReport(null, request.getName(), customer, new HashMap<>());
         report.setComment(request.getComment());
-        return stockReportDao.newStockReport(report);
+        return orderDao.newStockReport(report);
     }
 
     @Override
-    public void updateStockReport(UpdateStockReportRequest request) throws OrderNotFound, StockReportClosed {
-        Optional<StockReport> stockReportOpt = stockReportDao.findStockReport(request.getId());
+    public void updateStockReport(UpdateStockReportRequest request) throws OrderNotFound, OrderClosed {
+        Optional<StockReport> stockReportOpt = orderDao.findStockReport(request.getId());
         if (stockReportOpt.isPresent() && stockReportOpt.get().isOpen()) {
-            stockReportDao.updateStockReport(request, false);
+            orderDao.updateStockReport(request, false);
         } else {
-            throw new StockReportClosed(request.getId());
+            throw new OrderClosed(request.getId());
         }
     }
 
     @Override
-    public StockReport getStockReport(long id) throws OrderNotFound {
-        return getStockReportById(id);
+    public StockReport getOrder(long id) throws OrderNotFound {
+        return getOrderById(id);
     }
 
     @Override
     public Set<StockReport> getAll() {
-        return stockReportDao.getAll(adminSettingService.getOrdersNbToShow());
+        return orderDao.getAll(adminSettingService.getOrdersNbToShow());
     }
 
     @Override
     public void addItemToReport(long stockReportId, StockItem<? extends Product> item) throws OrderNotFound {
-        Optional<StockReport> stockReportOpt = stockReportDao.findStockReport(stockReportId);
+        Optional<StockReport> stockReportOpt = orderDao.findStockReport(stockReportId);
         if (stockReportOpt.isPresent()) {
             StockReport stockReport = stockReportOpt.get();
             Product product = item.getProduct();
@@ -73,39 +73,45 @@ public class OrderService implements IOrderService {
                 product.setId(IdGenerator.generateId());
             }
             stockReport.addItem(item);
-            stockReportDao.updateStockReport(stockReport);
+            orderDao.updateStockReport(stockReport);
         } else {
             throw new OrderNotFound(languageResolver.get(STOCK_REPORT_NOT_FOUND + " : " + stockReportId));
         }
     }
 
     @Override
-    public StockReport closeStockReport(long id) throws OrderNotFound, StockReportClosed {
-        StockReport report = getStockReport(id);
+    public StockReport closeStockReport(long id) throws OrderNotFound, OrderClosed {
+        StockReport report = getOrder(id);
         report.close();
-        return stockReportDao.updateStockReport(report);
-    }
-
-    private StockReport getStockReportById(long id) throws OrderNotFound {
-        Optional<StockReport> reportOpt = stockReportDao.findStockReport(id);
-        if (! reportOpt.isPresent()) {
-            throw new OrderNotFound(languageResolver.get(STOCK_REPORT_NOT_FOUND + " : " + id));
-        }
-        return reportOpt.get();
+        return orderDao.updateStockReport(report);
     }
 
     @Override
     public List<StockReport> getOrdersByName(String name) {
-        return stockReportDao.getByName(name);
+        return orderDao.getByName(name);
     }
 
     @Override
     public List<StockReport> getOrderByNameContaining(String name) {
-        return stockReportDao.getByNameContaining(name);
+        return orderDao.getByNameContaining(name);
     }
 
     @Override
     public List<StockReport> getOrders(List<Long> ids) {
-        return stockReportDao.getOrders(ids);
+        return orderDao.getOrders(ids);
+    }
+
+    @Override
+    public boolean canModifyOrder(long id) throws OrderNotFound {
+        StockReport order = getOrder(id);
+        return order.isOpen();
+    }
+
+    private StockReport getOrderById(long id) throws OrderNotFound {
+        Optional<StockReport> reportOpt = orderDao.findStockReport(id);
+        if (! reportOpt.isPresent()) {
+            throw new OrderNotFound(languageResolver.get(STOCK_REPORT_NOT_FOUND + " : " + id));
+        }
+        return reportOpt.get();
     }
 }
