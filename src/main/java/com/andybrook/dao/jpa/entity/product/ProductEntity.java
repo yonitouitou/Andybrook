@@ -1,5 +1,6 @@
 package com.andybrook.dao.jpa.entity.product;
 
+import com.andybrook.dao.jpa.entity.stock.BarCodeEntity;
 import com.andybrook.enums.ProductType;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
@@ -7,6 +8,7 @@ import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.util.Set;
 
 import static com.andybrook.dao.jpa.entity.product.ProductEntity.DISCRIMINATOR_COLUMN_TYPE;
 import static com.andybrook.dao.jpa.entity.product.ProductEntity.TABLE_PRODUCT;
@@ -22,6 +24,7 @@ public abstract class ProductEntity {
     static final String DISCRIMINATOR_COLUMN_TYPE = "type";
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     protected Long id;
 
     @Column(name = "name", nullable = false)
@@ -33,6 +36,10 @@ public abstract class ProductEntity {
     @Transient
     @Column(name = "type", nullable = false)
     protected ProductType type;
+
+    @OneToMany(fetch = FetchType.LAZY)
+    @JoinColumn(name = "productid")
+    protected Set<BarCodeEntity> BarCodeEntities;
 
     @CreatedDate
     @Column(name = "createddatetime", nullable = false, updatable = false)
@@ -84,6 +91,14 @@ public abstract class ProductEntity {
         this.type = type;
     }
 
+    public Set<BarCodeEntity> getBarCodeEntities() {
+        return BarCodeEntities;
+    }
+
+    public void setBarCodeEntities(Set<BarCodeEntity> barCodeEntities) {
+        BarCodeEntities = barCodeEntities;
+    }
+
     public LocalDateTime getCreatedDatetime() {
         return createdDatetime;
     }
@@ -98,5 +113,18 @@ public abstract class ProductEntity {
 
     public void setLastModifiedDateTime(LocalDateTime lastModifiedDateTime) {
         this.lastModifiedDateTime = lastModifiedDateTime;
+    }
+
+    @Override
+    public String toString() {
+        return "ProductEntity{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", price=" + price +
+                ", type=" + type +
+                ", BarCodeEntities=" + BarCodeEntities +
+                ", createdDatetime=" + createdDatetime +
+                ", lastModifiedDateTime=" + lastModifiedDateTime +
+                '}';
     }
 }

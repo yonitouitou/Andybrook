@@ -1,12 +1,12 @@
 package com.andybrook.service.stock;
 
-import com.andybrook.dao.stock.IStockItemDao;
-import com.andybrook.exception.StockItemNotFound;
-import com.andybrook.exception.OrderClosed;
-import com.andybrook.exception.OrderNotFound;
+import com.andybrook.dao.stock.IStockDao;
+import com.andybrook.exception.*;
+import com.andybrook.model.BarCode;
 import com.andybrook.model.StockItem;
-import com.andybrook.model.StockReport;
 import com.andybrook.model.product.Product;
+import com.andybrook.service.order.IOrderService;
+import com.andybrook.util.IdGenerator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -18,28 +18,24 @@ import java.util.Optional;
 public class StockItemService implements IStockItemService {
 
     @Autowired
-    private IStockItemDao stockItemDao;
+    private IStockDao stockItemDao;
     @Autowired
     private IOrderService orderService;
+    @Autowired
+    private IBarCodeService barCodeService;
 
     @Override
     @Transactional
-    public StockItem<? extends Product> newStockItem(long stockReportId, StockItem<? extends Product> item)
+    public StockItem<? extends Product> newStockItem(long orderId, StockItem<? extends Product> item)
             throws OrderNotFound, OrderClosed {
-        StockReport stockReport = orderService.getOrder(stockReportId);
-        if (! stockReport.isClosed()) {
-            orderService.addItemToReport(stockReportId, item);
-        } else {
-            throw new OrderClosed(stockReportId);
-        }
-        return item;
+        item.setId(IdGenerator.generateId());
+        return orderService.addItemToOrder(orderId, item);
     }
 
     @Override
     @Transactional
     public StockItem<? extends Product> updateStockItem(long orderId, StockItem<? extends Product> item)
             throws OrderNotFound, OrderClosed {
-
         StockItem<? extends Product> stockItem;
         if (orderService.canModifyOrder(orderId)) {
             stockItem = update(item);
@@ -67,7 +63,6 @@ public class StockItemService implements IStockItemService {
     }
 
     @Override
-    @Transactional
     public boolean removeStockItem(long id) {
         stockItemDao.removeStockItem(id);
         return true;
@@ -87,6 +82,33 @@ public class StockItemService implements IStockItemService {
             }
         } else {
             throw new OrderNotFound(orderId);
+        }
+        return stockItem;
+    }
+
+    @Override
+    public StockItem<? extends Product> incrementQuantityOrCreate(long orderId, StockItem<? extends Product> item) throws OrderNotFound, OrderClosed {
+        StockItem<? extends Product> result;
+        if (orderService.canModifyOrder(orderId)) {
+            if (item.exist()) {
+                item.incrementQuantity();
+            }
+            result = stockItemDao.updateStockItem(item);
+        } else {
+            throw new OrderClosed(orderId);
+        }
+        return result;
+    }
+
+    @Override
+    public StockItem<? extends Product> getStockItemByBarCode(String barCodeId) throws BarCodeNotFound {
+        StockItem<? extends Product> stockItem;
+        long stockItemId = barCodeService.getStockItemIdByBarCodeId(barCodeId);
+        Optional<StockItem<Product>> stockItemOpt = stockItemDao.getStockItem(stockItemId);
+        if (stockItemOpt.isPresent()) {
+            stockItem = stockItemOpt.get();
+        } else {
+            throw new BarCodeNotFound(barCodeId);
         }
         return stockItem;
     }

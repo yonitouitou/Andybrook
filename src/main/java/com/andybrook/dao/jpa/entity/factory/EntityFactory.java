@@ -7,10 +7,12 @@ import com.andybrook.dao.jpa.entity.customer.OwnerEntity;
 import com.andybrook.dao.jpa.entity.product.ProductEntity;
 import com.andybrook.dao.jpa.entity.setting.AdminSettingEntity;
 import com.andybrook.dao.jpa.entity.setting.notification.NotificationPolicyEntity;
+import com.andybrook.dao.jpa.entity.stock.BarCodeEntity;
 import com.andybrook.dao.jpa.entity.stock.StockItemEntity;
 import com.andybrook.dao.jpa.entity.stock.StockReportEntity;
 import com.andybrook.dao.jpa.entity.store.StoreEntity;
 import com.andybrook.enums.ProductType;
+import com.andybrook.model.BarCode;
 import com.andybrook.model.customer.Customer;
 import com.andybrook.model.customer.Owner;
 import com.andybrook.model.StockItem;
@@ -32,6 +34,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 @Component
+@SuppressWarnings("unchecked")
 public final class EntityFactory {
 
     private static Logger LOGGER = System.getLogger(EntityFactory.class.getSimpleName());
@@ -152,5 +155,15 @@ public final class EntityFactory {
     public final Customer createCustomer(CustomerEntity entity) {
         IEntityConverter converter = entityConverterMapByEntityClass.get(entity.getClass());
         return (Customer) converter.toModel(entity);
+    }
+
+    public final BarCodeEntity createBarCodeEntity(BarCode model) {
+        IEntityConverter converter = entityConverterMapByModelClass.get(model.getClass());
+        return (BarCodeEntity) converter.toEntity(model);
+    }
+
+    public final BarCode createBarCode(BarCodeEntity entity) {
+        IEntityConverter converter = entityConverterMapByEntityClass.get(entity.getClass());
+        return (BarCode) converter.toModel(entity);
     }
 }

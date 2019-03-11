@@ -33,7 +33,7 @@ export class OrderService {
         console.log("Add item[ " + ", " + item.quantity + " to order " + order.id)
         let stockItem
         
-        this.httpApi.post("/v1/stock/update", this.toUpdateRequest(order, item)).subscribe(
+        this.httpApi.post("/v1/order/update", this.toUpdateRequest(order, item)).subscribe(
             data => {
                 let product = new Product(data.item.product.id, data.item.product.name, data.item.product.price)
                 stockItem = new StockItem(data.item.id, data.item.quantity, product)
@@ -48,7 +48,7 @@ export class OrderService {
 
     updateStockItem(order: Order, itemToUpdate: StockItem) {
         console.log("update order " + order.id + " | " + itemToUpdate)
-        this.httpApi.post("/v1/stock/update", this.toUpdateRequest(order, itemToUpdate)).subscribe(data => {
+        this.httpApi.post("/v1/order/update", this.toUpdateRequest(order, itemToUpdate)).subscribe(data => {
             order.id = data.id
             order.name = data.name
             order.comment = data.comment
@@ -61,7 +61,7 @@ export class OrderService {
 
     deleteItem(order: Order, stockItemIdToDelete: number) {
         console.log("Delete Item : " + stockItemIdToDelete)
-        this.httpApi.delete("/v1/stock/delete/" + stockItemIdToDelete).subscribe(
+        this.httpApi.delete("/v1/order/delete/" + stockItemIdToDelete).subscribe(
             data => {
                 console.log(data)
                 order.items.delete(stockItemIdToDelete)

@@ -1391,7 +1391,7 @@ var OrderService = /** @class */ (function () {
     OrderService.prototype.addItem = function (order, item) {
         console.log("Add item[ " + ", " + item.quantity + " to order " + order.id);
         var stockItem;
-        this.httpApi.post("/v1/stock/update", this.toUpdateRequest(order, item)).subscribe(function (data) {
+        this.httpApi.post("/v1/order/update", this.toUpdateRequest(order, item)).subscribe(function (data) {
             var product = new _model_Product__WEBPACK_IMPORTED_MODULE_2__["Product"](data.item.product.id, data.item.product.name, data.item.product.price);
             stockItem = new _model_StockItem__WEBPACK_IMPORTED_MODULE_1__["StockItem"](data.item.id, data.item.quantity, product);
             order.items.set(stockItem.id, stockItem);
@@ -1402,7 +1402,7 @@ var OrderService = /** @class */ (function () {
     };
     OrderService.prototype.updateStockItem = function (order, itemToUpdate) {
         console.log("update order " + order.id + " | " + itemToUpdate);
-        this.httpApi.post("/v1/stock/update", this.toUpdateRequest(order, itemToUpdate)).subscribe(function (data) {
+        this.httpApi.post("/v1/order/update", this.toUpdateRequest(order, itemToUpdate)).subscribe(function (data) {
             order.id = data.id;
             order.name = data.name;
             order.comment = data.comment;
@@ -1414,7 +1414,7 @@ var OrderService = /** @class */ (function () {
     };
     OrderService.prototype.deleteItem = function (order, stockItemIdToDelete) {
         console.log("Delete Item : " + stockItemIdToDelete);
-        this.httpApi.delete("/v1/stock/delete/" + stockItemIdToDelete).subscribe(function (data) {
+        this.httpApi.delete("/v1/order/delete/" + stockItemIdToDelete).subscribe(function (data) {
             console.log(data);
             order.items.delete(stockItemIdToDelete);
         });

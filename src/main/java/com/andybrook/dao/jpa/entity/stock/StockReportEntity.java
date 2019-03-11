@@ -30,7 +30,7 @@ public class StockReportEntity {
     protected String comment;
 
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    @JoinColumn(name="stockreportid")
+    @JoinColumn(name="stockreportid", nullable = false)
     protected List<StockItemEntity> items;
 
     @Column(name = "status")

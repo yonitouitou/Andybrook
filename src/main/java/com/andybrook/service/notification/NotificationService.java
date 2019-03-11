@@ -3,7 +3,7 @@ package com.andybrook.service.notification;
 import com.andybrook.exception.OrderNotFound;
 import com.andybrook.model.StockReport;
 import com.andybrook.model.notification.event.ctx.CloseReportEvent;
-import com.andybrook.service.stock.IOrderService;
+import com.andybrook.service.order.IOrderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationEventPublisher;

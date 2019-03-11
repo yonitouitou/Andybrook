@@ -8,6 +8,7 @@ import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.util.Set;
 
 @Entity
 @Table(name = "stock_item")
@@ -29,6 +30,10 @@ public abstract class StockItemEntity {
 
     @Column(name = "quantity")
     protected int quantity;
+
+    @OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "barcodeid", referencedColumnName = "id", nullable = true)
+    protected BarCodeEntity barCodeEntity;
 
     @CreatedDate
     @Column(name = "createddatetime", updatable = false)
@@ -91,5 +96,13 @@ public abstract class StockItemEntity {
 
     public void setLastModifiedDatetime(LocalDateTime lastModifiedDatetime) {
         this.lastModifiedDatetime = lastModifiedDatetime;
+    }
+
+    public BarCodeEntity getBarCodeEntity() {
+        return barCodeEntity;
+    }
+
+    public void setBarCodeEntity(BarCodeEntity barCodeEntity) {
+        this.barCodeEntity = barCodeEntity;
     }
 }

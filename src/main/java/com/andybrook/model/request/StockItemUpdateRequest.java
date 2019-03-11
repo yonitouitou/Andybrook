@@ -7,16 +7,16 @@ import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 
 public class StockItemUpdateRequest {
 
-    private long stockReportId;
+    private long orderId;
     @JsonDeserialize(using = StockItemJsonSerializer.class)
     private StockItem<? extends Product> stockItem;
 
-    public long getStockReportId() {
-        return stockReportId;
+    public long getOrderId() {
+        return orderId;
     }
 
-    public void setStockReportId(long stockReportId) {
-        this.stockReportId = stockReportId;
+    public void setOrderId(long orderId) {
+        this.orderId = orderId;
     }
 
     public StockItem<? extends Product> getStockItem() {

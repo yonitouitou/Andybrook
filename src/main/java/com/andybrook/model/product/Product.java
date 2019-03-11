@@ -1,10 +1,15 @@
 package com.andybrook.model.product;
 
+import com.andybrook.model.BarCode;
+
+import java.util.Set;
+
 public abstract class Product {
 
     protected Long id;
     protected String name;
     protected double price;
+    protected Set<BarCode> barCodes;
 
     private Product() {
     }
@@ -18,6 +23,10 @@ public abstract class Product {
     public Product(String name, double price) {
         this.name = name;
         this.price = price;
+    }
+
+    public void addBarCode(BarCode barCode) {
+        barCodes.add(barCode);
     }
 
     public Long getId() {
@@ -42,6 +51,14 @@ public abstract class Product {
 
     public void setPrice(double price) {
         this.price = price;
+    }
+
+    public Set<BarCode> getBarCodes() {
+        return barCodes;
+    }
+
+    public void setBarCodes(Set<BarCode> barCodes) {
+        this.barCodes = barCodes;
     }
 
     @Override

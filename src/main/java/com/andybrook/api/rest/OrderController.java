@@ -5,10 +5,10 @@ import com.andybrook.api.rest.ctx.GenericRequestByIds;
 import com.andybrook.exception.OrderClosed;
 import com.andybrook.exception.OrderNotFound;
 import com.andybrook.exception.StoreNotFound;
-import com.andybrook.manager.stock.IOrderManager;
+import com.andybrook.manager.order.IOrderManager;
 import com.andybrook.model.StockReport;
-import com.andybrook.model.request.NewStockReportRequest;
-import com.andybrook.model.request.UpdateStockReportRequest;
+import com.andybrook.model.request.NewOrderRequest;
+import com.andybrook.model.request.UpdateOrderRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -27,13 +27,13 @@ public class OrderController extends AbstractController {
     private IOrderManager orderManager;
 
     @PostMapping(path = "/add")
-    public StockReport newOrder(@RequestBody NewStockReportRequest request) throws StoreNotFound {
+    public StockReport newOrder(@RequestBody NewOrderRequest request) throws StoreNotFound {
         LOGGER.log(Level.INFO, "Add report request received : " + request.toString());
-        return orderManager.newStockReport(request);
+        return orderManager.newOrder(request);
     }
 
     @PostMapping(path = "/update")
-    public void updateOrder(@RequestBody UpdateStockReportRequest request) throws OrderNotFound, OrderClosed {
+    public void updateOrder(@RequestBody UpdateOrderRequest request) throws OrderNotFound, OrderClosed {
         LOGGER.log(Level.INFO, "Update report request received : " + request.toString());
         orderManager.updateStockReport(request);
     }
@@ -41,13 +41,13 @@ public class OrderController extends AbstractController {
     @PostMapping(path = "/close")
     public StockReport closeOrder(@RequestBody GenericRequestById request) throws OrderNotFound, OrderClosed {
         LOGGER.log(Level.INFO, "Close report request received : " + request.toString());
-        return orderManager.closeStockReport(request.getId());
+        return orderManager.closeOrder(request.getId());
     }
 
     @GetMapping(path = "/get/{id}")
     public StockReport get(@PathVariable Long id) throws OrderNotFound {
         LOGGER.log(Level.INFO, "Get report request received for id : " + id);
-        return orderManager.getStockReport(id);
+        return orderManager.getOrder(id);
     }
 
     @PostMapping(path = "/getByIds")
