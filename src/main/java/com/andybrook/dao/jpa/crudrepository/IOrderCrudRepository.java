@@ -1,6 +1,6 @@
 package com.andybrook.dao.jpa.crudrepository;
 
-import com.andybrook.dao.jpa.entity.stock.StockReportEntity;
+import com.andybrook.dao.jpa.entity.stock.OrderEntity;
 import com.andybrook.enums.ReportStatus;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
@@ -12,18 +12,18 @@ import java.time.LocalDateTime;
 import java.util.Collection;
 import java.util.List;
 
-public interface IOrderCrudRepository extends JpaRepository<StockReportEntity, Long> {
+public interface IOrderCrudRepository extends JpaRepository<OrderEntity, Long> {
 
-    String ENTITY_NAME = "StockReportEntity";
+    String ENTITY_NAME = "OrderEntity";
     String COLUMN_ID = "id";
     String COLUMN_NAME = "name";
     String COLUMN_COMMENT = "comment";
     String COLUMN_STATUS = "status";
     String COLUMN_CLOSE_DATETIME = "closeDatetime";
 
-    List<StockReportEntity> findByName(String name);
-    List<StockReportEntity> findByNameContaining(String name);
-    List<StockReportEntity> findByIdIn(Collection<Long> ids);
+    List<OrderEntity> findByName(String name);
+    List<OrderEntity> findByNameContaining(String name);
+    List<OrderEntity> findByIdIn(Collection<Long> ids);
 
     String UPDATE_EXISTING_STOCK_REPORT_QUERY =
             "UPDATE " + ENTITY_NAME + " s SET " +

@@ -1,9 +1,9 @@
 package com.andybrook.service.stock;
 
-import com.andybrook.dao.stock.IStockDao;
+import com.andybrook.dao.stock.IOrderItemDao;
 import com.andybrook.exception.*;
-import com.andybrook.model.BarCode;
 import com.andybrook.model.StockItem;
+import com.andybrook.model.StockReport;
 import com.andybrook.model.product.Product;
 import com.andybrook.service.order.IOrderService;
 import com.andybrook.util.IdGenerator;
@@ -15,10 +15,10 @@ import java.util.Map;
 import java.util.Optional;
 
 @Service
-public class StockItemService implements IStockItemService {
+public class OrderItemService implements IOrderItemService {
 
     @Autowired
-    private IStockDao stockItemDao;
+    private IOrderItemDao stockItemDao;
     @Autowired
     private IOrderService orderService;
     @Autowired
@@ -26,7 +26,7 @@ public class StockItemService implements IStockItemService {
 
     @Override
     @Transactional
-    public StockItem<? extends Product> newStockItem(long orderId, StockItem<? extends Product> item)
+    public StockItem<? extends Product> newOrderItem(long orderId, StockItem<? extends Product> item)
             throws OrderNotFound, OrderClosed {
         item.setId(IdGenerator.generateId());
         return orderService.addItemToOrder(orderId, item);
@@ -34,11 +34,12 @@ public class StockItemService implements IStockItemService {
 
     @Override
     @Transactional
-    public StockItem<? extends Product> updateStockItem(long orderId, StockItem<? extends Product> item)
+    public StockItem<? extends Product> updateOrderItem(long orderId, StockItem<? extends Product> item)
             throws OrderNotFound, OrderClosed {
         StockItem<? extends Product> stockItem;
-        if (orderService.canModifyOrder(orderId)) {
-            stockItem = update(item);
+        StockReport order = orderService.getOrder(orderId);
+        if (orderService.canModifyOrder(order)) {
+            stockItem = update(order, item);
         } else {
             throw new OrderClosed(orderId);
         }
@@ -46,39 +47,40 @@ public class StockItemService implements IStockItemService {
     }
 
     @Override
-    public StockItem<? extends Product> getStockItem(long id) throws StockItemNotFound {
+    public StockItem<? extends Product> getOrderItem(long id) throws OrderItemNotFound {
         StockItem<? extends Product> item;
         Optional<StockItem<Product>> stockItemOpt = stockItemDao.getStockItem(id);
         if (stockItemOpt.isPresent()) {
             item = stockItemOpt.get();
         } else {
-            throw new StockItemNotFound(id);
+            throw new OrderItemNotFound(id);
         }
         return item;
     }
 
     @Override
-    public Map<Long, StockItem<? extends Product>> getAllStockItems() {
-        return null;//stockItemDao.getAllStockItems();
+    public Map<Long, StockItem<? extends Product>> getOrderItems() {
+        return null;//stockItemDao.getOrderItems();
     }
 
     @Override
-    public boolean removeStockItem(long id) {
+    public boolean deleteOrderItem(long id) {
         stockItemDao.removeStockItem(id);
         return true;
     }
 
     @Override
-    public StockItem<? extends Product> incrementQuantity(long orderId, long itemId) throws StockItemNotFound, OrderNotFound {
+    public StockItem<? extends Product> incrementQuantity(long orderId, long itemId) throws OrderItemNotFound, OrderNotFound {
         StockItem<? extends Product> stockItem;
-        if (orderService.canModifyOrder(orderId)) {
+        StockReport order = orderService.getOrder(orderId);
+        if (orderService.canModifyOrder(order)) {
             Optional<StockItem<Product>> stockItemOpt = stockItemDao.getStockItem(itemId);
             if (stockItemOpt.isPresent()) {
                 StockItem<Product> item = stockItemOpt.get();
                 item.incrementQuantity();
-                stockItem = update(item);
+                stockItem = update(order, item);
             } else {
-                throw new StockItemNotFound(itemId);
+                throw new OrderItemNotFound(itemId);
             }
         } else {
             throw new OrderNotFound(orderId);
@@ -89,11 +91,12 @@ public class StockItemService implements IStockItemService {
     @Override
     public StockItem<? extends Product> incrementQuantityOrCreate(long orderId, StockItem<? extends Product> item) throws OrderNotFound, OrderClosed {
         StockItem<? extends Product> result;
-        if (orderService.canModifyOrder(orderId)) {
+        StockReport order = orderService.getOrder(orderId);
+        if (orderService.canModifyOrder(order)) {
             if (item.exist()) {
                 item.incrementQuantity();
             }
-            result = stockItemDao.updateStockItem(item);
+            result = stockItemDao.updateStockItem(order, item);
         } else {
             throw new OrderClosed(orderId);
         }
@@ -101,7 +104,7 @@ public class StockItemService implements IStockItemService {
     }
 
     @Override
-    public StockItem<? extends Product> getStockItemByBarCode(String barCodeId) throws BarCodeNotFound {
+    public StockItem<? extends Product> getOrderItemByBarCode(String barCodeId) throws BarCodeNotFound {
         StockItem<? extends Product> stockItem;
         long stockItemId = barCodeService.getStockItemIdByBarCodeId(barCodeId);
         Optional<StockItem<Product>> stockItemOpt = stockItemDao.getStockItem(stockItemId);
@@ -113,7 +116,7 @@ public class StockItemService implements IStockItemService {
         return stockItem;
     }
 
-    private StockItem<? extends Product> update(StockItem<? extends Product> item) {
-        return stockItemDao.updateStockItem(item);
+    private StockItem<? extends Product> update(StockReport order, StockItem<? extends Product> item) {
+        return stockItemDao.updateStockItem(order, item);
     }
 }

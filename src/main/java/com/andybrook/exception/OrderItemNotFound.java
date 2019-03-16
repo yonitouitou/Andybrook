@@ -1,11 +1,11 @@
 package com.andybrook.exception;
 
-public class StockItemNotFound extends Exception {
+public class OrderItemNotFound extends Exception {
 
-    public StockItemNotFound(long id) {
+    public OrderItemNotFound(long id) {
         this(msg(id));
     }
-    public StockItemNotFound(String msg) {
+    public OrderItemNotFound(String msg) {
         super(msg);
     }
 

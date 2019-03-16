@@ -7,9 +7,7 @@ import com.andybrook.dao.jpa.entity.customer.OwnerEntity;
 import com.andybrook.dao.jpa.entity.product.ProductEntity;
 import com.andybrook.dao.jpa.entity.setting.AdminSettingEntity;
 import com.andybrook.dao.jpa.entity.setting.notification.NotificationPolicyEntity;
-import com.andybrook.dao.jpa.entity.stock.BarCodeEntity;
-import com.andybrook.dao.jpa.entity.stock.StockItemEntity;
-import com.andybrook.dao.jpa.entity.stock.StockReportEntity;
+import com.andybrook.dao.jpa.entity.stock.*;
 import com.andybrook.dao.jpa.entity.store.StoreEntity;
 import com.andybrook.enums.ProductType;
 import com.andybrook.model.BarCode;
@@ -82,27 +80,28 @@ public final class EntityFactory {
         return (T) converter.toModel(entity);
     }
 
-    public final <T extends Product> StockItemEntity createStockItemEntity(StockItem<T> model) {
-        IEntityConverter converter = entityConverterMapByModelClass.get(model.getClass());
-        return (StockItemEntity) converter.toEntity(model);
+    public final <T extends Product> OrderItemEntity createOrderItemEntity(StockReport order, StockItem<T> model) {
+        OrderEntity orderEntity = createOrderEntity(order);
+        OrderItemEntityConverter converter = (OrderItemEntityConverter) entityConverterMapByModelClass.get(model.getClass());
+        return converter.toEntity(orderEntity, model);
     }
 
-    public final <T extends Product> StockItem<T> createStockItem(StockItemEntity entity) {
+    public final <T extends Product> StockItem<T> createOrderItem(OrderItemEntity entity) {
         IEntityConverter converter = entityConverterMapByProductType.get(entity.getProductType());
         return (StockItem<T>) converter.toModel(entity);
     }
 
-    public final StockItemEntity createStockItemEntityByProductType(StockItem stockItem) {
-        IEntityConverter converter = entityConverterMapByProductType.get(stockItem.getType());
-        return (StockItemEntity) converter.toEntity(stockItem);
+    public final OrderItemEntity createOrderItemEntityByProductType(OrderEntity orderEntity, StockItem stockItem) {
+        GlassesStockItemEntityConverter converter = (GlassesStockItemEntityConverter) entityConverterMapByProductType.get(stockItem.getType());
+        return converter.toEntity(orderEntity, stockItem);
     }
 
-    public final StockReportEntity createStockReportEntity(StockReport model) {
+    public final OrderEntity createOrderEntity(StockReport model) {
         IEntityConverter converter = entityConverterMapByModelClass.get(model.getClass());
-        return (StockReportEntity) converter.toEntity(model);
+        return (OrderEntity) converter.toEntity(model);
     }
 
-    public final StockReport createStockReport(StockReportEntity entity) {
+    public final StockReport createOrder(OrderEntity entity) {
         IEntityConverter converter = entityConverterMapByEntityClass.get(Hibernate.getClass(entity));
         return (StockReport) converter.toModel(entity);
     }
@@ -157,9 +156,9 @@ public final class EntityFactory {
         return (Customer) converter.toModel(entity);
     }
 
-    public final BarCodeEntity createBarCodeEntity(BarCode model) {
-        IEntityConverter converter = entityConverterMapByModelClass.get(model.getClass());
-        return (BarCodeEntity) converter.toEntity(model);
+    public final BarCodeEntity createBarCodeEntity(ProductEntity productEntity, BarCode model) {
+        BarCodeEntityConverter converter = (BarCodeEntityConverter) entityConverterMapByModelClass.get(model.getClass());
+        return converter.toEntity(model, productEntity);
     }
 
     public final BarCode createBarCode(BarCodeEntity entity) {

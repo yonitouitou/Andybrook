@@ -1,7 +1,7 @@
 package com.andybrook.dao.order;
 
 import com.andybrook.dao.jpa.entity.factory.EntityFactory;
-import com.andybrook.dao.jpa.entity.stock.StockReportEntity;
+import com.andybrook.dao.jpa.entity.stock.OrderEntity;
 import com.andybrook.dao.jpa.crudrepository.IOrderCrudRepository;
 import com.andybrook.exception.OrderNotFound;
 import com.andybrook.language.LanguageResolver;
@@ -34,9 +34,9 @@ public class OrderDao implements IOrderDao {
 
     @Override
     public StockReport updateOrder(StockReport stockReport) {
-        StockReportEntity entity = entityFactory.createStockReportEntity(stockReport);
-        StockReportEntity savedEntity = orderCrudRepository.save(entity);
-        return entityFactory.createStockReport(savedEntity);
+        OrderEntity entity = entityFactory.createOrderEntity(stockReport);
+        OrderEntity savedEntity = orderCrudRepository.save(entity);
+        return entityFactory.createOrder(savedEntity);
     }
 
     @Override
@@ -52,16 +52,16 @@ public class OrderDao implements IOrderDao {
 
     @Override
     public StockReport get(long id) {
-        StockReportEntity entity = orderCrudRepository.getOne(id);
-        return entityFactory.createStockReport(entity);
+        OrderEntity entity = orderCrudRepository.getOne(id);
+        return entityFactory.createOrder(entity);
     }
 
     @Override
     public Optional<StockReport> findStockReport(long id) {
-        Optional<StockReportEntity> stockReportEntityOpt = orderCrudRepository.findById(id);
+        Optional<OrderEntity> stockReportEntityOpt = orderCrudRepository.findById(id);
         Optional<StockReport> stockReportOpt = Optional.empty();
         if (stockReportEntityOpt.isPresent()) {
-            StockReport stockReport = entityFactory.createStockReport(stockReportEntityOpt.get());
+            StockReport stockReport = entityFactory.createOrder(stockReportEntityOpt.get());
             stockReportOpt = Optional.of(stockReport);
         }
         return stockReportOpt;
@@ -70,10 +70,10 @@ public class OrderDao implements IOrderDao {
     @Override
     public Set<StockReport> getAll(int limit) {
         Sort sortedByStatusAndCreationDatetime = new Sort(Direction.ASC, "status").and(new Sort(Direction.ASC, "createdDatetime"));
-        Iterable<StockReportEntity> allIterable = orderCrudRepository.findAll(PageRequest.of(0, limit, sortedByStatusAndCreationDatetime));
+        Iterable<OrderEntity> allIterable = orderCrudRepository.findAll(PageRequest.of(0, limit, sortedByStatusAndCreationDatetime));
         Set<StockReport> all = new LinkedHashSet<>();
         allIterable.forEach(entity -> {
-            StockReport stockReport = entityFactory.createStockReport(entity);
+            StockReport stockReport = entityFactory.createOrder(entity);
             all.add(stockReport);
         });
         return all;
@@ -81,25 +81,25 @@ public class OrderDao implements IOrderDao {
 
     @Override
     public List<StockReport> getByName(String name) {
-        List<StockReportEntity> ordersEntity = orderCrudRepository.findByName(name);
+        List<OrderEntity> ordersEntity = orderCrudRepository.findByName(name);
         return ordersEntity.stream()
-                .map(entityFactory::createStockReport)
+                .map(entityFactory::createOrder)
                 .collect(Collectors.toList());
     }
 
     @Override
     public List<StockReport> getByNameContaining(String name) {
-        List<StockReportEntity> ordersEntity = orderCrudRepository.findByNameContaining(name);
+        List<OrderEntity> ordersEntity = orderCrudRepository.findByNameContaining(name);
         return ordersEntity.stream()
-                .map(entityFactory::createStockReport)
+                .map(entityFactory::createOrder)
                 .collect(Collectors.toList());
     }
 
     @Override
     public List<StockReport> getOrders(List<Long> ids) {
-        List<StockReportEntity> ordersEntity = orderCrudRepository.findByIdIn(ids);
+        List<OrderEntity> ordersEntity = orderCrudRepository.findByIdIn(ids);
         return ordersEntity.stream()
-                .map(entityFactory::createStockReport)
+                .map(entityFactory::createOrder)
                 .collect(Collectors.toList());
     }
 }

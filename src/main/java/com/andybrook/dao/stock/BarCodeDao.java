@@ -4,6 +4,7 @@ import com.andybrook.dao.jpa.crudrepository.IBarCodeCrudRepository;
 import com.andybrook.dao.jpa.entity.factory.EntityFactory;
 import com.andybrook.dao.jpa.entity.stock.BarCodeEntity;
 import com.andybrook.model.BarCode;
+import com.andybrook.model.product.Product;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -38,9 +39,9 @@ public class BarCodeDao implements IBarCodeDao {
     }
 
     @Override
-    public BarCode save(BarCode barCode) {
-        BarCodeEntity entity = entityFactory.createBarCodeEntity(barCode);
-        BarCodeEntity savedEntity = crudRepository.save(entity);
-        return entityFactory.createBarCode(savedEntity);
+    public BarCode save(Product product, BarCode barCode) {
+        //BarCodeEntity entity = entityFactory.createBarCodeEntity(product, barCode);
+        //BarCodeEntity savedEntity = crudRepository.save(entity);
+        return null;
     }
 }

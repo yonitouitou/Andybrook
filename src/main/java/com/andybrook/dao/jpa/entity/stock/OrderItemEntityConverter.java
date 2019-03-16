@@ -9,14 +9,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 @Component
-@EntityConverter(model = StockItem.class, entity = StockItemEntity.class)
-public class StockItemEntityConverter implements IEntityConverter<StockItem, StockItemEntity> {
+@EntityConverter(model = StockItem.class, entity = OrderItemEntity.class)
+public class OrderItemEntityConverter implements IEntityConverter<StockItem, OrderItemEntity> {
 
     @Autowired
     private EntityFactory entityFactory;
 
     @Override
-    public StockItem toModel(StockItemEntity entity) {
+    public StockItem toModel(OrderItemEntity entity) {
         Product product = entityFactory.createProduct(entity.getProductEntity());
         StockItem stockItem = new StockItem(entity.getId(), product, entity.getProductType(), entity.getQuantity());
         if (entity.getBarCodeEntity() != null) {
@@ -26,10 +26,14 @@ public class StockItemEntityConverter implements IEntityConverter<StockItem, Sto
     }
 
     @Override
-    public StockItemEntity toEntity(StockItem model) {
-        StockItemEntity entity = entityFactory.createStockItemEntityByProductType(model);
+    public OrderItemEntity toEntity(StockItem model) {
+        throw new UnsupportedOperationException();
+    }
+
+    public OrderItemEntity toEntity(OrderEntity orderEntity, StockItem model) {
+        OrderItemEntity entity = entityFactory.createOrderItemEntityByProductType(orderEntity, model);
         if (model.getBarCode() != null) {
-            entity.setBarCodeEntity(entityFactory.createBarCodeEntity(model.getBarCode()));
+            entity.setBarCodeEntity(entityFactory.createBarCodeEntity(entity.getProductEntity(), model.getBarCode()));
         }
         return entity;
     }

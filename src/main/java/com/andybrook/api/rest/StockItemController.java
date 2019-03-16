@@ -2,8 +2,7 @@ package com.andybrook.api.rest;
 
 import com.andybrook.api.rest.ctx.GenericStockItemChangeRequest;
 import com.andybrook.exception.*;
-import com.andybrook.manager.stock.IStockItemManager;
-import com.andybrook.model.BarCode;
+import com.andybrook.manager.stock.IOrderItemManager;
 import com.andybrook.model.StockItem;
 import com.andybrook.model.product.Product;
 import com.andybrook.model.request.StockItemUpdateRequest;
@@ -22,10 +21,10 @@ public class StockItemController extends AbstractController {
     private static Logger LOGGER = System.getLogger(StockItemController.class.getSimpleName());
 
     @Autowired
-    private IStockItemManager stockItemManager;
+    private IOrderItemManager stockItemManager;
 
     @GetMapping(path = "/get/{id}")
-    public StockItemTableRow getGlassesStockItem(@PathVariable long id) throws StockItemNotFound {
+    public StockItemTableRow getGlassesStockItem(@PathVariable long id) throws OrderItemNotFound {
         StockItemTableRow stockItemTableRow = null;
         LOGGER.log(Level.INFO, "Request received to get order glasses : " + id);
         StockItem<? extends Product> glassesStockItem = stockItemManager.getStockItem(id);
@@ -54,7 +53,7 @@ public class StockItemController extends AbstractController {
     }
 
     @PostMapping(path = "/itemScanned")
-    public StockItemTableRow itemScanned(@RequestBody GenericStockItemChangeRequest request) throws StockItemNotFound, OrderNotFound {
+    public StockItemTableRow itemScanned(@RequestBody GenericStockItemChangeRequest request) throws OrderItemNotFound, OrderNotFound {
         LOGGER.log(Level.INFO, "Request received to increment order item : " + request);
         //StockItem<? extends Product> stockItem = stockItemManager.incrementQuantityOrCreate(request.getOrderId(), request.getStockItemId());
         //return new StockItemTableRow(stockItem);

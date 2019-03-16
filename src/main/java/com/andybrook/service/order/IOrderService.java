@@ -33,4 +33,6 @@ public interface IOrderService {
     List<StockReport> getOrders(List<Long> ids);
 
     boolean canModifyOrder(long id) throws OrderNotFound;
+
+    boolean canModifyOrder(StockReport order);
 }

@@ -22,22 +22,26 @@ public class GlassesEntityConverter implements IEntityConverter<Glasses, Glasses
     @Override
     public Glasses toModel(GlassesEntity entity) {
         Glasses glasses = new Glasses(entity.getId(), entity.getName(), entity.getPrice());
-        Set<BarCode> barCodes = new HashSet<>(entity.getBarCodeEntities().size());
-        for (BarCodeEntity barCodeEntity : entity.getBarCodeEntities()) {
-            barCodes.add(entityFactory.createBarCode(barCodeEntity));
+        if (entity.getBarCodeEntities() != null) {
+            Set<BarCode> barCodes = new HashSet<>(entity.getBarCodeEntities().size());
+            for (BarCodeEntity barCodeEntity : entity.getBarCodeEntities()) {
+                barCodes.add(entityFactory.createBarCode(barCodeEntity));
+            }
+            glasses.setBarCodes(barCodes);
         }
-        glasses.setBarCodes(barCodes);
         return glasses;
     }
 
     @Override
     public GlassesEntity toEntity(Glasses model) {
-        Set<BarCodeEntity> barCodeEntities = new HashSet<>(model.getBarCodes().size());
         GlassesEntity entity = new GlassesEntity(model.getId(), model.getName(), model.getPrice());
-        for (BarCode barCode : model.getBarCodes()) {
-            barCodeEntities.add(entityFactory.createBarCodeEntity(barCode));
+        if (model.getBarCodes() != null) {
+            Set<BarCodeEntity> barCodeEntities = new HashSet<>(model.getBarCodes().size());
+            for (BarCode barCode : model.getBarCodes()) {
+                barCodeEntities.add(entityFactory.createBarCodeEntity(entity, barCode));
+            }
+            entity.setBarCodeEntities(barCodeEntities);
         }
-        entity.setBarCodeEntities(barCodeEntities);
         return entity;
     }
 }

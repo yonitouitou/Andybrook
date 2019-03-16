@@ -18,17 +18,17 @@ import java.util.function.Function;
 import java.util.stream.Collectors;
 
 @Component
-@EntityConverter(model = StockReport.class, entity = StockReportEntity.class)
-public class StockReportEntityConverter implements IEntityConverter<StockReport, StockReportEntity> {
+@EntityConverter(model = StockReport.class, entity = OrderEntity.class)
+public class OrderEntityConverter implements IEntityConverter<StockReport, OrderEntity> {
 
     @Autowired
     private EntityFactory entityFactory;
 
     @Override
-    public StockReport toModel(StockReportEntity entity) {
+    public StockReport toModel(OrderEntity entity) {
         Map<Long, StockItem<Product>> items = entity.getItems()
                 .stream()
-                .map(e -> entityFactory.createStockItem(e))
+                .map(e -> entityFactory.createOrderItem(e))
                 .collect(Collectors.toMap(StockItem::getId, Function.identity()));
         Customer customer = entityFactory.createCustomer(entity.getCustomerEntity());
         Map<Long, StockItem<? extends Product>> products = new HashMap<>(items);
@@ -40,13 +40,15 @@ public class StockReportEntityConverter implements IEntityConverter<StockReport,
     }
 
     @Override
-    public StockReportEntity toEntity(StockReport model) {
-        List<StockItemEntity> items = model.getItems()
-                .stream()
-                .map(s -> entityFactory.createStockItemEntityByProductType(s))
-                .collect(Collectors.toList());
+    public OrderEntity toEntity(StockReport model) {
         CustomerEntity customerEntity = entityFactory.createCustomerEntity(model.getCustomer());
-        return new StockReportEntity(model.getId(), model.getName(), customerEntity, items,
+        OrderEntity orderEntity = new OrderEntity(model.getId(), model.getName(), customerEntity,
                 model.getStatus(), model.getComment(), model.getCloseDateTime());
+        List<OrderItemEntity> items = model.getItems()
+                .stream()
+                .map(s -> entityFactory.createOrderItemEntityByProductType(orderEntity, s))
+                .collect(Collectors.toList());
+        orderEntity.setItems(items);
+        return orderEntity;
     }
 }

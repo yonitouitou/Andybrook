@@ -7,7 +7,7 @@ import com.andybrook.generator.ProductGenerator;
 import com.andybrook.generator.StockItemGenerator;
 import com.andybrook.manager.order.IOrderManager;
 import com.andybrook.manager.product.IProductManager;
-import com.andybrook.manager.stock.IStockItemManager;
+import com.andybrook.manager.stock.IOrderItemManager;
 import com.andybrook.model.StockItem;
 import com.andybrook.model.StockReport;
 import com.andybrook.model.customer.Customer;
@@ -34,15 +34,15 @@ public class InitSystemTest {
 
     private static final ThreadLocalRandom RANDOM = ThreadLocalRandom.current();
     private static final int PRODUCT_NUMBER_200 = 200;
-    private static final int ORDER_NUMBER_15 = 15;
-    private static final int MAX_ITEM_IN_ORDER_110 = 110;
+    private static final int ORDER_NUMBER_12 = 12;
+    private static final int MAX_ITEM_IN_ORDER_101 = 101;
 
     @Autowired
     private ICustomerService customerService;
     @Autowired
     private IOrderManager orderManager;
     @Autowired
-    private IStockItemManager stockItemManager;
+    private IOrderItemManager orderItemManager;
     @Autowired
     private IProductManager productManager;
 
@@ -52,7 +52,7 @@ public class InitSystemTest {
         List<Product> products = createProducts();
         List<Long> orderIds = createOrders(customer);
         for (Long id : orderIds) {
-            int itemToAddNb = RANDOM.nextInt(0, MAX_ITEM_IN_ORDER_110);
+            int itemToAddNb = RANDOM.nextInt(0, MAX_ITEM_IN_ORDER_101);
             System.out.println("Add " + itemToAddNb + " items to order " + id);
             for (int i = 0; i < itemToAddNb; i++) {
                 addStockItemToOrder(id, products.get(RANDOM.nextInt(0, PRODUCT_NUMBER_200 -1)));
@@ -79,12 +79,12 @@ public class InitSystemTest {
 
     private void addStockItemToOrder(long orderId, Product product) throws OrderNotFound, OrderClosed {
         StockItem<? extends Product> stockItem = StockItemGenerator.generateStockItem(product);
-        stockItemManager.updateStockItem(orderId, stockItem);
+        orderItemManager.updateStockItem(orderId, stockItem);
     }
 
     public List<Long> createOrders(Customer customer) throws StoreNotFound, InterruptedException {
         List<Long> orderIds = new LinkedList<>();
-        for (int i = 0; i < ORDER_NUMBER_15; i++) {
+        for (int i = 0; i < ORDER_NUMBER_12; i++) {
             long suffix = Clock.millis();
             NewOrderRequest request = new NewOrderRequest();
             request.setName("StockReport_" + suffix);

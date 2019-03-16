@@ -37,8 +37,7 @@ public abstract class ProductEntity {
     @Column(name = "type", nullable = false)
     protected ProductType type;
 
-    @OneToMany(fetch = FetchType.LAZY)
-    @JoinColumn(name = "productid")
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "productEntity", cascade=CascadeType.ALL)
     protected Set<BarCodeEntity> BarCodeEntities;
 
     @CreatedDate

@@ -12,13 +12,13 @@ import org.springframework.stereotype.Component;
 
 @Component
 @StockItemEntityConverterByProductType(type = ProductType.GLASSES)
-public class GlassesStockItemEntityConverter implements IEntityConverter<StockItem<Glasses>, GlassesStockItemEntity> {
+public class GlassesStockItemEntityConverter implements IEntityConverter<StockItem<Glasses>, GlassesOrderItemEntity> {
 
     @Autowired
     private EntityFactory entityFactory;
 
     @Override
-    public StockItem<Glasses> toModel(GlassesStockItemEntity entity) {
+    public StockItem<Glasses> toModel(GlassesOrderItemEntity entity) {
         Glasses glasses = entityFactory.createProduct(entity.getProductEntity());
         StockItem<Glasses> item = new StockItem(entity.getId(), glasses, ProductType.GLASSES, entity.getQuantity());
         if (entity.getBarCodeEntity() != null) {
@@ -28,11 +28,15 @@ public class GlassesStockItemEntityConverter implements IEntityConverter<StockIt
     }
 
     @Override
-    public GlassesStockItemEntity toEntity(StockItem<Glasses> model) {
+    public GlassesOrderItemEntity toEntity(StockItem<Glasses> model) {
+        throw new UnsupportedOperationException();
+    }
+
+    public GlassesOrderItemEntity toEntity(OrderEntity orderEntity, StockItem<Glasses> model) {
         GlassesEntity glassesEntity = entityFactory.createProductEntity(model.getProduct());
-        GlassesStockItemEntity stockItemEntity = new GlassesStockItemEntity(model.getId(), glassesEntity, model.getQuantity());
+        GlassesOrderItemEntity stockItemEntity = new GlassesOrderItemEntity(model.getId(), orderEntity, glassesEntity, model.getQuantity());
         if (model.getBarCode() != null) {
-            stockItemEntity.setBarCodeEntity(entityFactory.createBarCodeEntity(model.getBarCode()));
+            stockItemEntity.setBarCodeEntity(entityFactory.createBarCodeEntity(glassesEntity, model.getBarCode()));
         }
         return stockItemEntity;
     }

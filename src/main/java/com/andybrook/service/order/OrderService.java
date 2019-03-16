@@ -102,7 +102,8 @@ public class OrderService implements IOrderService {
         return canModifyOrder(order);
     }
 
-    private boolean canModifyOrder(StockReport order) {
+    @Override
+    public boolean canModifyOrder(StockReport order) {
         return order.isOpen();
     }
 

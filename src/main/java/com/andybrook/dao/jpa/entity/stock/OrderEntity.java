@@ -8,12 +8,13 @@ import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-@Table(name = "stock_report")
+@Table(name = "orders")
 @EntityListeners(AuditingEntityListener.class)
-public class StockReportEntity {
+public class OrderEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -29,9 +30,8 @@ public class StockReportEntity {
     @Column(name = "comment", length = 256)
     protected String comment;
 
-    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    @JoinColumn(name="stockreportid", nullable = false)
-    protected List<StockItemEntity> items;
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "orderEntity")
+    protected List<OrderItemEntity> items;
 
     @Column(name = "status")
     protected ReportStatus status;
@@ -47,15 +47,15 @@ public class StockReportEntity {
     @Column(name = "lastmodifieddatetime")
     protected LocalDateTime lastModifiedDatetime;
 
-    public StockReportEntity() {
+    public OrderEntity() {
     }
 
-    public StockReportEntity(Long id, String name, CustomerEntity customerEntity, List<StockItemEntity> items,
-                             ReportStatus status, String comment, LocalDateTime closeDateTime) {
+    public OrderEntity(Long id, String name, CustomerEntity customerEntity,
+                       ReportStatus status, String comment, LocalDateTime closeDateTime) {
         this.id = id;
         this.name = name;
         this.customerEntity = customerEntity;
-        this.items = items;
+        this.items = new ArrayList();
         this.status = status;
         this.comment = comment;
         this.closeDatetime = closeDateTime;
@@ -69,11 +69,11 @@ public class StockReportEntity {
         this.id = id;
     }
 
-    public List<StockItemEntity> getItems() {
+    public List<OrderItemEntity> getItems() {
         return items;
     }
 
-    public void setItems(List<StockItemEntity> items) {
+    public void setItems(List<OrderItemEntity> items) {
         this.items = items;
     }
 

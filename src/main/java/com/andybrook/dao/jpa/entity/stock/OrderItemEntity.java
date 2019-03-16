@@ -11,11 +11,11 @@ import java.time.LocalDateTime;
 import java.util.Set;
 
 @Entity
-@Table(name = "stock_item")
+@Table(name = "order_item")
 @Inheritance(strategy = InheritanceType.JOINED)
 @DiscriminatorColumn(name = "producttype")
 @EntityListeners(AuditingEntityListener.class)
-public abstract class StockItemEntity {
+public abstract class OrderItemEntity {
 
     @Id
     protected Long id;
@@ -31,6 +31,10 @@ public abstract class StockItemEntity {
     @Column(name = "quantity")
     protected int quantity;
 
+    @ManyToOne
+    @JoinColumn(name = "orderid", nullable = false)
+    protected OrderEntity orderEntity;
+
     @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "barcodeid", referencedColumnName = "id", nullable = true)
     protected BarCodeEntity barCodeEntity;
@@ -43,11 +47,12 @@ public abstract class StockItemEntity {
     @Column(name = "lastmodifieddatetime")
     protected LocalDateTime lastModifiedDatetime;
 
-    protected StockItemEntity(Long id, ProductEntity productEntity, ProductType productType, int quantity) {
+    protected OrderItemEntity(Long id, OrderEntity orderEntity, ProductEntity productEntity, ProductType productType, int quantity) {
         this.id = id;
         this.productEntity = productEntity;
         this.productType = productType;
         this.quantity = quantity;
+        this.orderEntity = orderEntity;
     }
 
     public Long getId() {
@@ -104,5 +109,13 @@ public abstract class StockItemEntity {
 
     public void setBarCodeEntity(BarCodeEntity barCodeEntity) {
         this.barCodeEntity = barCodeEntity;
+    }
+
+    public OrderEntity getOrderEntity() {
+        return orderEntity;
+    }
+
+    public void setOrderEntity(OrderEntity orderEntity) {
+        this.orderEntity = orderEntity;
     }
 }

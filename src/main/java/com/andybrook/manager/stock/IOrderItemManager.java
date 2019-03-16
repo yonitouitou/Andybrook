@@ -1,15 +1,14 @@
 package com.andybrook.manager.stock;
 
 import com.andybrook.exception.*;
-import com.andybrook.model.BarCode;
 import com.andybrook.model.product.Product;
 import com.andybrook.model.StockItem;
 
 import java.util.Map;
 
-public interface IStockItemManager {
+public interface IOrderItemManager {
 
-    StockItem<? extends Product> getStockItem(long id) throws StockItemNotFound;
+    StockItem<? extends Product> getStockItem(long id) throws OrderItemNotFound;
 
     Map<Long, StockItem<? extends Product>> getAllStockItems();
 

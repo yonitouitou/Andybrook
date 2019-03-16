@@ -1,8 +1,9 @@
 package com.andybrook.dao.stock;
 
 import com.andybrook.dao.jpa.entity.factory.EntityFactory;
-import com.andybrook.dao.jpa.crudrepository.IStockItemCrudRepository;
-import com.andybrook.dao.jpa.entity.stock.StockItemEntity;
+import com.andybrook.dao.jpa.crudrepository.IOrderItemCrudRepository;
+import com.andybrook.dao.jpa.entity.stock.OrderItemEntity;
+import com.andybrook.model.StockReport;
 import com.andybrook.model.product.Product;
 import com.andybrook.model.StockItem;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,10 +14,10 @@ import java.util.Map;
 import java.util.Optional;
 
 @Service
-public class StockDao implements IStockDao {
+public class OrderItemDao implements IOrderItemDao {
 
     @Autowired
-    private IStockItemCrudRepository repository;
+    private IOrderItemCrudRepository repository;
     @Autowired
     private IBarCodeDao barCodeDao;
     @Autowired
@@ -25,28 +26,28 @@ public class StockDao implements IStockDao {
     @Override
     public <T extends Product> Optional<StockItem<T>> getStockItem(long id) {
         Optional<StockItem<T>> StockItemEntityOpt = Optional.empty();
-        Optional<StockItemEntity> entityOpt = findOne(id);
+        Optional<OrderItemEntity> entityOpt = findOne(id);
         if (entityOpt.isPresent()) {
-            StockItemEntity entity = entityOpt.get();
-            StockItem<T> stockItem = entityFactory.createStockItem(entity);
+            OrderItemEntity entity = entityOpt.get();
+            StockItem<T> stockItem = entityFactory.createOrderItem(entity);
             StockItemEntityOpt = Optional.of(stockItem);
         }
         return StockItemEntityOpt;
     }
 
     @Override
-    public <T extends Product> StockItem<T> updateStockItem(StockItem<T> item) {
-        StockItemEntity entity = entityFactory.createStockItemEntity(item);
-        StockItemEntity entitySaved = repository.save(entity);
-        return entityFactory.createStockItem(entitySaved);
+    public <T extends Product> StockItem<T> updateStockItem(StockReport order, StockItem<T> item) {
+        OrderItemEntity entity = entityFactory.createOrderItemEntity(order, item);
+        OrderItemEntity entitySaved = repository.save(entity);
+        return entityFactory.createOrderItem(entitySaved);
     }
 
     @Override
     public <T extends Product> Map<Long, StockItem<T>> getAllStockItems() {
         Map<Long, StockItem<T>> itemsMapById = new HashMap<>();
-        Iterable<StockItemEntity> entities = repository.findAll();
+        Iterable<OrderItemEntity> entities = repository.findAll();
         entities.forEach(e -> {
-            StockItem stockItem = entityFactory.createStockItem(e);
+            StockItem stockItem = entityFactory.createOrderItem(e);
             itemsMapById.put(stockItem.getId(), stockItem);
         });
         return itemsMapById;
@@ -62,15 +63,15 @@ public class StockDao implements IStockDao {
     public Optional<StockItem<? extends Product>> findItemByBarCodeId(String barCodeId) {
         Optional<StockItem<? extends Product>> resultOpt = Optional.empty();
         long stockItemId = barCodeDao.getStockItemIdByBarCodeId(barCodeId);
-        Optional<StockItemEntity> stockItemEntityOpt = findOne(stockItemId);
+        Optional<OrderItemEntity> stockItemEntityOpt = findOne(stockItemId);
         if (stockItemEntityOpt.isPresent()) {
-            StockItem<Product> stockItem = entityFactory.createStockItem(stockItemEntityOpt.get());
+            StockItem<Product> stockItem = entityFactory.createOrderItem(stockItemEntityOpt.get());
             resultOpt = Optional.of(stockItem);
         }
         return resultOpt;
     }
 
-    private Optional<StockItemEntity> findOne(long id) {
+    private Optional<OrderItemEntity> findOne(long id) {
         return repository.findById(id);
     }
 }
