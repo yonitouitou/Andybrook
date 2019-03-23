@@ -37,8 +37,8 @@ public abstract class ProductEntity {
     @Column(name = "type", nullable = false)
     protected ProductType type;
 
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "productEntity", cascade=CascadeType.ALL)
-    protected Set<BarCodeEntity> BarCodeEntities;
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "productEntity", cascade=CascadeType.ALL)
+    protected Set<BarCodeEntity> barCodeEntities;
 
     @CreatedDate
     @Column(name = "createddatetime", nullable = false, updatable = false)
@@ -91,11 +91,11 @@ public abstract class ProductEntity {
     }
 
     public Set<BarCodeEntity> getBarCodeEntities() {
-        return BarCodeEntities;
+        return barCodeEntities;
     }
 
     public void setBarCodeEntities(Set<BarCodeEntity> barCodeEntities) {
-        BarCodeEntities = barCodeEntities;
+        this.barCodeEntities = barCodeEntities;
     }
 
     public LocalDateTime getCreatedDatetime() {
@@ -121,7 +121,7 @@ public abstract class ProductEntity {
                 ", name='" + name + '\'' +
                 ", price=" + price +
                 ", type=" + type +
-                ", BarCodeEntities=" + BarCodeEntities +
+                ", barCodeEntities=" + barCodeEntities +
                 ", createdDatetime=" + createdDatetime +
                 ", lastModifiedDateTime=" + lastModifiedDateTime +
                 '}';

@@ -21,58 +21,33 @@ export class OrderService {
 
     getOrder(id: number): Observable<any> {
         console.log("Get report " + id)
-        return this.httpApi.get("/v1/stockReport/get/" + id)
+        return this.httpApi.get("/v1/order/get/" + id)
     }
 
     getOrderByName(name: string): Observable<any> {
         console.log("Get report by name : " + name)
-        return this.httpApi.get("/v1/stockReport/getByName/" + name)
+        return this.httpApi.get("/v1/order/getByName/" + name)
     }
 
-    addItem(order: Order, item: StockItem) {
+    addItem(order: Order, item: StockItem) : Observable<any> {
         console.log("Add item[ " + ", " + item.quantity + " to order " + order.id)
-        let stockItem
-        
-        this.httpApi.post("/v1/order/update", this.toUpdateRequest(order, item)).subscribe(
-            data => {
-                let product = new Product(data.item.product.id, data.item.product.name, data.item.product.price)
-                stockItem = new StockItem(data.item.id, data.item.quantity, product)
-                order.items.set(stockItem.id, stockItem)
-            },
-            error => {
-                debugger;
-                console.log(error)
-            }
-        )
+        return this.httpApi.post("/v1/stock/update", this.toUpdateRequest(order, item))
     }
 
-    updateStockItem(order: Order, itemToUpdate: StockItem) {
+    updateStockItem(order: Order, itemToUpdate: StockItem): Observable<any> {
         console.log("update order " + order.id + " | " + itemToUpdate)
-        this.httpApi.post("/v1/order/update", this.toUpdateRequest(order, itemToUpdate)).subscribe(data => {
-            order.id = data.id
-            order.name = data.name
-            order.comment = data.comment
-            order.status = data.status
-            let product = new Product(data.item.product.id, data.item.product.name, data.item.product.price)
-            let stockItem = new StockItem(data.item.id, data.item.quantity, product)
-            order.items.set(stockItem.id, stockItem)
-        })
+        return this.httpApi.post("/v1/order/update", this.toUpdateRequest(order, itemToUpdate))
     }
 
-    deleteItem(order: Order, stockItemIdToDelete: number) {
+    deleteItem(order: Order, stockItemIdToDelete: number): Observable<any> {
         console.log("Delete Item : " + stockItemIdToDelete)
-        this.httpApi.delete("/v1/order/delete/" + stockItemIdToDelete).subscribe(
-            data => {
-                console.log(data)
-                order.items.delete(stockItemIdToDelete)
-            }
-        )
+        return this.httpApi.delete("/v1/order/deleteOrderItem/" + order.id + "/" + stockItemIdToDelete)
     }
 
     closeOrder(order: Order) {
         console.log("Close order : " + order.id)
         let request = { "id" : order.id }
-        this.httpApi.post("/v1/stockReport/close", request).subscribe(
+        this.httpApi.post("/v1/order/close", request).subscribe(
             data => {
                 order.closeDatetime = data.closeDateTime
                 order.status = data.status
@@ -82,13 +57,13 @@ export class OrderService {
 
     getAllOrders(): Observable<any> {
         console.log("Get all reports")
-        return this.httpApi.get("/v1/stockReport/all")
+        return this.httpApi.get("/v1/order/all")
     } 
 
     private toUpdateRequest(order: Order, item: StockItem): any {
         return {
-            "stockReportId" : order.id,
-            "stockItem" : item,
+            "orderId" : order.id,
+            "orderItem" : item,
             "type" : item.type
         }
     }

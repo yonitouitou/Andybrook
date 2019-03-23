@@ -1000,13 +1000,13 @@
       <DataType>varchar(255)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="254" parent="231" name="productid">
+    <column id="254" parent="231" name="orderid">
       <Position>7</Position>
       <DataType>bigint(20)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="255" parent="231" name="orderid">
+    <column id="255" parent="231" name="productid">
       <Position>8</Position>
       <DataType>bigint(20)|0s</DataType>
       <NotNull>1</NotNull>
@@ -1040,16 +1040,16 @@
       <RefTableName>product_barcodes</RefTableName>
       <RefColNames>id</RefColNames>
     </foreign-key>
-    <foreign-key id="262" parent="231" name="FK65riinaev2asy1q07c9nrgrxr">
-      <ColNames>productid</ColNames>
-      <RefSchemaName>andybrook</RefSchemaName>
-      <RefTableName>product</RefTableName>
-      <RefColNames>id</RefColNames>
-    </foreign-key>
-    <foreign-key id="263" parent="231" name="FK6qdi17749hl3bd01qyvxkid49">
+    <foreign-key id="262" parent="231" name="FK6qdi17749hl3bd01qyvxkid49">
       <ColNames>orderid</ColNames>
       <RefSchemaName>andybrook</RefSchemaName>
       <RefTableName>orders</RefTableName>
+      <RefColNames>id</RefColNames>
+    </foreign-key>
+    <foreign-key id="263" parent="231" name="FK65riinaev2asy1q07c9nrgrxr">
+      <ColNames>productid</ColNames>
+      <RefSchemaName>andybrook</RefSchemaName>
+      <RefTableName>product</RefTableName>
       <RefColNames>id</RefColNames>
     </foreign-key>
     <column id="264" parent="232" name="id">

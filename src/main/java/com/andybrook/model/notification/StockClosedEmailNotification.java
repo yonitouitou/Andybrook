@@ -3,8 +3,8 @@ package com.andybrook.model.notification;
 import com.andybrook.ApplicationProperties;
 import com.andybrook.api.pdf.CloseReportPdfBuilder;
 import com.andybrook.api.pdf.IPdfBuilder;
-import com.andybrook.model.StockItem;
-import com.andybrook.model.StockReport;
+import com.andybrook.model.Order;
+import com.andybrook.model.OrderItem;
 import com.andybrook.model.api.Email;
 import com.andybrook.model.product.Product;
 import com.andybrook.model.setting.AdminSetting;
@@ -27,7 +27,7 @@ import java.util.Collection;
 
 @Component
 @Scope(BeanDefinition.SCOPE_PROTOTYPE)
-public class StockClosedEmailNotification implements IEmailNotification<StockReport> {
+public class StockClosedEmailNotification implements IEmailNotification<Order> {
 
     private static final Logger LOGGER = System.getLogger(StockClosedEmailNotification.class.getSimpleName());
     private static final DateTimeFormatter DATE_TIME_FORMATTER_FILE_NAME = DateTimeFormatter.ofPattern("yyyy-MM-dd-hh-mm-ss");
@@ -38,7 +38,7 @@ public class StockClosedEmailNotification implements IEmailNotification<StockRep
     private ApplicationContext applicationContext;
 
     @Override
-    public Email createEmail(AdminSetting adminSetting, StockReport report) {
+    public Email createEmail(AdminSetting adminSetting, Order report) {
         return Email.builder()
                 .fromAdress(applicationProperties.getNotificationEmailFrom())
                 .toAdresses(adminSetting.getEmails())
@@ -49,18 +49,18 @@ public class StockClosedEmailNotification implements IEmailNotification<StockRep
 
     }
 
-    private Path[] getAttachmentsPaths(StockReport report) {
+    private Path[] getAttachmentsPaths(Order report) {
         Path csvPath = generateCsvFile(report);
         Path pdfPath = generatePdfFile(report);
         return new Path[] {csvPath, pdfPath};
     }
 
-    private Path generatePdfFile(StockReport report) {
-        IPdfBuilder<StockReport> builder = applicationContext.getBean(CloseReportPdfBuilder.class);
+    private Path generatePdfFile(Order report) {
+        IPdfBuilder<Order> builder = applicationContext.getBean(CloseReportPdfBuilder.class);
         return builder.generatePdf(report);
     }
 
-    private Path generateCsvFile(StockReport report) {
+    private Path generateCsvFile(Order report) {
         Path csvFilePath = null;
         try {
             String content = generateCsvFileContent(report);
@@ -72,7 +72,7 @@ public class StockClosedEmailNotification implements IEmailNotification<StockRep
         return csvFilePath;
     }
 
-    private String generateCsvFileContent(StockReport report) {
+    private String generateCsvFileContent(Order report) {
         StringBuilder sb = new StringBuilder();
         appendColumnsName(sb);
         sb.append(System.lineSeparator());
@@ -80,7 +80,7 @@ public class StockClosedEmailNotification implements IEmailNotification<StockRep
         return sb.toString();
     }
 
-    private Path writeCsvInFile(StockReport report, String csv) throws IOException {
+    private Path writeCsvInFile(Order report, String csv) throws IOException {
         System.out.println(csv);
         String fileName = report.getName() + "-" + report.getCreatedDateTime().format(DATE_TIME_FORMATTER_FILE_NAME);
         File tmpFile = File.createTempFile(fileName, ".csv");
@@ -101,13 +101,13 @@ public class StockClosedEmailNotification implements IEmailNotification<StockRep
             .append("Price");
     }
 
-    private void appendStockItemsRows(StringBuilder sb, Collection<StockItem<? extends Product>> items) {
+    private void appendStockItemsRows(StringBuilder sb, Collection<OrderItem<? extends Product>> items) {
         items.forEach(item -> {
             generateStockItemCsvRow(sb, item);
         });
     }
 
-    private void generateStockItemCsvRow(StringBuilder sb, StockItem<? extends Product> item) {
+    private void generateStockItemCsvRow(StringBuilder sb, OrderItem<? extends Product> item) {
         sb.append(item.getId()).append(",")
                 .append(item.getProduct().getName()).append(",")
                 .append(item.getQuantity()).append(",")
@@ -115,7 +115,7 @@ public class StockClosedEmailNotification implements IEmailNotification<StockRep
                 .append(System.lineSeparator());
     }
 
-    private String getBody(StockReport report) {
+    private String getBody(Order report) {
         StringBuilder sb = new StringBuilder();
         sb.append("Report " + report.getId() + " has been closed on " + getFormattedDateTime(ZonedDateTime.now(ZoneId.of("Europe/Paris"))));
         sb.append("</br></br>");
@@ -151,7 +151,7 @@ public class StockClosedEmailNotification implements IEmailNotification<StockRep
                         + "</tr>"
         );
 
-        for (StockItem<? extends Product> item: report.getItems()) {
+        for (OrderItem<? extends Product> item: report.getItems()) {
             sb.append(
                     "<tr align='center'>"
                             + "<td>" + item.getId() + "</td>"

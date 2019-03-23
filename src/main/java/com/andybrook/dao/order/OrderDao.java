@@ -6,7 +6,7 @@ import com.andybrook.dao.jpa.crudrepository.IOrderCrudRepository;
 import com.andybrook.exception.OrderNotFound;
 import com.andybrook.language.LanguageResolver;
 import com.andybrook.language.Msg.Error;
-import com.andybrook.model.StockReport;
+import com.andybrook.model.Order;
 import com.andybrook.model.request.UpdateOrderRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
@@ -28,13 +28,13 @@ public class OrderDao implements IOrderDao {
     private LanguageResolver languageResolver;
 
     @Override
-    public StockReport newStockReport(StockReport stockReport) {
-        return updateOrder(stockReport);
+    public Order newStockReport(Order order) {
+        return updateOrder(order);
     }
 
     @Override
-    public StockReport updateOrder(StockReport stockReport) {
-        OrderEntity entity = entityFactory.createOrderEntity(stockReport);
+    public Order updateOrder(Order order) {
+        OrderEntity entity = entityFactory.createOrderEntity(order);
         OrderEntity savedEntity = orderCrudRepository.save(entity);
         return entityFactory.createOrder(savedEntity);
     }
@@ -44,43 +44,43 @@ public class OrderDao implements IOrderDao {
         if (checkIfExist) {
             boolean isExist = orderCrudRepository.existsById(request.getId());
             if (! isExist) {
-                throw new OrderNotFound(languageResolver.get(Error.STOCK_REPORT_NOT_FOUND + " : " + request.getId()));
+                throw new OrderNotFound(languageResolver.get(Error.ORDER_NOT_FOUND + " : " + request.getId()));
             }
         }
         orderCrudRepository.updateExistingStockReport(request.getId(), request.getName(), request.getComment());
     }
 
     @Override
-    public StockReport get(long id) {
+    public Order get(long id) {
         OrderEntity entity = orderCrudRepository.getOne(id);
         return entityFactory.createOrder(entity);
     }
 
     @Override
-    public Optional<StockReport> findStockReport(long id) {
+    public Optional<Order> findStockReport(long id) {
         Optional<OrderEntity> stockReportEntityOpt = orderCrudRepository.findById(id);
-        Optional<StockReport> stockReportOpt = Optional.empty();
+        Optional<Order> stockReportOpt = Optional.empty();
         if (stockReportEntityOpt.isPresent()) {
-            StockReport stockReport = entityFactory.createOrder(stockReportEntityOpt.get());
-            stockReportOpt = Optional.of(stockReport);
+            Order order = entityFactory.createOrder(stockReportEntityOpt.get());
+            stockReportOpt = Optional.of(order);
         }
         return stockReportOpt;
     }
 
     @Override
-    public Set<StockReport> getAll(int limit) {
+    public Set<Order> getAll(int limit) {
         Sort sortedByStatusAndCreationDatetime = new Sort(Direction.ASC, "status").and(new Sort(Direction.ASC, "createdDatetime"));
         Iterable<OrderEntity> allIterable = orderCrudRepository.findAll(PageRequest.of(0, limit, sortedByStatusAndCreationDatetime));
-        Set<StockReport> all = new LinkedHashSet<>();
+        Set<Order> all = new LinkedHashSet<>();
         allIterable.forEach(entity -> {
-            StockReport stockReport = entityFactory.createOrder(entity);
-            all.add(stockReport);
+            Order order = entityFactory.createOrder(entity);
+            all.add(order);
         });
         return all;
     }
 
     @Override
-    public List<StockReport> getByName(String name) {
+    public List<Order> getByName(String name) {
         List<OrderEntity> ordersEntity = orderCrudRepository.findByName(name);
         return ordersEntity.stream()
                 .map(entityFactory::createOrder)
@@ -88,7 +88,7 @@ public class OrderDao implements IOrderDao {
     }
 
     @Override
-    public List<StockReport> getByNameContaining(String name) {
+    public List<Order> getByNameContaining(String name) {
         List<OrderEntity> ordersEntity = orderCrudRepository.findByNameContaining(name);
         return ordersEntity.stream()
                 .map(entityFactory::createOrder)
@@ -96,7 +96,7 @@ public class OrderDao implements IOrderDao {
     }
 
     @Override
-    public List<StockReport> getOrders(List<Long> ids) {
+    public List<Order> getOrders(List<Long> ids) {
         List<OrderEntity> ordersEntity = orderCrudRepository.findByIdIn(ids);
         return ordersEntity.stream()
                 .map(entityFactory::createOrder)

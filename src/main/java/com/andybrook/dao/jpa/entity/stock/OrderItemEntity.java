@@ -35,7 +35,7 @@ public abstract class OrderItemEntity {
     @JoinColumn(name = "orderid", nullable = false)
     protected OrderEntity orderEntity;
 
-    @OneToOne(fetch = FetchType.LAZY)
+    @OneToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "barcodeid", referencedColumnName = "id", nullable = true)
     protected BarCodeEntity barCodeEntity;
 

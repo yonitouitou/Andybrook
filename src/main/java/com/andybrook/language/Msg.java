@@ -3,7 +3,7 @@ package com.andybrook.language;
 public class Msg {
 
     public class Error {
-        public static final String STOCK_REPORT_NOT_FOUND = "error.stock.report.not.found";
+        public static final String ORDER_NOT_FOUND = "error.order.not.found";
         public static final String STOCK_REPORT_ALREADY_CLOSED = "error.order.report.already.closed";
         public static final String STORE_NOT_FOUND = "error.store.not.found";
     }

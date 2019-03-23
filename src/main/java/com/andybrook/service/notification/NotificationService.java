@@ -1,7 +1,7 @@
 package com.andybrook.service.notification;
 
 import com.andybrook.exception.OrderNotFound;
-import com.andybrook.model.StockReport;
+import com.andybrook.model.Order;
 import com.andybrook.model.notification.event.ctx.CloseReportEvent;
 import com.andybrook.service.order.IOrderService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,12 +21,12 @@ public class NotificationService implements INotificationService {
 
     @Override
     public void notifyOrder(long orderId) throws OrderNotFound {
-        StockReport order = orderService.getOrder(orderId);
+        Order order = orderService.getOrder(orderId);
         notifyOrderClosed(order);
     }
 
     @Override
-    public void notifyOrderClosed(StockReport order) {
+    public void notifyOrderClosed(Order order) {
         publisher.publishEvent(new CloseReportEvent(order));
     }
 }

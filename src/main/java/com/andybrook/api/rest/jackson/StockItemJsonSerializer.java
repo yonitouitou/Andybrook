@@ -3,7 +3,7 @@ package com.andybrook.api.rest.jackson;
 import com.andybrook.enums.ProductType;
 import com.andybrook.model.product.Glasses;
 import com.andybrook.model.product.Product;
-import com.andybrook.model.StockItem;
+import com.andybrook.model.OrderItem;
 import com.fasterxml.jackson.core.JsonParser;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.ObjectCodec;
@@ -13,10 +13,10 @@ import com.fasterxml.jackson.databind.JsonNode;
 
 import java.io.IOException;
 
-public class StockItemJsonSerializer extends JsonDeserializer<StockItem<? extends Product>> {
+public class StockItemJsonSerializer extends JsonDeserializer<OrderItem<? extends Product>> {
 
     @Override
-    public StockItem<? extends Product> deserialize(JsonParser jp, DeserializationContext deserializationContext) throws IOException, JsonProcessingException {
+    public OrderItem<? extends Product> deserialize(JsonParser jp, DeserializationContext deserializationContext) throws IOException, JsonProcessingException {
         ObjectCodec oc = jp.getCodec();
         JsonNode json = oc.readTree(jp);
         Long id = json.get("id") == null || json.get("id").asText().isEmpty() ? null : json.get("id").asLong();
@@ -32,6 +32,6 @@ public class StockItemJsonSerializer extends JsonDeserializer<StockItem<? extend
         } else {
             throw new RuntimeException("Unknown product type in the request : " + json.asText());
         }
-        return new StockItem(id, product, productType, quantity);
+        return new OrderItem(id, product, productType, quantity);
     }
 }

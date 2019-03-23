@@ -1,7 +1,7 @@
 package com.andybrook.dao.jpa.entity.stock;
 
 import com.andybrook.dao.jpa.entity.customer.CustomerEntity;
-import com.andybrook.enums.ReportStatus;
+import com.andybrook.enums.OrderStatus;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
@@ -30,11 +30,11 @@ public class OrderEntity {
     @Column(name = "comment", length = 256)
     protected String comment;
 
-    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "orderEntity")
+    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL, mappedBy = "orderEntity")
     protected List<OrderItemEntity> items;
 
     @Column(name = "status")
-    protected ReportStatus status;
+    protected OrderStatus status;
 
     @Column(name = "closedatetime")
     protected LocalDateTime closeDatetime;
@@ -51,7 +51,7 @@ public class OrderEntity {
     }
 
     public OrderEntity(Long id, String name, CustomerEntity customerEntity,
-                       ReportStatus status, String comment, LocalDateTime closeDateTime) {
+                       OrderStatus status, String comment, LocalDateTime closeDateTime) {
         this.id = id;
         this.name = name;
         this.customerEntity = customerEntity;
@@ -77,11 +77,11 @@ public class OrderEntity {
         this.items = items;
     }
 
-    public ReportStatus getStatus() {
+    public OrderStatus getStatus() {
         return status;
     }
 
-    public void setStatus(ReportStatus status) {
+    public void setStatus(OrderStatus status) {
         this.status = status;
     }
 

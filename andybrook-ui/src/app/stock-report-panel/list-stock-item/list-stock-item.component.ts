@@ -1,6 +1,10 @@
 import { Component, OnInit, Input, Output, EventEmitter, PipeTransform } from '@angular/core';
 import { StockItem } from '../../model/StockItem'
 import { Product } from '../../model/Product';
+import { OrderService } from 'src/app/service/order-service';
+import { Order } from 'src/app/model/Order';
+import { ModalBuilder } from 'src/app/common-components/modal-builder';
+import { InfoModalComponent } from 'src/app/modal/info-modal/info-modal.component';
 
 @Component({
   selector: 'list-stock-item',
@@ -17,14 +21,14 @@ export class ListStockItemComponent implements OnInit {
   searchString: string
 
   @Input() stockItems: IterableIterator<StockItem>
-  @Input() orderId: number
-  @Input() orderStatus: string
+  @Input() order: Order
 
   @Output() onCreateStockItemEvent = new EventEmitter<StockItem>()
   @Output() onChangeStockItemEvent = new EventEmitter<StockItem>()
   @Output() onDeleteStockItemEvent = new EventEmitter<number>()
 
-  constructor() {}
+  constructor(private orderService: OrderService,
+              private modalBuilder: ModalBuilder) {}
 
   ngOnInit() {
     
@@ -37,13 +41,31 @@ export class ListStockItemComponent implements OnInit {
   }
 
   createNewStockItem() {
-    var stockItem = new StockItem(undefined, this.inputQuantity, new Product(undefined, this.inputName, this.inputPrice))
-    this.onCreateStockItemEvent.emit(stockItem)
-    this.resetNewStockitemFields()
+    var stockItem = new StockItem(undefined, null, this.inputQuantity, new Product(undefined, this.inputName, this.inputPrice), null, null)
+    this.orderService.addItem(this.order, stockItem).subscribe(
+      data => {
+          let product = new Product(data.item.product.id, data.item.product.name, data.item.product.price)
+          stockItem = new StockItem(data.item.id, data.item.barCode.id, data.item.quantity, product, data.item.createdDatetime, data.item.lastModifiedDatetime)
+          this.onCreateStockItemEvent.emit(stockItem)
+          this.resetNewStockitemFields()
+      },
+      error => {
+        const modalRef = this.modalBuilder.open(InfoModalComponent)
+        modalRef.componentInstance.title = "Error : Product item " + stockItem.product.name + " not added to order " + this.order.name
+        modalRef.componentInstance.message = error.error.message
+      })
   }
 
   deleteStockItem(id: number) {
-    this.onDeleteStockItemEvent.emit(id)
+    this.orderService.deleteItem(this.order, id).subscribe(
+      data => {
+          console.log(data)
+          this.onDeleteStockItemEvent.emit(id)
+      },
+      error => {
+
+      }
+    )
   }
 
   onChangeStockItemName(stockItem: StockItem, event: any) {
@@ -51,15 +73,28 @@ export class ListStockItemComponent implements OnInit {
     let newName = event.target.textContent
     if (product.name !== newName) {
       let p = new Product(product.id, newName, product.price)
-      let item = new StockItem(stockItem.id, stockItem.quantity, p)
-      this.onChangeStockItemEvent.emit(item)
+      let item = new StockItem(stockItem.id, stockItem.barCode, stockItem.quantity, p, stockItem.createdDatetime, stockItem.lastModifiedDatetime)
+      this.orderService.updateStockItem(this.order, item).subscribe(data => {
+        this.order.id = data.id
+        this.order.name = data.name
+        this.order.comment = data.comment
+        this.order.status = data.status
+        let product = new Product(data.item.product.id, data.item.product.name, data.item.product.price)
+        let stockItem = new StockItem(data.item.id, data.item.barCode.id, data.item.quantity, product, data.item.createdDatetime, data.item.lastModifiedDatetime)
+        this.order.items.set(stockItem.id, stockItem)
+        this.onChangeStockItemEvent.emit(stockItem)
+      },
+      error => {
+        debugger;
+          console.log(error)
+      })
     } 
   }
 
   onChangeStockItemQuantity(stockItem: StockItem, event: any) {
     let newQuantity = event.target.textContent
     if (stockItem.quantity != newQuantity) {
-      let item = new StockItem(stockItem.id, newQuantity, stockItem.product)
+      let item = new StockItem(stockItem.id, stockItem.barCode, newQuantity, stockItem.product, stockItem.createdDatetime, stockItem.lastModifiedDatetime)
       this.onChangeStockItemEvent.emit(item)
     } 
   }
@@ -69,7 +104,7 @@ export class ListStockItemComponent implements OnInit {
     let newPrice = event.target.textContent
     if (product.price != newPrice) {
       let p = new Product(product.id, product.name, newPrice)
-      let item = new StockItem(stockItem.id, stockItem.quantity, p)
+      let item = new StockItem(stockItem.id, stockItem.barCode, stockItem.quantity, p, stockItem.createdDatetime, stockItem.lastModifiedDatetime)
       this.onChangeStockItemEvent.emit(item)
     } 
   }

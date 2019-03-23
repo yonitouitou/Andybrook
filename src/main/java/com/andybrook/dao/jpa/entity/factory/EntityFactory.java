@@ -11,10 +11,10 @@ import com.andybrook.dao.jpa.entity.stock.*;
 import com.andybrook.dao.jpa.entity.store.StoreEntity;
 import com.andybrook.enums.ProductType;
 import com.andybrook.model.BarCode;
+import com.andybrook.model.OrderItem;
 import com.andybrook.model.customer.Customer;
 import com.andybrook.model.customer.Owner;
-import com.andybrook.model.StockItem;
-import com.andybrook.model.StockReport;
+import com.andybrook.model.Order;
 import com.andybrook.model.customer.Store;
 import com.andybrook.model.notification.NotificationPolicy;
 import com.andybrook.model.product.Product;
@@ -80,30 +80,30 @@ public final class EntityFactory {
         return (T) converter.toModel(entity);
     }
 
-    public final <T extends Product> OrderItemEntity createOrderItemEntity(StockReport order, StockItem<T> model) {
+    public final <T extends Product> OrderItemEntity createOrderItemEntity(Order order, OrderItem<T> model) {
         OrderEntity orderEntity = createOrderEntity(order);
         OrderItemEntityConverter converter = (OrderItemEntityConverter) entityConverterMapByModelClass.get(model.getClass());
         return converter.toEntity(orderEntity, model);
     }
 
-    public final <T extends Product> StockItem<T> createOrderItem(OrderItemEntity entity) {
+    public final <T extends Product> OrderItem<T> createOrderItem(OrderItemEntity entity) {
         IEntityConverter converter = entityConverterMapByProductType.get(entity.getProductType());
-        return (StockItem<T>) converter.toModel(entity);
+        return (OrderItem<T>) converter.toModel(entity);
     }
 
-    public final OrderItemEntity createOrderItemEntityByProductType(OrderEntity orderEntity, StockItem stockItem) {
-        GlassesStockItemEntityConverter converter = (GlassesStockItemEntityConverter) entityConverterMapByProductType.get(stockItem.getType());
-        return converter.toEntity(orderEntity, stockItem);
+    public final OrderItemEntity createOrderItemEntityByProductType(OrderEntity orderEntity, OrderItem orderItem) {
+        GlassesStockItemEntityConverter converter = (GlassesStockItemEntityConverter) entityConverterMapByProductType.get(orderItem.getType());
+        return converter.toEntity(orderEntity, orderItem);
     }
 
-    public final OrderEntity createOrderEntity(StockReport model) {
+    public final OrderEntity createOrderEntity(Order model) {
         IEntityConverter converter = entityConverterMapByModelClass.get(model.getClass());
         return (OrderEntity) converter.toEntity(model);
     }
 
-    public final StockReport createOrder(OrderEntity entity) {
+    public final Order createOrder(OrderEntity entity) {
         IEntityConverter converter = entityConverterMapByEntityClass.get(Hibernate.getClass(entity));
-        return (StockReport) converter.toModel(entity);
+        return (Order) converter.toModel(entity);
     }
 
     public final AdminSetting createAdminSetting(AdminSettingEntity entity) {

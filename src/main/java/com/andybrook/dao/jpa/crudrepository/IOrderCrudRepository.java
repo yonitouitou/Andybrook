@@ -1,7 +1,7 @@
 package com.andybrook.dao.jpa.crudrepository;
 
 import com.andybrook.dao.jpa.entity.stock.OrderEntity;
-import com.andybrook.enums.ReportStatus;
+import com.andybrook.enums.OrderStatus;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
@@ -50,5 +50,5 @@ public interface IOrderCrudRepository extends JpaRepository<OrderEntity, Long> {
     @Modifying
     @Transactional
     @Query(value = UPDATE_STATUS_QUERY)
-    void closeStockReport(@Param("id") long id, @Param("status") ReportStatus status, @Param("closeDatetime") LocalDateTime closeDatetime);
+    void closeStockReport(@Param("id") long id, @Param("status") OrderStatus status, @Param("closeDatetime") LocalDateTime closeDatetime);
 }

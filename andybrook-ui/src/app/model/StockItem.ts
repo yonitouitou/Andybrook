@@ -10,11 +10,17 @@ export class StockItem {
     quantity: number
     product: Product
     type: Type = Type.GLASSES
+    barCode: string
+    createdDatetime: Date
+    lastModifiedDatetime: Date
     
 
-    constructor(id: number, quantity: number, product: Product) {
+    constructor(id: number, barCode: string, quantity: number, product: Product, creationDatetime: Date, lastModifyDatetime) {
         this.id = id
+        this.barCode = barCode
         this.quantity = quantity
         this.product = product
+        this.createdDatetime = creationDatetime
+        this.lastModifiedDatetime = lastModifyDatetime
     }
 }

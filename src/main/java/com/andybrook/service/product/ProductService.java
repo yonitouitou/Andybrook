@@ -5,7 +5,6 @@ import com.andybrook.exception.BarCodeAlreadyExist;
 import com.andybrook.exception.ProductNotFound;
 import com.andybrook.model.BarCode;
 import com.andybrook.model.product.Product;
-import com.andybrook.service.stock.IBarCodeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

@@ -1,21 +1,21 @@
 package com.andybrook.dao.stock;
 
-import com.andybrook.model.StockReport;
+import com.andybrook.model.Order;
+import com.andybrook.model.OrderItem;
 import com.andybrook.model.product.Product;
-import com.andybrook.model.StockItem;
 
 import java.util.Map;
 import java.util.Optional;
 
 public interface IOrderItemDao {
 
-    <T extends Product> Optional<StockItem<T>> getStockItem(long id);
+    <T extends Product> Optional<OrderItem<T>> getStockItem(long id);
 
-    <T extends Product> StockItem<T> updateStockItem(StockReport order, StockItem<T> item);
+    <T extends Product> OrderItem<T> updateStockItem(Order order, OrderItem<T> item);
 
-    <T extends Product> Map<Long, StockItem<T>> getAllStockItems();
+    <T extends Product> Map<Long, OrderItem<T>> getAllStockItems();
 
     boolean removeStockItem(long id);
 
-    Optional<StockItem<? extends Product>> findItemByBarCodeId(String barCodeId);
+    Optional<OrderItem<? extends Product>> findItemByBarCodeId(String barCodeId);
 }

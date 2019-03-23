@@ -1,8 +1,8 @@
 package com.andybrook.api.pdf;
 
 import com.andybrook.language.Msg.Pdf;
-import com.andybrook.model.StockItem;
-import com.andybrook.model.StockReport;
+import com.andybrook.model.Order;
+import com.andybrook.model.OrderItem;
 import com.andybrook.model.customer.Owner;
 import com.andybrook.model.customer.Store;
 import com.andybrook.model.product.Product;
@@ -29,7 +29,7 @@ import java.time.format.DateTimeFormatter;
 import java.util.stream.Stream;
 
 @Component
-public class CloseReportPdfBuilder extends AbstractPdfBuilder implements IPdfBuilder<StockReport> {
+public class CloseReportPdfBuilder extends AbstractPdfBuilder implements IPdfBuilder<Order> {
 
     private static final Logger LOGGER = System.getLogger(CloseReportPdfBuilder.class.getSimpleName());
     private static final NumberFormat PRICE_FORMATTER = new DecimalFormat("#0.00");
@@ -58,7 +58,7 @@ public class CloseReportPdfBuilder extends AbstractPdfBuilder implements IPdfBui
     }
 
     @Override
-    public Path generatePdf(StockReport report) {
+    public Path generatePdf(Order report) {
         String fileName = report.getName() + LocalDateTime.now().format(DateTimeFormatter.ISO_LOCAL_DATE_TIME);
         Path pdfFilePath = null;
         Document document = new Document(PageSize.A4, 20f, 20f, 7f, 7f);
@@ -140,7 +140,7 @@ public class CloseReportPdfBuilder extends AbstractPdfBuilder implements IPdfBui
     }
 
 
-    private Element createTitle(StockReport report) {
+    private Element createTitle(Order report) {
         Paragraph title = new Paragraph();
 
         Chunk subTitleId = new Chunk(languageResolver.get(Pdf.ORDER_FORM).toUpperCase() + " #" + report.getId());
@@ -158,7 +158,7 @@ public class CloseReportPdfBuilder extends AbstractPdfBuilder implements IPdfBui
         return title;
     }
 
-    private Element createCustomerMainDetailsTable(StockReport report) throws DocumentException {
+    private Element createCustomerMainDetailsTable(Order report) throws DocumentException {
         PdfPTable table = new PdfPTable(2);
         table.setWidthPercentage(100);
         table.setSpacingBefore(10f);
@@ -170,7 +170,7 @@ public class CloseReportPdfBuilder extends AbstractPdfBuilder implements IPdfBui
         return table;
     }
 
-    private Element createCustomerContactDetailsTable(StockReport report) throws DocumentException {
+    private Element createCustomerContactDetailsTable(Order report) throws DocumentException {
         PdfPTable table2 = new PdfPTable(3);
         table2.setWidthPercentage(100);
         table2.setSpacingAfter(10f);
@@ -181,7 +181,7 @@ public class CloseReportPdfBuilder extends AbstractPdfBuilder implements IPdfBui
         return table2;
     }
 
-    private Element createItemsTable(StockReport report) throws DocumentException {
+    private Element createItemsTable(Order report) throws DocumentException {
         PdfPTable table = new PdfPTable(NUMBER_OF_COLUMNS_5);
         table.setWidthPercentage(100);
         table.setSpacingBefore(10f);
@@ -196,14 +196,14 @@ public class CloseReportPdfBuilder extends AbstractPdfBuilder implements IPdfBui
         return table;
     }
 
-    private void addCustomerDetailsFirstRow(PdfPTable table, StockReport report) {
+    private void addCustomerDetailsFirstRow(PdfPTable table, Order report) {
         Store store = report.getCustomer().getStore();
         Owner owner = store.getOwner();
         table.addCell(getStringCell(store.getName()));
         table.addCell(getStringCell(owner.getFirstName() + " " + owner.getLastName()));
     }
 
-    private void addCustomerDetailsSecondRow(PdfPTable table, StockReport report) {
+    private void addCustomerDetailsSecondRow(PdfPTable table, Order report) {
         table.addCell(getStringCell("12 avenue du 8 mai 1945 - 95200 Sarcelles"));
         table.addCell(getStringCell("01 39 90 12 47"));
         table.addCell(getStringCell("yoni@gmail.com"));
@@ -222,13 +222,13 @@ public class CloseReportPdfBuilder extends AbstractPdfBuilder implements IPdfBui
                 });
     }
 
-    private void addRows(PdfPTable table, StockReport report) {
-        for (StockItem<? extends Product> item : report.getItems()) {
+    private void addRows(PdfPTable table, Order report) {
+        for (OrderItem<? extends Product> item : report.getItems()) {
             table.addCell(getStringCell(String.valueOf(item.getId())));;
             table.addCell(getStringCell(item.getProduct().getName()));
             table.addCell(getNumericCell(String.valueOf(item.getQuantity())));
             table.addCell(getNumericCell(PRICE_FORMATTER.format(item.getProduct().getPrice()) + "€"));
-            table.addCell(getNumericCell(PRICE_FORMATTER.format(report.getItem(item.getId()).getTotalPrice()) + "€"));
+            table.addCell(getNumericCell(PRICE_FORMATTER.format(report.getItem(item.getId()).calculateTotalPrice()) + "€"));
         }
         PdfPCell totalCell = new PdfPCell(new Phrase
                                 (languageResolver.get(Pdf.TOTAL).toUpperCase(),

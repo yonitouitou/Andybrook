@@ -42,8 +42,7 @@ public class BarCodeEntity {
     @Override
     public String toString() {
         return "BarCodeEntity{" +
-                "id='" + id + '\'' +
-                ", productEntity=" + productEntity +
+                "id='" + id +
                 '}';
     }
 }

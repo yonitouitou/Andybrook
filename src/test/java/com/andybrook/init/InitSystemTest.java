@@ -1,15 +1,14 @@
 package com.andybrook.init;
 
-import com.andybrook.exception.OrderClosed;
-import com.andybrook.exception.OrderNotFound;
-import com.andybrook.exception.StoreNotFound;
+import com.andybrook.exception.*;
 import com.andybrook.generator.ProductGenerator;
 import com.andybrook.generator.StockItemGenerator;
 import com.andybrook.manager.order.IOrderManager;
 import com.andybrook.manager.product.IProductManager;
-import com.andybrook.manager.stock.IOrderItemManager;
-import com.andybrook.model.StockItem;
-import com.andybrook.model.StockReport;
+import com.andybrook.manager.order.IOrderItemManager;
+import com.andybrook.model.BarCode;
+import com.andybrook.model.Order;
+import com.andybrook.model.OrderItem;
 import com.andybrook.model.customer.Customer;
 import com.andybrook.model.customer.Owner;
 import com.andybrook.model.customer.Store;
@@ -26,6 +25,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.UUID;
 import java.util.concurrent.ThreadLocalRandom;
 
 @SpringBootTest
@@ -33,7 +33,7 @@ import java.util.concurrent.ThreadLocalRandom;
 public class InitSystemTest {
 
     private static final ThreadLocalRandom RANDOM = ThreadLocalRandom.current();
-    private static final int PRODUCT_NUMBER_200 = 200;
+    private static final int PRODUCT_NUMBER_200 = 10;
     private static final int ORDER_NUMBER_12 = 12;
     private static final int MAX_ITEM_IN_ORDER_101 = 101;
 
@@ -55,7 +55,7 @@ public class InitSystemTest {
             int itemToAddNb = RANDOM.nextInt(0, MAX_ITEM_IN_ORDER_101);
             System.out.println("Add " + itemToAddNb + " items to order " + id);
             for (int i = 0; i < itemToAddNb; i++) {
-                addStockItemToOrder(id, products.get(RANDOM.nextInt(0, PRODUCT_NUMBER_200 -1)));
+                addOrderItem(id, products.get(RANDOM.nextInt(0, PRODUCT_NUMBER_200 -1)));
             }
         }
     }
@@ -64,8 +64,8 @@ public class InitSystemTest {
         List<Product> products = new ArrayList<>(PRODUCT_NUMBER_200);
         for (int i = 0; i < PRODUCT_NUMBER_200; i++) {
             Product product = ProductGenerator.generateProduct();
+            product = productManager.addProduct(product);
             products.add(product);
-            productManager.addProduct(product);
         }
         return products;
     }
@@ -77,9 +77,10 @@ public class InitSystemTest {
         return customerService.newCustomer(customer);
     }
 
-    private void addStockItemToOrder(long orderId, Product product) throws OrderNotFound, OrderClosed {
-        StockItem<? extends Product> stockItem = StockItemGenerator.generateStockItem(product);
-        orderItemManager.updateStockItem(orderId, stockItem);
+    private void addOrderItem(long orderId, Product product) throws OrderNotFound, OrderClosed, ProductNotFound, BarCodeAlreadyExist {
+        BarCode barCode = new BarCode(UUID.randomUUID().toString());
+        OrderItem<? extends Product> orderItem = StockItemGenerator.generateOrderItem(product, null);
+        orderManager.addOrderItem(orderId, orderItem);
     }
 
     public List<Long> createOrders(Customer customer) throws StoreNotFound, InterruptedException {
@@ -87,10 +88,10 @@ public class InitSystemTest {
         for (int i = 0; i < ORDER_NUMBER_12; i++) {
             long suffix = Clock.millis();
             NewOrderRequest request = new NewOrderRequest();
-            request.setName("StockReport_" + suffix);
+            request.setName("Order_" + suffix);
             request.setCustomerId(customer.getId());
             request.setComment("Comment_" + suffix);
-            StockReport order = orderManager.newOrder(request);
+            Order order = orderManager.newOrder(request);
             orderIds.add(order.getId());
             Thread.sleep(2000);
         }

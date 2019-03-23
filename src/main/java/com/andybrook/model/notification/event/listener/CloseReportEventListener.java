@@ -1,7 +1,7 @@
 package com.andybrook.model.notification.event.listener;
 
 import com.andybrook.api.email.EmailSender;
-import com.andybrook.model.StockReport;
+import com.andybrook.model.Order;
 import com.andybrook.model.notification.IEmailNotification;
 import com.andybrook.model.notification.StockClosedEmailNotification;
 import com.andybrook.model.notification.event.ctx.CloseReportEvent;
@@ -28,7 +28,7 @@ public class CloseReportEventListener implements IEventListener<CloseReportEvent
     @Override
     @EventListener
     public void handleEvent(CloseReportEvent event) {
-        IEmailNotification<StockReport> closedReportNotif = applicationContext.getBean(StockClosedEmailNotification.class);
+        IEmailNotification<Order> closedReportNotif = applicationContext.getBean(StockClosedEmailNotification.class);
         AdminSetting adminSetting = adminSettingService.getAdminSetting();
         emailSender.send(closedReportNotif.createEmail(adminSetting, event.getReport()));
     }

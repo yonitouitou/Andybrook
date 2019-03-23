@@ -4,9 +4,8 @@
     (onCloseOrderEvent)="onCloseOrder()"
   ></stock-report-header>
   <list-stock-item *ngIf="order"
-    [orderId]="orderId"
+    [order]="order"
     [stockItems]="order.items.values()"
-    [orderStatus]="order.status"
     (onCreateStockItemEvent)="onNewStockItem($event)"
     (onChangeStockItemEvent)="onChangeStockItem($event)"
     (onDeleteStockItemEvent)="onDeleteStockItem($event)"

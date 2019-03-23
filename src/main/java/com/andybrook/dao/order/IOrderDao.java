@@ -1,7 +1,7 @@
 package com.andybrook.dao.order;
 
 import com.andybrook.exception.OrderNotFound;
-import com.andybrook.model.StockReport;
+import com.andybrook.model.Order;
 import com.andybrook.model.request.UpdateOrderRequest;
 
 import java.util.List;
@@ -10,21 +10,21 @@ import java.util.Set;
 
 public interface IOrderDao {
 
-    StockReport newStockReport(StockReport stockReport);
+    Order newStockReport(Order order);
 
-    StockReport updateOrder(StockReport stockReport);
+    Order updateOrder(Order order);
 
     void updateOrder(UpdateOrderRequest request, boolean checkIfExist) throws OrderNotFound;
 
-    StockReport get(long id);
+    Order get(long id);
 
-    Optional<StockReport> findStockReport(long id);
+    Optional<Order> findStockReport(long id);
 
-    Set<StockReport> getAll(int limit);
+    Set<Order> getAll(int limit);
 
-    List<StockReport> getByName(String name);
+    List<Order> getByName(String name);
 
-    List<StockReport> getByNameContaining(String name);
+    List<Order> getByNameContaining(String name);
 
-    List<StockReport> getOrders(List<Long> ids);
+    List<Order> getOrders(List<Long> ids);
 }

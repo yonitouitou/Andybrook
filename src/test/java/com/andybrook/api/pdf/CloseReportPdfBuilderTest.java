@@ -1,7 +1,7 @@
 package com.andybrook.api.pdf;
 
 import com.andybrook.generator.StockReportGenerator;
-import com.andybrook.model.StockReport;
+import com.andybrook.model.Order;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -21,7 +21,7 @@ public class CloseReportPdfBuilderTest {
 
     @Test
     public void generatePdfTest() {
-        StockReport report = StockReportGenerator.generateBasicStockReport();
+        Order report = StockReportGenerator.generateBasicStockReport();
         CloseReportPdfBuilder builder = applicationContext.getBean(CloseReportPdfBuilder.class);
         Path path = builder.generatePdf(report);
         Assert.assertNotNull(path);

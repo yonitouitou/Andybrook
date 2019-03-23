@@ -4,8 +4,8 @@ import com.andybrook.annotation.EntityConverter;
 import com.andybrook.dao.jpa.entity.customer.CustomerEntity;
 import com.andybrook.dao.jpa.entity.factory.EntityFactory;
 import com.andybrook.dao.jpa.entity.factory.IEntityConverter;
-import com.andybrook.model.StockItem;
-import com.andybrook.model.StockReport;
+import com.andybrook.model.Order;
+import com.andybrook.model.OrderItem;
 import com.andybrook.model.customer.Customer;
 import com.andybrook.model.product.Product;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,29 +18,28 @@ import java.util.function.Function;
 import java.util.stream.Collectors;
 
 @Component
-@EntityConverter(model = StockReport.class, entity = OrderEntity.class)
-public class OrderEntityConverter implements IEntityConverter<StockReport, OrderEntity> {
+@EntityConverter(model = Order.class, entity = OrderEntity.class)
+public class OrderEntityConverter implements IEntityConverter<Order, OrderEntity> {
 
     @Autowired
     private EntityFactory entityFactory;
 
     @Override
-    public StockReport toModel(OrderEntity entity) {
-        Map<Long, StockItem<Product>> items = entity.getItems()
-                .stream()
-                .map(e -> entityFactory.createOrderItem(e))
-                .collect(Collectors.toMap(StockItem::getId, Function.identity()));
+    public Order toModel(OrderEntity entity) {
         Customer customer = entityFactory.createCustomer(entity.getCustomerEntity());
-        Map<Long, StockItem<? extends Product>> products = new HashMap<>(items);
-        StockReport report = new StockReport(entity.getId(), entity.getName(), customer, products);
-        report.setStatus(entity.getStatus());
-        report.setComment(entity.getComment());
-        report.setCloseDateTime(entity.getCloseDatetime());
-        return report;
+        Order order = new Order(entity.getId(), entity.getName(), customer);
+        order.setStatus(entity.getStatus());
+        order.setComment(entity.getComment());
+        order.setCloseDateTime(entity.getCloseDatetime());
+        for (OrderItemEntity orderItemEntity : entity.getItems()) {
+            OrderItem orderItem = entityFactory.createOrderItem(orderItemEntity);
+            order.addItem(orderItem);
+        }
+        return order;
     }
 
     @Override
-    public OrderEntity toEntity(StockReport model) {
+    public OrderEntity toEntity(Order model) {
         CustomerEntity customerEntity = entityFactory.createCustomerEntity(model.getCustomer());
         OrderEntity orderEntity = new OrderEntity(model.getId(), model.getName(), customerEntity,
                 model.getStatus(), model.getComment(), model.getCloseDateTime());

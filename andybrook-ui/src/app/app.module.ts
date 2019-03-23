@@ -26,6 +26,7 @@ import { ConfirmModalComponent } from './modal/confirm-modal/confirm-modal-compo
 import { ModalBuilder } from './common-components/modal-builder';
 import { CreateOrderModalComponent } from './modal/create-order-modal/create-order-modal.component';
 import { CustomerService } from './service/customer-service';
+import { InfoModalComponent } from './modal/info-modal/info-modal.component';
 
 const appRoutes: Routes = [
   { path: '', component: OrdersManagerComponent },
@@ -47,9 +48,10 @@ const appRoutes: Routes = [
     CustomerPanelComponent,
     AppNavBarComponent,
     ConfirmModalComponent,
-    CreateOrderModalComponent
+    CreateOrderModalComponent,
+    InfoModalComponent
   ],
-  entryComponents: [CreateOrderModalComponent, ConfirmModalComponent],
+  entryComponents: [CreateOrderModalComponent, ConfirmModalComponent, InfoModalComponent],
   imports: [
     BrowserModule,
     HttpClientModule,

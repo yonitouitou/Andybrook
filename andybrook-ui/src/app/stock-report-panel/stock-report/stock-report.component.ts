@@ -33,23 +33,22 @@ export class StockReportComponent implements OnInit {
       this.order.customer = Customer.fromJson(data.customer)
       for (let item of data.items) {
         let product = new Product(item.product.id, item.product.name, item.product.price)
-        let stockItem = new StockItem(item.id, item.quantity, product)
+        let stockItem = new StockItem(item.id, item.barCode.id, item.quantity, product, item.createdDatetime, item.lastModifiedDatetime)
         this.order.items.set(stockItem.id, stockItem)
       }
   })
   }
 
   onNewStockItem(stockItemToAdd: StockItem) {
-    this.orderService.addItem(this.order, stockItemToAdd)
-
+    this.order.items.set(stockItemToAdd.id, stockItemToAdd)
   }
 
   onChangeStockItem(stockItemToUpdate: StockItem) {
-    this.orderService.updateStockItem(this.order, stockItemToUpdate)
+    this.order.items.set(stockItemToUpdate.id, stockItemToUpdate)
   }
 
   onDeleteStockItem(id: number) {
-    this.orderService.deleteItem(this.order, id)
+    this.order.items.delete(id)
   }
 
   onCloseOrder() {

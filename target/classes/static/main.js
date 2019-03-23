@@ -297,6 +297,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _common_components_modal_builder__WEBPACK_IMPORTED_MODULE_26__ = __webpack_require__(/*! ./common-components/modal-builder */ "./src/app/common-components/modal-builder.ts");
 /* harmony import */ var _modal_create_order_modal_create_order_modal_component__WEBPACK_IMPORTED_MODULE_27__ = __webpack_require__(/*! ./modal/create-order-modal/create-order-modal.component */ "./src/app/modal/create-order-modal/create-order-modal.component.ts");
 /* harmony import */ var _service_customer_service__WEBPACK_IMPORTED_MODULE_28__ = __webpack_require__(/*! ./service/customer-service */ "./src/app/service/customer-service.ts");
+/* harmony import */ var _modal_info_modal_info_modal_component__WEBPACK_IMPORTED_MODULE_29__ = __webpack_require__(/*! ./modal/info-modal/info-modal.component */ "./src/app/modal/info-modal/info-modal.component.ts");
+
 
 
 
@@ -349,9 +351,10 @@ var AppModule = /** @class */ (function () {
                 _customer_customer_panel_customer_panel_component__WEBPACK_IMPORTED_MODULE_22__["CustomerPanelComponent"],
                 _app_nav_bar_app_nav_bar_component__WEBPACK_IMPORTED_MODULE_24__["AppNavBarComponent"],
                 _modal_confirm_modal_confirm_modal_component__WEBPACK_IMPORTED_MODULE_25__["ConfirmModalComponent"],
-                _modal_create_order_modal_create_order_modal_component__WEBPACK_IMPORTED_MODULE_27__["CreateOrderModalComponent"]
+                _modal_create_order_modal_create_order_modal_component__WEBPACK_IMPORTED_MODULE_27__["CreateOrderModalComponent"],
+                _modal_info_modal_info_modal_component__WEBPACK_IMPORTED_MODULE_29__["InfoModalComponent"]
             ],
-            entryComponents: [_modal_create_order_modal_create_order_modal_component__WEBPACK_IMPORTED_MODULE_27__["CreateOrderModalComponent"], _modal_confirm_modal_confirm_modal_component__WEBPACK_IMPORTED_MODULE_25__["ConfirmModalComponent"]],
+            entryComponents: [_modal_create_order_modal_create_order_modal_component__WEBPACK_IMPORTED_MODULE_27__["CreateOrderModalComponent"], _modal_confirm_modal_confirm_modal_component__WEBPACK_IMPORTED_MODULE_25__["ConfirmModalComponent"], _modal_info_modal_info_modal_component__WEBPACK_IMPORTED_MODULE_29__["InfoModalComponent"]],
             imports: [
                 _angular_platform_browser__WEBPACK_IMPORTED_MODULE_1__["BrowserModule"],
                 _angular_common_http__WEBPACK_IMPORTED_MODULE_6__["HttpClientModule"],
@@ -755,6 +758,76 @@ var CreateOrderModalComponent = /** @class */ (function () {
 
 /***/ }),
 
+/***/ "./src/app/modal/info-modal/info-modal.component.css":
+/*!***********************************************************!*\
+  !*** ./src/app/modal/info-modal/info-modal.component.css ***!
+  \***********************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJzcmMvYXBwL21vZGFsL2luZm8tbW9kYWwvaW5mby1tb2RhbC5jb21wb25lbnQuY3NzIn0= */"
+
+/***/ }),
+
+/***/ "./src/app/modal/info-modal/info-modal.component.html":
+/*!************************************************************!*\
+  !*** ./src/app/modal/info-modal/info-modal.component.html ***!
+  \************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "<div class=\"modal-header\">\n  <h4 class=\"modal-title\" id=\"modal-basic-title\">{{ title }}</h4>\n  <button type=\"button\" class=\"close\" aria-label=\"Close\" (click)=\"onClickClose()\">\n    <span aria-hidden=\"true\">&times;</span>\n  </button>\n</div>\n<div class=\"modal-body\">\n  <p>{{ message }}</p>\n</div>\n<div class=\"modal-footer\">\n  <button type=\"button\" class=\"btn btn-secondary\" (click)=\"onClickClose()\">OK</button>\n</div>\n"
+
+/***/ }),
+
+/***/ "./src/app/modal/info-modal/info-modal.component.ts":
+/*!**********************************************************!*\
+  !*** ./src/app/modal/info-modal/info-modal.component.ts ***!
+  \**********************************************************/
+/*! exports provided: InfoModalComponent */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "InfoModalComponent", function() { return InfoModalComponent; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var _ng_bootstrap_ng_bootstrap__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @ng-bootstrap/ng-bootstrap */ "./node_modules/@ng-bootstrap/ng-bootstrap/fesm5/ng-bootstrap.js");
+
+
+
+var InfoModalComponent = /** @class */ (function () {
+    function InfoModalComponent(modal) {
+        this.modal = modal;
+    }
+    InfoModalComponent.prototype.ngOnInit = function () {
+    };
+    InfoModalComponent.prototype.onClickClose = function () {
+        this.modal.close(false);
+    };
+    tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Input"])(),
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:type", String)
+    ], InfoModalComponent.prototype, "title", void 0);
+    tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Input"])(),
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:type", String)
+    ], InfoModalComponent.prototype, "message", void 0);
+    InfoModalComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
+            selector: 'app-info-modal',
+            template: __webpack_require__(/*! ./info-modal.component.html */ "./src/app/modal/info-modal/info-modal.component.html"),
+            styles: [__webpack_require__(/*! ./info-modal.component.css */ "./src/app/modal/info-modal/info-modal.component.css")]
+        }),
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_ng_bootstrap_ng_bootstrap__WEBPACK_IMPORTED_MODULE_2__["NgbActiveModal"]])
+    ], InfoModalComponent);
+    return InfoModalComponent;
+}());
+
+
+
+/***/ }),
+
 /***/ "./src/app/model/Customer.ts":
 /*!***********************************!*\
   !*** ./src/app/model/Customer.ts ***!
@@ -902,11 +975,14 @@ var Type;
     Type["GLASSES"] = "GLASSES";
 })(Type || (Type = {}));
 var StockItem = /** @class */ (function () {
-    function StockItem(id, quantity, product) {
+    function StockItem(id, barCode, quantity, product, creationDatetime, lastModifyDatetime) {
         this.type = Type.GLASSES;
         this.id = id;
+        this.barCode = barCode;
         this.quantity = quantity;
         this.product = product;
+        this.createdDatetime = creationDatetime;
+        this.lastModifiedDatetime = lastModifyDatetime;
     }
     return StockItem;
 }());
@@ -1359,12 +1435,8 @@ var NotificationService = /** @class */ (function () {
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "OrderService", function() { return OrderService; });
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
-/* harmony import */ var _model_StockItem__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../model/StockItem */ "./src/app/model/StockItem.ts");
-/* harmony import */ var _model_Product__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../model/Product */ "./src/app/model/Product.ts");
-/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
-/* harmony import */ var _http_service__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./http-service */ "./src/app/service/http-service.ts");
-
-
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var _http_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./http-service */ "./src/app/service/http-service.ts");
 
 
 
@@ -1382,65 +1454,46 @@ var OrderService = /** @class */ (function () {
     };
     OrderService.prototype.getOrder = function (id) {
         console.log("Get report " + id);
-        return this.httpApi.get("/v1/stockReport/get/" + id);
+        return this.httpApi.get("/v1/order/get/" + id);
     };
     OrderService.prototype.getOrderByName = function (name) {
         console.log("Get report by name : " + name);
-        return this.httpApi.get("/v1/stockReport/getByName/" + name);
+        return this.httpApi.get("/v1/order/getByName/" + name);
     };
     OrderService.prototype.addItem = function (order, item) {
         console.log("Add item[ " + ", " + item.quantity + " to order " + order.id);
-        var stockItem;
-        this.httpApi.post("/v1/order/update", this.toUpdateRequest(order, item)).subscribe(function (data) {
-            var product = new _model_Product__WEBPACK_IMPORTED_MODULE_2__["Product"](data.item.product.id, data.item.product.name, data.item.product.price);
-            stockItem = new _model_StockItem__WEBPACK_IMPORTED_MODULE_1__["StockItem"](data.item.id, data.item.quantity, product);
-            order.items.set(stockItem.id, stockItem);
-        }, function (error) {
-            debugger;
-            console.log(error);
-        });
+        return this.httpApi.post("/v1/stock/update", this.toUpdateRequest(order, item));
     };
     OrderService.prototype.updateStockItem = function (order, itemToUpdate) {
         console.log("update order " + order.id + " | " + itemToUpdate);
-        this.httpApi.post("/v1/order/update", this.toUpdateRequest(order, itemToUpdate)).subscribe(function (data) {
-            order.id = data.id;
-            order.name = data.name;
-            order.comment = data.comment;
-            order.status = data.status;
-            var product = new _model_Product__WEBPACK_IMPORTED_MODULE_2__["Product"](data.item.product.id, data.item.product.name, data.item.product.price);
-            var stockItem = new _model_StockItem__WEBPACK_IMPORTED_MODULE_1__["StockItem"](data.item.id, data.item.quantity, product);
-            order.items.set(stockItem.id, stockItem);
-        });
+        return this.httpApi.post("/v1/order/update", this.toUpdateRequest(order, itemToUpdate));
     };
     OrderService.prototype.deleteItem = function (order, stockItemIdToDelete) {
         console.log("Delete Item : " + stockItemIdToDelete);
-        this.httpApi.delete("/v1/order/delete/" + stockItemIdToDelete).subscribe(function (data) {
-            console.log(data);
-            order.items.delete(stockItemIdToDelete);
-        });
+        return this.httpApi.delete("/v1/order/delete/" + stockItemIdToDelete);
     };
     OrderService.prototype.closeOrder = function (order) {
         console.log("Close order : " + order.id);
         var request = { "id": order.id };
-        this.httpApi.post("/v1/stockReport/close", request).subscribe(function (data) {
+        this.httpApi.post("/v1/order/close", request).subscribe(function (data) {
             order.closeDatetime = data.closeDateTime;
             order.status = data.status;
         });
     };
     OrderService.prototype.getAllOrders = function () {
         console.log("Get all reports");
-        return this.httpApi.get("/v1/stockReport/all");
+        return this.httpApi.get("/v1/order/all");
     };
     OrderService.prototype.toUpdateRequest = function (order, item) {
         return {
-            "stockReportId": order.id,
-            "stockItem": item,
+            "orderId": order.id,
+            "orderItem": item,
             "type": item.type
         };
     };
     OrderService = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
-        Object(_angular_core__WEBPACK_IMPORTED_MODULE_3__["Injectable"])(),
-        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_http_service__WEBPACK_IMPORTED_MODULE_4__["HttpService"]])
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Injectable"])(),
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_http_service__WEBPACK_IMPORTED_MODULE_2__["HttpService"]])
     ], OrderService);
     return OrderService;
 }());
@@ -1511,7 +1564,7 @@ module.exports = ".table tr.active td {\n    background-color:#275e94 !important
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"user-container\">\n  <form>\n    <div class=\"form-group\">\n      <div class=\"input-group\">\n        <div class=\"input-group-addon\">\n          <i class=\"glyphicon glyphicon-search\"></i>\n        </div>\n        <input type=\"text\"\n          class=\"form-control\"\n          name=\"searchString\"\n          placeholder=\"Type to search...\"\n          [(ngModel)]=\"searchString\">\n      </div>\n    </div>\n  </form>\n  <table class=\"table table-striped\">\n    <thead>\n      <tr>\n        <th>ID</th>\n        <th>Name</th>\n        <th>Price</th>\n        <th>Quantity</th>\n        <th></th>\n        <th></th>\n        <th></th>\n      </tr>\n    </thead>\n    <tbody>\n      <tr *ngIf=\"orderStatus !== 'CLOSED'\">\n        <td></td>\n        <td>\n          <input class=\"form-control\" (blur)=\"onBlurNewItemInput()\" [(ngModel)]=\"inputName\">\n        </td>\n        <td>\n          <input class=\"form-control\" (blur)=\"onBlurNewItemInput()\" [(ngModel)]=\"inputPrice\">\n        </td>\n        <td>\n          <input class=\"form-control\" (blur)=\"onBlurNewItemInput()\" [(ngModel)]=\"inputQuantity\">\n        </td>\n        <td></td>\n        <td></td>\n        <td>\n          <button class=\"btn btn-info\" [disabled]=\"! areNewStockItemFieldsSet\" (click)=\"createNewStockItem()\"> Add\n            Stock Item</button>\n        </td>\n      </tr>\n      <tr *ngFor=\"let item of stockItems | filter : 'name' : searchString; let i = index\" (click)=\"setSelectedRow(i)\"\n        [class.active]=\"i == selectedRow\">\n        <td>{{ item.product.id }}</td>\n        <td contenteditable=\"orderStatus !== 'CLOSED'\"\n          (blur)=\"onChangeStockItemName(item, $event)\">\n          {{ item.product.name }}\n        </td>\n        <td\n          contenteditable=\"orderStatus !== 'CLOSED'\"\n          (blur)=\"onChangeStockItemPrice(item, $event)\">\n          {{ item.product.price }} €\n        </td>\n        <td\n          contenteditable=\"orderStatus !== 'CLOSED'\"\n          (blur)=\"onChangeStockItemQuantity(item, $event)\">\n          {{ item.quantity }}\n        </td>\n        <td></td>\n        <td></td>\n        <td>\n          <button *ngIf=\"orderStatus !== 'CLOSED'\" (click)=\"deleteStockItem(item.id)\" class=\"btn btn-danger\">\n            Delete</button>\n        </td>\n      </tr>\n    </tbody>\n  </table>\n</div>"
+module.exports = "<div class=\"user-container\">\n  <form>\n    <div class=\"form-group\">\n      <div class=\"input-group\">\n        <div class=\"input-group-addon\">\n          <i class=\"glyphicon glyphicon-search\"></i>\n        </div>\n        <input type=\"text\"\n          class=\"form-control\"\n          name=\"searchString\"\n          placeholder=\"Type to search...\"\n          [(ngModel)]=\"searchString\">\n      </div>\n    </div>\n  </form>\n  <table class=\"table table-striped\">\n    <thead>\n      <tr>\n        <th>ID</th>\n        <th>Name</th>\n        <th>Price</th>\n        <th>Quantity</th>\n        <th>Creation Date</th>\n        <th>Last Modify Date</th>\n        <th></th>\n      </tr>\n    </thead>\n    <tbody>\n      <tr *ngIf=\"order.status !== 'CLOSED'\">\n        <td></td>\n        <td>\n          <input class=\"form-control\" (blur)=\"onBlurNewItemInput()\" [(ngModel)]=\"inputName\">\n        </td>\n        <td>\n          <input class=\"form-control\" (blur)=\"onBlurNewItemInput()\" [(ngModel)]=\"inputPrice\">\n        </td>\n        <td>\n          <input class=\"form-control\" (blur)=\"onBlurNewItemInput()\" [(ngModel)]=\"inputQuantity\">\n        </td>\n        <td></td>\n        <td></td>\n        <td>\n          <button class=\"btn btn-info\" [disabled]=\"! areNewStockItemFieldsSet\" (click)=\"createNewStockItem()\"> Add\n            Stock Item</button>\n        </td>\n      </tr>\n      <tr *ngFor=\"let item of stockItems | filter : 'name' : searchString; let i = index\" (click)=\"setSelectedRow(i)\"\n        [class.active]=\"i == selectedRow\">\n        <td>{{ item.product.id }}</td>\n        <td contenteditable=\"order.status !== 'CLOSED'\"\n          (blur)=\"onChangeStockItemName(item, $event)\">\n          {{ item.product.name }}\n        </td>\n        <td\n          contenteditable=\"order.status !== 'CLOSED'\"\n          (blur)=\"onChangeStockItemPrice(item, $event)\">\n          {{ item.product.price }} €\n        </td>\n        <td\n          contenteditable=\"order.status !== 'CLOSED'\"\n          (blur)=\"onChangeStockItemQuantity(item, $event)\">\n          {{ item.quantity }}\n        </td>\n        <td>{{ item.createdDatetime }}</td>\n        <td>{{ item.lastModifiedDatetime }}</td>\n        <td>\n          <button *ngIf=\"order.status !== 'CLOSED'\" (click)=\"deleteStockItem(item.id)\" class=\"btn btn-danger\">\n            Delete</button>\n        </td>\n      </tr>\n    </tbody>\n  </table>\n</div>"
 
 /***/ }),
 
@@ -1529,12 +1582,22 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
 /* harmony import */ var _model_StockItem__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../model/StockItem */ "./src/app/model/StockItem.ts");
 /* harmony import */ var _model_Product__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../model/Product */ "./src/app/model/Product.ts");
+/* harmony import */ var src_app_service_order_service__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! src/app/service/order-service */ "./src/app/service/order-service.ts");
+/* harmony import */ var src_app_model_Order__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! src/app/model/Order */ "./src/app/model/Order.ts");
+/* harmony import */ var src_app_common_components_modal_builder__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! src/app/common-components/modal-builder */ "./src/app/common-components/modal-builder.ts");
+/* harmony import */ var src_app_modal_info_modal_info_modal_component__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! src/app/modal/info-modal/info-modal.component */ "./src/app/modal/info-modal/info-modal.component.ts");
+
+
+
+
 
 
 
 
 var ListStockItemComponent = /** @class */ (function () {
-    function ListStockItemComponent() {
+    function ListStockItemComponent(orderService, modalBuilder) {
+        this.orderService = orderService;
+        this.modalBuilder = modalBuilder;
         this.areNewStockItemFieldsSet = false;
         this.onCreateStockItemEvent = new _angular_core__WEBPACK_IMPORTED_MODULE_1__["EventEmitter"]();
         this.onChangeStockItemEvent = new _angular_core__WEBPACK_IMPORTED_MODULE_1__["EventEmitter"]();
@@ -1548,26 +1611,53 @@ var ListStockItemComponent = /** @class */ (function () {
             && this.inputPrice >= 0;
     };
     ListStockItemComponent.prototype.createNewStockItem = function () {
-        var stockItem = new _model_StockItem__WEBPACK_IMPORTED_MODULE_2__["StockItem"](undefined, this.inputQuantity, new _model_Product__WEBPACK_IMPORTED_MODULE_3__["Product"](undefined, this.inputName, this.inputPrice));
-        this.onCreateStockItemEvent.emit(stockItem);
-        this.resetNewStockitemFields();
+        var _this = this;
+        var stockItem = new _model_StockItem__WEBPACK_IMPORTED_MODULE_2__["StockItem"](undefined, null, this.inputQuantity, new _model_Product__WEBPACK_IMPORTED_MODULE_3__["Product"](undefined, this.inputName, this.inputPrice), null, null);
+        this.orderService.addItem(this.order, stockItem).subscribe(function (data) {
+            var product = new _model_Product__WEBPACK_IMPORTED_MODULE_3__["Product"](data.item.product.id, data.item.product.name, data.item.product.price);
+            stockItem = new _model_StockItem__WEBPACK_IMPORTED_MODULE_2__["StockItem"](data.item.id, data.item.barCode.id, data.item.quantity, product, data.item.createdDatetime, data.item.lastModifiedDatetime);
+            _this.onCreateStockItemEvent.emit(stockItem);
+            _this.resetNewStockitemFields();
+        }, function (error) {
+            var modalRef = _this.modalBuilder.open(src_app_modal_info_modal_info_modal_component__WEBPACK_IMPORTED_MODULE_7__["InfoModalComponent"]);
+            modalRef.componentInstance.title = "Error : Product item " + stockItem.product.name + " not added to order " + _this.order.name;
+            modalRef.componentInstance.message = error.error.message;
+        });
     };
     ListStockItemComponent.prototype.deleteStockItem = function (id) {
-        this.onDeleteStockItemEvent.emit(id);
+        var _this = this;
+        this.orderService.deleteItem(this.order, id).subscribe(function (data) {
+            console.log(data);
+            _this.onDeleteStockItemEvent.emit(id);
+        }, function (error) {
+        });
     };
     ListStockItemComponent.prototype.onChangeStockItemName = function (stockItem, event) {
+        var _this = this;
         var product = stockItem.product;
         var newName = event.target.textContent;
         if (product.name !== newName) {
             var p = new _model_Product__WEBPACK_IMPORTED_MODULE_3__["Product"](product.id, newName, product.price);
-            var item = new _model_StockItem__WEBPACK_IMPORTED_MODULE_2__["StockItem"](stockItem.id, stockItem.quantity, p);
-            this.onChangeStockItemEvent.emit(item);
+            var item = new _model_StockItem__WEBPACK_IMPORTED_MODULE_2__["StockItem"](stockItem.id, stockItem.barCode, stockItem.quantity, p, stockItem.createdDatetime, stockItem.lastModifiedDatetime);
+            this.orderService.updateStockItem(this.order, item).subscribe(function (data) {
+                _this.order.id = data.id;
+                _this.order.name = data.name;
+                _this.order.comment = data.comment;
+                _this.order.status = data.status;
+                var product = new _model_Product__WEBPACK_IMPORTED_MODULE_3__["Product"](data.item.product.id, data.item.product.name, data.item.product.price);
+                var stockItem = new _model_StockItem__WEBPACK_IMPORTED_MODULE_2__["StockItem"](data.item.id, data.item.barCode.id, data.item.quantity, product, data.item.createdDatetime, data.item.lastModifiedDatetime);
+                _this.order.items.set(stockItem.id, stockItem);
+                _this.onChangeStockItemEvent.emit(stockItem);
+            }, function (error) {
+                debugger;
+                console.log(error);
+            });
         }
     };
     ListStockItemComponent.prototype.onChangeStockItemQuantity = function (stockItem, event) {
         var newQuantity = event.target.textContent;
         if (stockItem.quantity != newQuantity) {
-            var item = new _model_StockItem__WEBPACK_IMPORTED_MODULE_2__["StockItem"](stockItem.id, newQuantity, stockItem.product);
+            var item = new _model_StockItem__WEBPACK_IMPORTED_MODULE_2__["StockItem"](stockItem.id, stockItem.barCode, newQuantity, stockItem.product, stockItem.createdDatetime, stockItem.lastModifiedDatetime);
             this.onChangeStockItemEvent.emit(item);
         }
     };
@@ -1576,7 +1666,7 @@ var ListStockItemComponent = /** @class */ (function () {
         var newPrice = event.target.textContent;
         if (product.price != newPrice) {
             var p = new _model_Product__WEBPACK_IMPORTED_MODULE_3__["Product"](product.id, product.name, newPrice);
-            var item = new _model_StockItem__WEBPACK_IMPORTED_MODULE_2__["StockItem"](stockItem.id, stockItem.quantity, p);
+            var item = new _model_StockItem__WEBPACK_IMPORTED_MODULE_2__["StockItem"](stockItem.id, stockItem.barCode, stockItem.quantity, p, stockItem.createdDatetime, stockItem.lastModifiedDatetime);
             this.onChangeStockItemEvent.emit(item);
         }
     };
@@ -1595,12 +1685,8 @@ var ListStockItemComponent = /** @class */ (function () {
     ], ListStockItemComponent.prototype, "stockItems", void 0);
     tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Input"])(),
-        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:type", Number)
-    ], ListStockItemComponent.prototype, "orderId", void 0);
-    tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
-        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Input"])(),
-        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:type", String)
-    ], ListStockItemComponent.prototype, "orderStatus", void 0);
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:type", src_app_model_Order__WEBPACK_IMPORTED_MODULE_5__["Order"])
+    ], ListStockItemComponent.prototype, "order", void 0);
     tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Output"])(),
         tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:type", Object)
@@ -1619,7 +1705,8 @@ var ListStockItemComponent = /** @class */ (function () {
             template: __webpack_require__(/*! ./list-stock-item.component.html */ "./src/app/stock-report-panel/list-stock-item/list-stock-item.component.html"),
             styles: [__webpack_require__(/*! ./list-stock-item.component.css */ "./src/app/stock-report-panel/list-stock-item/list-stock-item.component.css")]
         }),
-        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [])
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [src_app_service_order_service__WEBPACK_IMPORTED_MODULE_4__["OrderService"],
+            src_app_common_components_modal_builder__WEBPACK_IMPORTED_MODULE_6__["ModalBuilder"]])
     ], ListStockItemComponent);
     return ListStockItemComponent;
 }());
@@ -1734,7 +1821,7 @@ module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div>\n  <stock-report-header\n    [order]=\"order\"\n    (onCloseOrderEvent)=\"onCloseOrder()\"\n  ></stock-report-header>\n  <list-stock-item *ngIf=\"order\"\n    [orderId]=\"orderId\"\n    [stockItems]=\"order.items.values()\"\n    [orderStatus]=\"order.status\"\n    (onCreateStockItemEvent)=\"onNewStockItem($event)\"\n    (onChangeStockItemEvent)=\"onChangeStockItem($event)\"\n    (onDeleteStockItemEvent)=\"onDeleteStockItem($event)\"\n  ></list-stock-item>\n  <div class=\"container=fluid\">\n    <button class=\"btn btn-primary\"\n        (click)=\"onClickBack()\"\n        style=\"float: right\"\n    >Back</button>\n</div>\n</div>"
+module.exports = "<div>\n  <stock-report-header\n    [order]=\"order\"\n    (onCloseOrderEvent)=\"onCloseOrder()\"\n  ></stock-report-header>\n  <list-stock-item *ngIf=\"order\"\n    [order]=\"order\"\n    [stockItems]=\"order.items.values()\"\n    (onCreateStockItemEvent)=\"onNewStockItem($event)\"\n    (onChangeStockItemEvent)=\"onChangeStockItem($event)\"\n    (onDeleteStockItemEvent)=\"onDeleteStockItem($event)\"\n  ></list-stock-item>\n  <div class=\"container=fluid\">\n    <button class=\"btn btn-primary\"\n        (click)=\"onClickBack()\"\n        style=\"float: right\"\n    >Back</button>\n</div>\n</div>"
 
 /***/ }),
 
@@ -1784,19 +1871,19 @@ var StockReportComponent = /** @class */ (function () {
             for (var _i = 0, _a = data.items; _i < _a.length; _i++) {
                 var item = _a[_i];
                 var product = new _model_Product__WEBPACK_IMPORTED_MODULE_7__["Product"](item.product.id, item.product.name, item.product.price);
-                var stockItem = new _model_StockItem__WEBPACK_IMPORTED_MODULE_3__["StockItem"](item.id, item.quantity, product);
+                var stockItem = new _model_StockItem__WEBPACK_IMPORTED_MODULE_3__["StockItem"](item.id, item.barCode.id, item.quantity, product, item.createdDatetime, item.lastModifiedDatetime);
                 _this.order.items.set(stockItem.id, stockItem);
             }
         });
     };
     StockReportComponent.prototype.onNewStockItem = function (stockItemToAdd) {
-        this.orderService.addItem(this.order, stockItemToAdd);
+        this.order.items.set(stockItemToAdd.id, stockItemToAdd);
     };
     StockReportComponent.prototype.onChangeStockItem = function (stockItemToUpdate) {
-        this.orderService.updateStockItem(this.order, stockItemToUpdate);
+        this.order.items.set(stockItemToUpdate.id, stockItemToUpdate);
     };
     StockReportComponent.prototype.onDeleteStockItem = function (id) {
-        this.orderService.deleteItem(this.order, id);
+        this.order.items.delete(id);
     };
     StockReportComponent.prototype.onCloseOrder = function () {
         this.orderService.closeOrder(this.order);

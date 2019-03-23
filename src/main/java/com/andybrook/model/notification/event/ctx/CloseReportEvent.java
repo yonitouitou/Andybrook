@@ -1,16 +1,16 @@
 package com.andybrook.model.notification.event.ctx;
 
-import com.andybrook.model.StockReport;
+import com.andybrook.model.Order;
 
 public class CloseReportEvent {
 
-    private final StockReport report;
+    private final Order report;
 
-    public CloseReportEvent(StockReport report) {
+    public CloseReportEvent(Order report) {
         this.report = report;
     }
 
-    public StockReport getReport() {
+    public Order getReport() {
         return report;
     }
 }
