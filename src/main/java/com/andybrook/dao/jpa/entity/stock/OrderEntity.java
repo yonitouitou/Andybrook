@@ -51,13 +51,14 @@ public class OrderEntity {
     }
 
     public OrderEntity(Long id, String name, CustomerEntity customerEntity,
-                       OrderStatus status, String comment, LocalDateTime closeDateTime) {
+                       OrderStatus status, String comment, LocalDateTime createdDatetime, LocalDateTime closeDateTime) {
         this.id = id;
         this.name = name;
         this.customerEntity = customerEntity;
         this.items = new ArrayList();
         this.status = status;
         this.comment = comment;
+        this.createdDatetime = createdDatetime;
         this.closeDatetime = closeDateTime;
     }
 

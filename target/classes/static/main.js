@@ -1470,7 +1470,7 @@ var OrderService = /** @class */ (function () {
     };
     OrderService.prototype.deleteItem = function (order, stockItemIdToDelete) {
         console.log("Delete Item : " + stockItemIdToDelete);
-        return this.httpApi.delete("/v1/order/delete/" + stockItemIdToDelete);
+        return this.httpApi.delete("/v1/order/deleteOrderItem/" + order.id + "/" + stockItemIdToDelete);
     };
     OrderService.prototype.closeOrder = function (order) {
         console.log("Close order : " + order.id);
@@ -1614,8 +1614,12 @@ var ListStockItemComponent = /** @class */ (function () {
         var _this = this;
         var stockItem = new _model_StockItem__WEBPACK_IMPORTED_MODULE_2__["StockItem"](undefined, null, this.inputQuantity, new _model_Product__WEBPACK_IMPORTED_MODULE_3__["Product"](undefined, this.inputName, this.inputPrice), null, null);
         this.orderService.addItem(this.order, stockItem).subscribe(function (data) {
+            var barCodeId;
+            if (data.item.barCode != null) {
+                barCodeId = data.item.barCode.id;
+            }
             var product = new _model_Product__WEBPACK_IMPORTED_MODULE_3__["Product"](data.item.product.id, data.item.product.name, data.item.product.price);
-            stockItem = new _model_StockItem__WEBPACK_IMPORTED_MODULE_2__["StockItem"](data.item.id, data.item.barCode.id, data.item.quantity, product, data.item.createdDatetime, data.item.lastModifiedDatetime);
+            stockItem = new _model_StockItem__WEBPACK_IMPORTED_MODULE_2__["StockItem"](data.item.id, barCodeId, data.item.quantity, product, data.item.createdDatetime, data.item.lastModifiedDatetime);
             _this.onCreateStockItemEvent.emit(stockItem);
             _this.resetNewStockitemFields();
         }, function (error) {
@@ -1870,8 +1874,12 @@ var StockReportComponent = /** @class */ (function () {
             _this.order.customer = _model_Customer__WEBPACK_IMPORTED_MODULE_6__["Customer"].fromJson(data.customer);
             for (var _i = 0, _a = data.items; _i < _a.length; _i++) {
                 var item = _a[_i];
+                var barCodeId = void 0;
+                if (item.barCode != null) {
+                    barCodeId = item.barCode.id;
+                }
                 var product = new _model_Product__WEBPACK_IMPORTED_MODULE_7__["Product"](item.product.id, item.product.name, item.product.price);
-                var stockItem = new _model_StockItem__WEBPACK_IMPORTED_MODULE_3__["StockItem"](item.id, item.barCode.id, item.quantity, product, item.createdDatetime, item.lastModifiedDatetime);
+                var stockItem = new _model_StockItem__WEBPACK_IMPORTED_MODULE_3__["StockItem"](item.id, barCodeId, item.quantity, product, item.createdDatetime, item.lastModifiedDatetime);
                 _this.order.items.set(stockItem.id, stockItem);
             }
         });

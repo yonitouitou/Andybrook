@@ -19,6 +19,18 @@ public class ProductService implements IProductService {
     private IBarCodeService barCodeService;
 
     @Override
+    public Product get(long id) throws ProductNotFound {
+        Product product;
+        Optional<Product> productOpt = dao.get(id);
+        if (productOpt.isPresent()) {
+            product = productOpt.get();
+        } else {
+            throw new ProductNotFound(id);
+        }
+        return product;
+    }
+
+    @Override
     public Product addProduct(Product product) {
         return dao.update(product);
     }

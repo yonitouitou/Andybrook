@@ -1012,17 +1012,16 @@
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <index id="256" parent="231" name="UK_3flnbdmo75jymyrbamxly46uj">
-      <ColNames>productid</ColNames>
-      <Unique>1</Unique>
-      <Type>btree</Type>
-    </index>
-    <index id="257" parent="231" name="FK2p2bf9h1pr9xb9yda0q3fqbk">
+    <index id="256" parent="231" name="FK2p2bf9h1pr9xb9yda0q3fqbk">
       <ColNames>barcodeid</ColNames>
       <Type>btree</Type>
     </index>
-    <index id="258" parent="231" name="FK6qdi17749hl3bd01qyvxkid49">
+    <index id="257" parent="231" name="FK6qdi17749hl3bd01qyvxkid49">
       <ColNames>orderid</ColNames>
+      <Type>btree</Type>
+    </index>
+    <index id="258" parent="231" name="FK65riinaev2asy1q07c9nrgrxr">
+      <ColNames>productid</ColNames>
       <Type>btree</Type>
     </index>
     <key id="259" parent="231" name="PRIMARY">
@@ -1030,308 +1029,304 @@
       <ColNames>id</ColNames>
       <Primary>1</Primary>
     </key>
-    <key id="260" parent="231" name="UK_3flnbdmo75jymyrbamxly46uj">
-      <ColNames>productid</ColNames>
-      <UnderlyingIndexName>UK_3flnbdmo75jymyrbamxly46uj</UnderlyingIndexName>
-    </key>
-    <foreign-key id="261" parent="231" name="FK2p2bf9h1pr9xb9yda0q3fqbk">
+    <foreign-key id="260" parent="231" name="FK2p2bf9h1pr9xb9yda0q3fqbk">
       <ColNames>barcodeid</ColNames>
       <RefSchemaName>andybrook</RefSchemaName>
       <RefTableName>product_barcodes</RefTableName>
       <RefColNames>id</RefColNames>
     </foreign-key>
-    <foreign-key id="262" parent="231" name="FK6qdi17749hl3bd01qyvxkid49">
+    <foreign-key id="261" parent="231" name="FK6qdi17749hl3bd01qyvxkid49">
       <ColNames>orderid</ColNames>
       <RefSchemaName>andybrook</RefSchemaName>
       <RefTableName>orders</RefTableName>
       <RefColNames>id</RefColNames>
     </foreign-key>
-    <foreign-key id="263" parent="231" name="FK65riinaev2asy1q07c9nrgrxr">
+    <foreign-key id="262" parent="231" name="FK65riinaev2asy1q07c9nrgrxr">
       <ColNames>productid</ColNames>
       <RefSchemaName>andybrook</RefSchemaName>
       <RefTableName>product</RefTableName>
       <RefColNames>id</RefColNames>
     </foreign-key>
-    <column id="264" parent="232" name="id">
+    <column id="263" parent="232" name="id">
       <Position>1</Position>
       <DataType>bigint(20)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <key id="265" parent="232" name="PRIMARY">
+    <key id="264" parent="232" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>id</ColNames>
       <Primary>1</Primary>
     </key>
-    <foreign-key id="266" parent="232" name="FK2a5hgkw3agbhkrhr0ye8na5ui">
+    <foreign-key id="265" parent="232" name="FK2a5hgkw3agbhkrhr0ye8na5ui">
       <ColNames>id</ColNames>
       <RefSchemaName>andybrook</RefSchemaName>
       <RefTableName>order_item</RefTableName>
       <RefColNames>id</RefColNames>
     </foreign-key>
-    <column id="267" parent="233" name="id">
+    <column id="266" parent="233" name="id">
       <Position>1</Position>
       <DataType>bigint(20)|0s</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>1</SequenceIdentity>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="268" parent="233" name="closedatetime">
+    <column id="267" parent="233" name="closedatetime">
       <Position>2</Position>
       <DataType>datetime|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="269" parent="233" name="comment">
+    <column id="268" parent="233" name="comment">
       <Position>3</Position>
       <DataType>varchar(256)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="270" parent="233" name="createddatetime">
+    <column id="269" parent="233" name="createddatetime">
       <Position>4</Position>
       <DataType>datetime|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="271" parent="233" name="lastmodifieddatetime">
+    <column id="270" parent="233" name="lastmodifieddatetime">
       <Position>5</Position>
       <DataType>datetime|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="272" parent="233" name="name">
+    <column id="271" parent="233" name="name">
       <Position>6</Position>
       <DataType>varchar(255)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="273" parent="233" name="status">
+    <column id="272" parent="233" name="status">
       <Position>7</Position>
       <DataType>int(11)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="274" parent="233" name="customerid">
+    <column id="273" parent="233" name="customerid">
       <Position>8</Position>
       <DataType>bigint(20)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <index id="275" parent="233" name="FKbhieamq65ke02r8ijfso5tivn">
+    <index id="274" parent="233" name="FKbhieamq65ke02r8ijfso5tivn">
       <ColNames>customerid</ColNames>
       <Type>btree</Type>
     </index>
-    <key id="276" parent="233" name="PRIMARY">
+    <key id="275" parent="233" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>id</ColNames>
       <Primary>1</Primary>
     </key>
-    <foreign-key id="277" parent="233" name="FKbhieamq65ke02r8ijfso5tivn">
+    <foreign-key id="276" parent="233" name="FKbhieamq65ke02r8ijfso5tivn">
       <ColNames>customerid</ColNames>
       <RefSchemaName>andybrook</RefSchemaName>
       <RefTableName>customer</RefTableName>
       <RefColNames>id</RefColNames>
     </foreign-key>
-    <column id="278" parent="234" name="id">
+    <column id="277" parent="234" name="id">
       <Position>1</Position>
       <DataType>bigint(20)|0s</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>1</SequenceIdentity>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="279" parent="234" name="email">
+    <column id="278" parent="234" name="email">
       <Position>2</Position>
       <DataType>varchar(255)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="280" parent="234" name="fistname">
+    <column id="279" parent="234" name="fistname">
       <Position>3</Position>
       <DataType>varchar(255)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="281" parent="234" name="lastname">
+    <column id="280" parent="234" name="lastname">
       <Position>4</Position>
       <DataType>varchar(255)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <key id="282" parent="234" name="PRIMARY">
+    <key id="281" parent="234" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>id</ColNames>
       <Primary>1</Primary>
     </key>
-    <column id="283" parent="235" name="type">
+    <column id="282" parent="235" name="type">
       <Position>1</Position>
       <DataType>varchar(55)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="284" parent="235" name="id">
+    <column id="283" parent="235" name="id">
       <Position>2</Position>
       <DataType>bigint(20)|0s</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>1</SequenceIdentity>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="285" parent="235" name="createddatetime">
+    <column id="284" parent="235" name="createddatetime">
       <Position>3</Position>
       <DataType>datetime|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="286" parent="235" name="lastmodifieddatetime">
+    <column id="285" parent="235" name="lastmodifieddatetime">
       <Position>4</Position>
       <DataType>datetime|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="287" parent="235" name="name">
+    <column id="286" parent="235" name="name">
       <Position>5</Position>
       <DataType>varchar(255)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="288" parent="235" name="price">
+    <column id="287" parent="235" name="price">
       <Position>6</Position>
       <DataType>double|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <key id="289" parent="235" name="PRIMARY">
+    <key id="288" parent="235" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>id</ColNames>
       <Primary>1</Primary>
     </key>
-    <column id="290" parent="236" name="id">
+    <column id="289" parent="236" name="id">
       <Position>1</Position>
       <DataType>varchar(255)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="291" parent="236" name="productid">
+    <column id="290" parent="236" name="productid">
       <Position>2</Position>
       <DataType>bigint(20)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <index id="292" parent="236" name="FKnv3ialbbyyopub5bej6d0xt8y">
+    <index id="291" parent="236" name="FKnv3ialbbyyopub5bej6d0xt8y">
       <ColNames>productid</ColNames>
       <Type>btree</Type>
     </index>
-    <key id="293" parent="236" name="PRIMARY">
+    <key id="292" parent="236" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>id</ColNames>
       <Primary>1</Primary>
     </key>
-    <foreign-key id="294" parent="236" name="FKnv3ialbbyyopub5bej6d0xt8y">
+    <foreign-key id="293" parent="236" name="FKnv3ialbbyyopub5bej6d0xt8y">
       <ColNames>productid</ColNames>
       <RefSchemaName>andybrook</RefSchemaName>
       <RefTableName>product</RefTableName>
       <RefColNames>id</RefColNames>
     </foreign-key>
-    <column id="295" parent="237" name="id">
+    <column id="294" parent="237" name="id">
       <Position>1</Position>
       <DataType>bigint(20)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <key id="296" parent="237" name="PRIMARY">
+    <key id="295" parent="237" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>id</ColNames>
       <Primary>1</Primary>
     </key>
-    <foreign-key id="297" parent="237" name="FK74as3d6g69807kt9wr9g79h92">
+    <foreign-key id="296" parent="237" name="FK74as3d6g69807kt9wr9g79h92">
       <ColNames>id</ColNames>
       <RefSchemaName>andybrook</RefSchemaName>
       <RefTableName>product</RefTableName>
       <RefColNames>id</RefColNames>
     </foreign-key>
-    <column id="298" parent="238" name="id">
+    <column id="297" parent="238" name="id">
       <Position>1</Position>
       <DataType>bigint(20)|0s</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>1</SequenceIdentity>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="299" parent="238" name="documentbackgroundheadertablecolor">
+    <column id="298" parent="238" name="documentbackgroundheadertablecolor">
       <Position>2</Position>
       <DataType>int(11)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="300" parent="238" name="documenttextheadertablecolor">
+    <column id="299" parent="238" name="documenttextheadertablecolor">
       <Position>3</Position>
       <DataType>int(11)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="301" parent="238" name="email">
+    <column id="300" parent="238" name="email">
       <Position>4</Position>
       <DataType>varchar(255)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="302" parent="238" name="ordersnbtoshow">
+    <column id="301" parent="238" name="ordersnbtoshow">
       <Position>5</Position>
       <DataType>int(11)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="303" parent="238" name="notificationpolicyid">
+    <column id="302" parent="238" name="notificationpolicyid">
       <Position>6</Position>
       <DataType>bigint(20)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <index id="304" parent="238" name="UK_pe0oc1pihle09vwg1rv0tx11c">
+    <index id="303" parent="238" name="UK_pe0oc1pihle09vwg1rv0tx11c">
       <ColNames>notificationpolicyid</ColNames>
       <Unique>1</Unique>
       <Type>btree</Type>
     </index>
-    <key id="305" parent="238" name="PRIMARY">
+    <key id="304" parent="238" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>id</ColNames>
       <Primary>1</Primary>
     </key>
-    <key id="306" parent="238" name="UK_pe0oc1pihle09vwg1rv0tx11c">
+    <key id="305" parent="238" name="UK_pe0oc1pihle09vwg1rv0tx11c">
       <ColNames>notificationpolicyid</ColNames>
       <UnderlyingIndexName>UK_pe0oc1pihle09vwg1rv0tx11c</UnderlyingIndexName>
     </key>
-    <foreign-key id="307" parent="238" name="FK1l2uc8f9p9qfg4j0nmygk9brx">
+    <foreign-key id="306" parent="238" name="FK1l2uc8f9p9qfg4j0nmygk9brx">
       <ColNames>notificationpolicyid</ColNames>
       <RefSchemaName>andybrook</RefSchemaName>
       <RefTableName>notification_policy</RefTableName>
       <RefColNames>id</RefColNames>
     </foreign-key>
-    <column id="308" parent="239" name="id">
+    <column id="307" parent="239" name="id">
       <Position>1</Position>
       <DataType>bigint(20)|0s</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>1</SequenceIdentity>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="309" parent="239" name="address">
+    <column id="308" parent="239" name="address">
       <Position>2</Position>
       <DataType>varchar(255)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="310" parent="239" name="email">
+    <column id="309" parent="239" name="email">
       <Position>3</Position>
       <DataType>varchar(255)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="311" parent="239" name="name">
+    <column id="310" parent="239" name="name">
       <Position>4</Position>
       <DataType>varchar(255)|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="312" parent="239" name="owner_id">
+    <column id="311" parent="239" name="owner_id">
       <Position>5</Position>
       <DataType>bigint(20)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <index id="313" parent="239" name="FKla1tvp88ake1vqnc6offvf54n">
+    <index id="312" parent="239" name="FKla1tvp88ake1vqnc6offvf54n">
       <ColNames>owner_id</ColNames>
       <Type>btree</Type>
     </index>
-    <key id="314" parent="239" name="PRIMARY">
+    <key id="313" parent="239" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>id</ColNames>
       <Primary>1</Primary>
     </key>
-    <foreign-key id="315" parent="239" name="FKla1tvp88ake1vqnc6offvf54n">
+    <foreign-key id="314" parent="239" name="FKla1tvp88ake1vqnc6offvf54n">
       <ColNames>owner_id</ColNames>
       <RefSchemaName>andybrook</RefSchemaName>
       <RefTableName>owner</RefTableName>

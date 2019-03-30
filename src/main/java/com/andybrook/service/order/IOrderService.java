@@ -2,6 +2,7 @@ package com.andybrook.service.order;
 
 import com.andybrook.exception.OrderClosed;
 import com.andybrook.exception.OrderNotFound;
+import com.andybrook.exception.ProductNotFound;
 import com.andybrook.exception.StoreNotFound;
 import com.andybrook.model.Order;
 import com.andybrook.model.OrderItem;
@@ -34,7 +35,7 @@ public interface IOrderService {
 
     boolean canModifyOrder(Order order);
 
-    Order addOrderItem(long orderId, OrderItem item) throws OrderNotFound, OrderClosed;
+    Order addOrderItem(long orderId, OrderItem item) throws OrderNotFound, OrderClosed, ProductNotFound;
 
     Order updateOrderItem(long orderId, OrderItem item) throws OrderNotFound, OrderClosed;
 

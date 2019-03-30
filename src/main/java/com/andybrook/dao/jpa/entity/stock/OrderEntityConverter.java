@@ -30,6 +30,7 @@ public class OrderEntityConverter implements IEntityConverter<Order, OrderEntity
         Order order = new Order(entity.getId(), entity.getName(), customer);
         order.setStatus(entity.getStatus());
         order.setComment(entity.getComment());
+        order.setCreatedDateTime(entity.getCreatedDatetime());
         order.setCloseDateTime(entity.getCloseDatetime());
         for (OrderItemEntity orderItemEntity : entity.getItems()) {
             OrderItem orderItem = entityFactory.createOrderItem(orderItemEntity);
@@ -42,7 +43,7 @@ public class OrderEntityConverter implements IEntityConverter<Order, OrderEntity
     public OrderEntity toEntity(Order model) {
         CustomerEntity customerEntity = entityFactory.createCustomerEntity(model.getCustomer());
         OrderEntity orderEntity = new OrderEntity(model.getId(), model.getName(), customerEntity,
-                model.getStatus(), model.getComment(), model.getCloseDateTime());
+                model.getStatus(), model.getComment(), model.getCreatedDateTime(), model.getCloseDateTime());
         List<OrderItemEntity> items = model.getItems()
                 .stream()
                 .map(s -> entityFactory.createOrderItemEntityByProductType(orderEntity, s))

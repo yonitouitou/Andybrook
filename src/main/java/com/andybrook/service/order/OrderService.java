@@ -3,6 +3,7 @@ package com.andybrook.service.order;
 import com.andybrook.dao.order.IOrderDao;
 import com.andybrook.exception.OrderClosed;
 import com.andybrook.exception.OrderNotFound;
+import com.andybrook.exception.ProductNotFound;
 import com.andybrook.language.LanguageResolver;
 import com.andybrook.model.Order;
 import com.andybrook.model.OrderItem;
@@ -11,11 +12,11 @@ import com.andybrook.model.product.Product;
 import com.andybrook.model.request.NewOrderRequest;
 import com.andybrook.model.request.UpdateOrderRequest;
 import com.andybrook.service.customer.ICustomerService;
+import com.andybrook.service.product.IProductService;
 import com.andybrook.service.setting.IAdminSettingService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.HashMap;
 import java.util.List;
 import java.util.Optional;
 import java.util.Set;
@@ -27,6 +28,8 @@ public class OrderService implements IOrderService {
 
     @Autowired
     private IOrderDao dao;
+    @Autowired
+    private IProductService productService;
     @Autowired
     private ICustomerService customerService;
     @Autowired
@@ -95,8 +98,9 @@ public class OrderService implements IOrderService {
     }
 
     @Override
-    public Order addOrderItem(long orderId, OrderItem item) throws OrderNotFound, OrderClosed {
+    public Order addOrderItem(long orderId, OrderItem item) throws OrderNotFound, OrderClosed, ProductNotFound {
         Order order = getOrderById(orderId);
+        item.setProduct(productService.get(item.getProduct().getId()));
         if (canModifyOrder(order)) {
             item.setIdIfNeeded();
             System.err.println("Added " + item.getId() + " | " + orderId);

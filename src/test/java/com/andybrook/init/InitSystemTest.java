@@ -33,9 +33,9 @@ import java.util.concurrent.ThreadLocalRandom;
 public class InitSystemTest {
 
     private static final ThreadLocalRandom RANDOM = ThreadLocalRandom.current();
-    private static final int PRODUCT_NUMBER_200 = 10;
-    private static final int ORDER_NUMBER_12 = 12;
-    private static final int MAX_ITEM_IN_ORDER_101 = 101;
+    private static final int PRODUCT_NUMBER_200 = 200;
+    private static final int ORDER_NUMBER_12 = 500;
+    private static final int MAX_ITEM_IN_ORDER_101 = 150;
 
     @Autowired
     private ICustomerService customerService;
@@ -86,14 +86,13 @@ public class InitSystemTest {
     public List<Long> createOrders(Customer customer) throws StoreNotFound, InterruptedException {
         List<Long> orderIds = new LinkedList<>();
         for (int i = 0; i < ORDER_NUMBER_12; i++) {
-            long suffix = Clock.millis();
+            long suffix = Clock.nanos();
             NewOrderRequest request = new NewOrderRequest();
             request.setName("Order_" + suffix);
             request.setCustomerId(customer.getId());
             request.setComment("Comment_" + suffix);
             Order order = orderManager.newOrder(request);
             orderIds.add(order.getId());
-            Thread.sleep(2000);
         }
         return orderIds;
     }

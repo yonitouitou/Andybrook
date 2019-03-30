@@ -20,7 +20,11 @@ public abstract class OrderItemEntity {
     @Id
     protected Long id;
 
-    @OneToOne(fetch = FetchType.EAGER, optional = false, cascade = CascadeType.ALL)
+    @ManyToOne(fetch = FetchType.EAGER, optional = false,
+            cascade = {CascadeType.PERSIST,
+                        CascadeType.DETACH,
+                        CascadeType.REFRESH,
+                        CascadeType.REMOVE})
     @JoinColumn(name = "productid", referencedColumnName = "id", nullable = false)
     protected ProductEntity productEntity;
 

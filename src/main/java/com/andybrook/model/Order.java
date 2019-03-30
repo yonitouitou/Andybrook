@@ -15,7 +15,7 @@ public class Order {
     protected String comment;
     protected final Customer customer;
     protected Map<Long, OrderItem<? extends Product>> items;
-    protected Map<Long, OrderItem<? extends Product>> itemsMapByProductId;
+    protected Map<Long, Long> itemIdMapByProductId;
     protected LocalDateTime createdDateTime;
     protected LocalDateTime closeDateTime;
     protected OrderStatus status;
@@ -25,23 +25,30 @@ public class Order {
         this.name = name;
         this.customer = customer;
         this.items = new HashMap<>();
-        this.itemsMapByProductId = new HashMap<>();
+        this.itemIdMapByProductId = new HashMap<>();
         this.status = OrderStatus.OPEN;
         this.comment = "";
     }
 
     public void addItem(OrderItem<? extends Product> item) {
-        itemsMapByProductId.computeIfPresent(item.getProduct().getId(),(key, value) -> {
-            value.incrementQuantity();
-            return value;
-        });
-        items.putIfAbsent(item.getId(), item);
-        itemsMapByProductId.putIfAbsent(item.getProduct().getId(), item);
+        System.err.println("Add Item request : " + id + " | " + item.getProduct().getId() + " | " + item.getId() + " | " + item.getProduct().getName());
+        synchronized (this) {
+            Long orderItemId = itemIdMapByProductId.get(item.getProduct().getId());
+            if (orderItemId != null) {
+                System.err.println("Increment Quantity : " + id + " | " + item.getProduct().getId() + " | " + item.getId() + " | " + item.getProduct().getName());
+                items.get(orderItemId).incrementQuantity();
+            } else {
+                itemIdMapByProductId.put(item.getProduct().getId(), item.getId());
+                items.put(item.getId(), item);
+            }
+        }
     }
 
     public void deleteItem(long orderItemId) {
-        OrderItem<? extends Product> orderItem = items.remove(orderItemId);
-        itemsMapByProductId.remove(orderItem.getProduct().getId());
+        synchronized (this) {
+            OrderItem<? extends Product> orderItem = items.remove(orderItemId);
+            itemIdMapByProductId.remove(orderItem.getProduct().getId());
+        }
     }
 
     public OrderItem<? extends Product> findLastItemAdded() {
@@ -129,6 +136,10 @@ public class Order {
 
     public LocalDateTime getCreatedDateTime() {
         return createdDateTime;
+    }
+
+    public void setCreatedDateTime(LocalDateTime createdDateTime) {
+        this.createdDateTime = createdDateTime;
     }
 
     public OrderStatus getStatus() {

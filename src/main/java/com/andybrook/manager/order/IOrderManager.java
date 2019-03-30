@@ -2,9 +2,11 @@ package com.andybrook.manager.order;
 
 import com.andybrook.exception.OrderClosed;
 import com.andybrook.exception.OrderNotFound;
+import com.andybrook.exception.ProductNotFound;
 import com.andybrook.exception.StoreNotFound;
 import com.andybrook.model.Order;
 import com.andybrook.model.OrderItem;
+import com.andybrook.model.product.Product;
 import com.andybrook.model.request.NewOrderRequest;
 import com.andybrook.model.request.UpdateOrderRequest;
 
@@ -29,9 +31,9 @@ public interface IOrderManager {
 
     List<Order> getOrders(List<Long> ids);
 
-    Order addOrderItem(long orderId, OrderItem item) throws OrderNotFound, OrderClosed;
+    Order addOrderItem(long orderId, OrderItem<? extends Product> item) throws OrderNotFound, OrderClosed, ProductNotFound;
 
-    Order updateOrderItem(long orderId, OrderItem item) throws OrderNotFound, OrderClosed;
+    Order updateOrderItem(long orderId, OrderItem<? extends Product> item) throws OrderNotFound, OrderClosed;
 
     Order deleteOrderItem(long orderId, long orderItemId) throws OrderNotFound, OrderClosed;
 }

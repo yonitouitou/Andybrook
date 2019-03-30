@@ -32,8 +32,12 @@ export class StockReportComponent implements OnInit {
       this.order.status = data.status
       this.order.customer = Customer.fromJson(data.customer)
       for (let item of data.items) {
+        let barCodeId
+        if (item.barCode != null) {
+          barCodeId = item.barCode.id
+        }
         let product = new Product(item.product.id, item.product.name, item.product.price)
-        let stockItem = new StockItem(item.id, item.barCode.id, item.quantity, product, item.createdDatetime, item.lastModifiedDatetime)
+        let stockItem = new StockItem(item.id, barCodeId, item.quantity, product, item.createdDatetime, item.lastModifiedDatetime)
         this.order.items.set(stockItem.id, stockItem)
       }
   })

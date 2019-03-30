@@ -44,8 +44,12 @@ export class ListStockItemComponent implements OnInit {
     var stockItem = new StockItem(undefined, null, this.inputQuantity, new Product(undefined, this.inputName, this.inputPrice), null, null)
     this.orderService.addItem(this.order, stockItem).subscribe(
       data => {
+          let barCodeId
+          if (data.item.barCode != null) {
+            barCodeId = data.item.barCode.id
+          }
           let product = new Product(data.item.product.id, data.item.product.name, data.item.product.price)
-          stockItem = new StockItem(data.item.id, data.item.barCode.id, data.item.quantity, product, data.item.createdDatetime, data.item.lastModifiedDatetime)
+          stockItem = new StockItem(data.item.id, barCodeId, data.item.quantity, product, data.item.createdDatetime, data.item.lastModifiedDatetime)
           this.onCreateStockItemEvent.emit(stockItem)
           this.resetNewStockitemFields()
       },

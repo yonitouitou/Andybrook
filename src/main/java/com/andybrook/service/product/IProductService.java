@@ -7,6 +7,8 @@ import com.andybrook.model.product.Product;
 
 public interface IProductService {
 
+    Product get(long id) throws ProductNotFound;
+
     Product addProduct(Product product);
 
     void addBarCode(long productId, BarCode barCode) throws BarCodeAlreadyExist, ProductNotFound;

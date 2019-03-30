@@ -2,10 +2,12 @@ package com.andybrook.manager.order;
 
 import com.andybrook.exception.OrderClosed;
 import com.andybrook.exception.OrderNotFound;
+import com.andybrook.exception.ProductNotFound;
 import com.andybrook.exception.StoreNotFound;
 import com.andybrook.manager.notification.INotificationManager;
 import com.andybrook.model.Order;
 import com.andybrook.model.OrderItem;
+import com.andybrook.model.product.Product;
 import com.andybrook.model.request.NewOrderRequest;
 import com.andybrook.model.request.UpdateOrderRequest;
 import com.andybrook.service.order.IOrderService;
@@ -69,12 +71,12 @@ public class OrderManager implements IOrderManager {
     }
 
     @Override
-    public Order addOrderItem(long orderId, OrderItem item) throws OrderNotFound, OrderClosed {
+    public Order addOrderItem(long orderId, OrderItem<? extends Product> item) throws OrderNotFound, OrderClosed, ProductNotFound {
         return orderService.addOrderItem(orderId, item);
     }
 
     @Override
-    public Order updateOrderItem(long orderId, OrderItem item) throws OrderNotFound, OrderClosed {
+    public Order updateOrderItem(long orderId, OrderItem<? extends Product> item) throws OrderNotFound, OrderClosed {
         return orderService.updateOrderItem(orderId, item);
     }
 
