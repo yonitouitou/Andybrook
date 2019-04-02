@@ -29,7 +29,7 @@
       <tr *ngIf="order.status !== 'CLOSED'">
         <td></td>
         <td>
-          <input class="form-control" (blur)="onBlurNewItemInput()" [(ngModel)]="inputName">
+          <input class="form-control" (blur)="onBlurNewItemInput()" [(ngModel)]="inputName" [ngbTypeahead]="search">
         </td>
         <td>
           <input class="form-control" (blur)="onBlurNewItemInput()" [(ngModel)]="inputPrice">

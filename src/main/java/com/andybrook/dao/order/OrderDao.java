@@ -69,7 +69,7 @@ public class OrderDao implements IOrderDao {
 
     @Override
     public Set<Order> getAll(int limit) {
-        Sort sortedByStatusAndCreationDatetime = new Sort(Direction.ASC, "status").and(new Sort(Direction.ASC, "createdDatetime"));
+        Sort sortedByStatusAndCreationDatetime = new Sort(Direction.ASC, "status").and(new Sort(Direction.DESC, "LastModifiedDatetime"));
         Iterable<OrderEntity> allIterable = orderCrudRepository.findAll(PageRequest.of(0, limit, sortedByStatusAndCreationDatetime));
         Set<Order> all = new LinkedHashSet<>();
         allIterable.forEach(entity -> {

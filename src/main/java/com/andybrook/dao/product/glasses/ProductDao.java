@@ -1,7 +1,6 @@
 package com.andybrook.dao.product.glasses;
 
 import com.andybrook.dao.jpa.entity.factory.EntityFactory;
-import com.andybrook.dao.jpa.entity.product.GlassesEntity;
 import com.andybrook.dao.jpa.crudrepository.IProductCrudRepository;
 import com.andybrook.dao.jpa.entity.product.ProductEntity;
 import com.andybrook.model.product.Glasses;
@@ -9,6 +8,8 @@ import com.andybrook.model.product.Product;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.LinkedList;
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -35,6 +36,21 @@ public class ProductDao implements IProductDao {
             glassesOpt = Optional.of(glasses);
         }
         return glassesOpt;
+    }
+
+    @Override
+    public List<? extends Product> getByNameContaining(String name) {
+        List<ProductEntity> productEntities = repository.findByNameContaining(name);
+        List<Product> products = new LinkedList<>();
+        for (ProductEntity entity : productEntities) {
+            products.add(entityFactory.createProduct(entity));
+        }
+        return products;
+    }
+
+    @Override
+    public List<String> getAllProductNamesWithQuantityMoreThan(int quantity) {
+        return repository.getAllProductNamesWithQuantityMoreThan(quantity);
     }
 
     @Override

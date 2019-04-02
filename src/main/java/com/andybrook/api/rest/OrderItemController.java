@@ -24,7 +24,6 @@ public class OrderItemController extends AbstractController {
 
     @GetMapping(path = "/get/{id}")
     public StockItemTableRow getGlassesStockItem(@PathVariable long id) throws OrderItemNotFound {
-        StockItemTableRow stockItemTableRow = null;
         LOGGER.log(Level.INFO, "Request received to get order glasses : " + id);
         OrderItem<? extends Product> glassesOrderItem = stockItemManager.getStockItem(id);
         return new StockItemTableRow(glassesOrderItem);

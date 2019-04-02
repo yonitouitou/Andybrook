@@ -27,6 +27,7 @@ import { ModalBuilder } from './common-components/modal-builder';
 import { CreateOrderModalComponent } from './modal/create-order-modal/create-order-modal.component';
 import { CustomerService } from './service/customer-service';
 import { InfoModalComponent } from './modal/info-modal/info-modal.component';
+import { ProductService } from './service/product-service';
 
 const appRoutes: Routes = [
   { path: '', component: OrdersManagerComponent },
@@ -49,7 +50,7 @@ const appRoutes: Routes = [
     AppNavBarComponent,
     ConfirmModalComponent,
     CreateOrderModalComponent,
-    InfoModalComponent
+    InfoModalComponent,
   ],
   entryComponents: [CreateOrderModalComponent, ConfirmModalComponent, InfoModalComponent],
   imports: [
@@ -65,7 +66,7 @@ const appRoutes: Routes = [
     SharedModule,
     RouterModule.forRoot(appRoutes)
   ],
-  providers: [OrderService, HttpService, AdminSettingService, NotificationService, ModalBuilder, CustomerService],
+  providers: [OrderService, HttpService, AdminSettingService, NotificationService, ModalBuilder, CustomerService, ProductService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

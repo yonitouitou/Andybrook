@@ -2,6 +2,9 @@ package com.andybrook.model.product;
 
 import com.andybrook.model.BarCode;
 
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 import java.util.Set;
 
 public abstract class Product {
@@ -9,7 +12,8 @@ public abstract class Product {
     protected Long id;
     protected String name;
     protected double price;
-    protected Set<BarCode> barCodes;
+    protected int quantity;
+    protected Map<String, BarCode> barCodes;
 
     private Product() {
     }
@@ -18,15 +22,20 @@ public abstract class Product {
         this.id = id;
         this.name = name;
         this.price = price;
+        this.quantity = 0;
+        this.barCodes = new HashMap<>();
     }
 
     public Product(String name, double price) {
         this.name = name;
         this.price = price;
+        this.quantity = 0;
+        this.barCodes = new HashMap<>();
     }
 
     public void addBarCode(BarCode barCode) {
-        barCodes.add(barCode);
+        barCodes.put(barCode.getId(), barCode);
+        quantity++;
     }
 
     public Long getId() {
@@ -53,12 +62,17 @@ public abstract class Product {
         this.price = price;
     }
 
-    public Set<BarCode> getBarCodes() {
-        return barCodes;
+    public Map<String, BarCode> getBarCodes() {
+        return new HashMap<>(barCodes);
     }
 
-    public void setBarCodes(Set<BarCode> barCodes) {
+    public void setBarCodes(Map<String, BarCode> barCodes) {
         this.barCodes = barCodes;
+        quantity = barCodes.size();
+    }
+
+    public int getQuantity() {
+        return quantity;
     }
 
     @Override
@@ -67,6 +81,7 @@ public abstract class Product {
         sb.append("id=").append(id);
         sb.append(", name='").append(name).append('\'');
         sb.append(", price=").append(price);
+        sb.append(", quantity=").append(quantity);
         sb.append('}');
         return sb.toString();
     }

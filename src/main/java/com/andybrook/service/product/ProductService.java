@@ -8,6 +8,7 @@ import com.andybrook.model.product.Product;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -31,6 +32,11 @@ public class ProductService implements IProductService {
     }
 
     @Override
+    public List<? extends Product> getByNameContaining(String subName) {
+        return dao.getByNameContaining(subName);
+    }
+
+    @Override
     public Product addProduct(Product product) {
         return dao.update(product);
     }
@@ -49,5 +55,10 @@ public class ProductService implements IProductService {
         } else {
             throw new BarCodeAlreadyExist(barCode.getId());
         }
+    }
+
+    @Override
+    public List<String> getAllProductNamesWithQuantityMoreThan(int quantity) {
+        return dao.getAllProductNamesWithQuantityMoreThan(quantity);
     }
 }

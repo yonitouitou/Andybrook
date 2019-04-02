@@ -9,7 +9,9 @@ import com.andybrook.model.product.Glasses;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Map;
 import java.util.Set;
 
 @Component
@@ -23,9 +25,10 @@ public class GlassesEntityConverter implements IEntityConverter<Glasses, Glasses
     public Glasses toModel(GlassesEntity entity) {
         Glasses glasses = new Glasses(entity.getId(), entity.getName(), entity.getPrice());
         if (entity.getBarCodeEntities() != null) {
-            Set<BarCode> barCodes = new HashSet<>(entity.getBarCodeEntities().size());
+            Map<String, BarCode> barCodes = new HashMap<>(entity.getBarCodeEntities().size());
             for (BarCodeEntity barCodeEntity : entity.getBarCodeEntities()) {
-                barCodes.add(entityFactory.createBarCode(barCodeEntity));
+                BarCode barCode = entityFactory.createBarCode(barCodeEntity);
+                barCodes.put(barCode.getId(), barCode);
             }
             glasses.setBarCodes(barCodes);
         }
@@ -34,10 +37,10 @@ public class GlassesEntityConverter implements IEntityConverter<Glasses, Glasses
 
     @Override
     public GlassesEntity toEntity(Glasses model) {
-        GlassesEntity entity = new GlassesEntity(model.getId(), model.getName(), model.getPrice());
+        GlassesEntity entity = new GlassesEntity(model.getId(), model.getName(), model.getPrice(), model.getQuantity());
         if (model.getBarCodes() != null) {
             Set<BarCodeEntity> barCodeEntities = new HashSet<>(model.getBarCodes().size());
-            for (BarCode barCode : model.getBarCodes()) {
+            for (BarCode barCode : model.getBarCodes().values()) {
                 barCodeEntities.add(entityFactory.createBarCodeEntity(entity, barCode));
             }
             entity.setBarCodeEntities(barCodeEntities);

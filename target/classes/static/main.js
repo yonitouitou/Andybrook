@@ -298,6 +298,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _modal_create_order_modal_create_order_modal_component__WEBPACK_IMPORTED_MODULE_27__ = __webpack_require__(/*! ./modal/create-order-modal/create-order-modal.component */ "./src/app/modal/create-order-modal/create-order-modal.component.ts");
 /* harmony import */ var _service_customer_service__WEBPACK_IMPORTED_MODULE_28__ = __webpack_require__(/*! ./service/customer-service */ "./src/app/service/customer-service.ts");
 /* harmony import */ var _modal_info_modal_info_modal_component__WEBPACK_IMPORTED_MODULE_29__ = __webpack_require__(/*! ./modal/info-modal/info-modal.component */ "./src/app/modal/info-modal/info-modal.component.ts");
+/* harmony import */ var _service_product_service__WEBPACK_IMPORTED_MODULE_30__ = __webpack_require__(/*! ./service/product-service */ "./src/app/service/product-service.ts");
+
 
 
 
@@ -352,7 +354,7 @@ var AppModule = /** @class */ (function () {
                 _app_nav_bar_app_nav_bar_component__WEBPACK_IMPORTED_MODULE_24__["AppNavBarComponent"],
                 _modal_confirm_modal_confirm_modal_component__WEBPACK_IMPORTED_MODULE_25__["ConfirmModalComponent"],
                 _modal_create_order_modal_create_order_modal_component__WEBPACK_IMPORTED_MODULE_27__["CreateOrderModalComponent"],
-                _modal_info_modal_info_modal_component__WEBPACK_IMPORTED_MODULE_29__["InfoModalComponent"]
+                _modal_info_modal_info_modal_component__WEBPACK_IMPORTED_MODULE_29__["InfoModalComponent"],
             ],
             entryComponents: [_modal_create_order_modal_create_order_modal_component__WEBPACK_IMPORTED_MODULE_27__["CreateOrderModalComponent"], _modal_confirm_modal_confirm_modal_component__WEBPACK_IMPORTED_MODULE_25__["ConfirmModalComponent"], _modal_info_modal_info_modal_component__WEBPACK_IMPORTED_MODULE_29__["InfoModalComponent"]],
             imports: [
@@ -368,7 +370,7 @@ var AppModule = /** @class */ (function () {
                 _shared_module__WEBPACK_IMPORTED_MODULE_21__["SharedModule"],
                 _angular_router__WEBPACK_IMPORTED_MODULE_7__["RouterModule"].forRoot(appRoutes)
             ],
-            providers: [_service_order_service__WEBPACK_IMPORTED_MODULE_13__["OrderService"], _service_http_service__WEBPACK_IMPORTED_MODULE_14__["HttpService"], _service_admin_setting_service__WEBPACK_IMPORTED_MODULE_15__["AdminSettingService"], _service_notification_service__WEBPACK_IMPORTED_MODULE_23__["NotificationService"], _common_components_modal_builder__WEBPACK_IMPORTED_MODULE_26__["ModalBuilder"], _service_customer_service__WEBPACK_IMPORTED_MODULE_28__["CustomerService"]],
+            providers: [_service_order_service__WEBPACK_IMPORTED_MODULE_13__["OrderService"], _service_http_service__WEBPACK_IMPORTED_MODULE_14__["HttpService"], _service_admin_setting_service__WEBPACK_IMPORTED_MODULE_15__["AdminSettingService"], _service_notification_service__WEBPACK_IMPORTED_MODULE_23__["NotificationService"], _common_components_modal_builder__WEBPACK_IMPORTED_MODULE_26__["ModalBuilder"], _service_customer_service__WEBPACK_IMPORTED_MODULE_28__["CustomerService"], _service_product_service__WEBPACK_IMPORTED_MODULE_30__["ProductService"]],
             bootstrap: [_app_component__WEBPACK_IMPORTED_MODULE_9__["AppComponent"]]
         })
     ], AppModule);
@@ -1450,7 +1452,7 @@ var OrderService = /** @class */ (function () {
             "customerId": order.customer.id,
             "comment": order.comment
         };
-        return this.httpApi.post("/v1/stockReport/add", request);
+        return this.httpApi.post("/v1/order/add", request);
     };
     OrderService.prototype.getOrder = function (id) {
         console.log("Get report " + id);
@@ -1462,7 +1464,7 @@ var OrderService = /** @class */ (function () {
     };
     OrderService.prototype.addItem = function (order, item) {
         console.log("Add item[ " + ", " + item.quantity + " to order " + order.id);
-        return this.httpApi.post("/v1/stock/update", this.toUpdateRequest(order, item));
+        return this.httpApi.post("/v1/order/addOrderItem", this.toUpdateRequest(order, item));
     };
     OrderService.prototype.updateStockItem = function (order, itemToUpdate) {
         console.log("update order " + order.id + " | " + itemToUpdate);
@@ -1496,6 +1498,40 @@ var OrderService = /** @class */ (function () {
         tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_http_service__WEBPACK_IMPORTED_MODULE_2__["HttpService"]])
     ], OrderService);
     return OrderService;
+}());
+
+
+
+/***/ }),
+
+/***/ "./src/app/service/product-service.ts":
+/*!********************************************!*\
+  !*** ./src/app/service/product-service.ts ***!
+  \********************************************/
+/*! exports provided: ProductService */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ProductService", function() { return ProductService; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var _http_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./http-service */ "./src/app/service/http-service.ts");
+
+
+
+var ProductService = /** @class */ (function () {
+    function ProductService(http) {
+        this.http = http;
+    }
+    ProductService.prototype.getAllProductNames = function () {
+        return this.http.get("/v1/product/getAllExistingProductNames");
+    };
+    ProductService = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Injectable"])(),
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_http_service__WEBPACK_IMPORTED_MODULE_2__["HttpService"]])
+    ], ProductService);
+    return ProductService;
 }());
 
 
@@ -1564,7 +1600,7 @@ module.exports = ".table tr.active td {\n    background-color:#275e94 !important
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"user-container\">\n  <form>\n    <div class=\"form-group\">\n      <div class=\"input-group\">\n        <div class=\"input-group-addon\">\n          <i class=\"glyphicon glyphicon-search\"></i>\n        </div>\n        <input type=\"text\"\n          class=\"form-control\"\n          name=\"searchString\"\n          placeholder=\"Type to search...\"\n          [(ngModel)]=\"searchString\">\n      </div>\n    </div>\n  </form>\n  <table class=\"table table-striped\">\n    <thead>\n      <tr>\n        <th>ID</th>\n        <th>Name</th>\n        <th>Price</th>\n        <th>Quantity</th>\n        <th>Creation Date</th>\n        <th>Last Modify Date</th>\n        <th></th>\n      </tr>\n    </thead>\n    <tbody>\n      <tr *ngIf=\"order.status !== 'CLOSED'\">\n        <td></td>\n        <td>\n          <input class=\"form-control\" (blur)=\"onBlurNewItemInput()\" [(ngModel)]=\"inputName\">\n        </td>\n        <td>\n          <input class=\"form-control\" (blur)=\"onBlurNewItemInput()\" [(ngModel)]=\"inputPrice\">\n        </td>\n        <td>\n          <input class=\"form-control\" (blur)=\"onBlurNewItemInput()\" [(ngModel)]=\"inputQuantity\">\n        </td>\n        <td></td>\n        <td></td>\n        <td>\n          <button class=\"btn btn-info\" [disabled]=\"! areNewStockItemFieldsSet\" (click)=\"createNewStockItem()\"> Add\n            Stock Item</button>\n        </td>\n      </tr>\n      <tr *ngFor=\"let item of stockItems | filter : 'name' : searchString; let i = index\" (click)=\"setSelectedRow(i)\"\n        [class.active]=\"i == selectedRow\">\n        <td>{{ item.product.id }}</td>\n        <td contenteditable=\"order.status !== 'CLOSED'\"\n          (blur)=\"onChangeStockItemName(item, $event)\">\n          {{ item.product.name }}\n        </td>\n        <td\n          contenteditable=\"order.status !== 'CLOSED'\"\n          (blur)=\"onChangeStockItemPrice(item, $event)\">\n          {{ item.product.price }} €\n        </td>\n        <td\n          contenteditable=\"order.status !== 'CLOSED'\"\n          (blur)=\"onChangeStockItemQuantity(item, $event)\">\n          {{ item.quantity }}\n        </td>\n        <td>{{ item.createdDatetime }}</td>\n        <td>{{ item.lastModifiedDatetime }}</td>\n        <td>\n          <button *ngIf=\"order.status !== 'CLOSED'\" (click)=\"deleteStockItem(item.id)\" class=\"btn btn-danger\">\n            Delete</button>\n        </td>\n      </tr>\n    </tbody>\n  </table>\n</div>"
+module.exports = "<div class=\"user-container\">\n  <form>\n    <div class=\"form-group\">\n      <div class=\"input-group\">\n        <div class=\"input-group-addon\">\n          <i class=\"glyphicon glyphicon-search\"></i>\n        </div>\n        <input type=\"text\"\n          class=\"form-control\"\n          name=\"searchString\"\n          placeholder=\"Type to search...\"\n          [(ngModel)]=\"searchString\">\n      </div>\n    </div>\n  </form>\n  <table class=\"table table-striped\">\n    <thead>\n      <tr>\n        <th>ID</th>\n        <th>Name</th>\n        <th>Price</th>\n        <th>Quantity</th>\n        <th>Creation Date</th>\n        <th>Last Modify Date</th>\n        <th></th>\n      </tr>\n    </thead>\n    <tbody>\n      <tr *ngIf=\"order.status !== 'CLOSED'\">\n        <td></td>\n        <td>\n          <input class=\"form-control\" (blur)=\"onBlurNewItemInput()\" [(ngModel)]=\"inputName\" [ngbTypeahead]=\"search\">\n        </td>\n        <td>\n          <input class=\"form-control\" (blur)=\"onBlurNewItemInput()\" [(ngModel)]=\"inputPrice\">\n        </td>\n        <td>\n          <input class=\"form-control\" (blur)=\"onBlurNewItemInput()\" [(ngModel)]=\"inputQuantity\">\n        </td>\n        <td></td>\n        <td></td>\n        <td>\n          <button class=\"btn btn-info\" [disabled]=\"! areNewStockItemFieldsSet\" (click)=\"createNewStockItem()\"> Add\n            Stock Item</button>\n        </td>\n      </tr>\n      <tr *ngFor=\"let item of stockItems | filter : 'name' : searchString; let i = index\" (click)=\"setSelectedRow(i)\"\n        [class.active]=\"i == selectedRow\">\n        <td>{{ item.product.id }}</td>\n        <td contenteditable=\"order.status !== 'CLOSED'\"\n          (blur)=\"onChangeStockItemName(item, $event)\">\n          {{ item.product.name }}\n        </td>\n        <td\n          contenteditable=\"order.status !== 'CLOSED'\"\n          (blur)=\"onChangeStockItemPrice(item, $event)\">\n          {{ item.product.price }} €\n        </td>\n        <td\n          contenteditable=\"order.status !== 'CLOSED'\"\n          (blur)=\"onChangeStockItemQuantity(item, $event)\">\n          {{ item.quantity }}\n        </td>\n        <td>{{ item.createdDatetime }}</td>\n        <td>{{ item.lastModifiedDatetime }}</td>\n        <td>\n          <button *ngIf=\"order.status !== 'CLOSED'\" (click)=\"deleteStockItem(item.id)\" class=\"btn btn-danger\">\n            Delete</button>\n        </td>\n      </tr>\n    </tbody>\n  </table>\n</div>"
 
 /***/ }),
 
@@ -1586,6 +1622,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var src_app_model_Order__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! src/app/model/Order */ "./src/app/model/Order.ts");
 /* harmony import */ var src_app_common_components_modal_builder__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! src/app/common-components/modal-builder */ "./src/app/common-components/modal-builder.ts");
 /* harmony import */ var src_app_modal_info_modal_info_modal_component__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! src/app/modal/info-modal/info-modal.component */ "./src/app/modal/info-modal/info-modal.component.ts");
+/* harmony import */ var src_app_service_product_service__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! src/app/service/product-service */ "./src/app/service/product-service.ts");
+/* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! rxjs/operators */ "./node_modules/rxjs/_esm5/operators/index.js");
+
+
 
 
 
@@ -1595,15 +1635,29 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var ListStockItemComponent = /** @class */ (function () {
-    function ListStockItemComponent(orderService, modalBuilder) {
+    function ListStockItemComponent(orderService, productService, modalBuilder) {
+        var _this = this;
         this.orderService = orderService;
+        this.productService = productService;
         this.modalBuilder = modalBuilder;
         this.areNewStockItemFieldsSet = false;
+        this.productNames = [];
+        this.search = function (text$) {
+            return text$.pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_9__["debounceTime"])(200), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_9__["distinctUntilChanged"])(), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_9__["map"])(function (term) { return term.length < 1 ? []
+                : _this.productNames.filter(function (v) { return v.toLowerCase().indexOf(term.toLowerCase()) > -1; }).splice(0, 10); }));
+        };
         this.onCreateStockItemEvent = new _angular_core__WEBPACK_IMPORTED_MODULE_1__["EventEmitter"]();
         this.onChangeStockItemEvent = new _angular_core__WEBPACK_IMPORTED_MODULE_1__["EventEmitter"]();
         this.onDeleteStockItemEvent = new _angular_core__WEBPACK_IMPORTED_MODULE_1__["EventEmitter"]();
     }
     ListStockItemComponent.prototype.ngOnInit = function () {
+        var _this = this;
+        this.productService.getAllProductNames().subscribe(function (data) {
+            for (var _i = 0, data_1 = data; _i < data_1.length; _i++) {
+                var name_1 = data_1[_i];
+                _this.productNames.push(name_1);
+            }
+        });
     };
     ListStockItemComponent.prototype.onBlurNewItemInput = function () {
         this.areNewStockItemFieldsSet = this.inputName.trim().length > 0
@@ -1710,6 +1764,7 @@ var ListStockItemComponent = /** @class */ (function () {
             styles: [__webpack_require__(/*! ./list-stock-item.component.css */ "./src/app/stock-report-panel/list-stock-item/list-stock-item.component.css")]
         }),
         tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [src_app_service_order_service__WEBPACK_IMPORTED_MODULE_4__["OrderService"],
+            src_app_service_product_service__WEBPACK_IMPORTED_MODULE_8__["ProductService"],
             src_app_common_components_modal_builder__WEBPACK_IMPORTED_MODULE_6__["ModalBuilder"]])
     ], ListStockItemComponent);
     return ListStockItemComponent;

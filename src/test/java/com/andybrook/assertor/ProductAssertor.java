@@ -19,11 +19,11 @@ public final class ProductAssertor {
         Assert.assertEquals("Id", expected.getId(), actual.getId());
         Assert.assertEquals("Name", expected.getName(), actual.getName());
         Assert.assertEquals("Price", expected.getPrice(), actual.getPrice(), 0d);
-        List<BarCode> expectedBarCodeList = expected.getBarCodes()
+        List<BarCode> expectedBarCodeList = expected.getBarCodes().values()
                 .stream()
                 .sorted(Comparator.comparing(x -> x.getId()))
                 .collect(Collectors.toList());
-        List<BarCode> actualBarCodeList = actual.getBarCodes()
+        List<BarCode> actualBarCodeList = actual.getBarCodes().values()
                 .stream()
                 .sorted(Comparator.comparing(x -> x.getId()))
                 .collect(Collectors.toList());

@@ -5,6 +5,9 @@ import { OrderService } from 'src/app/service/order-service';
 import { Order } from 'src/app/model/Order';
 import { ModalBuilder } from 'src/app/common-components/modal-builder';
 import { InfoModalComponent } from 'src/app/modal/info-modal/info-modal.component';
+import { ProductService } from 'src/app/service/product-service';
+import { Observable } from 'rxjs';
+import { debounceTime, distinctUntilChanged, map } from 'rxjs/operators';
 
 @Component({
   selector: 'list-stock-item',
@@ -19,6 +22,14 @@ export class ListStockItemComponent implements OnInit {
   selectedRow: number
   areNewStockItemFieldsSet = false
   searchString: string
+  productNames: string[] = []
+  search = (text$: Observable<string>) =>
+    text$.pipe(
+      debounceTime(200),
+      distinctUntilChanged(),
+      map(term => term.length < 1 ? []
+        : this.productNames.filter(v => v.toLowerCase().indexOf(term.toLowerCase()) > -1).slice(0, 10))
+    )
 
   @Input() stockItems: IterableIterator<StockItem>
   @Input() order: Order
@@ -28,10 +39,17 @@ export class ListStockItemComponent implements OnInit {
   @Output() onDeleteStockItemEvent = new EventEmitter<number>()
 
   constructor(private orderService: OrderService,
+              private productService: ProductService,
               private modalBuilder: ModalBuilder) {}
 
   ngOnInit() {
-    
+    this.productService.getAllProductNames().subscribe(
+      data => {
+        for (let name of data) {
+          this.productNames.push(name);
+        }
+      }
+    )
   }
 
   onBlurNewItemInput() {

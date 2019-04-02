@@ -70,8 +70,8 @@ public class OrderController extends AbstractController {
         return orderManager.getAll();
     }
 
-    @PostMapping(path = "/updateOrderItem")
-    public Order updateOrderItem(@RequestBody OrderItemUpdateRequest request)
+    @PostMapping(path = "/addOrderItem")
+    public Order addOrderItem(@RequestBody OrderItemUpdateRequest request)
             throws OrderNotFound, OrderClosed, ProductNotFound, BarCodeAlreadyExist {
         LOGGER.log(Level.INFO, "Request received to update order : " + request);
         return orderManager.addOrderItem(request.getOrderId(), request.getOrderItem());

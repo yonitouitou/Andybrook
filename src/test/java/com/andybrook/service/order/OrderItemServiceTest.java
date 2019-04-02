@@ -11,7 +11,6 @@ import com.andybrook.model.product.Product;
 import com.andybrook.model.request.NewOrderRequest;
 import com.andybrook.service.customer.ICustomerService;
 import com.andybrook.service.product.IProductService;
-import org.junit.BeforeClass;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -38,7 +37,7 @@ public class OrderItemServiceTest {
         Order order = orderService.newOrder(createNewOrderRequest(customer));
         Product product = ProductGenerator.generateProduct();
         product = productService.addProduct(product);
-        OrderItem<? extends Product> orderItem = StockItemGenerator.generateOrderItem(product, null);
+        OrderItem<? extends Product> orderItem = StockItemGenerator.generateOrderItem(product);
         order = orderService.addOrderItem(order.getId(), orderItem);
         OrderItemAssertor.assertEquals(orderItem, order.findLastItemAdded());
     }

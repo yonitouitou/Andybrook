@@ -16,7 +16,7 @@ export class OrderService {
             "customerId": order.customer.id,
             "comment": order.comment
         }
-        return this.httpApi.post("/v1/stockReport/add", request)
+        return this.httpApi.post("/v1/order/add", request)
     }
 
     getOrder(id: number): Observable<any> {
@@ -31,7 +31,7 @@ export class OrderService {
 
     addItem(order: Order, item: StockItem) : Observable<any> {
         console.log("Add item[ " + ", " + item.quantity + " to order " + order.id)
-        return this.httpApi.post("/v1/stock/update", this.toUpdateRequest(order, item))
+        return this.httpApi.post("/v1/order/addOrderItem", this.toUpdateRequest(order, item))
     }
 
     updateStockItem(order: Order, itemToUpdate: StockItem): Observable<any> {

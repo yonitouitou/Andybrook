@@ -33,6 +33,9 @@ public abstract class ProductEntity {
     @Column(name = "price", nullable = false)
     protected double price;
 
+    @Column(name = "quantity", nullable = false)
+    protected int quantity;
+
     @Transient
     @Column(name = "type", nullable = false)
     protected ProductType type;
@@ -51,11 +54,12 @@ public abstract class ProductEntity {
     protected ProductEntity() {
     }
 
-    public ProductEntity(Long id, String name, double price, ProductType type) {
+    public ProductEntity(Long id, String name, double price, ProductType type, int quantity) {
         this.id = id;
         this.name = name;
         this.price = price;
         this.type = type;
+        this.quantity = quantity;
     }
 
     public Long getId() {
@@ -114,6 +118,14 @@ public abstract class ProductEntity {
         this.lastModifiedDateTime = lastModifiedDateTime;
     }
 
+    public int getQuantity() {
+        return quantity;
+    }
+
+    public void setQuantity(int quantity) {
+        this.quantity = quantity;
+    }
+
     @Override
     public String toString() {
         return "ProductEntity{" +
@@ -121,6 +133,7 @@ public abstract class ProductEntity {
                 ", name='" + name + '\'' +
                 ", price=" + price +
                 ", type=" + type +
+                ", quantity=" + quantity +
                 ", barCodeEntities=" + barCodeEntities +
                 ", createdDatetime=" + createdDatetime +
                 ", lastModifiedDateTime=" + lastModifiedDateTime +

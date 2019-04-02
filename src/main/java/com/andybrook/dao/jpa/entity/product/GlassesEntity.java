@@ -19,7 +19,7 @@ public class GlassesEntity extends ProductEntity {
         super();
     }
 
-    GlassesEntity(Long id, String name, double price) {
-        super(id, name, price, ProductType.GLASSES);
+    GlassesEntity(Long id, String name, double price, int quantity) {
+        super(id, name, price, ProductType.GLASSES, quantity);
     }
 }
