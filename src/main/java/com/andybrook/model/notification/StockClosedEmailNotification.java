@@ -97,7 +97,7 @@ public class StockClosedEmailNotification implements IEmailNotification<Order> {
     private void appendColumnsName(StringBuilder sb) {
         sb.append("Id").append(",")
             .append("Name").append(",")
-            .append("quantity").append(",")
+            .append("quantityCreated").append(",")
             .append("Price");
     }
 

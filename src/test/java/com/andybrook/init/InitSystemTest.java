@@ -52,11 +52,14 @@ public class InitSystemTest {
             List<Long> orderIds = createOrders(customer);
             for (Long id : orderIds) {
                 int itemToAddNb = RANDOM.nextInt(0, MAX_ITEM_IN_ORDER_101);
-                System.out.println("Add " + itemToAddNb + " items to order " + id);
                 for (int i = 0; i < itemToAddNb; i++) {
-                    Product product = products.get(RANDOM.nextInt(0, PRODUCT_NUMBER_200 - 1));
-                    if (product.getQuantity() > 0) {
-                        addOrderItem(id, product);
+                    try {
+                        Product product = products.get(RANDOM.nextInt(0, PRODUCT_NUMBER_200 - 1));
+                        if (product.getQuantityCreated() > 0) {
+                            addOrderItem(id, product);
+                        }
+                    } catch (Exception e) {
+                        System.err.println("Item not added to order. Reason : " + e.getMessage());
                     }
                 }
             }
@@ -84,7 +87,7 @@ public class InitSystemTest {
         return customers;
     }
 
-    private void addOrderItem(long orderId, Product product) throws OrderNotFound, OrderClosed, ProductNotFound, InsufficientQuantityException {
+    private void addOrderItem(long orderId, Product product) throws OrderNotFound, OrderClosed, ProductNotFound, InsufficientQuantityException, OrderItemNotFound {
         OrderItem<? extends Product> item = OrderItemGenerator.generateOrderItem(product);
         OrderItemInfo details = new OrderItemInfo(item.getId(), item.getProduct().getId(), item.getQuantity());
         if (item.getBarCode() != null) {

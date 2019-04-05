@@ -57,7 +57,7 @@ public class OrderDao implements IOrderDao {
     }
 
     @Override
-    public Optional<Order> findStockReport(long id) {
+    public Optional<Order> findOrder(long id) {
         Optional<OrderEntity> stockReportEntityOpt = orderCrudRepository.findById(id);
         Optional<Order> stockReportOpt = Optional.empty();
         if (stockReportEntityOpt.isPresent()) {

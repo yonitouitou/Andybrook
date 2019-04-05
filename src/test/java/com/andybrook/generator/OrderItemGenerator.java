@@ -1,10 +1,8 @@
 package com.andybrook.generator;
 
-import com.andybrook.enums.ProductType;
 import com.andybrook.model.BarCode;
 import com.andybrook.model.OrderItem;
 import com.andybrook.model.product.Product;
-import com.andybrook.model.request.orderitem.OrderItemAddRequest;
 import com.andybrook.model.request.orderitem.OrderItemInfo;
 
 import java.util.*;
@@ -23,13 +21,18 @@ public final class OrderItemGenerator {
         return item;
     }
 
-    public static OrderItemInfo generateOrderItemInfo(Product product) {
-        OrderItemInfo info = new OrderItemInfo(product.getId(), RANDOM.nextInt(1, product.getQuantity()));
+    public static OrderItemInfo generateOrderItemInfo(Product product, int orderItemQuantity) {
+        OrderItemInfo info = new OrderItemInfo(product.getId(), orderItemQuantity);
         Map<String, BarCode> barCodes = product.getBarCodes();
         if (! barCodes.isEmpty()) {
             info.setBarCodeId(getRandomBarCode(barCodes.values()).getId());
         }
         return info;
+    }
+
+
+    public static OrderItemInfo generateOrderItemInfo(Product product) {
+        return generateOrderItemInfo(product, RANDOM.nextInt(0, product.getQuantityCreated()));
     }
 
     private static BarCode getRandomBarCode(Collection<BarCode> barCodes) {

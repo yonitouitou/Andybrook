@@ -24,6 +24,8 @@ public class GlassesEntityConverter implements IEntityConverter<Glasses, Glasses
     @Override
     public Glasses toModel(GlassesEntity entity) {
         Glasses glasses = new Glasses(entity.getId(), entity.getName(), entity.getPrice());
+        glasses.setQuantityCreated(entity.getQuantityCreated());
+        glasses.setQuantityUsed(entity.getQuantityUsed());
         if (entity.getBarCodeEntities() != null) {
             Map<String, BarCode> barCodes = new HashMap<>(entity.getBarCodeEntities().size());
             for (BarCodeEntity barCodeEntity : entity.getBarCodeEntities()) {
@@ -37,7 +39,7 @@ public class GlassesEntityConverter implements IEntityConverter<Glasses, Glasses
 
     @Override
     public GlassesEntity toEntity(Glasses model) {
-        GlassesEntity entity = new GlassesEntity(model.getId(), model.getName(), model.getPrice(), model.getQuantity());
+        GlassesEntity entity = new GlassesEntity(model.getId(), model.getName(), model.getPrice(), model.getQuantityCreated(), model.getQuantityUsed());
         if (model.getBarCodes() != null) {
             Set<BarCodeEntity> barCodeEntities = new HashSet<>(model.getBarCodes().size());
             for (BarCode barCode : model.getBarCodes().values()) {

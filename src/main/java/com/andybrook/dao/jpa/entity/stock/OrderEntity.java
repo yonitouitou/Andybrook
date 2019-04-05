@@ -30,7 +30,7 @@ public class OrderEntity {
     @Column(name = "comment", length = 256)
     protected String comment;
 
-    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL, mappedBy = "orderEntity")
+    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL, orphanRemoval = true, mappedBy = "orderEntity")
     protected List<OrderItemEntity> items;
 
     @Column(name = "status")

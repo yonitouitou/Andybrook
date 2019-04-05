@@ -54,9 +54,8 @@ public class OrderItemDao implements IOrderItemDao {
     }
 
     @Override
-    public boolean removeStockItem(long id) {
-        repository.deleteById(id);
-        return true;
+    public boolean isExist(long id) {
+        return repository.existsById(id);
     }
 
     @Override

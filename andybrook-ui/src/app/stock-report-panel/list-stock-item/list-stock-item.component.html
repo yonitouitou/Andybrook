@@ -59,7 +59,7 @@
         <td
           contenteditable="order.status !== 'CLOSED'"
           (blur)="onChangeStockItemQuantity(item, $event)">
-          {{ item.quantity }}
+          {{ item.quantityCreated }}
         </td>
         <td>{{ item.createdDatetime }}</td>
         <td>{{ item.lastModifiedDatetime }}</td>

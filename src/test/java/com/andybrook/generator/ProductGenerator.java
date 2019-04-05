@@ -18,8 +18,16 @@ public final class ProductGenerator {
     public static final Product generateProduct() {
         Glasses glasses = new Glasses(null, "G" + System.currentTimeMillis(), RANDOM.nextInt(10, 100));
         int barCodeSize = RANDOM.nextInt(1, 10);
-        Map<String, BarCode> barCodes = new HashMap<>(barCodeSize);
         for (int i = 0; i < barCodeSize; i++) {
+            BarCode barCode = generateBarCode();
+            glasses.addBarCode(barCode);
+        }
+        return glasses;
+    }
+
+    public static final Product generateProduct(int quantity) {
+        Glasses glasses = new Glasses(null, "G" + System.currentTimeMillis(), RANDOM.nextInt(10, 100));
+        for (int i = 0; i < quantity; i++) {
             BarCode barCode = generateBarCode();
             glasses.addBarCode(barCode);
         }

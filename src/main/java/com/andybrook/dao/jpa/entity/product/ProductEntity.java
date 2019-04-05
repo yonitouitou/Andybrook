@@ -33,8 +33,11 @@ public abstract class ProductEntity {
     @Column(name = "price", nullable = false)
     protected double price;
 
-    @Column(name = "quantity", nullable = false)
-    protected int quantity;
+    @Column(name = "quantitycreated", nullable = false)
+    protected int quantityCreated;
+
+    @Column(name = "quantityused", nullable = false)
+    protected int quantityUsed;
 
     @Transient
     @Column(name = "type", nullable = false)
@@ -54,12 +57,13 @@ public abstract class ProductEntity {
     protected ProductEntity() {
     }
 
-    public ProductEntity(Long id, String name, double price, ProductType type, int quantity) {
+    public ProductEntity(Long id, String name, double price, ProductType type, int quantityCreated, int quantityUsed) {
         this.id = id;
         this.name = name;
         this.price = price;
         this.type = type;
-        this.quantity = quantity;
+        this.quantityCreated = quantityCreated;
+        this.quantityUsed = quantityUsed;
     }
 
     public Long getId() {
@@ -118,12 +122,20 @@ public abstract class ProductEntity {
         this.lastModifiedDateTime = lastModifiedDateTime;
     }
 
-    public int getQuantity() {
-        return quantity;
+    public int getQuantityCreated() {
+        return quantityCreated;
     }
 
-    public void setQuantity(int quantity) {
-        this.quantity = quantity;
+    public void setQuantityCreated(int quantityCreated) {
+        this.quantityCreated = quantityCreated;
+    }
+
+    public int getQuantityUsed() {
+        return quantityUsed;
+    }
+
+    public void setQuantityUsed(int quantityUsed) {
+        this.quantityUsed = quantityUsed;
     }
 
     @Override
@@ -133,7 +145,8 @@ public abstract class ProductEntity {
                 ", name='" + name + '\'' +
                 ", price=" + price +
                 ", type=" + type +
-                ", quantity=" + quantity +
+                ", quantityCreated=" + quantityCreated +
+                ", quantityUsed=" + quantityUsed +
                 ", barCodeEntities=" + barCodeEntities +
                 ", createdDatetime=" + createdDatetime +
                 ", lastModifiedDateTime=" + lastModifiedDateTime +

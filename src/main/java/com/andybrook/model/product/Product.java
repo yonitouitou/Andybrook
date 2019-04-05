@@ -4,16 +4,15 @@ import com.andybrook.enums.ProductType;
 import com.andybrook.model.BarCode;
 
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
-import java.util.Set;
 
 public abstract class Product {
 
     protected Long id;
     protected String name;
     protected double price;
-    protected int quantity;
+    protected int quantityCreated;
+    protected int quantityUsed;
     protected ProductType type;
     protected Map<String, BarCode> barCodes;
 
@@ -26,28 +25,43 @@ public abstract class Product {
         this.id = id;
         this.name = name;
         this.price = price;
-        this.quantity = 0;
+        this.quantityCreated = 0;
+        this.quantityUsed = 0;
         this.barCodes = new HashMap<>();
     }
 
     public Product(String name, double price) {
         this.name = name;
         this.price = price;
-        this.quantity = 0;
+        this.quantityCreated = 0;
+        this.quantityUsed = 0;
         this.barCodes = new HashMap<>();
     }
 
-    public void incrementQuantity(int qtyToIncrement) {
-        quantity += qtyToIncrement;
+    public void incrementQuantityCreated(int qtyToIncrement) {
+        quantityCreated += qtyToIncrement;
     }
 
-    public void decrementQuantity(int qtyToDecrement) {
-        quantity -= qtyToDecrement;
+    public void decrementQuantityCreated(int qtyToDecrement) {
+        quantityCreated -= qtyToDecrement;
+    }
+
+    public void incrementQuantityUsed(int qtyToIncrement) {
+        quantityUsed += qtyToIncrement;
+    }
+
+    public void decrementQuantityUsed(int qtyToDecrement) {
+        quantityUsed -= qtyToDecrement;
     }
 
     public void addBarCode(BarCode barCode) {
         barCodes.put(barCode.getId(), barCode);
-        quantity++;
+        incrementQuantityCreated(1);
+    }
+
+    public void deleteBarCode(String barCodeId) {
+        barCodes.remove(barCodeId);
+        decrementQuantityCreated(1);
     }
 
     public Long getId() {
@@ -80,11 +94,23 @@ public abstract class Product {
 
     public void setBarCodes(Map<String, BarCode> barCodes) {
         this.barCodes = barCodes;
-        quantity = barCodes.size();
+        quantityCreated = barCodes.size();
     }
 
-    public int getQuantity() {
-        return quantity;
+    public int getQuantityCreated() {
+        return quantityCreated;
+    }
+
+    public void setQuantityCreated(int quantityCreated) {
+        this.quantityCreated = quantityCreated;
+    }
+
+    public int getQuantityUsed() {
+        return quantityUsed;
+    }
+
+    public void setQuantityUsed(int quantityUsed) {
+        this.quantityUsed = quantityUsed;
     }
 
     @Override
@@ -93,7 +119,7 @@ public abstract class Product {
         sb.append("id=").append(id);
         sb.append(", name='").append(name).append('\'');
         sb.append(", price=").append(price);
-        sb.append(", quantity=").append(quantity);
+        sb.append(", quantityCreated=").append(quantityCreated);
         sb.append('}');
         return sb.toString();
     }

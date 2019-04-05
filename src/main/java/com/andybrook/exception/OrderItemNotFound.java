@@ -10,6 +10,6 @@ public class OrderItemNotFound extends Exception {
     }
 
     private static final String msg(long id) {
-        return "Stock Item with id " + id + " not found";
+        return "Order Item with id " + id + " not found";
     }
 }

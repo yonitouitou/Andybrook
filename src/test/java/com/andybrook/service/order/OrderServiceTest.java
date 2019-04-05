@@ -22,7 +22,14 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 @SpringBootTest
 @RunWith(SpringJUnit4ClassRunner.class)
-public class OrderItemServiceTest {
+public class OrderServiceTest {
+
+    private static final int PRODUCT_QUANTITY = 20;
+    private static final int ORDER_ITEM_QUANTITY = 5;
+    private Customer customer;
+    private Order order;
+    private Product product;
+    private OrderItemInfo orderItemInfo;
 
     @Autowired
     private IOrderItemService orderItemService;
@@ -33,17 +40,12 @@ public class OrderItemServiceTest {
     @Autowired
     private IProductService productService;
 
-    private Customer customer;
-    private Order order;
-    private Product product;
-    private OrderItemInfo orderItemInfo;
-
     @Before
     public void init() throws Exception {
         customer = customerService.newCustomer(CustomerGenerator.generateCustomer());
         order = orderService.newOrder(createNewOrderRequest(customer));
-        product = productService.addProduct(ProductGenerator.generateProduct());
-        orderItemInfo = OrderItemGenerator.generateOrderItemInfo(product);
+        product = productService.addProduct(ProductGenerator.generateProduct(PRODUCT_QUANTITY));
+        orderItemInfo = OrderItemGenerator.generateOrderItemInfo(product, ORDER_ITEM_QUANTITY);
     }
 
     @Test
@@ -60,14 +62,25 @@ public class OrderItemServiceTest {
     }
 
     @Test
+    public void updateOrderItem() throws Exception {
+        int qtyAdded = 2;
+        OrderItem<? extends Product> orderItem = addOrderItem();
+        OrderItemInfo info = new OrderItemInfo(orderItem.getId(), orderItem.getProduct().getId(), qtyAdded);
+        OrderItem<? extends Product> orderItemUpdated = orderService.addOrUpdateOrderItem(order.getId(), info);
+        Assert.assertEquals("OrderItem.Quantity", orderItem.getQuantity() + qtyAdded, orderItemUpdated.getQuantity());
+        Assert.assertEquals("Product.QuantityCreated", PRODUCT_QUANTITY, orderItem.getProduct().getQuantityCreated());
+        Assert.assertEquals("Product.QuantityUsed", orderItemUpdated.getQuantity(), orderItemUpdated.getProduct().getQuantityUsed());
+    }
+
+    @Test
     public void deleteOrderItemFromOrderDbTest() throws Exception {
         OrderItem<? extends Product> orderItem = addOrderItem();
         deleteOrderItem(orderItem.getId());
-        Assert.assertTrue(orderItemService.get(orderItem.getId()) == null);
+        Assert.assertFalse(orderItemService.isExist(orderItem.getId()));
     }
 
     private OrderItem<? extends Product> addOrderItem() throws Exception {
-        return orderService.addOrderItem(order.getId(), orderItemInfo);
+        return orderService.addOrUpdateOrderItem(order.getId(), orderItemInfo);
     }
 
     private void deleteOrderItem(long orderItemId) throws Exception {

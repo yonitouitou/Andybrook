@@ -32,8 +32,8 @@ public final class OrderItem<T extends Product> {
         return id != null;
     }
 
-    public void incrementQuantity() {
-        quantity = quantity + 1;
+    public void incrementQuantity(int nb) {
+        quantity = quantity + nb;
     }
 
     public Long getId() {
@@ -93,7 +93,7 @@ public final class OrderItem<T extends Product> {
         return "OrderItem{" +
                 "id=" + id +
                 ", product=" + product +
-                ", quantity=" + quantity +
+                ", quantityCreated=" + quantity +
                 ", barCode=" + barCode +
                 ", createdDatetime=" + createdDatetime +
                 ", lastModifiedDatetime=" + lastModifiedDatetime +

@@ -10,9 +10,11 @@ public interface IOrderItemService {
 
     OrderItem<? extends Product> createOrderItem(OrderItemInfo info) throws ProductNotFound, InsufficientQuantityException;
 
-    OrderItem<? extends Product> updateOrderItem(OrderItem orderItem, OrderItemInfo info) throws InsufficientQuantityException;
+    OrderItem<? extends Product> updateOrderItem(OrderItem<? extends Product> orderItem, OrderItemInfo info) throws InsufficientQuantityException;
 
-    void postDeletion(long orderItemId) throws OrderItemNotFound;
+    void postDeletion(OrderItem<? extends Product> orderItemId) throws OrderItemNotFound;
 
     OrderItem<? extends Product> get(long id) throws OrderItemNotFound;
+
+    boolean isExist(long id);
 }

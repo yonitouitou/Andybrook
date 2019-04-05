@@ -15,7 +15,7 @@ public interface IOrderItemDao {
 
     <T extends Product> Map<Long, OrderItem<T>> getAllStockItems();
 
-    boolean removeStockItem(long id);
+    boolean isExist(long id);
 
     Optional<OrderItem<? extends Product>> findItemByBarCodeId(String barCodeId);
 }

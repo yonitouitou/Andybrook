@@ -30,11 +30,11 @@ public class OrderItemService implements IOrderItemService {
     public OrderItem<? extends Product> createOrderItem(OrderItemInfo info) throws ProductNotFound, InsufficientQuantityException {
         OrderItem<? extends Product> orderItem;
         Product product = productService.get(info.getProductId());
-        if (product.getQuantity() >= info.getQuantity()) {
+        if (product.getQuantityCreated() >= info.getQuantity()) {
             orderItem = buildOrderItem(info, product);
-            product.decrementQuantity(info.getQuantity());
+            product.incrementQuantityUsed(info.getQuantity());
         } else {
-            throw new InsufficientQuantityException(product.getQuantity());
+            throw new InsufficientQuantityException(product.getQuantityCreated());
         }
         return orderItem;
     }
@@ -54,12 +54,24 @@ public class OrderItemService implements IOrderItemService {
     @Override
     public OrderItem<? extends Product> updateOrderItem(OrderItem orderItem, OrderItemInfo info) throws InsufficientQuantityException {
         Product product = orderItem.getProduct();
-        if (product.getQuantity() >= info.getQuantity()) {
-            orderItem.setQuantity(info.getQuantity());
+        if (product.getQuantityCreated() >= info.getQuantity()) {
+            orderItem.incrementQuantity(info.getQuantity());
+            product.incrementQuantityUsed(info.getQuantity());
         } else {
-            throw new InsufficientQuantityException(product.getQuantity());
+            throw new InsufficientQuantityException(product.getQuantityCreated());
         }
         return orderItem;
+    }
+
+    @Override
+    public void postDeletion(OrderItem<? extends Product> deletedOrderItem) throws OrderItemNotFound {
+        Product product = deletedOrderItem.getProduct();
+        product.decrementQuantityUsed(deletedOrderItem.getQuantity());
+    }
+
+    @Override
+    public boolean isExist(long id) {
+        return dao.isExist(id);
     }
 
     private OrderItem<? extends Product> buildOrderItem(OrderItemInfo info, Product product) {
@@ -69,12 +81,5 @@ public class OrderItemService implements IOrderItemService {
             orderItem.setBarCode(barCode);
         }
         return orderItem;
-    }
-
-    @Override
-    public void postDeletion(long orderItemId) throws OrderItemNotFound {
-        OrderItem<? extends Product> orderItemToDelete = get(orderItemId);
-        Product product = orderItemToDelete.getProduct();
-        product.decrementQuantity(orderItemToDelete.getQuantity());
     }
 }

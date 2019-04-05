@@ -18,7 +18,7 @@ public interface IOrderDao {
 
     Order get(long id);
 
-    Optional<Order> findStockReport(long id);
+    Optional<Order> findOrder(long id);
 
     Set<Order> getAll(int limit);
 

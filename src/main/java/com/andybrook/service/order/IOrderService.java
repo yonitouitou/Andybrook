@@ -33,9 +33,7 @@ public interface IOrderService {
 
     boolean canModifyOrder(Order order);
 
-    OrderItem<? extends Product> addOrderItem(long orderId, OrderItemInfo info) throws OrderNotFound, OrderClosed, ProductNotFound, InsufficientQuantityException;
-
-    OrderItem<? extends Product> updateOrderItem(long orderId, OrderItemInfo info) throws OrderNotFound, OrderClosed, InsufficientQuantityException, OrderItemNotFound;
+    OrderItem<? extends Product> addOrUpdateOrderItem(long orderId, OrderItemInfo info) throws OrderNotFound, OrderClosed, ProductNotFound, OrderItemNotFound, InsufficientQuantityException;
 
     Order deleteOrderItem(long orderId, long orderItemId) throws OrderNotFound, OrderClosed, OrderItemNotFound;
 }

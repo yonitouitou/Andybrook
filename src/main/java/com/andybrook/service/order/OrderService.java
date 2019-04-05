@@ -99,13 +99,14 @@ public class OrderService implements IOrderService {
     }
 
     @Override
-    public OrderItem<? extends Product> addOrderItem(long orderId, OrderItemInfo info) throws OrderNotFound, OrderClosed, ProductNotFound, InsufficientQuantityException {
+    public OrderItem<? extends Product> addOrUpdateOrderItem(long orderId, OrderItemInfo info)
+            throws OrderNotFound, OrderClosed, ProductNotFound, OrderItemNotFound, InsufficientQuantityException {
         OrderItem<? extends Product> orderItemToUpdate;
         Order order = getOrderById(orderId);
         if (canModifyOrder(order)) {
-            orderItemToUpdate = orderItemService.createOrderItem(info);
-            order.addItem(orderItemToUpdate);
-            dao.updateOrder(order);
+            orderItemToUpdate = info.getId() != null && order.hasItem(info.getId())
+                    ? updateOrderItem(order, info)
+                    : addOrderItem(order, info);
         } else {
             throw new OrderClosed(orderId);
         }
@@ -113,31 +114,13 @@ public class OrderService implements IOrderService {
     }
 
     @Override
-    public OrderItem<? extends Product> updateOrderItem(long orderId, OrderItemInfo info) throws OrderNotFound, OrderClosed, InsufficientQuantityException, OrderItemNotFound {
-        OrderItem<? extends Product> orderItem;
-        Order order = getOrderById(orderId);
-        if (canModifyOrder(order)) {
-            orderItem = order.getItem(info.getId());
-            if (orderItem != null) {
-                orderItemService.updateOrderItem(orderItem, info);
-                dao.updateOrder(order);
-            } else {
-                throw new OrderItemNotFound(info.getId());
-            }
-        } else {
-            throw new OrderClosed(orderId);
-        }
-        return orderItem;
-    }
-
-    @Override
     public Order deleteOrderItem(long orderId, long orderItemId) throws OrderNotFound, OrderClosed, OrderItemNotFound {
         Order order = getOrderById(orderId);
         if (canModifyOrder(order)) {
             if (order.getItem(orderItemId) != null) {
-                order.deleteItem(orderItemId);
-                dao.updateOrder(order);
-                orderItemService.postDeletion(orderItemId);
+                OrderItem<? extends Product> deletedOrderItem = order.deleteItem(orderItemId);
+                order = dao.updateOrder(order);
+                orderItemService.postDeletion(deletedOrderItem);
             } else {
                 throw new OrderItemNotFound(orderItemId);
             }
@@ -147,8 +130,26 @@ public class OrderService implements IOrderService {
         return order;
     }
 
+    private OrderItem<? extends Product> addOrderItem(Order order, OrderItemInfo info) throws ProductNotFound, InsufficientQuantityException {
+        OrderItem<? extends Product> orderItemToUpdate = orderItemService.createOrderItem(info);
+        order.addItem(orderItemToUpdate);
+        dao.updateOrder(order);
+        return orderItemToUpdate;
+    }
+
+    private OrderItem<? extends Product> updateOrderItem(Order order, OrderItemInfo info) throws InsufficientQuantityException, OrderItemNotFound {
+        OrderItem<? extends Product> orderItem = order.getItem(info.getId());
+        if (orderItem != null) {
+            orderItemService.updateOrderItem(orderItem, info);
+            dao.updateOrder(order);
+        } else {
+            throw new OrderItemNotFound(info.getId());
+        }
+        return orderItem;
+    }
+
     private Order getOrderById(long id) throws OrderNotFound {
-        Optional<Order> reportOpt = dao.findStockReport(id);
+        Optional<Order> reportOpt = dao.findOrder(id);
         if (! reportOpt.isPresent()) {
             throw new OrderNotFound(languageResolver.get(ORDER_NOT_FOUND) + " : " + id);
         }

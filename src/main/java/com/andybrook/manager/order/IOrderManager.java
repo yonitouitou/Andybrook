@@ -31,9 +31,9 @@ public interface IOrderManager {
 
     List<Order> getOrders(List<Long> ids);
 
-    OrderItem<? extends Product> addOrderItem(OrderItemAddRequest request) throws OrderNotFound, OrderClosed, ProductNotFound, InsufficientQuantityException;
+    OrderItem<? extends Product> addOrderItem(OrderItemAddRequest request) throws OrderNotFound, OrderClosed, ProductNotFound, InsufficientQuantityException, OrderItemNotFound;
 
-    OrderItem<? extends Product> updateOrderItem(OrderItemUpdateRequest request) throws OrderNotFound, OrderClosed, OrderItemNotFound, InsufficientQuantityException;
+    OrderItem<? extends Product> updateOrderItem(OrderItemUpdateRequest request) throws OrderNotFound, OrderClosed, OrderItemNotFound, InsufficientQuantityException, ProductNotFound;
 
     Order deleteOrderItem(OrderItemDeleteRequest request) throws OrderNotFound, OrderClosed, OrderItemNotFound;
 }

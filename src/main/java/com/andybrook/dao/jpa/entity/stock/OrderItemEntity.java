@@ -24,6 +24,7 @@ public abstract class OrderItemEntity {
             cascade = {CascadeType.PERSIST,
                         CascadeType.DETACH,
                         CascadeType.REFRESH,
+                        CascadeType.MERGE,
                         CascadeType.REMOVE})
     @JoinColumn(name = "productid", referencedColumnName = "id", nullable = false)
     protected ProductEntity productEntity;
@@ -32,7 +33,7 @@ public abstract class OrderItemEntity {
     @Column(name = "producttype")
     protected ProductType productType;
 
-    @Column(name = "quantity")
+    @Column(name = "quantityCreated")
     protected int quantity;
 
     @ManyToOne

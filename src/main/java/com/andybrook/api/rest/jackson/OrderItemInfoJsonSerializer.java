@@ -17,7 +17,7 @@ public class OrderItemInfoJsonSerializer extends JsonDeserializer<OrderItemInfo>
         ObjectCodec oc = jp.getCodec();
         JsonNode json = oc.readTree(jp);
         Long id = json.get("id") == null || json.get("id").asText().isEmpty() ? null : json.get("id").asLong();
-        int quantity = json.get("quantity").asInt(0);
+        int quantity = json.get("quantityCreated").asInt(0);
         long productId = json.get("productId").asLong();
         return new OrderItemInfo(id, productId, quantity);
     }

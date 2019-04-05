@@ -18,8 +18,8 @@ public interface IProductCrudRepository extends CrudRepository<ProductEntity, Lo
             "FROM " +
                 ENTITY_NAME +
             " WHERE " +
-                "quantity > :quantity";
+                "quantityCreated > :quantityCreated";
 
     @Query(value = GET_PRODUCT_ID_AND_NAMES_WITH_QUANTITY_MORE_THAN)
-    List<Object> getAllProductNamesWithQuantityMoreThan(@Param("quantity") int quantity);
+    List<Object> getAllProductNamesWithQuantityMoreThan(@Param("quantityCreated") int quantity);
 }

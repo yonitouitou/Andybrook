@@ -31,24 +31,19 @@ public class Order {
     }
 
     public void addItem(OrderItem<? extends Product> item) {
-        System.err.println("Add Item request : " + id + " | " + item.getProduct().getId() + " | " + item.getId() + " | " + item.getProduct().getName());
         synchronized (this) {
-            Long orderItemId = itemIdMapByProductId.get(item.getProduct().getId());
-            if (orderItemId != null) {
-                System.err.println("Increment Quantity : " + id + " | " + item.getProduct().getId() + " | " + item.getId() + " | " + item.getProduct().getName());
-                items.get(orderItemId).incrementQuantity();
-            } else {
-                itemIdMapByProductId.put(item.getProduct().getId(), item.getId());
-                items.put(item.getId(), item);
-            }
+            itemIdMapByProductId.put(item.getProduct().getId(), item.getId());
+            items.put(item.getId(), item);
         }
     }
 
-    public void deleteItem(long orderItemId) {
+    public OrderItem<? extends Product> deleteItem(long orderItemId) {
+        OrderItem<? extends Product> orderItemDeleted;
         synchronized (this) {
-            OrderItem<? extends Product> orderItem = items.remove(orderItemId);
-            itemIdMapByProductId.remove(orderItem.getProduct().getId());
+            orderItemDeleted = items.remove(orderItemId);
+            itemIdMapByProductId.remove(orderItemDeleted.getProduct().getId());
         }
+        return orderItemDeleted;
     }
 
     public OrderItem<? extends Product> findLastItemAdded() {
