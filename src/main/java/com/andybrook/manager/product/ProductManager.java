@@ -6,6 +6,7 @@ import com.andybrook.model.BarCode;
 import com.andybrook.model.product.Product;
 import com.andybrook.service.product.IProductService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.util.Pair;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -23,6 +24,11 @@ public class ProductManager implements IProductManager {
     }
 
     @Override
+    public Product getProduct(long id) throws ProductNotFound {
+        return productService.get(id);
+    }
+
+    @Override
     public List<? extends Product> getByNameContaining(String name) {
         return productService.getByNameContaining(name);
     }
@@ -34,7 +40,7 @@ public class ProductManager implements IProductManager {
     }
 
     @Override
-    public List<String> getAllProductNamesWithQuantityMoreThan(int quantity) {
+    public List<Pair<Long, String>> getAllProductNamesWithQuantityMoreThan(int quantity) {
         return productService.getAllProductNamesWithQuantityMoreThan(quantity);
     }
 }

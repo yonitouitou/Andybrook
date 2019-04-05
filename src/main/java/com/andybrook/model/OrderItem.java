@@ -2,7 +2,6 @@ package com.andybrook.model;
 
 import com.andybrook.enums.ProductType;
 import com.andybrook.model.product.Product;
-import com.andybrook.util.IdGenerator;
 
 import java.time.LocalDateTime;
 
@@ -10,39 +9,23 @@ public final class OrderItem<T extends Product> {
 
     protected Long id;
     protected T product;
-    protected ProductType type;
     protected int quantity;
     protected BarCode barCode;
     protected LocalDateTime createdDatetime;
     protected LocalDateTime lastModifiedDatetime;
 
-    public OrderItem(Long id, T product, ProductType productType, int quantity) {
+    public OrderItem(Long id, T product, int quantity) {
         this.id = id;
         this.product = product;
-        this.type = productType;
         this.quantity = quantity;
         this.barCode = null;
     }
 
-    public OrderItem(T product, ProductType productType, int quantity) {
+    public OrderItem(T product, int quantity) {
         this.id = null;
         this.product = product;
-        this.type = productType;
         this.quantity = quantity;
         this.barCode = null;
-    }
-
-    public void update(OrderItem<T> orderItem) {
-        this.product = orderItem.product;
-        this.type = orderItem.type;
-        this.quantity = orderItem.quantity;
-        this.barCode = orderItem.barCode;
-    }
-
-    public void setIdIfNeeded() {
-        if (id == null) {
-            id = IdGenerator.generateId();
-        }
     }
 
     public boolean exist() {
@@ -81,14 +64,6 @@ public final class OrderItem<T extends Product> {
         return quantity * product.getPrice();
     }
 
-    public ProductType getType() {
-        return type;
-    }
-
-    public void setType(ProductType type) {
-        this.type = type;
-    }
-
     public BarCode getBarCode() {
         return barCode;
     }
@@ -118,7 +93,6 @@ public final class OrderItem<T extends Product> {
         return "OrderItem{" +
                 "id=" + id +
                 ", product=" + product +
-                ", type=" + type +
                 ", quantity=" + quantity +
                 ", barCode=" + barCode +
                 ", createdDatetime=" + createdDatetime +

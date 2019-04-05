@@ -7,6 +7,7 @@ import com.andybrook.dao.jpa.entity.product.GlassesEntity;
 import com.andybrook.enums.ProductType;
 import com.andybrook.model.OrderItem;
 import com.andybrook.model.product.Glasses;
+import com.andybrook.model.product.Product;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -19,8 +20,8 @@ public class GlassesStockItemEntityConverter implements IEntityConverter<OrderIt
 
     @Override
     public OrderItem<Glasses> toModel(GlassesOrderItemEntity entity) {
-        Glasses glasses = entityFactory.createProduct(entity.getProductEntity());
-        OrderItem<Glasses> item = new OrderItem(entity.getId(), glasses, ProductType.GLASSES, entity.getQuantity());
+        Product product = entityFactory.createProduct(entity.getProductEntity());
+        OrderItem<Glasses> item = new OrderItem(entity.getId(), product, entity.getQuantity());
         if (entity.getBarCodeEntity() != null) {
             item.setBarCode(entityFactory.createBarCode(entity.getBarCodeEntity()));
         }

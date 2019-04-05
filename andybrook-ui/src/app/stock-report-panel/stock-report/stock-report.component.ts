@@ -61,5 +61,5 @@ export class StockReportComponent implements OnInit {
 
   onClickBack() {
     this.router.navigate([''])
-}
+  }
 }

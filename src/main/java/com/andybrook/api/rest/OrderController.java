@@ -1,16 +1,19 @@
 package com.andybrook.api.rest;
 
-import com.andybrook.api.rest.OrderItemController.StockItemTableRow;
 import com.andybrook.api.rest.ctx.GenericRequestById;
 import com.andybrook.api.rest.ctx.GenericRequestByIds;
 import com.andybrook.exception.*;
 import com.andybrook.manager.order.IOrderManager;
 import com.andybrook.model.Order;
 import com.andybrook.model.OrderItem;
+import com.andybrook.model.api.rest.OrderItemRestRequest;
 import com.andybrook.model.product.Product;
-import com.andybrook.model.request.NewOrderRequest;
-import com.andybrook.model.request.OrderItemUpdateRequest;
-import com.andybrook.model.request.UpdateOrderRequest;
+import com.andybrook.model.request.order.NewOrderRequest;
+import com.andybrook.model.request.orderitem.OrderItemAddRequest;
+import com.andybrook.model.request.orderitem.OrderItemDeleteRequest;
+import com.andybrook.model.request.orderitem.OrderItemInfo;
+import com.andybrook.model.request.orderitem.OrderItemUpdateRequest;
+import com.andybrook.model.request.order.UpdateOrderRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -71,16 +74,16 @@ public class OrderController extends AbstractController {
     }
 
     @PostMapping(path = "/addOrderItem")
-    public Order addOrderItem(@RequestBody OrderItemUpdateRequest request)
-            throws OrderNotFound, OrderClosed, ProductNotFound, BarCodeAlreadyExist {
+    public OrderItem<? extends Product> addOrderItem(@RequestBody OrderItemRestRequest request)
+            throws OrderNotFound, OrderClosed, ProductNotFound, InsufficientQuantityException {
         LOGGER.log(Level.INFO, "Request received to update order : " + request);
-        return orderManager.addOrderItem(request.getOrderId(), request.getOrderItem());
+        return orderManager.addOrderItem(new OrderItemAddRequest(request.getOrderId(), request.getOrderItemInfo()));
     }
 
     @DeleteMapping(path = "/deleteOrderItem/{orderId}/{orderItemId}")
-    public void deleteOrderItem(@PathVariable long orderId, @PathVariable long orderItemId) throws OrderNotFound, OrderClosed {
+    public void deleteOrderItem(@PathVariable long orderId, @PathVariable long orderItemId) throws OrderNotFound, OrderClosed, OrderItemNotFound {
         LOGGER.log(Level.INFO, "Request received to remove order item " + orderItemId + " from order " + orderId);
-        orderManager.deleteOrderItem(orderId, orderItemId);
+        orderManager.deleteOrderItem(new OrderItemDeleteRequest(orderId, orderItemId));
     }
 
 }

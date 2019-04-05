@@ -7,7 +7,9 @@ public interface IBarCodeService {
 
     void newBarCode(Product product, BarCode barCode);
 
-    long getStockItemIdByBarCodeId(String id);
+    BarCode get(String id);
+
+    long getOrderItemIdByBarCodeId(String id);
 
     boolean isBarCodeExist(BarCode barCode);
 }

@@ -8,7 +8,11 @@ export class ProductService {
     constructor(private http: HttpService) {
     }
 
-    getAllProductNames(): Observable<string> {
+    get(id: number): Observable<any> {
+        return this.http.get("/v1/product/get/" + id)
+    }
+
+    getAllProductNames(): Observable<any> {
         return this.http.get("/v1/product/getAllExistingProductNames")
     }
 }

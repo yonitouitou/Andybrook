@@ -2,7 +2,7 @@ package com.andybrook.init;
 
 import com.andybrook.exception.*;
 import com.andybrook.generator.ProductGenerator;
-import com.andybrook.generator.StockItemGenerator;
+import com.andybrook.generator.OrderItemGenerator;
 import com.andybrook.manager.order.IOrderManager;
 import com.andybrook.manager.product.IProductManager;
 import com.andybrook.model.Order;
@@ -11,7 +11,9 @@ import com.andybrook.model.customer.Customer;
 import com.andybrook.model.customer.Owner;
 import com.andybrook.model.customer.Store;
 import com.andybrook.model.product.Product;
-import com.andybrook.model.request.NewOrderRequest;
+import com.andybrook.model.request.order.NewOrderRequest;
+import com.andybrook.model.request.orderitem.OrderItemAddRequest;
+import com.andybrook.model.request.orderitem.OrderItemInfo;
 import com.andybrook.service.customer.ICustomerService;
 import com.andybrook.util.clock.Clock;
 import org.junit.Test;
@@ -52,7 +54,10 @@ public class InitSystemTest {
                 int itemToAddNb = RANDOM.nextInt(0, MAX_ITEM_IN_ORDER_101);
                 System.out.println("Add " + itemToAddNb + " items to order " + id);
                 for (int i = 0; i < itemToAddNb; i++) {
-                    addOrderItem(id, products.get(RANDOM.nextInt(0, PRODUCT_NUMBER_200 - 1)));
+                    Product product = products.get(RANDOM.nextInt(0, PRODUCT_NUMBER_200 - 1));
+                    if (product.getQuantity() > 0) {
+                        addOrderItem(id, product);
+                    }
                 }
             }
         }
@@ -79,12 +84,17 @@ public class InitSystemTest {
         return customers;
     }
 
-    private void addOrderItem(long orderId, Product product) throws OrderNotFound, OrderClosed, ProductNotFound, BarCodeAlreadyExist {
-        OrderItem<? extends Product> orderItem = StockItemGenerator.generateOrderItem(product);
-        orderManager.addOrderItem(orderId, orderItem);
+    private void addOrderItem(long orderId, Product product) throws OrderNotFound, OrderClosed, ProductNotFound, InsufficientQuantityException {
+        OrderItem<? extends Product> item = OrderItemGenerator.generateOrderItem(product);
+        OrderItemInfo details = new OrderItemInfo(item.getId(), item.getProduct().getId(), item.getQuantity());
+        if (item.getBarCode() != null) {
+            details.setBarCodeId(item.getBarCode().getId());
+        }
+        OrderItemAddRequest request = new OrderItemAddRequest(orderId, details);
+        orderManager.addOrderItem(request);
     }
 
-    public List<Long> createOrders(Customer customer) throws StoreNotFound, InterruptedException {
+    private List<Long> createOrders(Customer customer) throws StoreNotFound {
         List<Long> orderIds = new LinkedList<>();
         for (int i = 0; i < ORDER_NUMBER_10; i++) {
             long suffix = Clock.nanos();

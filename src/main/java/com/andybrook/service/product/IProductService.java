@@ -4,6 +4,7 @@ import com.andybrook.exception.BarCodeAlreadyExist;
 import com.andybrook.exception.ProductNotFound;
 import com.andybrook.model.BarCode;
 import com.andybrook.model.product.Product;
+import org.springframework.data.util.Pair;
 
 import java.util.List;
 
@@ -17,5 +18,5 @@ public interface IProductService {
 
     void addBarCode(long productId, BarCode barCode) throws BarCodeAlreadyExist, ProductNotFound;
 
-    List<String> getAllProductNamesWithQuantityMoreThan(int quantity);
+    List<Pair<Long, String>> getAllProductNamesWithQuantityMoreThan(int quantity);
 }

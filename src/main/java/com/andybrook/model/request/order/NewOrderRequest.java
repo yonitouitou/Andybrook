@@ -1,4 +1,4 @@
-package com.andybrook.model.request;
+package com.andybrook.model.request.order;
 
 public final class NewOrderRequest {
 

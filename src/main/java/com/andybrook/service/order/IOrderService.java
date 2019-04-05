@@ -1,14 +1,12 @@
 package com.andybrook.service.order;
 
-import com.andybrook.exception.OrderClosed;
-import com.andybrook.exception.OrderNotFound;
-import com.andybrook.exception.ProductNotFound;
-import com.andybrook.exception.StoreNotFound;
+import com.andybrook.exception.*;
 import com.andybrook.model.Order;
 import com.andybrook.model.OrderItem;
 import com.andybrook.model.product.Product;
-import com.andybrook.model.request.NewOrderRequest;
-import com.andybrook.model.request.UpdateOrderRequest;
+import com.andybrook.model.request.order.NewOrderRequest;
+import com.andybrook.model.request.order.UpdateOrderRequest;
+import com.andybrook.model.request.orderitem.OrderItemInfo;
 
 import java.util.List;
 import java.util.Set;
@@ -35,9 +33,9 @@ public interface IOrderService {
 
     boolean canModifyOrder(Order order);
 
-    Order addOrderItem(long orderId, OrderItem item) throws OrderNotFound, OrderClosed, ProductNotFound;
+    OrderItem<? extends Product> addOrderItem(long orderId, OrderItemInfo info) throws OrderNotFound, OrderClosed, ProductNotFound, InsufficientQuantityException;
 
-    Order updateOrderItem(long orderId, OrderItem item) throws OrderNotFound, OrderClosed;
+    OrderItem<? extends Product> updateOrderItem(long orderId, OrderItemInfo info) throws OrderNotFound, OrderClosed, InsufficientQuantityException, OrderItemNotFound;
 
-    Order deleteOrderItem(long orderId, long orderItemId) throws OrderNotFound, OrderClosed;
+    Order deleteOrderItem(long orderId, long orderItemId) throws OrderNotFound, OrderClosed, OrderItemNotFound;
 }

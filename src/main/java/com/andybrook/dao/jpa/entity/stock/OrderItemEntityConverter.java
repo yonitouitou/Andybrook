@@ -18,7 +18,7 @@ public class OrderItemEntityConverter implements IEntityConverter<OrderItem, Ord
     @Override
     public OrderItem toModel(OrderItemEntity entity) {
         Product product = entityFactory.createProduct(entity.getProductEntity());
-        OrderItem orderItem = new OrderItem(entity.getId(), product, entity.getProductType(), entity.getQuantity());
+        OrderItem orderItem = new OrderItem(entity.getId(), product, entity.getQuantity());
         if (entity.getBarCodeEntity() != null) {
             orderItem.setBarCode(entityFactory.createBarCode(entity.getBarCodeEntity()));
         }

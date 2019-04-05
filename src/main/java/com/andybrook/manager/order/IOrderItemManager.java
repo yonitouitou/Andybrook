@@ -8,7 +8,5 @@ import java.util.Map;
 
 public interface IOrderItemManager {
 
-    OrderItem<? extends Product> getStockItem(long id) throws OrderItemNotFound;
-
-    Map<Long, OrderItem<? extends Product>> getOrderItems();
+    OrderItem<? extends Product> getOrderItem(long id) throws OrderItemNotFound;
 }

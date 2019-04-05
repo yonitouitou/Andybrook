@@ -1,6 +1,7 @@
 package com.andybrook.dao.product.glasses;
 
 import com.andybrook.model.product.Product;
+import org.springframework.data.util.Pair;
 
 import java.util.List;
 import java.util.Optional;
@@ -13,7 +14,7 @@ public interface IProductDao {
 
     List<? extends Product> getByNameContaining(String name);
 
-    List<String> getAllProductNamesWithQuantityMoreThan(int quantity);
+    List<Pair<Long, String>> getAllProductNamesWithQuantityMoreThan(int quantity);
 
     Product update(Product product);
 

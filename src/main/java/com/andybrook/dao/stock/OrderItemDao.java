@@ -24,7 +24,7 @@ public class OrderItemDao implements IOrderItemDao {
     private EntityFactory entityFactory;
 
     @Override
-    public <T extends Product> Optional<OrderItem<T>> getStockItem(long id) {
+    public <T extends Product> Optional<OrderItem<T>> getOrderItem(long id) {
         Optional<OrderItem<T>> StockItemEntityOpt = Optional.empty();
         Optional<OrderItemEntity> entityOpt = findOne(id);
         if (entityOpt.isPresent()) {

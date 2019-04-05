@@ -16,12 +16,7 @@ public class OrderItemManager implements IOrderItemManager {
     private IOrderItemService stockItemService;
 
     @Override
-    public OrderItem<? extends Product> getStockItem(long id) throws OrderItemNotFound {
+    public OrderItem<? extends Product> getOrderItem(long id) throws OrderItemNotFound {
         return stockItemService.get(id);
-    }
-
-    @Override
-    public Map<Long, OrderItem<? extends Product>> getOrderItems() {
-        return stockItemService.getOrderItems();
     }
 }

@@ -1,5 +1,6 @@
 package com.andybrook.model.product;
 
+import com.andybrook.enums.ProductType;
 import com.andybrook.model.BarCode;
 
 import java.util.HashMap;
@@ -13,7 +14,10 @@ public abstract class Product {
     protected String name;
     protected double price;
     protected int quantity;
+    protected ProductType type;
     protected Map<String, BarCode> barCodes;
+
+    public abstract ProductType getType();
 
     private Product() {
     }
@@ -31,6 +35,14 @@ public abstract class Product {
         this.price = price;
         this.quantity = 0;
         this.barCodes = new HashMap<>();
+    }
+
+    public void incrementQuantity(int qtyToIncrement) {
+        quantity += qtyToIncrement;
+    }
+
+    public void decrementQuantity(int qtyToDecrement) {
+        quantity -= qtyToDecrement;
     }
 
     public void addBarCode(BarCode barCode) {

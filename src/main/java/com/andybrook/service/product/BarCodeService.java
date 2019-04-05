@@ -6,6 +6,8 @@ import com.andybrook.model.product.Product;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Optional;
+
 @Service
 public class BarCodeService implements IBarCodeService {
 
@@ -13,12 +15,18 @@ public class BarCodeService implements IBarCodeService {
     private IBarCodeDao dao;
 
     @Override
+    public BarCode get(String id) {
+        Optional<BarCode> barCodeOpt = dao.get(id);
+        return barCodeOpt.isPresent() ? barCodeOpt.get() : null;
+    }
+
+    @Override
     public void newBarCode(Product product, BarCode barCode) {
         dao.save(product, barCode);
     }
 
     @Override
-    public long getStockItemIdByBarCodeId(String id) {
+    public long getOrderItemIdByBarCodeId(String id) {
         return dao.getStockItemIdByBarCodeId(id);
     }
 

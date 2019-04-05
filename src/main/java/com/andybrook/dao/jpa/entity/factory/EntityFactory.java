@@ -92,7 +92,7 @@ public final class EntityFactory {
     }
 
     public final OrderItemEntity createOrderItemEntityByProductType(OrderEntity orderEntity, OrderItem orderItem) {
-        GlassesStockItemEntityConverter converter = (GlassesStockItemEntityConverter) entityConverterMapByProductType.get(orderItem.getType());
+        GlassesStockItemEntityConverter converter = (GlassesStockItemEntityConverter) entityConverterMapByProductType.get(orderItem.getProduct().getType());
         return converter.toEntity(orderEntity, orderItem);
     }
 

@@ -9,7 +9,7 @@ import java.util.Optional;
 
 public interface IOrderItemDao {
 
-    <T extends Product> Optional<OrderItem<T>> getStockItem(long id);
+    <T extends Product> Optional<OrderItem<T>> getOrderItem(long id);
 
     <T extends Product> OrderItem<T> updateStockItem(Order order, OrderItem<T> item);
 

@@ -1,15 +1,15 @@
 package com.andybrook.manager.order;
 
-import com.andybrook.exception.OrderClosed;
-import com.andybrook.exception.OrderNotFound;
-import com.andybrook.exception.ProductNotFound;
-import com.andybrook.exception.StoreNotFound;
+import com.andybrook.exception.*;
 import com.andybrook.manager.notification.INotificationManager;
 import com.andybrook.model.Order;
 import com.andybrook.model.OrderItem;
 import com.andybrook.model.product.Product;
-import com.andybrook.model.request.NewOrderRequest;
-import com.andybrook.model.request.UpdateOrderRequest;
+import com.andybrook.model.request.order.NewOrderRequest;
+import com.andybrook.model.request.order.UpdateOrderRequest;
+import com.andybrook.model.request.orderitem.OrderItemAddRequest;
+import com.andybrook.model.request.orderitem.OrderItemDeleteRequest;
+import com.andybrook.model.request.orderitem.OrderItemUpdateRequest;
 import com.andybrook.service.order.IOrderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -71,17 +71,26 @@ public class OrderManager implements IOrderManager {
     }
 
     @Override
-    public Order addOrderItem(long orderId, OrderItem<? extends Product> item) throws OrderNotFound, OrderClosed, ProductNotFound {
-        return orderService.addOrderItem(orderId, item);
+    public OrderItem<? extends Product> addOrderItem(OrderItemAddRequest request) throws OrderNotFound, OrderClosed, ProductNotFound, InsufficientQuantityException {
+        if (! OrderItemAddRequest.isValid(request)) {
+            throw new IllegalArgumentException("OrderItemAddRequest is not valid : " + request.toString());
+        }
+        return orderService.addOrderItem(request.getOrderId(), request.getOrderItemInfo());
     }
 
     @Override
-    public Order updateOrderItem(long orderId, OrderItem<? extends Product> item) throws OrderNotFound, OrderClosed {
-        return orderService.updateOrderItem(orderId, item);
+    public OrderItem<? extends Product> updateOrderItem(OrderItemUpdateRequest request) throws OrderNotFound, OrderClosed, OrderItemNotFound, InsufficientQuantityException {
+        if (! OrderItemUpdateRequest.isValid(request)) {
+            throw new IllegalArgumentException("OrderItemUpdateRequest is not valid : " + request.toString());
+        }
+        return orderService.updateOrderItem(request.getOrderId(), request.getOrderItemInfo());
     }
 
     @Override
-    public Order deleteOrderItem(long orderId, long orderItemId) throws OrderNotFound, OrderClosed {
-        return orderService.deleteOrderItem(orderId, orderItemId);
+    public Order deleteOrderItem(OrderItemDeleteRequest request) throws OrderNotFound, OrderClosed, OrderItemNotFound {
+        if (! OrderItemDeleteRequest.isValid(request)) {
+            throw new IllegalArgumentException("OrderItemDeleteRequest is not valid : " + request.toString());
+        }
+        return orderService.deleteOrderItem(request.getOrderId(), request.getOrderItemId());
     }
 }

@@ -6,6 +6,7 @@ import com.andybrook.dao.jpa.entity.product.ProductEntity;
 import com.andybrook.model.product.Glasses;
 import com.andybrook.model.product.Product;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.util.Pair;
 import org.springframework.stereotype.Service;
 
 import java.util.LinkedList;
@@ -49,8 +50,15 @@ public class ProductDao implements IProductDao {
     }
 
     @Override
-    public List<String> getAllProductNamesWithQuantityMoreThan(int quantity) {
-        return repository.getAllProductNamesWithQuantityMoreThan(quantity);
+    public List<Pair<Long, String>> getAllProductNamesWithQuantityMoreThan(int quantity) {
+        List<Object> productIdAndNameList = repository.getAllProductNamesWithQuantityMoreThan(quantity);
+        List<Pair<Long, String>> products = new LinkedList<>();
+        for (int i = 0; i < productIdAndNameList.size(); i++) {
+            Object[] currentProduct = (Object[]) productIdAndNameList.get(i);
+            Pair<Long, String> idAndName = Pair.of((Long) currentProduct[0], (String) currentProduct[1]);
+            products.add(idAndName);
+        }
+        return products;
     }
 
     @Override

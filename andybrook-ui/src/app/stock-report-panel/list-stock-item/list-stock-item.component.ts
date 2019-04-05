@@ -16,6 +16,7 @@ import { debounceTime, distinctUntilChanged, map } from 'rxjs/operators';
 })
 export class ListStockItemComponent implements OnInit {
 
+  inputId: number
   inputName: string
   inputQuantity: number
   inputPrice: number
@@ -23,6 +24,8 @@ export class ListStockItemComponent implements OnInit {
   areNewStockItemFieldsSet = false
   searchString: string
   productNames: string[] = []
+  productIdMapByName: Map<string, number> = new Map()
+  
   search = (text$: Observable<string>) =>
     text$.pipe(
       debounceTime(200),
@@ -45,29 +48,48 @@ export class ListStockItemComponent implements OnInit {
   ngOnInit() {
     this.productService.getAllProductNames().subscribe(
       data => {
-        for (let name of data) {
-          this.productNames.push(name);
+        for (let idAndNameProduct of data) {
+          this.productIdMapByName.set(idAndNameProduct.second, idAndNameProduct.first)
+          this.productNames.push(idAndNameProduct.second);
         }
       }
     )
   }
 
   onBlurNewItemInput() {
+    this.checkInputFieldSet()
+  }
+
+  onBlurInputName() {
+    const id = this.productIdMapByName.get(this.inputName.trim())
+    if (id != null) {
+      this.productService.get(id).subscribe(
+        data => {
+          this.inputId = data.id
+          this.inputPrice = data.price
+          this.inputQuantity = 1
+        }
+      )
+    }
+    this.checkInputFieldSet();
+  }
+
+  checkInputFieldSet() {
     this.areNewStockItemFieldsSet = this.inputName.trim().length > 0
                                       && this.inputQuantity >= 0
                                       && this.inputPrice >= 0
   }
 
   createNewStockItem() {
-    var stockItem = new StockItem(undefined, null, this.inputQuantity, new Product(undefined, this.inputName, this.inputPrice), null, null)
+    var stockItem = new StockItem(undefined, null, this.inputQuantity, new Product(this.inputId, this.inputName, this.inputPrice), null, null)
     this.orderService.addItem(this.order, stockItem).subscribe(
       data => {
           let barCodeId
-          if (data.item.barCode != null) {
+          if (data.barCode != null) {
             barCodeId = data.item.barCode.id
           }
-          let product = new Product(data.item.product.id, data.item.product.name, data.item.product.price)
-          stockItem = new StockItem(data.item.id, barCodeId, data.item.quantity, product, data.item.createdDatetime, data.item.lastModifiedDatetime)
+          let product = new Product(data.product.id, data.product.name, data.product.price)
+          stockItem = new StockItem(data.id, barCodeId, data.quantity, product, data.createdDatetime, data.lastModifiedDatetime)
           this.onCreateStockItemEvent.emit(stockItem)
           this.resetNewStockitemFields()
       },

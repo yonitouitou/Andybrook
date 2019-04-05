@@ -3,12 +3,16 @@ package com.andybrook.service.order;
 import com.andybrook.exception.*;
 import com.andybrook.model.OrderItem;
 import com.andybrook.model.product.Product;
-
-import java.util.Map;
+import com.andybrook.model.request.orderitem.OrderItemInfo;
+import com.andybrook.model.request.orderitem.OrderItemRequest;
 
 public interface IOrderItemService {
 
-    OrderItem<? extends Product> get(long id) throws OrderItemNotFound;
+    OrderItem<? extends Product> createOrderItem(OrderItemInfo info) throws ProductNotFound, InsufficientQuantityException;
 
-    Map<Long, OrderItem<? extends Product>> getOrderItems();
+    OrderItem<? extends Product> updateOrderItem(OrderItem orderItem, OrderItemInfo info) throws InsufficientQuantityException;
+
+    void postDeletion(long orderItemId) throws OrderItemNotFound;
+
+    OrderItem<? extends Product> get(long id) throws OrderItemNotFound;
 }

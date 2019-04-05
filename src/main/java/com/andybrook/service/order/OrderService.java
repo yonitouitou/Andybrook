@@ -1,16 +1,15 @@
 package com.andybrook.service.order;
 
 import com.andybrook.dao.order.IOrderDao;
-import com.andybrook.exception.OrderClosed;
-import com.andybrook.exception.OrderNotFound;
-import com.andybrook.exception.ProductNotFound;
+import com.andybrook.exception.*;
 import com.andybrook.language.LanguageResolver;
 import com.andybrook.model.Order;
 import com.andybrook.model.OrderItem;
 import com.andybrook.model.customer.Customer;
 import com.andybrook.model.product.Product;
-import com.andybrook.model.request.NewOrderRequest;
-import com.andybrook.model.request.UpdateOrderRequest;
+import com.andybrook.model.request.order.NewOrderRequest;
+import com.andybrook.model.request.order.UpdateOrderRequest;
+import com.andybrook.model.request.orderitem.OrderItemInfo;
 import com.andybrook.service.customer.ICustomerService;
 import com.andybrook.service.product.IProductService;
 import com.andybrook.service.setting.IAdminSettingService;
@@ -28,6 +27,8 @@ public class OrderService implements IOrderService {
 
     @Autowired
     private IOrderDao dao;
+    @Autowired
+    private IOrderItemService orderItemService;
     @Autowired
     private IProductService productService;
     @Autowired
@@ -98,39 +99,48 @@ public class OrderService implements IOrderService {
     }
 
     @Override
-    public Order addOrderItem(long orderId, OrderItem item) throws OrderNotFound, OrderClosed, ProductNotFound {
-        Order order = getOrderById(orderId);
-        item.setProduct(productService.get(item.getProduct().getId()));
-        if (canModifyOrder(order)) {
-            item.setIdIfNeeded();
-            System.err.println("Added " + item.getId() + " | " + orderId);
-            order.addItem(item);
-            order = dao.updateOrder(order);
-        } else {
-            throw new OrderClosed(orderId);
-        }
-        return order;
-    }
-
-    @Override
-    public Order updateOrderItem(long orderId, OrderItem item) throws OrderNotFound, OrderClosed {
+    public OrderItem<? extends Product> addOrderItem(long orderId, OrderItemInfo info) throws OrderNotFound, OrderClosed, ProductNotFound, InsufficientQuantityException {
+        OrderItem<? extends Product> orderItemToUpdate;
         Order order = getOrderById(orderId);
         if (canModifyOrder(order)) {
-            OrderItem<? extends Product> orderItem = order.getItem(item.getId());
-            orderItem.update(item);
+            orderItemToUpdate = orderItemService.createOrderItem(info);
+            order.addItem(orderItemToUpdate);
             dao.updateOrder(order);
         } else {
             throw new OrderClosed(orderId);
         }
-        return order;
+        return orderItemToUpdate;
     }
 
     @Override
-    public Order deleteOrderItem(long orderId, long orderItemId) throws OrderNotFound, OrderClosed {
+    public OrderItem<? extends Product> updateOrderItem(long orderId, OrderItemInfo info) throws OrderNotFound, OrderClosed, InsufficientQuantityException, OrderItemNotFound {
+        OrderItem<? extends Product> orderItem;
         Order order = getOrderById(orderId);
         if (canModifyOrder(order)) {
-            order.deleteItem(orderItemId);
-            dao.updateOrder(order);
+            orderItem = order.getItem(info.getId());
+            if (orderItem != null) {
+                orderItemService.updateOrderItem(orderItem, info);
+                dao.updateOrder(order);
+            } else {
+                throw new OrderItemNotFound(info.getId());
+            }
+        } else {
+            throw new OrderClosed(orderId);
+        }
+        return orderItem;
+    }
+
+    @Override
+    public Order deleteOrderItem(long orderId, long orderItemId) throws OrderNotFound, OrderClosed, OrderItemNotFound {
+        Order order = getOrderById(orderId);
+        if (canModifyOrder(order)) {
+            if (order.getItem(orderItemId) != null) {
+                order.deleteItem(orderItemId);
+                dao.updateOrder(order);
+                orderItemService.postDeletion(orderItemId);
+            } else {
+                throw new OrderItemNotFound(orderItemId);
+            }
         } else {
             throw new OrderClosed(orderId);
         }

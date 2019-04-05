@@ -86,8 +86,12 @@ public class Order {
         return closeDateTime;
     }
 
-    public OrderItem<? extends Product> getItem(long stockItemId) {
-        return items.get(stockItemId);
+    public OrderItem<? extends Product> getItem(long orderItemId) {
+        return items.get(orderItemId);
+    }
+
+    public boolean hasItem(long orderItemId) {
+        return items.containsKey(orderItemId);
     }
 
     public boolean isOpen() {

@@ -7,7 +7,7 @@ import com.andybrook.exception.OrderNotFound;
 import com.andybrook.language.LanguageResolver;
 import com.andybrook.language.Msg.Error;
 import com.andybrook.model.Order;
-import com.andybrook.model.request.UpdateOrderRequest;
+import com.andybrook.model.request.order.UpdateOrderRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;

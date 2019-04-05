@@ -19,6 +19,7 @@
 *.class
 /target
 **/target
+**/class
 
 ### NetBeans ###
 /nbproject/private/
