@@ -3,6 +3,7 @@ package com.andybrook.dao.jpa.entity.stock;
 import com.andybrook.dao.jpa.entity.product.ProductEntity;
 
 import javax.persistence.*;
+import java.util.Objects;
 
 @Entity
 @Table(name = "product_barcodes")
@@ -11,7 +12,7 @@ public class BarCodeEntity {
     @Id
     private String id;
 
-    @ManyToOne
+    @ManyToOne(cascade = { CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
     @JoinColumn(name = "productid")
     private ProductEntity productEntity;
 
@@ -37,6 +38,19 @@ public class BarCodeEntity {
 
     public void setProductEntity(ProductEntity productEntity) {
         this.productEntity = productEntity;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        BarCodeEntity that = (BarCodeEntity) o;
+        return id.equals(that.id);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id);
     }
 
     @Override

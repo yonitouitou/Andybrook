@@ -1,7 +1,5 @@
 package com.andybrook.model.request.orderitem;
 
-import com.andybrook.enums.ProductType;
-
 public class OrderItemInfo {
 
     protected Long id;

@@ -32,7 +32,7 @@
           <input class="form-control" (blur)="onBlurInputName()" [(ngModel)]="inputName" [ngbTypeahead]="search">
         </td>
         <td>
-          <input class="form-control" (blur)="onBlurNewItemInput()" [(ngModel)]="inputPrice">
+          {{ inputPrice }} <span *ngIf="inputPrice != null">€</span>
         </td>
         <td>
           <input class="form-control" (blur)="onBlurNewItemInput()" [(ngModel)]="inputQuantity">
@@ -47,19 +47,12 @@
       <tr *ngFor="let item of stockItems | filter : 'name' : searchString; let i = index" (click)="setSelectedRow(i)"
         [class.active]="i == selectedRow">
         <td>{{ item.product.id }}</td>
-        <td contenteditable="order.status !== 'CLOSED'"
-          (blur)="onChangeStockItemName(item, $event)">
-          {{ item.product.name }}
-        </td>
-        <td
-          contenteditable="order.status !== 'CLOSED'"
-          (blur)="onChangeStockItemPrice(item, $event)">
-          {{ item.product.price }} €
-        </td>
+        <td>{{ item.product.name }}</td>
+        <td>{{ item.product.price }} €</td>
         <td
           contenteditable="order.status !== 'CLOSED'"
           (blur)="onChangeStockItemQuantity(item, $event)">
-          {{ item.quantityCreated }}
+          {{ item.quantity }}
         </td>
         <td>{{ item.createdDatetime }}</td>
         <td>{{ item.lastModifiedDatetime }}</td>

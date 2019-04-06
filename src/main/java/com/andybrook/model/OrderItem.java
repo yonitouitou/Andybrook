@@ -4,6 +4,7 @@ import com.andybrook.enums.ProductType;
 import com.andybrook.model.product.Product;
 
 import java.time.LocalDateTime;
+import java.util.Objects;
 
 public final class OrderItem<T extends Product> {
 
@@ -86,6 +87,19 @@ public final class OrderItem<T extends Product> {
 
     public void setLastModifiedDatetime(LocalDateTime lastModifiedDatetime) {
         this.lastModifiedDatetime = lastModifiedDatetime;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        OrderItem<?> orderItem = (OrderItem<?>) o;
+        return id.equals(orderItem.id);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id);
     }
 
     @Override

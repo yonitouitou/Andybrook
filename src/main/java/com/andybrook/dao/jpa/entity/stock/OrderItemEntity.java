@@ -24,8 +24,7 @@ public abstract class OrderItemEntity {
             cascade = {CascadeType.PERSIST,
                         CascadeType.DETACH,
                         CascadeType.REFRESH,
-                        CascadeType.MERGE,
-                        CascadeType.REMOVE})
+                        CascadeType.MERGE})
     @JoinColumn(name = "productid", referencedColumnName = "id", nullable = false)
     protected ProductEntity productEntity;
 
@@ -33,7 +32,7 @@ public abstract class OrderItemEntity {
     @Column(name = "producttype")
     protected ProductType productType;
 
-    @Column(name = "quantityCreated")
+    @Column(name = "quantity")
     protected int quantity;
 
     @ManyToOne
@@ -41,7 +40,7 @@ public abstract class OrderItemEntity {
     protected OrderEntity orderEntity;
 
     @OneToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "barcodeid", referencedColumnName = "id", nullable = true)
+    @JoinColumn(name = "barcodeid", referencedColumnName = "id")
     protected BarCodeEntity barCodeEntity;
 
     @CreatedDate

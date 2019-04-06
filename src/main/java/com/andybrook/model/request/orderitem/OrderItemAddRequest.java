@@ -11,7 +11,7 @@ public class OrderItemAddRequest extends OrderItemRequest {
 
     public static boolean isValid(OrderItemAddRequest request) {
         boolean isValid;
-        if (request != null) {
+        if (request != null && request.getOrderItemInfo() != null) {
             isValid = request.getOrderItemInfo().getQuantity() > 0;
         } else {
             isValid = false;

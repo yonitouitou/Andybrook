@@ -1,67 +1,84 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="BookmarkManager">
-    <bookmark url="file://$PROJECT_DIR$/src/main/java/com/andybrook/dao/jpa/entity/product/ProductEntity.java" line="20" />
+    <bookmark url="file://$PROJECT_DIR$/src/main/java/com/andybrook/dao/jpa/entity/product/ProductEntity.java" line="21" />
   </component>
   <component name="ChangeListManager">
     <list default="true" id="0e119ff3-32b1-450e-9230-86171c0eacd3" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/andybrook/exception/ValidationRuntimeException.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/6bf8bf7b-b11b-4861-b5d6-f058c3fa5a27.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/6bf8bf7b-b11b-4861-b5d6-f058c3fa5a27.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/andybrook-ui/src/app/service/order-service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/andybrook-ui/src/app/service/order-service.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/andybrook-ui/src/app/stock-report-panel/list-stock-item/list-stock-item.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/andybrook-ui/src/app/stock-report-panel/list-stock-item/list-stock-item.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/andybrook-ui/src/app/stock-report-panel/list-stock-item/list-stock-item.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/andybrook-ui/src/app/stock-report-panel/list-stock-item/list-stock-item.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/andybrook/api/rest/AbstractController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/andybrook/api/rest/AbstractController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/andybrook/api/rest/OrderController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/andybrook/api/rest/OrderController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/andybrook/api/rest/jackson/OrderItemInfoJsonSerializer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/andybrook/api/rest/jackson/OrderItemInfoJsonSerializer.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/andybrook/dao/jpa/crudrepository/IProductCrudRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/andybrook/dao/jpa/crudrepository/IProductCrudRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/andybrook/dao/jpa/entity/product/GlassesEntity.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/andybrook/dao/jpa/entity/product/GlassesEntity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/andybrook/dao/jpa/entity/product/GlassesEntityConverter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/andybrook/dao/jpa/entity/product/GlassesEntityConverter.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/andybrook/dao/jpa/entity/product/ProductEntity.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/andybrook/dao/jpa/entity/product/ProductEntity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/andybrook/dao/jpa/entity/stock/OrderEntity.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/andybrook/dao/jpa/entity/stock/OrderEntity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/andybrook/dao/jpa/entity/stock/BarCodeEntity.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/andybrook/dao/jpa/entity/stock/BarCodeEntity.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/andybrook/dao/jpa/entity/stock/OrderItemEntity.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/andybrook/dao/jpa/entity/stock/OrderItemEntity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/andybrook/dao/order/IOrderDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/andybrook/dao/order/IOrderDao.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/andybrook/dao/order/OrderDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/andybrook/dao/order/OrderDao.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/andybrook/dao/stock/IOrderItemDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/andybrook/dao/stock/IOrderItemDao.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/andybrook/dao/stock/OrderItemDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/andybrook/dao/stock/OrderItemDao.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/andybrook/exception/BarCodeAlreadyExist.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/andybrook/exception/BarCodeAlreadyExist.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/andybrook/exception/BarCodeNotFound.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/andybrook/exception/BarCodeNotFound.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/andybrook/exception/CustomerNotFound.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/andybrook/exception/CustomerNotFound.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/andybrook/exception/InsufficientQuantityException.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/andybrook/exception/InsufficientQuantityException.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/andybrook/exception/OrderClosed.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/andybrook/exception/OrderClosed.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/andybrook/exception/OrderItemNotFound.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/andybrook/exception/OrderItemNotFound.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/andybrook/exception/OrderNotFound.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/andybrook/exception/OrderNotFound.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/andybrook/exception/ProductNotFound.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/andybrook/exception/ProductNotFound.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/andybrook/exception/StockReportException.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/andybrook/exception/StoreNotFound.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/andybrook/exception/StoreNotFound.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/andybrook/manager/order/IOrderManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/andybrook/manager/order/IOrderManager.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/andybrook/manager/order/OrderManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/andybrook/manager/order/OrderManager.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/andybrook/model/Order.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/andybrook/model/Order.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/andybrook/model/OrderItem.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/andybrook/model/OrderItem.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/andybrook/model/notification/StockClosedEmailNotification.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/andybrook/model/notification/StockClosedEmailNotification.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/andybrook/model/api/rest/OrderItemRestRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/andybrook/model/api/rest/OrderItemRestRequest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/andybrook/model/product/Product.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/andybrook/model/product/Product.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/andybrook/model/request/orderitem/OrderItemAddRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/andybrook/model/request/orderitem/OrderItemAddRequest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/andybrook/model/request/orderitem/OrderItemInfo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/andybrook/model/request/orderitem/OrderItemInfo.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/andybrook/service/order/IOrderItemService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/andybrook/service/order/IOrderItemService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/andybrook/service/order/IOrderService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/andybrook/service/order/IOrderService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/andybrook/service/order/OrderItemService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/andybrook/service/order/OrderItemService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/andybrook/service/order/OrderService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/andybrook/service/order/OrderService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/com/andybrook/generator/OrderItemGenerator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/andybrook/generator/OrderItemGenerator.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/com/andybrook/generator/ProductGenerator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/andybrook/generator/ProductGenerator.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/andybrook/service/product/IProductService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/andybrook/service/product/IProductService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/andybrook/service/product/ProductService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/andybrook/service/product/ProductService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/static/main.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/static/main.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/static/main.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/static/main.js.map" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/java/com/andybrook/init/InitSystemTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/andybrook/init/InitSystemTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/com/andybrook/service/order/OrderItemServiceTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/andybrook/service/order/OrderServiceTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/com/andybrook/service/order/OrderServiceTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/andybrook/service/order/OrderServiceTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/andybrook/api/rest/AbstractController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/andybrook/api/rest/AbstractController.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/andybrook/api/rest/OrderController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/andybrook/api/rest/OrderController.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/andybrook/api/rest/jackson/OrderItemInfoJsonSerializer.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/andybrook/api/rest/jackson/OrderItemInfoJsonSerializer.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/andybrook/dao/jpa/crudrepository/IProductCrudRepository.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/andybrook/dao/jpa/crudrepository/IProductCrudRepository.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/andybrook/dao/jpa/entity/product/GlassesEntity.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/andybrook/dao/jpa/entity/product/GlassesEntity.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/andybrook/dao/jpa/entity/product/GlassesEntityConverter.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/andybrook/dao/jpa/entity/product/GlassesEntityConverter.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/andybrook/dao/jpa/entity/product/ProductEntity.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/andybrook/dao/jpa/entity/product/ProductEntity.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/andybrook/dao/jpa/entity/stock/OrderEntity.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/andybrook/dao/jpa/entity/stock/OrderEntity.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/andybrook/dao/jpa/entity/stock/BarCodeEntity.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/andybrook/dao/jpa/entity/stock/BarCodeEntity.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/andybrook/dao/jpa/entity/stock/OrderItemEntity.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/andybrook/dao/jpa/entity/stock/OrderItemEntity.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/andybrook/dao/stock/IOrderItemDao.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/andybrook/dao/stock/IOrderItemDao.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/andybrook/dao/stock/OrderItemDao.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/andybrook/dao/stock/OrderItemDao.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/andybrook/exception/BarCodeAlreadyExist.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/andybrook/exception/BarCodeAlreadyExist.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/andybrook/exception/BarCodeNotFound.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/andybrook/exception/BarCodeNotFound.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/andybrook/exception/CustomerNotFound.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/andybrook/exception/CustomerNotFound.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/andybrook/exception/InsufficientQuantityException.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/andybrook/exception/InsufficientQuantityException.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/andybrook/exception/OrderClosed.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/andybrook/exception/OrderClosed.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/andybrook/exception/OrderItemNotFound.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/andybrook/exception/OrderItemNotFound.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/andybrook/exception/OrderNotFound.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/andybrook/exception/OrderNotFound.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/andybrook/exception/ProductNotFound.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/andybrook/exception/ProductNotFound.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/andybrook/exception/StockReportException.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/andybrook/exception/StoreNotFound.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/andybrook/exception/StoreNotFound.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/andybrook/manager/order/IOrderManager.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/andybrook/manager/order/IOrderManager.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/andybrook/manager/order/OrderManager.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/andybrook/manager/order/OrderManager.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/andybrook/model/Order.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/andybrook/model/Order.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/andybrook/model/OrderItem.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/andybrook/model/OrderItem.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/andybrook/model/notification/StockClosedEmailNotification.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/andybrook/model/notification/StockClosedEmailNotification.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/andybrook/model/api/rest/OrderItemRestRequest.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/andybrook/model/api/rest/OrderItemRestRequest.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/andybrook/model/product/Product.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/andybrook/model/product/Product.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/andybrook/model/request/orderitem/OrderItemAddRequest.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/andybrook/model/request/orderitem/OrderItemAddRequest.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/andybrook/model/request/orderitem/OrderItemInfo.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/andybrook/model/request/orderitem/OrderItemInfo.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/andybrook/service/order/IOrderItemService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/andybrook/service/order/IOrderItemService.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/andybrook/service/order/IOrderService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/andybrook/service/order/IOrderService.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/andybrook/service/order/OrderItemService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/andybrook/service/order/OrderItemService.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/andybrook/service/order/OrderService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/andybrook/service/order/OrderService.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/test-classes/com/andybrook/generator/OrderItemGenerator.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/com/andybrook/generator/OrderItemGenerator.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/test-classes/com/andybrook/generator/ProductGenerator.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/com/andybrook/generator/ProductGenerator.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/static/main.js" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/static/main.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/static/main.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/static/main.js.map" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/test-classes/com/andybrook/init/InitSystemTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/com/andybrook/init/InitSystemTest.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/test-classes/com/andybrook/service/order/OrderItemServiceTest.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/com/andybrook/service/order/OrderServiceTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/com/andybrook/service/order/OrderServiceTest.class" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/target/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -109,16 +126,50 @@
         <item name="schemas" type="d4e8921:DatabaseStructure$FamilyGroup" />
         <item name="andybrook: schema" type="76f4a085:MysqlImplModel$Schema" />
       </path>
+      <path>
+        <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
+        <item name="andybrook@localhost" type="feb32156:DbDataSourceImpl" />
+        <item name="schemas" type="d4e8921:DatabaseStructure$FamilyGroup" />
+        <item name="andybrook: schema" type="76f4a085:MysqlImplModel$Schema" />
+        <item name="product_barcodes: table" type="285a2a93:MysqlImplModel$Table" />
+      </path>
     </expand>
     <select />
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/test/java/com/andybrook/init/InitSystemTest.java">
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/andybrook/service/order/OrderService.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="233">
-              <caret line="61" column="34" selection-start-line="61" selection-start-column="34" selection-end-line="61" selection-end-column="34" />
+            <state relative-caret-position="173">
+              <caret line="122" column="39" selection-start-line="122" selection-start-column="16" selection-end-line="122" selection-end-column="64" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="das://6bf8bf7b-b11b-4861-b5d6-f058c3fa5a27/schema/andybrook/table/product">
+          <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+            <state>
+              <filtering enabled="true" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/andybrook/service/order/IOrderItemService.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="150">
+              <caret line="14" column="9" selection-start-line="14" selection-start-column="9" selection-end-line="14" selection-end-column="9" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/andybrook/service/order/OrderItemService.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="179">
+              <caret line="70" column="39" selection-start-line="70" selection-start-column="39" selection-end-line="70" selection-end-column="39" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -127,10 +178,19 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/andybrook/exception/InsufficientQuantityException.java">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/andybrook/service/product/ProductService.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="75">
-              <caret line="5" column="58" selection-start-line="5" selection-start-column="58" selection-end-line="5" selection-end-column="58" />
+            <state relative-caret-position="329">
+              <caret line="36" column="33" selection-start-line="36" selection-start-column="33" selection-end-line="36" selection-end-column="33" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/andybrook/service/product/IProductService.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="120">
+              <caret line="14" column="36" selection-start-line="14" selection-start-column="36" selection-end-line="14" selection-end-column="36" />
             </state>
           </provider>
         </entry>
@@ -147,14 +207,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>//</find>
-      <find>entityConverterMapByProductType</find>
-      <find>stockreportid</find>
-      <find>stock_item_gl</find>
-      <find>stockreport</find>
-      <find>error.order.not.found</find>
-      <find>barCodeService</find>
-      <find>f0698869</find>
       <find>1 |</find>
       <find>Added 58385213212994</find>
       <find>Added 58384864351436</find>
@@ -177,6 +229,14 @@
       <find>IOrderItemService</find>
       <find>refresh</find>
       <find>G1554493406168</find>
+      <find>Item not added to or</find>
+      <find>items</find>
+      <find>Set&lt;</find>
+      <find>54090765170628</find>
+      <find>G1554566346995</find>
+      <find>G1554566346849</find>
+      <find>G1554566346776</find>
+      <find>G1554566346733</find>
     </findStrings>
     <replaceStrings>
       <replace>OrderItem&lt;? extends Produc</replace>
@@ -188,57 +248,57 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/main/java/com/andybrook/model/request/AbstractRequest.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/andybrook/service/product/IBarCodeService.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/andybrook/api/rest/OrderItemController.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/andybrook/manager/order/OrderItemManager.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/andybrook/manager/order/IOrderItemManager.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/andybrook/service/product/BarCodeService.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/andybrook/api/rest/jackson/OrderItemJsonSerializer.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/andybrook/model/product/Glasses.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/andybrook/dao/jpa/entity/stock/GlassesStockItemEntityConverter.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/andybrook/dao/jpa/entity/stock/OrderItemEntityConverter.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/andybrook/dao/jpa/entity/factory/EntityFactory.java" />
-        <option value="$PROJECT_DIR$/src/test/java/com/andybrook/generator/StockItemGenerator.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/andybrook/api/rest/jackson/OrderItemInfoJsonSerializer.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/andybrook/manager/order/IOrderManager.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/andybrook/model/request/orderitem/OrderItemInfo.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/andybrook/model/request/orderitem/OrderItemRequest.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/andybrook/model/request/orderitem/OrderItemAddRequest.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/andybrook/model/request/orderitem/OrderItemUpdateRequest.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/andybrook/model/request/orderitem/OrderItemDeleteRequest.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/andybrook/model/api/rest/OrderItemRestRequest.java" />
         <option value="$PROJECT_DIR$/src/test/java/com/andybrook/generator/StoreGenerator.java" />
         <option value="$PROJECT_DIR$/src/test/java/com/andybrook/assertor/OrderItemAssertor.java" />
         <option value="$PROJECT_DIR$/_gitignore" />
         <option value="$PROJECT_DIR$/src/test/java/com/andybrook/service/order/OrderItemServiceTest.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/andybrook/dao/jpa/entity/stock/OrderEntity.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/andybrook/exception/OrderItemNotFound.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/andybrook/dao/stock/IOrderItemDao.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/andybrook/dao/stock/OrderItemDao.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/andybrook/service/order/IOrderItemService.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/andybrook/service/order/IOrderService.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/andybrook/manager/order/OrderManager.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/andybrook/api/rest/OrderController.java" />
         <option value="$PROJECT_DIR$/src/test/java/com/andybrook/generator/ProductGenerator.java" />
         <option value="$PROJECT_DIR$/src/test/java/com/andybrook/generator/OrderItemGenerator.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/andybrook/dao/jpa/entity/product/ProductEntity.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/andybrook/dao/jpa/entity/product/GlassesEntity.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/andybrook/model/product/Product.java" />
         <option value="$PROJECT_DIR$/src/main/resources/language/messages_fr_FR.properties" />
         <option value="$PROJECT_DIR$/src/main/resources/language/messages_en_US.properties" />
-        <option value="$PROJECT_DIR$/src/main/resources/application.properties" />
-        <option value="$PROJECT_DIR$/src/main/java/com/andybrook/model/OrderItem.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/andybrook/model/Order.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/andybrook/service/order/OrderItemService.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/andybrook/dao/jpa/entity/product/GlassesEntityConverter.java" />
-        <option value="$APPLICATION_CONFIG_DIR$/consoles/db/6bf8bf7b-b11b-4861-b5d6-f058c3fa5a27/console_1.sql" />
         <option value="$PROJECT_DIR$/src/main/java/com/andybrook/dao/order/OrderDao.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/andybrook/dao/jpa/entity/stock/OrderItemEntity.java" />
-        <option value="$PROJECT_DIR$/src/test/java/com/andybrook/service/order/OrderServiceTest.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/andybrook/service/order/OrderService.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/andybrook/exception/InsufficientQuantityException.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/andybrook/model/request/orderitem/OrderItemInfo.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/andybrook/api/rest/jackson/OrderItemInfoJsonSerializer.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/andybrook/model/request/orderitem/OrderItemAddRequest.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/andybrook/model/api/rest/OrderItemRestRequest.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/andybrook/manager/order/OrderManager.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/andybrook/api/rest/OrderController.java" />
         <option value="$PROJECT_DIR$/src/test/java/com/andybrook/init/InitSystemTest.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/andybrook/dao/jpa/entity/stock/OrderEntity.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/andybrook/model/OrderItem.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/andybrook/dao/jpa/entity/product/ProductEntity.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/andybrook/model/Order.java" />
+        <option value="$APPLICATION_CONFIG_DIR$/consoles/db/6bf8bf7b-b11b-4861-b5d6-f058c3fa5a27/console_1.sql" />
+        <option value="$PROJECT_DIR$/src/main/resources/application.properties" />
+        <option value="$PROJECT_DIR$/src/main/java/com/andybrook/exception/BarCodeAlreadyExist.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/andybrook/exception/BarCodeNotFound.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/andybrook/exception/ValidationException.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/andybrook/exception/StoreNotFound.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/andybrook/exception/StockReportException.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/andybrook/exception/OrderException.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/andybrook/exception/ProductNotFound.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/andybrook/exception/OrderNotFound.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/andybrook/exception/OrderItemNotFound.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/andybrook/exception/OrderClosed.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/andybrook/exception/InsufficientQuantityException.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/andybrook/exception/CustomerNotFound.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/andybrook/exception/ValidationRuntimeException.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/andybrook/api/rest/AbstractController.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/andybrook/dao/jpa/crudrepository/IProductCrudRepository.java" />
+        <option value="$PROJECT_DIR$/src/test/java/com/andybrook/service/order/OrderServiceTest.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/andybrook/model/product/Product.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/andybrook/dao/jpa/entity/stock/BarCodeEntity.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/andybrook/dao/jpa/entity/stock/OrderItemEntity.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/andybrook/service/order/OrderService.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/andybrook/service/product/IProductService.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/andybrook/service/product/ProductService.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/andybrook/service/order/OrderItemService.java" />
       </list>
     </option>
   </component>
@@ -279,7 +339,6 @@
     </navigator>
     <panes>
       <pane id="PackagesPane" />
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -330,16 +389,6 @@
               <item name="java" type="462c0819:PsiDirectoryNode" />
               <item name="andybrook" type="462c0819:PsiDirectoryNode" />
               <item name="api" type="462c0819:PsiDirectoryNode" />
-              <item name="pdf" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="andybrook" type="b2602c69:ProjectViewProjectNode" />
-              <item name="andybrook" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="andybrook" type="462c0819:PsiDirectoryNode" />
-              <item name="api" type="462c0819:PsiDirectoryNode" />
               <item name="rest" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -370,7 +419,7 @@
               <item name="andybrook" type="462c0819:PsiDirectoryNode" />
               <item name="dao" type="462c0819:PsiDirectoryNode" />
               <item name="jpa" type="462c0819:PsiDirectoryNode" />
-              <item name="entity" type="462c0819:PsiDirectoryNode" />
+              <item name="crudrepository" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="andybrook" type="b2602c69:ProjectViewProjectNode" />
@@ -382,19 +431,6 @@
               <item name="dao" type="462c0819:PsiDirectoryNode" />
               <item name="jpa" type="462c0819:PsiDirectoryNode" />
               <item name="entity" type="462c0819:PsiDirectoryNode" />
-              <item name="factory" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="andybrook" type="b2602c69:ProjectViewProjectNode" />
-              <item name="andybrook" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="andybrook" type="462c0819:PsiDirectoryNode" />
-              <item name="dao" type="462c0819:PsiDirectoryNode" />
-              <item name="jpa" type="462c0819:PsiDirectoryNode" />
-              <item name="entity" type="462c0819:PsiDirectoryNode" />
-              <item name="product" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="andybrook" type="b2602c69:ProjectViewProjectNode" />
@@ -427,16 +463,6 @@
               <item name="andybrook" type="462c0819:PsiDirectoryNode" />
               <item name="dao" type="462c0819:PsiDirectoryNode" />
               <item name="glasses" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="andybrook" type="b2602c69:ProjectViewProjectNode" />
-              <item name="andybrook" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="andybrook" type="462c0819:PsiDirectoryNode" />
-              <item name="dao" type="462c0819:PsiDirectoryNode" />
-              <item name="stock" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="andybrook" type="b2602c69:ProjectViewProjectNode" />
@@ -629,6 +655,15 @@
               <item name="test" type="462c0819:PsiDirectoryNode" />
               <item name="java" type="462c0819:PsiDirectoryNode" />
               <item name="andybrook" type="462c0819:PsiDirectoryNode" />
+              <item name="generator" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="andybrook" type="b2602c69:ProjectViewProjectNode" />
+              <item name="andybrook" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="test" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="andybrook" type="462c0819:PsiDirectoryNode" />
               <item name="init" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -692,6 +727,32 @@
             <path>
               <item name="andybrook" type="b2602c69:ProjectViewProjectNode" />
               <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
+              <item name="Maven: com.fasterxml.jackson.core:jackson-databind:2.9.7" type="70bed36:NamedLibraryElementNode" />
+            </path>
+            <path>
+              <item name="andybrook" type="b2602c69:ProjectViewProjectNode" />
+              <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
+              <item name="Maven: com.fasterxml.jackson.core:jackson-databind:2.9.7" type="70bed36:NamedLibraryElementNode" />
+              <item name="jackson-databind-2.9.7.jar" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="andybrook" type="b2602c69:ProjectViewProjectNode" />
+              <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
+              <item name="Maven: com.fasterxml.jackson.core:jackson-databind:2.9.7" type="70bed36:NamedLibraryElementNode" />
+              <item name="jackson-databind-2.9.7.jar" type="462c0819:PsiDirectoryNode" />
+              <item name="databind" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="andybrook" type="b2602c69:ProjectViewProjectNode" />
+              <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
+              <item name="Maven: com.fasterxml.jackson.core:jackson-databind:2.9.7" type="70bed36:NamedLibraryElementNode" />
+              <item name="jackson-databind-2.9.7.jar" type="462c0819:PsiDirectoryNode" />
+              <item name="databind" type="462c0819:PsiDirectoryNode" />
+              <item name="annotation" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="andybrook" type="b2602c69:ProjectViewProjectNode" />
+              <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
               <item name="Maven: junit:junit:4.12" type="70bed36:NamedLibraryElementNode" />
             </path>
             <path>
@@ -699,6 +760,13 @@
               <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
               <item name="Maven: junit:junit:4.12" type="70bed36:NamedLibraryElementNode" />
               <item name="junit-4.12.jar" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="andybrook" type="b2602c69:ProjectViewProjectNode" />
+              <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
+              <item name="Maven: junit:junit:4.12" type="70bed36:NamedLibraryElementNode" />
+              <item name="junit-4.12.jar" type="462c0819:PsiDirectoryNode" />
+              <item name="junit" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="andybrook" type="b2602c69:ProjectViewProjectNode" />
@@ -849,6 +917,41 @@
             </path>
             <path>
               <item name="andybrook" type="b2602c69:ProjectViewProjectNode" />
+              <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
+              <item name="Maven: org.springframework:spring-web:5.1.3.RELEASE" type="70bed36:NamedLibraryElementNode" />
+            </path>
+            <path>
+              <item name="andybrook" type="b2602c69:ProjectViewProjectNode" />
+              <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
+              <item name="Maven: org.springframework:spring-web:5.1.3.RELEASE" type="70bed36:NamedLibraryElementNode" />
+              <item name="spring-web-5.1.3.RELEASE.jar" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="andybrook" type="b2602c69:ProjectViewProjectNode" />
+              <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
+              <item name="Maven: org.springframework:spring-web:5.1.3.RELEASE" type="70bed36:NamedLibraryElementNode" />
+              <item name="spring-web-5.1.3.RELEASE.jar" type="462c0819:PsiDirectoryNode" />
+              <item name="springframework" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="andybrook" type="b2602c69:ProjectViewProjectNode" />
+              <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
+              <item name="Maven: org.springframework:spring-web:5.1.3.RELEASE" type="70bed36:NamedLibraryElementNode" />
+              <item name="spring-web-5.1.3.RELEASE.jar" type="462c0819:PsiDirectoryNode" />
+              <item name="springframework" type="462c0819:PsiDirectoryNode" />
+              <item name="web" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="andybrook" type="b2602c69:ProjectViewProjectNode" />
+              <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
+              <item name="Maven: org.springframework:spring-web:5.1.3.RELEASE" type="70bed36:NamedLibraryElementNode" />
+              <item name="spring-web-5.1.3.RELEASE.jar" type="462c0819:PsiDirectoryNode" />
+              <item name="springframework" type="462c0819:PsiDirectoryNode" />
+              <item name="web" type="462c0819:PsiDirectoryNode" />
+              <item name="server" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="andybrook" type="b2602c69:ProjectViewProjectNode" />
               <item name="Scratches and Consoles" type="1a2a3e82:ScratchProjectViewPane$MyProjectNode" />
             </path>
             <path>
@@ -866,6 +969,7 @@
           <select />
         </subPane>
       </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -880,7 +984,7 @@
     <property name="RequestMappingsPanelWidth1" value="75" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1554495514086" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1554578064620" />
     <property name="database.console.LAST_STATE" value="false" />
     <property name="editor.config.ad.shown" value="true" />
     <property name="settings.editor.selected.configurable" value="preferences.keymap" />
@@ -905,8 +1009,8 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="JUnit.InitSystemTest.initSystem">
-    <configuration name="InitSystemTest.initSystem" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+  <component name="RunManager" selected="Spring Boot.Andybrook">
+    <configuration name="InitSystemTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="andybrook" />
       <extension name="coverage">
         <pattern>
@@ -916,8 +1020,7 @@
       </extension>
       <option name="PACKAGE_NAME" value="com.andybrook.init" />
       <option name="MAIN_CLASS_NAME" value="com.andybrook.init.InitSystemTest" />
-      <option name="METHOD_NAME" value="initSystem" />
-      <option name="TEST_OBJECT" value="method" />
+      <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -933,6 +1036,22 @@
       <option name="PACKAGE_NAME" value="com.andybrook.service.order" />
       <option name="MAIN_CLASS_NAME" value="com.andybrook.service.order.OrderServiceTest" />
       <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="OrderServiceTest.addOrderItemQuantityExceededTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="andybrook" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.andybrook.service.order.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.andybrook.service.order" />
+      <option name="MAIN_CLASS_NAME" value="com.andybrook.service.order.OrderServiceTest" />
+      <option name="METHOD_NAME" value="addOrderItemQuantityExceededTest" />
+      <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -953,7 +1072,7 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="OrderServiceTest.deleteOrderItemFromOrderTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="OrderServiceTest.updateOrderItemQuantityExceededTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="andybrook" />
       <extension name="coverage">
         <pattern>
@@ -963,23 +1082,7 @@
       </extension>
       <option name="PACKAGE_NAME" value="com.andybrook.service.order" />
       <option name="MAIN_CLASS_NAME" value="com.andybrook.service.order.OrderServiceTest" />
-      <option name="METHOD_NAME" value="deleteOrderItemFromOrderTest" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="OrderServiceTest.updateOrderItem" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="andybrook" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="com.andybrook.service.order.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="com.andybrook.service.order" />
-      <option name="MAIN_CLASS_NAME" value="com.andybrook.service.order.OrderServiceTest" />
-      <option name="METHOD_NAME" value="updateOrderItem" />
+      <option name="METHOD_NAME" value="updateOrderItemQuantityExceededTest" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -996,11 +1099,11 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="JUnit.InitSystemTest.initSystem" />
-        <item itemvalue="JUnit.OrderServiceTest" />
-        <item itemvalue="JUnit.OrderServiceTest.updateOrderItem" />
         <item itemvalue="JUnit.OrderServiceTest.deleteOrderItemFromOrderDbTest" />
-        <item itemvalue="JUnit.OrderServiceTest.deleteOrderItemFromOrderTest" />
+        <item itemvalue="JUnit.OrderServiceTest" />
+        <item itemvalue="JUnit.OrderServiceTest.updateOrderItemQuantityExceededTest" />
+        <item itemvalue="JUnit.OrderServiceTest.addOrderItemQuantityExceededTest" />
+        <item itemvalue="JUnit.InitSystemTest" />
       </list>
     </recent_temporary>
   </component>
@@ -1052,44 +1155,46 @@
       <workItem from="1554309778782" duration="2680000" />
       <workItem from="1554314870378" duration="6828000" />
       <workItem from="1554377097332" duration="5174000" />
-      <workItem from="1554442300392" duration="26559000" />
+      <workItem from="1554442300392" duration="26858000" />
+      <workItem from="1554538451289" duration="1344000" />
+      <workItem from="1554539825533" duration="19254000" />
     </task>
     <servers />
   </component>
   <component name="TestHistory">
-    <history-entry file="OrderServiceTest - 2019.04.05 at 22h 19m 43s.xml">
+    <history-entry file="InitSystemTest - 2019.04.06 at 18h 56m 17s.xml">
+      <configuration name="InitSystemTest" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="InitSystemTest - 2019.04.06 at 18h 59m 43s.xml">
+      <configuration name="InitSystemTest" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="OrderServiceTest_addOrderItemQuantityExceededTest - 2019.04.06 at 19h 42m 51s.xml">
+      <configuration name="OrderServiceTest.addOrderItemQuantityExceededTest" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="OrderServiceTest_updateOrderItemQuantityExceededTest - 2019.04.06 at 19h 45m 01s.xml">
+      <configuration name="OrderServiceTest.updateOrderItemQuantityExceededTest" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="OrderServiceTest - 2019.04.06 at 19h 45m 20s.xml">
       <configuration name="OrderServiceTest" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="OrderServiceTest - 2019.04.05 at 22h 20m 59s.xml">
-      <configuration name="OrderServiceTest" configurationId="JUnit" />
+    <history-entry file="OrderServiceTest_deleteOrderItemFromOrderDbTest - 2019.04.06 at 21h 38m 11s.xml">
+      <configuration name="OrderServiceTest.deleteOrderItemFromOrderDbTest" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="OrderServiceTest - 2019.04.05 at 22h 26m 44s.xml">
-      <configuration name="OrderServiceTest" configurationId="JUnit" />
+    <history-entry file="OrderServiceTest_deleteOrderItemFromOrderDbTest - 2019.04.06 at 21h 48m 22s.xml">
+      <configuration name="OrderServiceTest.deleteOrderItemFromOrderDbTest" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="OrderServiceTest - 2019.04.05 at 22h 46m 09s.xml">
-      <configuration name="OrderServiceTest" configurationId="JUnit" />
+    <history-entry file="OrderServiceTest_deleteOrderItemFromOrderDbTest - 2019.04.06 at 22h 00m 18s.xml">
+      <configuration name="OrderServiceTest.deleteOrderItemFromOrderDbTest" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="OrderServiceTest - 2019.04.05 at 22h 56m 43s.xml">
-      <configuration name="OrderServiceTest" configurationId="JUnit" />
+    <history-entry file="OrderServiceTest_deleteOrderItemFromOrderDbTest - 2019.04.06 at 22h 01m 33s.xml">
+      <configuration name="OrderServiceTest.deleteOrderItemFromOrderDbTest" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="OrderServiceTest - 2019.04.05 at 22h 59m 44s.xml">
-      <configuration name="OrderServiceTest" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="OrderServiceTest - 2019.04.05 at 23h 02m 13s.xml">
-      <configuration name="OrderServiceTest" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="OrderServiceTest - 2019.04.05 at 23h 09m 46s.xml">
-      <configuration name="OrderServiceTest" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="InitSystemTest_initSystem - 2019.04.05 at 23h 15m 20s.xml">
-      <configuration name="InitSystemTest.initSystem" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="InitSystemTest_initSystem - 2019.04.05 at 23h 17m 56s.xml">
-      <configuration name="InitSystemTest.initSystem" configurationId="JUnit" />
+    <history-entry file="OrderServiceTest_deleteOrderItemFromOrderDbTest - 2019.04.06 at 22h 05m 22s.xml">
+      <configuration name="OrderServiceTest.deleteOrderItemFromOrderDbTest" configurationId="JUnit" />
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="216313000" />
+    <option name="totallyTimeSpent" value="237210000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1104,7 +1209,7 @@
     <frame x="67" y="27" width="1853" height="1053" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.117614575" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.140254" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Web" order="2" side_tool="true" />
       <window_info id="Image Layers" order="3" />
@@ -1114,8 +1219,8 @@
       <window_info id="Favorites" order="7" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.3292683" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.47117516" />
-      <window_info anchor="bottom" id="Debug" order="3" sideWeight="0.4997239" weight="0.49667406" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.672949" />
+      <window_info anchor="bottom" id="Debug" order="3" sideWeight="0.4997239" visible="true" weight="0.49667406" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" weight="0.3292683" />
@@ -1129,8 +1234,7 @@
       <window_info anchor="bottom" id="Messages" order="14" weight="0.3292683" />
       <window_info anchor="bottom" id="TypeScript" order="15" />
       <window_info anchor="bottom" id="Event Log" order="16" sideWeight="0.5002761" side_tool="true" weight="0.45232815" />
-      <window_info anchor="bottom" id="Database Console" order="17" weight="0.52549887" />
-      <window_info anchor="right" id="Coverage" sideWeight="0.5017007" side_tool="true" weight="0.091662064" />
+      <window_info anchor="bottom" id="Database Console" order="17" weight="0.5221729" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -1140,7 +1244,8 @@
       <window_info anchor="right" id="Capture Analysis" order="6" />
       <window_info anchor="right" id="Palette&#9;" order="7" />
       <window_info anchor="right" id="Bean Validation" order="8" weight="0.32965213" />
-      <window_info anchor="right" id="Database" order="9" sideWeight="0.49829933" visible="true" weight="0.091662064" />
+      <window_info active="true" anchor="right" id="Database" order="9" sideWeight="0.49829933" visible="true" weight="0.30756488" />
+      <window_info anchor="right" id="Coverage" order="10" sideWeight="0.5017007" side_tool="true" weight="0.091662064" />
     </layout>
     <layout-to-restore>
       <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.21755935" />
@@ -1241,21 +1346,18 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/com/andybrook/service/order/OrderItemService.java</url>
-          <line>55</line>
+          <line>57</line>
           <properties />
-          <option name="timeStamp" value="81" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/com/andybrook/dao/jpa/entity/product/GlassesEntityConverter.java</url>
-          <line>49</line>
-          <properties />
-          <option name="timeStamp" value="88" />
+          <option name="timeStamp" value="104" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
     <watches-manager>
       <configuration name="JUnit">
         <watch expression="savedEntity" language="JAVA" />
+      </configuration>
+      <configuration name="SpringBootApplicationConfigurationType">
+        <watch expression="orderManager.addOrderItem(new OrderItemAddRequest(request.getOrderId(), request.getOrderItemInfo()))" language="JAVA" />
       </configuration>
     </watches-manager>
   </component>
@@ -1279,6 +1381,11 @@
     </expressions>
     <expressions id="watch">
       <expression>
+        <expression-string>orderManager.addOrderItem(new OrderItemAddRequest(request.getOrderId(), request.getOrderItemInfo()))</expression-string>
+        <language-id>JAVA</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+      <expression>
         <expression-string>savedEntity</expression-string>
         <language-id>JAVA</language-id>
         <evaluation-mode>EXPRESSION</evaluation-mode>
@@ -1286,208 +1393,343 @@
     </expressions>
     <expressions id="evaluateExpression">
       <expression>
-        <expression-string>entity</expression-string>
-        <language-id>JAVA</language-id>
-        <evaluation-mode>EXPRESSION</evaluation-mode>
-      </expression>
-      <expression>
-        <expression-string>stockItemEntity</expression-string>
-        <language-id>JAVA</language-id>
-        <evaluation-mode>EXPRESSION</evaluation-mode>
-      </expression>
-      <expression>
-        <expression-string>model.getQuantityUsed()</expression-string>
-        <language-id>JAVA</language-id>
-        <evaluation-mode>EXPRESSION</evaluation-mode>
-      </expression>
-      <expression>
-        <expression-string>stockReportEntityOpt</expression-string>
-        <language-id>JAVA</language-id>
-        <evaluation-mode>EXPRESSION</evaluation-mode>
-      </expression>
-      <expression>
-        <expression-string>order</expression-string>
-        <language-id>JAVA</language-id>
-        <evaluation-mode>EXPRESSION</evaluation-mode>
-      </expression>
-      <expression>
-        <expression-string>orderItem</expression-string>
-        <language-id>JAVA</language-id>
-        <evaluation-mode>EXPRESSION</evaluation-mode>
-      </expression>
-      <expression>
         <expression-string>orderItemToUpdate</expression-string>
         <language-id>JAVA</language-id>
         <evaluation-mode>EXPRESSION</evaluation-mode>
       </expression>
       <expression>
-        <expression-string>info.getId()</expression-string>
+        <expression-string>order.getItem(orderItemToUpdate.getId())</expression-string>
         <language-id>JAVA</language-id>
         <evaluation-mode>EXPRESSION</evaluation-mode>
       </expression>
       <expression>
-        <expression-string>orderItem.getProduct()</expression-string>
+        <expression-string>orderItem.getQuantity()</expression-string>
+        <language-id>JAVA</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>product.getQuantityUnused()</expression-string>
+        <language-id>JAVA</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>orderItem.getQuantity() + info.getQuantity()</expression-string>
+        <language-id>JAVA</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>roduct.getQuantityUnused()</expression-string>
+        <language-id>JAVA</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>product</expression-string>
+        <language-id>JAVA</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>entity</expression-string>
+        <language-id>JAVA</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>entity.getCreatedDatetime()</expression-string>
         <language-id>JAVA</language-id>
         <evaluation-mode>EXPRESSION</evaluation-mode>
       </expression>
     </expressions>
   </component>
   <component name="editorHistoryManager">
-    <entry file="das://6bf8bf7b-b11b-4861-b5d6-f058c3fa5a27/schema/andybrook/table/order_item_glasses">
-      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
-        <state>
-          <filtering enabled="true" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/test/java/com/andybrook/assertor/OrderItemAssertor.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/andybrook/api/rest/jackson/OrderItemInfoJsonSerializer.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="240">
-          <caret line="19" column="60" selection-start-line="19" selection-start-column="60" selection-end-line="19" selection-end-column="60" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/andybrook/exception/OrderItemNotFound.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="180">
-          <caret line="12" column="21" selection-start-line="12" selection-start-column="21" selection-end-line="12" selection-end-column="21" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/andybrook/dao/stock/IOrderItemDao.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="180">
-          <caret line="17" column="19" selection-start-line="17" selection-start-column="19" selection-end-line="17" selection-end-column="19" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/andybrook/dao/stock/OrderItemDao.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="366">
-          <caret line="57" column="41" selection-start-line="57" selection-start-column="41" selection-end-line="57" selection-end-column="41" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jrt:///usr/lib/jvm/java-1.11.0-openjdk-amd64!/java.base/java/util/concurrent/ThreadLocalRandom.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="170">
-          <caret line="178" column="15" selection-start-line="178" selection-start-column="15" selection-end-line="178" selection-end-column="15" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/andybrook/manager/order/OrderManager.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="508">
-          <caret line="80" column="13" selection-start-line="80" selection-start-column="13" selection-end-line="80" selection-end-column="13" />
+        <state relative-caret-position="269">
+          <caret line="20" selection-start-line="20" selection-end-line="20" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/andybrook/api/rest/OrderController.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/andybrook/dao/stock/BarCodeDao.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="330">
-          <caret line="79" column="34" selection-start-line="79" selection-start-column="34" selection-end-line="79" selection-end-column="34" />
+        <state relative-caret-position="134">
+          <caret line="28" selection-start-line="28" selection-end-line="28" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/andybrook/model/request/orderitem/OrderItemInfo.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/andybrook/service/product/BarCodeService.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="405">
-          <caret line="27" selection-start-line="27" selection-end-line="27" />
+        <state relative-caret-position="142">
+          <caret line="18" selection-start-line="18" selection-end-line="18" />
         </state>
       </provider>
     </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/junit/junit/4.12/junit-4.12.jar!/org/junit/internal/runners/model/ReflectiveCallable.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="195">
-          <caret line="16" selection-start-line="16" selection-end-line="16" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/test/java/com/andybrook/generator/ProductGenerator.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="285">
-          <caret line="28" column="103" selection-start-line="28" selection-start-column="103" selection-end-line="28" selection-end-column="103" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/test/java/com/andybrook/generator/OrderItemGenerator.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="327">
-          <caret line="31" selection-start-line="31" selection-end-line="31" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/junit/junit/4.12/junit-4.12.jar!/org/junit/Assert.class">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/andybrook/dao/jpa/entity/product/GlassesEntityConverter.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="291">
-          <caret line="239" column="23" selection-start-line="239" selection-start-column="23" selection-end-line="239" selection-end-column="23" />
+          <caret line="49" selection-start-line="49" selection-end-line="49" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/andybrook/api/pdf/CloseReportPdfBuilder.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/andybrook/dao/jpa/entity/stock/OrderEntity.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="107" column="55" lean-forward="true" selection-start-line="107" selection-start-column="55" selection-end-line="107" selection-end-column="55" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/andybrook/language/Msg.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="127">
-          <caret line="13" column="35" selection-start-line="13" selection-start-column="35" selection-end-line="13" selection-end-column="35" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/language/messages_fr_FR.properties">
-      <provider editor-type-id="ResourceBundle" />
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="90">
-          <caret line="6" column="12" lean-forward="true" selection-start-line="6" selection-start-column="12" selection-end-line="6" selection-end-column="12" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/language/messages_en_US.properties">
-      <provider editor-type-id="ResourceBundle" />
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="90">
-          <caret line="6" column="12" lean-forward="true" selection-start-line="6" selection-start-column="12" selection-end-line="6" selection-end-column="12" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/application.properties">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="180">
-          <caret line="12" column="31" lean-forward="true" selection-start-line="12" selection-start-column="31" selection-end-line="12" selection-end-column="31" />
+        <state relative-caret-position="117">
+          <caret line="76" column="22" selection-start-line="76" selection-start-column="22" selection-end-line="76" selection-end-column="22" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/andybrook/model/OrderItem.java">
       <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="244">
+          <caret line="100" column="27" lean-forward="true" selection-start-line="100" selection-start-column="27" selection-end-line="100" selection-end-column="27" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/andybrook/model/BarCode.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="314">
+          <caret line="38" selection-start-line="38" selection-end-line="38" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/andybrook/dao/jpa/entity/product/ProductEntity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="121">
+          <caret line="142" column="37" selection-start-line="142" selection-start-column="37" selection-end-line="142" selection-end-column="37" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/andybrook/manager/order/IOrderManager.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="232">
+          <caret line="33" column="33" selection-start-line="33" selection-start-column="33" selection-end-line="33" selection-end-column="33" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/andybrook/dao/jpa/entity/stock/OrderEntityConverter.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="247">
+          <caret line="35" selection-start-line="35" selection-end-line="35" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/andybrook/dao/jpa/entity/factory/EntityFactory.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="59">
+          <caret line="90" selection-start-line="90" selection-end-line="90" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/andybrook/dao/jpa/entity/stock/GlassesOrderItemEntity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="105">
+          <caret line="14" column="13" selection-start-line="14" selection-start-column="13" selection-end-line="14" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/andybrook/dao/jpa/entity/stock/GlassesStockItemEntityConverter.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="127">
+          <caret line="21" column="67" selection-start-line="21" selection-start-column="61" selection-end-line="21" selection-end-column="67" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/andybrook/dao/order/IOrderDao.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="120">
+          <caret line="14" column="10" selection-start-line="14" selection-start-column="10" selection-end-line="14" selection-end-column="10" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/andybrook/model/Order.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="142">
+          <caret line="91" column="19" selection-start-line="91" selection-start-column="19" selection-end-line="91" selection-end-column="19" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/java/com/andybrook/init/InitSystemTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="465">
+          <caret line="50" column="45" lean-forward="true" selection-start-line="50" selection-start-column="45" selection-end-line="50" selection-end-column="45" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/6bf8bf7b-b11b-4861-b5d6-f058c3fa5a27/console_1.sql">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret column="65" selection-start-column="65" selection-end-column="65" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/andybrook/api/rest/OrderController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="90">
+          <caret line="26" column="51" selection-start-line="26" selection-start-column="51" selection-end-line="26" selection-end-column="51" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/andybrook/exception/BarCodeAlreadyExist.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="30">
+          <caret line="2" column="67" selection-start-line="2" selection-start-column="67" selection-end-line="2" selection-end-column="67" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/andybrook/exception/OrderException.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="30">
+          <caret line="2" column="18" selection-start-line="2" selection-start-column="18" selection-end-line="2" selection-end-column="18" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/andybrook/exception/StoreNotFound.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="60">
+          <caret line="4" column="61" selection-start-line="4" selection-start-column="61" selection-end-line="4" selection-end-column="61" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/andybrook/exception/ProductNotFound.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="30">
+          <caret line="2" column="63" selection-start-line="2" selection-start-column="63" selection-end-line="2" selection-end-column="63" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/andybrook/exception/OrderNotFound.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="30">
+          <caret line="2" column="61" selection-start-line="2" selection-start-column="61" selection-end-line="2" selection-end-column="61" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/andybrook/exception/OrderItemNotFound.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="30">
+          <caret line="2" column="65" selection-start-line="2" selection-start-column="65" selection-end-line="2" selection-end-column="65" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/andybrook/exception/OrderClosed.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="30">
+          <caret line="2" column="59" selection-start-line="2" selection-start-column="59" selection-end-line="2" selection-end-column="59" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/andybrook/exception/InsufficientQuantityException.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="30">
+          <caret line="2" column="77" selection-start-line="2" selection-start-column="77" selection-end-line="2" selection-end-column="77" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/andybrook/exception/CustomerNotFound.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="30">
+          <caret line="2" column="64" selection-start-line="2" selection-start-column="64" selection-end-line="2" selection-end-column="64" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/andybrook/exception/BarCodeNotFound.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="30">
+          <caret line="2" column="63" selection-start-line="2" selection-start-column="63" selection-end-line="2" selection-end-column="63" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/andybrook/exception/ValidationRuntimeException.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="30">
+          <caret line="2" column="16" selection-start-line="2" selection-start-column="16" selection-end-line="2" selection-end-column="16" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/spring-web/5.1.3.RELEASE/spring-web-5.1.3.RELEASE.jar!/org/springframework/web/server/ResponseStatusException.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="126">
+          <caret line="22" column="11" selection-start-line="22" selection-start-column="11" selection-end-line="22" selection-end-column="11" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/andybrook/api/rest/AbstractController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="270">
+          <caret line="25" column="50" selection-start-line="25" selection-start-column="50" selection-end-line="25" selection-end-column="50" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/application.properties">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="240">
+          <caret line="16" column="42" lean-forward="true" selection-start-line="16" selection-start-column="42" selection-end-line="16" selection-end-column="42" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/andybrook/manager/order/OrderManager.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="157">
+          <caret line="77" column="9" lean-forward="true" selection-start-line="77" selection-start-column="9" selection-end-line="77" selection-end-column="9" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/andybrook/api/rest/ProductController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-181" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/andybrook/dao/product/glasses/ProductDao.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="205">
+          <caret line="53" column="75" selection-start-line="53" selection-start-column="75" selection-end-line="53" selection-end-column="75" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/andybrook/dao/jpa/crudrepository/IProductCrudRepository.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="225">
+          <caret line="20" column="44" selection-start-line="20" selection-start-column="44" selection-end-line="20" selection-end-column="44" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/andybrook/dao/order/OrderDao.java">
+      <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="179">
-          <caret line="34" column="23" lean-forward="true" selection-start-line="34" selection-start-column="23" selection-end-line="34" selection-end-column="23" />
+          <caret line="38" selection-start-line="38" selection-end-line="38" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/andybrook/model/product/Product.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="186">
-          <caret line="23" column="11" selection-start-line="23" selection-start-column="11" selection-end-line="23" selection-end-column="11" />
+        <state relative-caret-position="-1606">
+          <caret line="15" column="31" selection-start-line="15" selection-start-column="31" selection-end-line="15" selection-end-column="31" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/andybrook/model/product/Glasses.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/andybrook/dao/jpa/entity/stock/BarCodeEntity.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="105">
-          <caret line="7" column="9" selection-start-line="7" selection-start-column="9" selection-end-line="7" selection-end-column="9" />
+        <state relative-caret-position="165">
+          <caret line="14" column="106" lean-forward="true" selection-start-line="14" selection-start-column="106" selection-end-line="14" selection-end-column="106" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/java/com/andybrook/generator/OrderItemGenerator.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="159">
+          <caret line="23" column="32" selection-start-line="23" selection-start-column="32" selection-end-line="23" selection-end-column="32" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/andybrook/service/order/IOrderService.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="387">
+        <state relative-caret-position="314">
           <caret line="35" column="33" selection-start-line="35" selection-start-column="33" selection-end-line="35" selection-end-column="33" />
           <folding>
             <element signature="imports" expanded="true" />
@@ -1495,146 +1737,34 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/andybrook/dao/jpa/entity/stock/OrderItemEntityConverter.java">
+    <entry file="file://$PROJECT_DIR$/src/test/java/com/andybrook/service/order/OrderServiceTest.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="195">
-          <caret line="19" column="45" selection-start-line="19" selection-start-column="45" selection-end-line="19" selection-end-column="45" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/spring-aop/5.1.3.RELEASE/spring-aop-5.1.3.RELEASE.jar!/org/springframework/aop/framework/CglibAopProxy.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="186">
-          <caret line="485" selection-start-line="485" selection-end-line="485" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/andybrook/dao/order/IOrderDao.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="210">
-          <caret line="20" column="20" selection-start-line="20" selection-start-column="20" selection-end-line="20" selection-end-column="20" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/andybrook/dao/jpa/entity/product/GlassesEntity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="240">
-          <caret line="22" column="12" selection-start-line="22" selection-start-column="12" selection-end-line="22" selection-end-column="12" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/andybrook/dao/jpa/entity/product/ProductEntity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="186">
-          <caret line="59" column="11" selection-start-line="59" selection-start-column="11" selection-end-line="59" selection-end-column="11" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/andybrook/service/order/IOrderItemService.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="90">
-          <caret line="10" column="33" selection-start-line="10" selection-start-column="33" selection-end-line="10" selection-end-column="33" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/andybrook/dao/product/glasses/ProductDao.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="171">
-          <caret line="65" selection-start-line="65" selection-end-line="65" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/andybrook/service/order/OrderItemService.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="142">
-          <caret line="55" selection-start-line="55" selection-end-line="55" />
+        <state relative-caret-position="223">
+          <caret line="78" selection-start-line="78" selection-end-line="78" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/andybrook/dao/jpa/entity/product/GlassesEntityConverter.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="277">
-          <caret line="49" column="21" selection-start-line="49" selection-start-column="15" selection-end-line="49" selection-end-column="21" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/andybrook/dao/jpa/entity/stock/GlassesStockItemEntityConverter.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="291">
-          <caret line="43" column="30" selection-start-line="43" selection-start-column="15" selection-end-line="43" selection-end-column="30" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/andybrook/dao/jpa/entity/stock/OrderEntityConverter.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="269">
-          <caret line="51" selection-start-line="51" selection-end-line="51" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/andybrook/dao/jpa/entity/factory/EntityFactory.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="209">
-          <caret line="100" selection-start-line="100" selection-end-line="100" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/andybrook/dao/jpa/entity/stock/OrderEntity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-177">
-          <caret line="16" column="13" selection-start-line="16" selection-start-column="13" selection-end-line="16" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/data/spring-data-jpa/2.1.3.RELEASE/spring-data-jpa-2.1.3.RELEASE.jar!/org/springframework/data/jpa/repository/JpaRepository.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="133">
-          <caret line="26" column="20" selection-start-line="26" selection-start-column="20" selection-end-line="26" selection-end-column="20" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/data/spring-data-commons/2.1.3.RELEASE/spring-data-commons-2.1.3.RELEASE.jar!/org/springframework/data/repository/CrudRepository.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="120">
-          <caret line="11" column="20" selection-start-line="11" selection-start-column="20" selection-end-line="11" selection-end-column="20" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/data/spring-data-jpa/2.1.3.RELEASE/spring-data-jpa-2.1.3.RELEASE.jar!/org/springframework/data/jpa/repository/support/SimpleJpaRepository.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="142">
-          <caret line="289" column="27" selection-start-line="289" selection-start-column="27" selection-end-line="289" selection-end-column="27" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/andybrook/dao/order/OrderDao.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="142">
-          <caret line="36" column="68" lean-forward="true" selection-start-line="36" selection-start-column="68" selection-end-line="36" selection-end-column="68" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/andybrook/dao/jpa/entity/stock/OrderItemEntity.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="162">
-          <caret line="26" column="42" selection-start-line="26" selection-start-column="42" selection-end-line="26" selection-end-column="42" />
+        <state relative-caret-position="116">
+          <caret line="26" column="41" selection-start-line="26" selection-start-column="41" selection-end-line="26" selection-end-column="41" />
         </state>
       </provider>
     </entry>
-    <entry file="das://6bf8bf7b-b11b-4861-b5d6-f058c3fa5a27/schema/andybrook/table/orders">
+    <entry file="das://6bf8bf7b-b11b-4861-b5d6-f058c3fa5a27/schema/andybrook/table/order_item">
       <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
         <state>
           <filtering enabled="true" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/andybrook/model/Order.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="441">
-          <caret line="100" selection-start-line="100" selection-end-line="100" />
+    <entry file="das://6bf8bf7b-b11b-4861-b5d6-f058c3fa5a27/schema/andybrook/table/product_barcodes">
+      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+        <state>
+          <filtering enabled="true" />
         </state>
       </provider>
     </entry>
@@ -1645,62 +1775,38 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/6bf8bf7b-b11b-4861-b5d6-f058c3fa5a27/console_1.sql">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/andybrook/service/order/OrderService.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret column="44" selection-start-column="44" selection-end-column="44" />
+        <state relative-caret-position="173">
+          <caret line="122" column="39" selection-start-line="122" selection-start-column="16" selection-end-line="122" selection-end-column="64" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/test/java/com/andybrook/service/order/OrderServiceTest.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/andybrook/service/order/IOrderItemService.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="310">
-          <caret line="71" column="52" lean-forward="true" selection-start-line="71" selection-start-column="52" selection-end-line="71" selection-end-column="52" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
+        <state relative-caret-position="150">
+          <caret line="14" column="9" selection-start-line="14" selection-start-column="9" selection-end-line="14" selection-end-column="9" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/andybrook/model/request/orderitem/OrderItemAddRequest.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/andybrook/service/product/IProductService.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="142">
-          <caret line="14" selection-start-line="14" selection-end-line="14" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/andybrook/api/rest/ProductController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="105">
-          <caret line="7" column="60" lean-forward="true" selection-start-line="7" selection-start-column="60" selection-end-line="7" selection-end-column="60" />
+        <state relative-caret-position="120">
+          <caret line="14" column="36" selection-start-line="14" selection-start-column="36" selection-end-line="14" selection-end-column="36" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/andybrook/service/product/ProductService.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="132">
-          <caret line="37" column="5" lean-forward="true" selection-start-line="37" selection-start-column="5" selection-end-line="37" selection-end-column="5" />
+        <state relative-caret-position="329">
+          <caret line="36" column="33" selection-start-line="36" selection-start-column="33" selection-end-line="36" selection-end-column="33" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/andybrook/service/order/OrderService.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/andybrook/service/order/OrderItemService.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="15">
-          <caret line="132" column="94" selection-start-line="132" selection-start-column="94" selection-end-line="132" selection-end-column="94" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/andybrook/exception/InsufficientQuantityException.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="75">
-          <caret line="5" column="58" selection-start-line="5" selection-start-column="58" selection-end-line="5" selection-end-column="58" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/test/java/com/andybrook/init/InitSystemTest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="233">
-          <caret line="61" column="34" selection-start-line="61" selection-start-column="34" selection-end-line="61" selection-end-column="34" />
+        <state relative-caret-position="179">
+          <caret line="70" column="39" selection-start-line="70" selection-start-column="39" selection-end-line="70" selection-end-column="39" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>

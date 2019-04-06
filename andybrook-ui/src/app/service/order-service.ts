@@ -63,8 +63,11 @@ export class OrderService {
     private toUpdateRequest(order: Order, item: StockItem): any {
         return {
             "orderId" : order.id,
-            "orderItem" : item,
-            "type" : item.type
+            "orderItemInfo": {
+                "orderItemId" : item.id,
+                "quantity" : item.quantity,
+                "productId" : item.product.id
+            }
         }
     }
 

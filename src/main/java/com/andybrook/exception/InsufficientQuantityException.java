@@ -1,8 +1,8 @@
 package com.andybrook.exception;
 
-public class InsufficientQuantityException extends Exception {
+public class InsufficientQuantityException extends ValidationRuntimeException {
 
     public InsufficientQuantityException(int maxQty) {
-        super("Insufficient product quantity. Max quantity allowed : " + maxQty);
+        super("Insufficient product quantity. Available quantity : " + maxQty);
     }
 }

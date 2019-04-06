@@ -1,6 +1,7 @@
 package com.andybrook.service.order;
 
 import com.andybrook.dao.stock.IOrderItemDao;
+import com.andybrook.exception.BarCodeNotFound;
 import com.andybrook.exception.InsufficientQuantityException;
 import com.andybrook.exception.OrderItemNotFound;
 import com.andybrook.exception.ProductNotFound;
@@ -27,14 +28,14 @@ public class OrderItemService implements IOrderItemService {
     private IProductService productService;
 
     @Override
-    public OrderItem<? extends Product> createOrderItem(OrderItemInfo info) throws ProductNotFound, InsufficientQuantityException {
+    public OrderItem<? extends Product> createOrderItem(OrderItemInfo info) throws ProductNotFound, InsufficientQuantityException, BarCodeNotFound {
         OrderItem<? extends Product> orderItem;
         Product product = productService.get(info.getProductId());
-        if (product.getQuantityCreated() >= info.getQuantity()) {
+        if (product.getQuantityUnused() >= info.getQuantity()) {
             orderItem = buildOrderItem(info, product);
             product.incrementQuantityUsed(info.getQuantity());
         } else {
-            throw new InsufficientQuantityException(product.getQuantityCreated());
+            throw new InsufficientQuantityException(product.getQuantityUnused());
         }
         return orderItem;
     }
@@ -54,19 +55,20 @@ public class OrderItemService implements IOrderItemService {
     @Override
     public OrderItem<? extends Product> updateOrderItem(OrderItem orderItem, OrderItemInfo info) throws InsufficientQuantityException {
         Product product = orderItem.getProduct();
-        if (product.getQuantityCreated() >= info.getQuantity()) {
+        if (product.getQuantityUnused() >= info.getQuantity()) {
             orderItem.incrementQuantity(info.getQuantity());
             product.incrementQuantityUsed(info.getQuantity());
         } else {
-            throw new InsufficientQuantityException(product.getQuantityCreated());
+            throw new InsufficientQuantityException(product.getQuantityUnused());
         }
         return orderItem;
     }
 
     @Override
-    public void postDeletion(OrderItem<? extends Product> deletedOrderItem) throws OrderItemNotFound {
+    public void postDeletion(OrderItem<? extends Product> deletedOrderItem) {
         Product product = deletedOrderItem.getProduct();
         product.decrementQuantityUsed(deletedOrderItem.getQuantity());
+        productService.update(product);
     }
 
     @Override
@@ -74,11 +76,15 @@ public class OrderItemService implements IOrderItemService {
         return dao.isExist(id);
     }
 
-    private OrderItem<? extends Product> buildOrderItem(OrderItemInfo info, Product product) {
+    private OrderItem<? extends Product> buildOrderItem(OrderItemInfo info, Product product) throws BarCodeNotFound {
         OrderItem<? extends Product> orderItem = new OrderItem<>(IdGenerator.generateId(), product, info.getQuantity());
-        BarCode barCode = barCodeService.get(info.getBarCodeId());
-        if (barCode != null) {
-            orderItem.setBarCode(barCode);
+        if (info.getBarCodeId() != null) {
+            BarCode barCode = barCodeService.get(info.getBarCodeId());
+            if (barCode != null) {
+                orderItem.setBarCode(barCode);
+            } else {
+                throw new BarCodeNotFound(info.getBarCodeId());
+            }
         }
         return orderItem;
     }

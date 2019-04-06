@@ -1,6 +1,6 @@
 package com.andybrook.exception;
 
-public class OrderNotFound extends StockReportException {
+public class OrderNotFound extends ValidationRuntimeException {
 
     public OrderNotFound(long id) {
         this(msg(id));

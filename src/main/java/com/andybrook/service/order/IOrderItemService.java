@@ -8,7 +8,7 @@ import com.andybrook.model.request.orderitem.OrderItemRequest;
 
 public interface IOrderItemService {
 
-    OrderItem<? extends Product> createOrderItem(OrderItemInfo info) throws ProductNotFound, InsufficientQuantityException;
+    OrderItem<? extends Product> createOrderItem(OrderItemInfo info) throws ProductNotFound, InsufficientQuantityException, BarCodeNotFound;
 
     OrderItem<? extends Product> updateOrderItem(OrderItem<? extends Product> orderItem, OrderItemInfo info) throws InsufficientQuantityException;
 

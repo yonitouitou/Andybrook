@@ -100,11 +100,11 @@ public class OrderService implements IOrderService {
 
     @Override
     public OrderItem<? extends Product> addOrUpdateOrderItem(long orderId, OrderItemInfo info)
-            throws OrderNotFound, OrderClosed, ProductNotFound, OrderItemNotFound, InsufficientQuantityException {
+            throws OrderNotFound, OrderClosed, ProductNotFound, OrderItemNotFound, InsufficientQuantityException, BarCodeNotFound {
         OrderItem<? extends Product> orderItemToUpdate;
         Order order = getOrderById(orderId);
         if (canModifyOrder(order)) {
-            orderItemToUpdate = info.getId() != null && order.hasItem(info.getId())
+            orderItemToUpdate = order.hasProduct(info.getProductId())
                     ? updateOrderItem(order, info)
                     : addOrderItem(order, info);
         } else {
@@ -130,15 +130,16 @@ public class OrderService implements IOrderService {
         return order;
     }
 
-    private OrderItem<? extends Product> addOrderItem(Order order, OrderItemInfo info) throws ProductNotFound, InsufficientQuantityException {
+    private OrderItem<? extends Product> addOrderItem(Order order, OrderItemInfo info) throws ProductNotFound, InsufficientQuantityException, BarCodeNotFound {
         OrderItem<? extends Product> orderItemToUpdate = orderItemService.createOrderItem(info);
         order.addItem(orderItemToUpdate);
-        dao.updateOrder(order);
-        return orderItemToUpdate;
+        order = dao.updateOrder(order);
+        return order.getItem(orderItemToUpdate.getId());
     }
 
     private OrderItem<? extends Product> updateOrderItem(Order order, OrderItemInfo info) throws InsufficientQuantityException, OrderItemNotFound {
-        OrderItem<? extends Product> orderItem = order.getItem(info.getId());
+        long existingOrderItemId = order.getOrderItemIdByProductId(info.getProductId());
+        OrderItem<? extends Product> orderItem = order.getItem(existingOrderItemId);
         if (orderItem != null) {
             orderItemService.updateOrderItem(orderItem, info);
             dao.updateOrder(order);

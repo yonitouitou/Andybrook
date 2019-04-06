@@ -12,6 +12,8 @@ public interface IProductService {
 
     Product get(long id) throws ProductNotFound;
 
+    Product update(Product product);
+
     List<? extends Product> getByNameContaining(String subName);
 
     Product addProduct(Product product);

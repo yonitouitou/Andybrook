@@ -11,10 +11,7 @@ public class OrderItemRestRequest {
     @JsonDeserialize(using = OrderItemInfoJsonSerializer.class)
     private OrderItemInfo orderItemInfo;
 
-    public OrderItemRestRequest(long orderId, OrderItemInfo orderItemInfo) {
-        this.orderId = orderId;
-        this.orderItemInfo = orderItemInfo;
-    }
+    public OrderItemRestRequest() {}
 
     public long getOrderId() {
         return orderId;

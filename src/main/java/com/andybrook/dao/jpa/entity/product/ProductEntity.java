@@ -8,6 +8,7 @@ import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.util.Objects;
 import java.util.Set;
 
 import static com.andybrook.dao.jpa.entity.product.ProductEntity.DISCRIMINATOR_COLUMN_TYPE;
@@ -136,6 +137,19 @@ public abstract class ProductEntity {
 
     public void setQuantityUsed(int quantityUsed) {
         this.quantityUsed = quantityUsed;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        ProductEntity that = (ProductEntity) o;
+        return id.equals(that.id);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id);
     }
 
     @Override

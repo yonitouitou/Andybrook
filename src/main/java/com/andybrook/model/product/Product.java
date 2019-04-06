@@ -5,6 +5,7 @@ import com.andybrook.model.BarCode;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Objects;
 
 public abstract class Product {
 
@@ -13,7 +14,6 @@ public abstract class Product {
     protected double price;
     protected int quantityCreated;
     protected int quantityUsed;
-    protected ProductType type;
     protected Map<String, BarCode> barCodes;
 
     public abstract ProductType getType();
@@ -111,6 +111,23 @@ public abstract class Product {
 
     public void setQuantityUsed(int quantityUsed) {
         this.quantityUsed = quantityUsed;
+    }
+
+    public int getQuantityUnused() {
+        return quantityCreated - quantityUsed;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Product product = (Product) o;
+        return id.equals(product.id);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id);
     }
 
     @Override

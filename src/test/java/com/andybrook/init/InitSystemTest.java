@@ -87,7 +87,8 @@ public class InitSystemTest {
         return customers;
     }
 
-    private void addOrderItem(long orderId, Product product) throws OrderNotFound, OrderClosed, ProductNotFound, InsufficientQuantityException, OrderItemNotFound {
+    private void addOrderItem(long orderId, Product product)
+            throws OrderNotFound, OrderClosed, ProductNotFound, InsufficientQuantityException, OrderItemNotFound, BarCodeNotFound {
         OrderItem<? extends Product> item = OrderItemGenerator.generateOrderItem(product);
         OrderItemInfo details = new OrderItemInfo(item.getId(), item.getProduct().getId(), item.getQuantity());
         if (item.getBarCode() != null) {

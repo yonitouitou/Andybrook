@@ -75,7 +75,7 @@ public class OrderController extends AbstractController {
 
     @PostMapping(path = "/addOrderItem")
     public OrderItem<? extends Product> addOrderItem(@RequestBody OrderItemRestRequest request)
-            throws OrderNotFound, OrderClosed, ProductNotFound, InsufficientQuantityException, OrderItemNotFound {
+            throws OrderNotFound, OrderClosed, ProductNotFound, InsufficientQuantityException, OrderItemNotFound, BarCodeNotFound {
         LOGGER.log(Level.INFO, "Request received to update order : " + request);
         return orderManager.addOrderItem(new OrderItemAddRequest(request.getOrderId(), request.getOrderItemInfo()));
     }

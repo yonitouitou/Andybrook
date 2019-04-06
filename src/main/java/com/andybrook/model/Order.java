@@ -89,6 +89,14 @@ public class Order {
         return items.containsKey(orderItemId);
     }
 
+    public boolean hasProduct(long productId) {
+        return itemIdMapByProductId.containsKey(productId);
+    }
+
+    public long getOrderItemIdByProductId(long productId) {
+        return itemIdMapByProductId.get(productId);
+    }
+
     public boolean isOpen() {
         return status != OrderStatus.CLOSED;
     }

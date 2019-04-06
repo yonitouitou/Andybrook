@@ -71,15 +71,17 @@ public class OrderManager implements IOrderManager {
     }
 
     @Override
-    public OrderItem<? extends Product> addOrderItem(OrderItemAddRequest request) throws OrderNotFound, OrderClosed, ProductNotFound, InsufficientQuantityException, OrderItemNotFound {
+    public OrderItem<? extends Product> addOrderItem(OrderItemAddRequest request)
+            throws OrderNotFound, OrderClosed, ProductNotFound, InsufficientQuantityException, OrderItemNotFound, BarCodeNotFound {
         if (! OrderItemAddRequest.isValid(request)) {
-            throw new IllegalArgumentException("OrderItemAddRequest is not valid : " + request.toString());
+            throw new IllegalArgumentException("Order item add request is not valid : " + request.toString());
         }
         return orderService.addOrUpdateOrderItem(request.getOrderId(), request.getOrderItemInfo());
     }
 
     @Override
-    public OrderItem<? extends Product> updateOrderItem(OrderItemUpdateRequest request) throws OrderNotFound, OrderClosed, OrderItemNotFound, InsufficientQuantityException, ProductNotFound {
+    public OrderItem<? extends Product> updateOrderItem(OrderItemUpdateRequest request)
+            throws OrderNotFound, OrderClosed, OrderItemNotFound, InsufficientQuantityException, ProductNotFound, BarCodeNotFound {
         if (! OrderItemUpdateRequest.isValid(request)) {
             throw new IllegalArgumentException("OrderItemUpdateRequest is not valid : " + request.toString());
         }

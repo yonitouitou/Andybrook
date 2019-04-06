@@ -1,6 +1,7 @@
 package com.andybrook.service.order;
 
 import com.andybrook.assertor.OrderItemAssertor;
+import com.andybrook.exception.InsufficientQuantityException;
 import com.andybrook.generator.CustomerGenerator;
 import com.andybrook.generator.OrderItemGenerator;
 import com.andybrook.generator.ProductGenerator;
@@ -41,7 +42,7 @@ public class OrderServiceTest {
     private IProductService productService;
 
     @Before
-    public void init() throws Exception {
+    public void init() {
         customer = customerService.newCustomer(CustomerGenerator.generateCustomer());
         order = orderService.newOrder(createNewOrderRequest(customer));
         product = productService.addProduct(ProductGenerator.generateProduct(PRODUCT_QUANTITY));
@@ -62,7 +63,7 @@ public class OrderServiceTest {
     }
 
     @Test
-    public void updateOrderItem() throws Exception {
+    public void updateOrderItem() {
         int qtyAdded = 2;
         OrderItem<? extends Product> orderItem = addOrderItem();
         OrderItemInfo info = new OrderItemInfo(orderItem.getId(), orderItem.getProduct().getId(), qtyAdded);
@@ -73,17 +74,32 @@ public class OrderServiceTest {
     }
 
     @Test
-    public void deleteOrderItemFromOrderDbTest() throws Exception {
+    public void deleteOrderItemFromOrderDbTest() {
         OrderItem<? extends Product> orderItem = addOrderItem();
         deleteOrderItem(orderItem.getId());
         Assert.assertFalse(orderItemService.isExist(orderItem.getId()));
     }
 
-    private OrderItem<? extends Product> addOrderItem() throws Exception {
+    @Test(expected = InsufficientQuantityException.class)
+    public void addOrderItemQuantityExceededTest() {
+        product = productService.addProduct(ProductGenerator.generateProduct(5));
+        orderItemInfo = OrderItemGenerator.generateOrderItemInfo(product, 6);
+        addOrderItem();
+    }
+
+    @Test(expected = InsufficientQuantityException.class)
+    public void updateOrderItemQuantityExceededTest() {
+        product = productService.addProduct(ProductGenerator.generateProduct(5));
+        orderItemInfo = OrderItemGenerator.generateOrderItemInfo(product, 2);
+        addOrderItem();
+        orderService.addOrUpdateOrderItem(order.getId(), OrderItemGenerator.generateOrderItemInfo(product, 10));
+    }
+
+    private OrderItem<? extends Product> addOrderItem() {
         return orderService.addOrUpdateOrderItem(order.getId(), orderItemInfo);
     }
 
-    private void deleteOrderItem(long orderItemId) throws Exception {
+    private void deleteOrderItem(long orderItemId) {
         orderService.deleteOrderItem(this.order.getId(), orderItemId);
     }
 

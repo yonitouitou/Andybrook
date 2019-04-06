@@ -1,6 +1,6 @@
 package com.andybrook.api.rest;
 
-import com.andybrook.exception.CustomerNotFound;
+import com.andybrook.exception.ValidationRuntimeException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -20,9 +20,10 @@ public abstract class AbstractController {
                 HttpStatus.BAD_REQUEST, "Exception occurred", e);
     }
 
-    @ExceptionHandler(CustomerNotFound.class)
+    @ExceptionHandler(ValidationRuntimeException.class)
     public ResponseEntity<?> handleCustomerNotFound(Exception e) {
-        return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
+        LOGGER.log(Level.WARNING, "Validation Exception : " + e.getMessage());
+        return new ResponseEntity(e.getMessage(), HttpStatus.BAD_REQUEST);
     }
 
 }

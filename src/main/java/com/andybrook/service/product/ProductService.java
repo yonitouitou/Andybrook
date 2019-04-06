@@ -33,6 +33,11 @@ public class ProductService implements IProductService {
     }
 
     @Override
+    public Product update(Product product) {
+        return dao.save(product);
+    }
+
+    @Override
     public List<? extends Product> getByNameContaining(String subName) {
         return dao.getByNameContaining(subName);
     }
