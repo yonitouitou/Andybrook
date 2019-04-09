@@ -33,6 +33,11 @@ public class ProductService implements IProductService {
     }
 
     @Override
+    public Product getByBarCode(String barCodeId) {
+        return barCodeService.getProduct(barCodeId);
+    }
+
+    @Override
     public Product update(Product product) {
         return dao.save(product);
     }
@@ -49,7 +54,7 @@ public class ProductService implements IProductService {
 
     @Override
     public void addBarCode(long productId, BarCode barCode) throws BarCodeAlreadyExist, ProductNotFound {
-        if (! barCodeService.isBarCodeExist(barCode)) {
+        if (! barCodeService.isBarCodeExist(barCode.getId())) {
             Optional<Product> productOpt = dao.get(productId);
             if (productOpt.isPresent()) {
                 Product product = productOpt.get();

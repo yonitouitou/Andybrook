@@ -12,6 +12,8 @@ public interface IProductService {
 
     Product get(long id) throws ProductNotFound;
 
+    Product getByBarCode(String barCodeId);
+
     Product update(Product product);
 
     List<? extends Product> getByNameContaining(String subName);

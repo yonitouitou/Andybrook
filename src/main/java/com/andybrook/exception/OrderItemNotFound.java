@@ -5,6 +5,7 @@ public class OrderItemNotFound extends ValidationRuntimeException {
     public OrderItemNotFound(long id) {
         this(msg(id));
     }
+
     public OrderItemNotFound(String msg) {
         super(msg);
     }

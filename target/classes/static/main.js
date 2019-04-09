@@ -955,6 +955,12 @@ var Product = /** @class */ (function () {
         this.name = name;
         this.price = price;
     }
+    Product.fromJson = function (data) {
+        var productId = data.id;
+        var productName = data.name;
+        var productPrice = data.price;
+        return new Product(productId, productName, productPrice);
+    };
     return Product;
 }());
 
@@ -1530,6 +1536,9 @@ var ProductService = /** @class */ (function () {
     ProductService.prototype.get = function (id) {
         return this.http.get("/v1/product/get/" + id);
     };
+    ProductService.prototype.getByBarCode = function (barCode) {
+        return this.http.get("/v1/product/getByBarCode/" + barCode);
+    };
     ProductService.prototype.getAllProductNames = function () {
         return this.http.get("/v1/product/getAllExistingProductNames");
     };
@@ -1606,7 +1615,7 @@ module.exports = ".table tr.active td {\n    background-color:#275e94 !important
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"user-container\">\n  <form>\n    <div class=\"form-group\">\n      <div class=\"input-group\">\n        <div class=\"input-group-addon\">\n          <i class=\"glyphicon glyphicon-search\"></i>\n        </div>\n        <input type=\"text\"\n          class=\"form-control\"\n          name=\"searchString\"\n          placeholder=\"Type to search...\"\n          [(ngModel)]=\"searchString\">\n      </div>\n    </div>\n  </form>\n  <table class=\"table table-striped\">\n    <thead>\n      <tr>\n        <th>ID</th>\n        <th>Name</th>\n        <th>Price</th>\n        <th>Quantity</th>\n        <th>Creation Date</th>\n        <th>Last Modify Date</th>\n        <th></th>\n      </tr>\n    </thead>\n    <tbody>\n      <tr *ngIf=\"order.status !== 'CLOSED'\">\n        <td></td>\n        <td>\n          <input class=\"form-control\" (blur)=\"onBlurInputName()\" [(ngModel)]=\"inputName\" [ngbTypeahead]=\"search\">\n        </td>\n        <td>\n          {{ inputPrice }} <span *ngIf=\"inputPrice != null\">€</span>\n        </td>\n        <td>\n          <input class=\"form-control\" (blur)=\"onBlurNewItemInput()\" [(ngModel)]=\"inputQuantity\">\n        </td>\n        <td></td>\n        <td></td>\n        <td>\n          <button class=\"btn btn-info\" [disabled]=\"! areNewStockItemFieldsSet\" (click)=\"createNewStockItem()\"> Add\n            Stock Item</button>\n        </td>\n      </tr>\n      <tr *ngFor=\"let item of stockItems | filter : 'name' : searchString; let i = index\" (click)=\"setSelectedRow(i)\"\n        [class.active]=\"i == selectedRow\">\n        <td>{{ item.product.id }}</td>\n        <td>{{ item.product.name }}</td>\n        <td>{{ item.product.price }} €</td>\n        <td\n          contenteditable=\"order.status !== 'CLOSED'\"\n          (blur)=\"onChangeStockItemQuantity(item, $event)\">\n          {{ item.quantity }}\n        </td>\n        <td>{{ item.createdDatetime }}</td>\n        <td>{{ item.lastModifiedDatetime }}</td>\n        <td>\n          <button *ngIf=\"order.status !== 'CLOSED'\" (click)=\"deleteStockItem(item.id)\" class=\"btn btn-danger\">\n            Delete</button>\n        </td>\n      </tr>\n    </tbody>\n  </table>\n</div>\n"
+module.exports = "<div class=\"user-container\">\n  <form>\n    <div class=\"form-group\">\n      <div class=\"input-group\">\n        <div class=\"input-group-addon\">\n          <i class=\"glyphicon glyphicon-search\"></i>\n        </div>\n        <input type=\"text\"\n          class=\"form-control\"\n          name=\"searchString\"\n          placeholder=\"Type to search...\"\n          [(ngModel)]=\"searchString\">\n      </div>\n    </div>\n  </form>\n  <table class=\"table table-striped\">\n    <thead>\n      <tr>\n        <th>ID</th>\n        <th>BarCode</th>\n        <th>Name</th>\n        <th>Price</th>\n        <th>Quantity</th>\n        <th>Creation Date</th>\n        <th>Last Modify Date</th>\n        <th></th>\n      </tr>\n    </thead>\n    <tbody>\n      <tr *ngIf=\"order.status !== 'CLOSED'\">\n        <td></td>\n        <td>\n          <input class=\"form-control\" (blur)=\"onBlurBarCode()\" [(ngModel)]=\"inputBarCode\">\n        </td>\n        <td>\n          <input class=\"form-control\" (blur)=\"onBlurInputName()\" [(ngModel)]=\"inputName\" [ngbTypeahead]=\"search\">\n        </td>\n        <td>\n          {{ inputPrice }} <span *ngIf=\"inputPrice != null\">€</span>\n        </td>\n        <td>\n          <input class=\"form-control\" (blur)=\"onBlurNewItemInput()\" [(ngModel)]=\"inputQuantity\">\n        </td>\n        <td></td>\n        <td></td>\n        <td>\n          <button class=\"btn btn-info\" [disabled]=\"! areNewStockItemFieldsSet\" (click)=\"createNewStockItem()\"> Add\n            Stock Item</button>\n        </td>\n      </tr>\n      <tr *ngFor=\"let item of stockItems | filter : 'name' : searchString; let i = index\" (click)=\"setSelectedRow(i)\"\n        [class.active]=\"i == selectedRow\">\n        <td>{{ item.product.id }}</td>\n        <td></td>\n        <td>{{ item.product.name }}</td>\n        <td>{{ item.product.price }} €</td>\n        <td\n          contenteditable=\"order.status !== 'CLOSED'\"\n          (blur)=\"onChangeStockItemQuantity(item, $event)\">\n          {{ item.quantity }}\n        </td>\n        <td>{{ item.createdDatetime }}</td>\n        <td>{{ item.lastModifiedDatetime }}</td>\n        <td>\n          <button *ngIf=\"order.status !== 'CLOSED'\" (click)=\"deleteStockItem(item.id)\" class=\"btn btn-danger\">\n            Delete</button>\n        </td>\n      </tr>\n    </tbody>\n  </table>\n</div>\n"
 
 /***/ }),
 
@@ -1670,6 +1679,20 @@ var ListStockItemComponent = /** @class */ (function () {
     ListStockItemComponent.prototype.onBlurNewItemInput = function () {
         this.checkInputFieldSet();
     };
+    ListStockItemComponent.prototype.onBlurBarCode = function () {
+        var _this = this;
+        this.productService.getByBarCode(this.inputBarCode.trim()).subscribe(function (data) {
+            var product = _model_Product__WEBPACK_IMPORTED_MODULE_3__["Product"].fromJson(data);
+            _this.inputId = product.id;
+            _this.inputName = product.name;
+            _this.inputQuantity = 1;
+            _this.createNewStockItem();
+        }, function (error) {
+            var modalRef = _this.modalBuilder.open(src_app_modal_info_modal_info_modal_component__WEBPACK_IMPORTED_MODULE_7__["InfoModalComponent"]);
+            modalRef.componentInstance.title = "Error : Product not added to order " + _this.order.name;
+            modalRef.componentInstance.message = error.error;
+        });
+    };
     ListStockItemComponent.prototype.onBlurInputName = function () {
         var _this = this;
         var id = this.productIdMapByName.get(this.inputName.trim());
@@ -1678,6 +1701,10 @@ var ListStockItemComponent = /** @class */ (function () {
                 _this.inputId = data.id;
                 _this.inputPrice = data.price;
                 _this.inputQuantity = 1;
+            }, function (error) {
+                var modalRef = _this.modalBuilder.open(src_app_modal_info_modal_info_modal_component__WEBPACK_IMPORTED_MODULE_7__["InfoModalComponent"]);
+                modalRef.componentInstance.title = "Error : Product " + _this.inputName + " not found";
+                modalRef.componentInstance.message = error.error;
             });
         }
         this.checkInputFieldSet();
@@ -1703,6 +1730,7 @@ var ListStockItemComponent = /** @class */ (function () {
             var modalRef = _this.modalBuilder.open(src_app_modal_info_modal_info_modal_component__WEBPACK_IMPORTED_MODULE_7__["InfoModalComponent"]);
             modalRef.componentInstance.title = "Error : Product item " + stockItem.product.name + " not added to order " + _this.order.name;
             modalRef.componentInstance.message = error.error;
+            _this.resetNewStockitemFields();
         });
     };
     ListStockItemComponent.prototype.deleteStockItem = function (id) {
@@ -1724,6 +1752,8 @@ var ListStockItemComponent = /** @class */ (function () {
         this.selectedRow = index;
     };
     ListStockItemComponent.prototype.resetNewStockitemFields = function () {
+        this.inputId = undefined;
+        this.inputBarCode = "";
         this.inputName = "";
         this.inputQuantity = undefined;
         this.inputPrice = undefined;

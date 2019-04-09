@@ -9,7 +9,7 @@ public interface IBarCodeService {
 
     BarCode get(String id);
 
-    long getOrderItemIdByBarCodeId(String id);
+    Product getProduct(String barCodeId);
 
-    boolean isBarCodeExist(BarCode barCode);
+    boolean isBarCodeExist(String barCodeId);
 }

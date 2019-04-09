@@ -58,18 +58,6 @@ public class OrderItemDao implements IOrderItemDao {
         return repository.existsById(id);
     }
 
-    @Override
-    public Optional<OrderItem<? extends Product>> findItemByBarCodeId(String barCodeId) {
-        Optional<OrderItem<? extends Product>> resultOpt = Optional.empty();
-        long stockItemId = barCodeDao.getStockItemIdByBarCodeId(barCodeId);
-        Optional<OrderItemEntity> stockItemEntityOpt = findOne(stockItemId);
-        if (stockItemEntityOpt.isPresent()) {
-            OrderItem<Product> orderItem = entityFactory.createOrderItem(stockItemEntityOpt.get());
-            resultOpt = Optional.of(orderItem);
-        }
-        return resultOpt;
-    }
-
     private Optional<OrderItemEntity> findOne(long id) {
         return repository.findById(id);
     }

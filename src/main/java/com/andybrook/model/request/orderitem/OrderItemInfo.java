@@ -4,8 +4,8 @@ public class OrderItemInfo {
 
     protected Long id;
     protected long productId;
-    protected String barCodeId;
     protected int quantity;
+    protected String barCodeId;
 
     public OrderItemInfo(Long id, long productId, int quantity) {
         this.id = id;
@@ -38,19 +38,19 @@ public class OrderItemInfo {
         this.productId = productId;
     }
 
-    public String getBarCodeId() {
-        return barCodeId;
-    }
-
-    public void setBarCodeId(String barCodeId) {
-        this.barCodeId = barCodeId;
-    }
-
     public int getQuantity() {
         return quantity;
     }
 
     public void setQuantity(int quantity) {
         this.quantity = quantity;
+    }
+
+    public String getBarCodeId() {
+        return barCodeId;
+    }
+
+    public void setBarCodeId(String barCodeId) {
+        this.barCodeId = barCodeId;
     }
 }

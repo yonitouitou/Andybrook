@@ -28,6 +28,12 @@ public class ProductController extends AbstractController {
         return productManager.getProduct(id);
     }
 
+    @GetMapping(path = "/getByBarCode/{barCodeId}")
+    public Product get(@PathVariable String barCodeId) {
+        LOGGER.log(Level.INFO, "Get Product by barCodeId : " + barCodeId);
+        return productManager.getProductByBarCode(barCodeId);
+    }
+
     @GetMapping(path = "/getByNameContaining/{name}")
     public List<? extends Product> getAll(@PathVariable String name) {
         LOGGER.log(Level.INFO, "Get all products request by subname : " + name);

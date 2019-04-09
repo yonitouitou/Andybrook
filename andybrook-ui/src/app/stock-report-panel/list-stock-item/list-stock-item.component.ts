@@ -17,10 +17,12 @@ import { debounceTime, distinctUntilChanged, map } from 'rxjs/operators';
 export class ListStockItemComponent implements OnInit {
 
   inputId: number
+  inputBarCode: string
   inputName: string
   inputQuantity: number
   inputPrice: number
   selectedRow: number
+  isScanMode: boolean
   areNewStockItemFieldsSet = false
   searchString: string
   productNames: string[] = []
@@ -60,6 +62,23 @@ export class ListStockItemComponent implements OnInit {
     this.checkInputFieldSet()
   }
 
+  onBlurBarCode() {
+    this.productService.getByBarCode(this.inputBarCode.trim()).subscribe(
+      data => {
+        const product = Product.fromJson(data);
+        this.inputId = product.id;
+        this.inputName = product.name;
+        this.inputQuantity = 1;
+        this.createNewStockItem()
+      },
+      error => {
+        const modalRef = this.modalBuilder.open(InfoModalComponent)
+        modalRef.componentInstance.title = "Error : Product not added to order " + this.order.name
+        modalRef.componentInstance.message = error.error
+      }
+    )
+  }
+
   onBlurInputName() {
     const id = this.productIdMapByName.get(this.inputName.trim())
     if (id != null) {
@@ -68,6 +87,11 @@ export class ListStockItemComponent implements OnInit {
           this.inputId = data.id
           this.inputPrice = data.price
           this.inputQuantity = 1
+        },
+        error => {
+          const modalRef = this.modalBuilder.open(InfoModalComponent)
+          modalRef.componentInstance.title = "Error : Product " + this.inputName + " not found"
+          modalRef.componentInstance.message = error.error
         }
       )
     }
@@ -97,6 +121,7 @@ export class ListStockItemComponent implements OnInit {
         const modalRef = this.modalBuilder.open(InfoModalComponent)
         modalRef.componentInstance.title = "Error : Product item " + stockItem.product.name + " not added to order " + this.order.name
         modalRef.componentInstance.message = error.error
+        this.resetNewStockitemFields()
       })
   }
 
@@ -125,6 +150,8 @@ export class ListStockItemComponent implements OnInit {
   }
 
   private resetNewStockitemFields() {
+    this.inputId = undefined
+    this.inputBarCode = ""
     this.inputName = ""
     this.inputQuantity = undefined
     this.inputPrice = undefined

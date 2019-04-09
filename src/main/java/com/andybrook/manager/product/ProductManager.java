@@ -24,6 +24,11 @@ public class ProductManager implements IProductManager {
     }
 
     @Override
+    public Product getProductByBarCode(String barCodeId) {
+        return productService.getByBarCode(barCodeId);
+    }
+
+    @Override
     public Product getProduct(long id) throws ProductNotFound {
         return productService.get(id);
     }

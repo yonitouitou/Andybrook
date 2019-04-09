@@ -12,6 +12,8 @@ public interface IProductManager {
 
     Product addProduct(Product product);
 
+    Product getProductByBarCode(String barCodeId);
+
     List<? extends Product> getByNameContaining(String name);
 
     void addBarCode(long productId, BarCode barCode) throws BarCodeAlreadyExist, ProductNotFound;

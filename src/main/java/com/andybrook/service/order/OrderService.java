@@ -11,7 +11,6 @@ import com.andybrook.model.request.order.NewOrderRequest;
 import com.andybrook.model.request.order.UpdateOrderRequest;
 import com.andybrook.model.request.orderitem.OrderItemInfo;
 import com.andybrook.service.customer.ICustomerService;
-import com.andybrook.service.product.IProductService;
 import com.andybrook.service.setting.IAdminSettingService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -29,8 +28,6 @@ public class OrderService implements IOrderService {
     private IOrderDao dao;
     @Autowired
     private IOrderItemService orderItemService;
-    @Autowired
-    private IProductService productService;
     @Autowired
     private ICustomerService customerService;
     @Autowired

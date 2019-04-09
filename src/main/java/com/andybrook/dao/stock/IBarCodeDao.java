@@ -9,9 +9,9 @@ public interface IBarCodeDao {
 
     boolean isExist(String id);
 
+    Optional<Product> getProduct(String barCodeId);
+
     BarCode save(Product product, BarCode barCode);
 
     Optional<BarCode> get(String id);
-
-    long getStockItemIdByBarCodeId(String id);
 }
