@@ -1,11 +1,9 @@
 package com.andybrook.service.product;
 
 import com.andybrook.exception.BarCodeNotFound;
-import com.andybrook.generator.CustomerGenerator;
-import com.andybrook.generator.OrderItemGenerator;
 import com.andybrook.generator.ProductGenerator;
 import com.andybrook.model.BarCode;
-import com.andybrook.model.Order;
+import com.andybrook.model.order.Order;
 import com.andybrook.model.customer.Customer;
 import com.andybrook.model.product.Product;
 import com.andybrook.model.request.orderitem.OrderItemInfo;
@@ -18,8 +16,6 @@ import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
-
-import static org.junit.Assert.*;
 
 @SpringBootTest
 @RunWith(SpringJUnit4ClassRunner.class)

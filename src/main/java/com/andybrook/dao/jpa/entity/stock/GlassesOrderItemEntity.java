@@ -17,10 +17,10 @@ public class GlassesOrderItemEntity extends OrderItemEntity {
     static final String DISCRIMINATOR_VALUE_TYPE_GLASSES = "GLASSES";
 
     public GlassesOrderItemEntity(){
-        super(null, null,null, ProductType.GLASSES, 0);
+        super(null, null,null, ProductType.GLASSES);
     }
 
-    protected GlassesOrderItemEntity(Long id, OrderEntity orderEntity, ProductEntity productEntity, int quantity) {
-        super(id, orderEntity, productEntity, ProductType.GLASSES, quantity);
+    protected GlassesOrderItemEntity(Long id, OrderEntity orderEntity, ProductEntity productEntity) {
+        super(id, orderEntity, productEntity, ProductType.GLASSES);
     }
 }

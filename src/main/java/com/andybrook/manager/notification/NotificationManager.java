@@ -2,7 +2,7 @@ package com.andybrook.manager.notification;
 
 import com.andybrook.exception.OrderNotFound;
 import com.andybrook.manager.setting.IAdminSettingManager;
-import com.andybrook.model.Order;
+import com.andybrook.model.order.Order;
 import com.andybrook.service.notification.INotificationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

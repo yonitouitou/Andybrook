@@ -6,7 +6,7 @@ import com.andybrook.dao.jpa.crudrepository.IOrderCrudRepository;
 import com.andybrook.exception.OrderNotFound;
 import com.andybrook.language.LanguageResolver;
 import com.andybrook.language.Msg.Error;
-import com.andybrook.model.Order;
+import com.andybrook.model.order.Order;
 import com.andybrook.model.request.order.UpdateOrderRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
@@ -14,6 +14,7 @@ import org.springframework.data.domain.Sort;
 import org.springframework.data.domain.Sort.Direction;
 import org.springframework.stereotype.Repository;
 
+import javax.transaction.Transactional;
 import java.util.*;
 import java.util.stream.Collectors;
 

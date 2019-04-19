@@ -1,7 +1,7 @@
 package com.andybrook.api.pdf;
 
 import com.andybrook.generator.StockReportGenerator;
-import com.andybrook.model.Order;
+import com.andybrook.model.order.Order;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;

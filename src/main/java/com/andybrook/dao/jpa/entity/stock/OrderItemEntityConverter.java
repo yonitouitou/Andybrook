@@ -3,7 +3,7 @@ package com.andybrook.dao.jpa.entity.stock;
 import com.andybrook.annotation.EntityConverter;
 import com.andybrook.dao.jpa.entity.factory.EntityFactory;
 import com.andybrook.dao.jpa.entity.factory.IEntityConverter;
-import com.andybrook.model.OrderItem;
+import com.andybrook.model.order.OrderItem;
 import com.andybrook.model.product.Product;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -18,7 +18,7 @@ public class OrderItemEntityConverter implements IEntityConverter<OrderItem, Ord
     @Override
     public OrderItem toModel(OrderItemEntity entity) {
         Product product = entityFactory.createProduct(entity.getProductEntity());
-        OrderItem orderItem = new OrderItem(entity.getId(), product, entity.getQuantity());
+        OrderItem orderItem = new OrderItem(entity.getId(), product);
         if (entity.getBarCodeEntity() != null) {
             orderItem.setBarCode(entityFactory.createBarCode(entity.getBarCodeEntity()));
         }

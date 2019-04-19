@@ -1,31 +1,28 @@
-package com.andybrook.model;
+package com.andybrook.model.order;
 
-import com.andybrook.enums.ProductType;
+import com.andybrook.model.BarCode;
 import com.andybrook.model.product.Product;
 
 import java.time.LocalDateTime;
 import java.util.Objects;
 
-public final class OrderItem<T extends Product> {
+public final class OrderItem {
 
     protected Long id;
-    protected T product;
-    protected int quantity;
+    protected Product product;
     protected BarCode barCode;
     protected LocalDateTime createdDatetime;
     protected LocalDateTime lastModifiedDatetime;
 
-    public OrderItem(Long id, T product, int quantity) {
+    public OrderItem(Long id, Product product) {
         this.id = id;
         this.product = product;
-        this.quantity = quantity;
         this.barCode = null;
     }
 
-    public OrderItem(T product, int quantity) {
+    public OrderItem(Product product) {
         this.id = null;
         this.product = product;
-        this.quantity = quantity;
         this.barCode = null;
     }
 
@@ -33,8 +30,8 @@ public final class OrderItem<T extends Product> {
         return id != null;
     }
 
-    public void incrementQuantity(int nb) {
-        quantity = quantity + nb;
+    public double getProductPrice() {
+        return product.getPrice();
     }
 
     public Long getId() {
@@ -45,24 +42,12 @@ public final class OrderItem<T extends Product> {
         this.id = id;
     }
 
-    public T getProduct() {
+    public Product getProduct() {
         return product;
     }
 
-    public void setProduct(T product) {
+    public void setProduct(Product product) {
         this.product = product;
-    }
-
-    public int getQuantity() {
-        return quantity;
-    }
-
-    public void setQuantity(int quantity) {
-        this.quantity = quantity;
-    }
-
-    public double calculateTotalPrice() {
-        return quantity * product.getPrice();
     }
 
     public BarCode getBarCode() {
@@ -93,7 +78,7 @@ public final class OrderItem<T extends Product> {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        OrderItem<?> orderItem = (OrderItem<?>) o;
+        OrderItem orderItem = (OrderItem) o;
         return id.equals(orderItem.id);
     }
 
@@ -107,7 +92,6 @@ public final class OrderItem<T extends Product> {
         return "OrderItem{" +
                 "id=" + id +
                 ", product=" + product +
-                ", quantityCreated=" + quantity +
                 ", barCode=" + barCode +
                 ", createdDatetime=" + createdDatetime +
                 ", lastModifiedDatetime=" + lastModifiedDatetime +

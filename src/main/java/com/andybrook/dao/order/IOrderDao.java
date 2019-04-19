@@ -1,7 +1,7 @@
 package com.andybrook.dao.order;
 
 import com.andybrook.exception.OrderNotFound;
-import com.andybrook.model.Order;
+import com.andybrook.model.order.Order;
 import com.andybrook.model.request.order.UpdateOrderRequest;
 
 import java.util.List;

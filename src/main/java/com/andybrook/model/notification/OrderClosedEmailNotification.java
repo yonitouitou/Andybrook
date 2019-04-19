@@ -3,11 +3,13 @@ package com.andybrook.model.notification;
 import com.andybrook.ApplicationProperties;
 import com.andybrook.api.pdf.CloseReportPdfBuilder;
 import com.andybrook.api.pdf.IPdfBuilder;
-import com.andybrook.model.Order;
-import com.andybrook.model.OrderItem;
+import com.andybrook.model.api.AggregatedOrderItem;
+import com.andybrook.model.order.Order;
+import com.andybrook.model.order.OrderItem;
 import com.andybrook.model.api.Email;
 import com.andybrook.model.product.Product;
 import com.andybrook.model.setting.AdminSetting;
+import com.andybrook.util.OrderItemAggregatorUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.config.BeanDefinition;
 import org.springframework.context.ApplicationContext;
@@ -24,12 +26,13 @@ import java.time.ZoneId;
 import java.time.ZonedDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Collection;
+import java.util.List;
 
 @Component
 @Scope(BeanDefinition.SCOPE_PROTOTYPE)
-public class StockClosedEmailNotification implements IEmailNotification<Order> {
+public class OrderClosedEmailNotification implements IEmailNotification<Order> {
 
-    private static final Logger LOGGER = System.getLogger(StockClosedEmailNotification.class.getSimpleName());
+    private static final Logger LOGGER = System.getLogger(OrderClosedEmailNotification.class.getSimpleName());
     private static final DateTimeFormatter DATE_TIME_FORMATTER_FILE_NAME = DateTimeFormatter.ofPattern("yyyy-MM-dd-hh-mm-ss");
 
     @Autowired
@@ -49,9 +52,9 @@ public class StockClosedEmailNotification implements IEmailNotification<Order> {
 
     }
 
-    private Path[] getAttachmentsPaths(Order report) {
-        Path csvPath = generateCsvFile(report);
-        Path pdfPath = generatePdfFile(report);
+    private Path[] getAttachmentsPaths(Order order) {
+        Path csvPath = generateCsvFile(order);
+        Path pdfPath = generatePdfFile(order);
         return new Path[] {csvPath, pdfPath};
     }
 
@@ -60,23 +63,23 @@ public class StockClosedEmailNotification implements IEmailNotification<Order> {
         return builder.generatePdf(report);
     }
 
-    private Path generateCsvFile(Order report) {
+    private Path generateCsvFile(Order order) {
         Path csvFilePath = null;
         try {
-            String content = generateCsvFileContent(report);
-            csvFilePath = writeCsvInFile(report, content);
+            String content = generateCsvFileContent(order);
+            csvFilePath = writeCsvInFile(order, content);
         } catch (IOException e) {
             LOGGER.log(Level.ERROR, "Exception occurred generating the attachment CSV file for report : ["
-                    + report.getId() + ", " + report.getName() + "]");
+                    + order.getId() + ", " + order.getName() + "]");
         }
         return csvFilePath;
     }
 
-    private String generateCsvFileContent(Order report) {
+    private String generateCsvFileContent(Order order) {
         StringBuilder sb = new StringBuilder();
         appendColumnsName(sb);
         sb.append(System.lineSeparator());
-        appendStockItemsRows(sb, report.getItems());
+        appendOrderItemsRows(sb, OrderItemAggregatorUtil.getAggregatedOrderItems(order));
         return sb.toString();
     }
 
@@ -101,23 +104,23 @@ public class StockClosedEmailNotification implements IEmailNotification<Order> {
             .append("Price");
     }
 
-    private void appendStockItemsRows(StringBuilder sb, Collection<OrderItem<? extends Product>> items) {
-        items.forEach(item -> {
-            generateStockItemCsvRow(sb, item);
+    private void appendOrderItemsRows(StringBuilder sb, List<AggregatedOrderItem> items) {
+        items.forEach(aggregatedOrderItem -> {
+            generateOrderItemCsvRow(sb, aggregatedOrderItem);
         });
     }
 
-    private void generateStockItemCsvRow(StringBuilder sb, OrderItem<? extends Product> item) {
-        sb.append(item.getId()).append(",")
-                .append(item.getProduct().getName()).append(",")
-                .append(item.getQuantity()).append(",")
-                .append(item.getProduct().getPrice())
+    private void generateOrderItemCsvRow(StringBuilder sb, AggregatedOrderItem aggregatedOrderItem) {
+        OrderItem orderItem = aggregatedOrderItem.getOrderItems().get(0);
+        sb.append(orderItem.getProduct().getName()).append(",")
+                .append(aggregatedOrderItem.getQuantity()).append(",")
+                .append(orderItem.getProduct().getPrice())
                 .append(System.lineSeparator());
     }
 
-    private String getBody(Order report) {
+    private String getBody(Order order) {
         StringBuilder sb = new StringBuilder();
-        sb.append("Report " + report.getId() + " has been closed on " + getFormattedDateTime(ZonedDateTime.now(ZoneId.of("Europe/Paris"))));
+        sb.append("Report " + order.getId() + " has been closed on " + getFormattedDateTime(ZonedDateTime.now(ZoneId.of("Europe/Paris"))));
         sb.append("</br></br>");
 
         sb.append(
@@ -132,10 +135,10 @@ public class StockClosedEmailNotification implements IEmailNotification<Order> {
 
         sb.append(
                 "<tr align='center'>"
-                        + "<td>" + report.getId() + "</td>"
-                        + "<td>" + report.getName() + "</td>"
-                        + "<td>" + report.getTotalQuantity() + "</td>"
-                        + "<td>" + report.getTotalPrice() + " €</td>"
+                        + "<td>" + order.getId() + "</td>"
+                        + "<td>" + order.getName() + "</td>"
+                        + "<td>" + order.getTotalQuantity() + "</td>"
+                        + "<td>" + order.calculateTotalPrice() + " €</td>"
                 + "</tr>"
         );
 
@@ -151,14 +154,15 @@ public class StockClosedEmailNotification implements IEmailNotification<Order> {
                         + "</tr>"
         );
 
-        for (OrderItem<? extends Product> item: report.getItems()) {
+        for (AggregatedOrderItem aggregatedOrderItem : OrderItemAggregatorUtil.getAggregatedOrderItems(order)) {
+            OrderItem orderItem = aggregatedOrderItem.getOrderItems().get(0);
             sb.append(
                     "<tr align='center'>"
-                            + "<td>" + item.getId() + "</td>"
-                            + "<td>" + item.getProduct().getName() + "</td>"
-                            + "<td>" + item.getQuantity() + "</td>"
-                            + "<td>" + item.getProduct().getPrice() + "</td>"
-                    + "</tr>"
+                            + "<td>" + orderItem.getId() + "</td>"
+                            + "<td>" + orderItem.getProduct().getName() + "</td>"
+                            + "<td>" + aggregatedOrderItem.getQuantity() + "</td>"
+                            + "<td>" + orderItem.getProduct().getPrice() + "</td>"
+                            + "</tr>"
             );
         }
         sb.append("</table>");

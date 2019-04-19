@@ -10,13 +10,7 @@ public class OrderItemAddRequest extends OrderItemRequest {
     }
 
     public static boolean isValid(OrderItemAddRequest request) {
-        boolean isValid;
-        if (request != null && request.getOrderItemInfo() != null) {
-            isValid = request.getOrderItemInfo().getQuantity() > 0;
-        } else {
-            isValid = false;
-        }
-        return isValid;
+        return request != null && request.getOrderItemInfo() != null;
     }
 
     public OrderItemInfo getOrderItemInfo() {
@@ -26,7 +20,7 @@ public class OrderItemAddRequest extends OrderItemRequest {
     @Override
     public String toString() {
         return "OrderItemAddRequest{" +
-                "orderItemInfo=" + orderItemInfo +
+                ", orderItemInfo=" + orderItemInfo +
                 ", orderId=" + orderId +
                 '}';
     }

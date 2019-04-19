@@ -5,8 +5,8 @@ import com.andybrook.generator.ProductGenerator;
 import com.andybrook.generator.OrderItemGenerator;
 import com.andybrook.manager.order.IOrderManager;
 import com.andybrook.manager.product.IProductManager;
-import com.andybrook.model.Order;
-import com.andybrook.model.OrderItem;
+import com.andybrook.model.order.Order;
+import com.andybrook.model.order.OrderItem;
 import com.andybrook.model.customer.Customer;
 import com.andybrook.model.customer.Owner;
 import com.andybrook.model.customer.Store;
@@ -89,8 +89,8 @@ public class InitSystemTest {
 
     private void addOrderItem(long orderId, Product product)
             throws OrderNotFound, OrderClosed, ProductNotFound, InsufficientQuantityException, OrderItemNotFound, BarCodeNotFound {
-        OrderItem<? extends Product> item = OrderItemGenerator.generateOrderItem(product);
-        OrderItemInfo details = new OrderItemInfo(item.getId(), item.getProduct().getId(), item.getQuantity());
+        OrderItem item = OrderItemGenerator.generateOrderItem(product);
+        OrderItemInfo details = new OrderItemInfo(item.getId(), item.getProduct().getId());
         if (item.getBarCode() != null) {
             details.setBarCodeId(item.getBarCode().getId());
         }

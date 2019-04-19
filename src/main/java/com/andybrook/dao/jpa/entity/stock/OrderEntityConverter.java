@@ -4,17 +4,13 @@ import com.andybrook.annotation.EntityConverter;
 import com.andybrook.dao.jpa.entity.customer.CustomerEntity;
 import com.andybrook.dao.jpa.entity.factory.EntityFactory;
 import com.andybrook.dao.jpa.entity.factory.IEntityConverter;
-import com.andybrook.model.Order;
-import com.andybrook.model.OrderItem;
+import com.andybrook.model.order.Order;
+import com.andybrook.model.order.OrderItem;
 import com.andybrook.model.customer.Customer;
-import com.andybrook.model.product.Product;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
-import java.util.function.Function;
 import java.util.stream.Collectors;
 
 @Component

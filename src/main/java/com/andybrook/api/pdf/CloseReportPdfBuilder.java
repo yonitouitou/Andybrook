@@ -1,8 +1,8 @@
 package com.andybrook.api.pdf;
 
 import com.andybrook.language.Msg.Pdf;
-import com.andybrook.model.Order;
-import com.andybrook.model.OrderItem;
+import com.andybrook.model.order.Order;
+import com.andybrook.model.order.OrderItem;
 import com.andybrook.model.customer.Owner;
 import com.andybrook.model.customer.Store;
 import com.andybrook.model.product.Product;
@@ -11,7 +11,6 @@ import com.itextpdf.text.Font.FontFamily;
 import com.itextpdf.text.pdf.PdfPCell;
 import com.itextpdf.text.pdf.PdfPTable;
 import com.itextpdf.text.pdf.PdfWriter;
-import com.itextpdf.text.pdf.draw.LineSeparator;
 import org.springframework.stereotype.Component;
 import org.springframework.util.ResourceUtils;
 
@@ -196,17 +195,18 @@ public class CloseReportPdfBuilder extends AbstractPdfBuilder implements IPdfBui
         return table;
     }
 
-    private void addCustomerDetailsFirstRow(PdfPTable table, Order report) {
-        Store store = report.getCustomer().getStore();
+    private void addCustomerDetailsFirstRow(PdfPTable table, Order order) {
+        Store store = order.getCustomer().getStore();
         Owner owner = store.getOwner();
         table.addCell(getStringCell(store.getName()));
         table.addCell(getStringCell(owner.getFirstName() + " " + owner.getLastName()));
     }
 
-    private void addCustomerDetailsSecondRow(PdfPTable table, Order report) {
-        table.addCell(getStringCell("12 avenue du 8 mai 1945 - 95200 Sarcelles"));
-        table.addCell(getStringCell("01 39 90 12 47"));
-        table.addCell(getStringCell("yoni@gmail.com"));
+    private void addCustomerDetailsSecondRow(PdfPTable table, Order order) {
+        Store store = order.getCustomer().getStore();
+        table.addCell(getStringCell(store.getAddress()));
+        table.addCell(getStringCell("01.39.87.54.54"));
+        table.addCell(getStringCell(store.getEmail()));
     }
 
     private void addTableHeader(PdfPTable table, String[] columnsName) {
@@ -222,13 +222,13 @@ public class CloseReportPdfBuilder extends AbstractPdfBuilder implements IPdfBui
                 });
     }
 
-    private void addRows(PdfPTable table, Order report) {
-        for (OrderItem<? extends Product> item : report.getItems()) {
+    private void addRows(PdfPTable table, Order order) {
+        for (OrderItem item : order.getItems()) {
             table.addCell(getStringCell(String.valueOf(item.getId())));;
             table.addCell(getStringCell(item.getProduct().getName()));
-            table.addCell(getNumericCell(String.valueOf(item.getQuantity())));
+            table.addCell(getNumericCell(String.valueOf(order.calculateQuantityOfProduct(item.getProduct().getId()))));
             table.addCell(getNumericCell(PRICE_FORMATTER.format(item.getProduct().getPrice()) + "€"));
-            table.addCell(getNumericCell(PRICE_FORMATTER.format(report.getItem(item.getId()).calculateTotalPrice()) + "€"));
+            table.addCell(getNumericCell(PRICE_FORMATTER.format(order.calculateTotalPriceByProduct(item.getProduct().getId()) + "€")));
         }
         PdfPCell totalCell = new PdfPCell(new Phrase
                                 (languageResolver.get(Pdf.TOTAL).toUpperCase(),
@@ -245,7 +245,7 @@ public class CloseReportPdfBuilder extends AbstractPdfBuilder implements IPdfBui
         table.addCell(emptyCell);
 
         PdfPCell ttlPriceCell = new PdfPCell(new Phrase(
-                        PRICE_FORMATTER.format(report.getTotalPrice()) + "€",
+                        PRICE_FORMATTER.format(order.calculateTotalPrice()) + "€",
                                 new Font(FontFamily.TIMES_ROMAN, TEXT_FONT_SIZE_11, Font.BOLD)));
         ttlPriceCell.setHorizontalAlignment(Element.ALIGN_RIGHT);
         ttlPriceCell.setVerticalAlignment(Element.ALIGN_CENTER);
@@ -302,11 +302,6 @@ public class CloseReportPdfBuilder extends AbstractPdfBuilder implements IPdfBui
         cell.setVerticalAlignment(Element.ALIGN_CENTER);
         cell.setPadding(PADDING_3);
         return cell;
-    }
-
-    private void addLineSeparator(Document document) throws DocumentException {
-        LineSeparator line = new LineSeparator();
-        document.add(line);
     }
 
     private void addEmptyRow(Document document, int nb) throws DocumentException {

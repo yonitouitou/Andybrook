@@ -1,7 +1,7 @@
 package com.andybrook.service.notification;
 
 import com.andybrook.exception.OrderNotFound;
-import com.andybrook.model.Order;
+import com.andybrook.model.order.Order;
 import com.andybrook.model.notification.event.ctx.CloseReportEvent;
 import com.andybrook.service.order.IOrderService;
 import org.springframework.beans.factory.annotation.Autowired;

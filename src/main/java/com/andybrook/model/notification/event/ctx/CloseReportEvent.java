@@ -1,6 +1,6 @@
 package com.andybrook.model.notification.event.ctx;
 
-import com.andybrook.model.Order;
+import com.andybrook.model.order.Order;
 
 public class CloseReportEvent {
 

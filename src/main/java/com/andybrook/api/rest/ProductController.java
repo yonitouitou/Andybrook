@@ -17,7 +17,7 @@ import java.util.List;
 @RequestMapping("v1/product")
 public class ProductController extends AbstractController {
 
-    private static Logger LOGGER = System.getLogger(OrderItemController.class.getSimpleName());
+    private static Logger LOGGER = System.getLogger(ProductController.class.getSimpleName());
 
     @Autowired
     private IProductManager productManager;

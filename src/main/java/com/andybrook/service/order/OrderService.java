@@ -3,8 +3,8 @@ package com.andybrook.service.order;
 import com.andybrook.dao.order.IOrderDao;
 import com.andybrook.exception.*;
 import com.andybrook.language.LanguageResolver;
-import com.andybrook.model.Order;
-import com.andybrook.model.OrderItem;
+import com.andybrook.model.order.Order;
+import com.andybrook.model.order.OrderItem;
 import com.andybrook.model.customer.Customer;
 import com.andybrook.model.product.Product;
 import com.andybrook.model.request.order.NewOrderRequest;
@@ -96,14 +96,15 @@ public class OrderService implements IOrderService {
     }
 
     @Override
-    public OrderItem<? extends Product> addOrUpdateOrderItem(long orderId, OrderItemInfo info)
+    public OrderItem addOrUpdateOrderItem(long orderId, OrderItemInfo info)
             throws OrderNotFound, OrderClosed, ProductNotFound, OrderItemNotFound, InsufficientQuantityException, BarCodeNotFound {
-        OrderItem<? extends Product> orderItemToUpdate;
+        OrderItem orderItemToUpdate;
         Order order = getOrderById(orderId);
         if (canModifyOrder(order)) {
-            orderItemToUpdate = order.hasProduct(info.getProductId())
+            orderItemToUpdate = addOrderItem(order, info);
+            /*orderItemToUpdate = order.hasProduct(info.getProductId())
                     ? updateOrderItem(order, info)
-                    : addOrderItem(order, info);
+                    : addOrderItem(order, info);*/
         } else {
             throw new OrderClosed(orderId);
         }
@@ -115,7 +116,7 @@ public class OrderService implements IOrderService {
         Order order = getOrderById(orderId);
         if (canModifyOrder(order)) {
             if (order.getItem(orderItemId) != null) {
-                OrderItem<? extends Product> deletedOrderItem = order.deleteItem(orderItemId);
+                OrderItem deletedOrderItem = order.deleteItem(orderItemId);
                 order = dao.updateOrder(order);
                 orderItemService.postDeletion(deletedOrderItem);
             } else {
@@ -127,23 +128,24 @@ public class OrderService implements IOrderService {
         return order;
     }
 
-    private OrderItem<? extends Product> addOrderItem(Order order, OrderItemInfo info) throws ProductNotFound, InsufficientQuantityException, BarCodeNotFound {
-        OrderItem<? extends Product> orderItemToUpdate = orderItemService.createOrderItem(info);
+    private OrderItem addOrderItem(Order order, OrderItemInfo info) throws ProductNotFound, InsufficientQuantityException, BarCodeNotFound {
+        OrderItem orderItemToUpdate = orderItemService.createOrderItem(info);
         order.addItem(orderItemToUpdate);
         order = dao.updateOrder(order);
         return order.getItem(orderItemToUpdate.getId());
     }
 
-    private OrderItem<? extends Product> updateOrderItem(Order order, OrderItemInfo info) throws InsufficientQuantityException, OrderItemNotFound {
-        long existingOrderItemId = order.getOrderItemIdByProductId(info.getProductId());
-        OrderItem<? extends Product> orderItem = order.getItem(existingOrderItemId);
+    private OrderItem updateOrderItem(Order order, OrderItemInfo info) throws InsufficientQuantityException, OrderItemNotFound {
+        /*long existingOrderItemId = order.getOrderItemIdByProductId(info.getProductId());
+        OrderItem orderItem = order.getItem(existingOrderItemId);
         if (orderItem != null) {
             orderItemService.updateOrderItem(orderItem, info);
             dao.updateOrder(order);
         } else {
             throw new OrderItemNotFound(info.getId());
         }
-        return orderItem;
+        return orderItem;*/
+        return null;
     }
 
     private Order getOrderById(long id) throws OrderNotFound {

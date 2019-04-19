@@ -53,7 +53,7 @@ public abstract class ProductEntity {
 
     @LastModifiedDate
     @Column(name = "lastmodifieddatetime", nullable = false)
-    private LocalDateTime lastModifiedDateTime;
+    private LocalDateTime lastModifiedDatetime;
 
     protected ProductEntity() {
     }
@@ -115,12 +115,12 @@ public abstract class ProductEntity {
         this.createdDatetime = createdDatetime;
     }
 
-    public LocalDateTime getLastModifiedDateTime() {
-        return lastModifiedDateTime;
+    public LocalDateTime getLastModifiedDatetime() {
+        return lastModifiedDatetime;
     }
 
-    public void setLastModifiedDateTime(LocalDateTime lastModifiedDateTime) {
-        this.lastModifiedDateTime = lastModifiedDateTime;
+    public void setLastModifiedDatetime(LocalDateTime lastModifiedDatetime) {
+        this.lastModifiedDatetime = lastModifiedDatetime;
     }
 
     public int getQuantityCreated() {
@@ -163,7 +163,7 @@ public abstract class ProductEntity {
                 ", quantityUsed=" + quantityUsed +
                 ", barCodeEntities=" + barCodeEntities +
                 ", createdDatetime=" + createdDatetime +
-                ", lastModifiedDateTime=" + lastModifiedDateTime +
+                ", lastModifiedDatetime=" + lastModifiedDatetime +
                 '}';
     }
 }

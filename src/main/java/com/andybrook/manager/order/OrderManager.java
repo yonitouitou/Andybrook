@@ -2,8 +2,8 @@ package com.andybrook.manager.order;
 
 import com.andybrook.exception.*;
 import com.andybrook.manager.notification.INotificationManager;
-import com.andybrook.model.Order;
-import com.andybrook.model.OrderItem;
+import com.andybrook.model.order.Order;
+import com.andybrook.model.order.OrderItem;
 import com.andybrook.model.product.Product;
 import com.andybrook.model.request.order.NewOrderRequest;
 import com.andybrook.model.request.order.UpdateOrderRequest;
@@ -71,7 +71,7 @@ public class OrderManager implements IOrderManager {
     }
 
     @Override
-    public OrderItem<? extends Product> addOrderItem(OrderItemAddRequest request)
+    public OrderItem addOrderItem(OrderItemAddRequest request)
             throws OrderNotFound, OrderClosed, ProductNotFound, InsufficientQuantityException, OrderItemNotFound, BarCodeNotFound {
         if (! OrderItemAddRequest.isValid(request)) {
             throw new IllegalArgumentException("Order item add request is not valid : " + request.toString());
@@ -80,7 +80,7 @@ public class OrderManager implements IOrderManager {
     }
 
     @Override
-    public OrderItem<? extends Product> updateOrderItem(OrderItemUpdateRequest request)
+    public OrderItem updateOrderItem(OrderItemUpdateRequest request)
             throws OrderNotFound, OrderClosed, OrderItemNotFound, InsufficientQuantityException, ProductNotFound, BarCodeNotFound {
         if (! OrderItemUpdateRequest.isValid(request)) {
             throw new IllegalArgumentException("OrderItemUpdateRequest is not valid : " + request.toString());

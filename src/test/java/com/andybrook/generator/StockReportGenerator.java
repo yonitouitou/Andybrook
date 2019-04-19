@@ -1,6 +1,6 @@
 package com.andybrook.generator;
 
-import com.andybrook.model.Order;
+import com.andybrook.model.order.Order;
 
 import java.util.concurrent.ThreadLocalRandom;
 

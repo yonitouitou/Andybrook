@@ -32,9 +32,6 @@ public abstract class OrderItemEntity {
     @Column(name = "producttype")
     protected ProductType productType;
 
-    @Column(name = "quantity")
-    protected int quantity;
-
     @ManyToOne
     @JoinColumn(name = "orderid", nullable = false)
     protected OrderEntity orderEntity;
@@ -51,11 +48,10 @@ public abstract class OrderItemEntity {
     @Column(name = "lastmodifieddatetime")
     protected LocalDateTime lastModifiedDatetime;
 
-    protected OrderItemEntity(Long id, OrderEntity orderEntity, ProductEntity productEntity, ProductType productType, int quantity) {
+    protected OrderItemEntity(Long id, OrderEntity orderEntity, ProductEntity productEntity, ProductType productType) {
         this.id = id;
         this.productEntity = productEntity;
         this.productType = productType;
-        this.quantity = quantity;
         this.orderEntity = orderEntity;
     }
 
@@ -81,14 +77,6 @@ public abstract class OrderItemEntity {
 
     public void setProductType(ProductType productType) {
         this.productType = productType;
-    }
-
-    public int getQuantity() {
-        return quantity;
-    }
-
-    public void setQuantity(int quantity) {
-        this.quantity = quantity;
     }
 
     public LocalDateTime getCreatedDatetime() {

@@ -1,11 +1,10 @@
 package com.andybrook.dao.stock;
 
-import com.andybrook.dao.jpa.entity.factory.EntityFactory;
 import com.andybrook.dao.jpa.crudrepository.IOrderItemCrudRepository;
+import com.andybrook.dao.jpa.entity.factory.EntityFactory;
 import com.andybrook.dao.jpa.entity.stock.OrderItemEntity;
-import com.andybrook.model.Order;
-import com.andybrook.model.OrderItem;
-import com.andybrook.model.product.Product;
+import com.andybrook.model.order.Order;
+import com.andybrook.model.order.OrderItem;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -19,38 +18,14 @@ public class OrderItemDao implements IOrderItemDao {
     @Autowired
     private IOrderItemCrudRepository repository;
     @Autowired
-    private IBarCodeDao barCodeDao;
-    @Autowired
     private EntityFactory entityFactory;
 
     @Override
-    public <T extends Product> Optional<OrderItem<T>> getOrderItem(long id) {
-        Optional<OrderItem<T>> StockItemEntityOpt = Optional.empty();
-        Optional<OrderItemEntity> entityOpt = findOne(id);
-        if (entityOpt.isPresent()) {
-            OrderItemEntity entity = entityOpt.get();
-            OrderItem<T> orderItem = entityFactory.createOrderItem(entity);
-            StockItemEntityOpt = Optional.of(orderItem);
-        }
-        return StockItemEntityOpt;
-    }
-
-    @Override
-    public <T extends Product> OrderItem<T> updateStockItem(Order order, OrderItem<T> item) {
-        OrderItemEntity entity = entityFactory.createOrderItemEntity(order, item);
+    public OrderItem updateStockItem(Order order, OrderItem item) {
+        /*OrderItemEntity entity = entityFactory.createOrderItemEntity(order, item);
         OrderItemEntity entitySaved = repository.save(entity);
-        return entityFactory.createOrderItem(entitySaved);
-    }
-
-    @Override
-    public <T extends Product> Map<Long, OrderItem<T>> getAllStockItems() {
-        Map<Long, OrderItem<T>> itemsMapById = new HashMap<>();
-        Iterable<OrderItemEntity> entities = repository.findAll();
-        entities.forEach(e -> {
-            OrderItem orderItem = entityFactory.createOrderItem(e);
-            itemsMapById.put(orderItem.getId(), orderItem);
-        });
-        return itemsMapById;
+        return entityFactory.createOrderItem(entitySaved);*/
+        return null;
     }
 
     @Override

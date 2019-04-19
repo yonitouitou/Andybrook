@@ -6,9 +6,11 @@ import java.util.UUID;
 public class BarCode {
 
     private final String id;
+    private boolean isUsed;
 
     public BarCode() {
         id = UUID.randomUUID().toString();
+        isUsed = false;
     }
 
     public BarCode(String id) {
@@ -17,6 +19,14 @@ public class BarCode {
 
     public String getId() {
         return id;
+    }
+
+    public boolean isUsed() {
+        return isUsed;
+    }
+
+    public void setUsed(boolean used) {
+        isUsed = used;
     }
 
     @Override
@@ -36,6 +46,7 @@ public class BarCode {
     public String toString() {
         return "BarCode{" +
                 "id='" + id + '\'' +
+                ", isUsed=" + isUsed +
                 '}';
     }
 }

@@ -11,10 +11,10 @@ import com.andybrook.dao.jpa.entity.stock.*;
 import com.andybrook.dao.jpa.entity.store.StoreEntity;
 import com.andybrook.enums.ProductType;
 import com.andybrook.model.BarCode;
-import com.andybrook.model.OrderItem;
+import com.andybrook.model.order.OrderItem;
 import com.andybrook.model.customer.Customer;
 import com.andybrook.model.customer.Owner;
-import com.andybrook.model.Order;
+import com.andybrook.model.order.Order;
 import com.andybrook.model.customer.Store;
 import com.andybrook.model.notification.NotificationPolicy;
 import com.andybrook.model.product.Product;
@@ -80,19 +80,13 @@ public final class EntityFactory {
         return (T) converter.toModel(entity);
     }
 
-    public final <T extends Product> OrderItemEntity createOrderItemEntity(Order order, OrderItem<T> model) {
-        OrderEntity orderEntity = createOrderEntity(order);
-        OrderItemEntityConverter converter = (OrderItemEntityConverter) entityConverterMapByModelClass.get(model.getClass());
-        return converter.toEntity(orderEntity, model);
-    }
-
-    public final <T extends Product> OrderItem<T> createOrderItem(OrderItemEntity entity) {
-        IEntityConverter converter = entityConverterMapByProductType.get(entity.getProductType());
-        return (OrderItem<T>) converter.toModel(entity);
+    public final <T extends Product> OrderItem createOrderItem(OrderItemEntity entity) {
+        OrderItemEntityConverter converter = (OrderItemEntityConverter) entityConverterMapByProductType.get(entity.getProductType());
+        return converter.toModel(entity);
     }
 
     public final OrderItemEntity createOrderItemEntityByProductType(OrderEntity orderEntity, OrderItem orderItem) {
-        GlassesStockItemEntityConverter converter = (GlassesStockItemEntityConverter) entityConverterMapByProductType.get(orderItem.getProduct().getType());
+        GlassesOrderItemEntityConverter converter = (GlassesOrderItemEntityConverter) entityConverterMapByProductType.get(orderItem.getProduct().getType());
         return converter.toEntity(orderEntity, orderItem);
     }
 

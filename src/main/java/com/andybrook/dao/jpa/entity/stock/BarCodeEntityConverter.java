@@ -18,7 +18,11 @@ public class BarCodeEntityConverter implements IEntityConverter<BarCode, BarCode
 
     @Override
     public BarCode toModel(BarCodeEntity entity) {
-        return new BarCode(entity.getId());
+        BarCode barCode = new BarCode(entity.getId());
+        if (entity.getProductEntity() != null) {
+            barCode.setUsed(true);
+        }
+        return barCode;
     }
 
     @Override

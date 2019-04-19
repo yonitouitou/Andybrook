@@ -1,8 +1,8 @@
 package com.andybrook.service.order;
 
 import com.andybrook.exception.*;
-import com.andybrook.model.Order;
-import com.andybrook.model.OrderItem;
+import com.andybrook.model.order.Order;
+import com.andybrook.model.order.OrderItem;
 import com.andybrook.model.product.Product;
 import com.andybrook.model.request.order.NewOrderRequest;
 import com.andybrook.model.request.order.UpdateOrderRequest;
@@ -33,7 +33,7 @@ public interface IOrderService {
 
     boolean canModifyOrder(Order order);
 
-    OrderItem<? extends Product> addOrUpdateOrderItem(long orderId, OrderItemInfo info) throws OrderNotFound, OrderClosed, ProductNotFound, OrderItemNotFound, InsufficientQuantityException, BarCodeNotFound;
+    OrderItem addOrUpdateOrderItem(long orderId, OrderItemInfo info) throws OrderNotFound, OrderClosed, ProductNotFound, OrderItemNotFound, InsufficientQuantityException, BarCodeNotFound;
 
     Order deleteOrderItem(long orderId, long orderItemId) throws OrderNotFound, OrderClosed, OrderItemNotFound;
 }
