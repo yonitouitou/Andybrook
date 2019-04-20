@@ -3,10 +3,10 @@ package com.andybrook.manager.order;
 import com.andybrook.exception.*;
 import com.andybrook.model.order.Order;
 import com.andybrook.model.order.OrderItem;
-import com.andybrook.model.product.Product;
 import com.andybrook.model.request.order.NewOrderRequest;
 import com.andybrook.model.request.order.UpdateOrderRequest;
 import com.andybrook.model.request.orderitem.OrderItemAddRequest;
+import com.andybrook.model.request.orderitem.OrderItemAddRequestByBarCode;
 import com.andybrook.model.request.orderitem.OrderItemDeleteRequest;
 import com.andybrook.model.request.orderitem.OrderItemUpdateRequest;
 
@@ -31,9 +31,9 @@ public interface IOrderManager {
 
     List<Order> getOrders(List<Long> ids);
 
-    OrderItem addOrderItem(OrderItemAddRequest request) throws OrderNotFound, OrderClosed, ProductNotFound, InsufficientQuantityException, OrderItemNotFound, BarCodeNotFound;
+    List<OrderItem> addOrderItems(OrderItemAddRequest request) throws OrderNotFound, OrderClosed, ProductNotFound, InsufficientQuantityException, OrderItemNotFound, BarCodeNotFound;
 
-    OrderItem updateOrderItem(OrderItemUpdateRequest request) throws OrderNotFound, OrderClosed, OrderItemNotFound, InsufficientQuantityException, ProductNotFound, BarCodeNotFound;
+    OrderItem addOrderItemByBarCode(OrderItemAddRequestByBarCode request);
 
     Order deleteOrderItem(OrderItemDeleteRequest request) throws OrderNotFound, OrderClosed, OrderItemNotFound;
 }

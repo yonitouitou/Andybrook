@@ -1,15 +1,17 @@
 package com.andybrook.service.order;
 
 import com.andybrook.exception.*;
+import com.andybrook.model.BarCode;
 import com.andybrook.model.order.OrderItem;
-import com.andybrook.model.product.Product;
-import com.andybrook.model.request.orderitem.OrderItemInfo;
+import com.andybrook.model.request.orderitem.ProductItemInfo;
+
+import java.util.List;
 
 public interface IOrderItemService {
 
-    OrderItem createOrderItem(OrderItemInfo info) throws ProductNotFound, InsufficientQuantityException, BarCodeNotFound;
+    List<OrderItem> createOrderItems(ProductItemInfo info, int quantityRequested);
 
-    OrderItem updateOrderItem(OrderItem orderItem, OrderItemInfo info) throws InsufficientQuantityException;
+    OrderItem createSingleItemByBarCode(BarCode barCode);
 
     void postDeletion(OrderItem orderItemId) throws OrderItemNotFound;
 

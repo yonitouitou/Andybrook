@@ -49,6 +49,6 @@ public class ProductController extends AbstractController {
     @PostMapping(path = "/addBarcode")
     public void addBarCode(long stockItemId, BarCode barCode) throws ProductNotFound, BarCodeAlreadyExist {
         LOGGER.log(Level.INFO, "Request received to add barcode " + barCode.getId() + "to : " + stockItemId);
-        productManager.addBarCode(stockItemId, barCode);
+        //productManager.addBarCode(stockItemId, barCode);
     }
 }

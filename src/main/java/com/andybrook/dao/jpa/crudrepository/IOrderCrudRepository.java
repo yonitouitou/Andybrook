@@ -1,6 +1,6 @@
 package com.andybrook.dao.jpa.crudrepository;
 
-import com.andybrook.dao.jpa.entity.stock.OrderEntity;
+import com.andybrook.dao.jpa.entity.order.OrderEntity;
 import com.andybrook.enums.OrderStatus;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;

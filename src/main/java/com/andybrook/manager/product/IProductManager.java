@@ -16,8 +16,6 @@ public interface IProductManager {
 
     List<? extends Product> getByNameContaining(String name);
 
-    void addBarCode(long productId, BarCode barCode) throws BarCodeAlreadyExist, ProductNotFound;
-
     List<Pair<Long, String>> getAllProductNamesWithQuantityMoreThan(int quantity);
 
     Product getProduct(long id) throws ProductNotFound;

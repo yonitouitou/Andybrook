@@ -5,7 +5,6 @@ import com.andybrook.model.order.Order;
 import com.andybrook.model.order.OrderItem;
 import com.andybrook.model.customer.Owner;
 import com.andybrook.model.customer.Store;
-import com.andybrook.model.product.Product;
 import com.itextpdf.text.*;
 import com.itextpdf.text.Font.FontFamily;
 import com.itextpdf.text.pdf.PdfPCell;
@@ -225,10 +224,10 @@ public class CloseReportPdfBuilder extends AbstractPdfBuilder implements IPdfBui
     private void addRows(PdfPTable table, Order order) {
         for (OrderItem item : order.getItems()) {
             table.addCell(getStringCell(String.valueOf(item.getId())));;
-            table.addCell(getStringCell(item.getProduct().getName()));
-            table.addCell(getNumericCell(String.valueOf(order.calculateQuantityOfProduct(item.getProduct().getId()))));
-            table.addCell(getNumericCell(PRICE_FORMATTER.format(item.getProduct().getPrice()) + "€"));
-            table.addCell(getNumericCell(PRICE_FORMATTER.format(order.calculateTotalPriceByProduct(item.getProduct().getId()) + "€")));
+            table.addCell(getStringCell(item.getProductItem().getName()));
+            table.addCell(getNumericCell(String.valueOf(order.calculateQuantityOfProduct(item.getProductItem().getId()))));
+            table.addCell(getNumericCell(PRICE_FORMATTER.format(item.getProductItem().getPrice()) + "€"));
+            table.addCell(getNumericCell(PRICE_FORMATTER.format(order.calculateTotalPriceByProduct(item.getProductItem().getId()) + "€")));
         }
         PdfPCell totalCell = new PdfPCell(new Phrase
                                 (languageResolver.get(Pdf.TOTAL).toUpperCase(),

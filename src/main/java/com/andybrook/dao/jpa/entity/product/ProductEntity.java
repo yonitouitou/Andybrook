@@ -34,18 +34,9 @@ public abstract class ProductEntity {
     @Column(name = "price", nullable = false)
     protected double price;
 
-    @Column(name = "quantitycreated", nullable = false)
-    protected int quantityCreated;
-
-    @Column(name = "quantityused", nullable = false)
-    protected int quantityUsed;
-
     @Transient
     @Column(name = "type", nullable = false)
     protected ProductType type;
-
-    @OneToMany(fetch = FetchType.EAGER, mappedBy = "productEntity", cascade=CascadeType.ALL)
-    protected Set<BarCodeEntity> barCodeEntities;
 
     @CreatedDate
     @Column(name = "createddatetime", nullable = false, updatable = false)
@@ -58,13 +49,11 @@ public abstract class ProductEntity {
     protected ProductEntity() {
     }
 
-    public ProductEntity(Long id, String name, double price, ProductType type, int quantityCreated, int quantityUsed) {
+    public ProductEntity(Long id, String name, double price, ProductType type) {
         this.id = id;
         this.name = name;
         this.price = price;
         this.type = type;
-        this.quantityCreated = quantityCreated;
-        this.quantityUsed = quantityUsed;
     }
 
     public Long getId() {
@@ -99,14 +88,6 @@ public abstract class ProductEntity {
         this.type = type;
     }
 
-    public Set<BarCodeEntity> getBarCodeEntities() {
-        return barCodeEntities;
-    }
-
-    public void setBarCodeEntities(Set<BarCodeEntity> barCodeEntities) {
-        this.barCodeEntities = barCodeEntities;
-    }
-
     public LocalDateTime getCreatedDatetime() {
         return createdDatetime;
     }
@@ -121,22 +102,6 @@ public abstract class ProductEntity {
 
     public void setLastModifiedDatetime(LocalDateTime lastModifiedDatetime) {
         this.lastModifiedDatetime = lastModifiedDatetime;
-    }
-
-    public int getQuantityCreated() {
-        return quantityCreated;
-    }
-
-    public void setQuantityCreated(int quantityCreated) {
-        this.quantityCreated = quantityCreated;
-    }
-
-    public int getQuantityUsed() {
-        return quantityUsed;
-    }
-
-    public void setQuantityUsed(int quantityUsed) {
-        this.quantityUsed = quantityUsed;
     }
 
     @Override
@@ -159,9 +124,6 @@ public abstract class ProductEntity {
                 ", name='" + name + '\'' +
                 ", price=" + price +
                 ", type=" + type +
-                ", quantityCreated=" + quantityCreated +
-                ", quantityUsed=" + quantityUsed +
-                ", barCodeEntities=" + barCodeEntities +
                 ", createdDatetime=" + createdDatetime +
                 ", lastModifiedDatetime=" + lastModifiedDatetime +
                 '}';

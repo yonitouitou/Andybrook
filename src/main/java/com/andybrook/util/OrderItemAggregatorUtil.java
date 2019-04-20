@@ -19,7 +19,7 @@ public final class OrderItemAggregatorUtil {
     public static final List<AggregatedOrderItem> getAggregatedOrderItems(Order order) {
         Map<? extends Product, List<OrderItem>> orderItemsByProductId = order.getItems()
                 .stream()
-                .collect(Collectors.groupingBy(OrderItem::getProduct));
+                .collect(Collectors.groupingBy(orderItem -> orderItem.getProductItem().getProduct()));
         return orderItemsByProductId.values()
                 .stream()
                 .map(AggregatedOrderItem::new)

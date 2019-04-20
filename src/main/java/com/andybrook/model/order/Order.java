@@ -3,7 +3,6 @@ package com.andybrook.model.order;
 import com.andybrook.enums.OrderStatus;
 import com.andybrook.exception.OrderClosed;
 import com.andybrook.model.customer.Customer;
-import com.andybrook.model.product.Product;
 
 import java.time.LocalDateTime;
 import java.util.*;
@@ -35,7 +34,7 @@ public class Order {
     public void addItem(OrderItem item) {
         synchronized (this) {
             items.put(item.getId(), item);
-            List<OrderItem> orderItems = itemsMapByProductId.computeIfAbsent(item.getProduct().getId(), l -> new LinkedList<>());
+            List<OrderItem> orderItems = itemsMapByProductId.computeIfAbsent(item.getProductItem().getId(), l -> new LinkedList<>());
             orderItems.add(item);
         }
     }

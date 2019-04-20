@@ -20,7 +20,5 @@ public interface IProductService {
 
     Product addProduct(Product product);
 
-    void addBarCode(long productId, BarCode barCode) throws BarCodeAlreadyExist, ProductNotFound;
-
     List<Pair<Long, String>> getAllProductNamesWithQuantityMoreThan(int quantity);
 }

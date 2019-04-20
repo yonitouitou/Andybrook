@@ -3,7 +3,7 @@ package com.andybrook.generator;
 import com.andybrook.model.BarCode;
 import com.andybrook.model.order.OrderItem;
 import com.andybrook.model.product.Product;
-import com.andybrook.model.request.orderitem.OrderItemInfo;
+import com.andybrook.model.request.orderitem.ProductItemInfo;
 
 import java.util.*;
 import java.util.concurrent.ThreadLocalRandom;
@@ -13,21 +13,23 @@ public final class OrderItemGenerator {
     private static final ThreadLocalRandom RANDOM = ThreadLocalRandom.current();
 
     public static OrderItem generateOrderItem(Product product) {
-        OrderItem item = new OrderItem(product);
+        /*OrderItem item = new OrderItem(product);
         Map<String, BarCode> barCodes = product.getBarCodes();
         if (! barCodes.isEmpty()) {
             item.setBarCode(getRandomBarCode(barCodes.values()));
         }
-        return item;
+        return item;*/
+        return null;
     }
 
-    public static OrderItemInfo generateOrderItemInfo(Product product) {
-        OrderItemInfo info = new OrderItemInfo(null, product.getId());
+    public static ProductItemInfo generateOrderItemInfo(Product product) {
+        /*ProductItemInfo info = new ProductItemInfo(null, product.getId());
         Map<String, BarCode> barCodes = product.getBarCodes();
         if (! barCodes.isEmpty()) {
             info.setBarCodeId(getRandomBarCode(barCodes.values()).getId());
         }
-        return info;
+        return info;*/
+        return null;
     }
 
     private static BarCode getRandomBarCode(Collection<BarCode> barCodes) {

@@ -4,10 +4,9 @@ import com.andybrook.ApplicationProperties;
 import com.andybrook.api.pdf.CloseReportPdfBuilder;
 import com.andybrook.api.pdf.IPdfBuilder;
 import com.andybrook.model.api.AggregatedOrderItem;
+import com.andybrook.model.api.Email;
 import com.andybrook.model.order.Order;
 import com.andybrook.model.order.OrderItem;
-import com.andybrook.model.api.Email;
-import com.andybrook.model.product.Product;
 import com.andybrook.model.setting.AdminSetting;
 import com.andybrook.util.OrderItemAggregatorUtil;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,7 +24,6 @@ import java.nio.file.Path;
 import java.time.ZoneId;
 import java.time.ZonedDateTime;
 import java.time.format.DateTimeFormatter;
-import java.util.Collection;
 import java.util.List;
 
 @Component
@@ -112,9 +110,9 @@ public class OrderClosedEmailNotification implements IEmailNotification<Order> {
 
     private void generateOrderItemCsvRow(StringBuilder sb, AggregatedOrderItem aggregatedOrderItem) {
         OrderItem orderItem = aggregatedOrderItem.getOrderItems().get(0);
-        sb.append(orderItem.getProduct().getName()).append(",")
+        sb.append(orderItem.getProductItem().getName()).append(",")
                 .append(aggregatedOrderItem.getQuantity()).append(",")
-                .append(orderItem.getProduct().getPrice())
+                .append(orderItem.getProductItem().getPrice())
                 .append(System.lineSeparator());
     }
 
@@ -159,9 +157,9 @@ public class OrderClosedEmailNotification implements IEmailNotification<Order> {
             sb.append(
                     "<tr align='center'>"
                             + "<td>" + orderItem.getId() + "</td>"
-                            + "<td>" + orderItem.getProduct().getName() + "</td>"
+                            + "<td>" + orderItem.getProductItem().getName() + "</td>"
                             + "<td>" + aggregatedOrderItem.getQuantity() + "</td>"
-                            + "<td>" + orderItem.getProduct().getPrice() + "</td>"
+                            + "<td>" + orderItem.getProductItem().getPrice() + "</td>"
                             + "</tr>"
             );
         }

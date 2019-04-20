@@ -16,22 +16,24 @@ public final class ProductGenerator {
     private static final ThreadLocalRandom RANDOM = ThreadLocalRandom.current();
 
     public static final Product generateProduct() {
-        Glasses glasses = new Glasses(null, "G" + System.currentTimeMillis(), RANDOM.nextInt(10, 100));
+        /*Glasses glasses = new Glasses(null, "G" + System.currentTimeMillis(), RANDOM.nextInt(10, 100));
         int barCodeSize = RANDOM.nextInt(1, 10);
         for (int i = 0; i < barCodeSize; i++) {
             BarCode barCode = generateBarCode();
             glasses.addBarCode(barCode);
         }
-        return glasses;
+        return glasses;*/
+        return null;
     }
 
     public static final Product generateProduct(int quantity) {
-        Glasses glasses = new Glasses(null, "G" + System.currentTimeMillis(), RANDOM.nextInt(10, 100));
+        /*Glasses glasses = new Glasses(null, "G" + System.currentTimeMillis(), RANDOM.nextInt(10, 100));
         for (int i = 0; i < quantity; i++) {
             BarCode barCode = generateBarCode();
             glasses.addBarCode(barCode);
         }
-        return glasses;
+        return glasses;*/
+        return null;
     }
 
     public static BarCode generateBarCode() {

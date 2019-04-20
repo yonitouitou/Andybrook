@@ -3,13 +3,13 @@ package com.andybrook.service.order;
 import com.andybrook.dao.order.IOrderDao;
 import com.andybrook.exception.*;
 import com.andybrook.language.LanguageResolver;
+import com.andybrook.model.BarCode;
 import com.andybrook.model.order.Order;
 import com.andybrook.model.order.OrderItem;
 import com.andybrook.model.customer.Customer;
-import com.andybrook.model.product.Product;
 import com.andybrook.model.request.order.NewOrderRequest;
 import com.andybrook.model.request.order.UpdateOrderRequest;
-import com.andybrook.model.request.orderitem.OrderItemInfo;
+import com.andybrook.model.request.orderitem.ProductItemInfo;
 import com.andybrook.service.customer.ICustomerService;
 import com.andybrook.service.setting.IAdminSettingService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -96,19 +96,28 @@ public class OrderService implements IOrderService {
     }
 
     @Override
-    public OrderItem addOrUpdateOrderItem(long orderId, OrderItemInfo info)
+    public List<OrderItem> addOrderItems(long orderId, ProductItemInfo info, int quantity)
             throws OrderNotFound, OrderClosed, ProductNotFound, OrderItemNotFound, InsufficientQuantityException, BarCodeNotFound {
-        OrderItem orderItemToUpdate;
+        List<OrderItem> orderItems;
         Order order = getOrderById(orderId);
         if (canModifyOrder(order)) {
-            orderItemToUpdate = addOrderItem(order, info);
-            /*orderItemToUpdate = order.hasProduct(info.getProductId())
-                    ? updateOrderItem(order, info)
-                    : addOrderItem(order, info);*/
+            orderItems = orderItemService.createOrderItems(info, quantity);
         } else {
             throw new OrderClosed(orderId);
         }
-        return orderItemToUpdate;
+        return orderItems;
+    }
+
+    @Override
+    public OrderItem addSingleOrderItemByBarCode(long orderId, String barCodeId) {
+        OrderItem orderItem;
+        Order order = getOrderById(orderId);
+        if (canModifyOrder(order)) {
+            orderItem = orderItemService.createSingleItemByBarCode(new BarCode(barCodeId));
+        } else {
+            throw new OrderClosed(orderId);
+        }
+        return orderItem;
     }
 
     @Override
@@ -126,26 +135,6 @@ public class OrderService implements IOrderService {
             throw new OrderClosed(orderId);
         }
         return order;
-    }
-
-    private OrderItem addOrderItem(Order order, OrderItemInfo info) throws ProductNotFound, InsufficientQuantityException, BarCodeNotFound {
-        OrderItem orderItemToUpdate = orderItemService.createOrderItem(info);
-        order.addItem(orderItemToUpdate);
-        order = dao.updateOrder(order);
-        return order.getItem(orderItemToUpdate.getId());
-    }
-
-    private OrderItem updateOrderItem(Order order, OrderItemInfo info) throws InsufficientQuantityException, OrderItemNotFound {
-        /*long existingOrderItemId = order.getOrderItemIdByProductId(info.getProductId());
-        OrderItem orderItem = order.getItem(existingOrderItemId);
-        if (orderItem != null) {
-            orderItemService.updateOrderItem(orderItem, info);
-            dao.updateOrder(order);
-        } else {
-            throw new OrderItemNotFound(info.getId());
-        }
-        return orderItem;*/
-        return null;
     }
 
     private Order getOrderById(long id) throws OrderNotFound {

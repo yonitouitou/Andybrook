@@ -4,24 +4,21 @@ import com.andybrook.exception.*;
 import com.andybrook.manager.notification.INotificationManager;
 import com.andybrook.model.order.Order;
 import com.andybrook.model.order.OrderItem;
-import com.andybrook.model.product.Product;
 import com.andybrook.model.request.order.NewOrderRequest;
 import com.andybrook.model.request.order.UpdateOrderRequest;
 import com.andybrook.model.request.orderitem.OrderItemAddRequest;
+import com.andybrook.model.request.orderitem.OrderItemAddRequestByBarCode;
 import com.andybrook.model.request.orderitem.OrderItemDeleteRequest;
 import com.andybrook.model.request.orderitem.OrderItemUpdateRequest;
 import com.andybrook.service.order.IOrderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.lang.System.Logger;
 import java.util.List;
 import java.util.Set;
 
 @Service
 public class OrderManager implements IOrderManager {
-
-    private static Logger LOGGER = System.getLogger(OrderManager.class.getSimpleName());
 
     @Autowired
     private IOrderService orderService;
@@ -71,21 +68,20 @@ public class OrderManager implements IOrderManager {
     }
 
     @Override
-    public OrderItem addOrderItem(OrderItemAddRequest request)
+    public List<OrderItem> addOrderItems(OrderItemAddRequest request)
             throws OrderNotFound, OrderClosed, ProductNotFound, InsufficientQuantityException, OrderItemNotFound, BarCodeNotFound {
         if (! OrderItemAddRequest.isValid(request)) {
             throw new IllegalArgumentException("Order item add request is not valid : " + request.toString());
         }
-        return orderService.addOrUpdateOrderItem(request.getOrderId(), request.getOrderItemInfo());
+        return orderService.addOrderItems(request.getOrderId(), request.getProductItemInfo(), request.getQuantityRequested());
     }
 
     @Override
-    public OrderItem updateOrderItem(OrderItemUpdateRequest request)
-            throws OrderNotFound, OrderClosed, OrderItemNotFound, InsufficientQuantityException, ProductNotFound, BarCodeNotFound {
-        if (! OrderItemUpdateRequest.isValid(request)) {
-            throw new IllegalArgumentException("OrderItemUpdateRequest is not valid : " + request.toString());
+    public OrderItem addOrderItemByBarCode(OrderItemAddRequestByBarCode request) {
+        if (! OrderItemAddRequestByBarCode.isValid(request)) {
+            throw new IllegalArgumentException("Order item add request by barcode is not valid : " + request.toString());
         }
-        return orderService.addOrUpdateOrderItem(request.getOrderId(), request.getOrderItemInfo());
+        return orderService.addSingleOrderItemByBarCode(request.getOrderId(), request.getBarCodeId());
     }
 
     @Override

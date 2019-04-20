@@ -46,7 +46,7 @@ public class BarCodeDao implements IBarCodeDao {
 
     @Override
     public BarCode save(Product product, BarCode barCode) {
-        //BarCodeEntity entity = entityFactory.createBarCodeEntity(product, barCode);
+        //BarCodeEntity entity = entityFactory.createBarCodeEntity(productItem, barCode);
         //BarCodeEntity savedEntity = crudRepository.save(entity);
         return null;
     }

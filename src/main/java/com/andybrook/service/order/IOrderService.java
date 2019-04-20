@@ -3,10 +3,9 @@ package com.andybrook.service.order;
 import com.andybrook.exception.*;
 import com.andybrook.model.order.Order;
 import com.andybrook.model.order.OrderItem;
-import com.andybrook.model.product.Product;
 import com.andybrook.model.request.order.NewOrderRequest;
 import com.andybrook.model.request.order.UpdateOrderRequest;
-import com.andybrook.model.request.orderitem.OrderItemInfo;
+import com.andybrook.model.request.orderitem.ProductItemInfo;
 
 import java.util.List;
 import java.util.Set;
@@ -33,7 +32,9 @@ public interface IOrderService {
 
     boolean canModifyOrder(Order order);
 
-    OrderItem addOrUpdateOrderItem(long orderId, OrderItemInfo info) throws OrderNotFound, OrderClosed, ProductNotFound, OrderItemNotFound, InsufficientQuantityException, BarCodeNotFound;
+    List<OrderItem> addOrderItems(long orderId, ProductItemInfo info, int quantity);
+
+    OrderItem addSingleOrderItemByBarCode(long orderId, String barCodeId);
 
     Order deleteOrderItem(long orderId, long orderItemId) throws OrderNotFound, OrderClosed, OrderItemNotFound;
 }

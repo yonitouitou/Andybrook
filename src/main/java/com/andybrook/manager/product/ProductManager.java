@@ -1,8 +1,6 @@
 package com.andybrook.manager.product;
 
-import com.andybrook.exception.BarCodeAlreadyExist;
 import com.andybrook.exception.ProductNotFound;
-import com.andybrook.model.BarCode;
 import com.andybrook.model.product.Product;
 import com.andybrook.service.product.IProductService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,7 +8,6 @@ import org.springframework.data.util.Pair;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Objects;
 
 @Service
 public class ProductManager implements IProductManager {
@@ -36,12 +33,6 @@ public class ProductManager implements IProductManager {
     @Override
     public List<? extends Product> getByNameContaining(String name) {
         return productService.getByNameContaining(name);
-    }
-
-    @Override
-    public void addBarCode(long productId, BarCode barCode) throws BarCodeAlreadyExist, ProductNotFound {
-        Objects.requireNonNull(barCode);
-        productService.addBarCode(productId, barCode);
     }
 
     @Override

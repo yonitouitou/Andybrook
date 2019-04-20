@@ -23,30 +23,11 @@ public class GlassesEntityConverter implements IEntityConverter<Glasses, Glasses
 
     @Override
     public Glasses toModel(GlassesEntity entity) {
-        Glasses glasses = new Glasses(entity.getId(), entity.getName(), entity.getPrice());
-        glasses.setQuantityCreated(entity.getQuantityCreated());
-        glasses.setQuantityUsed(entity.getQuantityUsed());
-        if (entity.getBarCodeEntities() != null) {
-            Map<String, BarCode> barCodes = new HashMap<>(entity.getBarCodeEntities().size());
-            for (BarCodeEntity barCodeEntity : entity.getBarCodeEntities()) {
-                BarCode barCode = entityFactory.createBarCode(barCodeEntity);
-                barCodes.put(barCode.getId(), barCode);
-            }
-            glasses.setBarCodes(barCodes);
-        }
-        return glasses;
+        return new Glasses(entity.getId(), entity.getName(), entity.getPrice());
     }
 
     @Override
     public GlassesEntity toEntity(Glasses model) {
-        GlassesEntity entity = new GlassesEntity(model.getId(), model.getName(), model.getPrice(), model.getQuantityCreated(), model.getQuantityUsed());
-        if (model.getBarCodes() != null) {
-            Set<BarCodeEntity> barCodeEntities = new HashSet<>(model.getBarCodes().size());
-            for (BarCode barCode : model.getBarCodes().values()) {
-                barCodeEntities.add(entityFactory.createBarCodeEntity(entity, barCode));
-            }
-            entity.setBarCodeEntities(barCodeEntities);
-        }
-        return entity;
+        return new GlassesEntity(model.getId(), model.getName(), model.getPrice());
     }
 }

@@ -10,14 +10,14 @@ export class ProductService {
     }
 
     get(id: number): Observable<any> {
-        return this.http.get("/v1/product/get/" + id)
+        return this.http.get("/v1/productItem/get/" + id)
     }
 
     getByBarCode(barCode: string): Observable<Product> {
-        return this.http.get("/v1/product/getByBarCode/" + barCode);
+        return this.http.get("/v1/productItem/getByBarCode/" + barCode);
     }
 
     getAllProductNames(): Observable<any> {
-        return this.http.get("/v1/product/getAllExistingProductNames")
+        return this.http.get("/v1/productItem/getAllExistingProductNames")
     }
 }

@@ -31,7 +31,7 @@ export class OrderService {
 
     addItem(order: Order, item: StockItem) : Observable<any> {
         console.log("Add item[ " + ", " + item.quantity + " to order " + order.id)
-        return this.httpApi.post("/v1/order/addOrderItem", this.toUpdateRequest(order, item))
+        return this.httpApi.post("/v1/order/addOrderItems", this.toUpdateRequest(order, item))
     }
 
     updateStockItem(order: Order, itemToUpdate: StockItem): Observable<any> {

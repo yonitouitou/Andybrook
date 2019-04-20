@@ -1,15 +1,13 @@
 package com.andybrook.api.rest;
 
-import com.andybrook.api.rest.ctx.GenericRequestById;
-import com.andybrook.api.rest.ctx.GenericRequestByIds;
+import com.andybrook.api.rest.ctx.*;
 import com.andybrook.exception.*;
 import com.andybrook.manager.order.IOrderManager;
 import com.andybrook.model.order.Order;
 import com.andybrook.model.order.OrderItem;
-import com.andybrook.model.api.rest.OrderItemRestRequest;
-import com.andybrook.model.product.Product;
 import com.andybrook.model.request.order.NewOrderRequest;
 import com.andybrook.model.request.orderitem.OrderItemAddRequest;
+import com.andybrook.model.request.orderitem.OrderItemAddRequestByBarCode;
 import com.andybrook.model.request.orderitem.OrderItemDeleteRequest;
 import com.andybrook.model.request.order.UpdateOrderRequest;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -71,11 +69,18 @@ public class OrderController extends AbstractController {
         return orderManager.getAll();
     }
 
-    @PostMapping(path = "/addOrderItem")
-    public OrderItem addOrderItem(@RequestBody OrderItemRestRequest request)
+    @PostMapping(path = "/addOrderItemsByInfo")
+    public List<OrderItem> addOrderItems(@RequestBody OrderItemAddRequestByInfo request)
             throws OrderNotFound, OrderClosed, ProductNotFound, InsufficientQuantityException, OrderItemNotFound, BarCodeNotFound {
         LOGGER.log(Level.INFO, "Request received to update order : " + request);
-        return orderManager.addOrderItem(new OrderItemAddRequest(request.getOrderId(), request.getOrderItemInfo()));
+        return orderManager.addOrderItems(new OrderItemAddRequest(request.getOrderId(), request.getProductItemInfo()));
+    }
+
+    @PostMapping(path = "/addSingleOrderItemsByBarCode")
+    public OrderItem addOrderItems(@RequestBody OrderItemAddByBarCodeRestRequest request)
+            throws OrderNotFound, OrderClosed, ProductNotFound, InsufficientQuantityException, OrderItemNotFound, BarCodeNotFound {
+        LOGGER.log(Level.INFO, "Request received to update order : " + request);
+        return orderManager.addOrderItemByBarCode(new OrderItemAddRequestByBarCode(request.getOrderId(), request.getBarCodeId()));
     }
 
     @DeleteMapping(path = "/deleteOrderItem/{orderId}/{orderItemId}")

@@ -1,18 +1,19 @@
 package com.andybrook.service.order;
 
 import com.andybrook.dao.stock.IOrderItemDao;
-import com.andybrook.exception.BarCodeNotFound;
 import com.andybrook.exception.InsufficientQuantityException;
-import com.andybrook.exception.ProductNotFound;
+import com.andybrook.exception.ProductItemNotFree;
 import com.andybrook.model.BarCode;
 import com.andybrook.model.order.OrderItem;
-import com.andybrook.model.product.Product;
-import com.andybrook.model.request.orderitem.OrderItemInfo;
-import com.andybrook.service.product.IBarCodeService;
-import com.andybrook.service.product.IProductService;
+import com.andybrook.model.request.orderitem.ProductItemInfo;
+import com.andybrook.model.stock.ProductItem;
+import com.andybrook.service.stock.IStockService;
 import com.andybrook.util.IdGenerator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.LinkedList;
+import java.util.List;
 
 @Service
 public class OrderItemService implements IOrderItemService {
@@ -20,42 +21,33 @@ public class OrderItemService implements IOrderItemService {
     @Autowired
     private IOrderItemDao dao;
     @Autowired
-    private IBarCodeService barCodeService;
-    @Autowired
-    private IProductService productService;
+    private IStockService stockService;
 
     @Override
-    public OrderItem createOrderItem(OrderItemInfo info) throws ProductNotFound, InsufficientQuantityException, BarCodeNotFound {
-        OrderItem orderItem;
-        Product product = productService.get(info.getProductId());
-        if (product.getQuantityUnused() > 0) {
-            product.incrementQuantityUsed();
-            product = productService.update(product);
-            orderItem = buildOrderItem(info, product);
+    public List<OrderItem> createOrderItems(ProductItemInfo info, int quantityRequested) {
+        List<OrderItem> orderItems = new LinkedList<>();
+        int freeQuantity = stockService.getFreeQuantity(info.getProductId());
+        if (freeQuantity >= quantityRequested) {
+            ProductItem productItem = stockService.getProductItem(info.getProductId());
+            orderItems.add(buildOrderItem(productItem));
         } else {
-            throw new InsufficientQuantityException(product.getQuantityUnused());
+            throw new InsufficientQuantityException(freeQuantity);
         }
-        return orderItem;
+        return orderItems;
     }
 
     @Override
-    public OrderItem updateOrderItem(OrderItem orderItem, OrderItemInfo info) throws InsufficientQuantityException {
-        /*Product product = orderItem.getProduct();
-        if (product.getQuantityUnused() >= info.getQuantity()) {
-            orderItem.incrementQuantity(info.getQuantity());
-            product.incrementQuantityUsed(info.getQuantity());
-        } else {
-            throw new InsufficientQuantityException(product.getQuantityUnused());
+    public OrderItem createSingleItemByBarCode(BarCode barCode) {
+        ProductItem productItem = stockService.getProductItemByBarCode(barCode);
+        if (productItem.isInOrder()) {
+            throw new ProductItemNotFree(productItem.getId());
         }
-        return orderItem;*/
-        return null;
+        return buildOrderItem(productItem);
     }
 
     @Override
     public void postDeletion(OrderItem deletedOrderItem) {
-        Product product = deletedOrderItem.getProduct();
-        product.decrementQuantityUsed();
-        productService.update(product);
+
     }
 
     @Override
@@ -63,16 +55,7 @@ public class OrderItemService implements IOrderItemService {
         return dao.isExist(id);
     }
 
-    private OrderItem buildOrderItem(OrderItemInfo info, Product product) throws BarCodeNotFound {
-        OrderItem orderItem = new OrderItem(IdGenerator.generateId(), product);
-        if (info.getBarCodeId() != null) {
-            BarCode barCode = barCodeService.get(info.getBarCodeId());
-            if (barCode != null) {
-                orderItem.setBarCode(barCode);
-            } else {
-                throw new BarCodeNotFound(info.getBarCodeId());
-            }
-        }
-        return orderItem;
+    private OrderItem buildOrderItem(ProductItem productItem) {
+        return new OrderItem(IdGenerator.generateId(), productItem);
     }
 }

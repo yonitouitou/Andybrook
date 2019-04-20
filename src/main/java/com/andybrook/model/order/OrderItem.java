@@ -2,6 +2,7 @@ package com.andybrook.model.order;
 
 import com.andybrook.model.BarCode;
 import com.andybrook.model.product.Product;
+import com.andybrook.model.stock.ProductItem;
 
 import java.time.LocalDateTime;
 import java.util.Objects;
@@ -9,21 +10,18 @@ import java.util.Objects;
 public final class OrderItem {
 
     protected Long id;
-    protected Product product;
-    protected BarCode barCode;
+    protected ProductItem productItem;
     protected LocalDateTime createdDatetime;
     protected LocalDateTime lastModifiedDatetime;
 
-    public OrderItem(Long id, Product product) {
+    public OrderItem(Long id, ProductItem productItem) {
         this.id = id;
-        this.product = product;
-        this.barCode = null;
+        this.productItem = productItem;
     }
 
-    public OrderItem(Product product) {
+    public OrderItem(ProductItem productItem) {
         this.id = null;
-        this.product = product;
-        this.barCode = null;
+        this.productItem = productItem;
     }
 
     public boolean exist() {
@@ -31,7 +29,7 @@ public final class OrderItem {
     }
 
     public double getProductPrice() {
-        return product.getPrice();
+        return productItem.getPrice();
     }
 
     public Long getId() {
@@ -42,20 +40,12 @@ public final class OrderItem {
         this.id = id;
     }
 
-    public Product getProduct() {
-        return product;
+    public ProductItem getProductItem() {
+        return productItem;
     }
 
-    public void setProduct(Product product) {
-        this.product = product;
-    }
-
-    public BarCode getBarCode() {
-        return barCode;
-    }
-
-    public void setBarCode(BarCode barCode) {
-        this.barCode = barCode;
+    public void setProductItem(ProductItem productItem) {
+        this.productItem = productItem;
     }
 
     public LocalDateTime getCreatedDatetime() {
@@ -91,8 +81,7 @@ public final class OrderItem {
     public String toString() {
         return "OrderItem{" +
                 "id=" + id +
-                ", product=" + product +
-                ", barCode=" + barCode +
+                ", productItem=" + productItem +
                 ", createdDatetime=" + createdDatetime +
                 ", lastModifiedDatetime=" + lastModifiedDatetime +
                 '}';

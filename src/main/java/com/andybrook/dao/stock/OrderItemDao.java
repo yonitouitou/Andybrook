@@ -2,14 +2,12 @@ package com.andybrook.dao.stock;
 
 import com.andybrook.dao.jpa.crudrepository.IOrderItemCrudRepository;
 import com.andybrook.dao.jpa.entity.factory.EntityFactory;
-import com.andybrook.dao.jpa.entity.stock.OrderItemEntity;
+import com.andybrook.dao.jpa.entity.order.OrderItemEntity;
 import com.andybrook.model.order.Order;
 import com.andybrook.model.order.OrderItem;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.HashMap;
-import java.util.Map;
 import java.util.Optional;
 
 @Service

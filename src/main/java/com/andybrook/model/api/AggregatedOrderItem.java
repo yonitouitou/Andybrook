@@ -2,6 +2,7 @@ package com.andybrook.model.api;
 
 import com.andybrook.model.order.OrderItem;
 import com.andybrook.model.product.Product;
+import com.andybrook.model.stock.ProductItem;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -21,8 +22,8 @@ public class AggregatedOrderItem {
     }
 
     private double calculateTotalPrice() {
-        Product product = orderItems.get(0).getProduct();
-        return getQuantity() * product.getPrice();
+        ProductItem productItem = orderItems.get(0).getProductItem();
+        return getQuantity() * productItem.getPrice();
     }
 
     public LocalDateTime findLastModifiedDatetime() {

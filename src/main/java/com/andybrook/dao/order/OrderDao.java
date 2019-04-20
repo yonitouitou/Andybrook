@@ -1,7 +1,7 @@
 package com.andybrook.dao.order;
 
 import com.andybrook.dao.jpa.entity.factory.EntityFactory;
-import com.andybrook.dao.jpa.entity.stock.OrderEntity;
+import com.andybrook.dao.jpa.entity.order.OrderEntity;
 import com.andybrook.dao.jpa.crudrepository.IOrderCrudRepository;
 import com.andybrook.exception.OrderNotFound;
 import com.andybrook.language.LanguageResolver;
@@ -14,7 +14,6 @@ import org.springframework.data.domain.Sort;
 import org.springframework.data.domain.Sort.Direction;
 import org.springframework.stereotype.Repository;
 
-import javax.transaction.Transactional;
 import java.util.*;
 import java.util.stream.Collectors;
 

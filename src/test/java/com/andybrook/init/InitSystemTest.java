@@ -13,7 +13,7 @@ import com.andybrook.model.customer.Store;
 import com.andybrook.model.product.Product;
 import com.andybrook.model.request.order.NewOrderRequest;
 import com.andybrook.model.request.orderitem.OrderItemAddRequest;
-import com.andybrook.model.request.orderitem.OrderItemInfo;
+import com.andybrook.model.request.orderitem.ProductItemInfo;
 import com.andybrook.service.customer.ICustomerService;
 import com.andybrook.util.clock.Clock;
 import org.junit.Test;
@@ -55,9 +55,9 @@ public class InitSystemTest {
                 for (int i = 0; i < itemToAddNb; i++) {
                     try {
                         Product product = products.get(RANDOM.nextInt(0, PRODUCT_NUMBER_200 - 1));
-                        if (product.getQuantityCreated() > 0) {
+                        /*if (product.getQuantityCreated() > 0) {
                             addOrderItem(id, product);
-                        }
+                        }*/
                     } catch (Exception e) {
                         System.err.println("Item not added to order. Reason : " + e.getMessage());
                     }
@@ -89,13 +89,13 @@ public class InitSystemTest {
 
     private void addOrderItem(long orderId, Product product)
             throws OrderNotFound, OrderClosed, ProductNotFound, InsufficientQuantityException, OrderItemNotFound, BarCodeNotFound {
-        OrderItem item = OrderItemGenerator.generateOrderItem(product);
-        OrderItemInfo details = new OrderItemInfo(item.getId(), item.getProduct().getId());
+        /*OrderItem item = OrderItemGenerator.generateOrderItem(product);
+        ProductItemInfo details = new ProductItemInfo(item.getId(), item.getProductItem().getId());
         if (item.getBarCode() != null) {
             details.setBarCodeId(item.getBarCode().getId());
         }
         OrderItemAddRequest request = new OrderItemAddRequest(orderId, details);
-        orderManager.addOrderItem(request);
+        orderManager.addOrderItems(request);*/
     }
 
     private List<Long> createOrders(Customer customer) throws StoreNotFound {

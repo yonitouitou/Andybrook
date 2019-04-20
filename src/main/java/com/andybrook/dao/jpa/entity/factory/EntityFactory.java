@@ -4,6 +4,9 @@ import com.andybrook.annotation.EntityConverter;
 import com.andybrook.annotation.StockItemEntityConverterByProductType;
 import com.andybrook.dao.jpa.entity.customer.CustomerEntity;
 import com.andybrook.dao.jpa.entity.customer.OwnerEntity;
+import com.andybrook.dao.jpa.entity.order.OrderEntity;
+import com.andybrook.dao.jpa.entity.order.OrderItemEntity;
+import com.andybrook.dao.jpa.entity.order.OrderItemEntityConverter;
 import com.andybrook.dao.jpa.entity.product.ProductEntity;
 import com.andybrook.dao.jpa.entity.setting.AdminSettingEntity;
 import com.andybrook.dao.jpa.entity.setting.notification.NotificationPolicyEntity;
@@ -19,6 +22,7 @@ import com.andybrook.model.customer.Store;
 import com.andybrook.model.notification.NotificationPolicy;
 import com.andybrook.model.product.Product;
 import com.andybrook.model.setting.AdminSetting;
+import com.andybrook.model.stock.ProductItem;
 import org.hibernate.Hibernate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
@@ -75,18 +79,28 @@ public final class EntityFactory {
         return (T) converter.toEntity(model);
     }
 
+    public final <T extends ProductItem> T createProductItem(ProductItemEntity entity) {
+        IEntityConverter converter = entityConverterMapByProductType.get(entity.getClass());
+        return (T) converter.toModel(entity);
+    }
+
+    public final <T extends ProductItemEntity> T createProductItemEntity(ProductItem model) {
+        IEntityConverter converter = entityConverterMapByModelClass.get(model.getClass());
+        return (T) converter.toEntity(model);
+    }
+
     public final <T extends Product> T createProduct(ProductEntity entity) {
-        IEntityConverter converter = entityConverterMapByEntityClass.get(entity.getClass());
+        IEntityConverter converter = entityConverterMapByProductType.get(entity.getClass());
         return (T) converter.toModel(entity);
     }
 
     public final <T extends Product> OrderItem createOrderItem(OrderItemEntity entity) {
-        OrderItemEntityConverter converter = (OrderItemEntityConverter) entityConverterMapByProductType.get(entity.getProductType());
+        OrderItemEntityConverter converter = (OrderItemEntityConverter) entityConverterMapByEntityClass.get(entity);
         return converter.toModel(entity);
     }
 
     public final OrderItemEntity createOrderItemEntityByProductType(OrderEntity orderEntity, OrderItem orderItem) {
-        GlassesOrderItemEntityConverter converter = (GlassesOrderItemEntityConverter) entityConverterMapByProductType.get(orderItem.getProduct().getType());
+        OrderItemEntityConverter converter = (OrderItemEntityConverter) entityConverterMapByModelClass.get(orderItem.getClass());
         return converter.toEntity(orderEntity, orderItem);
     }
 
