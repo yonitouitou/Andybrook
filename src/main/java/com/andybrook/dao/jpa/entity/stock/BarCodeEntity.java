@@ -1,7 +1,5 @@
 package com.andybrook.dao.jpa.entity.stock;
 
-import com.andybrook.dao.jpa.entity.product.ProductEntity;
-
 import javax.persistence.*;
 import java.util.Objects;
 
@@ -13,15 +11,15 @@ public class BarCodeEntity {
     private String id;
 
     @ManyToOne(cascade = { CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
-    @JoinColumn(name = "productid")
-    private ProductEntity productEntity;
+    @JoinColumn(name = "productstockitemid")
+    private ProductItemEntity productItemEntity;
 
     private BarCodeEntity() {
     }
 
-    public BarCodeEntity(String id, ProductEntity productEntity) {
+    public BarCodeEntity(String id, ProductItemEntity productItemEntity) {
         this.id = id;
-        this.productEntity = productEntity;
+        this.productItemEntity = productItemEntity;
     }
 
     public String getId() {
@@ -32,12 +30,12 @@ public class BarCodeEntity {
         this.id = id;
     }
 
-    public ProductEntity getProductEntity() {
-        return productEntity;
+    public ProductItemEntity getProductItemEntity() {
+        return productItemEntity;
     }
 
-    public void setProductEntity(ProductEntity productEntity) {
-        this.productEntity = productEntity;
+    public void setProductItemEntity(ProductItemEntity productItemEntity) {
+        this.productItemEntity = productItemEntity;
     }
 
     @Override

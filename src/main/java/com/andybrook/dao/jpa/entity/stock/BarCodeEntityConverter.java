@@ -3,9 +3,7 @@ package com.andybrook.dao.jpa.entity.stock;
 import com.andybrook.annotation.EntityConverter;
 import com.andybrook.dao.jpa.entity.factory.EntityFactory;
 import com.andybrook.dao.jpa.entity.factory.IEntityConverter;
-import com.andybrook.dao.jpa.entity.product.ProductEntity;
 import com.andybrook.model.BarCode;
-import com.andybrook.model.product.Product;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -19,7 +17,7 @@ public class BarCodeEntityConverter implements IEntityConverter<BarCode, BarCode
     @Override
     public BarCode toModel(BarCodeEntity entity) {
         BarCode barCode = new BarCode(entity.getId());
-        if (entity.getProductEntity() != null) {
+        if (entity.getProductItemEntity() != null) {
             barCode.setUsed(true);
         }
         return barCode;
@@ -30,7 +28,7 @@ public class BarCodeEntityConverter implements IEntityConverter<BarCode, BarCode
         throw new UnsupportedOperationException();
     }
 
-    public BarCodeEntity toEntity(BarCode model, ProductEntity productEntity) {
-        return new BarCodeEntity(model.getId(), productEntity);
+    public BarCodeEntity toEntity(BarCode model, ProductItemEntity productItemEntity) {
+        return new BarCodeEntity(model.getId(), productItemEntity);
     }
 }

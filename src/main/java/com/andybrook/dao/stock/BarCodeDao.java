@@ -1,8 +1,7 @@
 package com.andybrook.dao.stock;
 
-import com.andybrook.dao.jpa.crudrepository.IBarCodeCrudRepository;
+import com.andybrook.dao.jpa.repository.IBarCodeCrudRepository;
 import com.andybrook.dao.jpa.entity.factory.EntityFactory;
-import com.andybrook.dao.jpa.entity.product.ProductEntity;
 import com.andybrook.dao.jpa.entity.stock.BarCodeEntity;
 import com.andybrook.model.BarCode;
 import com.andybrook.model.product.Product;
@@ -39,7 +38,7 @@ public class BarCodeDao implements IBarCodeDao {
         Optional<Product> productOpt = Optional.empty();
         Optional<BarCodeEntity> entityOpt = crudRepository.findById(barCodeId);
         if (entityOpt.isPresent()) {
-            productOpt = Optional.of(entityFactory.createProduct(entityOpt.get().getProductEntity()));
+            //productOpt = Optional.of(entityFactory.createProduct(entityOpt.get().getProductStockInfoEntity()));
         }
         return productOpt;
     }

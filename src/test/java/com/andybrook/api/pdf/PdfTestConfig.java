@@ -1,7 +1,7 @@
 package com.andybrook.api.pdf;
 
 import com.andybrook.ApplicationProperties;
-import com.andybrook.dao.jpa.crudrepository.IAdminSettingRepository;
+import com.andybrook.dao.jpa.repository.IAdminSettingRepository;
 import com.andybrook.dao.jpa.entity.factory.EntityFactory;
 import com.andybrook.dao.setting.AdminSettingDao;
 import com.andybrook.dao.setting.IAdminSettingDao;

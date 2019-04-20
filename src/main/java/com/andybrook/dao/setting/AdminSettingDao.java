@@ -1,6 +1,6 @@
 package com.andybrook.dao.setting;
 
-import com.andybrook.dao.jpa.crudrepository.IAdminSettingRepository;
+import com.andybrook.dao.jpa.repository.IAdminSettingRepository;
 import com.andybrook.dao.jpa.entity.factory.EntityFactory;
 import com.andybrook.dao.jpa.entity.setting.AdminSettingEntity;
 import com.andybrook.model.setting.AdminSetting;

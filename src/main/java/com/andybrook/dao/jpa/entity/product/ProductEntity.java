@@ -1,6 +1,5 @@
 package com.andybrook.dao.jpa.entity.product;
 
-import com.andybrook.dao.jpa.entity.stock.BarCodeEntity;
 import com.andybrook.enums.ProductType;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
@@ -9,7 +8,6 @@ import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 import javax.persistence.*;
 import java.time.LocalDateTime;
 import java.util.Objects;
-import java.util.Set;
 
 import static com.andybrook.dao.jpa.entity.product.ProductEntity.DISCRIMINATOR_COLUMN_TYPE;
 import static com.andybrook.dao.jpa.entity.product.ProductEntity.TABLE_PRODUCT;

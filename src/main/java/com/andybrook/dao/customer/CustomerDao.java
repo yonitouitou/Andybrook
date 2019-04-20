@@ -1,6 +1,6 @@
 package com.andybrook.dao.customer;
 
-import com.andybrook.dao.jpa.crudrepository.ICustomerJpaRepository;
+import com.andybrook.dao.jpa.repository.ICustomerJpaRepository;
 import com.andybrook.dao.jpa.entity.customer.CustomerEntity;
 import com.andybrook.dao.jpa.entity.factory.EntityFactory;
 import com.andybrook.exception.CustomerNotFound;

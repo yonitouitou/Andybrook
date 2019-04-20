@@ -40,12 +40,6 @@ public class ProductController extends AbstractController {
         return productManager.getByNameContaining(name);
     }
 
-    @GetMapping(path = "/getAllExistingProductNames")
-    public List<Pair<Long, String>> getAllProductNames() {
-        LOGGER.log(Level.INFO, "Get all products name");
-        return productManager.getAllProductNamesWithQuantityMoreThan(0);
-    }
-
     @PostMapping(path = "/addBarcode")
     public void addBarCode(long stockItemId, BarCode barCode) throws ProductNotFound, BarCodeAlreadyExist {
         LOGGER.log(Level.INFO, "Request received to add barcode " + barCode.getId() + "to : " + stockItemId);

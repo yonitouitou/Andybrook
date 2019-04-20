@@ -1,10 +1,9 @@
 package com.andybrook.service.product;
 
-import com.andybrook.dao.product.glasses.IProductDao;
+import com.andybrook.dao.product.IProductDao;
 import com.andybrook.exception.ProductNotFound;
 import com.andybrook.model.product.Product;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.util.Pair;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -48,10 +47,5 @@ public class ProductService implements IProductService {
     @Override
     public Product addProduct(Product product) {
         return dao.update(product);
-    }
-
-    @Override
-    public List<Pair<Long, String>> getAllProductNamesWithQuantityMoreThan(int quantity) {
-        return dao.getAllProductNamesWithQuantityMoreThan(quantity);
     }
 }

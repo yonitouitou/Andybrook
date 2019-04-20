@@ -34,9 +34,4 @@ public class ProductManager implements IProductManager {
     public List<? extends Product> getByNameContaining(String name) {
         return productService.getByNameContaining(name);
     }
-
-    @Override
-    public List<Pair<Long, String>> getAllProductNamesWithQuantityMoreThan(int quantity) {
-        return productService.getAllProductNamesWithQuantityMoreThan(quantity);
-    }
 }

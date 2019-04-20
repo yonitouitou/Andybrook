@@ -14,15 +14,16 @@ import com.andybrook.dao.jpa.entity.stock.*;
 import com.andybrook.dao.jpa.entity.store.StoreEntity;
 import com.andybrook.enums.ProductType;
 import com.andybrook.model.BarCode;
-import com.andybrook.model.order.OrderItem;
 import com.andybrook.model.customer.Customer;
 import com.andybrook.model.customer.Owner;
-import com.andybrook.model.order.Order;
 import com.andybrook.model.customer.Store;
 import com.andybrook.model.notification.NotificationPolicy;
+import com.andybrook.model.order.Order;
+import com.andybrook.model.order.OrderItem;
 import com.andybrook.model.product.Product;
 import com.andybrook.model.setting.AdminSetting;
 import com.andybrook.model.stock.ProductItem;
+import com.andybrook.model.stock.ProductStockInfo;
 import org.hibernate.Hibernate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
@@ -164,13 +165,23 @@ public final class EntityFactory {
         return (Customer) converter.toModel(entity);
     }
 
-    public final BarCodeEntity createBarCodeEntity(ProductEntity productEntity, BarCode model) {
+    public final BarCodeEntity createBarCodeEntity(BarCode model, ProductItemEntity productItemEntity) {
         BarCodeEntityConverter converter = (BarCodeEntityConverter) entityConverterMapByModelClass.get(model.getClass());
-        return converter.toEntity(model, productEntity);
+        return converter.toEntity(model, productItemEntity);
     }
 
     public final BarCode createBarCode(BarCodeEntity entity) {
         IEntityConverter converter = entityConverterMapByEntityClass.get(entity.getClass());
         return (BarCode) converter.toModel(entity);
+    }
+
+    public final ProductStockInfo createProductStockInfo(ProductStockInfoEntity entity) {
+        IEntityConverter converter = entityConverterMapByEntityClass.get(entity.getClass());
+        return (ProductStockInfo) converter.toModel(entity);
+    }
+
+    public final ProductStockInfoEntity createProductStockInfoEntity(ProductStockInfo model) {
+        IEntityConverter converter = entityConverterMapByModelClass.get(model.getClass());
+        return (ProductStockInfoEntity) converter.toEntity(model);
     }
 }

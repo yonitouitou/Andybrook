@@ -1,22 +1,16 @@
 package com.andybrook.model.stock;
 
-import com.andybrook.model.BarCode;
-
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Optional;
+import com.andybrook.model.product.Product;
 
 public final class ProductStockInfo {
 
+    protected Product product;
     protected int quantityCreated;
     protected int quantityUsed;
-    protected Map<String, BarCode> barCodes;
 
-    public Optional<BarCode> getFreeBarCode() {
-        return barCodes.values()
-                .stream()
-                .filter(barCode -> ! barCode.isUsed())
-                .findFirst();
+    public ProductStockInfo(Product product, int quantityCreated, int quantityUsed) {
+        this.quantityCreated = quantityCreated;
+        this.quantityUsed = quantityUsed;
     }
 
     public void incrementQuantityCreated(int qtyToIncrement) {
@@ -43,25 +37,6 @@ public final class ProductStockInfo {
         quantityUsed -= qtyToDecrement;
     }
 
-    public void addBarCode(BarCode barCode) {
-        barCodes.put(barCode.getId(), barCode);
-        incrementQuantityCreated(1);
-    }
-
-    public void deleteBarCode(String barCodeId) {
-        barCodes.remove(barCodeId);
-        decrementQuantityCreated(1);
-    }
-
-    public Map<String, BarCode> getBarCodes() {
-        return new HashMap<>(barCodes);
-    }
-
-    public void setBarCodes(Map<String, BarCode> barCodes) {
-        this.barCodes = barCodes;
-        quantityCreated = barCodes.size();
-    }
-
     public int getQuantityCreated() {
         return quantityCreated;
     }
@@ -80,5 +55,13 @@ public final class ProductStockInfo {
 
     public int getQuantityUnused() {
         return quantityCreated - quantityUsed;
+    }
+
+    public Product getProduct() {
+        return product;
+    }
+
+    public void setProduct(Product product) {
+        this.product = product;
     }
 }

@@ -1,6 +1,6 @@
 package com.andybrook.dao.store;
 
-import com.andybrook.dao.jpa.crudrepository.IStoreJpaRepository;
+import com.andybrook.dao.jpa.repository.IStoreJpaRepository;
 import com.andybrook.dao.jpa.entity.factory.EntityFactory;
 import com.andybrook.dao.jpa.entity.store.StoreEntity;
 import com.andybrook.model.customer.Store;

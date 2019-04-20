@@ -39,7 +39,7 @@ public class ProductServiceTest {
 
     @Before
     public void init() {
-        product = productService.addProduct(ProductGenerator.generateProduct(PRODUCT_QUANTITY));
+        //product = productService.addProduct(ProductGenerator.generateProduct(PRODUCT_QUANTITY));
     }
 
     @Test

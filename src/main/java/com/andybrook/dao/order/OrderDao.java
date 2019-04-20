@@ -2,7 +2,7 @@ package com.andybrook.dao.order;
 
 import com.andybrook.dao.jpa.entity.factory.EntityFactory;
 import com.andybrook.dao.jpa.entity.order.OrderEntity;
-import com.andybrook.dao.jpa.crudrepository.IOrderCrudRepository;
+import com.andybrook.dao.jpa.repository.IOrderCrudRepository;
 import com.andybrook.exception.OrderNotFound;
 import com.andybrook.language.LanguageResolver;
 import com.andybrook.language.Msg.Error;

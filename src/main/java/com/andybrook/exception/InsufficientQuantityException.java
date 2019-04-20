@@ -5,4 +5,8 @@ public class InsufficientQuantityException extends ValidationRuntimeException {
     public InsufficientQuantityException(int maxQty) {
         super("Insufficient productItem quantity. Available quantity : " + maxQty);
     }
+
+    public InsufficientQuantityException() {
+        super("Insufficient productItem quantity.");
+    }
 }

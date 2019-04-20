@@ -16,7 +16,5 @@ public interface IProductManager {
 
     List<? extends Product> getByNameContaining(String name);
 
-    List<Pair<Long, String>> getAllProductNamesWithQuantityMoreThan(int quantity);
-
     Product getProduct(long id) throws ProductNotFound;
 }

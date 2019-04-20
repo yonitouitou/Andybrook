@@ -6,6 +6,12 @@ public class ProductItemInfo {
     protected long productId;
     protected int requestedQuantity;
 
+    public ProductItemInfo(long productId, int requestedQuantity) {
+        this.id = null;
+        this.productId = productId;
+        this.requestedQuantity = requestedQuantity;
+    }
+
     public ProductItemInfo(Long id, long productId, int requestedQuantity) {
         this.id = id;
         this.productId = productId;

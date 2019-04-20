@@ -87,6 +87,14 @@ public class ProductItem {
         this.lastModifiedDatetime = lastModifiedDatetime;
     }
 
+    public OptionalLong getOrderItemIdOpt() {
+        return orderItemIdOpt;
+    }
+
+    public void setOrderItemIdOpt(OptionalLong orderItemIdOpt) {
+        this.orderItemIdOpt = orderItemIdOpt;
+    }
+
     @Override
     public String toString() {
         return "ProductItem{" +

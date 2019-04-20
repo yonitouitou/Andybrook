@@ -1,16 +1,15 @@
 package com.andybrook.service.stock;
 
-import com.andybrook.model.BarCode;
-import com.andybrook.model.request.orderitem.ProductItemInfo;
 import com.andybrook.model.stock.ProductItem;
+import org.springframework.data.util.Pair;
+
+import java.util.List;
 
 public interface IStockService {
 
-    ProductItem getProductItem(long id);
+    ProductItem addProductItem(ProductItem productItem);
 
-    ProductItem getProductItemByBarCode(BarCode barCode);
+    ProductItem getProductItem(long productItemId);
 
-    void addProductItem(ProductItemInfo productItemInfo);
-
-    int getFreeQuantity(long productId);
+    List<Pair<Long, String>> getAllProductNamesWithQuantityMoreThan(int quantity);
 }
