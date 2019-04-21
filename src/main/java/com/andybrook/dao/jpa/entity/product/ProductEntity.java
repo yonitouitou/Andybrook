@@ -33,8 +33,7 @@ public abstract class ProductEntity {
     protected double price;
 
     @Transient
-    @Column(name = "type", nullable = false)
-    protected ProductType type;
+    protected final ProductType type;
 
     @CreatedDate
     @Column(name = "createddatetime", nullable = false, updatable = false)
@@ -44,14 +43,17 @@ public abstract class ProductEntity {
     @Column(name = "lastmodifieddatetime", nullable = false)
     private LocalDateTime lastModifiedDatetime;
 
+    public abstract ProductType getType();
+
     protected ProductEntity() {
+        type = getType();
     }
 
-    public ProductEntity(Long id, String name, double price, ProductType type) {
+    public ProductEntity(Long id, String name, double price) {
         this.id = id;
         this.name = name;
         this.price = price;
-        this.type = type;
+        this.type = getType();
     }
 
     public Long getId() {
@@ -76,14 +78,6 @@ public abstract class ProductEntity {
 
     public void setPrice(double price) {
         this.price = price;
-    }
-
-    public ProductType getType() {
-        return type;
-    }
-
-    public void setType(ProductType type) {
-        this.type = type;
     }
 
     public LocalDateTime getCreatedDatetime() {

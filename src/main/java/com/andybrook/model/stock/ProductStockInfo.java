@@ -9,6 +9,7 @@ public final class ProductStockInfo {
     protected int quantityUsed;
 
     public ProductStockInfo(Product product, int quantityCreated, int quantityUsed) {
+        this.product = product;
         this.quantityCreated = quantityCreated;
         this.quantityUsed = quantityUsed;
     }

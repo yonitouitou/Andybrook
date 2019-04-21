@@ -21,6 +21,9 @@ public class ProductStockInfoEntity {
     @Column(name = "quantityused")
     private int quantityUsed;
 
+    public ProductStockInfoEntity() {
+    }
+
     public ProductStockInfoEntity(ProductEntity productEntity, int quantityCreated, int quantityUsed) {
         this.id = productEntity.getId();
         this.productEntity = productEntity;

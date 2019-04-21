@@ -20,6 +20,11 @@ public class GlassesEntity extends ProductEntity {
     }
 
     GlassesEntity(Long id, String name, double price) {
-        super(id, name, price, ProductType.GLASSES);
+        super(id, name, price);
+    }
+
+    @Override
+    public ProductType getType() {
+        return ProductType.GLASSES;
     }
 }

@@ -1,5 +1,6 @@
 package com.andybrook.dao.jpa.entity.stock;
 
+import com.andybrook.dao.jpa.entity.order.OrderItemEntity;
 import com.andybrook.dao.jpa.entity.product.ProductEntity;
 import com.andybrook.enums.ProductType;
 import com.andybrook.model.BarCode;
@@ -13,7 +14,7 @@ import java.time.LocalDateTime;
 @Inheritance(strategy = InheritanceType.JOINED)
 @DiscriminatorColumn(name = "producttype")
 @Table(name = "product_stock_item")
-public abstract class ProductItemEntity {
+public class ProductItemEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -23,13 +24,13 @@ public abstract class ProductItemEntity {
     @JoinColumn(name = "productid")
     private ProductEntity productEntity;
 
-    @Transient
-    @Column(name = "producttype")
-    protected ProductType productType;
-
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "barcodeid")
     protected BarCodeEntity barCodeEntity;
+
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "orderitemid")
+    protected OrderItemEntity orderItemEntity;
 
     @CreatedDate
     @Column(name = "createddatetime", nullable = false, updatable = false)
@@ -39,12 +40,8 @@ public abstract class ProductItemEntity {
     @Column(name = "lastmodifieddatetime")
     protected LocalDateTime lastModifiedDatetime;
 
-    protected abstract ProductType getProductType();
-
-    public ProductItemEntity(ProductEntity productEntity, BarCodeEntity barCodeEntity, LocalDateTime createdDatetime, LocalDateTime lastModifiedDatetime) {
+    public ProductItemEntity(ProductEntity productEntity, LocalDateTime createdDatetime, LocalDateTime lastModifiedDatetime) {
         this.productEntity = productEntity;
-        this.productType = getProductType();
-        this.barCodeEntity = barCodeEntity;
         this.createdDatetime = createdDatetime;
         this.lastModifiedDatetime = lastModifiedDatetime;
     }
@@ -87,5 +84,13 @@ public abstract class ProductItemEntity {
 
     public void setLastModifiedDatetime(LocalDateTime lastModifiedDatetime) {
         this.lastModifiedDatetime = lastModifiedDatetime;
+    }
+
+    public OrderItemEntity getOrderItemEntity() {
+        return orderItemEntity;
+    }
+
+    public void setOrderItemEntity(OrderItemEntity orderItemEntity) {
+        this.orderItemEntity = orderItemEntity;
     }
 }

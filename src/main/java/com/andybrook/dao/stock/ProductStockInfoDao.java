@@ -10,6 +10,7 @@ import org.springframework.stereotype.Repository;
 
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Optional;
 
 @Repository
 public class ProductStockInfoDao implements IProductStockInfoDao {
@@ -28,7 +29,12 @@ public class ProductStockInfoDao implements IProductStockInfoDao {
 
     @Override
     public ProductStockInfo get(long productId) {
-        return null;
+        ProductStockInfo productStockInfo = null;
+        Optional<ProductStockInfoEntity> entityOpt = repository.findById(productId);
+        if (entityOpt.isPresent()) {
+            productStockInfo = entityFactory.createProductStockInfo(entityOpt.get());
+        }
+        return productStockInfo;
     }
 
     @Override

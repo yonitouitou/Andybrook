@@ -1,7 +1,7 @@
 package com.andybrook.dao.jpa.entity.factory;
 
 import com.andybrook.annotation.EntityConverter;
-import com.andybrook.annotation.StockItemEntityConverterByProductType;
+import com.andybrook.annotation.ProductConverterByProductType;
 import com.andybrook.dao.jpa.entity.customer.CustomerEntity;
 import com.andybrook.dao.jpa.entity.customer.OwnerEntity;
 import com.andybrook.dao.jpa.entity.order.OrderEntity;
@@ -65,34 +65,34 @@ public final class EntityFactory {
 
         for (IEntityConverter converter : converters.values()) {
             Class<?> theClass = converter.getClass();
-            StockItemEntityConverterByProductType annotation = theClass.getAnnotation(StockItemEntityConverterByProductType.class);
+            ProductConverterByProductType annotation = theClass.getAnnotation(ProductConverterByProductType.class);
             if (annotation != null) {
                 entityConverterMapByProductType.put(annotation.type(), converter);
             } else {
                 LOGGER.log(Level.WARNING, "Entity converter found without the annotation "
-                        + StockItemEntityConverterByProductType.class.getSimpleName() + " : " + theClass.getName());
+                        + ProductConverterByProductType.class.getSimpleName() + " : " + theClass.getName());
             }
         }
     }
 
+    public final <T extends Product> T createProduct(ProductEntity entity) {
+        IEntityConverter converter = entityConverterMapByProductType.get(entity.getType());
+        return (T) converter.toModel(entity);
+    }
+
     public final <T extends ProductEntity> T createProductEntity(Product model) {
-        IEntityConverter converter = entityConverterMapByModelClass.get(model.getClass());
+        IEntityConverter converter = entityConverterMapByProductType.get(model.getType());
         return (T) converter.toEntity(model);
     }
 
     public final <T extends ProductItem> T createProductItem(ProductItemEntity entity) {
-        IEntityConverter converter = entityConverterMapByProductType.get(entity.getClass());
+        IEntityConverter converter = entityConverterMapByEntityClass.get(entity.getClass());
         return (T) converter.toModel(entity);
     }
 
     public final <T extends ProductItemEntity> T createProductItemEntity(ProductItem model) {
         IEntityConverter converter = entityConverterMapByModelClass.get(model.getClass());
         return (T) converter.toEntity(model);
-    }
-
-    public final <T extends Product> T createProduct(ProductEntity entity) {
-        IEntityConverter converter = entityConverterMapByProductType.get(entity.getClass());
-        return (T) converter.toModel(entity);
     }
 
     public final <T extends Product> OrderItem createOrderItem(OrderItemEntity entity) {

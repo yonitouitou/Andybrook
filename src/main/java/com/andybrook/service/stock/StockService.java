@@ -22,14 +22,9 @@ public class StockService implements IStockService {
 
     @Override
     public ProductItem addProductItem(ProductItem productItem) {
-        Product product = productService.get(productItem.getId());
-        boolean isfreeQuantityExist = productStockInfoService.isFreeQuantityExist(product.getId());
-        if (isfreeQuantityExist) {
-            productItem = productItemService.add(productItem);
-            productStockInfoService.incrementQuantityUsed(product.getId());
-        } else {
-            throw new InsufficientQuantityException();
-        }
+        Product product = productService.get(productItem.getProduct().getId());
+        productItem = productItemService.add(productItem);
+        productStockInfoService.incrementQuantityUsed(product.getId());
         return productItem;
     }
 

@@ -1,20 +1,16 @@
 package com.andybrook.dao.jpa.entity.product;
 
 import com.andybrook.annotation.EntityConverter;
+import com.andybrook.annotation.ProductConverterByProductType;
 import com.andybrook.dao.jpa.entity.factory.EntityFactory;
 import com.andybrook.dao.jpa.entity.factory.IEntityConverter;
-import com.andybrook.dao.jpa.entity.stock.BarCodeEntity;
-import com.andybrook.model.BarCode;
+import com.andybrook.enums.ProductType;
 import com.andybrook.model.product.Glasses;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Map;
-import java.util.Set;
-
 @Component
+@ProductConverterByProductType(type = ProductType.GLASSES)
 @EntityConverter(model = Glasses.class, entity = GlassesEntity.class)
 public class GlassesEntityConverter implements IEntityConverter<Glasses, GlassesEntity> {
 
