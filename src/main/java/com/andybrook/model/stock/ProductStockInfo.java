@@ -23,6 +23,10 @@ public final class ProductStockInfo {
         quantityCreated += qtyToIncrement;
     }
 
+    public void decrementQuantityCreated() {
+        decrementQuantityCreated(1);
+    }
+
     public void decrementQuantityCreated(int qtyToDecrement) {
         quantityCreated -= qtyToDecrement;
     }

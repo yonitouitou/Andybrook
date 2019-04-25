@@ -2,6 +2,7 @@ package com.andybrook.service.order;
 
 import com.andybrook.assertor.OrderItemAssertor;
 import com.andybrook.exception.InsufficientQuantityException;
+import com.andybrook.exception.OrderClosed;
 import com.andybrook.generator.CustomerGenerator;
 import com.andybrook.generator.OrderItemGenerator;
 import com.andybrook.generator.ProductGenerator;
@@ -18,7 +19,6 @@ import com.andybrook.service.product.IProductService;
 import com.andybrook.service.stock.IStockService;
 import org.junit.Assert;
 import org.junit.Before;
-import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -65,6 +65,8 @@ public class OrderServiceTest {
     @Test
     public void addOrderItemTest() {
         OrderItem orderItemAdded = addSingleOrderItem(productItemInfo).get(0);
+        Order order = orderService.getOrder(this.order.getId());
+        Assert.assertTrue(order.hasItem(orderItemAdded.getId()));
         OrderItemAssertor.assertEquals(product, productItemInfo, orderItemAdded);
     }
 
@@ -74,18 +76,20 @@ public class OrderServiceTest {
         addSingleOrderItem(productItemInfo).get(0);
     }
 
-    @Test
-    public void deleteOrderItemFromOrderTest() {
-        /*OrderItem orderItem = addSingleOrderItem();
-        deleteOrderItem(orderItem.getId());
-        Assert.assertTrue(order.getItem(orderItem.getId()) == null);*/
+    @Test(expected = OrderClosed.class)
+    public void addOrderItemIntoClosedOrder() {
+        orderService.closeOrder(this.order.getId());
+        addSingleOrderItem(productItemInfo).get(0);
     }
 
     @Test
-    public void deleteOrderItemFromOrderDbTest() {
-        /*OrderItem orderItem = addSingleOrderItem();
+    public void deleteOrderItemFromOrderTest() {
+        OrderItem orderItem = addSingleOrderItem(productItemInfo).get(0);
         deleteOrderItem(orderItem.getId());
-        Assert.assertFalse(orderItemService.isExist(orderItem.getId()));*/
+        Assert.assertFalse(order.hasItem(orderItem.getId()));
+
+        order = orderService.getOrder(this.order.getId());
+        Assert.assertFalse(order.hasItem(orderItem.getId()));
     }
 
     private List<OrderItem> addSingleOrderItem(ProductItemInfo productItemInfo) {

@@ -10,7 +10,7 @@ import java.util.Set;
 
 public interface IOrderDao {
 
-    Order newStockReport(Order order);
+    Order newOrder(Order order);
 
     Order updateOrder(Order order);
 

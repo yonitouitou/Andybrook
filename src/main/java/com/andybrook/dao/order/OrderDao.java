@@ -28,7 +28,7 @@ public class OrderDao implements IOrderDao {
     private LanguageResolver languageResolver;
 
     @Override
-    public Order newStockReport(Order order) {
+    public Order newOrder(Order order) {
         return updateOrder(order);
     }
 

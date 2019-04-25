@@ -30,7 +30,7 @@ public class OrderEntityConverter implements IEntityConverter<Order, OrderEntity
         order.setCloseDateTime(entity.getCloseDatetime());
         for (OrderItemEntity orderItemEntity : entity.getItems()) {
             OrderItem orderItem = entityFactory.createOrderItem(orderItemEntity);
-            order.addItem(orderItem);
+            order.addOrderItem(orderItem);
         }
         return order;
     }

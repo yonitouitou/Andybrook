@@ -96,7 +96,7 @@ public final class EntityFactory {
     }
 
     public final <T extends Product> OrderItem createOrderItem(OrderItemEntity entity) {
-        OrderItemEntityConverter converter = (OrderItemEntityConverter) entityConverterMapByEntityClass.get(entity);
+        OrderItemEntityConverter converter = (OrderItemEntityConverter) entityConverterMapByEntityClass.get(entity.getClass());
         return converter.toModel(entity);
     }
 

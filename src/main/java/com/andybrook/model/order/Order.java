@@ -31,11 +31,17 @@ public class Order {
         this.comment = "";
     }
 
-    public void addItem(OrderItem item) {
+    public void addOrderItem(OrderItem item) {
         synchronized (this) {
             items.put(item.getId(), item);
             List<OrderItem> orderItems = itemsMapByProductId.computeIfAbsent(item.getProductItem().getId(), l -> new LinkedList<>());
             orderItems.add(item);
+        }
+    }
+
+    public void addOrderItems(List<OrderItem> orderItems) {
+        for (OrderItem orderItem : orderItems) {
+            addOrderItem(orderItem);
         }
     }
 
@@ -93,6 +99,10 @@ public class Order {
 
     public OrderItem getItem(long orderItemId) {
         return items.get(orderItemId);
+    }
+
+    public boolean hasItem(long orderItemId) {
+        return getItem(orderItemId) != null;
     }
 
     public boolean isOpen() {

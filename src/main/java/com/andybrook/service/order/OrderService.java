@@ -40,7 +40,7 @@ public class OrderService implements IOrderService {
         Customer customer = customerService.getById(request.getCustomerId());
         Order order = new Order(null, request.getName(), customer);
         order.setComment(request.getComment());
-        return dao.newStockReport(order);
+        return dao.newOrder(order);
     }
 
     @Override
@@ -63,10 +63,10 @@ public class OrderService implements IOrderService {
     }
 
     @Override
-    public Order closeStockReport(long id) throws OrderNotFound, OrderClosed {
-        Order report = getOrder(id);
-        report.close();
-        return dao.updateOrder(report);
+    public Order closeOrder(long id) throws OrderNotFound, OrderClosed {
+        Order order = getOrder(id);
+        order.close();
+        return dao.updateOrder(order);
     }
 
     @Override
@@ -102,6 +102,8 @@ public class OrderService implements IOrderService {
         Order order = getOrderById(orderId);
         if (canModifyOrder(order)) {
             orderItems = orderItemService.createOrderItems(info, quantity);
+            order.addOrderItems(orderItems);
+            dao.updateOrder(order);
         } else {
             throw new OrderClosed(orderId);
         }
@@ -114,6 +116,8 @@ public class OrderService implements IOrderService {
         Order order = getOrderById(orderId);
         if (canModifyOrder(order)) {
             orderItem = orderItemService.createSingleItemByBarCode(new BarCode(barCodeId));
+            order.addOrderItem(orderItem);
+            dao.updateOrder(order);
         } else {
             throw new OrderClosed(orderId);
         }

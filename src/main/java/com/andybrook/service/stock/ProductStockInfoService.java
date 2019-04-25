@@ -67,6 +67,20 @@ public class ProductStockInfoService implements IProductStockInfoService {
         dao.update(productStockInfo);
     }
 
+    @Override
+    public void decrementQuantityUsed(long productId) {
+        ProductStockInfo productStockInfo = get(productId);
+        productStockInfo.decrementQuantityUsed();
+        dao.update(productStockInfo);
+    }
+
+    @Override
+    public void decrementQuantityCreated(long productId) {
+        ProductStockInfo productStockInfo = get(productId);
+        productStockInfo.decrementQuantityCreated();
+        dao.update(productStockInfo);
+    }
+
     ProductStockInfo get(long productId) {
         return dao.get(productId);
     }

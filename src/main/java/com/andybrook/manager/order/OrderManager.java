@@ -9,7 +9,6 @@ import com.andybrook.model.request.order.UpdateOrderRequest;
 import com.andybrook.model.request.orderitem.OrderItemAddRequest;
 import com.andybrook.model.request.orderitem.OrderItemAddRequestByBarCode;
 import com.andybrook.model.request.orderitem.OrderItemDeleteRequest;
-import com.andybrook.model.request.orderitem.OrderItemUpdateRequest;
 import com.andybrook.service.order.IOrderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -62,7 +61,7 @@ public class OrderManager implements IOrderManager {
 
     @Override
     public Order closeOrder(long id) throws OrderNotFound, OrderClosed {
-        Order order = orderService.closeStockReport(id);
+        Order order = orderService.closeOrder(id);
         notificationManager.notifyOrderClosed(order);
         return order;
     }

@@ -22,4 +22,8 @@ public interface IProductStockInfoService {
     void incrementQuantityUsed(long productId);
 
     void incrementQuantityCreated(long productId);
+
+    void decrementQuantityUsed(long productId);
+
+    void decrementQuantityCreated(long productId);
 }

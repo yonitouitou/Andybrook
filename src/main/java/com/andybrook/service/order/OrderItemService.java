@@ -15,6 +15,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.LinkedList;
 import java.util.List;
+import java.util.OptionalLong;
 
 @Service
 public class OrderItemService implements IOrderItemService {
@@ -51,7 +52,9 @@ public class OrderItemService implements IOrderItemService {
 
     @Override
     public void postDeletion(OrderItem deletedOrderItem) {
-
+        ProductItem productItem = deletedOrderItem.getProductItem();
+        productItem.setOrderItemIdOpt(OptionalLong.empty());
+        productStockInfoService.decrementQuantityUsed(productItem.getProduct().getId());
     }
 
     @Override

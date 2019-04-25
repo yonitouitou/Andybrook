@@ -36,6 +36,8 @@ public class OrderItemEntity {
     @Column(name = "lastmodifieddatetime")
     protected LocalDateTime lastModifiedDatetime;
 
+    private OrderItemEntity() {}
+
     protected OrderItemEntity(Long id, OrderEntity orderEntity, ProductItemEntity productItemEntity) {
         this.id = id;
         this.productItemEntity = productItemEntity;

@@ -20,7 +20,7 @@ public interface IOrderService {
 
     Set<Order> getAll();
 
-    Order closeStockReport(long id) throws OrderNotFound, OrderClosed;
+    Order closeOrder(long id) throws OrderNotFound, OrderClosed;
 
     List<Order> getOrdersByName(String name);
 
