@@ -21,7 +21,7 @@ public class ProductStockInfoDao implements IProductStockInfoDao {
     private EntityFactory entityFactory;
 
     @Override
-    public ProductStockInfo add(ProductStockInfo productStockInfo) {
+    public ProductStockInfo update(ProductStockInfo productStockInfo) {
         ProductStockInfoEntity entity = entityFactory.createProductStockInfoEntity(productStockInfo);
         ProductStockInfoEntity entitySaved = repository.save(entity);
         return entityFactory.createProductStockInfo(entitySaved);

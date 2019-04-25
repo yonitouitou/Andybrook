@@ -7,7 +7,7 @@ import java.util.List;
 
 public interface IProductStockInfoDao {
 
-    ProductStockInfo add(ProductStockInfo productStockInfo);
+    ProductStockInfo update(ProductStockInfo productStockInfo);
 
     ProductStockInfo get(long productId);
 

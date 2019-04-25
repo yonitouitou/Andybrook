@@ -17,14 +17,8 @@ public final class OrderItemGenerator {
         return new OrderItem(productItem);
     }
 
-    public static ProductItemInfo generateOrderItemInfo(Product product) {
-        /*ProductItemInfo info = new ProductItemInfo(null, product.getId());
-        Map<String, BarCode> barCodes = product.getBarCodes();
-        if (! barCodes.isEmpty()) {
-            info.setBarCodeId(getRandomBarCode(barCodes.values()).getId());
-        }
-        return info;*/
-        return null;
+    public static ProductItemInfo generateOrderItemInfo(Product product, int requestedQuantity) {
+        return new ProductItemInfo(product.getId(), requestedQuantity);
     }
 
     private static BarCode getRandomBarCode(Collection<BarCode> barCodes) {

@@ -19,9 +19,9 @@ public class ProductStockInfoService implements IProductStockInfoService {
     private IProductService productService;
 
     @Override
-    public void update(long productId, int quantityCreated, int quantityUsed) {
+    public void add(long productId) {
         Product product = productService.get(productId);
-        dao.add(new ProductStockInfo(product, quantityCreated, quantityUsed));
+        dao.update(new ProductStockInfo(product, 0, 0));
     }
 
     @Override
@@ -36,6 +36,18 @@ public class ProductStockInfoService implements IProductStockInfoService {
     }
 
     @Override
+    public int getCreatedQuantity(long productId) {
+        ProductStockInfo productStockInfo = get(productId);
+        return productStockInfo.getQuantityCreated();
+    }
+
+    @Override
+    public int getUsedQuantity(long productId) {
+        ProductStockInfo productStockInfo = get(productId);
+        return productStockInfo.getQuantityUsed();
+    }
+
+    @Override
     public boolean isFreeQuantityExist(long productId) {
         ProductStockInfo productStockInfo = get(productId);
         return productStockInfo.getQuantityUnused() > 0;
@@ -45,9 +57,17 @@ public class ProductStockInfoService implements IProductStockInfoService {
     public void incrementQuantityUsed(long productId) {
         ProductStockInfo productStockInfo = get(productId);
         productStockInfo.incrementQuantityUsed();
+        dao.update(productStockInfo);
     }
 
-    private ProductStockInfo get(long productId) {
+    @Override
+    public void incrementQuantityCreated(long productId) {
+        ProductStockInfo productStockInfo = get(productId);
+        productStockInfo.incrementQuantityCreated();
+        dao.update(productStockInfo);
+    }
+
+    ProductStockInfo get(long productId) {
         return dao.get(productId);
     }
 }

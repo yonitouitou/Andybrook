@@ -53,19 +53,25 @@ public class OrderServiceTest {
     public void init() {
         customer = customerService.newCustomer(CustomerGenerator.generateCustomer());
         order = orderService.newOrder(createNewOrderRequest(customer));
-        Product product = ProductGenerator.generateProduct();
-        this.product = productService.addProduct(product);
+        product = ProductGenerator.generateProduct();
+        product = productService.addProduct(product);
         List<ProductItem> productItems = ProductItemGenerator.generateProductItem(product, PRODUCT_QUANTITY);
         for (ProductItem item : productItems) {
-            stockService.addProductItem(item);
+            item = stockService.addProductItem(item);
         }
-        productItemInfo = OrderItemGenerator.generateOrderItemInfo(this.product);
+        productItemInfo = OrderItemGenerator.generateOrderItemInfo(this.product, PRODUCT_QUANTITY -1);
     }
 
     @Test
     public void addOrderItemTest() {
-        OrderItem orderItemAdded = addSingleOrderItem().get(0);
+        OrderItem orderItemAdded = addSingleOrderItem(productItemInfo).get(0);
         OrderItemAssertor.assertEquals(product, productItemInfo, orderItemAdded);
+    }
+
+    @Test(expected = InsufficientQuantityException.class)
+    public void addOrderItemQuantityExceededTest() {
+        productItemInfo = OrderItemGenerator.generateOrderItemInfo(this.product, PRODUCT_QUANTITY + 1);
+        addSingleOrderItem(productItemInfo).get(0);
     }
 
     @Test
@@ -76,43 +82,14 @@ public class OrderServiceTest {
     }
 
     @Test
-    @Ignore
-    public void updateOrderItem() {
-        /*int qtyAdded = 2;
-        OrderItem orderItem = addSingleOrderItem();
-        ProductItemInfo info = new ProductItemInfo(orderItem.getId(), orderItem.getProductItem().getId());
-        OrderItem orderItemUpdated = orderService.addOrderItems(order.getId(), info);
-        Assert.assertEquals("Product.QuantityCreated", PRODUCT_QUANTITY, orderItem.getProductItem().getQuantityCreated());
-        Assert.assertEquals("Product.QuantityUsed", 1, orderItemUpdated.getProductItem().getQuantityUsed());*/
-    }
-
-    @Test
     public void deleteOrderItemFromOrderDbTest() {
         /*OrderItem orderItem = addSingleOrderItem();
         deleteOrderItem(orderItem.getId());
         Assert.assertFalse(orderItemService.isExist(orderItem.getId()));*/
     }
 
-    @Test(expected = InsufficientQuantityException.class)
-    public void addOrderItemQuantityExceededTest() {
-        /*product = productService.addProduct(ProductGenerator.generateProduct(2));
-        for (int i = 0; i < 3; i++) {
-            productItemInfo = OrderItemGenerator.generateOrderItemInfo(product);
-            addSingleOrderItem();
-        }*/
-    }
-
-    @Test(expected = InsufficientQuantityException.class)
-    @Ignore
-    public void updateOrderItemQuantityExceededTest() {
-        /*product = productService.addProduct(ProductGenerator.generateProduct(5));
-        productItemInfo = OrderItemGenerator.generateOrderItemInfo(product);
-        addSingleOrderItem();*/
-        //orderService.addOrderItems(order.getId(), OrderItemGenerator.generateOrderItemInfo(product));
-    }
-
-    private List<OrderItem> addSingleOrderItem() {
-        return orderService.addOrderItems(order.getId(), productItemInfo, 1);
+    private List<OrderItem> addSingleOrderItem(ProductItemInfo productItemInfo) {
+        return orderService.addOrderItems(order.getId(), productItemInfo, productItemInfo.getRequestedQuantity());
     }
 
     private void deleteOrderItem(long orderItemId) {

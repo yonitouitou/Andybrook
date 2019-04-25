@@ -30,12 +30,12 @@ public class ProductItemDao implements IProductItemDao {
     }
 
     @Override
-    public ProductItem get(long id) {
-        ProductItem productItem = null;
+    public Optional<ProductItem> find(long id) {
+        Optional<ProductItem> productItemOpt = Optional.empty();
         Optional<ProductItemEntity> entityOpt = repository.findById(id);
         if (entityOpt.isPresent()) {
-            productItem = entityFactory.createProductItem(entityOpt.get());
+            productItemOpt = Optional.of(entityFactory.createProductItem(entityOpt.get()));
         }
-        return productItem;
+        return productItemOpt;
     }
 }

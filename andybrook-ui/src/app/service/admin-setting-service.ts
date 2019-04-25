@@ -11,11 +11,11 @@ export class AdminSettingService {
 
     getAdminSetting(adminSetting: AdminSetting) : Observable<any> {
         console.log("Get admin setting.")
-        return this.httpApi.get("/v1/admin/setting/get")
+        return this.httpApi.get("/v1/admin/setting/find")
     }
 
     updateAdminSetting(adminSetting: AdminSetting): Observable<any> {
         console.log("Update admin setting " + adminSetting)
-        return this.httpApi.post("v1/admin/setting/update", adminSetting)
+        return this.httpApi.post("v1/admin/setting/add", adminSetting)
     }
 }

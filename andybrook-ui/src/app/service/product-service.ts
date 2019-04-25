@@ -10,7 +10,7 @@ export class ProductService {
     }
 
     get(id: number): Observable<any> {
-        return this.http.get("/v1/productItem/get/" + id)
+        return this.http.get("/v1/productItem/find/" + id)
     }
 
     getByBarCode(barCode: string): Observable<Product> {

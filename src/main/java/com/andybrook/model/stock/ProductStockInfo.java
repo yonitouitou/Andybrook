@@ -14,6 +14,11 @@ public final class ProductStockInfo {
         this.quantityUsed = quantityUsed;
     }
 
+    public void incrementQuantityCreated() {
+        incrementQuantityCreated(1);
+    }
+
+
     public void incrementQuantityCreated(int qtyToIncrement) {
         quantityCreated += qtyToIncrement;
     }

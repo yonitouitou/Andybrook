@@ -9,7 +9,7 @@ import java.util.OptionalLong;
 
 public class ProductItem {
 
-    private long id;
+    private Long id;
     private Product product;
     private BarCode barCode;
     private OptionalLong orderItemIdOpt;
@@ -21,7 +21,7 @@ public class ProductItem {
         this.barCode = barCode;
     }
 
-    public ProductItem(long id, Product product, BarCode barCode) {
+    public ProductItem(Long id, Product product, BarCode barCode) {
         this.id = id;
         this.product = product;
         this.barCode = barCode;
@@ -47,7 +47,7 @@ public class ProductItem {
         return product.getType();
     }
 
-    public long getId() {
+    public Long getId() {
         return id;
     }
 
@@ -59,7 +59,7 @@ public class ProductItem {
         return barCode;
     }
 
-    public void setId(long id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

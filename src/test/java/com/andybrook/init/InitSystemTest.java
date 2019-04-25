@@ -16,6 +16,7 @@ import com.andybrook.model.request.orderitem.OrderItemAddRequest;
 import com.andybrook.model.request.orderitem.ProductItemInfo;
 import com.andybrook.service.customer.ICustomerService;
 import com.andybrook.util.clock.Clock;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -45,6 +46,7 @@ public class InitSystemTest {
     private IProductManager productManager;
 
     @Test
+    @Ignore
     public void initSystem() throws Exception {
         List<Product> products = createProducts();
         List<Customer> customers = createCustomers();

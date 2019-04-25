@@ -21,7 +21,7 @@ export class OrderService {
 
     getOrder(id: number): Observable<any> {
         console.log("Get report " + id)
-        return this.httpApi.get("/v1/order/get/" + id)
+        return this.httpApi.get("/v1/order/find/" + id)
     }
 
     getOrderByName(name: string): Observable<any> {
@@ -35,8 +35,8 @@ export class OrderService {
     }
 
     updateStockItem(order: Order, itemToUpdate: StockItem): Observable<any> {
-        console.log("update order " + order.id + " | " + itemToUpdate)
-        return this.httpApi.post("/v1/order/update", this.toUpdateRequest(order, itemToUpdate))
+        console.log("add order " + order.id + " | " + itemToUpdate)
+        return this.httpApi.post("/v1/order/add", this.toUpdateRequest(order, itemToUpdate))
     }
 
     deleteItem(order: Order, stockItemIdToDelete: number): Observable<any> {

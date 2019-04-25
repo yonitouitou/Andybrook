@@ -24,7 +24,7 @@ public class StockService implements IStockService {
     public ProductItem addProductItem(ProductItem productItem) {
         Product product = productService.get(productItem.getProduct().getId());
         productItem = productItemService.add(productItem);
-        productStockInfoService.incrementQuantityUsed(product.getId());
+        productStockInfoService.incrementQuantityCreated(product.getId());
         return productItem;
     }
 

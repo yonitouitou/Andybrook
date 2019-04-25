@@ -10,6 +10,7 @@ import com.andybrook.model.stock.ProductItem;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import java.util.Optional;
 import java.util.OptionalLong;
 
 @Component
@@ -28,9 +29,10 @@ public class ProductItemEntityConverter implements IEntityConverter<ProductItem,
         ProductItem productItem = new ProductItem(entity.getId(), product, barCode);
         productItem.setCreatedDatetime(entity.getCreatedDatetime());
         productItem.setLastModifiedDatetime(entity.getLastModifiedDatetime());
-        if (entity.getOrderItemEntity() != null) {
-            productItem.setOrderItemIdOpt(OptionalLong.of(entity.getOrderItemEntity().getId()));
-        }
+        OptionalLong orderItemIdOpt = entity.getOrderItemEntity() != null
+                ? OptionalLong.of(entity.getOrderItemEntity().getId())
+                : OptionalLong.empty();
+            productItem.setOrderItemIdOpt(orderItemIdOpt);
         return productItem;
     }
 
@@ -38,7 +40,7 @@ public class ProductItemEntityConverter implements IEntityConverter<ProductItem,
     public ProductItemEntity toEntity(ProductItem model) {
         ProductEntity productEntity = entityFactory.createProductEntity(model.getProduct());
         ProductItemEntity entity = new ProductItemEntity(productEntity, model.getCreatedDatetime(), model.getLastModifiedDatetime());
-        BarCodeEntity barCodeEntity = null;
+        BarCodeEntity barCodeEntity;
         if (model.getBarCode() != null) {
             barCodeEntity = entityFactory.createBarCodeEntity(model.getBarCode(), entity);
             entity.setBarCodeEntity(barCodeEntity);

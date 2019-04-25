@@ -3,8 +3,7 @@ package com.andybrook.service.product;
 import com.andybrook.dao.product.IProductDao;
 import com.andybrook.exception.ProductNotFound;
 import com.andybrook.model.product.Product;
-import com.andybrook.model.stock.ProductStockInfo;
-import com.andybrook.service.stock.ProductStockInfoService;
+import com.andybrook.service.stock.IProductStockInfoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -19,7 +18,7 @@ public class ProductService implements IProductService {
     @Autowired
     private IBarCodeService barCodeService;
     @Autowired
-    private ProductStockInfoService productStockInfoService;
+    private IProductStockInfoService productStockInfoService;
 
     @Override
     public Product get(long id) throws ProductNotFound {
@@ -51,7 +50,7 @@ public class ProductService implements IProductService {
     @Override
     public Product addProduct(Product product) {
         Product productAdded = dao.update(product);
-        productStockInfoService.update(productAdded.getId(), 0, 0);
+        productStockInfoService.add(productAdded.getId());
         return productAdded;
     }
 }

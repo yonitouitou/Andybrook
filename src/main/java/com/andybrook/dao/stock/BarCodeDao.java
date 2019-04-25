@@ -38,7 +38,7 @@ public class BarCodeDao implements IBarCodeDao {
         Optional<Product> productOpt = Optional.empty();
         Optional<BarCodeEntity> entityOpt = crudRepository.findById(barCodeId);
         if (entityOpt.isPresent()) {
-            //productOpt = Optional.of(entityFactory.createProduct(entityOpt.get().getProductStockInfoEntity()));
+            //productOpt = Optional.of(entityFactory.createProduct(entityOpt.find().getProductStockInfoEntity()));
         }
         return productOpt;
     }

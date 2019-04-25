@@ -42,7 +42,7 @@ export class ListOrdersComponent implements OnInit {
   onClickNotify(order: Order) {
     let modalRef = this.modalBuilder.open(ConfirmModalComponent)
     modalRef.componentInstance.title = "Notification Confirmation"
-    modalRef.componentInstance.message = "Are you sure you want to get notification about the order " + order.name + " ?"
+    modalRef.componentInstance.message = "Are you sure you want to find notification about the order " + order.name + " ?"
     modalRef.result.then((response) => {
       if (response) {
         this.notificationService.notifyOrder(order.id).subscribe(

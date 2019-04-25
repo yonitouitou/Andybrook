@@ -1,6 +1,7 @@
 package com.andybrook.service.stock;
 
 import com.andybrook.assertor.ProductItemAssertor;
+import com.andybrook.exception.ProductItemNotFound;
 import com.andybrook.generator.ProductGenerator;
 import com.andybrook.generator.ProductItemGenerator;
 import com.andybrook.model.product.Product;
@@ -33,12 +34,17 @@ public class StockServiceTest {
 
     @Test
     public void addSingleProductItemTest() {
-        stockService.addProductItem(productItem);
+        productItem = stockService.addProductItem(productItem);
         ProductItem productItemSaved = stockService.getProductItem(productItem.getId());
         ProductItemAssertor.assertEqualsStaticField(productItem, productItemSaved);
         Assert.assertNotNull(productItemSaved.getId());
         Assert.assertNotNull(productItemSaved.getLastModifiedDatetime());
         Assert.assertNotNull(productItemSaved.getCreatedDatetime());
         Assert.assertFalse(productItemSaved.getOrderItemIdOpt().isPresent());
+    }
+
+    @Test(expected = ProductItemNotFound.class)
+    public void getProductItemExpectedNotFoundExceptionTest() {
+        stockService.getProductItem(Long.MAX_VALUE);
     }
 }

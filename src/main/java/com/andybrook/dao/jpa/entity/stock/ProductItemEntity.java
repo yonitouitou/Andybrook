@@ -6,21 +6,21 @@ import com.andybrook.enums.ProductType;
 import com.andybrook.model.BarCode;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
 
 @Entity
-@Inheritance(strategy = InheritanceType.JOINED)
-@DiscriminatorColumn(name = "producttype")
 @Table(name = "product_stock_item")
+@EntityListeners(AuditingEntityListener.class)
 public class ProductItemEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
-    @ManyToOne(cascade = { CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
+    @ManyToOne(cascade = { CascadeType.DETACH, CascadeType.MERGE, CascadeType.REFRESH})
     @JoinColumn(name = "productid")
     private ProductEntity productEntity;
 
@@ -39,6 +39,8 @@ public class ProductItemEntity {
     @LastModifiedDate
     @Column(name = "lastmodifieddatetime")
     protected LocalDateTime lastModifiedDatetime;
+
+    private ProductItemEntity() {}
 
     public ProductItemEntity(ProductEntity productEntity, LocalDateTime createdDatetime, LocalDateTime lastModifiedDatetime) {
         this.productEntity = productEntity;

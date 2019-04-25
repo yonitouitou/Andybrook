@@ -1,9 +1,12 @@
 package com.andybrook.service.stock;
 
 import com.andybrook.dao.stock.IProductItemDao;
+import com.andybrook.exception.ProductItemNotFound;
 import com.andybrook.model.stock.ProductItem;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.Optional;
 
 @Service
 class ProductItemService implements IProductItemService {
@@ -18,6 +21,13 @@ class ProductItemService implements IProductItemService {
 
     @Override
     public ProductItem get(long productItemId) {
-        return dao.get(productItemId);
+        ProductItem productItem;
+        Optional<ProductItem> productItemOpt = dao.find(productItemId);
+        if (productItemOpt.isPresent()) {
+            productItem = productItemOpt.get();
+        } else {
+            throw new ProductItemNotFound(productItemId);
+        }
+        return productItem;
     }
 }
