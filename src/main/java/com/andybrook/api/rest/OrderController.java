@@ -72,14 +72,14 @@ public class OrderController extends AbstractController {
     @PostMapping(path = "/addOrderItemsByInfo")
     public List<OrderItem> addOrderItems(@RequestBody OrderItemAddRequestByInfo request)
             throws OrderNotFound, OrderClosed, ProductNotFound, InsufficientQuantityException, OrderItemNotFound, BarCodeNotFound {
-        LOGGER.log(Level.INFO, "Request received to add order : " + request);
+        LOGGER.log(Level.INFO, "Request received to update order : " + request);
         return orderManager.addOrderItems(new OrderItemAddRequest(request.getOrderId(), request.getProductItemInfo()));
     }
 
     @PostMapping(path = "/addSingleOrderItemsByBarCode")
     public OrderItem addOrderItems(@RequestBody OrderItemAddByBarCodeRestRequest request)
             throws OrderNotFound, OrderClosed, ProductNotFound, InsufficientQuantityException, OrderItemNotFound, BarCodeNotFound {
-        LOGGER.log(Level.INFO, "Request received to add order : " + request);
+        LOGGER.log(Level.INFO, "Request received to update order : " + request);
         return orderManager.addOrderItemByBarCode(new OrderItemAddRequestByBarCode(request.getOrderId(), request.getBarCodeId()));
     }
 

@@ -27,10 +27,10 @@ export class ListOrdersComponent implements OnInit {
   }
 
   onClickCloseOrder(orderToClose: Order) {
-      let modalRef = this.modalBuilder.open(ConfirmModalComponent)
-      modalRef.componentInstance.title = "Close Report Confirmation"
+      let modalRef = this.modalBuilder.open(ConfirmModalComponent);
+      modalRef.componentInstance.title = "Close Report Confirmation";
       modalRef.componentInstance.message = "Are you sure you want to close the order "
-            + orderToClose.name + " for the store " + orderToClose.customer.store.name
+            + orderToClose.name + " for the store " + orderToClose.customer.store.name;
 
       modalRef.result.then((response) => {
         if (response) {
@@ -40,9 +40,9 @@ export class ListOrdersComponent implements OnInit {
   }
 
   onClickNotify(order: Order) {
-    let modalRef = this.modalBuilder.open(ConfirmModalComponent)
-    modalRef.componentInstance.title = "Notification Confirmation"
-    modalRef.componentInstance.message = "Are you sure you want to find notification about the order " + order.name + " ?"
+    let modalRef = this.modalBuilder.open(ConfirmModalComponent);
+    modalRef.componentInstance.title = "Notification Confirmation";
+    modalRef.componentInstance.message = "Are you sure you want to get notification about the order " + order.name + " ?";
     modalRef.result.then((response) => {
       if (response) {
         this.notificationService.notifyOrder(order.id).subscribe(
