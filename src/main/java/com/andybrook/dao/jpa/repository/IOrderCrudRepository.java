@@ -25,7 +25,7 @@ public interface IOrderCrudRepository extends JpaRepository<OrderEntity, Long> {
     List<OrderEntity> findByNameContaining(String name);
     List<OrderEntity> findByIdIn(Collection<Long> ids);
 
-    String UPDATE_EXISTING_STOCK_REPORT_QUERY =
+    String UPDATE_EXISTING_ORDER_QUERY =
             "UPDATE " + ENTITY_NAME + " s SET " +
                     "s." + COLUMN_NAME + " = :name, " +
                     "s." + COLUMN_COMMENT + " = :comment " +
@@ -34,7 +34,7 @@ public interface IOrderCrudRepository extends JpaRepository<OrderEntity, Long> {
 
     @Modifying
     @Transactional
-    @Query(value = UPDATE_EXISTING_STOCK_REPORT_QUERY)
+    @Query(value = UPDATE_EXISTING_ORDER_QUERY)
     void updateExistingStockReport(@Param("id") long id,
                                    @Param("name") String name,
                                    @Param("comment") String comment);
@@ -50,5 +50,5 @@ public interface IOrderCrudRepository extends JpaRepository<OrderEntity, Long> {
     @Modifying
     @Transactional
     @Query(value = UPDATE_STATUS_QUERY)
-    void closeStockReport(@Param("id") long id, @Param("status") OrderStatus status, @Param("closeDatetime") LocalDateTime closeDatetime);
+    void closeOrder(@Param("id") long id, @Param("status") OrderStatus status, @Param("closeDatetime") LocalDateTime closeDatetime);
 }

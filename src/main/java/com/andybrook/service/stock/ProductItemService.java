@@ -16,18 +16,26 @@ class ProductItemService implements IProductItemService {
 
     @Override
     public ProductItem add(ProductItem productItem) {
-        return dao.update(productItem);
+        return updateProductItem(productItem);
     }
 
     @Override
     public ProductItem get(long productItemId) {
-        ProductItem productItem;
         Optional<ProductItem> productItemOpt = dao.find(productItemId);
-        if (productItemOpt.isPresent()) {
-            productItem = productItemOpt.get();
-        } else {
-            throw new ProductItemNotFound(productItemId);
-        }
-        return productItem;
+        return productItemOpt.orElseThrow(() -> new ProductItemNotFound(productItemId));
+    }
+
+    @Override
+    public ProductItem update(ProductItem productItem) {
+        return updateProductItem(productItem);
+    }
+
+    @Override
+    public Optional<ProductItem> findFreeProductItemOf(long productId) {
+        return dao.findFreeProductItemOf(productId);
+    }
+
+    private ProductItem updateProductItem(ProductItem productItem) {
+        return dao.update(productItem);
     }
 }

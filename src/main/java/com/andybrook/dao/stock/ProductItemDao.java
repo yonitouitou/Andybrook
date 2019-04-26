@@ -1,6 +1,7 @@
 package com.andybrook.dao.stock;
 
 import com.andybrook.dao.jpa.entity.factory.EntityFactory;
+import com.andybrook.dao.jpa.entity.order.OrderItemEntity;
 import com.andybrook.dao.jpa.entity.stock.ProductItemEntity;
 import com.andybrook.dao.jpa.repository.IProductItemCrudRepository;
 import com.andybrook.model.stock.ProductItem;
@@ -16,10 +17,16 @@ public class ProductItemDao implements IProductItemDao {
     private IProductItemCrudRepository repository;
     @Autowired
     private EntityFactory entityFactory;
+    @Autowired
+    private IOrderItemDao orderItemDao;
 
     @Override
     public ProductItem update(ProductItem productItem) {
-        ProductItemEntity entity = entityFactory.createProductItemEntity(productItem);
+        OrderItemEntity orderItemEntity = null;
+        if (productItem.getOrderItemIdOpt().isPresent()) {
+            orderItemEntity = orderItemDao.getEntity(productItem.getOrderItemIdOpt().getAsLong());
+        }
+        ProductItemEntity entity = entityFactory.createProductItemEntity(productItem, orderItemEntity);
         ProductItemEntity savedEntity = repository.save(entity);
         return entityFactory.createProductItem(savedEntity);
     }
@@ -35,6 +42,16 @@ public class ProductItemDao implements IProductItemDao {
         Optional<ProductItemEntity> entityOpt = repository.findById(id);
         if (entityOpt.isPresent()) {
             productItemOpt = Optional.of(entityFactory.createProductItem(entityOpt.get()));
+        }
+        return productItemOpt;
+    }
+
+    @Override
+    public Optional<ProductItem> findFreeProductItemOf(long productId) {
+        Optional<ProductItem> productItemOpt = Optional.empty();
+        ProductItemEntity entity = repository.getFreeProductItemOf(productId);
+        if (entity != null) {
+            productItemOpt = Optional.of(entityFactory.createProductItem(entity));
         }
         return productItemOpt;
     }

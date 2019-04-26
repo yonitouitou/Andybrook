@@ -101,7 +101,7 @@ public class OrderService implements IOrderService {
         List<OrderItem> orderItems;
         Order order = getOrderById(orderId);
         if (canModifyOrder(order)) {
-            orderItems = orderItemService.createOrderItems(info, quantity);
+            orderItems = orderItemService.createOrderItems(order, info, quantity);
             order.addOrderItems(orderItems);
             dao.updateOrder(order);
         } else {
@@ -130,8 +130,8 @@ public class OrderService implements IOrderService {
         if (canModifyOrder(order)) {
             if (order.getItem(orderItemId) != null) {
                 OrderItem deletedOrderItem = order.deleteItem(orderItemId);
+                orderItemService.delete(deletedOrderItem);
                 order = dao.updateOrder(order);
-                orderItemService.postDeletion(deletedOrderItem);
             } else {
                 throw new OrderItemNotFound(orderItemId);
             }

@@ -2,8 +2,8 @@ package com.andybrook.service.order;
 
 import com.andybrook.dao.stock.IOrderItemDao;
 import com.andybrook.exception.InsufficientQuantityException;
-import com.andybrook.exception.ProductItemNotFree;
 import com.andybrook.model.BarCode;
+import com.andybrook.model.order.Order;
 import com.andybrook.model.order.OrderItem;
 import com.andybrook.model.request.orderitem.ProductItemInfo;
 import com.andybrook.model.stock.ProductItem;
@@ -13,12 +13,17 @@ import com.andybrook.util.IdGenerator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.lang.System.Logger;
+import java.lang.System.Logger.Level;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Optional;
 import java.util.OptionalLong;
 
 @Service
 public class OrderItemService implements IOrderItemService {
+
+    private static Logger LOGGER = System.getLogger(OrderItemService.class.getSimpleName());
 
     @Autowired
     private IOrderItemDao dao;
@@ -28,12 +33,21 @@ public class OrderItemService implements IOrderItemService {
     private IStockService stockService;
 
     @Override
-    public List<OrderItem> createOrderItems(ProductItemInfo info, int quantityRequested) {
+    public List<OrderItem> createOrderItems(Order order, ProductItemInfo info, int quantityRequested) {
         List<OrderItem> orderItems = new LinkedList<>();
         int freeQuantity = productStockInfoService.getFreeQuantity(info.getProductId());
         if (freeQuantity >= quantityRequested) {
-            ProductItem productItem = stockService.getProductItem(info.getProductId());
-            orderItems.add(buildOrderItem(productItem));
+            Optional<ProductItem> productItemOpt = stockService.findFreeProductItemOf(info.getProductId());
+            if (productItemOpt.isPresent()) {
+                ProductItem productItem = productItemOpt.get();
+                OrderItem orderItem = buildOrderItem(productItem);
+                persist(order, orderItem);
+                productItem.setOrderItemIdOpt(OptionalLong.of(orderItem.getId()));
+                orderItems.add(orderItem);
+                stockService.updateProductItem(productItem);
+            } else {
+                logFreeQuantityError(freeQuantity, quantityRequested, info.getProductId());
+            }
         } else {
             throw new InsufficientQuantityException(freeQuantity);
         }
@@ -51,10 +65,10 @@ public class OrderItemService implements IOrderItemService {
     }
 
     @Override
-    public void postDeletion(OrderItem deletedOrderItem) {
-        ProductItem productItem = deletedOrderItem.getProductItem();
-        productItem.setOrderItemIdOpt(OptionalLong.empty());
-        productStockInfoService.decrementQuantityUsed(productItem.getProduct().getId());
+    public void delete(OrderItem orderItemToDelete) {
+        unlinkProductItemFromOrderItem(orderItemToDelete);
+        dao.delete(orderItemToDelete.getId());
+        updateStockOnDelete(orderItemToDelete);
     }
 
     @Override
@@ -62,7 +76,28 @@ public class OrderItemService implements IOrderItemService {
         return dao.isExist(id);
     }
 
+    private void unlinkProductItemFromOrderItem(OrderItem orderItemToDelete) {
+        ProductItem productItem = orderItemToDelete.getProductItem();
+        productItem.setOrderItemIdOpt(OptionalLong.empty());
+        stockService.updateProductItem(productItem);
+    }
+
+    private void updateStockOnDelete(OrderItem orderItemToDelete) {
+        productStockInfoService.decrementQuantityUsed(orderItemToDelete.getProductItem().getProductId());
+    }
+
+
     private OrderItem buildOrderItem(ProductItem productItem) {
         return new OrderItem(IdGenerator.generateId(), productItem);
+    }
+
+    private void persist(Order order, OrderItem orderItem) {
+        dao.update(order, orderItem);
+    }
+
+    private void logFreeQuantityError(int freeQty, int requestedQty, long productId) {
+        LOGGER.log(Level.ERROR, "FreeQuantity (" + freeQty + ")" +
+                " > QuantityRequested(" + requestedQty + ")" +
+                " , but no free product item found for productId : " + productId);
     }
 }

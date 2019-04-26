@@ -31,7 +31,10 @@ public class OrderItemEntityConverter implements IEntityConverter<OrderItem, Ord
     }
 
     public OrderItemEntity toEntity(OrderEntity orderEntity, OrderItem model) {
-        ProductItemEntity productItemEntity = entityFactory.createProductItemEntity(model.getProductItem());
-        return new OrderItemEntity(model.getId(), orderEntity, productItemEntity);
+        OrderItemEntity entity = new OrderItemEntity(model.getId());
+        ProductItemEntity productItemEntity = entityFactory.createProductItemEntity(model.getProductItem(), entity);
+        entity.setOrderEntity(orderEntity);
+        entity.setProductItemEntity(productItemEntity);
+        return entity;
     }
 }

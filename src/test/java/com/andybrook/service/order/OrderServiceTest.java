@@ -1,15 +1,14 @@
 package com.andybrook.service.order;
 
-import com.andybrook.assertor.OrderItemAssertor;
 import com.andybrook.exception.InsufficientQuantityException;
 import com.andybrook.exception.OrderClosed;
 import com.andybrook.generator.CustomerGenerator;
 import com.andybrook.generator.OrderItemGenerator;
 import com.andybrook.generator.ProductGenerator;
 import com.andybrook.generator.ProductItemGenerator;
+import com.andybrook.model.customer.Customer;
 import com.andybrook.model.order.Order;
 import com.andybrook.model.order.OrderItem;
-import com.andybrook.model.customer.Customer;
 import com.andybrook.model.product.Product;
 import com.andybrook.model.request.order.NewOrderRequest;
 import com.andybrook.model.request.orderitem.ProductItemInfo;
@@ -59,32 +58,33 @@ public class OrderServiceTest {
         for (ProductItem item : productItems) {
             item = stockService.addProductItem(item);
         }
-        productItemInfo = OrderItemGenerator.generateOrderItemInfo(this.product, PRODUCT_QUANTITY -1);
+        productItemInfo = OrderItemGenerator.generateOrderItemInfo(product, PRODUCT_QUANTITY -1);
     }
 
     @Test
-    public void addOrderItemTest() {
-        OrderItem orderItemAdded = addSingleOrderItem(productItemInfo).get(0);
-        Order order = orderService.getOrder(this.order.getId());
-        Assert.assertTrue(order.hasItem(orderItemAdded.getId()));
-        OrderItemAssertor.assertEquals(product, productItemInfo, orderItemAdded);
+    public void addSingleOrderItemTest() {
+        productItemInfo = OrderItemGenerator.generateOrderItemInfo(product, 1);
+        OrderItem orderItemAdded = addOrderItems(productItemInfo).get(0);
+        Order updatedOrder = orderService.getOrder(order.getId());
+        Assert.assertTrue("Order.HasItem", updatedOrder.hasItem(orderItemAdded.getId()));
+        Assert.assertEquals("ProductId", product.getId(), updatedOrder.getItem(orderItemAdded.getId()).getProductId(), 0);
     }
 
     @Test(expected = InsufficientQuantityException.class)
     public void addOrderItemQuantityExceededTest() {
-        productItemInfo = OrderItemGenerator.generateOrderItemInfo(this.product, PRODUCT_QUANTITY + 1);
-        addSingleOrderItem(productItemInfo).get(0);
+        productItemInfo = OrderItemGenerator.generateOrderItemInfo(product, PRODUCT_QUANTITY + 1);
+        addOrderItems(productItemInfo).get(0);
     }
 
     @Test(expected = OrderClosed.class)
     public void addOrderItemIntoClosedOrder() {
         orderService.closeOrder(this.order.getId());
-        addSingleOrderItem(productItemInfo).get(0);
+        addOrderItems(productItemInfo).get(0);
     }
 
     @Test
-    public void deleteOrderItemFromOrderTest() {
-        OrderItem orderItem = addSingleOrderItem(productItemInfo).get(0);
+    public void deleteOrderItemTest() {
+        OrderItem orderItem = addOrderItems(productItemInfo).get(0);
         deleteOrderItem(orderItem.getId());
         Assert.assertFalse(order.hasItem(orderItem.getId()));
 
@@ -92,7 +92,7 @@ public class OrderServiceTest {
         Assert.assertFalse(order.hasItem(orderItem.getId()));
     }
 
-    private List<OrderItem> addSingleOrderItem(ProductItemInfo productItemInfo) {
+    private List<OrderItem> addOrderItems(ProductItemInfo productItemInfo) {
         return orderService.addOrderItems(order.getId(), productItemInfo, productItemInfo.getRequestedQuantity());
     }
 

@@ -1,5 +1,6 @@
 package com.andybrook.dao.stock;
 
+import com.andybrook.dao.jpa.entity.order.OrderEntity;
 import com.andybrook.dao.jpa.repository.IOrderItemCrudRepository;
 import com.andybrook.dao.jpa.entity.factory.EntityFactory;
 import com.andybrook.dao.jpa.entity.order.OrderItemEntity;
@@ -19,16 +20,32 @@ public class OrderItemDao implements IOrderItemDao {
     private EntityFactory entityFactory;
 
     @Override
-    public OrderItem updateStockItem(Order order, OrderItem item) {
-        /*OrderItemEntity entity = entityFactory.createOrderItemEntity(order, item);
+    public void update(Order order, OrderItem item) {
+        OrderEntity orderEntity = entityFactory.createOrderEntity(order);
+        OrderItemEntity entity = entityFactory.createOrderItemEntityByProductType(orderEntity, item);
         OrderItemEntity entitySaved = repository.save(entity);
-        return entityFactory.createOrderItem(entitySaved);*/
-        return null;
+        item.setId(entitySaved.getId());
     }
 
     @Override
     public boolean isExist(long id) {
         return repository.existsById(id);
+    }
+
+    @Override
+    public OrderItem get(long orderItemId) {
+        OrderItemEntity entity = repository.getOne(orderItemId);
+        return entityFactory.createOrderItem(entity);
+    }
+
+    @Override
+    public void delete(long orderItemId) {
+        repository.deleteById(orderItemId);
+    }
+
+    @Override
+    public OrderItemEntity getEntity(long orderItemId) {
+        return repository.getOne(orderItemId);
     }
 
     private Optional<OrderItemEntity> findOne(long id) {

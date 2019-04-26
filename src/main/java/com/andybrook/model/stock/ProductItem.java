@@ -19,12 +19,14 @@ public class ProductItem {
     public ProductItem(Product product, BarCode barCode) {
         this.product = product;
         this.barCode = barCode;
+        this.orderItemIdOpt = OptionalLong.empty();
     }
 
     public ProductItem(Long id, Product product, BarCode barCode) {
         this.id = id;
         this.product = product;
         this.barCode = barCode;
+        this.orderItemIdOpt = OptionalLong.empty();
     }
 
     public void markAsUsed(long orderItemId) {
@@ -41,6 +43,10 @@ public class ProductItem {
 
     public String getName() {
         return product.getName();
+    }
+
+    public long getProductId() {
+        return product.getId();
     }
 
     public ProductType getProductType() {
@@ -92,7 +98,11 @@ public class ProductItem {
     }
 
     public void setOrderItemIdOpt(OptionalLong orderItemIdOpt) {
-        this.orderItemIdOpt = orderItemIdOpt;
+        if (orderItemIdOpt == null) {
+            this.orderItemIdOpt = OptionalLong.empty();
+        } else {
+            this.orderItemIdOpt = orderItemIdOpt;
+        }
     }
 
     @Override

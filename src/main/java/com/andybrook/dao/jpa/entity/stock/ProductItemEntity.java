@@ -18,11 +18,11 @@ public class ProductItemEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    private Long id;
 
     @ManyToOne(cascade = { CascadeType.DETACH, CascadeType.MERGE, CascadeType.REFRESH})
     @JoinColumn(name = "productid")
-    private ProductEntity productEntity;
+    protected ProductEntity productEntity;
 
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "barcodeid")
@@ -42,17 +42,18 @@ public class ProductItemEntity {
 
     private ProductItemEntity() {}
 
-    public ProductItemEntity(ProductEntity productEntity, LocalDateTime createdDatetime, LocalDateTime lastModifiedDatetime) {
-        this.productEntity = productEntity;
+
+    public ProductItemEntity(Long id, LocalDateTime createdDatetime, LocalDateTime lastModifiedDatetime) {
+        this.id = id;
         this.createdDatetime = createdDatetime;
         this.lastModifiedDatetime = lastModifiedDatetime;
     }
 
-    public long getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

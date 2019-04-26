@@ -3,6 +3,7 @@ package com.andybrook.dao.jpa.entity.stock;
 import com.andybrook.annotation.EntityConverter;
 import com.andybrook.dao.jpa.entity.factory.EntityFactory;
 import com.andybrook.dao.jpa.entity.factory.IEntityConverter;
+import com.andybrook.dao.jpa.entity.order.OrderItemEntity;
 import com.andybrook.dao.jpa.entity.product.ProductEntity;
 import com.andybrook.model.BarCode;
 import com.andybrook.model.product.Product;
@@ -38,8 +39,14 @@ public class ProductItemEntityConverter implements IEntityConverter<ProductItem,
 
     @Override
     public ProductItemEntity toEntity(ProductItem model) {
+        throw new UnsupportedOperationException();
+    }
+
+    public ProductItemEntity toEntity(ProductItem model, OrderItemEntity orderItemEntity) {
+        ProductItemEntity entity = new ProductItemEntity(model.getId(), model.getCreatedDatetime(), model.getLastModifiedDatetime());
         ProductEntity productEntity = entityFactory.createProductEntity(model.getProduct());
-        ProductItemEntity entity = new ProductItemEntity(productEntity, model.getCreatedDatetime(), model.getLastModifiedDatetime());
+        entity.setProductEntity(productEntity);
+        entity.setOrderItemEntity(orderItemEntity);
         BarCodeEntity barCodeEntity;
         if (model.getBarCode() != null) {
             barCodeEntity = entityFactory.createBarCodeEntity(model.getBarCode(), entity);
@@ -47,4 +54,6 @@ public class ProductItemEntityConverter implements IEntityConverter<ProductItem,
         }
         return entity;
     }
+
+
 }

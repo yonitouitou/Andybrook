@@ -11,4 +11,6 @@ public interface IProductItemDao {
     ProductItem delete(long id);
 
     Optional<ProductItem> find(long id);
+
+    Optional<ProductItem> findFreeProductItemOf(long productId);
 }

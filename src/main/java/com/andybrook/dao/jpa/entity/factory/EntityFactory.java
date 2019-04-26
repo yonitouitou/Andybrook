@@ -90,9 +90,9 @@ public final class EntityFactory {
         return (T) converter.toModel(entity);
     }
 
-    public final <T extends ProductItemEntity> T createProductItemEntity(ProductItem model) {
-        IEntityConverter converter = entityConverterMapByModelClass.get(model.getClass());
-        return (T) converter.toEntity(model);
+    public final ProductItemEntity createProductItemEntity(ProductItem model, OrderItemEntity orderItemEntity) {
+        ProductItemEntityConverter converter = (ProductItemEntityConverter) entityConverterMapByModelClass.get(model.getClass());
+        return converter.toEntity(model, orderItemEntity);
     }
 
     public final <T extends Product> OrderItem createOrderItem(OrderItemEntity entity) {

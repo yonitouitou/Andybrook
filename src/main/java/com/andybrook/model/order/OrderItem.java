@@ -40,6 +40,10 @@ public final class OrderItem {
         this.id = id;
     }
 
+    public long getProductId() {
+        return productItem.getProductId();
+    }
+
     public ProductItem getProductItem() {
         return productItem;
     }

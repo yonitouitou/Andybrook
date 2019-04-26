@@ -1,6 +1,5 @@
 package com.andybrook.service.stock;
 
-import com.andybrook.exception.InsufficientQuantityException;
 import com.andybrook.model.product.Product;
 import com.andybrook.model.stock.ProductItem;
 import com.andybrook.service.product.IProductService;
@@ -9,6 +8,7 @@ import org.springframework.data.util.Pair;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class StockService implements IStockService {
@@ -31,6 +31,16 @@ public class StockService implements IStockService {
     @Override
     public ProductItem getProductItem(long productItemId) {
         return productItemService.get(productItemId);
+    }
+
+    @Override
+    public ProductItem updateProductItem(ProductItem productItem) {
+        return productItemService.update(productItem);
+    }
+
+    @Override
+    public Optional<ProductItem> findFreeProductItemOf(long productId) {
+        return productItemService.findFreeProductItemOf(productId);
     }
 
     @Override

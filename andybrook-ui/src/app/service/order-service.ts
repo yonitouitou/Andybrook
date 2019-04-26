@@ -35,8 +35,8 @@ export class OrderService {
     }
 
     updateStockItem(order: Order, itemToUpdate: StockItem): Observable<any> {
-        console.log("update order " + order.id + " | " + itemToUpdate)
-        return this.httpApi.post("/v1/order/update", this.toUpdateRequest(order, itemToUpdate))
+        console.log("updateProductItem order " + order.id + " | " + itemToUpdate)
+        return this.httpApi.post("/v1/order/updateProductItem", this.toUpdateRequest(order, itemToUpdate))
     }
 
     deleteItem(order: Order, stockItemIdToDelete: number): Observable<any> {
