@@ -1,31 +1,31 @@
 package com.andybrook.init;
 
 import com.andybrook.exception.*;
-import com.andybrook.generator.ProductGenerator;
 import com.andybrook.generator.OrderItemGenerator;
+import com.andybrook.generator.ProductGenerator;
 import com.andybrook.manager.order.IOrderManager;
 import com.andybrook.manager.product.IProductManager;
-import com.andybrook.model.order.Order;
-import com.andybrook.model.order.OrderItem;
+import com.andybrook.model.BarCode;
 import com.andybrook.model.customer.Customer;
 import com.andybrook.model.customer.Owner;
 import com.andybrook.model.customer.Store;
+import com.andybrook.model.order.Order;
+import com.andybrook.model.order.OrderItem;
 import com.andybrook.model.product.Product;
 import com.andybrook.model.request.order.NewOrderRequest;
 import com.andybrook.model.request.orderitem.OrderItemAddRequest;
 import com.andybrook.model.request.orderitem.ProductItemInfo;
+import com.andybrook.model.stock.ProductItem;
 import com.andybrook.service.customer.ICustomerService;
+import com.andybrook.service.stock.IStockService;
 import com.andybrook.util.clock.Clock;
-import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import java.util.ArrayList;
-import java.util.LinkedList;
-import java.util.List;
+import java.util.*;
 import java.util.concurrent.ThreadLocalRandom;
 
 @SpringBootTest
@@ -33,10 +33,15 @@ import java.util.concurrent.ThreadLocalRandom;
 public class InitSystemTest {
 
     private static final ThreadLocalRandom RANDOM = ThreadLocalRandom.current();
-    private static final int CUSTOMER_NUMBER_10 = 10;
-    private static final int PRODUCT_NUMBER_200 = 200;
+    private static final int CUSTOMER_NUMBER_2 = 2;
+    private static final int PRODUCT_NUMBER_70 = 70;
+    private static final int PRODUCT_ITEM_FOR_EACH_PRODUCT_100 = 100;
     private static final int ORDER_NUMBER_10 = 10;
-    private static final int MAX_ITEM_IN_ORDER_101 = 150;
+    private static final int MAX_ITEM_IN_ORDER_15 = 15;
+
+    private List<Product> products;
+    private Map<Long, List<Long>> productItemsIdMapByProductId;
+    private List<Customer> customers;
 
     @Autowired
     private ICustomerService customerService;
@@ -44,22 +49,25 @@ public class InitSystemTest {
     private IOrderManager orderManager;
     @Autowired
     private IProductManager productManager;
+    @Autowired
+    private IStockService stockService;
 
     @Test
-    @Ignore
-    public void initSystem() throws Exception {
-        List<Product> products = createProducts();
-        List<Customer> customers = createCustomers();
+    //@Ignore
+    public void initSystem() {
+        products = createProducts();
+        productItemsIdMapByProductId = createProductItems(products);
+        customers = createCustomers();
         for (Customer customer : customers) {
             List<Long> orderIds = createOrders(customer);
             for (Long id : orderIds) {
-                int itemToAddNb = RANDOM.nextInt(0, MAX_ITEM_IN_ORDER_101);
+                int itemToAddNb = RANDOM.nextInt(0, MAX_ITEM_IN_ORDER_15);
                 for (int i = 0; i < itemToAddNb; i++) {
+                    Product product = products.get(RANDOM.nextInt(0, PRODUCT_NUMBER_70));
                     try {
-                        Product product = products.get(RANDOM.nextInt(0, PRODUCT_NUMBER_200 - 1));
-                        /*if (product.getQuantityCreated() > 0) {
-                            addOrderItem(id, product);
-                        }*/
+                        addOrderItem(id, product.getId());
+                    } catch (InsufficientQuantityException e){
+                        System.err.println("Limit exceeded for product : " + product.getId());
                     } catch (Exception e) {
                         System.err.println("Item not added to order. Reason : " + e.getMessage());
                     }
@@ -68,9 +76,22 @@ public class InitSystemTest {
         }
     }
 
+    private Map<Long, List<Long>> createProductItems(List<Product> products) {
+        productItemsIdMapByProductId = new HashMap<>(PRODUCT_NUMBER_70);
+        for (Product product : products) {
+            List<Long> productItemIds = new ArrayList<>(PRODUCT_ITEM_FOR_EACH_PRODUCT_100);
+            for (int i = 0; i < PRODUCT_ITEM_FOR_EACH_PRODUCT_100; i++) {
+                ProductItem productItem = new ProductItem(product, new BarCode(UUID.randomUUID().toString()));
+                productItemIds.add(stockService.addProductItem(productItem).getId());
+            }
+            productItemsIdMapByProductId.put(product.getId(), productItemIds);
+        }
+        return productItemsIdMapByProductId;
+    }
+
     private List<Product> createProducts() {
-        List<Product> products = new ArrayList<>(PRODUCT_NUMBER_200);
-        for (int i = 0; i < PRODUCT_NUMBER_200; i++) {
+        List<Product> products = new ArrayList<>(PRODUCT_NUMBER_70);
+        for (int i = 0; i < PRODUCT_NUMBER_70; i++) {
             Product product = ProductGenerator.generateProduct();
             product = productManager.addProduct(product);
             products.add(product);
@@ -80,7 +101,7 @@ public class InitSystemTest {
 
     private List<Customer> createCustomers() {
         List<Customer> customers = new LinkedList<>();
-        for (int i = 0; i < CUSTOMER_NUMBER_10; i++) {
+        for (int i = 0; i < CUSTOMER_NUMBER_2; i++) {
             Owner owner = new Owner("Steve_" + i, "Smith", "steve_" + i +".smith@optika.net");
             Store store = new Store("Optika_" + i, "optika@gmail.com", "13 Avenue Paul Valery - Paris", owner);
             Customer customer = new Customer(store);
@@ -89,15 +110,15 @@ public class InitSystemTest {
         return customers;
     }
 
-    private void addOrderItem(long orderId, Product product)
+    private void addOrderItem(long orderId, long productId)
             throws OrderNotFound, OrderClosed, ProductNotFound, InsufficientQuantityException, OrderItemNotFound, BarCodeNotFound {
-        /*OrderItem item = OrderItemGenerator.generateOrderItem(product);
-        ProductItemInfo details = new ProductItemInfo(item.getId(), item.getProductItem().getId());
-        if (item.getBarCode() != null) {
-            details.setBarCodeId(item.getBarCode().getId());
-        }
-        OrderItemAddRequest request = new OrderItemAddRequest(orderId, details);
-        orderManager.addOrderItems(request);*/
+        Long productItemId = productItemsIdMapByProductId.get(productId).get(RANDOM.nextInt(0, PRODUCT_ITEM_FOR_EACH_PRODUCT_100));
+        ProductItem productItem = stockService.getProductItem(productItemId);
+        OrderItem item = OrderItemGenerator.generateOrderItem(productItem);
+        ProductItemInfo info = new ProductItemInfo(item.getId(), productItem.getProductId(), RANDOM.nextInt(1, 3));
+        OrderItemAddRequest request = new OrderItemAddRequest(orderId, info);
+        System.out.println("Add " + request.getQuantityRequested() + " order items of product " + productId + " into order " + orderId);
+        orderManager.addOrderItems(request);
     }
 
     private List<Long> createOrders(Customer customer) throws StoreNotFound {

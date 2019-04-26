@@ -28,25 +28,25 @@ public class OrderItemService implements IOrderItemService {
     @Autowired
     private IOrderItemDao dao;
     @Autowired
-    private IProductStockInfoService productStockInfoService;
-    @Autowired
     private IStockService stockService;
 
     @Override
     public List<OrderItem> createOrderItems(Order order, ProductItemInfo info, int quantityRequested) {
         List<OrderItem> orderItems = new LinkedList<>();
-        int freeQuantity = productStockInfoService.getFreeQuantity(info.getProductId());
+        int freeQuantity = stockService.getFreeQuantity(info.getProductId());
         if (freeQuantity >= quantityRequested) {
-            Optional<ProductItem> productItemOpt = stockService.findFreeProductItemOf(info.getProductId());
-            if (productItemOpt.isPresent()) {
-                ProductItem productItem = productItemOpt.get();
-                OrderItem orderItem = buildOrderItem(productItem);
-                persist(order, orderItem);
-                productItem.setOrderItemIdOpt(OptionalLong.of(orderItem.getId()));
-                orderItems.add(orderItem);
-                stockService.updateProductItem(productItem);
-            } else {
-                logFreeQuantityError(freeQuantity, quantityRequested, info.getProductId());
+            for (int i = 0; i < quantityRequested; i++) {
+                Optional<ProductItem> productItemOpt = stockService.findFreeProductItemOf(info.getProductId());
+                if (productItemOpt.isPresent()) {
+                    ProductItem productItem = productItemOpt.get();
+                    OrderItem orderItem = buildOrderItem(productItem);
+                    persist(order, orderItem);
+                    productItem.setOrderItemIdOpt(OptionalLong.of(orderItem.getId()));
+                    orderItems.add(orderItem);
+                    stockService.onProductItemLinked(productItem);
+                } else {
+                    logFreeQuantityError(freeQuantity, quantityRequested, info.getProductId());
+                }
             }
         } else {
             throw new InsufficientQuantityException(freeQuantity);
@@ -79,11 +79,11 @@ public class OrderItemService implements IOrderItemService {
     private void unlinkProductItemFromOrderItem(OrderItem orderItemToDelete) {
         ProductItem productItem = orderItemToDelete.getProductItem();
         productItem.setOrderItemIdOpt(OptionalLong.empty());
-        stockService.updateProductItem(productItem);
+        stockService.onProductItemUnlinked(productItem);
     }
 
     private void updateStockOnDelete(OrderItem orderItemToDelete) {
-        productStockInfoService.decrementQuantityUsed(orderItemToDelete.getProductItem().getProductId());
+        stockService.decrementQuantityUsed(orderItemToDelete.getProductItem().getProductId());
     }
 
 

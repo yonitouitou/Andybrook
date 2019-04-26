@@ -20,7 +20,7 @@ public class ProductItemEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @ManyToOne(cascade = { CascadeType.DETACH, CascadeType.MERGE, CascadeType.REFRESH})
+    @ManyToOne(cascade = { CascadeType.DETACH, CascadeType.REFRESH})
     @JoinColumn(name = "productid")
     protected ProductEntity productEntity;
 

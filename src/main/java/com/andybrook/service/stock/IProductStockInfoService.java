@@ -1,6 +1,5 @@
 package com.andybrook.service.stock;
 
-import com.andybrook.model.stock.ProductStockInfo;
 import org.springframework.data.util.Pair;
 
 import java.util.List;

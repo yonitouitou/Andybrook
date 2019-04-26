@@ -31,6 +31,7 @@ export class StockReportComponent implements OnInit {
       this.order.comment = data.comment
       this.order.status = data.status
       this.order.customer = Customer.fromJson(data.customer)
+      console.log("Order item size in order : " + orderId + " : " + data.items.size)
       for (let item of data.items) {
         let barCodeId
         if (item.barCode != null) {

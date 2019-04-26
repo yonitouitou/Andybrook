@@ -983,12 +983,12 @@ var Type;
     Type["GLASSES"] = "GLASSES";
 })(Type || (Type = {}));
 var StockItem = /** @class */ (function () {
-    function StockItem(id, barCode, quantity, product, creationDatetime, lastModifyDatetime) {
+    function StockItem(id, barCode, quantity, productItem, creationDatetime, lastModifyDatetime) {
         this.type = Type.GLASSES;
         this.id = id;
         this.barCode = barCode;
         this.quantity = quantity;
-        this.product = product;
+        this.productItem = productItem;
         this.createdDatetime = creationDatetime;
         this.lastModifiedDatetime = lastModifyDatetime;
     }
@@ -1302,7 +1302,7 @@ var AdminSettingService = /** @class */ (function () {
     };
     AdminSettingService.prototype.updateAdminSetting = function (adminSetting) {
         console.log("Update admin setting " + adminSetting);
-        return this.httpApi.post("v1/admin/setting/update", adminSetting);
+        return this.httpApi.post("v1/admin/setting/add", adminSetting);
     };
     AdminSettingService = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Injectable"])(),
@@ -1470,11 +1470,11 @@ var OrderService = /** @class */ (function () {
     };
     OrderService.prototype.addItem = function (order, item) {
         console.log("Add item[ " + ", " + item.quantity + " to order " + order.id);
-        return this.httpApi.post("/v1/order/addOrderItem", this.toUpdateRequest(order, item));
+        return this.httpApi.post("/v1/order/addOrderItems", this.toUpdateRequest(order, item));
     };
     OrderService.prototype.updateStockItem = function (order, itemToUpdate) {
-        console.log("update order " + order.id + " | " + itemToUpdate);
-        return this.httpApi.post("/v1/order/update", this.toUpdateRequest(order, itemToUpdate));
+        console.log("updateProductItem order " + order.id + " | " + itemToUpdate);
+        return this.httpApi.post("/v1/order/updateProductItem", this.toUpdateRequest(order, itemToUpdate));
     };
     OrderService.prototype.deleteItem = function (order, stockItemIdToDelete) {
         console.log("Delete Item : " + stockItemIdToDelete);
@@ -1498,7 +1498,7 @@ var OrderService = /** @class */ (function () {
             "orderItemInfo": {
                 "orderItemId": item.id,
                 "quantity": item.quantity,
-                "productId": item.product.id
+                "productId": item.productItem.product.id
             }
         };
     };
@@ -1534,13 +1534,13 @@ var ProductService = /** @class */ (function () {
         this.http = http;
     }
     ProductService.prototype.get = function (id) {
-        return this.http.get("/v1/product/get/" + id);
+        return this.http.get("/v1/productItem/get/" + id);
     };
     ProductService.prototype.getByBarCode = function (barCode) {
-        return this.http.get("/v1/product/getByBarCode/" + barCode);
+        return this.http.get("/v1/productItem/getByBarCode/" + barCode);
     };
     ProductService.prototype.getAllProductNames = function () {
-        return this.http.get("/v1/product/getAllExistingProductNames");
+        return this.http.get("/v1/stock/getAllExistingProductNames");
     };
     ProductService = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Injectable"])(),
@@ -1949,6 +1949,7 @@ var StockReportComponent = /** @class */ (function () {
             _this.order.comment = data.comment;
             _this.order.status = data.status;
             _this.order.customer = _model_Customer__WEBPACK_IMPORTED_MODULE_6__["Customer"].fromJson(data.customer);
+            console.log("Order item size in order : " + orderId + " : " + data.items.size);
             for (var _i = 0, _a = data.items; _i < _a.length; _i++) {
                 var item = _a[_i];
                 var barCodeId = void 0;

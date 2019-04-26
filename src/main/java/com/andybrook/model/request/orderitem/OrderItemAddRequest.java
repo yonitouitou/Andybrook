@@ -26,7 +26,7 @@ public class OrderItemAddRequest extends OrderItemRequest {
     @Override
     public String toString() {
         return "OrderItemAddRequest{" +
-                ", productItemInfo=" + productItemInfo +
+                "productItemInfo=" + productItemInfo +
                 ", orderId=" + orderId +
                 '}';
     }

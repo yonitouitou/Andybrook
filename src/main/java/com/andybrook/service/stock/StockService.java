@@ -34,8 +34,25 @@ public class StockService implements IStockService {
     }
 
     @Override
-    public ProductItem updateProductItem(ProductItem productItem) {
-        return productItemService.update(productItem);
+    public void onProductItemLinked(ProductItem productItem) {
+        productItemService.update(productItem);
+        productStockInfoService.incrementQuantityUsed(productItem.getProductId());
+    }
+
+    @Override
+    public void onProductItemUnlinked(ProductItem productItem) {
+        productItemService.update(productItem);
+        productStockInfoService.decrementQuantityUsed(productItem.getProductId());
+    }
+
+    @Override
+    public int getFreeQuantity(long productId) {
+        return productStockInfoService.getFreeQuantity(productId);
+    }
+
+    @Override
+    public void decrementQuantityUsed(long productId) {
+        productStockInfoService.decrementQuantityUsed(productId);
     }
 
     @Override

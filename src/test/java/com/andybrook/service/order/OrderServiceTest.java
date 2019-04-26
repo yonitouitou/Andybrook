@@ -38,8 +38,6 @@ public class OrderServiceTest {
     private ProductItemInfo productItemInfo;
 
     @Autowired
-    private IOrderItemService orderItemService;
-    @Autowired
     private IOrderService orderService;
     @Autowired
     private ICustomerService customerService;
@@ -62,12 +60,23 @@ public class OrderServiceTest {
     }
 
     @Test
-    public void addSingleOrderItemTest() {
+    public void addSingleOrderItemSingleQuantityTest() {
         productItemInfo = OrderItemGenerator.generateOrderItemInfo(product, 1);
         OrderItem orderItemAdded = addOrderItems(productItemInfo).get(0);
         Order updatedOrder = orderService.getOrder(order.getId());
         Assert.assertTrue("Order.HasItem", updatedOrder.hasItem(orderItemAdded.getId()));
         Assert.assertEquals("ProductId", product.getId(), updatedOrder.getItem(orderItemAdded.getId()).getProductId(), 0);
+    }
+
+    @Test
+    public void addSingleOrderItemMultipleQuantityTest() {
+        productItemInfo = OrderItemGenerator.generateOrderItemInfo(product, 2);
+        List<OrderItem> orderItems = addOrderItems(productItemInfo);
+        Order updatedOrder = orderService.getOrder(order.getId());
+        for (OrderItem orderItem : orderItems) {
+            Assert.assertTrue("Order.HasItem", updatedOrder.hasItem(orderItem.getId()));
+            Assert.assertEquals("ProductId", product.getId(), updatedOrder.getItem(orderItem.getId()).getProductId(), 0);
+        }
     }
 
     @Test(expected = InsufficientQuantityException.class)

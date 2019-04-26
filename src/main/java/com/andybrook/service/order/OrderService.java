@@ -142,10 +142,10 @@ public class OrderService implements IOrderService {
     }
 
     private Order getOrderById(long id) throws OrderNotFound {
-        Optional<Order> reportOpt = dao.findOrder(id);
-        if (! reportOpt.isPresent()) {
+        Optional<Order> orderOpt = dao.findOrder(id);
+        if (! orderOpt.isPresent()) {
             throw new OrderNotFound(languageResolver.get(ORDER_NOT_FOUND) + " : " + id);
         }
-        return reportOpt.get();
+        return orderOpt.get();
     }
 }

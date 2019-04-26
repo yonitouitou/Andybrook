@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.util.Pair;
 import org.springframework.stereotype.Repository;
 
+import java.math.BigInteger;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Optional;
@@ -43,7 +44,7 @@ public class ProductStockInfoDao implements IProductStockInfoDao {
         List<Pair<Long, String>> products = new LinkedList<>();
         for (int i = 0; i < productIdAndNameList.size(); i++) {
             Object[] currentProduct = (Object[]) productIdAndNameList.get(i);
-            Pair<Long, String> idAndName = Pair.of((Long) currentProduct[0], (String) currentProduct[1]);
+            Pair<Long, String> idAndName = Pair.of(((BigInteger) currentProduct[0]).longValue(), (String) currentProduct[1]);
             products.add(idAndName);
         }
         return products;

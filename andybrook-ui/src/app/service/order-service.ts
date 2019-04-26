@@ -66,7 +66,7 @@ export class OrderService {
             "orderItemInfo": {
                 "orderItemId" : item.id,
                 "quantity" : item.quantity,
-                "productId" : item.product.id
+                "productId" : item.productItem.product.id
             }
         }
     }

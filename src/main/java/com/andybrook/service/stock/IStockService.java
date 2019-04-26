@@ -12,7 +12,13 @@ public interface IStockService {
 
     ProductItem getProductItem(long productItemId);
 
-    ProductItem updateProductItem(ProductItem productItem);
+    void onProductItemLinked(ProductItem productItem);
+
+    void onProductItemUnlinked(ProductItem productItem);
+
+    int getFreeQuantity(long productId);
+
+    void decrementQuantityUsed(long productId);
 
     Optional<ProductItem> findFreeProductItemOf(long productId);
 

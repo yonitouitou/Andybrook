@@ -11,7 +11,7 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
-public class ProductStockInfoService implements IProductStockInfoService {
+class ProductStockInfoService implements IProductStockInfoService {
 
     @Autowired
     private IProductStockInfoDao dao;

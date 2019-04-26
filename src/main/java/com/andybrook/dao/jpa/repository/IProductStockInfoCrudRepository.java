@@ -9,13 +9,17 @@ import java.util.List;
 
 public interface IProductStockInfoCrudRepository extends CrudRepository<ProductStockInfoEntity, Long> {
 
-    String ENTITY_NAME = "productStockInfoEntity";
+    String TABLE_NAME = "product_stock_info";
+    String PRODUCT_TABLE_NAME = "product";
     String GET_PRODUCT_ID_AND_NAMES_WITH_QUANTITY_MORE_THAN =
             "SELECT " +
-                    "* " +
+                    "p.id, p.name " +
             "FROM " +
-                    ENTITY_NAME +
-            " WHERE " +
+                    PRODUCT_TABLE_NAME + " p " +
+            "LEFT JOIN " +
+                    TABLE_NAME + " psi " +
+            "ON p.id = psi.id " +
+            "WHERE " +
                     "quantityCreated - quantityUsed > :quantity";
 
     @Query(value = GET_PRODUCT_ID_AND_NAMES_WITH_QUANTITY_MORE_THAN, nativeQuery = true)

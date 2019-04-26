@@ -58,13 +58,13 @@ public class OrderDao implements IOrderDao {
 
     @Override
     public Optional<Order> findOrder(long id) {
-        Optional<OrderEntity> stockReportEntityOpt = orderCrudRepository.findById(id);
-        Optional<Order> stockReportOpt = Optional.empty();
-        if (stockReportEntityOpt.isPresent()) {
-            Order order = entityFactory.createOrder(stockReportEntityOpt.get());
-            stockReportOpt = Optional.of(order);
+        Optional<OrderEntity> orderEntityOpt = orderCrudRepository.findById(id);
+        Optional<Order> orderOpt = Optional.empty();
+        if (orderEntityOpt.isPresent()) {
+            Order order = entityFactory.createOrder(orderEntityOpt.get());
+            orderOpt = Optional.of(order);
         }
-        return stockReportOpt;
+        return orderOpt;
     }
 
     @Override

@@ -18,6 +18,6 @@ export class ProductService {
     }
 
     getAllProductNames(): Observable<any> {
-        return this.http.get("/v1/productItem/getAllExistingProductNames")
+        return this.http.get("/v1/stock/getAllExistingProductNames")
     }
 }
