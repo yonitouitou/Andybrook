@@ -1,9 +1,10 @@
-import { StockItem } from '../model/StockItem'
-import { Product } from '../model/Product'
-import { Injectable, EventEmitter } from '@angular/core'
+
+import { Injectable } from '@angular/core'
 import { HttpService } from './http-service'
 import { Order } from "../model/Order";
 import { Observable } from 'rxjs';
+import { AddOrderItemReq } from '../model/request/AddOrderItemReq';
+import { OrderItem } from '../model/OrderItem';
 
 @Injectable()
 export class OrderService {
@@ -26,17 +27,18 @@ export class OrderService {
 
     getOrderByName(name: string): Observable<any> {
         console.log("Get report by name : " + name)
-        return this.httpApi.get("/v1/order/getByName/" + name)
+        return this.httpApi.get("/v1/order/searchByName/" + name)
     }
 
-    addItem(order: Order, item: StockItem) : Observable<any> {
-        console.log("Add item[ " + ", " + item.quantity + " to order " + order.id)
-        return this.httpApi.post("/v1/order/addOrderItems", this.toUpdateRequest(order, item))
+    addOrderItem(req: AddOrderItemReq) : Observable<any> {
+        console.log("Add item[ " + ", " + req.requestedQty + " to order " + req.orderId)
+        return this.httpApi.post("/v1/order/addOrderItemByInfo", req)
     }
 
-    updateStockItem(order: Order, itemToUpdate: StockItem): Observable<any> {
+    updateStockItem(order: Order, itemToUpdate: OrderItem): Observable<any> {
         console.log("updateProductItem order " + order.id + " | " + itemToUpdate)
-        return this.httpApi.post("/v1/order/updateProductItem", this.toUpdateRequest(order, itemToUpdate))
+        //return this.httpApi.post("/v1/order/updateProductItem", this.toUpdateRequest(order, itemToUpdate))
+        return null;
     }
 
     deleteItem(order: Order, stockItemIdToDelete: number): Observable<any> {
@@ -44,31 +46,14 @@ export class OrderService {
         return this.httpApi.delete("/v1/order/deleteOrderItem/" + order.id + "/" + stockItemIdToDelete)
     }
 
-    closeOrder(order: Order) {
-        console.log("Close order : " + order.id)
-        let request = { "id" : order.id }
-        this.httpApi.post("/v1/order/close", request).subscribe(
-            data => {
-                order.closeDatetime = data.closeDateTime
-                order.status = data.status
-            }
-        )
+    closeOrder(orderId: number): Observable<any> {
+        console.log("Close order : " + orderId)
+        let request = { "id" : orderId }
+        return this.httpApi.post("/v1/order/close", request);
     }
 
     getAllOrders(): Observable<any> {
         console.log("Get all reports")
         return this.httpApi.get("/v1/order/all")
     } 
-
-    private toUpdateRequest(order: Order, item: StockItem): any {
-        return {
-            "orderId" : order.id,
-            "orderItemInfo": {
-                "orderItemId" : item.id,
-                "quantity" : item.quantity,
-                "productId" : item.productItem.product.id
-            }
-        }
-    }
-
 }

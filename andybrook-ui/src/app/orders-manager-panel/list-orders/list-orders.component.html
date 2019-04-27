@@ -19,16 +19,16 @@
             <tr *ngFor="let order of ordersArray">
                 <td>{{ order.id }}</td>
                 <td>{{ order.name }}</td>
-                <td>{{ order.customer.store.name }}</td>
+                <td>{{ order.storeName }}</td>
                 <td>{{ order.status }}</td>
-                <td>{{ order.nbProduct }}</td>
-                <td>{{ order.totalItemQty }}</td>
+                <td>{{ order.productSize }}</td>
+                <td>{{ order.orderItemSize }}</td>
                 <td>{{ order.totalPrice }} €</td>
-                <td>{{ order.createDatetime  | date:'medium' }}</td>
+                <td>{{ order.createdDatetime  | date:'medium' }}</td>
                 <td>{{ order.closeDatetime  | date:'medium' }}</td>
                 <td><button
                     class="btn btn-success"
-                    [routerLink]="['/stockreport', order.id]"
+                    [routerLink]="['/order', order.id]"
                     >See</button>
                 </td>
                 <td><button

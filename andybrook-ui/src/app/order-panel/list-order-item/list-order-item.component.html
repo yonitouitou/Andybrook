@@ -44,25 +44,25 @@
         <td></td>
         <td></td>
         <td>
-          <button class="btn btn-info" [disabled]="! areNewStockItemFieldsSet" (click)="createNewStockItem()"> Add
-            Stock Item</button>
+          <button class="btn btn-info" [disabled]="! areNewOrderItemFieldsSet" (click)="createNewOrderItem()"> Add
+            Order Item</button>
         </td>
       </tr>
-      <tr *ngFor="let item of stockItems | filter : 'name' : searchString; let i = index" (click)="setSelectedRow(i)"
+      <tr *ngFor="let item of orderItems | filter : 'name' : searchString; let i = index" (click)="setSelectedRow(i)"
         [class.active]="i == selectedRow">
-        <td>{{ item.product.id }}</td>
-        <td></td>
-        <td>{{ item.product.name }}</td>
-        <td>{{ item.product.price }} €</td>
+        <td>{{ item.id }}</td>
+        <td>{{ item.productItem.barCode }}</td>
+        <td>{{ item.productItem.product.name }}</td>
+        <td>{{ item.productItem.product.price }} €</td>
         <td
           contenteditable="order.status !== 'CLOSED'"
-          (blur)="onChangeStockItemQuantity(item, $event)">
+          (blur)="onChangeOrderItemQuantity(item, $event)">
           {{ item.quantity }}
         </td>
         <td>{{ item.createdDatetime }}</td>
         <td>{{ item.lastModifiedDatetime }}</td>
         <td>
-          <button *ngIf="order.status !== 'CLOSED'" (click)="deleteStockItem(item.id)" class="btn btn-danger">
+          <button *ngIf="order.status !== 'CLOSED'" (click)="deleteOrderItem(item.id)" class="btn btn-danger">
             Delete</button>
         </td>
       </tr>

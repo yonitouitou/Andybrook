@@ -5,11 +5,11 @@ import { ConfirmModalComponent } from 'src/app/modal/confirm-modal/confirm-modal
 import { OrderService } from 'src/app/service/order-service';
 
 @Component({
-  selector: 'stock-report-header',
-  templateUrl: './stock-report-header.component.html',
-  styleUrls: ['./stock-report-header.component.css']
+  selector: 'show-order-header',
+  templateUrl: './show-order-header.component.html',
+  styleUrls: ['./show-order-header.component.css']
 })
-export class StockReportHeaderComponent implements OnInit {
+export class OrderHeaderComponent implements OnInit {
 
   @Input() order: Order
 
@@ -22,14 +22,19 @@ export class StockReportHeaderComponent implements OnInit {
   }
 
   onClickCloseOrder() {
-    let modalRef = this.modalBuilder.open(ConfirmModalComponent)
-    modalRef.componentInstance.title = "Close Report Confirmation"
+    let modalRef = this.modalBuilder.open(ConfirmModalComponent);
+    modalRef.componentInstance.title = "Close Report Confirmation";
     modalRef.componentInstance.message = "Are you sure you want to close the order "
-          + this.order.name + " for the store " + this.order.customer.store.name
+          + this.order.name + " for the store " + this.order.customer.store.name;
 
     modalRef.result.then((response) => {
       if (response) {
-        this.orderService.closeOrder(this.order)
+        this.orderService.closeOrder(this.order.id).subscribe(
+          data => {
+            this.order.closeDatetime = data.closeDateTime;
+            this.order.status = data.status;
+          }
+        )
       }
     })
   }

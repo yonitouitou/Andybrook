@@ -10,6 +10,7 @@ public interface IProductItemCrudRepository extends CrudRepository<ProductItemEn
     String TABLE_NAME = "product_stock_item";
     String COLUMN_ORDER_ITEM_ID = "orderitemid";
     String COLUMN_PRODUCT_ID = "productid";
+    String COLUMN_BAR_CODE = "barcodeid";
 
     String SELECT_FREE_PRODUCT_ITEM_BY_PRODUCT_ID =
             "SELECT " +
@@ -19,7 +20,9 @@ public interface IProductItemCrudRepository extends CrudRepository<ProductItemEn
             " WHERE " +
                     COLUMN_PRODUCT_ID + " = :productId" +
             " AND " +
-                    COLUMN_ORDER_ITEM_ID +
+                    COLUMN_ORDER_ITEM_ID + " IS NULL" +
+            " AND " +
+                    COLUMN_BAR_CODE + " IS NOT NULL" +
             " IS NULL LIMIT 1";
 
     @Query(value = SELECT_FREE_PRODUCT_ITEM_BY_PRODUCT_ID, nativeQuery = true)

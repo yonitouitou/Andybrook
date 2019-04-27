@@ -278,14 +278,14 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
 /* harmony import */ var _angular_platform_browser_animations__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @angular/platform-browser/animations */ "./node_modules/@angular/platform-browser/fesm5/animations.js");
 /* harmony import */ var _app_component__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./app.component */ "./src/app/app.component.ts");
-/* harmony import */ var _stock_report_panel_list_stock_item_list_stock_item_component__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./stock-report-panel/list-stock-item/list-stock-item.component */ "./src/app/stock-report-panel/list-stock-item/list-stock-item.component.ts");
+/* harmony import */ var _order_panel_list_order_item_list_order_item_component__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./order-panel/list-order-item/list-order-item.component */ "./src/app/order-panel/list-order-item/list-order-item.component.ts");
 /* harmony import */ var _orders_manager_panel_orders_manager_orders_manager_component__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./orders-manager-panel/orders-manager/orders-manager.component */ "./src/app/orders-manager-panel/orders-manager/orders-manager.component.ts");
-/* harmony import */ var _stock_report_panel_stock_report_stock_report_component__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./stock-report-panel/stock-report/stock-report.component */ "./src/app/stock-report-panel/stock-report/stock-report.component.ts");
+/* harmony import */ var _order_panel_show_order_show_order_component__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./order-panel/show-order/show-order.component */ "./src/app/order-panel/show-order/show-order.component.ts");
 /* harmony import */ var _service_order_service__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./service/order-service */ "./src/app/service/order-service.ts");
 /* harmony import */ var _service_http_service__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./service/http-service */ "./src/app/service/http-service.ts");
 /* harmony import */ var _service_admin_setting_service__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ./service/admin-setting-service */ "./src/app/service/admin-setting-service.ts");
 /* harmony import */ var _header_menu_header_menu_component__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ./header-menu/header-menu.component */ "./src/app/header-menu/header-menu.component.ts");
-/* harmony import */ var _stock_report_panel_stock_report_header_stock_report_header_component__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! ./stock-report-panel/stock-report-header/stock-report-header.component */ "./src/app/stock-report-panel/stock-report-header/stock-report-header.component.ts");
+/* harmony import */ var _order_panel_show_order_header_show_order_header_component__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! ./order-panel/show-order-header/show-order-header.component */ "./src/app/order-panel/show-order-header/show-order-header.component.ts");
 /* harmony import */ var _orders_manager_panel_list_orders_list_orders_component__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! ./orders-manager-panel/list-orders/list-orders.component */ "./src/app/orders-manager-panel/list-orders/list-orders.component.ts");
 /* harmony import */ var _ng_bootstrap_ng_bootstrap__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(/*! @ng-bootstrap/ng-bootstrap */ "./node_modules/@ng-bootstrap/ng-bootstrap/fesm5/ng-bootstrap.js");
 /* harmony import */ var _admin_admin_panel_admin_panel_component__WEBPACK_IMPORTED_MODULE_20__ = __webpack_require__(/*! ./admin/admin-panel/admin-panel.component */ "./src/app/admin/admin-panel/admin-panel.component.ts");
@@ -332,7 +332,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var appRoutes = [
     { path: '', component: _orders_manager_panel_orders_manager_orders_manager_component__WEBPACK_IMPORTED_MODULE_11__["OrdersManagerComponent"] },
-    { path: 'stockreport/:id', component: _stock_report_panel_stock_report_stock_report_component__WEBPACK_IMPORTED_MODULE_12__["StockReportComponent"] },
+    { path: 'order/:id', component: _order_panel_show_order_show_order_component__WEBPACK_IMPORTED_MODULE_12__["ShowOrderComponent"] },
     { path: 'admin', component: _admin_admin_panel_admin_panel_component__WEBPACK_IMPORTED_MODULE_20__["AdminPanelComponent"] },
     { path: 'customers', component: _customer_customer_panel_customer_panel_component__WEBPACK_IMPORTED_MODULE_22__["CustomerPanelComponent"] }
 ];
@@ -343,11 +343,11 @@ var AppModule = /** @class */ (function () {
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_2__["NgModule"])({
             declarations: [
                 _app_component__WEBPACK_IMPORTED_MODULE_9__["AppComponent"],
-                _stock_report_panel_list_stock_item_list_stock_item_component__WEBPACK_IMPORTED_MODULE_10__["ListStockItemComponent"],
+                _order_panel_list_order_item_list_order_item_component__WEBPACK_IMPORTED_MODULE_10__["ListOrderItemComponent"],
                 _orders_manager_panel_orders_manager_orders_manager_component__WEBPACK_IMPORTED_MODULE_11__["OrdersManagerComponent"],
-                _stock_report_panel_stock_report_stock_report_component__WEBPACK_IMPORTED_MODULE_12__["StockReportComponent"],
+                _order_panel_show_order_show_order_component__WEBPACK_IMPORTED_MODULE_12__["ShowOrderComponent"],
                 _header_menu_header_menu_component__WEBPACK_IMPORTED_MODULE_16__["HeaderMenuComponent"],
-                _stock_report_panel_stock_report_header_stock_report_header_component__WEBPACK_IMPORTED_MODULE_17__["StockReportHeaderComponent"],
+                _order_panel_show_order_header_show_order_header_component__WEBPACK_IMPORTED_MODULE_17__["OrderHeaderComponent"],
                 _orders_manager_panel_list_orders_list_orders_component__WEBPACK_IMPORTED_MODULE_18__["ListOrdersComponent"],
                 _admin_admin_panel_admin_panel_component__WEBPACK_IMPORTED_MODULE_20__["AdminPanelComponent"],
                 _customer_customer_panel_customer_panel_component__WEBPACK_IMPORTED_MODULE_22__["CustomerPanelComponent"],
@@ -830,6 +830,41 @@ var InfoModalComponent = /** @class */ (function () {
 
 /***/ }),
 
+/***/ "./src/app/model/AggregatedOrder.ts":
+/*!******************************************!*\
+  !*** ./src/app/model/AggregatedOrder.ts ***!
+  \******************************************/
+/*! exports provided: AggregatedOrder */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "AggregatedOrder", function() { return AggregatedOrder; });
+var AggregatedOrder = /** @class */ (function () {
+    function AggregatedOrder() {
+    }
+    AggregatedOrder.fromJson = function (data) {
+        var order = new AggregatedOrder();
+        order.id = data.id;
+        order.storeId = data.storeId;
+        order.name = data.name;
+        order.storeName = data.storeName;
+        order.status = data.status;
+        order.orderItemSize = data.orderItemSize;
+        order.productSize = data.productSize;
+        order.totalPrice = data.totalPrice;
+        order.createdDatetime = data.createdDatetime;
+        order.lastModifiedDatetime = data.lastModifiedDatetime;
+        order.closeDatetime = data.closeDatetime;
+        return order;
+    };
+    return AggregatedOrder;
+}());
+
+
+
+/***/ }),
+
 /***/ "./src/app/model/Customer.ts":
 /*!***********************************!*\
   !*** ./src/app/model/Customer.ts ***!
@@ -895,11 +930,47 @@ var Order = /** @class */ (function () {
     Order.getTotalPrice = function (items) {
         var total = 0;
         for (var i = 0; i < items.length; i++) {
-            total += items[i].product.price * items[i].quantity;
+            total += items[i].productItem.product.price * items[i].quantity;
         }
         return total;
     };
     return Order;
+}());
+
+
+
+/***/ }),
+
+/***/ "./src/app/model/OrderItem.ts":
+/*!************************************!*\
+  !*** ./src/app/model/OrderItem.ts ***!
+  \************************************/
+/*! exports provided: OrderItem */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "OrderItem", function() { return OrderItem; });
+/* harmony import */ var _ProductItem__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./ProductItem */ "./src/app/model/ProductItem.ts");
+
+var Type;
+(function (Type) {
+    Type["GLASSES"] = "GLASSES";
+})(Type || (Type = {}));
+var OrderItem = /** @class */ (function () {
+    function OrderItem() {
+        this.type = Type.GLASSES;
+    }
+    OrderItem.fromJson = function (data) {
+        var orderItem = new OrderItem();
+        orderItem.id = data.id;
+        orderItem.quantity = data.quantity;
+        orderItem.productItem = _ProductItem__WEBPACK_IMPORTED_MODULE_0__["ProductItem"].fromJson(data.productItem);
+        orderItem.createdDatetime = data.createdDatetime;
+        orderItem.lastModifiedDatetime = data.lastModifiedDatetime;
+        return orderItem;
+    };
+    return OrderItem;
 }());
 
 
@@ -968,31 +1039,33 @@ var Product = /** @class */ (function () {
 
 /***/ }),
 
-/***/ "./src/app/model/StockItem.ts":
-/*!************************************!*\
-  !*** ./src/app/model/StockItem.ts ***!
-  \************************************/
-/*! exports provided: StockItem */
+/***/ "./src/app/model/ProductItem.ts":
+/*!**************************************!*\
+  !*** ./src/app/model/ProductItem.ts ***!
+  \**************************************/
+/*! exports provided: ProductItem */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "StockItem", function() { return StockItem; });
-var Type;
-(function (Type) {
-    Type["GLASSES"] = "GLASSES";
-})(Type || (Type = {}));
-var StockItem = /** @class */ (function () {
-    function StockItem(id, barCode, quantity, productItem, creationDatetime, lastModifyDatetime) {
-        this.type = Type.GLASSES;
-        this.id = id;
-        this.barCode = barCode;
-        this.quantity = quantity;
-        this.productItem = productItem;
-        this.createdDatetime = creationDatetime;
-        this.lastModifiedDatetime = lastModifyDatetime;
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ProductItem", function() { return ProductItem; });
+/* harmony import */ var _Product__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Product */ "./src/app/model/Product.ts");
+
+var ProductItem = /** @class */ (function () {
+    function ProductItem() {
     }
-    return StockItem;
+    ProductItem.fromJson = function (data) {
+        var productItem = new ProductItem();
+        productItem.id = data.id;
+        productItem.product = _Product__WEBPACK_IMPORTED_MODULE_0__["Product"].fromJson(data.product);
+        productItem.createdDatetime = data.createdDatetime;
+        productItem.lastModifiedDatetime = data.lastModifiedDatetime;
+        if (data.barCode != undefined) {
+            productItem.barCode = data.barCode.id;
+        }
+        return productItem;
+    };
+    return ProductItem;
 }());
 
 
@@ -1052,6 +1125,443 @@ var AdminSetting = /** @class */ (function () {
 
 /***/ }),
 
+/***/ "./src/app/model/request/AddOrderItemReq.ts":
+/*!**************************************************!*\
+  !*** ./src/app/model/request/AddOrderItemReq.ts ***!
+  \**************************************************/
+/*! exports provided: AddOrderItemReq */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "AddOrderItemReq", function() { return AddOrderItemReq; });
+var AddOrderItemReq = /** @class */ (function () {
+    function AddOrderItemReq(orderId, productId, barCode, requestedQty) {
+        this.orderId = orderId;
+        this.productId = productId;
+        this.requestedQty = requestedQty;
+        this.barCode = barCode;
+    }
+    return AddOrderItemReq;
+}());
+
+
+
+/***/ }),
+
+/***/ "./src/app/model/request/ModifyOrderItemReq.ts":
+/*!*****************************************************!*\
+  !*** ./src/app/model/request/ModifyOrderItemReq.ts ***!
+  \*****************************************************/
+/*! exports provided: ModifyOrderItemReq */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ModifyOrderItemReq", function() { return ModifyOrderItemReq; });
+var ModifyOrderItemReq = /** @class */ (function () {
+    function ModifyOrderItemReq(orderItemId, requestedQty) {
+        this.orderItemId = orderItemId;
+        this.requestedQty = requestedQty;
+    }
+    return ModifyOrderItemReq;
+}());
+
+
+
+/***/ }),
+
+/***/ "./src/app/order-panel/list-order-item/list-order-item.component.css":
+/*!***************************************************************************!*\
+  !*** ./src/app/order-panel/list-order-item/list-order-item.component.css ***!
+  \***************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = ".table tr.active td {\n    background-color:#275e94 !important;\n    color: white;\n    font-weight: bold;\n  }\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvb3JkZXItcGFuZWwvbGlzdC1vcmRlci1pdGVtL2xpc3Qtb3JkZXItaXRlbS5jb21wb25lbnQuY3NzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBO0lBQ0ksbUNBQW1DO0lBQ25DLFlBQVk7SUFDWixpQkFBaUI7RUFDbkIiLCJmaWxlIjoic3JjL2FwcC9vcmRlci1wYW5lbC9saXN0LW9yZGVyLWl0ZW0vbGlzdC1vcmRlci1pdGVtLmNvbXBvbmVudC5jc3MiLCJzb3VyY2VzQ29udGVudCI6WyIudGFibGUgdHIuYWN0aXZlIHRkIHtcbiAgICBiYWNrZ3JvdW5kLWNvbG9yOiMyNzVlOTQgIWltcG9ydGFudDtcbiAgICBjb2xvcjogd2hpdGU7XG4gICAgZm9udC13ZWlnaHQ6IGJvbGQ7XG4gIH0iXX0= */"
+
+/***/ }),
+
+/***/ "./src/app/order-panel/list-order-item/list-order-item.component.html":
+/*!****************************************************************************!*\
+  !*** ./src/app/order-panel/list-order-item/list-order-item.component.html ***!
+  \****************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "<div class=\"user-container\">\n  <form>\n    <div class=\"form-group\">\n      <div class=\"input-group\">\n        <div class=\"input-group-addon\">\n          <i class=\"glyphicon glyphicon-search\"></i>\n        </div>\n        <input type=\"text\"\n          class=\"form-control\"\n          name=\"searchString\"\n          placeholder=\"Type to search...\"\n          [(ngModel)]=\"searchString\">\n      </div>\n    </div>\n  </form>\n  <table class=\"table table-striped\">\n    <thead>\n      <tr>\n        <th>ID</th>\n        <th>BarCode</th>\n        <th>Name</th>\n        <th>Price</th>\n        <th>Quantity</th>\n        <th>Creation Date</th>\n        <th>Last Modify Date</th>\n        <th></th>\n      </tr>\n    </thead>\n    <tbody>\n      <tr *ngIf=\"order.status !== 'CLOSED'\">\n        <td></td>\n        <td>\n          <input class=\"form-control\" (blur)=\"onBlurBarCode()\" [(ngModel)]=\"inputBarCode\">\n        </td>\n        <td>\n          <input class=\"form-control\" (blur)=\"onBlurInputName()\" [(ngModel)]=\"inputName\" [ngbTypeahead]=\"search\">\n        </td>\n        <td>\n          {{ inputPrice }} <span *ngIf=\"inputPrice != null\">€</span>\n        </td>\n        <td>\n          <input class=\"form-control\" (blur)=\"onBlurNewItemInput()\" [(ngModel)]=\"inputQuantity\">\n        </td>\n        <td></td>\n        <td></td>\n        <td>\n          <button class=\"btn btn-info\" [disabled]=\"! areNewOrderItemFieldsSet\" (click)=\"createNewOrderItem()\"> Add\n            Order Item</button>\n        </td>\n      </tr>\n      <tr *ngFor=\"let item of orderItems | filter : 'name' : searchString; let i = index\" (click)=\"setSelectedRow(i)\"\n        [class.active]=\"i == selectedRow\">\n        <td>{{ item.id }}</td>\n        <td>{{ item.productItem.barCode }}</td>\n        <td>{{ item.productItem.product.name }}</td>\n        <td>{{ item.productItem.product.price }} €</td>\n        <td\n          contenteditable=\"order.status !== 'CLOSED'\"\n          (blur)=\"onChangeOrderItemQuantity(item, $event)\">\n          {{ item.quantity }}\n        </td>\n        <td>{{ item.createdDatetime }}</td>\n        <td>{{ item.lastModifiedDatetime }}</td>\n        <td>\n          <button *ngIf=\"order.status !== 'CLOSED'\" (click)=\"deleteOrderItem(item.id)\" class=\"btn btn-danger\">\n            Delete</button>\n        </td>\n      </tr>\n    </tbody>\n  </table>\n</div>\n"
+
+/***/ }),
+
+/***/ "./src/app/order-panel/list-order-item/list-order-item.component.ts":
+/*!**************************************************************************!*\
+  !*** ./src/app/order-panel/list-order-item/list-order-item.component.ts ***!
+  \**************************************************************************/
+/*! exports provided: ListOrderItemComponent */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ListOrderItemComponent", function() { return ListOrderItemComponent; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var _model_OrderItem__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../model/OrderItem */ "./src/app/model/OrderItem.ts");
+/* harmony import */ var _model_Product__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../model/Product */ "./src/app/model/Product.ts");
+/* harmony import */ var src_app_service_order_service__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! src/app/service/order-service */ "./src/app/service/order-service.ts");
+/* harmony import */ var src_app_model_Order__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! src/app/model/Order */ "./src/app/model/Order.ts");
+/* harmony import */ var src_app_common_components_modal_builder__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! src/app/common-components/modal-builder */ "./src/app/common-components/modal-builder.ts");
+/* harmony import */ var src_app_modal_info_modal_info_modal_component__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! src/app/modal/info-modal/info-modal.component */ "./src/app/modal/info-modal/info-modal.component.ts");
+/* harmony import */ var src_app_service_product_service__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! src/app/service/product-service */ "./src/app/service/product-service.ts");
+/* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! rxjs/operators */ "./node_modules/rxjs/_esm5/operators/index.js");
+/* harmony import */ var src_app_model_request_AddOrderItemReq__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! src/app/model/request/AddOrderItemReq */ "./src/app/model/request/AddOrderItemReq.ts");
+/* harmony import */ var src_app_model_request_ModifyOrderItemReq__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! src/app/model/request/ModifyOrderItemReq */ "./src/app/model/request/ModifyOrderItemReq.ts");
+
+
+
+
+
+
+
+
+
+
+
+
+var ListOrderItemComponent = /** @class */ (function () {
+    function ListOrderItemComponent(orderService, productService, modalBuilder) {
+        var _this = this;
+        this.orderService = orderService;
+        this.productService = productService;
+        this.modalBuilder = modalBuilder;
+        this.areNewOrderItemFieldsSet = false;
+        this.productNames = [];
+        this.productIdMapByName = new Map();
+        this.search = function (text$) {
+            return text$.pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_9__["debounceTime"])(200), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_9__["distinctUntilChanged"])(), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_9__["map"])(function (term) { return term.length < 1 ? []
+                : _this.productNames.filter(function (v) { return v.toLowerCase().indexOf(term.toLowerCase()) > -1; }).slice(0, 10); }));
+        };
+        this.onCreateOrderItemEvent = new _angular_core__WEBPACK_IMPORTED_MODULE_1__["EventEmitter"]();
+        this.onChangeOrderItemEvent = new _angular_core__WEBPACK_IMPORTED_MODULE_1__["EventEmitter"]();
+        this.onDeleteOrderItemEvent = new _angular_core__WEBPACK_IMPORTED_MODULE_1__["EventEmitter"]();
+    }
+    ListOrderItemComponent.prototype.ngOnInit = function () {
+        var _this = this;
+        this.productService.getAllProductNames().subscribe(function (data) {
+            for (var _i = 0, data_1 = data; _i < data_1.length; _i++) {
+                var idAndNameProduct = data_1[_i];
+                _this.productIdMapByName.set(idAndNameProduct.second, idAndNameProduct.first);
+                _this.productNames.push(idAndNameProduct.second);
+            }
+        });
+    };
+    ListOrderItemComponent.prototype.onBlurNewItemInput = function () {
+        this.checkInputFieldSet();
+    };
+    ListOrderItemComponent.prototype.onBlurBarCode = function () {
+        var _this = this;
+        this.productService.getByBarCode(this.inputBarCode.trim()).subscribe(function (data) {
+            var product = _model_Product__WEBPACK_IMPORTED_MODULE_3__["Product"].fromJson(data);
+            _this.inputId = product.id;
+            _this.inputName = product.name;
+            _this.inputQuantity = 1;
+            _this.createNewOrderItem();
+        }, function (error) {
+            var modalRef = _this.modalBuilder.open(src_app_modal_info_modal_info_modal_component__WEBPACK_IMPORTED_MODULE_7__["InfoModalComponent"]);
+            modalRef.componentInstance.title = "Error : Product not added to order " + _this.order.name;
+            modalRef.componentInstance.message = error.error;
+        });
+    };
+    ListOrderItemComponent.prototype.onBlurInputName = function () {
+        var _this = this;
+        var id = this.productIdMapByName.get(this.inputName.trim());
+        if (id != null) {
+            this.productService.get(id).subscribe(function (data) {
+                _this.inputId = data.id;
+                _this.inputPrice = data.price;
+                _this.inputQuantity = 1;
+            }, function (error) {
+                var modalRef = _this.modalBuilder.open(src_app_modal_info_modal_info_modal_component__WEBPACK_IMPORTED_MODULE_7__["InfoModalComponent"]);
+                modalRef.componentInstance.title = "Error : Product " + _this.inputName + " not found";
+                modalRef.componentInstance.message = error.error;
+            });
+        }
+        this.checkInputFieldSet();
+    };
+    ListOrderItemComponent.prototype.checkInputFieldSet = function () {
+        this.areNewOrderItemFieldsSet = this.inputName.trim().length > 0
+            && this.inputQuantity > 0
+            && this.inputPrice > 0;
+    };
+    ListOrderItemComponent.prototype.createNewOrderItem = function () {
+        var _this = this;
+        var req = new src_app_model_request_AddOrderItemReq__WEBPACK_IMPORTED_MODULE_10__["AddOrderItemReq"](this.order.id, this.inputId, this.inputBarCode, this.inputQuantity);
+        this.orderService.addOrderItem(req).subscribe(function (data) {
+            var orderItem = _model_OrderItem__WEBPACK_IMPORTED_MODULE_2__["OrderItem"].fromJson(data);
+            _this.onCreateOrderItemEvent.emit(orderItem);
+            _this.resetNewOrderItemInputFields();
+        }, function (error) {
+            var modalRef = _this.modalBuilder.open(src_app_modal_info_modal_info_modal_component__WEBPACK_IMPORTED_MODULE_7__["InfoModalComponent"]);
+            modalRef.componentInstance.title = "Error : Product item " + _this.inputName + " not added to order " + _this.order.name;
+            modalRef.componentInstance.message = error.error;
+            _this.resetNewOrderItemInputFields();
+        });
+    };
+    ListOrderItemComponent.prototype.deleteOrderItem = function (id) {
+        var _this = this;
+        this.orderService.deleteItem(this.order, id).subscribe(function (data) {
+            console.log(data);
+            _this.onDeleteOrderItemEvent.emit(id);
+        }, function (error) {
+        });
+    };
+    ListOrderItemComponent.prototype.onChangeOrderItemQuantity = function (orderItem, event) {
+        var newQuantity = event.target.textContent;
+        if (orderItem.quantity != newQuantity) {
+            var req = new src_app_model_request_ModifyOrderItemReq__WEBPACK_IMPORTED_MODULE_11__["ModifyOrderItemReq"](orderItem.id, newQuantity);
+            // Must send Http request.
+            this.onChangeOrderItemEvent.emit(req);
+        }
+    };
+    ListOrderItemComponent.prototype.setSelectedRow = function (index) {
+        this.selectedRow = index;
+    };
+    ListOrderItemComponent.prototype.resetNewOrderItemInputFields = function () {
+        this.inputId = undefined;
+        this.inputBarCode = "";
+        this.inputName = "";
+        this.inputQuantity = undefined;
+        this.inputPrice = undefined;
+        this.areNewOrderItemFieldsSet = false;
+    };
+    tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Input"])(),
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:type", Object)
+    ], ListOrderItemComponent.prototype, "orderItems", void 0);
+    tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Input"])(),
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:type", src_app_model_Order__WEBPACK_IMPORTED_MODULE_5__["Order"])
+    ], ListOrderItemComponent.prototype, "order", void 0);
+    tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Output"])(),
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:type", Object)
+    ], ListOrderItemComponent.prototype, "onCreateOrderItemEvent", void 0);
+    tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Output"])(),
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:type", Object)
+    ], ListOrderItemComponent.prototype, "onChangeOrderItemEvent", void 0);
+    tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Output"])(),
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:type", Object)
+    ], ListOrderItemComponent.prototype, "onDeleteOrderItemEvent", void 0);
+    ListOrderItemComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
+            selector: 'list-order-item',
+            template: __webpack_require__(/*! ./list-order-item.component.html */ "./src/app/order-panel/list-order-item/list-order-item.component.html"),
+            styles: [__webpack_require__(/*! ./list-order-item.component.css */ "./src/app/order-panel/list-order-item/list-order-item.component.css")]
+        }),
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [src_app_service_order_service__WEBPACK_IMPORTED_MODULE_4__["OrderService"],
+            src_app_service_product_service__WEBPACK_IMPORTED_MODULE_8__["ProductService"],
+            src_app_common_components_modal_builder__WEBPACK_IMPORTED_MODULE_6__["ModalBuilder"]])
+    ], ListOrderItemComponent);
+    return ListOrderItemComponent;
+}());
+
+
+
+/***/ }),
+
+/***/ "./src/app/order-panel/show-order-header/show-order-header.component.css":
+/*!*******************************************************************************!*\
+  !*** ./src/app/order-panel/show-order-header/show-order-header.component.css ***!
+  \*******************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJzcmMvYXBwL29yZGVyLXBhbmVsL3Nob3ctb3JkZXItaGVhZGVyL3Nob3ctb3JkZXItaGVhZGVyLmNvbXBvbmVudC5jc3MifQ== */"
+
+/***/ }),
+
+/***/ "./src/app/order-panel/show-order-header/show-order-header.component.html":
+/*!********************************************************************************!*\
+  !*** ./src/app/order-panel/show-order-header/show-order-header.component.html ***!
+  \********************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "<div class=\"container-fluid\" style=\"border-bottom: 3px solid red\">\n  <div class=\"row justify-content-between\">\n    <div class=\"col-md-4\">\n      <h5>{{ order.name }}</h5>\n      <p>Description/Comment : {{ order.comment }}</p>\n      <div style=\"overflow: hidden;\">\n        <p style=\"float: left\">Customer : &nbsp;</p>\n        <p style=\"float: left; font-weight: bold\"> {{ order.customer.store.name }}</p>\n      </div>\n      <div style=\"overflow: hidden;\">\n        <p style=\"float: left;\">Status :&nbsp;</p>\n        <p style=\"float: left; font-weight: bold\"> {{ order.status }}</p>\n      </div>\n    </div>\n    <div class=\"col-md-6\">\n        <button\n          style=\"float: right\"\n          class=\"btn btn-outline-info\"\n          (click)=\"onClickCloseOrder()\"\n          [disabled]=\"order.status === 'CLOSED'\"\n        >Close the order</button>\n    </div>\n  </div>\n</div>"
+
+/***/ }),
+
+/***/ "./src/app/order-panel/show-order-header/show-order-header.component.ts":
+/*!******************************************************************************!*\
+  !*** ./src/app/order-panel/show-order-header/show-order-header.component.ts ***!
+  \******************************************************************************/
+/*! exports provided: OrderHeaderComponent */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "OrderHeaderComponent", function() { return OrderHeaderComponent; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var _model_Order__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../model/Order */ "./src/app/model/Order.ts");
+/* harmony import */ var src_app_common_components_modal_builder__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! src/app/common-components/modal-builder */ "./src/app/common-components/modal-builder.ts");
+/* harmony import */ var src_app_modal_confirm_modal_confirm_modal_component__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! src/app/modal/confirm-modal/confirm-modal-component */ "./src/app/modal/confirm-modal/confirm-modal-component.ts");
+/* harmony import */ var src_app_service_order_service__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! src/app/service/order-service */ "./src/app/service/order-service.ts");
+
+
+
+
+
+
+var OrderHeaderComponent = /** @class */ (function () {
+    function OrderHeaderComponent(modalBuilder, orderService) {
+        this.modalBuilder = modalBuilder;
+        this.orderService = orderService;
+        this.onCloseOrderEvent = new _angular_core__WEBPACK_IMPORTED_MODULE_1__["EventEmitter"]();
+    }
+    OrderHeaderComponent.prototype.ngOnInit = function () {
+    };
+    OrderHeaderComponent.prototype.onClickCloseOrder = function () {
+        var _this = this;
+        var modalRef = this.modalBuilder.open(src_app_modal_confirm_modal_confirm_modal_component__WEBPACK_IMPORTED_MODULE_4__["ConfirmModalComponent"]);
+        modalRef.componentInstance.title = "Close Report Confirmation";
+        modalRef.componentInstance.message = "Are you sure you want to close the order "
+            + this.order.name + " for the store " + this.order.customer.store.name;
+        modalRef.result.then(function (response) {
+            if (response) {
+                _this.orderService.closeOrder(_this.order.id).subscribe(function (data) {
+                    _this.order.closeDatetime = data.closeDateTime;
+                    _this.order.status = data.status;
+                });
+            }
+        });
+    };
+    tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Input"])(),
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:type", _model_Order__WEBPACK_IMPORTED_MODULE_2__["Order"])
+    ], OrderHeaderComponent.prototype, "order", void 0);
+    tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Output"])(),
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:type", Object)
+    ], OrderHeaderComponent.prototype, "onCloseOrderEvent", void 0);
+    OrderHeaderComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
+            selector: 'show-order-header',
+            template: __webpack_require__(/*! ./show-order-header.component.html */ "./src/app/order-panel/show-order-header/show-order-header.component.html"),
+            styles: [__webpack_require__(/*! ./show-order-header.component.css */ "./src/app/order-panel/show-order-header/show-order-header.component.css")]
+        }),
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [src_app_common_components_modal_builder__WEBPACK_IMPORTED_MODULE_3__["ModalBuilder"],
+            src_app_service_order_service__WEBPACK_IMPORTED_MODULE_5__["OrderService"]])
+    ], OrderHeaderComponent);
+    return OrderHeaderComponent;
+}());
+
+
+
+/***/ }),
+
+/***/ "./src/app/order-panel/show-order/show-order.component.css":
+/*!*****************************************************************!*\
+  !*** ./src/app/order-panel/show-order/show-order.component.css ***!
+  \*****************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJzcmMvYXBwL29yZGVyLXBhbmVsL3Nob3ctb3JkZXIvc2hvdy1vcmRlci5jb21wb25lbnQuY3NzIn0= */"
+
+/***/ }),
+
+/***/ "./src/app/order-panel/show-order/show-order.component.html":
+/*!******************************************************************!*\
+  !*** ./src/app/order-panel/show-order/show-order.component.html ***!
+  \******************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "<div>\n  <show-order-header\n    [order]=\"order\"\n    (onCloseOrderEvent)=\"onCloseOrder()\"\n  ></show-order-header>\n  <list-order-item *ngIf=\"order\"\n    [order]=\"order\"\n    [orderItems]=\"order.items.values()\"\n    (onCreateOrderItemEvent)=\"onNewOrderItem($event)\"\n    (onChangeOrderItemEvent)=\"onChangeOrderItem($event)\"\n    (onDeleteOrderItemEvent)=\"onDeleteOrderItem($event)\"\n  ></list-order-item>\n  <div class=\"container=fluid\">\n    <button class=\"btn btn-primary\"\n        (click)=\"onClickBack()\"\n        style=\"float: right\"\n    >Back</button>\n</div>\n</div>"
+
+/***/ }),
+
+/***/ "./src/app/order-panel/show-order/show-order.component.ts":
+/*!****************************************************************!*\
+  !*** ./src/app/order-panel/show-order/show-order.component.ts ***!
+  \****************************************************************/
+/*! exports provided: ShowOrderComponent */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ShowOrderComponent", function() { return ShowOrderComponent; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var _service_order_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../service/order-service */ "./src/app/service/order-service.ts");
+/* harmony import */ var _model_OrderItem__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../model/OrderItem */ "./src/app/model/OrderItem.ts");
+/* harmony import */ var _model_Order__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../model/Order */ "./src/app/model/Order.ts");
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
+/* harmony import */ var _model_Customer__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../model/Customer */ "./src/app/model/Customer.ts");
+
+
+
+
+
+
+
+var ShowOrderComponent = /** @class */ (function () {
+    function ShowOrderComponent(orderService, route, router) {
+        this.orderService = orderService;
+        this.route = route;
+        this.router = router;
+        this.reportId = 1;
+    }
+    ShowOrderComponent.prototype.ngOnInit = function () {
+        var _this = this;
+        this.order = new _model_Order__WEBPACK_IMPORTED_MODULE_4__["Order"]();
+        var orderId = parseInt(this.route.snapshot.paramMap.get('id'));
+        this.orderService.getOrder(orderId).subscribe(function (data) {
+            _this.order.id = data.id;
+            _this.order.name = data.name;
+            _this.order.comment = data.comment;
+            _this.order.status = data.status;
+            _this.order.customer = _model_Customer__WEBPACK_IMPORTED_MODULE_6__["Customer"].fromJson(data.customer);
+            console.log("Order item size in order : " + orderId + " : " + data.items.size);
+            for (var _i = 0, _a = data.items; _i < _a.length; _i++) {
+                var item = _a[_i];
+                var orderItem = _model_OrderItem__WEBPACK_IMPORTED_MODULE_3__["OrderItem"].fromJson(item);
+                _this.order.items.set(orderItem.id, orderItem);
+            }
+        });
+    };
+    ShowOrderComponent.prototype.onNewOrderItem = function (orderItem) {
+        this.order.items.set(orderItem.id, orderItem);
+    };
+    ShowOrderComponent.prototype.onChangeOrderItem = function (orderItem) {
+        this.order.items.set(orderItem.id, orderItem);
+    };
+    ShowOrderComponent.prototype.onDeleteOrderItem = function (id) {
+        this.order.items.delete(id);
+    };
+    ShowOrderComponent.prototype.onClickBack = function () {
+        this.router.navigate(['']);
+    };
+    ShowOrderComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
+            selector: 'show-order',
+            template: __webpack_require__(/*! ./show-order.component.html */ "./src/app/order-panel/show-order/show-order.component.html"),
+            changeDetection: _angular_core__WEBPACK_IMPORTED_MODULE_1__["ChangeDetectionStrategy"].Default,
+            styles: [__webpack_require__(/*! ./show-order.component.css */ "./src/app/order-panel/show-order/show-order.component.css")]
+        }),
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_service_order_service__WEBPACK_IMPORTED_MODULE_2__["OrderService"],
+            _angular_router__WEBPACK_IMPORTED_MODULE_5__["ActivatedRoute"],
+            _angular_router__WEBPACK_IMPORTED_MODULE_5__["Router"]])
+    ], ShowOrderComponent);
+    return ShowOrderComponent;
+}());
+
+
+
+/***/ }),
+
 /***/ "./src/app/orders-manager-panel/list-orders/list-orders.component.css":
 /*!****************************************************************************!*\
   !*** ./src/app/orders-manager-panel/list-orders/list-orders.component.css ***!
@@ -1070,7 +1580,7 @@ module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"col-md-20 user-container\">\n    <table class=\"table table-striped\">\n        <thead>\n            <tr>\n                <th>ID</th>\n                <th>Name</th>\n                <th>Store</th>\n                <th>Status</th>\n                <th>Total Product</th>\n                <th>Total Qty</th>\n                <th>Total Price</th>\n                <th>Creation Date</th>\n                <th>Close Date</th>\n                <th></th>\n                <th></th>\n            </tr>\n        </thead>\n        <tbody>\n            <tr *ngFor=\"let order of ordersArray\">\n                <td>{{ order.id }}</td>\n                <td>{{ order.name }}</td>\n                <td>{{ order.customer.store.name }}</td>\n                <td>{{ order.status }}</td>\n                <td>{{ order.nbProduct }}</td>\n                <td>{{ order.totalItemQty }}</td>\n                <td>{{ order.totalPrice }} €</td>\n                <td>{{ order.createDatetime  | date:'medium' }}</td>\n                <td>{{ order.closeDatetime  | date:'medium' }}</td>\n                <td><button\n                    class=\"btn btn-success\"\n                    [routerLink]=\"['/stockreport', order.id]\"\n                    >See</button>\n                </td>\n                <td><button\n                    *ngIf=\"order.status !== 'CLOSED'\"\n                    class=\"btn btn-info\"\n                    (click)=\"onClickCloseOrder(order)\"\n                    >Close Order</button>\n                    <button\n                        *ngIf=\"order.status === 'CLOSED'\"\n                        class=\"btn btn-primary\"\n                        (click)=\"onClickNotify(order)\"\n                    >Notify</button>\n                </td>\n            </tr>\n        </tbody>\n    </table>\n    <div class=\"row justify-content-between\">\n        <div class=\"col-4\">\n            <ngb-pagination [collectionSize]=\"collectionSize\" [(page)]=\"page\" [pageSize]=\"pageSize\"></ngb-pagination>\n        </div>\n        <div class=\"col-2\">\n            <select class=\"custom-select\" [(ngModel)]=\"pageSize\">\n                <option [ngValue]=\"5\">5 items per page</option>\n                <option [ngValue]=\"10\">10 items per page</option>\n                <option [ngValue]=\"20\">20 items per page</option>\n            </select>\n        </div>\n    </div>\n</div>"
+module.exports = "<div class=\"col-md-20 user-container\">\n    <table class=\"table table-striped\">\n        <thead>\n            <tr>\n                <th>ID</th>\n                <th>Name</th>\n                <th>Store</th>\n                <th>Status</th>\n                <th>Total Product</th>\n                <th>Total Qty</th>\n                <th>Total Price</th>\n                <th>Creation Date</th>\n                <th>Close Date</th>\n                <th></th>\n                <th></th>\n            </tr>\n        </thead>\n        <tbody>\n            <tr *ngFor=\"let order of ordersArray\">\n                <td>{{ order.id }}</td>\n                <td>{{ order.name }}</td>\n                <td>{{ order.storeName }}</td>\n                <td>{{ order.status }}</td>\n                <td>{{ order.productSize }}</td>\n                <td>{{ order.orderItemSize }}</td>\n                <td>{{ order.totalPrice }} €</td>\n                <td>{{ order.createdDatetime  | date:'medium' }}</td>\n                <td>{{ order.closeDatetime  | date:'medium' }}</td>\n                <td><button\n                    class=\"btn btn-success\"\n                    [routerLink]=\"['/order', order.id]\"\n                    >See</button>\n                </td>\n                <td><button\n                    *ngIf=\"order.status !== 'CLOSED'\"\n                    class=\"btn btn-info\"\n                    (click)=\"onClickCloseOrder(order)\"\n                    >Close Order</button>\n                    <button\n                        *ngIf=\"order.status === 'CLOSED'\"\n                        class=\"btn btn-primary\"\n                        (click)=\"onClickNotify(order)\"\n                    >Notify</button>\n                </td>\n            </tr>\n        </tbody>\n    </table>\n    <div class=\"row justify-content-between\">\n        <div class=\"col-4\">\n            <ngb-pagination [collectionSize]=\"collectionSize\" [(page)]=\"page\" [pageSize]=\"pageSize\"></ngb-pagination>\n        </div>\n        <div class=\"col-2\">\n            <select class=\"custom-select\" [(ngModel)]=\"pageSize\">\n                <option [ngValue]=\"5\">5 items per page</option>\n                <option [ngValue]=\"10\">10 items per page</option>\n                <option [ngValue]=\"20\">20 items per page</option>\n            </select>\n        </div>\n    </div>\n</div>"
 
 /***/ }),
 
@@ -1112,10 +1622,13 @@ var ListOrdersComponent = /** @class */ (function () {
         var modalRef = this.modalBuilder.open(src_app_modal_confirm_modal_confirm_modal_component__WEBPACK_IMPORTED_MODULE_5__["ConfirmModalComponent"]);
         modalRef.componentInstance.title = "Close Report Confirmation";
         modalRef.componentInstance.message = "Are you sure you want to close the order "
-            + orderToClose.name + " for the store " + orderToClose.customer.store.name;
+            + orderToClose.name + " for the store " + orderToClose.storeName;
         modalRef.result.then(function (response) {
             if (response) {
-                _this.orderService.closeOrder(orderToClose);
+                _this.orderService.closeOrder(orderToClose.id).subscribe(function (data) {
+                    orderToClose.closeDatetime = data.closeDateTime;
+                    orderToClose.status = data.status;
+                });
             }
         });
     };
@@ -1194,9 +1707,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
 /* harmony import */ var src_app_service_order_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! src/app/service/order-service */ "./src/app/service/order-service.ts");
-/* harmony import */ var _model_Order__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../model/Order */ "./src/app/model/Order.ts");
-/* harmony import */ var src_app_common_components_modal_builder__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! src/app/common-components/modal-builder */ "./src/app/common-components/modal-builder.ts");
-/* harmony import */ var src_app_modal_create_order_modal_create_order_modal_component__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! src/app/modal/create-order-modal/create-order-modal.component */ "./src/app/modal/create-order-modal/create-order-modal.component.ts");
+/* harmony import */ var src_app_common_components_modal_builder__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! src/app/common-components/modal-builder */ "./src/app/common-components/modal-builder.ts");
+/* harmony import */ var src_app_modal_create_order_modal_create_order_modal_component__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! src/app/modal/create-order-modal/create-order-modal.component */ "./src/app/modal/create-order-modal/create-order-modal.component.ts");
+/* harmony import */ var src_app_model_AggregatedOrder__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! src/app/model/AggregatedOrder */ "./src/app/model/AggregatedOrder.ts");
 
 
 
@@ -1252,13 +1765,13 @@ var OrdersManagerComponent = /** @class */ (function () {
     OrdersManagerComponent.prototype.parseOrderIntoArray = function (data) {
         var orders = [];
         for (var i = 0; i < data.length; i++) {
-            var item = _model_Order__WEBPACK_IMPORTED_MODULE_3__["Order"].fromJson(data[i]);
+            var item = src_app_model_AggregatedOrder__WEBPACK_IMPORTED_MODULE_5__["AggregatedOrder"].fromJson(data[i]);
             orders.push(item);
         }
         return orders;
     };
     OrdersManagerComponent.prototype.openCreateReportModal = function () {
-        var modalRef = this.modalBuilder.open(src_app_modal_create_order_modal_create_order_modal_component__WEBPACK_IMPORTED_MODULE_5__["CreateOrderModalComponent"]);
+        var modalRef = this.modalBuilder.open(src_app_modal_create_order_modal_create_order_modal_component__WEBPACK_IMPORTED_MODULE_4__["CreateOrderModalComponent"]);
     };
     OrdersManagerComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
@@ -1267,7 +1780,7 @@ var OrdersManagerComponent = /** @class */ (function () {
             styles: [__webpack_require__(/*! ./orders-manager.component.css */ "./src/app/orders-manager-panel/orders-manager/orders-manager.component.css")]
         }),
         tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [src_app_service_order_service__WEBPACK_IMPORTED_MODULE_2__["OrderService"],
-            src_app_common_components_modal_builder__WEBPACK_IMPORTED_MODULE_4__["ModalBuilder"]])
+            src_app_common_components_modal_builder__WEBPACK_IMPORTED_MODULE_3__["ModalBuilder"]])
     ], OrdersManagerComponent);
     return OrdersManagerComponent;
 }());
@@ -1302,7 +1815,7 @@ var AdminSettingService = /** @class */ (function () {
     };
     AdminSettingService.prototype.updateAdminSetting = function (adminSetting) {
         console.log("Update admin setting " + adminSetting);
-        return this.httpApi.post("v1/admin/setting/add", adminSetting);
+        return this.httpApi.post("v1/admin/setting/update", adminSetting);
     };
     AdminSettingService = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Injectable"])(),
@@ -1466,41 +1979,29 @@ var OrderService = /** @class */ (function () {
     };
     OrderService.prototype.getOrderByName = function (name) {
         console.log("Get report by name : " + name);
-        return this.httpApi.get("/v1/order/getByName/" + name);
+        return this.httpApi.get("/v1/order/searchByName/" + name);
     };
-    OrderService.prototype.addItem = function (order, item) {
-        console.log("Add item[ " + ", " + item.quantity + " to order " + order.id);
-        return this.httpApi.post("/v1/order/addOrderItems", this.toUpdateRequest(order, item));
+    OrderService.prototype.addOrderItem = function (req) {
+        console.log("Add item[ " + ", " + req.requestedQty + " to order " + req.orderId);
+        return this.httpApi.post("/v1/order/addOrderItemByInfo", req);
     };
     OrderService.prototype.updateStockItem = function (order, itemToUpdate) {
         console.log("updateProductItem order " + order.id + " | " + itemToUpdate);
-        return this.httpApi.post("/v1/order/updateProductItem", this.toUpdateRequest(order, itemToUpdate));
+        //return this.httpApi.post("/v1/order/updateProductItem", this.toUpdateRequest(order, itemToUpdate))
+        return null;
     };
     OrderService.prototype.deleteItem = function (order, stockItemIdToDelete) {
         console.log("Delete Item : " + stockItemIdToDelete);
         return this.httpApi.delete("/v1/order/deleteOrderItem/" + order.id + "/" + stockItemIdToDelete);
     };
-    OrderService.prototype.closeOrder = function (order) {
-        console.log("Close order : " + order.id);
-        var request = { "id": order.id };
-        this.httpApi.post("/v1/order/close", request).subscribe(function (data) {
-            order.closeDatetime = data.closeDateTime;
-            order.status = data.status;
-        });
+    OrderService.prototype.closeOrder = function (orderId) {
+        console.log("Close order : " + orderId);
+        var request = { "id": orderId };
+        return this.httpApi.post("/v1/order/close", request);
     };
     OrderService.prototype.getAllOrders = function () {
         console.log("Get all reports");
         return this.httpApi.get("/v1/order/all");
-    };
-    OrderService.prototype.toUpdateRequest = function (order, item) {
-        return {
-            "orderId": order.id,
-            "orderItemInfo": {
-                "orderItemId": item.id,
-                "quantity": item.quantity,
-                "productId": item.productItem.product.id
-            }
-        };
     };
     OrderService = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Injectable"])(),
@@ -1591,404 +2092,6 @@ var SharedModule = /** @class */ (function () {
         })
     ], SharedModule);
     return SharedModule;
-}());
-
-
-
-/***/ }),
-
-/***/ "./src/app/stock-report-panel/list-stock-item/list-stock-item.component.css":
-/*!**********************************************************************************!*\
-  !*** ./src/app/stock-report-panel/list-stock-item/list-stock-item.component.css ***!
-  \**********************************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-module.exports = ".table tr.active td {\n    background-color:#275e94 !important;\n    color: white;\n    font-weight: bold;\n  }\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvc3RvY2stcmVwb3J0LXBhbmVsL2xpc3Qtc3RvY2staXRlbS9saXN0LXN0b2NrLWl0ZW0uY29tcG9uZW50LmNzcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQTtJQUNJLG1DQUFtQztJQUNuQyxZQUFZO0lBQ1osaUJBQWlCO0VBQ25CIiwiZmlsZSI6InNyYy9hcHAvc3RvY2stcmVwb3J0LXBhbmVsL2xpc3Qtc3RvY2staXRlbS9saXN0LXN0b2NrLWl0ZW0uY29tcG9uZW50LmNzcyIsInNvdXJjZXNDb250ZW50IjpbIi50YWJsZSB0ci5hY3RpdmUgdGQge1xuICAgIGJhY2tncm91bmQtY29sb3I6IzI3NWU5NCAhaW1wb3J0YW50O1xuICAgIGNvbG9yOiB3aGl0ZTtcbiAgICBmb250LXdlaWdodDogYm9sZDtcbiAgfSJdfQ== */"
-
-/***/ }),
-
-/***/ "./src/app/stock-report-panel/list-stock-item/list-stock-item.component.html":
-/*!***********************************************************************************!*\
-  !*** ./src/app/stock-report-panel/list-stock-item/list-stock-item.component.html ***!
-  \***********************************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-module.exports = "<div class=\"user-container\">\n  <form>\n    <div class=\"form-group\">\n      <div class=\"input-group\">\n        <div class=\"input-group-addon\">\n          <i class=\"glyphicon glyphicon-search\"></i>\n        </div>\n        <input type=\"text\"\n          class=\"form-control\"\n          name=\"searchString\"\n          placeholder=\"Type to search...\"\n          [(ngModel)]=\"searchString\">\n      </div>\n    </div>\n  </form>\n  <table class=\"table table-striped\">\n    <thead>\n      <tr>\n        <th>ID</th>\n        <th>BarCode</th>\n        <th>Name</th>\n        <th>Price</th>\n        <th>Quantity</th>\n        <th>Creation Date</th>\n        <th>Last Modify Date</th>\n        <th></th>\n      </tr>\n    </thead>\n    <tbody>\n      <tr *ngIf=\"order.status !== 'CLOSED'\">\n        <td></td>\n        <td>\n          <input class=\"form-control\" (blur)=\"onBlurBarCode()\" [(ngModel)]=\"inputBarCode\">\n        </td>\n        <td>\n          <input class=\"form-control\" (blur)=\"onBlurInputName()\" [(ngModel)]=\"inputName\" [ngbTypeahead]=\"search\">\n        </td>\n        <td>\n          {{ inputPrice }} <span *ngIf=\"inputPrice != null\">€</span>\n        </td>\n        <td>\n          <input class=\"form-control\" (blur)=\"onBlurNewItemInput()\" [(ngModel)]=\"inputQuantity\">\n        </td>\n        <td></td>\n        <td></td>\n        <td>\n          <button class=\"btn btn-info\" [disabled]=\"! areNewStockItemFieldsSet\" (click)=\"createNewStockItem()\"> Add\n            Stock Item</button>\n        </td>\n      </tr>\n      <tr *ngFor=\"let item of stockItems | filter : 'name' : searchString; let i = index\" (click)=\"setSelectedRow(i)\"\n        [class.active]=\"i == selectedRow\">\n        <td>{{ item.product.id }}</td>\n        <td></td>\n        <td>{{ item.product.name }}</td>\n        <td>{{ item.product.price }} €</td>\n        <td\n          contenteditable=\"order.status !== 'CLOSED'\"\n          (blur)=\"onChangeStockItemQuantity(item, $event)\">\n          {{ item.quantity }}\n        </td>\n        <td>{{ item.createdDatetime }}</td>\n        <td>{{ item.lastModifiedDatetime }}</td>\n        <td>\n          <button *ngIf=\"order.status !== 'CLOSED'\" (click)=\"deleteStockItem(item.id)\" class=\"btn btn-danger\">\n            Delete</button>\n        </td>\n      </tr>\n    </tbody>\n  </table>\n</div>\n"
-
-/***/ }),
-
-/***/ "./src/app/stock-report-panel/list-stock-item/list-stock-item.component.ts":
-/*!*********************************************************************************!*\
-  !*** ./src/app/stock-report-panel/list-stock-item/list-stock-item.component.ts ***!
-  \*********************************************************************************/
-/*! exports provided: ListStockItemComponent */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ListStockItemComponent", function() { return ListStockItemComponent; });
-/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
-/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
-/* harmony import */ var _model_StockItem__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../model/StockItem */ "./src/app/model/StockItem.ts");
-/* harmony import */ var _model_Product__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../model/Product */ "./src/app/model/Product.ts");
-/* harmony import */ var src_app_service_order_service__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! src/app/service/order-service */ "./src/app/service/order-service.ts");
-/* harmony import */ var src_app_model_Order__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! src/app/model/Order */ "./src/app/model/Order.ts");
-/* harmony import */ var src_app_common_components_modal_builder__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! src/app/common-components/modal-builder */ "./src/app/common-components/modal-builder.ts");
-/* harmony import */ var src_app_modal_info_modal_info_modal_component__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! src/app/modal/info-modal/info-modal.component */ "./src/app/modal/info-modal/info-modal.component.ts");
-/* harmony import */ var src_app_service_product_service__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! src/app/service/product-service */ "./src/app/service/product-service.ts");
-/* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! rxjs/operators */ "./node_modules/rxjs/_esm5/operators/index.js");
-
-
-
-
-
-
-
-
-
-
-var ListStockItemComponent = /** @class */ (function () {
-    function ListStockItemComponent(orderService, productService, modalBuilder) {
-        var _this = this;
-        this.orderService = orderService;
-        this.productService = productService;
-        this.modalBuilder = modalBuilder;
-        this.areNewStockItemFieldsSet = false;
-        this.productNames = [];
-        this.productIdMapByName = new Map();
-        this.search = function (text$) {
-            return text$.pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_9__["debounceTime"])(200), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_9__["distinctUntilChanged"])(), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_9__["map"])(function (term) { return term.length < 1 ? []
-                : _this.productNames.filter(function (v) { return v.toLowerCase().indexOf(term.toLowerCase()) > -1; }).slice(0, 10); }));
-        };
-        this.onCreateStockItemEvent = new _angular_core__WEBPACK_IMPORTED_MODULE_1__["EventEmitter"]();
-        this.onChangeStockItemEvent = new _angular_core__WEBPACK_IMPORTED_MODULE_1__["EventEmitter"]();
-        this.onDeleteStockItemEvent = new _angular_core__WEBPACK_IMPORTED_MODULE_1__["EventEmitter"]();
-    }
-    ListStockItemComponent.prototype.ngOnInit = function () {
-        var _this = this;
-        this.productService.getAllProductNames().subscribe(function (data) {
-            for (var _i = 0, data_1 = data; _i < data_1.length; _i++) {
-                var idAndNameProduct = data_1[_i];
-                _this.productIdMapByName.set(idAndNameProduct.second, idAndNameProduct.first);
-                _this.productNames.push(idAndNameProduct.second);
-            }
-        });
-    };
-    ListStockItemComponent.prototype.onBlurNewItemInput = function () {
-        this.checkInputFieldSet();
-    };
-    ListStockItemComponent.prototype.onBlurBarCode = function () {
-        var _this = this;
-        this.productService.getByBarCode(this.inputBarCode.trim()).subscribe(function (data) {
-            var product = _model_Product__WEBPACK_IMPORTED_MODULE_3__["Product"].fromJson(data);
-            _this.inputId = product.id;
-            _this.inputName = product.name;
-            _this.inputQuantity = 1;
-            _this.createNewStockItem();
-        }, function (error) {
-            var modalRef = _this.modalBuilder.open(src_app_modal_info_modal_info_modal_component__WEBPACK_IMPORTED_MODULE_7__["InfoModalComponent"]);
-            modalRef.componentInstance.title = "Error : Product not added to order " + _this.order.name;
-            modalRef.componentInstance.message = error.error;
-        });
-    };
-    ListStockItemComponent.prototype.onBlurInputName = function () {
-        var _this = this;
-        var id = this.productIdMapByName.get(this.inputName.trim());
-        if (id != null) {
-            this.productService.get(id).subscribe(function (data) {
-                _this.inputId = data.id;
-                _this.inputPrice = data.price;
-                _this.inputQuantity = 1;
-            }, function (error) {
-                var modalRef = _this.modalBuilder.open(src_app_modal_info_modal_info_modal_component__WEBPACK_IMPORTED_MODULE_7__["InfoModalComponent"]);
-                modalRef.componentInstance.title = "Error : Product " + _this.inputName + " not found";
-                modalRef.componentInstance.message = error.error;
-            });
-        }
-        this.checkInputFieldSet();
-    };
-    ListStockItemComponent.prototype.checkInputFieldSet = function () {
-        this.areNewStockItemFieldsSet = this.inputName.trim().length > 0
-            && this.inputQuantity > 0
-            && this.inputPrice > 0;
-    };
-    ListStockItemComponent.prototype.createNewStockItem = function () {
-        var _this = this;
-        var stockItem = new _model_StockItem__WEBPACK_IMPORTED_MODULE_2__["StockItem"](undefined, null, this.inputQuantity, new _model_Product__WEBPACK_IMPORTED_MODULE_3__["Product"](this.inputId, this.inputName, this.inputPrice), null, null);
-        this.orderService.addItem(this.order, stockItem).subscribe(function (data) {
-            var barCodeId;
-            if (data.barCode != null) {
-                barCodeId = data.item.barCode.id;
-            }
-            var product = new _model_Product__WEBPACK_IMPORTED_MODULE_3__["Product"](data.product.id, data.product.name, data.product.price);
-            stockItem = new _model_StockItem__WEBPACK_IMPORTED_MODULE_2__["StockItem"](data.id, barCodeId, data.quantity, product, data.createdDatetime, data.lastModifiedDatetime);
-            _this.onCreateStockItemEvent.emit(stockItem);
-            _this.resetNewStockitemFields();
-        }, function (error) {
-            var modalRef = _this.modalBuilder.open(src_app_modal_info_modal_info_modal_component__WEBPACK_IMPORTED_MODULE_7__["InfoModalComponent"]);
-            modalRef.componentInstance.title = "Error : Product item " + stockItem.product.name + " not added to order " + _this.order.name;
-            modalRef.componentInstance.message = error.error;
-            _this.resetNewStockitemFields();
-        });
-    };
-    ListStockItemComponent.prototype.deleteStockItem = function (id) {
-        var _this = this;
-        this.orderService.deleteItem(this.order, id).subscribe(function (data) {
-            console.log(data);
-            _this.onDeleteStockItemEvent.emit(id);
-        }, function (error) {
-        });
-    };
-    ListStockItemComponent.prototype.onChangeStockItemQuantity = function (stockItem, event) {
-        var newQuantity = event.target.textContent;
-        if (stockItem.quantity != newQuantity) {
-            var item = new _model_StockItem__WEBPACK_IMPORTED_MODULE_2__["StockItem"](stockItem.id, stockItem.barCode, newQuantity, stockItem.product, stockItem.createdDatetime, stockItem.lastModifiedDatetime);
-            this.onChangeStockItemEvent.emit(item);
-        }
-    };
-    ListStockItemComponent.prototype.setSelectedRow = function (index) {
-        this.selectedRow = index;
-    };
-    ListStockItemComponent.prototype.resetNewStockitemFields = function () {
-        this.inputId = undefined;
-        this.inputBarCode = "";
-        this.inputName = "";
-        this.inputQuantity = undefined;
-        this.inputPrice = undefined;
-        this.areNewStockItemFieldsSet = false;
-    };
-    tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
-        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Input"])(),
-        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:type", Object)
-    ], ListStockItemComponent.prototype, "stockItems", void 0);
-    tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
-        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Input"])(),
-        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:type", src_app_model_Order__WEBPACK_IMPORTED_MODULE_5__["Order"])
-    ], ListStockItemComponent.prototype, "order", void 0);
-    tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
-        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Output"])(),
-        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:type", Object)
-    ], ListStockItemComponent.prototype, "onCreateStockItemEvent", void 0);
-    tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
-        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Output"])(),
-        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:type", Object)
-    ], ListStockItemComponent.prototype, "onChangeStockItemEvent", void 0);
-    tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
-        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Output"])(),
-        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:type", Object)
-    ], ListStockItemComponent.prototype, "onDeleteStockItemEvent", void 0);
-    ListStockItemComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
-        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
-            selector: 'list-stock-item',
-            template: __webpack_require__(/*! ./list-stock-item.component.html */ "./src/app/stock-report-panel/list-stock-item/list-stock-item.component.html"),
-            styles: [__webpack_require__(/*! ./list-stock-item.component.css */ "./src/app/stock-report-panel/list-stock-item/list-stock-item.component.css")]
-        }),
-        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [src_app_service_order_service__WEBPACK_IMPORTED_MODULE_4__["OrderService"],
-            src_app_service_product_service__WEBPACK_IMPORTED_MODULE_8__["ProductService"],
-            src_app_common_components_modal_builder__WEBPACK_IMPORTED_MODULE_6__["ModalBuilder"]])
-    ], ListStockItemComponent);
-    return ListStockItemComponent;
-}());
-
-
-
-/***/ }),
-
-/***/ "./src/app/stock-report-panel/stock-report-header/stock-report-header.component.css":
-/*!******************************************************************************************!*\
-  !*** ./src/app/stock-report-panel/stock-report-header/stock-report-header.component.css ***!
-  \******************************************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJzcmMvYXBwL3N0b2NrLXJlcG9ydC1wYW5lbC9zdG9jay1yZXBvcnQtaGVhZGVyL3N0b2NrLXJlcG9ydC1oZWFkZXIuY29tcG9uZW50LmNzcyJ9 */"
-
-/***/ }),
-
-/***/ "./src/app/stock-report-panel/stock-report-header/stock-report-header.component.html":
-/*!*******************************************************************************************!*\
-  !*** ./src/app/stock-report-panel/stock-report-header/stock-report-header.component.html ***!
-  \*******************************************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-module.exports = "<div class=\"container-fluid\" style=\"border-bottom: 3px solid red\">\n  <div class=\"row justify-content-between\">\n    <div class=\"col-md-4\">\n      <h5>{{ order.name }}</h5>\n      <p>Description/Comment : {{ order.comment }}</p>\n      <div style=\"overflow: hidden;\">\n        <p style=\"float: left\">Customer : &nbsp;</p>\n        <p style=\"float: left; font-weight: bold\"> {{ order.customer.store.name }}</p>\n      </div>\n      <div style=\"overflow: hidden;\">\n        <p style=\"float: left;\">Status :&nbsp;</p>\n        <p style=\"float: left; font-weight: bold\"> {{ order.status }}</p>\n      </div>\n    </div>\n    <div class=\"col-md-6\">\n        <button\n          style=\"float: right\"\n          class=\"btn btn-outline-info\"\n          (click)=\"onClickCloseOrder()\"\n          [disabled]=\"order.status === 'CLOSED'\"\n        >Close the order</button>\n    </div>\n  </div>\n</div>"
-
-/***/ }),
-
-/***/ "./src/app/stock-report-panel/stock-report-header/stock-report-header.component.ts":
-/*!*****************************************************************************************!*\
-  !*** ./src/app/stock-report-panel/stock-report-header/stock-report-header.component.ts ***!
-  \*****************************************************************************************/
-/*! exports provided: StockReportHeaderComponent */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "StockReportHeaderComponent", function() { return StockReportHeaderComponent; });
-/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
-/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
-/* harmony import */ var _model_Order__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../model/Order */ "./src/app/model/Order.ts");
-/* harmony import */ var src_app_common_components_modal_builder__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! src/app/common-components/modal-builder */ "./src/app/common-components/modal-builder.ts");
-/* harmony import */ var src_app_modal_confirm_modal_confirm_modal_component__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! src/app/modal/confirm-modal/confirm-modal-component */ "./src/app/modal/confirm-modal/confirm-modal-component.ts");
-/* harmony import */ var src_app_service_order_service__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! src/app/service/order-service */ "./src/app/service/order-service.ts");
-
-
-
-
-
-
-var StockReportHeaderComponent = /** @class */ (function () {
-    function StockReportHeaderComponent(modalBuilder, orderService) {
-        this.modalBuilder = modalBuilder;
-        this.orderService = orderService;
-        this.onCloseOrderEvent = new _angular_core__WEBPACK_IMPORTED_MODULE_1__["EventEmitter"]();
-    }
-    StockReportHeaderComponent.prototype.ngOnInit = function () {
-    };
-    StockReportHeaderComponent.prototype.onClickCloseOrder = function () {
-        var _this = this;
-        var modalRef = this.modalBuilder.open(src_app_modal_confirm_modal_confirm_modal_component__WEBPACK_IMPORTED_MODULE_4__["ConfirmModalComponent"]);
-        modalRef.componentInstance.title = "Close Report Confirmation";
-        modalRef.componentInstance.message = "Are you sure you want to close the order "
-            + this.order.name + " for the store " + this.order.customer.store.name;
-        modalRef.result.then(function (response) {
-            if (response) {
-                _this.orderService.closeOrder(_this.order);
-            }
-        });
-    };
-    tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
-        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Input"])(),
-        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:type", _model_Order__WEBPACK_IMPORTED_MODULE_2__["Order"])
-    ], StockReportHeaderComponent.prototype, "order", void 0);
-    tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
-        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Output"])(),
-        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:type", Object)
-    ], StockReportHeaderComponent.prototype, "onCloseOrderEvent", void 0);
-    StockReportHeaderComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
-        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
-            selector: 'stock-report-header',
-            template: __webpack_require__(/*! ./stock-report-header.component.html */ "./src/app/stock-report-panel/stock-report-header/stock-report-header.component.html"),
-            styles: [__webpack_require__(/*! ./stock-report-header.component.css */ "./src/app/stock-report-panel/stock-report-header/stock-report-header.component.css")]
-        }),
-        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [src_app_common_components_modal_builder__WEBPACK_IMPORTED_MODULE_3__["ModalBuilder"],
-            src_app_service_order_service__WEBPACK_IMPORTED_MODULE_5__["OrderService"]])
-    ], StockReportHeaderComponent);
-    return StockReportHeaderComponent;
-}());
-
-
-
-/***/ }),
-
-/***/ "./src/app/stock-report-panel/stock-report/stock-report.component.css":
-/*!****************************************************************************!*\
-  !*** ./src/app/stock-report-panel/stock-report/stock-report.component.css ***!
-  \****************************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJzcmMvYXBwL3N0b2NrLXJlcG9ydC1wYW5lbC9zdG9jay1yZXBvcnQvc3RvY2stcmVwb3J0LmNvbXBvbmVudC5jc3MifQ== */"
-
-/***/ }),
-
-/***/ "./src/app/stock-report-panel/stock-report/stock-report.component.html":
-/*!*****************************************************************************!*\
-  !*** ./src/app/stock-report-panel/stock-report/stock-report.component.html ***!
-  \*****************************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-module.exports = "<div>\n  <stock-report-header\n    [order]=\"order\"\n    (onCloseOrderEvent)=\"onCloseOrder()\"\n  ></stock-report-header>\n  <list-stock-item *ngIf=\"order\"\n    [order]=\"order\"\n    [stockItems]=\"order.items.values()\"\n    (onCreateStockItemEvent)=\"onNewStockItem($event)\"\n    (onChangeStockItemEvent)=\"onChangeStockItem($event)\"\n    (onDeleteStockItemEvent)=\"onDeleteStockItem($event)\"\n  ></list-stock-item>\n  <div class=\"container=fluid\">\n    <button class=\"btn btn-primary\"\n        (click)=\"onClickBack()\"\n        style=\"float: right\"\n    >Back</button>\n</div>\n</div>"
-
-/***/ }),
-
-/***/ "./src/app/stock-report-panel/stock-report/stock-report.component.ts":
-/*!***************************************************************************!*\
-  !*** ./src/app/stock-report-panel/stock-report/stock-report.component.ts ***!
-  \***************************************************************************/
-/*! exports provided: StockReportComponent */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "StockReportComponent", function() { return StockReportComponent; });
-/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
-/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
-/* harmony import */ var _service_order_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../service/order-service */ "./src/app/service/order-service.ts");
-/* harmony import */ var _model_StockItem__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../model/StockItem */ "./src/app/model/StockItem.ts");
-/* harmony import */ var _model_Order__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../model/Order */ "./src/app/model/Order.ts");
-/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
-/* harmony import */ var _model_Customer__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../model/Customer */ "./src/app/model/Customer.ts");
-/* harmony import */ var _model_Product__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../../model/Product */ "./src/app/model/Product.ts");
-
-
-
-
-
-
-
-
-var StockReportComponent = /** @class */ (function () {
-    function StockReportComponent(orderService, route, router) {
-        this.orderService = orderService;
-        this.route = route;
-        this.router = router;
-        this.reportId = 1;
-    }
-    StockReportComponent.prototype.ngOnInit = function () {
-        var _this = this;
-        this.order = new _model_Order__WEBPACK_IMPORTED_MODULE_4__["Order"]();
-        var orderId = parseInt(this.route.snapshot.paramMap.get('id'));
-        this.orderService.getOrder(orderId).subscribe(function (data) {
-            _this.order.id = data.id;
-            _this.order.name = data.name;
-            _this.order.comment = data.comment;
-            _this.order.status = data.status;
-            _this.order.customer = _model_Customer__WEBPACK_IMPORTED_MODULE_6__["Customer"].fromJson(data.customer);
-            console.log("Order item size in order : " + orderId + " : " + data.items.size);
-            for (var _i = 0, _a = data.items; _i < _a.length; _i++) {
-                var item = _a[_i];
-                var barCodeId = void 0;
-                if (item.barCode != null) {
-                    barCodeId = item.barCode.id;
-                }
-                var product = new _model_Product__WEBPACK_IMPORTED_MODULE_7__["Product"](item.product.id, item.product.name, item.product.price);
-                var stockItem = new _model_StockItem__WEBPACK_IMPORTED_MODULE_3__["StockItem"](item.id, barCodeId, item.quantity, product, item.createdDatetime, item.lastModifiedDatetime);
-                _this.order.items.set(stockItem.id, stockItem);
-            }
-        });
-    };
-    StockReportComponent.prototype.onNewStockItem = function (stockItemToAdd) {
-        this.order.items.set(stockItemToAdd.id, stockItemToAdd);
-    };
-    StockReportComponent.prototype.onChangeStockItem = function (stockItemToUpdate) {
-        this.order.items.set(stockItemToUpdate.id, stockItemToUpdate);
-    };
-    StockReportComponent.prototype.onDeleteStockItem = function (id) {
-        this.order.items.delete(id);
-    };
-    StockReportComponent.prototype.onCloseOrder = function () {
-        this.orderService.closeOrder(this.order);
-    };
-    StockReportComponent.prototype.onClickBack = function () {
-        this.router.navigate(['']);
-    };
-    StockReportComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
-        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
-            selector: 'stock-report',
-            template: __webpack_require__(/*! ./stock-report.component.html */ "./src/app/stock-report-panel/stock-report/stock-report.component.html"),
-            changeDetection: _angular_core__WEBPACK_IMPORTED_MODULE_1__["ChangeDetectionStrategy"].Default,
-            styles: [__webpack_require__(/*! ./stock-report.component.css */ "./src/app/stock-report-panel/stock-report/stock-report.component.css")]
-        }),
-        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_service_order_service__WEBPACK_IMPORTED_MODULE_2__["OrderService"],
-            _angular_router__WEBPACK_IMPORTED_MODULE_5__["ActivatedRoute"],
-            _angular_router__WEBPACK_IMPORTED_MODULE_5__["Router"]])
-    ], StockReportComponent);
-    return StockReportComponent;
 }());
 
 

@@ -16,6 +16,6 @@ export class AdminSettingService {
 
     updateAdminSetting(adminSetting: AdminSetting): Observable<any> {
         console.log("Update admin setting " + adminSetting);
-        return this.httpApi.post("v1/admin/setting/add", adminSetting)
+        return this.httpApi.post("v1/admin/setting/update", adminSetting)
     }
 }

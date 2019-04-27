@@ -1,5 +1,5 @@
-import { Component, OnInit, Input, Output, EventEmitter, PipeTransform } from '@angular/core';
-import { StockItem } from '../../model/StockItem'
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { OrderItem } from '../../model/OrderItem'
 import { Product } from '../../model/Product';
 import { OrderService } from 'src/app/service/order-service';
 import { Order } from 'src/app/model/Order';
@@ -8,13 +8,15 @@ import { InfoModalComponent } from 'src/app/modal/info-modal/info-modal.componen
 import { ProductService } from 'src/app/service/product-service';
 import { Observable } from 'rxjs';
 import { debounceTime, distinctUntilChanged, map } from 'rxjs/operators';
+import { AddOrderItemReq } from 'src/app/model/request/AddOrderItemReq';
+import { ModifyOrderItemReq } from 'src/app/model/request/ModifyOrderItemReq';
 
 @Component({
-  selector: 'list-stock-item',
-  templateUrl: './list-stock-item.component.html',
-  styleUrls: ['./list-stock-item.component.css']
+  selector: 'list-order-item',
+  templateUrl: './list-order-item.component.html',
+  styleUrls: ['./list-order-item.component.css']
 })
-export class ListStockItemComponent implements OnInit {
+export class ListOrderItemComponent implements OnInit {
 
   inputId: number
   inputBarCode: string
@@ -23,7 +25,7 @@ export class ListStockItemComponent implements OnInit {
   inputPrice: number
   selectedRow: number
   isScanMode: boolean
-  areNewStockItemFieldsSet = false
+  areNewOrderItemFieldsSet = false
   searchString: string
   productNames: string[] = []
   productIdMapByName: Map<string, number> = new Map()
@@ -36,12 +38,12 @@ export class ListStockItemComponent implements OnInit {
         : this.productNames.filter(v => v.toLowerCase().indexOf(term.toLowerCase()) > -1).slice(0, 10))
     )
 
-  @Input() stockItems: IterableIterator<StockItem>
+  @Input() orderItems: IterableIterator<OrderItem>
   @Input() order: Order
 
-  @Output() onCreateStockItemEvent = new EventEmitter<StockItem>()
-  @Output() onChangeStockItemEvent = new EventEmitter<StockItem>()
-  @Output() onDeleteStockItemEvent = new EventEmitter<number>()
+  @Output() onCreateOrderItemEvent = new EventEmitter<OrderItem>()
+  @Output() onChangeOrderItemEvent = new EventEmitter<ModifyOrderItemReq>()
+  @Output() onDeleteOrderItemEvent = new EventEmitter<number>()
 
   constructor(private orderService: OrderService,
               private productService: ProductService,
@@ -69,7 +71,7 @@ export class ListStockItemComponent implements OnInit {
         this.inputId = product.id;
         this.inputName = product.name;
         this.inputQuantity = 1;
-        this.createNewStockItem()
+        this.createNewOrderItem()
       },
       error => {
         const modalRef = this.modalBuilder.open(InfoModalComponent)
@@ -99,37 +101,32 @@ export class ListStockItemComponent implements OnInit {
   }
 
   checkInputFieldSet() {
-    this.areNewStockItemFieldsSet = this.inputName.trim().length > 0
+    this.areNewOrderItemFieldsSet = this.inputName.trim().length > 0
                                       && this.inputQuantity > 0
                                       && this.inputPrice > 0
   }
 
-  createNewStockItem() {
-    var stockItem = new StockItem(undefined, null, this.inputQuantity, new Product(this.inputId, this.inputName, this.inputPrice), null, null)
-    this.orderService.addItem(this.order, stockItem).subscribe(
+  createNewOrderItem() {
+    var req = new AddOrderItemReq(this.order.id, this.inputId, this.inputBarCode, this.inputQuantity);
+    this.orderService.addOrderItem(req).subscribe(
       data => {
-          let barCodeId
-          if (data.barCode != null) {
-            barCodeId = data.item.barCode.id
-          }
-          let product = new Product(data.product.id, data.product.name, data.product.price)
-          stockItem = new StockItem(data.id, barCodeId, data.quantity, product, data.createdDatetime, data.lastModifiedDatetime)
-          this.onCreateStockItemEvent.emit(stockItem)
-          this.resetNewStockitemFields()
+          let orderItem = OrderItem.fromJson(data);
+          this.onCreateOrderItemEvent.emit(orderItem)
+          this.resetNewOrderItemInputFields()
       },
       error => {
         const modalRef = this.modalBuilder.open(InfoModalComponent)
-        modalRef.componentInstance.title = "Error : Product item " + stockItem.product.name + " not added to order " + this.order.name
+        modalRef.componentInstance.title = "Error : Product item " + this.inputName + " not added to order " + this.order.name
         modalRef.componentInstance.message = error.error
-        this.resetNewStockitemFields()
+        this.resetNewOrderItemInputFields()
       })
   }
 
-  deleteStockItem(id: number) {
+  deleteOrderItem(id: number) {
     this.orderService.deleteItem(this.order, id).subscribe(
       data => {
           console.log(data)
-          this.onDeleteStockItemEvent.emit(id)
+          this.onDeleteOrderItemEvent.emit(id)
       },
       error => {
 
@@ -137,11 +134,12 @@ export class ListStockItemComponent implements OnInit {
     )
   }
 
-  onChangeStockItemQuantity(stockItem: StockItem, event: any) {
+  onChangeOrderItemQuantity(orderItem: OrderItem, event: any) {
     let newQuantity = event.target.textContent
-    if (stockItem.quantity != newQuantity) {
-      let item = new StockItem(stockItem.id, stockItem.barCode, newQuantity, stockItem.product, stockItem.createdDatetime, stockItem.lastModifiedDatetime)
-      this.onChangeStockItemEvent.emit(item)
+    if (orderItem.quantity != newQuantity) {
+      let req = new ModifyOrderItemReq(orderItem.id, newQuantity);
+      // Must send Http request.
+      this.onChangeOrderItemEvent.emit(req)
     } 
   }
 
@@ -149,13 +147,13 @@ export class ListStockItemComponent implements OnInit {
     this.selectedRow = index
   }
 
-  private resetNewStockitemFields() {
+  private resetNewOrderItemInputFields() {
     this.inputId = undefined
     this.inputBarCode = ""
     this.inputName = ""
     this.inputQuantity = undefined
     this.inputPrice = undefined
-    this.areNewStockItemFieldsSet = false
+    this.areNewOrderItemFieldsSet = false
   }
 
 }

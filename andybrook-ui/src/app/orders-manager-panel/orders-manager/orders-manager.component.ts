@@ -4,6 +4,7 @@ import { Order } from "../../model/Order";
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ModalBuilder } from 'src/app/common-components/modal-builder';
 import { CreateOrderModalComponent } from 'src/app/modal/create-order-modal/create-order-modal.component';
+import { AggregatedOrder } from 'src/app/model/AggregatedOrder';
 
 @Component({
   selector: 'orders-manager',
@@ -12,7 +13,7 @@ import { CreateOrderModalComponent } from 'src/app/modal/create-order-modal/crea
 })
 export class OrdersManagerComponent implements OnInit {
 
-  orders: Order[] = []
+  orders: AggregatedOrder[] = []
   noOrdersFoundMessage: string
   searchButtonDisabled: boolean = false
   isOrderListFiltered: boolean = false
@@ -65,10 +66,10 @@ export class OrdersManagerComponent implements OnInit {
     ) 
   }
 
-  private parseOrderIntoArray(data: any) : Order[] {
-    let orders: Order[] = []
+  private parseOrderIntoArray(data: any) : AggregatedOrder[] {
+    let orders: AggregatedOrder[] = []
     for (let i = 0; i < data.length ; i++) {
-      let item = Order.fromJson(data[i]);
+      let item = AggregatedOrder.fromJson(data[i]);
       orders.push(item)
     }
     return orders

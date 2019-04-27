@@ -1,4 +1,4 @@
-import { StockItem } from './StockItem'
+import { OrderItem } from './OrderItem'
 import { Customer } from './Customer';
 
 export class Order {
@@ -10,7 +10,7 @@ export class Order {
     customer: Customer = new Customer()
     createDatetime: Date
     closeDatetime: Date
-    items: Map<number, StockItem> = new Map()
+    items: Map<number, OrderItem> = new Map()
     nbProduct: number
     totalItemQty: number
     totalPrice: number
@@ -38,7 +38,7 @@ export class Order {
     private static getTotalPrice(items: any) {
         let total = 0
         for (let i = 0; i < items.length; i++) {
-            total += items[i].product.price * items[i].quantity;
+            total += items[i].productItem.product.price * items[i].quantity;
         }
         return total
     }

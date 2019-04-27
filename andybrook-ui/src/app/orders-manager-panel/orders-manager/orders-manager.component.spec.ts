@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ReportsManagerComponent } from './orders-manager.component';
+import { OrdersManagerComponent } from './orders-manager.component';
 
-describe('ReportsManagerComponent', () => {
-  let component: ReportsManagerComponent;
-  let fixture: ComponentFixture<ReportsManagerComponent>;
+describe('OrdersManagerComponent', () => {
+  let component: OrdersManagerComponent;
+  let fixture: ComponentFixture<OrdersManagerComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ ReportsManagerComponent ]
+      declarations: [ OrdersManagerComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(ReportsManagerComponent);
+    fixture = TestBed.createComponent(OrdersManagerComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

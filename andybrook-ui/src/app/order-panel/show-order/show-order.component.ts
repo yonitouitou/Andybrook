@@ -1,6 +1,6 @@
 import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { OrderService } from '../../service/order-service';
-import { StockItem } from '../../model/StockItem'
+import { OrderItem } from '../../model/OrderItem'
 import { Order } from "../../model/Order";
 import { ActivatedRoute, Router } from '@angular/router';
 import { Customer } from '../../model/Customer';
@@ -8,12 +8,12 @@ import { Product } from '../../model/Product'
 
 @Component({
   
-  selector: 'stock-report',
-  templateUrl: './stock-report.component.html',
-  styleUrls: ['./stock-report.component.css'],
+  selector: 'show-order',
+  templateUrl: './show-order.component.html',
+  styleUrls: ['./show-order.component.css'],
   changeDetection: ChangeDetectionStrategy.Default
 })
-export class StockReportComponent implements OnInit {
+export class ShowOrderComponent implements OnInit {
 
   reportId: number = 1
   order: Order
@@ -33,31 +33,22 @@ export class StockReportComponent implements OnInit {
       this.order.customer = Customer.fromJson(data.customer)
       console.log("Order item size in order : " + orderId + " : " + data.items.size)
       for (let item of data.items) {
-        let barCodeId
-        if (item.barCode != null) {
-          barCodeId = item.barCode.id
-        }
-        let product = new Product(item.product.id, item.product.name, item.product.price)
-        let stockItem = new StockItem(item.id, barCodeId, item.quantity, product, item.createdDatetime, item.lastModifiedDatetime)
-        this.order.items.set(stockItem.id, stockItem)
+        let orderItem = OrderItem.fromJson(item);
+        this.order.items.set(orderItem.id, orderItem)
       }
   })
   }
 
-  onNewStockItem(stockItemToAdd: StockItem) {
-    this.order.items.set(stockItemToAdd.id, stockItemToAdd)
+  onNewOrderItem(orderItem: OrderItem) {
+    this.order.items.set(orderItem.id, orderItem)
   }
 
-  onChangeStockItem(stockItemToUpdate: StockItem) {
-    this.order.items.set(stockItemToUpdate.id, stockItemToUpdate)
+  onChangeOrderItem(orderItem: OrderItem) {
+    this.order.items.set(orderItem.id, orderItem)
   }
 
-  onDeleteStockItem(id: number) {
+  onDeleteOrderItem(id: number) {
     this.order.items.delete(id)
-  }
-
-  onCloseOrder() {
-    this.orderService.closeOrder(this.order)
   }
 
   onClickBack() {

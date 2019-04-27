@@ -1,6 +1,6 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { StockReportHeaderComponent } from './stock-report-header.component';
+import { StockReportHeaderComponent } from './show-order-header.component';
 
 describe('StockReportHeaderComponent', () => {
   let component: StockReportHeaderComponent;

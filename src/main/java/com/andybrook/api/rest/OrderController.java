@@ -3,6 +3,7 @@ package com.andybrook.api.rest;
 import com.andybrook.api.rest.ctx.*;
 import com.andybrook.exception.*;
 import com.andybrook.manager.order.IOrderManager;
+import com.andybrook.model.api.rest.AggregatedOrder;
 import com.andybrook.model.order.Order;
 import com.andybrook.model.order.OrderItem;
 import com.andybrook.model.request.order.NewOrderRequest;
@@ -17,6 +18,7 @@ import java.lang.System.Logger;
 import java.lang.System.Logger.Level;
 import java.util.List;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/v1/order")
@@ -41,7 +43,7 @@ public class OrderController extends AbstractController {
 
     @PostMapping(path = "/close")
     public Order closeOrder(@RequestBody GenericRequestById request) throws OrderNotFound, OrderClosed {
-        LOGGER.log(Level.INFO, "Close report request received : " + request.toString());
+        LOGGER.log(Level.INFO, "Close order request received : " + request.toString());
         return orderManager.closeOrder(request.getId());
     }
 
@@ -57,19 +59,19 @@ public class OrderController extends AbstractController {
         return orderManager.getOrders(request.getIdsAsLong());
     }
 
-    @GetMapping(path = "/getByName/{name}")
-    public List<Order> getByName(@PathVariable String name) {
+    @GetMapping(path = "/searchByName/{name}")
+    public List<AggregatedOrder> getByName(@PathVariable String name) {
         LOGGER.log(Level.INFO, "Get report request received for name : " + name);
-        return orderManager.getOrdersByNameContaining(name.trim());
+        return AggregatedOrder.toAggregatedOrders(orderManager.getOrdersByNameContaining(name.trim()).stream()).collect(Collectors.toList());
     }
 
     @GetMapping(path = "/all")
-    public Set<Order> getAll() {
-        LOGGER.log(Level.INFO, "Get all report request received");
-        return orderManager.getAll();
+    public Set<AggregatedOrder> getAll() {
+        LOGGER.log(Level.INFO, "Get all aggregated orders request received");
+        return AggregatedOrder.toAggregatedOrders(orderManager.getAll().stream()).collect(Collectors.toSet());
     }
 
-    @PostMapping(path = "/addOrderItemsByInfo")
+    @PostMapping(path = "/addOrderItemByInfo")
     public List<OrderItem> addOrderItems(@RequestBody OrderItemAddRequestByInfo request)
             throws OrderNotFound, OrderClosed, ProductNotFound, InsufficientQuantityException, OrderItemNotFound, BarCodeNotFound {
         LOGGER.log(Level.INFO, "Request received to updateProductItem order : " + request);

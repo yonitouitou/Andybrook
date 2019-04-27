@@ -1,0 +1,19 @@
+<div>
+  <show-order-header
+    [order]="order"
+    (onCloseOrderEvent)="onCloseOrder()"
+  ></show-order-header>
+  <list-order-item *ngIf="order"
+    [order]="order"
+    [orderItems]="order.items.values()"
+    (onCreateOrderItemEvent)="onNewOrderItem($event)"
+    (onChangeOrderItemEvent)="onChangeOrderItem($event)"
+    (onDeleteOrderItemEvent)="onDeleteOrderItem($event)"
+  ></list-order-item>
+  <div class="container=fluid">
+    <button class="btn btn-primary"
+        (click)="onClickBack()"
+        style="float: right"
+    >Back</button>
+</div>
+</div>

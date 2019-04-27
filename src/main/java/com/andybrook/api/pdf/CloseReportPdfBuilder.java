@@ -227,7 +227,7 @@ public class CloseReportPdfBuilder extends AbstractPdfBuilder implements IPdfBui
             table.addCell(getStringCell(item.getProductItem().getName()));
             table.addCell(getNumericCell(String.valueOf(order.calculateQuantityOfProduct(item.getProductItem().getId()))));
             table.addCell(getNumericCell(PRICE_FORMATTER.format(item.getProductItem().getPrice()) + "€"));
-            table.addCell(getNumericCell(PRICE_FORMATTER.format(order.calculateTotalPriceByProduct(item.getProductItem().getId()) + "€")));
+            table.addCell(getNumericCell(PRICE_FORMATTER.format(order.calculateTotalPriceByProduct(item.getProductItem().getId())) + "€"));
         }
         PdfPCell totalCell = new PdfPCell(new Phrase
                                 (languageResolver.get(Pdf.TOTAL).toUpperCase(),

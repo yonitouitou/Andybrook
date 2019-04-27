@@ -13,10 +13,12 @@ export class ProductItem {
     static fromJson(data: any): ProductItem {
         let productItem = new ProductItem();
         productItem.id = data.id;
-        productItem.barCode = data.barCode;
         productItem.product = Product.fromJson(data.product);
         productItem.createdDatetime = data.createdDatetime;
         productItem.lastModifiedDatetime = data.lastModifiedDatetime;
+        if (data.barCode != undefined) {
+            productItem.barCode = data.barCode.id;
+        }
         return productItem;
     }
 

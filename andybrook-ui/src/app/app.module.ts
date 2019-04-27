@@ -7,14 +7,14 @@ import { HttpClientModule } from '@angular/common/http'
 import { Routes, RouterModule } from '@angular/router'
 import { BrowserAnimationsModule, NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { AppComponent } from './app.component';
-import { ListStockItemComponent } from './stock-report-panel/list-stock-item/list-stock-item.component';
+import { ListOrderItemComponent } from './order-panel/list-order-item/list-order-item.component';
 import { OrdersManagerComponent } from './orders-manager-panel/orders-manager/orders-manager.component';
-import { StockReportComponent } from './stock-report-panel/stock-report/stock-report.component';
+import { ShowOrderComponent } from './order-panel/show-order/show-order.component';
 import { OrderService } from './service/order-service';
 import { HttpService } from './service/http-service';
 import { AdminSettingService } from './service/admin-setting-service';
 import { HeaderMenuComponent } from './header-menu/header-menu.component';
-import { StockReportHeaderComponent } from './stock-report-panel/stock-report-header/stock-report-header.component';
+import { OrderHeaderComponent } from './order-panel/show-order-header/show-order-header.component';
 import { ListOrdersComponent } from './orders-manager-panel/list-orders/list-orders.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { AdminPanelComponent } from './admin/admin-panel/admin-panel.component';
@@ -31,7 +31,7 @@ import { ProductService } from './service/product-service';
 
 const appRoutes: Routes = [
   { path: '', component: OrdersManagerComponent },
-  { path: 'stockreport/:id', component: StockReportComponent },
+  { path: 'order/:id', component: ShowOrderComponent },
   { path: 'admin', component: AdminPanelComponent},
   { path: 'customers', component: CustomerPanelComponent}
 ];
@@ -39,11 +39,11 @@ const appRoutes: Routes = [
 @NgModule({
   declarations: [
     AppComponent,
-    ListStockItemComponent,
+    ListOrderItemComponent,
     OrdersManagerComponent,
-    StockReportComponent,
+    ShowOrderComponent,
     HeaderMenuComponent,
-    StockReportHeaderComponent,
+    OrderHeaderComponent,
     ListOrdersComponent,
     AdminPanelComponent,
     CustomerPanelComponent,

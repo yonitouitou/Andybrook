@@ -18,6 +18,7 @@ public class Order {
     private Map<Long, OrderItem> items;
     private Map<Long, List<OrderItem>> itemsMapByProductId;
     private LocalDateTime createdDateTime;
+    private LocalDateTime lastModifiedDateTime;
     private LocalDateTime closeDateTime;
     private OrderStatus status;
 
@@ -155,6 +156,14 @@ public class Order {
 
     public void setCreatedDateTime(LocalDateTime createdDateTime) {
         this.createdDateTime = createdDateTime;
+    }
+
+    public LocalDateTime getLastModifiedDateTime() {
+        return lastModifiedDateTime;
+    }
+
+    public void setLastModifiedDateTime(LocalDateTime lastModifiedDateTime) {
+        this.lastModifiedDateTime = lastModifiedDateTime;
     }
 
     public OrderStatus getStatus() {

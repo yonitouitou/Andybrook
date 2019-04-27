@@ -27,6 +27,7 @@ public class OrderEntityConverter implements IEntityConverter<Order, OrderEntity
         order.setStatus(entity.getStatus());
         order.setComment(entity.getComment());
         order.setCreatedDateTime(entity.getCreatedDatetime());
+        order.setLastModifiedDateTime(entity.getLastModifiedDatetime());
         order.setCloseDateTime(entity.getCloseDatetime());
         for (OrderItemEntity orderItemEntity : entity.getItems()) {
             OrderItem orderItem = entityFactory.createOrderItem(orderItemEntity);
