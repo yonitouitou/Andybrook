@@ -4,7 +4,7 @@ import { OrderService } from 'src/app/service/order-service';
 import { NotificationService } from 'src/app/service/notification-service';
 import { ModalBuilder } from 'src/app/common-components/modal-builder';
 import { ConfirmModalComponent } from 'src/app/modal/confirm-modal/confirm-modal-component';
-import { AggregatedOrder } from 'src/app/model/AggregatedOrder';
+import { AggregatedOrderInfo } from 'src/app/model/AggregatedOrderInfo';
 
 @Component({
   selector: 'list-orders',
@@ -13,7 +13,7 @@ import { AggregatedOrder } from 'src/app/model/AggregatedOrder';
 })
 export class ListOrdersComponent implements OnInit {
 
-  @Input() orders: AggregatedOrder[]
+  @Input() orders: AggregatedOrderInfo[]
 
   page: number = 1
   pageSize: number = 4
@@ -27,7 +27,7 @@ export class ListOrdersComponent implements OnInit {
     this.collectionSize = this.orders.length
   }
 
-  onClickCloseOrder(orderToClose: AggregatedOrder) {
+  onClickCloseOrder(orderToClose: AggregatedOrderInfo) {
       let modalRef = this.modalBuilder.open(ConfirmModalComponent);
       modalRef.componentInstance.title = "Close Report Confirmation";
       modalRef.componentInstance.message = "Are you sure you want to close the order "
@@ -45,7 +45,7 @@ export class ListOrdersComponent implements OnInit {
       })
   }
 
-  onClickNotify(order: AggregatedOrder) {
+  onClickNotify(order: AggregatedOrderInfo) {
     let modalRef = this.modalBuilder.open(ConfirmModalComponent);
     modalRef.componentInstance.title = "Notification Confirmation";
     modalRef.componentInstance.message = "Are you sure you want to get notification about the order " + order.name + " ?";
@@ -58,7 +58,7 @@ export class ListOrdersComponent implements OnInit {
     })
   }
 
-  get ordersArray(): AggregatedOrder[] {
+  get ordersArray(): AggregatedOrderInfo[] {
     return this.orders
               .slice((this.page - 1) * this.pageSize, (this.page -1) * this.pageSize + this.pageSize)
   }

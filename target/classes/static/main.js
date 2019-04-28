@@ -658,7 +658,7 @@ module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"modal-header\">\n  <h4 class=\"modal-title\" id=\"modal-basic-title\">New Order</h4>\n  <button type=\"button\" class=\"close\" aria-label=\"Close\" (click)=\"onClose()\">\n    <span aria-hidden=\"true\">&times;</span>\n  </button>\n</div>\n<form [formGroup]=\"createOrderForm\" (ngSubmit)=\"onSubmit()\">\n<div class=\"modal-body\">\n    <div class=\"form-group\">\n      <label for=\"Name\">Name</label>\n      <input type=\"text\" formControlName=\"name\"\n        (input)=\"settingChanged()\"\n        class=\"form-control\"/>\n        <label *ngIf=\"isFormSubmitted && createOrderForm.get('name').invalid\" class=\"text-danger\">A name is required.</label>\n    </div>\n    <div class=\"form-group\">\n      <label for=\"comment\">Comment/Description</label>\n      <input type=\"text\" formControlName=\"comment\"\n        (input)=\"settingChanged()\"\n        class=\"form-control\"/>\n    </div>\n    <div class=\"form-group\">\n      <label for=\"customer\">Customer</label>\n      <select type=\"text\" formControlName=\"customers\"\n        (input)=\"settingChanged()\"\n        class=\"form-control\">\n        <option *ngFor=\"let customer of customersArray\"\n        [ngValue]=\"customer\">{{customer.id}} | {{ customer.store.name }} | {{ customer.store.owner.firstName }} {{ customer.store.owner.lastName }}</option>\n      </select>\n      <label *ngIf=\"isFormSubmitted && createOrderForm.get('customers').invalid\" class=\"text-danger\">A customer is required.</label>\n    </div>\n</div>\n<div class=\"modal-footer\">\n  <button type=\"submit\" class=\"btn btn-outline-dark\" >Create</button>\n</div></form>"
+module.exports = "<div class=\"modal-header\">\n  <h4 class=\"modal-title\" id=\"modal-basic-title\">New Order</h4>\n  <button type=\"button\" class=\"close\" aria-label=\"Close\" (click)=\"onClose()\">\n    <span aria-hidden=\"true\">&times;</span>\n  </button>\n</div>\n<form [formGroup]=\"createOrderForm\" (ngSubmit)=\"onSubmit()\">\n  <div class=\"modal-body\">\n      <div class=\"form-group\">\n        <label for=\"Name\">Name</label>\n        <input type=\"text\" formControlName=\"name\"\n          (input)=\"settingChanged()\"\n          class=\"form-control\"/>\n          <label *ngIf=\"isFormSubmitted && createOrderForm.get('name').invalid\" class=\"text-danger\">A name is required.</label>\n      </div>\n      <div class=\"form-group\">\n        <label for=\"comment\">Comment/Description</label>\n        <input type=\"text\" formControlName=\"comment\"\n          (input)=\"settingChanged()\"\n          class=\"form-control\"/>\n      </div>\n      <div class=\"form-group\">\n        <label for=\"customer\">Customer</label>\n        <select type=\"text\" formControlName=\"customers\"\n          (input)=\"settingChanged()\"\n          class=\"form-control\">\n          <option *ngFor=\"let customer of customersArray\"\n          [ngValue]=\"customer\">{{customer.id}} | {{ customer.store.name }} | {{ customer.store.owner.firstName }} {{ customer.store.owner.lastName }}</option>\n        </select>\n        <label *ngIf=\"isFormSubmitted && createOrderForm.get('customers').invalid\" class=\"text-danger\">A customer is required.</label>\n      </div>\n      <div>\n          <ngb-alert *ngIf=\"errorMessage\" type=\"danger\" [dismissible]=\"false\" (close)=\"errorMessage = null\">{{ errorMessage }}</ngb-alert>\n      </div>\n  </div>\n  <div class=\"modal-footer\">\n    <button type=\"submit\" class=\"btn btn-outline-dark\">Create</button>\n  </div>\n</form>"
 
 /***/ }),
 
@@ -681,6 +681,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var src_app_model_Order__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! src/app/model/Order */ "./src/app/model/Order.ts");
 /* harmony import */ var src_app_service_order_service__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! src/app/service/order-service */ "./src/app/service/order-service.ts");
 /* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
+/* harmony import */ var rxjs__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! rxjs */ "./node_modules/rxjs/_esm5/index.js");
+/* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! rxjs/operators */ "./node_modules/rxjs/_esm5/operators/index.js");
+
+
 
 
 
@@ -699,6 +703,7 @@ var CreateOrderModalComponent = /** @class */ (function () {
         this.formBuilder = formBuilder;
         this.customersArray = [];
         this.isFormSubmitted = false;
+        this._error = new rxjs__WEBPACK_IMPORTED_MODULE_9__["Subject"]();
     }
     CreateOrderModalComponent.prototype.ngOnInit = function () {
         var _this = this;
@@ -718,6 +723,11 @@ var CreateOrderModalComponent = /** @class */ (function () {
                 customers: _this.customersArray
             });
         });
+        this._error.subscribe(function (msg) { return _this.errorMessage = msg; });
+        this._error.pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_10__["debounceTime"])(5000)).subscribe(function () { return _this.errorMessage = null; });
+    };
+    CreateOrderModalComponent.prototype.changeErrorMessage = function (errorMessage) {
+        this._error.next("Order not created : " + errorMessage);
     };
     CreateOrderModalComponent.prototype.settingChanged = function () {
     };
@@ -733,9 +743,9 @@ var CreateOrderModalComponent = /** @class */ (function () {
         order.customer = customer;
         this.orderService.addOrder(order).subscribe(function (data) {
             _this.modal.close(true);
-            _this.router.navigate(['/stockreport', data.id]);
+            _this.router.navigate(['/order', data.id]);
         }, function (error) {
-            console.log("ERROOoooooooooooooooooooR " + error);
+            _this.changeErrorMessage(error.error);
         });
     };
     CreateOrderModalComponent.prototype.onClose = function () {
@@ -830,36 +840,12 @@ var InfoModalComponent = /** @class */ (function () {
 
 /***/ }),
 
-/***/ "./src/app/model/AggregatedOrder.ts":
-/*!******************************************!*\
-  !*** ./src/app/model/AggregatedOrder.ts ***!
-  \******************************************/
-/*! exports provided: AggregatedOrder */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "AggregatedOrder", function() { return AggregatedOrder; });
-var AggregatedOrder = /** @class */ (function () {
-    function AggregatedOrder() {
-    }
-    AggregatedOrder.fromJson = function (data) {
-        var order = new AggregatedOrder();
-        order.id = data.id;
-        order.storeId = data.storeId;
-        order.name = data.name;
-        order.storeName = data.storeName;
-        order.status = data.status;
-        order.orderItemSize = data.orderItemSize;
-        order.productSize = data.productSize;
-        order.totalPrice = data.totalPrice;
-        order.createdDatetime = data.createdDatetime;
-        order.lastModifiedDatetime = data.lastModifiedDatetime;
-        order.closeDatetime = data.closeDatetime;
-        return order;
-    };
-    return AggregatedOrder;
-}());
+/***/ "./src/app/model/AggregatedOrderInfo.ts":
+/*!**********************************************!*\
+  !*** ./src/app/model/AggregatedOrderInfo.ts ***!
+  \**********************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
 
 
 
@@ -1709,7 +1695,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var src_app_service_order_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! src/app/service/order-service */ "./src/app/service/order-service.ts");
 /* harmony import */ var src_app_common_components_modal_builder__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! src/app/common-components/modal-builder */ "./src/app/common-components/modal-builder.ts");
 /* harmony import */ var src_app_modal_create_order_modal_create_order_modal_component__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! src/app/modal/create-order-modal/create-order-modal.component */ "./src/app/modal/create-order-modal/create-order-modal.component.ts");
-/* harmony import */ var src_app_model_AggregatedOrder__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! src/app/model/AggregatedOrder */ "./src/app/model/AggregatedOrder.ts");
+/* harmony import */ var src_app_model_AggregatedOrderInfo__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! src/app/model/AggregatedOrderInfo */ "./src/app/model/AggregatedOrderInfo.ts");
+/* harmony import */ var src_app_model_AggregatedOrderInfo__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(src_app_model_AggregatedOrderInfo__WEBPACK_IMPORTED_MODULE_6__);
 
 
 
@@ -1765,7 +1752,7 @@ var OrdersManagerComponent = /** @class */ (function () {
     OrdersManagerComponent.prototype.parseOrderIntoArray = function (data) {
         var orders = [];
         for (var i = 0; i < data.length; i++) {
-            var item = src_app_model_AggregatedOrder__WEBPACK_IMPORTED_MODULE_5__["AggregatedOrder"].fromJson(data[i]);
+            var item = src_app_model_AggregatedOrderInfo__WEBPACK_IMPORTED_MODULE_6__["AggregatedOrderInfo"].fromJson(data[i]);
             orders.push(item);
         }
         return orders;

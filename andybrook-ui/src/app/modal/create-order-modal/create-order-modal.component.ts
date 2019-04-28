@@ -6,6 +6,8 @@ import { CustomerService } from 'src/app/service/customer-service';
 import { Order } from 'src/app/model/Order';
 import { OrderService } from 'src/app/service/order-service';
 import { Router } from '@angular/router';
+import { Subject } from 'rxjs';
+import { debounceTime } from 'rxjs/operators';
 
 @Component({
   selector: 'app-create-order-modal',
@@ -17,6 +19,8 @@ export class CreateOrderModalComponent implements OnInit {
   createOrderForm: FormGroup
   customersArray: Customer[] = []
   isFormSubmitted: boolean = false
+  errorMessage: string
+  private _error = new Subject<string>()
 
   constructor(private modal: NgbActiveModal,
               private customerService: CustomerService,
@@ -42,6 +46,13 @@ export class CreateOrderModalComponent implements OnInit {
         customers: this.customersArray
       })
     })
+
+    this._error.subscribe((msg) => this.errorMessage = msg)
+    this._error.pipe(debounceTime(5000)).subscribe(() => this.errorMessage = null)
+  }
+
+  public changeErrorMessage(errorMessage: string) {
+    this._error.next("Order not created : " + errorMessage)
   }
 
   settingChanged() {
@@ -60,10 +71,10 @@ export class CreateOrderModalComponent implements OnInit {
     this.orderService.addOrder(order).subscribe(
       data => {
         this.modal.close(true)
-        this.router.navigate(['/stockreport', data.id])
+        this.router.navigate(['/order', data.id])
       },
       error => {
-        console.log("ERROOoooooooooooooooooooR " + error)
+        this.changeErrorMessage(error.error);
       })
   }
 

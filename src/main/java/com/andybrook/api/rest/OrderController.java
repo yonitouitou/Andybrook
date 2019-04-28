@@ -4,6 +4,7 @@ import com.andybrook.api.rest.ctx.*;
 import com.andybrook.exception.*;
 import com.andybrook.manager.order.IOrderManager;
 import com.andybrook.model.api.rest.AggregatedOrder;
+import com.andybrook.model.api.rest.AggregatedOrderInfo;
 import com.andybrook.model.order.Order;
 import com.andybrook.model.order.OrderItem;
 import com.andybrook.model.request.order.NewOrderRequest;
@@ -31,13 +32,13 @@ public class OrderController extends AbstractController {
 
     @PostMapping(path = "/add")
     public Order newOrder(@RequestBody NewOrderRequest request) throws StoreNotFound {
-        LOGGER.log(Level.INFO, "Add report request received : " + request.toString());
+        LOGGER.log(Level.INFO, "Add order request received : " + request.toString());
         return orderManager.newOrder(request);
     }
 
     @PostMapping(path = "/update")
     public void updateOrder(@RequestBody UpdateOrderRequest request) throws OrderNotFound, OrderClosed {
-        LOGGER.log(Level.INFO, "Update report request received : " + request.toString());
+        LOGGER.log(Level.INFO, "Update order request received : " + request.toString());
         orderManager.updateOrder(request);
     }
 
@@ -48,27 +49,27 @@ public class OrderController extends AbstractController {
     }
 
     @GetMapping(path = "/get/{id}")
-    public Order get(@PathVariable Long id) throws OrderNotFound {
-        LOGGER.log(Level.INFO, "Get report request received for id : " + id);
-        return orderManager.getOrder(id);
+    public AggregatedOrder get(@PathVariable Long id) throws OrderNotFound {
+        LOGGER.log(Level.INFO, "Get Order request received for id : " + id);
+        return AggregatedOrder.toAggregatedOrder(orderManager.getOrder(id));
     }
 
     @PostMapping(path = "/getByIds")
     public List<Order> getByIds(@RequestBody GenericRequestByIds request) {
-        LOGGER.log(Level.INFO, "Get report request received for ids : " + request.getIds());
+        LOGGER.log(Level.INFO, "Get order request received for ids : " + request.getIds());
         return orderManager.getOrders(request.getIdsAsLong());
     }
 
     @GetMapping(path = "/searchByName/{name}")
-    public List<AggregatedOrder> getByName(@PathVariable String name) {
-        LOGGER.log(Level.INFO, "Get report request received for name : " + name);
-        return AggregatedOrder.toAggregatedOrders(orderManager.getOrdersByNameContaining(name.trim()).stream()).collect(Collectors.toList());
+    public List<AggregatedOrderInfo> getByName(@PathVariable String name) {
+        LOGGER.log(Level.INFO, "Get order request received for name : " + name);
+        return AggregatedOrderInfo.toAggregatedOrdersInfo(orderManager.getOrdersByNameContaining(name.trim()).stream()).collect(Collectors.toList());
     }
 
     @GetMapping(path = "/all")
-    public Set<AggregatedOrder> getAll() {
+    public Set<AggregatedOrderInfo> getAll() {
         LOGGER.log(Level.INFO, "Get all aggregated orders request received");
-        return AggregatedOrder.toAggregatedOrders(orderManager.getAll().stream()).collect(Collectors.toSet());
+        return AggregatedOrderInfo.toAggregatedOrdersInfo(orderManager.getAll().stream()).collect(Collectors.toSet());
     }
 
     @PostMapping(path = "/addOrderItemByInfo")

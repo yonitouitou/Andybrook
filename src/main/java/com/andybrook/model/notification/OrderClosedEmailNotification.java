@@ -3,7 +3,7 @@ package com.andybrook.model.notification;
 import com.andybrook.ApplicationProperties;
 import com.andybrook.api.pdf.CloseReportPdfBuilder;
 import com.andybrook.api.pdf.IPdfBuilder;
-import com.andybrook.model.api.AggregatedOrderItem;
+import com.andybrook.model.api.rest.AggregatedOrderItem;
 import com.andybrook.model.api.Email;
 import com.andybrook.model.order.Order;
 import com.andybrook.model.order.OrderItem;

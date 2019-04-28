@@ -1,5 +1,7 @@
 package com.andybrook.api.rest;
 
+import com.andybrook.exception.CustomerNotFound;
+import com.andybrook.exception.StoreNotFound;
 import com.andybrook.exception.ValidationRuntimeException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -20,10 +22,22 @@ public abstract class AbstractController {
                 HttpStatus.BAD_REQUEST, "Exception occurred", e);
     }
 
+    @ExceptionHandler(StoreNotFound.class)
+    public ResponseEntity<?> handleStoreNotFound(StoreNotFound e) {
+        LOGGER.log(Level.WARNING, "Store not found : " + e.getMessage());
+        return new ResponseEntity("Store not found : " + e.getMessage(), HttpStatus.BAD_REQUEST);
+    }
+
+    @ExceptionHandler(CustomerNotFound.class)
+    public ResponseEntity<?> handleCustomerNotFound(CustomerNotFound e) {
+        LOGGER.log(Level.WARNING, "Customer not found : " + e.getMessage());
+        return new ResponseEntity("Customer not found : " + e.getMessage(), HttpStatus.BAD_REQUEST);
+    }
+
     @ExceptionHandler(ValidationRuntimeException.class)
-    public ResponseEntity<?> handleCustomerNotFound(Exception e) {
+    public ResponseEntity<?> handleValidationException(ValidationRuntimeException e) {
         LOGGER.log(Level.WARNING, "Validation Exception : " + e.getMessage());
-        return new ResponseEntity(e.getMessage(), HttpStatus.BAD_REQUEST);
+        return new ResponseEntity("Validation error : " + e.getMessage(), HttpStatus.BAD_REQUEST);
     }
 
 }
