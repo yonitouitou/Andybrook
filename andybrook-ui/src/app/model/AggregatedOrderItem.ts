@@ -6,7 +6,7 @@ export class AggregatedOrderItem {
     ttlPrice: number;
     lastModifiedDatetime: Date;
     product: Product;
-    orderItems: OrderItem[];
+    orderItems: OrderItem[] = [];
 
     constructor() {}
 

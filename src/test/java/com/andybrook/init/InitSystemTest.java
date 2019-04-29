@@ -37,7 +37,7 @@ public class InitSystemTest {
     private static final int PRODUCT_NUMBER_70 = 70;
     private static final int PRODUCT_ITEM_FOR_EACH_PRODUCT_100 = 100;
     private static final int ORDER_NUMBER_10 = 10;
-    private static final int MAX_ITEM_IN_ORDER_15 = 15;
+    private static final int MAX_ITEM_IN_ORDER_35 = 35;
 
     private List<Product> products;
     private Map<Long, List<Long>> productItemsIdMapByProductId;
@@ -61,7 +61,7 @@ public class InitSystemTest {
         for (Customer customer : customers) {
             List<Long> orderIds = createOrders(customer);
             for (Long id : orderIds) {
-                int itemToAddNb = RANDOM.nextInt(0, MAX_ITEM_IN_ORDER_15);
+                int itemToAddNb = RANDOM.nextInt(0, MAX_ITEM_IN_ORDER_35);
                 for (int i = 0; i < itemToAddNb; i++) {
                     Product product = products.get(RANDOM.nextInt(0, PRODUCT_NUMBER_70));
                     try {

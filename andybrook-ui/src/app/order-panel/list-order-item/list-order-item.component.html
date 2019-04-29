@@ -1,71 +1,55 @@
-<div class="user-container">
-  <form>
-    <div class="form-group">
-      <div class="input-group">
-        <div class="input-group-addon">
-          <i class="glyphicon glyphicon-search"></i>
+<div class="row justify-content-between">
+  <div class="col-5">
+    <!--<form>
+      <div class="form-group">
+        <div class="input-group">
+          <div class="input-group-addon">
+            <i class="glyphicon glyphicon-search"></i>
+          </div>
+          <input type="text"
+            class="form-control"
+            name="searchString"
+            placeholder="Type to search..."
+            [(ngModel)]="searchString">
         </div>
-        <input type="text"
-          class="form-control"
-          name="searchString"
-          placeholder="Type to search..."
-          [(ngModel)]="searchString">
       </div>
-    </div>
-  </form>
-  <table class="table table-striped">
-    <thead>
-      <tr>
-        <th>ID</th>
-        <th>BarCode</th>
-        <th>Name</th>
-        <th>Price</th>
-        <th>Quantity</th>
-        <th>Creation Date</th>
-        <th>Last Modify Date</th>
-        <th></th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr *ngIf="order.status !== 'CLOSED'">
-        <td></td>
-        <td>
-          <input class="form-control" (blur)="onBlurBarCode()" [(ngModel)]="inputBarCode">
-        </td>
-        <td>
-          <input class="form-control" (blur)="onBlurInputName()" [(ngModel)]="inputName" [ngbTypeahead]="search">
-        </td>
-        <td>
-          {{ inputPrice }} <span *ngIf="inputPrice != null">€</span>
-        </td>
-        <td>
-          <input class="form-control" (blur)="onBlurNewItemInput()" [(ngModel)]="inputQuantity">
-        </td>
-        <td></td>
-        <td></td>
-        <td>
-          <button class="btn btn-info" [disabled]="! areNewOrderItemFieldsSet" (click)="createNewOrderItem()"> Add
-            Order Item</button>
-        </td>
-      </tr>
-      <tr *ngFor="let item of orderItems | filter : 'name' : searchString; let i = index" (click)="setSelectedRow(i)"
-        [class.active]="i == selectedRow">
-        <td>{{ item.id }}</td>
-        <td>{{ item.productItem.barCode }}</td>
-        <td>{{ item.productItem.product.name }}</td>
-        <td>{{ item.productItem.product.price }} €</td>
-        <td
-          contenteditable="order.status !== 'CLOSED'"
-          (blur)="onChangeOrderItemQuantity(item, $event)">
-          {{ item.quantity }}
-        </td>
-        <td>{{ item.createdDatetime }}</td>
-        <td>{{ item.lastModifiedDatetime }}</td>
-        <td>
-          <button *ngIf="order.status !== 'CLOSED'" (click)="deleteOrderItem(item.id)" class="btn btn-danger">
-            Delete</button>
-        </td>
-      </tr>
-    </tbody>
-  </table>
+    </form>-->
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Name</th>
+          <th>Price</th>
+          <th>Qty</th>
+          <th>Total Price</th>
+          <th>Last Modified Date</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let item of orderItems | filter : 'name' : searchString; let i = index"
+        (mouseover)="setSelectedRow(i)"
+        (click)="onClickShowOrderItems(item.orderItems)"
+          [class.active]="i == selectedRow">
+          <td>{{ i+1 }}</td>
+          <td>{{ item.product.name }}</td>
+          <td>{{ item.product.price }} €</td>
+          <td
+            contenteditable="order.status !== 'CLOSED'"
+            (blur)="onChangeOrderItemQuantity(item, $event)">
+            {{ item.quantity }}
+          </td>
+          <td>{{ item.ttlPrice }} €</td>
+          <td>{{ item.lastModifiedDatetime }}</td>
+          <td>
+            <button *ngIf="order.status !== 'CLOSED'" (click)="deleteOrderItem(item.orderItems)" class="btn btn-danger">
+              Delete</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="col-7">
+      <selected-order-items-list [selectedOrderItems]="selectedOrderItems"></selected-order-items-list>
+  </div>
 </div>

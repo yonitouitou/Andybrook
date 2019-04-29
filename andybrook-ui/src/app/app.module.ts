@@ -28,6 +28,8 @@ import { CreateOrderModalComponent } from './modal/create-order-modal/create-ord
 import { CustomerService } from './service/customer-service';
 import { InfoModalComponent } from './modal/info-modal/info-modal.component';
 import { ProductService } from './service/product-service';
+import { ShowOrderItemsModalComponent } from './modal/show-order-items-modal/show-order-items-modal.component';
+import { SelectedOrderItemsListComponent } from './order-panel/selected-order-items-list/selected-order-items-list.component';
 
 const appRoutes: Routes = [
   { path: '', component: OrdersManagerComponent },
@@ -51,8 +53,14 @@ const appRoutes: Routes = [
     ConfirmModalComponent,
     CreateOrderModalComponent,
     InfoModalComponent,
+    ShowOrderItemsModalComponent,
+    SelectedOrderItemsListComponent,
   ],
-  entryComponents: [CreateOrderModalComponent, ConfirmModalComponent, InfoModalComponent],
+  entryComponents: [
+    CreateOrderModalComponent,
+    ConfirmModalComponent,
+    InfoModalComponent,
+    ShowOrderItemsModalComponent],
   imports: [
     BrowserModule,
     HttpClientModule,

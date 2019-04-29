@@ -21,9 +21,9 @@
                 <td>{{ order.name }}</td>
                 <td>{{ order.storeName }}</td>
                 <td>{{ order.status }}</td>
-                <td>{{ order.productSize }}</td>
-                <td>{{ order.orderItemSize }}</td>
-                <td>{{ order.totalPrice }} €</td>
+                <td>{{ order.aggregatedOrderInfo.productSize }}</td>
+                <td>{{ order.aggregatedOrderInfo.orderItemSize }}</td>
+                <td>{{ order.aggregatedOrderInfo.totalPrice }} €</td>
                 <td>{{ order.createdDatetime  | date:'medium' }}</td>
                 <td>{{ order.closeDatetime  | date:'medium' }}</td>
                 <td><button

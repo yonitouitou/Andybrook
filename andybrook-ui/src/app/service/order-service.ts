@@ -41,9 +41,9 @@ export class OrderService {
         return null;
     }
 
-    deleteItem(order: Order, stockItemIdToDelete: number): Observable<any> {
-        console.log("Delete Item : " + stockItemIdToDelete)
-        return this.httpApi.delete("/v1/order/deleteOrderItem/" + order.id + "/" + stockItemIdToDelete)
+    deleteOrderItem(orderId: number, orderItemIdToDelete: number): Observable<any> {
+        console.log("Delete OrderItem : " + orderItemIdToDelete)
+        return this.httpApi.delete("/v1/order/deleteOrderItem/" + orderId + "/" + orderItemIdToDelete)
     }
 
     closeOrder(orderId: number): Observable<any> {

@@ -1,42 +1,21 @@
 package com.andybrook.model.api.rest;
 
-import com.andybrook.enums.OrderStatus;
-import com.andybrook.model.customer.Store;
 import com.andybrook.model.order.Order;
 import com.andybrook.model.order.OrderItem;
 import com.andybrook.model.stock.ProductItem;
 
-import java.time.LocalDateTime;
 import java.util.stream.Stream;
 
 public class AggregatedOrderInfo {
 
-    private final long id;
-    private final long storeId;
-    private final String name;
-    private final String storeName;
-    private final OrderStatus status;
     private final int orderItemSize;
     private final int productSize;
     private final double totalPrice;
-    private final LocalDateTime createdDatetime;
-    private final LocalDateTime lastModifiedDatetime;
-    private final LocalDateTime closeDatetime;
 
-    private AggregatedOrderInfo(long id, long storeId, String name, String storeName, OrderStatus status,
-                               int orderItemSize, int productSize, double totalPrice, LocalDateTime createdDatetime,
-                               LocalDateTime lastModifiedDatetime, LocalDateTime closeDatetime) {
-        this.id = id;
-        this.storeId = storeId;
-        this.name = name;
-        this.storeName = storeName;
-        this.status = status;
+    private AggregatedOrderInfo(int orderItemSize, int productSize, double totalPrice) {
         this.orderItemSize = orderItemSize;
         this.productSize = productSize;
         this.totalPrice = totalPrice;
-        this.createdDatetime = createdDatetime;
-        this.lastModifiedDatetime = lastModifiedDatetime;
-        this.closeDatetime = closeDatetime;
     }
 
     public static Stream<AggregatedOrderInfo> toAggregatedOrdersInfo(Stream<Order> ordersStream) {
@@ -56,31 +35,7 @@ public class AggregatedOrderInfo {
                 .map(OrderItem::getProductItem)
                 .mapToDouble(ProductItem::getPrice)
                 .sum();
-
-        Store store = order.getCustomer().getStore();
-        return new AggregatedOrderInfo(order.getId(), store.getId(), order.getName(), store.getName(), order.getStatus(),
-                orderItemSize, productSize, ttlPrice, order.getCreatedDateTime(), order.getLastModifiedDateTime(),
-                order.getCloseDateTime());
-    }
-
-    public long getId() {
-        return id;
-    }
-
-    public long getStoreId() {
-        return storeId;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public String getStoreName() {
-        return storeName;
-    }
-
-    public OrderStatus getStatus() {
-        return status;
+        return new AggregatedOrderInfo(orderItemSize, productSize, ttlPrice);
     }
 
     public int getOrderItemSize() {
@@ -95,32 +50,12 @@ public class AggregatedOrderInfo {
         return totalPrice;
     }
 
-    public LocalDateTime getCreatedDatetime() {
-        return createdDatetime;
-    }
-
-    public LocalDateTime getLastModifiedDatetime() {
-        return lastModifiedDatetime;
-    }
-
-    public LocalDateTime getCloseDatetime() {
-        return closeDatetime;
-    }
-
     @Override
     public String toString() {
         return "AggregatedOrderInfo{" +
-                "id=" + id +
-                ", storeId=" + storeId +
-                ", name='" + name + '\'' +
-                ", storeName='" + storeName + '\'' +
-                ", status=" + status +
-                ", orderItemSize=" + orderItemSize +
+                "orderItemSize=" + orderItemSize +
                 ", productSize=" + productSize +
                 ", totalPrice=" + totalPrice +
-                ", createdDatetime=" + createdDatetime +
-                ", lastModifiedDatetime=" + lastModifiedDatetime +
-                ", closeDatetime=" + closeDatetime +
                 '}';
     }
 }

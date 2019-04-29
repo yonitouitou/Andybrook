@@ -1,8 +1,8 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import { Order } from "../../model/Order";
 import { ModalBuilder } from 'src/app/common-components/modal-builder';
 import { ConfirmModalComponent } from 'src/app/modal/confirm-modal/confirm-modal-component';
 import { OrderService } from 'src/app/service/order-service';
+import { AggregatedOrder } from 'src/app/model/AggregatedOrder';
 
 @Component({
   selector: 'show-order-header',
@@ -11,7 +11,7 @@ import { OrderService } from 'src/app/service/order-service';
 })
 export class OrderHeaderComponent implements OnInit {
 
-  @Input() order: Order
+  @Input() order: AggregatedOrder
 
   @Output() onCloseOrderEvent = new EventEmitter()
 
@@ -25,7 +25,7 @@ export class OrderHeaderComponent implements OnInit {
     let modalRef = this.modalBuilder.open(ConfirmModalComponent);
     modalRef.componentInstance.title = "Close Report Confirmation";
     modalRef.componentInstance.message = "Are you sure you want to close the order "
-          + this.order.name + " for the store " + this.order.customer.store.name;
+          + this.order.name + " for the store " + this.order.storeName;
 
     modalRef.result.then((response) => {
       if (response) {

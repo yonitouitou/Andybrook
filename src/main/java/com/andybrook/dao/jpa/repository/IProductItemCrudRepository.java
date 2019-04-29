@@ -21,9 +21,7 @@ public interface IProductItemCrudRepository extends CrudRepository<ProductItemEn
                     COLUMN_PRODUCT_ID + " = :productId" +
             " AND " +
                     COLUMN_ORDER_ITEM_ID + " IS NULL" +
-            " AND " +
-                    COLUMN_BAR_CODE + " IS NOT NULL" +
-            " IS NULL LIMIT 1";
+            " LIMIT 1";
 
     @Query(value = SELECT_FREE_PRODUCT_ITEM_BY_PRODUCT_ID, nativeQuery = true)
     ProductItemEntity getFreeProductItemOf(@Param("productId") long productId);

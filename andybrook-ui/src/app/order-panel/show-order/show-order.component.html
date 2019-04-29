@@ -5,7 +5,7 @@
   ></show-order-header>
   <list-order-item *ngIf="order"
     [order]="order"
-    [orderItems]="order.items.values()"
+    [orderItems]="order.aggregatedOrderItems.values()"
     (onCreateOrderItemEvent)="onNewOrderItem($event)"
     (onChangeOrderItemEvent)="onChangeOrderItem($event)"
     (onDeleteOrderItemEvent)="onDeleteOrderItem($event)"

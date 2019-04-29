@@ -67,9 +67,9 @@ public class OrderController extends AbstractController {
     }
 
     @GetMapping(path = "/all")
-    public Set<AggregatedOrderInfo> getAll() {
+    public Set<AggregatedOrder> getAll() {
         LOGGER.log(Level.INFO, "Get all aggregated orders request received");
-        return AggregatedOrderInfo.toAggregatedOrdersInfo(orderManager.getAll().stream()).collect(Collectors.toSet());
+        return AggregatedOrder.toAggregatedOrders(orderManager.getAll().stream()).collect(Collectors.toSet());
     }
 
     @PostMapping(path = "/addOrderItemByInfo")
@@ -91,5 +91,4 @@ public class OrderController extends AbstractController {
         LOGGER.log(Level.INFO, "Request received to remove order item " + orderItemId + " from order " + orderId);
         orderManager.deleteOrderItem(new OrderItemDeleteRequest(orderId, orderItemId));
     }
-
 }

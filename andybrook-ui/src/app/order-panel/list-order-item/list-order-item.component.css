@@ -2,4 +2,6 @@
     background-color:#275e94 !important;
     color: white;
     font-weight: bold;
+    white-space: nowrap;
   }
+

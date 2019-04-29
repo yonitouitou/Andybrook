@@ -5,6 +5,7 @@ import { Order } from "../../model/Order";
 import { ActivatedRoute, Router } from '@angular/router';
 import { Customer } from '../../model/Customer';
 import { Product } from '../../model/Product'
+import { AggregatedOrder } from 'src/app/model/AggregatedOrder';
 
 @Component({
   
@@ -15,40 +16,31 @@ import { Product } from '../../model/Product'
 })
 export class ShowOrderComponent implements OnInit {
 
-  reportId: number = 1
-  order: Order
+  reportId: number = 1;
+  order: AggregatedOrder;
 
   constructor(private orderService: OrderService,
               private route: ActivatedRoute,
               private router: Router) { }
 
   ngOnInit() {
-    this.order = new Order()
+    this.order = new AggregatedOrder()
     let orderId = parseInt(this.route.snapshot.paramMap.get('id'))
     this.orderService.getOrder(orderId).subscribe(data => {
-      this.order.id = data.id
-      this.order.name = data.name
-      this.order.comment = data.comment
-      this.order.status = data.status
-      this.order.customer = Customer.fromJson(data.customer)
-      console.log("Order item size in order : " + orderId + " : " + data.items.size)
-      for (let item of data.items) {
-        let orderItem = OrderItem.fromJson(item);
-        this.order.items.set(orderItem.id, orderItem)
-      }
-  })
+      this.order = AggregatedOrder.fromJson(data);
+    })
   }
 
   onNewOrderItem(orderItem: OrderItem) {
-    this.order.items.set(orderItem.id, orderItem)
+    //this.order.aggregatedOrderItemsitems.set(orderItem.id, orderItem)
   }
 
   onChangeOrderItem(orderItem: OrderItem) {
-    this.order.items.set(orderItem.id, orderItem)
+    //this.order.items.set(orderItem.id, orderItem)
   }
 
   onDeleteOrderItem(id: number) {
-    this.order.items.delete(id)
+    //this.order.items.delete(id)
   }
 
   onClickBack() {

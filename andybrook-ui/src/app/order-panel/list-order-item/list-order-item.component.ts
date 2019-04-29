@@ -2,7 +2,6 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { OrderItem } from '../../model/OrderItem'
 import { Product } from '../../model/Product';
 import { OrderService } from 'src/app/service/order-service';
-import { Order } from 'src/app/model/Order';
 import { ModalBuilder } from 'src/app/common-components/modal-builder';
 import { InfoModalComponent } from 'src/app/modal/info-modal/info-modal.component';
 import { ProductService } from 'src/app/service/product-service';
@@ -10,6 +9,9 @@ import { Observable } from 'rxjs';
 import { debounceTime, distinctUntilChanged, map } from 'rxjs/operators';
 import { AddOrderItemReq } from 'src/app/model/request/AddOrderItemReq';
 import { ModifyOrderItemReq } from 'src/app/model/request/ModifyOrderItemReq';
+import { AggregatedOrder } from 'src/app/model/AggregatedOrder';
+import { AggregatedOrderItem } from 'src/app/model/AggregatedOrderItem';
+import { ShowOrderItemsModalComponent } from 'src/app/modal/show-order-items-modal/show-order-items-modal.component';
 
 @Component({
   selector: 'list-order-item',
@@ -27,6 +29,7 @@ export class ListOrderItemComponent implements OnInit {
   isScanMode: boolean
   areNewOrderItemFieldsSet = false
   searchString: string
+  selectedOrderItems: OrderItem[] = [];
   productNames: string[] = []
   productIdMapByName: Map<string, number> = new Map()
   
@@ -38,8 +41,8 @@ export class ListOrderItemComponent implements OnInit {
         : this.productNames.filter(v => v.toLowerCase().indexOf(term.toLowerCase()) > -1).slice(0, 10))
     )
 
-  @Input() orderItems: IterableIterator<OrderItem>
-  @Input() order: Order
+  @Input() orderItems: IterableIterator<AggregatedOrderItem>
+  @Input() order: AggregatedOrder
 
   @Output() onCreateOrderItemEvent = new EventEmitter<OrderItem>()
   @Output() onChangeOrderItemEvent = new EventEmitter<ModifyOrderItemReq>()
@@ -122,29 +125,37 @@ export class ListOrderItemComponent implements OnInit {
       })
   }
 
-  deleteOrderItem(id: number) {
-    this.orderService.deleteItem(this.order, id).subscribe(
-      data => {
-          console.log(data)
-          this.onDeleteOrderItemEvent.emit(id)
-      },
-      error => {
-
-      }
-    )
+  deleteOrderItem(orderItems: OrderItem[]) {
+    for (let orderItem of orderItems) {
+      this.orderService.deleteOrderItem(this.order.id, orderItem.id).subscribe(
+        data => {
+            console.log(data)
+            this.onDeleteOrderItemEvent.emit(orderItem.id)
+        },
+        error => {
+          const modalRef = this.modalBuilder.open(InfoModalComponent)
+          modalRef.componentInstance.title = "Error : Failed to delete the order item " + orderItem.id;
+          modalRef.componentInstance.message = error.error
+        }
+      )
+    }
   }
 
   onChangeOrderItemQuantity(orderItem: OrderItem, event: any) {
-    let newQuantity = event.target.textContent
+    /*let newQuantity = event.target.textContent
     if (orderItem.quantity != newQuantity) {
       let req = new ModifyOrderItemReq(orderItem.id, newQuantity);
       // Must send Http request.
       this.onChangeOrderItemEvent.emit(req)
-    } 
+    } */
   }
 
   setSelectedRow(index: number) {
     this.selectedRow = index
+  }
+
+  onClickShowOrderItems(selectedOrderItems: OrderItem[]) {
+    this.selectedOrderItems = selectedOrderItems;
   }
 
   private resetNewOrderItemInputFields() {

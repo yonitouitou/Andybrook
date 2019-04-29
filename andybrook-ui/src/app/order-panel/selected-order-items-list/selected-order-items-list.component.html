@@ -1,0 +1,23 @@
+<div class="user-container">
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>#</th>
+        <th>Id</th>
+        <th>BarCode</th>
+        <th>Created Date</th>
+        <th>Last Modified Date</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let item of selectedOrderItems; let i = index"
+          (mouseover)="setSelectedRow(i)" [class.active]="i == selectedRow">
+        <td>{{ i+1 }}</td>
+        <td>{{ item.productItem.id }}</td>
+        <td>{{ item.productItem.barCode }}</td>
+        <td>{{ item.createdDatetime }}</td>
+        <td>{{ item.lastModifiedDatetime }}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
