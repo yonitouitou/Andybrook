@@ -42,7 +42,7 @@
           <td>{{ item.ttlPrice }} €</td>
           <td>{{ item.lastModifiedDatetime }}</td>
           <td>
-            <button *ngIf="order.status !== 'CLOSED'" (click)="deleteOrderItem(item.orderItems)" class="btn btn-danger">
+            <button *ngIf="order.status !== 'CLOSED'" (click)="displayDeletionConfirmationModal(item.orderItems)" class="btn btn-danger">
               Delete</button>
           </td>
         </tr>

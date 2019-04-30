@@ -301,6 +301,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _service_product_service__WEBPACK_IMPORTED_MODULE_30__ = __webpack_require__(/*! ./service/product-service */ "./src/app/service/product-service.ts");
 /* harmony import */ var _modal_show_order_items_modal_show_order_items_modal_component__WEBPACK_IMPORTED_MODULE_31__ = __webpack_require__(/*! ./modal/show-order-items-modal/show-order-items-modal.component */ "./src/app/modal/show-order-items-modal/show-order-items-modal.component.ts");
 /* harmony import */ var _order_panel_selected_order_items_list_selected_order_items_list_component__WEBPACK_IMPORTED_MODULE_32__ = __webpack_require__(/*! ./order-panel/selected-order-items-list/selected-order-items-list.component */ "./src/app/order-panel/selected-order-items-list/selected-order-items-list.component.ts");
+/* harmony import */ var _modal_delete_order_items_modal_delete_order_items_modal_component__WEBPACK_IMPORTED_MODULE_33__ = __webpack_require__(/*! ./modal/delete-order-items-modal/delete-order-items-modal.component */ "./src/app/modal/delete-order-items-modal/delete-order-items-modal.component.ts");
+
 
 
 
@@ -361,12 +363,14 @@ var AppModule = /** @class */ (function () {
                 _modal_info_modal_info_modal_component__WEBPACK_IMPORTED_MODULE_29__["InfoModalComponent"],
                 _modal_show_order_items_modal_show_order_items_modal_component__WEBPACK_IMPORTED_MODULE_31__["ShowOrderItemsModalComponent"],
                 _order_panel_selected_order_items_list_selected_order_items_list_component__WEBPACK_IMPORTED_MODULE_32__["SelectedOrderItemsListComponent"],
+                _modal_delete_order_items_modal_delete_order_items_modal_component__WEBPACK_IMPORTED_MODULE_33__["DeleteOrderItemsModalComponent"],
             ],
             entryComponents: [
                 _modal_create_order_modal_create_order_modal_component__WEBPACK_IMPORTED_MODULE_27__["CreateOrderModalComponent"],
                 _modal_confirm_modal_confirm_modal_component__WEBPACK_IMPORTED_MODULE_25__["ConfirmModalComponent"],
                 _modal_info_modal_info_modal_component__WEBPACK_IMPORTED_MODULE_29__["InfoModalComponent"],
-                _modal_show_order_items_modal_show_order_items_modal_component__WEBPACK_IMPORTED_MODULE_31__["ShowOrderItemsModalComponent"]
+                _modal_show_order_items_modal_show_order_items_modal_component__WEBPACK_IMPORTED_MODULE_31__["ShowOrderItemsModalComponent"],
+                _modal_delete_order_items_modal_delete_order_items_modal_component__WEBPACK_IMPORTED_MODULE_33__["DeleteOrderItemsModalComponent"]
             ],
             imports: [
                 _angular_platform_browser__WEBPACK_IMPORTED_MODULE_1__["BrowserModule"],
@@ -778,6 +782,79 @@ var CreateOrderModalComponent = /** @class */ (function () {
             _angular_forms__WEBPACK_IMPORTED_MODULE_3__["FormBuilder"]])
     ], CreateOrderModalComponent);
     return CreateOrderModalComponent;
+}());
+
+
+
+/***/ }),
+
+/***/ "./src/app/modal/delete-order-items-modal/delete-order-items-modal.component.css":
+/*!***************************************************************************************!*\
+  !*** ./src/app/modal/delete-order-items-modal/delete-order-items-modal.component.css ***!
+  \***************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJzcmMvYXBwL21vZGFsL2RlbGV0ZS1vcmRlci1pdGVtcy1tb2RhbC9kZWxldGUtb3JkZXItaXRlbXMtbW9kYWwuY29tcG9uZW50LmNzcyJ9 */"
+
+/***/ }),
+
+/***/ "./src/app/modal/delete-order-items-modal/delete-order-items-modal.component.html":
+/*!****************************************************************************************!*\
+  !*** ./src/app/modal/delete-order-items-modal/delete-order-items-modal.component.html ***!
+  \****************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "<div class=\"modal-header\">\n  <h4 class=\"modal-title\" id=\"modal-basic-title\">{{ title }}</h4>\n  <button type=\"button\" class=\"close\" aria-label=\"Close\" (click)=\"onClickClose()\">\n    <span aria-hidden=\"true\">&times;</span>\n  </button>\n</div>\n<div class=\"modal-body\">\n  <table class=\"table table-striped\">\n    <thead>\n      <tr>\n        <th>#</th>\n        <th>Id</th>\n        <th>Product Name</th>\n        <th>BarCode</th>\n      </tr>\n    </thead>\n    <tbody>\n      <tr *ngFor=\"let item of orderItems; let i = index\">\n        <td>{{ i+1 }}</td>\n        <td>{{ item.productItem.id }}</td>\n        <td>{{ item.productItem.product.name }}</td>\n        <td>{{ item.productItem.barCode }}</td>\n      </tr>\n    </tbody>\n  </table>\n</div>\n<div class=\"modal-footer\">\n<button type=\"button\" class=\"btn btn-secondary\" (click)=\"onClickClose()\">No</button>\n<button type=\"button\" class=\"btn btn-primary\" (click)=\"onClickYes()\">Yes</button>\n</div>\n"
+
+/***/ }),
+
+/***/ "./src/app/modal/delete-order-items-modal/delete-order-items-modal.component.ts":
+/*!**************************************************************************************!*\
+  !*** ./src/app/modal/delete-order-items-modal/delete-order-items-modal.component.ts ***!
+  \**************************************************************************************/
+/*! exports provided: DeleteOrderItemsModalComponent */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "DeleteOrderItemsModalComponent", function() { return DeleteOrderItemsModalComponent; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var _ng_bootstrap_ng_bootstrap__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @ng-bootstrap/ng-bootstrap */ "./node_modules/@ng-bootstrap/ng-bootstrap/fesm5/ng-bootstrap.js");
+
+
+
+var DeleteOrderItemsModalComponent = /** @class */ (function () {
+    function DeleteOrderItemsModalComponent(modal) {
+        this.modal = modal;
+    }
+    DeleteOrderItemsModalComponent.prototype.ngOnInit = function () {
+    };
+    DeleteOrderItemsModalComponent.prototype.onClickYes = function () {
+        this.modal.close(true);
+    };
+    DeleteOrderItemsModalComponent.prototype.onClickClose = function () {
+        this.modal.close(false);
+    };
+    tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Input"])(),
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:type", String)
+    ], DeleteOrderItemsModalComponent.prototype, "title", void 0);
+    tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Input"])(),
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:type", Array)
+    ], DeleteOrderItemsModalComponent.prototype, "orderItems", void 0);
+    DeleteOrderItemsModalComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
+            selector: 'app-delete-order-items-modal',
+            template: __webpack_require__(/*! ./delete-order-items-modal.component.html */ "./src/app/modal/delete-order-items-modal/delete-order-items-modal.component.html"),
+            styles: [__webpack_require__(/*! ./delete-order-items-modal.component.css */ "./src/app/modal/delete-order-items-modal/delete-order-items-modal.component.css")]
+        }),
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_ng_bootstrap_ng_bootstrap__WEBPACK_IMPORTED_MODULE_2__["NgbActiveModal"]])
+    ], DeleteOrderItemsModalComponent);
+    return DeleteOrderItemsModalComponent;
 }());
 
 
@@ -1328,7 +1405,7 @@ module.exports = ".table tr.active td {\n    background-color:#275e94 !important
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"row justify-content-between\">\n  <div class=\"col-5\">\n    <!--<form>\n      <div class=\"form-group\">\n        <div class=\"input-group\">\n          <div class=\"input-group-addon\">\n            <i class=\"glyphicon glyphicon-search\"></i>\n          </div>\n          <input type=\"text\"\n            class=\"form-control\"\n            name=\"searchString\"\n            placeholder=\"Type to search...\"\n            [(ngModel)]=\"searchString\">\n        </div>\n      </div>\n    </form>-->\n    <table class=\"table table-striped\">\n      <thead>\n        <tr>\n          <th>#</th>\n          <th>Name</th>\n          <th>Price</th>\n          <th>Qty</th>\n          <th>Total Price</th>\n          <th>Last Modified Date</th>\n          <th></th>\n        </tr>\n      </thead>\n      <tbody>\n        <tr *ngFor=\"let item of orderItems | filter : 'name' : searchString; let i = index\"\n        (mouseover)=\"setSelectedRow(i)\"\n        (click)=\"onClickShowOrderItems(item.orderItems)\"\n          [class.active]=\"i == selectedRow\">\n          <td>{{ i+1 }}</td>\n          <td>{{ item.product.name }}</td>\n          <td>{{ item.product.price }} €</td>\n          <td\n            contenteditable=\"order.status !== 'CLOSED'\"\n            (blur)=\"onChangeOrderItemQuantity(item, $event)\">\n            {{ item.quantity }}\n          </td>\n          <td>{{ item.ttlPrice }} €</td>\n          <td>{{ item.lastModifiedDatetime }}</td>\n          <td>\n            <button *ngIf=\"order.status !== 'CLOSED'\" (click)=\"deleteOrderItem(item.orderItems)\" class=\"btn btn-danger\">\n              Delete</button>\n          </td>\n        </tr>\n      </tbody>\n    </table>\n  </div>\n  <div class=\"col-7\">\n      <selected-order-items-list [selectedOrderItems]=\"selectedOrderItems\"></selected-order-items-list>\n  </div>\n</div>\n"
+module.exports = "<div class=\"row justify-content-between\">\n  <div class=\"col-5\">\n    <!--<form>\n      <div class=\"form-group\">\n        <div class=\"input-group\">\n          <div class=\"input-group-addon\">\n            <i class=\"glyphicon glyphicon-search\"></i>\n          </div>\n          <input type=\"text\"\n            class=\"form-control\"\n            name=\"searchString\"\n            placeholder=\"Type to search...\"\n            [(ngModel)]=\"searchString\">\n        </div>\n      </div>\n    </form>-->\n    <table class=\"table table-striped\">\n      <thead>\n        <tr>\n          <th>#</th>\n          <th>Name</th>\n          <th>Price</th>\n          <th>Qty</th>\n          <th>Total Price</th>\n          <th>Last Modified Date</th>\n          <th></th>\n        </tr>\n      </thead>\n      <tbody>\n        <tr *ngFor=\"let item of orderItems | filter : 'name' : searchString; let i = index\"\n        (mouseover)=\"setSelectedRow(i)\"\n        (click)=\"onClickShowOrderItems(item.orderItems)\"\n          [class.active]=\"i == selectedRow\">\n          <td>{{ i+1 }}</td>\n          <td>{{ item.product.name }}</td>\n          <td>{{ item.product.price }} €</td>\n          <td\n            contenteditable=\"order.status !== 'CLOSED'\"\n            (blur)=\"onChangeOrderItemQuantity(item, $event)\">\n            {{ item.quantity }}\n          </td>\n          <td>{{ item.ttlPrice }} €</td>\n          <td>{{ item.lastModifiedDatetime }}</td>\n          <td>\n            <button *ngIf=\"order.status !== 'CLOSED'\" (click)=\"displayDeletionConfirmationModal(item.orderItems)\" class=\"btn btn-danger\">\n              Delete</button>\n          </td>\n        </tr>\n      </tbody>\n    </table>\n  </div>\n  <div class=\"col-7\">\n      <selected-order-items-list [selectedOrderItems]=\"selectedOrderItems\"></selected-order-items-list>\n  </div>\n</div>\n"
 
 /***/ }),
 
@@ -1353,6 +1430,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! rxjs/operators */ "./node_modules/rxjs/_esm5/operators/index.js");
 /* harmony import */ var src_app_model_request_AddOrderItemReq__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! src/app/model/request/AddOrderItemReq */ "./src/app/model/request/AddOrderItemReq.ts");
 /* harmony import */ var src_app_model_AggregatedOrder__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! src/app/model/AggregatedOrder */ "./src/app/model/AggregatedOrder.ts");
+/* harmony import */ var src_app_modal_delete_order_items_modal_delete_order_items_modal_component__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! src/app/modal/delete-order-items-modal/delete-order-items-modal.component */ "./src/app/modal/delete-order-items-modal/delete-order-items-modal.component.ts");
+
 
 
 
@@ -1461,6 +1540,17 @@ var ListOrderItemComponent = /** @class */ (function () {
             var orderItem = orderItems_1[_i];
             _loop_1(orderItem);
         }
+    };
+    ListOrderItemComponent.prototype.displayDeletionConfirmationModal = function (orderItems) {
+        var _this = this;
+        var modalRef = this.modalBuilder.openCenteredModal(src_app_modal_delete_order_items_modal_delete_order_items_modal_component__WEBPACK_IMPORTED_MODULE_11__["DeleteOrderItemsModalComponent"]);
+        modalRef.componentInstance.title = "Are you sure you want to delete the following order items ?";
+        modalRef.componentInstance.orderItems = orderItems;
+        modalRef.result.then(function (response) {
+            if (response) {
+                _this.deleteOrderItem(orderItems);
+            }
+        });
     };
     ListOrderItemComponent.prototype.onChangeOrderItemQuantity = function (orderItem, event) {
         /*let newQuantity = event.target.textContent

@@ -12,6 +12,7 @@ import { ModifyOrderItemReq } from 'src/app/model/request/ModifyOrderItemReq';
 import { AggregatedOrder } from 'src/app/model/AggregatedOrder';
 import { AggregatedOrderItem } from 'src/app/model/AggregatedOrderItem';
 import { ShowOrderItemsModalComponent } from 'src/app/modal/show-order-items-modal/show-order-items-modal.component';
+import { DeleteOrderItemsModalComponent } from 'src/app/modal/delete-order-items-modal/delete-order-items-modal.component';
 
 @Component({
   selector: 'list-order-item',
@@ -139,6 +140,17 @@ export class ListOrderItemComponent implements OnInit {
         }
       )
     }
+  }
+
+  displayDeletionConfirmationModal(orderItems: OrderItem[]) {
+    const modalRef = this.modalBuilder.openCenteredModal(DeleteOrderItemsModalComponent)
+    modalRef.componentInstance.title = "Are you sure you want to delete the following order items ?"
+    modalRef.componentInstance.orderItems = orderItems;
+    modalRef.result.then((response) => {
+      if (response) {
+        this.deleteOrderItem(orderItems);
+      }
+    })
   }
 
   onChangeOrderItemQuantity(orderItem: OrderItem, event: any) {
