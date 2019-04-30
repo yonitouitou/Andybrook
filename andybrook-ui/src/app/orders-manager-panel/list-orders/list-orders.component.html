@@ -10,6 +10,7 @@
                 <th>Total Qty</th>
                 <th>Total Price</th>
                 <th>Creation Date</th>
+                <th>Last Modified Date</th>
                 <th>Close Date</th>
                 <th></th>
                 <th></th>
@@ -25,6 +26,7 @@
                 <td>{{ order.aggregatedOrderInfo.orderItemSize }}</td>
                 <td>{{ order.aggregatedOrderInfo.totalPrice }} €</td>
                 <td>{{ order.createdDatetime  | date:'medium' }}</td>
+                <td>{{ order.lastModifiedDatetime  | date:'medium' }}</td>
                 <td>{{ order.closeDatetime  | date:'medium' }}</td>
                 <td><button
                     class="btn btn-success"

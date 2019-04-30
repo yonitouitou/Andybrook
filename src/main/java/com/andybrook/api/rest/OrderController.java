@@ -31,25 +31,25 @@ public class OrderController extends AbstractController {
     private IOrderManager orderManager;
 
     @PostMapping(path = "/add")
-    public Order newOrder(@RequestBody NewOrderRequest request) throws StoreNotFound {
+    public Order newOrder(@RequestBody NewOrderRequest request) {
         LOGGER.log(Level.INFO, "Add order request received : " + request.toString());
         return orderManager.newOrder(request);
     }
 
     @PostMapping(path = "/update")
-    public void updateOrder(@RequestBody UpdateOrderRequest request) throws OrderNotFound, OrderClosed {
+    public void updateOrder(@RequestBody UpdateOrderRequest request) {
         LOGGER.log(Level.INFO, "Update order request received : " + request.toString());
         orderManager.updateOrder(request);
     }
 
     @PostMapping(path = "/close")
-    public Order closeOrder(@RequestBody GenericRequestById request) throws OrderNotFound, OrderClosed {
+    public Order closeOrder(@RequestBody GenericRequestById request) {
         LOGGER.log(Level.INFO, "Close order request received : " + request.toString());
         return orderManager.closeOrder(request.getId());
     }
 
     @GetMapping(path = "/get/{id}")
-    public AggregatedOrder get(@PathVariable Long id) throws OrderNotFound {
+    public AggregatedOrder get(@PathVariable Long id) {
         LOGGER.log(Level.INFO, "Get Order request received for id : " + id);
         return AggregatedOrder.toAggregatedOrder(orderManager.getOrder(id));
     }
@@ -73,21 +73,19 @@ public class OrderController extends AbstractController {
     }
 
     @PostMapping(path = "/addOrderItemByInfo")
-    public List<OrderItem> addOrderItems(@RequestBody OrderItemAddRequestByInfo request)
-            throws OrderNotFound, OrderClosed, ProductNotFound, InsufficientQuantityException, OrderItemNotFound, BarCodeNotFound {
+    public List<OrderItem> addOrderItems(@RequestBody OrderItemAddRequestByInfo request) {
         LOGGER.log(Level.INFO, "Request received to updateProductItem order : " + request);
         return orderManager.addOrderItems(new OrderItemAddRequest(request.getOrderId(), request.getProductItemInfo()));
     }
 
     @PostMapping(path = "/addSingleOrderItemsByBarCode")
-    public OrderItem addOrderItems(@RequestBody OrderItemAddByBarCodeRestRequest request)
-            throws OrderNotFound, OrderClosed, ProductNotFound, InsufficientQuantityException, OrderItemNotFound, BarCodeNotFound {
+    public OrderItem addOrderItems(@RequestBody OrderItemAddByBarCodeRestRequest request) {
         LOGGER.log(Level.INFO, "Request received to updateProductItem order : " + request);
         return orderManager.addOrderItemByBarCode(new OrderItemAddRequestByBarCode(request.getOrderId(), request.getBarCodeId()));
     }
 
     @DeleteMapping(path = "/deleteOrderItem/{orderId}/{orderItemId}")
-    public void deleteOrderItem(@PathVariable long orderId, @PathVariable long orderItemId) throws OrderNotFound, OrderClosed, OrderItemNotFound {
+    public void deleteOrderItem(@PathVariable long orderId, @PathVariable long orderItemId) {
         LOGGER.log(Level.INFO, "Request received to remove order item " + orderItemId + " from order " + orderId);
         orderManager.deleteOrderItem(new OrderItemDeleteRequest(orderId, orderItemId));
     }

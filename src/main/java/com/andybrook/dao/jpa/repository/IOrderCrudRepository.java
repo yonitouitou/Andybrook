@@ -20,6 +20,7 @@ public interface IOrderCrudRepository extends JpaRepository<OrderEntity, Long> {
     String COLUMN_COMMENT = "comment";
     String COLUMN_STATUS = "status";
     String COLUMN_CLOSE_DATETIME = "closeDatetime";
+    String COLUMN_LAST_MODIFIED_DATE_TIME = "lastModifiedDatetime";
 
     List<OrderEntity> findByName(String name);
     List<OrderEntity> findByNameContaining(String name);
@@ -35,9 +36,9 @@ public interface IOrderCrudRepository extends JpaRepository<OrderEntity, Long> {
     @Modifying
     @Transactional
     @Query(value = UPDATE_EXISTING_ORDER_QUERY)
-    void updateExistingStockReport(@Param("id") long id,
-                                   @Param("name") String name,
-                                   @Param("comment") String comment);
+    void updateExistingOrder(@Param("id") long id,
+                             @Param("name") String name,
+                             @Param("comment") String comment);
 
 
     String UPDATE_STATUS_QUERY =
@@ -51,4 +52,15 @@ public interface IOrderCrudRepository extends JpaRepository<OrderEntity, Long> {
     @Transactional
     @Query(value = UPDATE_STATUS_QUERY)
     void closeOrder(@Param("id") long id, @Param("status") OrderStatus status, @Param("closeDatetime") LocalDateTime closeDatetime);
+
+    String UPDATE_LAST_MODIFIED_DATE_TIME_QUERY =
+            "UPDATE " + ENTITY_NAME + " s SET " +
+                    "s." + COLUMN_LAST_MODIFIED_DATE_TIME + " = :lastModifiedDatetime " +
+            "WHERE " +
+                    "s." + COLUMN_ID + "= :id";
+
+    @Modifying
+    @Transactional
+    @Query(value = UPDATE_LAST_MODIFIED_DATE_TIME_QUERY)
+    void updateOrderAuditing(@Param("id") long orderId, @Param("lastModifiedDatetime") LocalDateTime lastModifiedDateTime);
 }

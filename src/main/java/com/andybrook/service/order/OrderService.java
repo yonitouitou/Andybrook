@@ -131,7 +131,7 @@ public class OrderService implements IOrderService {
             if (order.getItem(orderItemId) != null) {
                 OrderItem deletedOrderItem = order.deleteItem(orderItemId);
                 orderItemService.delete(deletedOrderItem);
-                order = dao.updateOrder(order);
+                dao.updateOrderAudit(order);
             } else {
                 throw new OrderItemNotFound(orderItemId);
             }

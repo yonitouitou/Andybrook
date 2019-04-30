@@ -129,8 +129,8 @@ export class ListOrderItemComponent implements OnInit {
     for (let orderItem of orderItems) {
       this.orderService.deleteOrderItem(this.order.id, orderItem.id).subscribe(
         data => {
-            console.log(data)
-            this.onDeleteOrderItemEvent.emit(orderItem.id)
+            this.selectedOrderItems = [];
+            this.onDeleteOrderItemEvent.emit(orderItem.id);
         },
         error => {
           const modalRef = this.modalBuilder.open(InfoModalComponent)

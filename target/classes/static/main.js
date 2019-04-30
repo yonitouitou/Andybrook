@@ -1448,7 +1448,7 @@ var ListOrderItemComponent = /** @class */ (function () {
         var _this = this;
         var _loop_1 = function (orderItem) {
             this_1.orderService.deleteOrderItem(this_1.order.id, orderItem.id).subscribe(function (data) {
-                console.log(data);
+                _this.selectedOrderItems = [];
                 _this.onDeleteOrderItemEvent.emit(orderItem.id);
             }, function (error) {
                 var modalRef = _this.modalBuilder.open(src_app_modal_info_modal_info_modal_component__WEBPACK_IMPORTED_MODULE_6__["InfoModalComponent"]);
@@ -1722,12 +1722,9 @@ var ShowOrderComponent = /** @class */ (function () {
         this.reportId = 1;
     }
     ShowOrderComponent.prototype.ngOnInit = function () {
-        var _this = this;
         this.order = new src_app_model_AggregatedOrder__WEBPACK_IMPORTED_MODULE_4__["AggregatedOrder"]();
         var orderId = parseInt(this.route.snapshot.paramMap.get('id'));
-        this.orderService.getOrder(orderId).subscribe(function (data) {
-            _this.order = src_app_model_AggregatedOrder__WEBPACK_IMPORTED_MODULE_4__["AggregatedOrder"].fromJson(data);
-        });
+        this.refreshOrder(orderId);
     };
     ShowOrderComponent.prototype.onNewOrderItem = function (orderItem) {
         //this.order.aggregatedOrderItemsitems.set(orderItem.id, orderItem)
@@ -1736,10 +1733,16 @@ var ShowOrderComponent = /** @class */ (function () {
         //this.order.items.set(orderItem.id, orderItem)
     };
     ShowOrderComponent.prototype.onDeleteOrderItem = function (id) {
-        //this.order.items.delete(id)
+        this.refreshOrder(this.order.id);
     };
     ShowOrderComponent.prototype.onClickBack = function () {
         this.router.navigate(['']);
+    };
+    ShowOrderComponent.prototype.refreshOrder = function (orderId) {
+        var _this = this;
+        this.orderService.getOrder(orderId).subscribe(function (data) {
+            _this.order = src_app_model_AggregatedOrder__WEBPACK_IMPORTED_MODULE_4__["AggregatedOrder"].fromJson(data);
+        });
     };
     ShowOrderComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
@@ -1777,7 +1780,7 @@ module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"col-md-20 user-container\">\n    <table class=\"table table-striped\">\n        <thead>\n            <tr>\n                <th>ID</th>\n                <th>Name</th>\n                <th>Store</th>\n                <th>Status</th>\n                <th>Total Product</th>\n                <th>Total Qty</th>\n                <th>Total Price</th>\n                <th>Creation Date</th>\n                <th>Close Date</th>\n                <th></th>\n                <th></th>\n            </tr>\n        </thead>\n        <tbody>\n            <tr *ngFor=\"let order of ordersArray\">\n                <td>{{ order.id }}</td>\n                <td>{{ order.name }}</td>\n                <td>{{ order.storeName }}</td>\n                <td>{{ order.status }}</td>\n                <td>{{ order.aggregatedOrderInfo.productSize }}</td>\n                <td>{{ order.aggregatedOrderInfo.orderItemSize }}</td>\n                <td>{{ order.aggregatedOrderInfo.totalPrice }} €</td>\n                <td>{{ order.createdDatetime  | date:'medium' }}</td>\n                <td>{{ order.closeDatetime  | date:'medium' }}</td>\n                <td><button\n                    class=\"btn btn-success\"\n                    [routerLink]=\"['/order', order.id]\"\n                    >See</button>\n                </td>\n                <td><button\n                    *ngIf=\"order.status !== 'CLOSED'\"\n                    class=\"btn btn-info\"\n                    (click)=\"onClickCloseOrder(order)\"\n                    >Close Order</button>\n                    <button\n                        *ngIf=\"order.status === 'CLOSED'\"\n                        class=\"btn btn-primary\"\n                        (click)=\"onClickNotify(order)\"\n                    >Notify</button>\n                </td>\n            </tr>\n        </tbody>\n    </table>\n    <div class=\"row justify-content-between\">\n        <div class=\"col-4\">\n            <ngb-pagination [collectionSize]=\"collectionSize\" [(page)]=\"page\" [pageSize]=\"pageSize\"></ngb-pagination>\n        </div>\n        <div class=\"col-2\">\n            <select class=\"custom-select\" [(ngModel)]=\"pageSize\">\n                <option [ngValue]=\"5\">5 items per page</option>\n                <option [ngValue]=\"10\">10 items per page</option>\n                <option [ngValue]=\"20\">20 items per page</option>\n            </select>\n        </div>\n    </div>\n</div>"
+module.exports = "<div class=\"col-md-20 user-container\">\n    <table class=\"table table-striped\">\n        <thead>\n            <tr>\n                <th>ID</th>\n                <th>Name</th>\n                <th>Store</th>\n                <th>Status</th>\n                <th>Total Product</th>\n                <th>Total Qty</th>\n                <th>Total Price</th>\n                <th>Creation Date</th>\n                <th>Last Modified Date</th>\n                <th>Close Date</th>\n                <th></th>\n                <th></th>\n            </tr>\n        </thead>\n        <tbody>\n            <tr *ngFor=\"let order of ordersArray\">\n                <td>{{ order.id }}</td>\n                <td>{{ order.name }}</td>\n                <td>{{ order.storeName }}</td>\n                <td>{{ order.status }}</td>\n                <td>{{ order.aggregatedOrderInfo.productSize }}</td>\n                <td>{{ order.aggregatedOrderInfo.orderItemSize }}</td>\n                <td>{{ order.aggregatedOrderInfo.totalPrice }} €</td>\n                <td>{{ order.createdDatetime  | date:'medium' }}</td>\n                <td>{{ order.lastModifiedDatetime  | date:'medium' }}</td>\n                <td>{{ order.closeDatetime  | date:'medium' }}</td>\n                <td><button\n                    class=\"btn btn-success\"\n                    [routerLink]=\"['/order', order.id]\"\n                    >See</button>\n                </td>\n                <td><button\n                    *ngIf=\"order.status !== 'CLOSED'\"\n                    class=\"btn btn-info\"\n                    (click)=\"onClickCloseOrder(order)\"\n                    >Close Order</button>\n                    <button\n                        *ngIf=\"order.status === 'CLOSED'\"\n                        class=\"btn btn-primary\"\n                        (click)=\"onClickNotify(order)\"\n                    >Notify</button>\n                </td>\n            </tr>\n        </tbody>\n    </table>\n    <div class=\"row justify-content-between\">\n        <div class=\"col-4\">\n            <ngb-pagination [collectionSize]=\"collectionSize\" [(page)]=\"page\" [pageSize]=\"pageSize\"></ngb-pagination>\n        </div>\n        <div class=\"col-2\">\n            <select class=\"custom-select\" [(ngModel)]=\"pageSize\">\n                <option [ngValue]=\"5\">5 items per page</option>\n                <option [ngValue]=\"10\">10 items per page</option>\n                <option [ngValue]=\"20\">20 items per page</option>\n            </select>\n        </div>\n    </div>\n</div>"
 
 /***/ }),
 

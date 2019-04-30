@@ -14,6 +14,7 @@ import org.springframework.data.domain.Sort;
 import org.springframework.data.domain.Sort.Direction;
 import org.springframework.stereotype.Repository;
 
+import java.time.LocalDateTime;
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -21,7 +22,7 @@ import java.util.stream.Collectors;
 public class OrderDao implements IOrderDao {
 
     @Autowired
-    private IOrderCrudRepository orderCrudRepository;
+    private IOrderCrudRepository repository;
     @Autowired
     private EntityFactory entityFactory;
     @Autowired
@@ -35,30 +36,35 @@ public class OrderDao implements IOrderDao {
     @Override
     public Order updateOrder(Order order) {
         OrderEntity entity = entityFactory.createOrderEntity(order);
-        OrderEntity savedEntity = orderCrudRepository.save(entity);
+        OrderEntity savedEntity = repository.save(entity);
         return entityFactory.createOrder(savedEntity);
+    }
+
+    @Override
+    public void updateOrderAudit(Order order) {
+        repository.updateOrderAuditing(order.getId(), LocalDateTime.now());
     }
 
     @Override
     public void updateOrder(UpdateOrderRequest request, boolean checkIfExist) throws OrderNotFound {
         if (checkIfExist) {
-            boolean isExist = orderCrudRepository.existsById(request.getId());
+            boolean isExist = repository.existsById(request.getId());
             if (! isExist) {
                 throw new OrderNotFound(languageResolver.get(Error.ORDER_NOT_FOUND + " : " + request.getId()));
             }
         }
-        orderCrudRepository.updateExistingStockReport(request.getId(), request.getName(), request.getComment());
+        repository.updateExistingOrder(request.getId(), request.getName(), request.getComment());
     }
 
     @Override
     public Order get(long id) {
-        OrderEntity entity = orderCrudRepository.getOne(id);
+        OrderEntity entity = repository.getOne(id);
         return entityFactory.createOrder(entity);
     }
 
     @Override
     public Optional<Order> findOrder(long id) {
-        Optional<OrderEntity> orderEntityOpt = orderCrudRepository.findById(id);
+        Optional<OrderEntity> orderEntityOpt = repository.findById(id);
         Optional<Order> orderOpt = Optional.empty();
         if (orderEntityOpt.isPresent()) {
             Order order = entityFactory.createOrder(orderEntityOpt.get());
@@ -70,7 +76,7 @@ public class OrderDao implements IOrderDao {
     @Override
     public Set<Order> getAll(int limit) {
         Sort sortedByStatusAndCreationDatetime = new Sort(Direction.ASC, "status").and(new Sort(Direction.DESC, "LastModifiedDatetime"));
-        Iterable<OrderEntity> allIterable = orderCrudRepository.findAll(PageRequest.of(0, limit, sortedByStatusAndCreationDatetime));
+        Iterable<OrderEntity> allIterable = repository.findAll(PageRequest.of(0, limit, sortedByStatusAndCreationDatetime));
         Set<Order> all = new LinkedHashSet<>();
         allIterable.forEach(entity -> {
             Order order = entityFactory.createOrder(entity);
@@ -81,7 +87,7 @@ public class OrderDao implements IOrderDao {
 
     @Override
     public List<Order> getByName(String name) {
-        List<OrderEntity> ordersEntity = orderCrudRepository.findByName(name);
+        List<OrderEntity> ordersEntity = repository.findByName(name);
         return ordersEntity.stream()
                 .map(entityFactory::createOrder)
                 .collect(Collectors.toList());
@@ -89,7 +95,7 @@ public class OrderDao implements IOrderDao {
 
     @Override
     public List<Order> getByNameContaining(String name) {
-        List<OrderEntity> ordersEntity = orderCrudRepository.findByNameContaining(name);
+        List<OrderEntity> ordersEntity = repository.findByNameContaining(name);
         return ordersEntity.stream()
                 .map(entityFactory::createOrder)
                 .collect(Collectors.toList());
@@ -97,7 +103,7 @@ public class OrderDao implements IOrderDao {
 
     @Override
     public List<Order> getOrders(List<Long> ids) {
-        List<OrderEntity> ordersEntity = orderCrudRepository.findByIdIn(ids);
+        List<OrderEntity> ordersEntity = repository.findByIdIn(ids);
         return ordersEntity.stream()
                 .map(entityFactory::createOrder)
                 .collect(Collectors.toList());

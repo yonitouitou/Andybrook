@@ -14,6 +14,8 @@ public interface IOrderDao {
 
     Order updateOrder(Order order);
 
+    void updateOrderAudit(Order order);
+
     void updateOrder(UpdateOrderRequest request, boolean checkIfExist) throws OrderNotFound;
 
     Order get(long id);
