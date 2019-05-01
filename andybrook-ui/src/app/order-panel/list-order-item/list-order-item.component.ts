@@ -13,6 +13,7 @@ import { AggregatedOrder } from 'src/app/model/AggregatedOrder';
 import { AggregatedOrderItem } from 'src/app/model/AggregatedOrderItem';
 import { ShowOrderItemsModalComponent } from 'src/app/modal/show-order-items-modal/show-order-items-modal.component';
 import { DeleteOrderItemsModalComponent } from 'src/app/modal/delete-order-items-modal/delete-order-items-modal.component';
+import { DeleteOrderItemsReq } from 'src/app/model/request/DeleteOrderItemsReq';
 
 @Component({
   selector: 'list-order-item',
@@ -47,7 +48,7 @@ export class ListOrderItemComponent implements OnInit {
 
   @Output() onCreateOrderItemEvent = new EventEmitter<OrderItem>()
   @Output() onChangeOrderItemEvent = new EventEmitter<ModifyOrderItemReq>()
-  @Output() onDeleteOrderItemEvent = new EventEmitter<number>()
+  @Output() onDeleteOrderItemEvent = new EventEmitter<number[]>()
 
   constructor(private orderService: OrderService,
               private productService: ProductService,
@@ -108,30 +109,28 @@ export class ListOrderItemComponent implements OnInit {
       data => {
           let orderItem = OrderItem.fromJson(data);
           this.onCreateOrderItemEvent.emit(orderItem)
-          this.resetNewOrderItemInputFields()
       },
       error => {
         const modalRef = this.modalBuilder.open(InfoModalComponent)
         modalRef.componentInstance.title = "Error : Product item " + this.inputName + " not added to order " + this.order.name
         modalRef.componentInstance.message = error.error
-        this.resetNewOrderItemInputFields()
       })
   }
 
   deleteOrderItem(orderItems: OrderItem[]) {
-    for (let orderItem of orderItems) {
-      this.orderService.deleteOrderItem(this.order.id, orderItem.id).subscribe(
-        data => {
-            this.selectedOrderItems = [];
-            this.onDeleteOrderItemEvent.emit(orderItem.id);
-        },
-        error => {
-          const modalRef = this.modalBuilder.open(InfoModalComponent)
-          modalRef.componentInstance.title = "Error : Failed to delete the order item " + orderItem.id;
-          modalRef.componentInstance.message = error.error
-        }
-      )
-    }
+    const ids = orderItems.map(item => item.id);
+    const req = new DeleteOrderItemsReq(this.order.id, ids);
+    this.orderService.deleteOrderItems(req).subscribe(
+      data => {
+          this.onDeleteOrderItemEvent.emit(ids);
+          this.selectedOrderItems = [];
+      },
+      error => {
+        const modalRef = this.modalBuilder.open(InfoModalComponent)
+        modalRef.componentInstance.title = "Error : Failed to delete the order items.";
+        modalRef.componentInstance.message = error.error
+      }
+    )
   }
 
   displayDeletionConfirmationModal(orderItems: OrderItem[]) {
@@ -161,14 +160,4 @@ export class ListOrderItemComponent implements OnInit {
   onClickShowOrderItems(selectedOrderItems: OrderItem[]) {
     this.selectedOrderItems = selectedOrderItems;
   }
-
-  private resetNewOrderItemInputFields() {
-    this.inputId = undefined
-    this.inputBarCode = ""
-    this.inputName = ""
-    this.inputQuantity = undefined
-    this.inputPrice = undefined
-    this.areNewOrderItemFieldsSet = false
-  }
-
 }

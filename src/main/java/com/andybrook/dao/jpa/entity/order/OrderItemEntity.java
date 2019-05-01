@@ -19,8 +19,7 @@ public class OrderItemEntity {
     @ManyToOne(fetch = FetchType.EAGER, optional = false,
             cascade = {CascadeType.PERSIST,
                         CascadeType.DETACH,
-                        CascadeType.REFRESH,
-                        CascadeType.MERGE})
+                        CascadeType.REFRESH})
     @JoinColumn(name = "productitemid", referencedColumnName = "id", nullable = false)
     protected ProductItemEntity productItemEntity;
 

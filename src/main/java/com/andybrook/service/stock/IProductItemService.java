@@ -6,11 +6,13 @@ import java.util.Optional;
 
 interface IProductItemService {
 
-    ProductItem add(ProductItem productItem);
+    void add(ProductItem productItem);
 
     ProductItem get(long productItemId);
 
-    ProductItem update(ProductItem productItem);
+    int getProductItemSize(long productId);
+
+    void update(ProductItem productItem);
 
     Optional<ProductItem> findFreeProductItemOf(long productId);
 }

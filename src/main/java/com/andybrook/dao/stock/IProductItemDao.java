@@ -6,9 +6,11 @@ import java.util.Optional;
 
 public interface IProductItemDao {
 
-    ProductItem update(ProductItem productItem);
+    void update(ProductItem productItem);
 
     ProductItem delete(long id);
+
+    int getProductItemSize(long productId);
 
     Optional<ProductItem> find(long id);
 

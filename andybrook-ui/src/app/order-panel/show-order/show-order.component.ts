@@ -34,7 +34,7 @@ export class ShowOrderComponent implements OnInit {
     //this.order.items.set(orderItem.id, orderItem)
   }
 
-  onDeleteOrderItem(id: number) {
+  onDeleteOrderItem(ids: number[]) {
     this.refreshOrder();
   }
 

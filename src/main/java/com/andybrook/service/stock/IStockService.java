@@ -9,7 +9,7 @@ import java.util.Optional;
 
 public interface IStockService {
 
-    ProductItem addProductItem(ProductItem productItem);
+    void addProductItem(ProductItem productItem);
 
     ProductItem getProductItem(long productItemId);
 
@@ -26,4 +26,6 @@ public interface IStockService {
     Optional<ProductItem> findFreeProductItemOf(long productId);
 
     List<Pair<Long, String>> getAllProductNamesWithQuantityMoreThan(int quantity);
+
+    int getProductItemSize(long productId);
 }

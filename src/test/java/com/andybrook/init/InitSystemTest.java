@@ -82,7 +82,8 @@ public class InitSystemTest {
             List<Long> productItemIds = new ArrayList<>(PRODUCT_ITEM_FOR_EACH_PRODUCT_100);
             for (int i = 0; i < PRODUCT_ITEM_FOR_EACH_PRODUCT_100; i++) {
                 ProductItem productItem = new ProductItem(product, new BarCode(UUID.randomUUID().toString()));
-                productItemIds.add(stockService.addProductItem(productItem).getId());
+                stockService.addProductItem(productItem);
+                productItemIds.add(productItem.getId());
             }
             productItemsIdMapByProductId.put(product.getId(), productItemIds);
         }

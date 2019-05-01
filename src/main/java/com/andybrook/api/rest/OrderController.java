@@ -89,4 +89,12 @@ public class OrderController extends AbstractController {
         LOGGER.log(Level.INFO, "Request received to remove order item " + orderItemId + " from order " + orderId);
         orderManager.deleteOrderItem(new OrderItemDeleteRequest(orderId, orderItemId));
     }
+
+    @PostMapping(path = "/deleteOrderItems")
+    public void deleteOrderItems(@RequestBody DeleteOrderItemRestRequest request) {
+        LOGGER.log(Level.INFO, "Request received to remove order items : " + request.toString());
+        for (int i = 0; i < request.getOrderItemsId().length; i++) {
+            orderManager.deleteOrderItem(new OrderItemDeleteRequest(request.getOrderId(), request.getOrderItemsId()[i]));
+        }
+    }
 }

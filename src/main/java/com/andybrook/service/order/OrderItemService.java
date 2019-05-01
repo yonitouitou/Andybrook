@@ -66,9 +66,8 @@ public class OrderItemService implements IOrderItemService {
 
     @Override
     public void delete(OrderItem orderItemToDelete) {
-        unlinkProductItemFromOrderItem(orderItemToDelete);
-        dao.delete(orderItemToDelete.getId());
         updateStockOnDelete(orderItemToDelete);
+        dao.delete(orderItemToDelete.getId());
     }
 
     @Override
@@ -76,16 +75,11 @@ public class OrderItemService implements IOrderItemService {
         return dao.isExist(id);
     }
 
-    private void unlinkProductItemFromOrderItem(OrderItem orderItemToDelete) {
+    private void updateStockOnDelete(OrderItem orderItemToDelete) {
         ProductItem productItem = orderItemToDelete.getProductItem();
         productItem.setOrderItemIdOpt(OptionalLong.empty());
         stockService.onProductItemUnlinked(productItem);
     }
-
-    private void updateStockOnDelete(OrderItem orderItemToDelete) {
-        stockService.decrementQuantityUsed(orderItemToDelete.getProductItem().getProductId());
-    }
-
 
     private OrderItem buildOrderItem(ProductItem productItem) {
         return new OrderItem(IdGenerator.generateId(), productItem);

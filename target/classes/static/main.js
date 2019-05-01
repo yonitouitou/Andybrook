@@ -1588,6 +1588,28 @@ var AddOrderItemReq = /** @class */ (function () {
 
 /***/ }),
 
+/***/ "./src/app/model/request/DeleteOrderItemsReq.ts":
+/*!******************************************************!*\
+  !*** ./src/app/model/request/DeleteOrderItemsReq.ts ***!
+  \******************************************************/
+/*! exports provided: DeleteOrderItemsReq */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "DeleteOrderItemsReq", function() { return DeleteOrderItemsReq; });
+var DeleteOrderItemsReq = /** @class */ (function () {
+    function DeleteOrderItemsReq(orderId, orderItemsId) {
+        this.orderId = orderId;
+        this.orderItemsId = orderItemsId;
+    }
+    return DeleteOrderItemsReq;
+}());
+
+
+
+/***/ }),
+
 /***/ "./src/app/order-panel/list-order-item/list-order-item.component.css":
 /*!***************************************************************************!*\
   !*** ./src/app/order-panel/list-order-item/list-order-item.component.css ***!
@@ -1632,6 +1654,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var src_app_model_request_AddOrderItemReq__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! src/app/model/request/AddOrderItemReq */ "./src/app/model/request/AddOrderItemReq.ts");
 /* harmony import */ var src_app_model_AggregatedOrder__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! src/app/model/AggregatedOrder */ "./src/app/model/AggregatedOrder.ts");
 /* harmony import */ var src_app_modal_delete_order_items_modal_delete_order_items_modal_component__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! src/app/modal/delete-order-items-modal/delete-order-items-modal.component */ "./src/app/modal/delete-order-items-modal/delete-order-items-modal.component.ts");
+/* harmony import */ var src_app_model_request_DeleteOrderItemsReq__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! src/app/model/request/DeleteOrderItemsReq */ "./src/app/model/request/DeleteOrderItemsReq.ts");
+
 
 
 
@@ -1708,31 +1732,24 @@ var ListOrderItemComponent = /** @class */ (function () {
         this.orderService.addOrderItem(req).subscribe(function (data) {
             var orderItem = _model_OrderItem__WEBPACK_IMPORTED_MODULE_2__["OrderItem"].fromJson(data);
             _this.onCreateOrderItemEvent.emit(orderItem);
-            _this.resetNewOrderItemInputFields();
         }, function (error) {
             var modalRef = _this.modalBuilder.open(src_app_modal_info_modal_info_modal_component__WEBPACK_IMPORTED_MODULE_6__["InfoModalComponent"]);
             modalRef.componentInstance.title = "Error : Product item " + _this.inputName + " not added to order " + _this.order.name;
             modalRef.componentInstance.message = error.error;
-            _this.resetNewOrderItemInputFields();
         });
     };
     ListOrderItemComponent.prototype.deleteOrderItem = function (orderItems) {
         var _this = this;
-        var _loop_1 = function (orderItem) {
-            this_1.orderService.deleteOrderItem(this_1.order.id, orderItem.id).subscribe(function (data) {
-                _this.selectedOrderItems = [];
-                _this.onDeleteOrderItemEvent.emit(orderItem.id);
-            }, function (error) {
-                var modalRef = _this.modalBuilder.open(src_app_modal_info_modal_info_modal_component__WEBPACK_IMPORTED_MODULE_6__["InfoModalComponent"]);
-                modalRef.componentInstance.title = "Error : Failed to delete the order item " + orderItem.id;
-                modalRef.componentInstance.message = error.error;
-            });
-        };
-        var this_1 = this;
-        for (var _i = 0, orderItems_1 = orderItems; _i < orderItems_1.length; _i++) {
-            var orderItem = orderItems_1[_i];
-            _loop_1(orderItem);
-        }
+        var ids = orderItems.map(function (item) { return item.id; });
+        var req = new src_app_model_request_DeleteOrderItemsReq__WEBPACK_IMPORTED_MODULE_12__["DeleteOrderItemsReq"](this.order.id, ids);
+        this.orderService.deleteOrderItems(req).subscribe(function (data) {
+            _this.onDeleteOrderItemEvent.emit(ids);
+            _this.selectedOrderItems = [];
+        }, function (error) {
+            var modalRef = _this.modalBuilder.open(src_app_modal_info_modal_info_modal_component__WEBPACK_IMPORTED_MODULE_6__["InfoModalComponent"]);
+            modalRef.componentInstance.title = "Error : Failed to delete the order items.";
+            modalRef.componentInstance.message = error.error;
+        });
     };
     ListOrderItemComponent.prototype.displayDeletionConfirmationModal = function (orderItems) {
         var _this = this;
@@ -1758,14 +1775,6 @@ var ListOrderItemComponent = /** @class */ (function () {
     };
     ListOrderItemComponent.prototype.onClickShowOrderItems = function (selectedOrderItems) {
         this.selectedOrderItems = selectedOrderItems;
-    };
-    ListOrderItemComponent.prototype.resetNewOrderItemInputFields = function () {
-        this.inputId = undefined;
-        this.inputBarCode = "";
-        this.inputName = "";
-        this.inputQuantity = undefined;
-        this.inputPrice = undefined;
-        this.areNewOrderItemFieldsSet = false;
     };
     tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Input"])(),
@@ -2032,7 +2041,7 @@ var ShowOrderComponent = /** @class */ (function () {
     ShowOrderComponent.prototype.onChangeOrderItem = function (orderItem) {
         //this.order.items.set(orderItem.id, orderItem)
     };
-    ShowOrderComponent.prototype.onDeleteOrderItem = function (id) {
+    ShowOrderComponent.prototype.onDeleteOrderItem = function (ids) {
         this.refreshOrder();
     };
     ShowOrderComponent.prototype.onClickBack = function () {
@@ -2483,9 +2492,9 @@ var OrderService = /** @class */ (function () {
         //return this.httpApi.post("/v1/order/updateProductItem", this.toUpdateRequest(order, itemToUpdate))
         return null;
     };
-    OrderService.prototype.deleteOrderItem = function (orderId, orderItemIdToDelete) {
-        console.log("Delete OrderItem : " + orderItemIdToDelete);
-        return this.httpApi.delete("/v1/order/deleteOrderItem/" + orderId + "/" + orderItemIdToDelete);
+    OrderService.prototype.deleteOrderItems = function (req) {
+        console.log("Delete OrderItems from order : " + req.orderId + " : " + req.orderItemsId);
+        return this.httpApi.post("/v1/order/deleteOrderItems", req);
     };
     OrderService.prototype.closeOrder = function (orderId) {
         console.log("Close order : " + orderId);

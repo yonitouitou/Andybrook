@@ -22,11 +22,10 @@ public class StockService implements IStockService {
     private IProductItemService productItemService;
 
     @Override
-    public ProductItem addProductItem(ProductItem productItem) {
+    public void addProductItem(ProductItem productItem) {
         Product product = productService.get(productItem.getProduct().getId());
-        productItem = productItemService.add(productItem);
+        productItemService.add(productItem);
         productStockInfoService.incrementQuantityCreated(product.getId());
-        return productItem;
     }
 
     @Override
@@ -71,6 +70,8 @@ public class StockService implements IStockService {
         return productStockInfoService.getAllProductNamesWithQuantityMoreThan(quantity);
     }
 
-
-
+    @Override
+    public int getProductItemSize(long productId) {
+        return productItemService.getProductItemSize(productId);
+    }
 }

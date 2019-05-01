@@ -25,4 +25,15 @@ public interface IProductItemCrudRepository extends CrudRepository<ProductItemEn
 
     @Query(value = SELECT_FREE_PRODUCT_ITEM_BY_PRODUCT_ID, nativeQuery = true)
     ProductItemEntity getFreeProductItemOf(@Param("productId") long productId);
+
+    String COUNT_BY_PRODUCT_ID_QUERY =
+            "SELECT " +
+                    "COUNT(*) " +
+            "FROM " +
+                    TABLE_NAME +
+            " WHERE " +
+                    COLUMN_PRODUCT_ID + " = :productId";
+
+    @Query(value = COUNT_BY_PRODUCT_ID_QUERY, nativeQuery = true)
+    int countByProductId(@Param("productId") long productId);
 }

@@ -21,14 +21,20 @@ public class ProductItemDao implements IProductItemDao {
     private IOrderItemDao orderItemDao;
 
     @Override
-    public ProductItem update(ProductItem productItem) {
+    public void update(ProductItem productItem) {
         OrderItemEntity orderItemEntity = null;
         if (productItem.getOrderItemIdOpt().isPresent()) {
             orderItemEntity = orderItemDao.getEntity(productItem.getOrderItemIdOpt().getAsLong());
         }
         ProductItemEntity entity = entityFactory.createProductItemEntity(productItem, orderItemEntity);
         ProductItemEntity savedEntity = repository.save(entity);
-        return entityFactory.createProductItem(savedEntity);
+        productItem.setId(savedEntity.getId());
+        productItem.setLastModifiedDatetime(savedEntity.getLastModifiedDatetime());
+    }
+
+    @Override
+    public int getProductItemSize(long productId) {
+        return repository.countByProductId(productId);
     }
 
     @Override

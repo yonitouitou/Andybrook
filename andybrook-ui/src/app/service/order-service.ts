@@ -5,6 +5,7 @@ import { Order } from "../model/Order";
 import { Observable } from 'rxjs';
 import { AddOrderItemReq } from '../model/request/AddOrderItemReq';
 import { OrderItem } from '../model/OrderItem';
+import { DeleteOrderItemsReq } from '../model/request/DeleteOrderItemsReq';
 
 @Injectable()
 export class OrderService {
@@ -41,9 +42,9 @@ export class OrderService {
         return null;
     }
 
-    deleteOrderItem(orderId: number, orderItemIdToDelete: number): Observable<any> {
-        console.log("Delete OrderItem : " + orderItemIdToDelete)
-        return this.httpApi.delete("/v1/order/deleteOrderItem/" + orderId + "/" + orderItemIdToDelete)
+    deleteOrderItems(req: DeleteOrderItemsReq): Observable<any> {
+        console.log("Delete OrderItems from order : " + req.orderId + " : " + req.orderItemsId)
+        return this.httpApi.post("/v1/order/deleteOrderItems", req);
     }
 
     closeOrder(orderId: number): Observable<any> {

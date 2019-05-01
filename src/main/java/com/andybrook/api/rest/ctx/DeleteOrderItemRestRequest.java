@@ -1,13 +1,12 @@
 package com.andybrook.api.rest.ctx;
 
-import com.andybrook.model.order.OrderItem;
 import com.andybrook.model.request.orderitem.OrderItemRequest;
 
 import java.util.Arrays;
 
 public class DeleteOrderItemRestRequest extends OrderItemRequest {
 
-    private OrderItem[] orderItems;
+    private Long[] orderItemsId;
 
     private DeleteOrderItemRestRequest() {
         super(-1);
@@ -17,14 +16,14 @@ public class DeleteOrderItemRestRequest extends OrderItemRequest {
         super(orderId);
     }
 
-    public OrderItem[] getOrderItems() {
-        return orderItems;
+    public Long[] getOrderItemsId() {
+        return orderItemsId;
     }
 
     @Override
     public String toString() {
         return "DeleteOrderItemRestRequest{" +
-                "orderItems=" + Arrays.toString(orderItems) +
+                "orderItemsId=" + Arrays.toString(orderItemsId) +
                 ", orderId=" + orderId +
                 '}';
     }

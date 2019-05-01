@@ -15,8 +15,8 @@ class ProductItemService implements IProductItemService {
     private IProductItemDao dao;
 
     @Override
-    public ProductItem add(ProductItem productItem) {
-        return updateProductItem(productItem);
+    public void add(ProductItem productItem) {
+        updateProductItem(productItem);
     }
 
     @Override
@@ -26,8 +26,13 @@ class ProductItemService implements IProductItemService {
     }
 
     @Override
-    public ProductItem update(ProductItem productItem) {
-        return updateProductItem(productItem);
+    public int getProductItemSize(long productId) {
+        return dao.getProductItemSize(productId);
+    }
+
+    @Override
+    public void update(ProductItem productItem) {
+        updateProductItem(productItem);
     }
 
     @Override
@@ -35,7 +40,7 @@ class ProductItemService implements IProductItemService {
         return dao.findFreeProductItemOf(productId);
     }
 
-    private ProductItem updateProductItem(ProductItem productItem) {
-        return dao.update(productItem);
+    private void updateProductItem(ProductItem productItem) {
+        dao.update(productItem);
     }
 }

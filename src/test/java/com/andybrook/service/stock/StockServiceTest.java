@@ -20,6 +20,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 public class StockServiceTest {
 
     private ProductItem productItem;
+    Product product;
 
     @Autowired
     private IStockService stockService;
@@ -28,23 +29,45 @@ public class StockServiceTest {
 
     @Before
     public void init() {
-        Product product = productService.addProduct(ProductGenerator.generateProduct());;
+        product = productService.addProduct(ProductGenerator.generateProduct());;
         productItem = ProductItemGenerator.generateSingleProductItem(product);
     }
 
     @Test
     public void addSingleProductItemTest() {
-        productItem = stockService.addProductItem(productItem);
-        ProductItem productItemSaved = stockService.getProductItem(productItem.getId());
-        ProductItemAssertor.assertEqualsStaticField(productItem, productItemSaved);
-        Assert.assertNotNull(productItemSaved.getId());
-        Assert.assertNotNull(productItemSaved.getLastModifiedDatetime());
-        Assert.assertNotNull(productItemSaved.getCreatedDatetime());
-        Assert.assertFalse(productItemSaved.getOrderItemIdOpt().isPresent());
+        addAndAssertSingleProductItem(productItem);
+        Assert.assertEquals(1, stockService.getProductItemSize(productItem.getId()));
     }
+
+    @Test
+    public void addMultipleProductItemSameProductTest() {
+        int createdQuantity = 100;
+        for (int i = 0; i < createdQuantity; i++) {
+            ProductItem newProductItem = ProductItemGenerator.generateSingleProductItem(product);
+            addAndAssertSingleProductItem(newProductItem);
+        }
+        Assert.assertEquals(createdQuantity, stockService.getProductItemSize(product.getId()));
+        Assert.assertEquals(createdQuantity, stockService.getFreeQuantity(product.getId()));
+    }
+
 
     @Test(expected = ProductItemNotFound.class)
     public void getProductItemExpectedNotFoundExceptionTest() {
         stockService.getProductItem(Long.MAX_VALUE);
+    }
+
+    private void addAndAssertSingleProductItem(ProductItem productItem) {
+        stockService.addProductItem(productItem);
+        ProductItem productItemSaved = stockService.getProductItem(productItem.getId());
+        assertProductItem(productItem, productItemSaved);
+    }
+
+    private void assertProductItem(ProductItem expected, ProductItem actual) {
+        ProductItemAssertor.assertEqualsStaticField(expected, actual);
+        Assert.assertNotNull(actual.getId());
+        Assert.assertNotNull(actual.getLastModifiedDatetime());
+        Assert.assertNotNull(actual.getCreatedDatetime());
+        Assert.assertFalse(actual.getOrderItemIdOpt().isPresent());
+
     }
 }
