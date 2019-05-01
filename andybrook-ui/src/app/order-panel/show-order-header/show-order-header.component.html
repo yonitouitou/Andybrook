@@ -1,24 +1,44 @@
-<div class="container-fluid" style="border-bottom: 3px solid red">
-  <div class="row justify-content-between">
-    <div class="col-md-4">
+<div class="container-fluid" style="border-bottom: 1px solid black">
+  <div class="row">
+    <div class="col">
       <h5>{{ order.name }}</h5>
-      <p>Description/Comment : {{ order.comment }}</p>
+    </div>
+    <div class="col">
+      <p>Comment : {{ order.comment }}</p>
+    </div>
+    <div class="col">
       <div style="overflow: hidden;">
         <p style="float: left">Customer : &nbsp;</p>
         <p style="float: left; font-weight: bold"> {{ order.storeName }}</p>
       </div>
+    </div>
+    <div class="col">
       <div style="overflow: hidden;">
         <p style="float: left;">Status :&nbsp;</p>
         <p style="float: left; font-weight: bold"> {{ order.status }}</p>
       </div>
     </div>
-    <div class="col-md-6">
-        <button
-          style="float: right"
-          class="btn btn-outline-info"
-          (click)="onClickCloseOrder()"
-          [disabled]="order.status === 'CLOSED'"
-        >Close the order</button>
-    </div>
   </div>
+  <div class="row">
+    <div class="col">
+      <div class="row justify-content-between">
+          <div class="col-4">
+              <button
+                class="btn btn-outline-primary"
+                (click)="onClickAddOrderItem()"
+                [disabled]="order.status === 'CLOSED'"
+              >Add Order Item</button>
+          </div>
+          <div class="col-4">
+              <button
+                style="float: right"
+                class="btn btn-outline-info"
+                (click)="onClickCloseOrder()"
+                [disabled]="order.status === 'CLOSED'"
+              >Close the order</button>
+          </div>
+      </div>
+    </div>
+  </div>    
+  <br>
 </div>

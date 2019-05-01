@@ -3,6 +3,7 @@ import { ModalBuilder } from 'src/app/common-components/modal-builder';
 import { ConfirmModalComponent } from 'src/app/modal/confirm-modal/confirm-modal-component';
 import { OrderService } from 'src/app/service/order-service';
 import { AggregatedOrder } from 'src/app/model/AggregatedOrder';
+import { AddOrderItemModalComponent } from 'src/app/modal/add-order-item-modal/add-order-item-modal.component';
 
 @Component({
   selector: 'show-order-header',
@@ -14,11 +15,23 @@ export class OrderHeaderComponent implements OnInit {
   @Input() order: AggregatedOrder
 
   @Output() onCloseOrderEvent = new EventEmitter()
+  @Output() onAddOrderItemEvent = new EventEmitter()
 
   constructor(private modalBuilder: ModalBuilder,
               private orderService: OrderService) { }
 
   ngOnInit() {
+  }
+
+  onClickAddOrderItem() {
+    let modalRef = this.modalBuilder.openCenteredLargeModal(AddOrderItemModalComponent);
+    modalRef.componentInstance.orderId = this.order.id;
+    modalRef.result.then((response)=> {
+      if (response) {
+        this.onAddOrderItemEvent.emit();
+      }
+
+    })
   }
 
   onClickCloseOrder() {

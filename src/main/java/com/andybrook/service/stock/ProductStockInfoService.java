@@ -81,7 +81,8 @@ class ProductStockInfoService implements IProductStockInfoService {
         dao.update(productStockInfo);
     }
 
-    ProductStockInfo get(long productId) {
+    @Override
+    public ProductStockInfo get(long productId) {
         return dao.get(productId);
     }
 }

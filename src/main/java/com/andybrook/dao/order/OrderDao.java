@@ -42,7 +42,7 @@ public class OrderDao implements IOrderDao {
 
     @Override
     public void updateOrderAudit(Order order) {
-        repository.updateOrderAuditing(order.getId(), LocalDateTime.now());
+        repository.updateOrderAuditing(order.getId(), order.getLastModifiedDateTime());
     }
 
     @Override
@@ -50,7 +50,7 @@ public class OrderDao implements IOrderDao {
         if (checkIfExist) {
             boolean isExist = repository.existsById(request.getId());
             if (! isExist) {
-                throw new OrderNotFound(languageResolver.get(Error.ORDER_NOT_FOUND + " : " + request.getId()));
+                throw new OrderNotFound(request.getId());
             }
         }
         repository.updateExistingOrder(request.getId(), request.getName(), request.getComment());

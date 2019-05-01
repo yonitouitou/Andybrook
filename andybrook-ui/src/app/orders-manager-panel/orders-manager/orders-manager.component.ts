@@ -35,15 +35,6 @@ export class OrdersManagerComponent implements OnInit {
     }
   }
 
-  private getOrderById(id: number) {
-    this.orderService.getOrder(id).subscribe(
-      data => {
-        this.orders = this.parseOrderIntoArray(data)
-        this.searchButtonDisabled = false
-      }
-    )
-  }
-
   private getOrderByName(name: string) {
     this.orderService.getOrderByName(name).subscribe(
       data => {

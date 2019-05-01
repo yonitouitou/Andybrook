@@ -31,6 +31,7 @@ import { ProductService } from './service/product-service';
 import { ShowOrderItemsModalComponent } from './modal/show-order-items-modal/show-order-items-modal.component';
 import { SelectedOrderItemsListComponent } from './order-panel/selected-order-items-list/selected-order-items-list.component';
 import { DeleteOrderItemsModalComponent } from './modal/delete-order-items-modal/delete-order-items-modal.component';
+import { AddOrderItemModalComponent } from './modal/add-order-item-modal/add-order-item-modal.component';
 
 const appRoutes: Routes = [
   { path: '', component: OrdersManagerComponent },
@@ -57,13 +58,15 @@ const appRoutes: Routes = [
     ShowOrderItemsModalComponent,
     SelectedOrderItemsListComponent,
     DeleteOrderItemsModalComponent,
+    AddOrderItemModalComponent,
   ],
   entryComponents: [
     CreateOrderModalComponent,
     ConfirmModalComponent,
     InfoModalComponent,
     ShowOrderItemsModalComponent,
-    DeleteOrderItemsModalComponent
+    DeleteOrderItemsModalComponent,
+    AddOrderItemModalComponent
   ],
   imports: [
     BrowserModule,

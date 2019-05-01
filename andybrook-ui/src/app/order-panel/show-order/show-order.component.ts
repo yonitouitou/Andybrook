@@ -1,10 +1,7 @@
 import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { OrderService } from '../../service/order-service';
 import { OrderItem } from '../../model/OrderItem'
-import { Order } from "../../model/Order";
 import { ActivatedRoute, Router } from '@angular/router';
-import { Customer } from '../../model/Customer';
-import { Product } from '../../model/Product'
 import { AggregatedOrder } from 'src/app/model/AggregatedOrder';
 
 @Component({
@@ -25,12 +22,12 @@ export class ShowOrderComponent implements OnInit {
 
   ngOnInit() {
     this.order = new AggregatedOrder();
-    let orderId = parseInt(this.route.snapshot.paramMap.get('id'));
-    this.refreshOrder(orderId);
+    this.order.id = parseInt(this.route.snapshot.paramMap.get('id'));
+    this.refreshOrder();
   }
 
-  onNewOrderItem(orderItem: OrderItem) {
-    //this.order.aggregatedOrderItemsitems.set(orderItem.id, orderItem)
+  onOrderItemAdded(orderItem: OrderItem) {
+    this.refreshOrder();
   }
 
   onChangeOrderItem(orderItem: OrderItem) {
@@ -38,15 +35,15 @@ export class ShowOrderComponent implements OnInit {
   }
 
   onDeleteOrderItem(id: number) {
-    this.refreshOrder(this.order.id);
+    this.refreshOrder();
   }
 
   onClickBack() {
     this.router.navigate([''])
   }
 
-  private refreshOrder(orderId: number) {
-    this.orderService.getOrder(orderId).subscribe(data => {
+  private refreshOrder() {
+    this.orderService.getOrder(this.order.id).subscribe(data => {
       this.order = AggregatedOrder.fromJson(data);
     })  
   }

@@ -1,5 +1,6 @@
 package com.andybrook.manager.stock;
 
+import com.andybrook.model.stock.ProductStockInfo;
 import com.andybrook.service.stock.IStockService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.util.Pair;
@@ -12,6 +13,11 @@ public class StockManager implements IStockManager {
 
     @Autowired
     private IStockService stockService;
+
+    @Override
+    public ProductStockInfo getProductStockInfo(long productId) {
+        return stockService.getProductStockInfo(productId);
+    }
 
     @Override
     public List<Pair<Long, String>> getAllProductNamesWithQuantityMoreThan(int quantity) {

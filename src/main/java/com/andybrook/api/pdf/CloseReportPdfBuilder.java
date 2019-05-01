@@ -56,24 +56,23 @@ public class CloseReportPdfBuilder extends AbstractPdfBuilder implements IPdfBui
     }
 
     @Override
-    public Path generatePdf(Order report) {
-        String fileName = report.getName() + LocalDateTime.now().format(DateTimeFormatter.ISO_LOCAL_DATE_TIME);
+    public Path generatePdf(Order order) {
+        String fileName = order.getName() + LocalDateTime.now().format(DateTimeFormatter.ISO_LOCAL_DATE_TIME);
         Path pdfFilePath = null;
         Document document = new Document(PageSize.A4, 20f, 20f, 7f, 7f);
         PdfWriter writer = null;
         try {
             pdfFilePath = Files.createTempFile(fileName, ".pdf");
             System.err.println("PDF File path : " + pdfFilePath.toAbsolutePath().toString());
-            writer = PdfWriter.getInstance(document,
-                    new FileOutputStream(pdfFilePath.toFile()));
+            writer = PdfWriter.getInstance(document, new FileOutputStream(pdfFilePath.toFile()));
 
             document.open();
 
             Element logo = importLogoAndybrook();
-            Element title = createTitle(report);
-            Element customerTable1 = createCustomerMainDetailsTable(report);
-            Element customerTable2 = createCustomerContactDetailsTable(report);
-            Element itemsTable = createItemsTable(report);
+            Element title = createTitle(order);
+            Element customerTable1 = createCustomerMainDetailsTable(order);
+            Element customerTable2 = createCustomerContactDetailsTable(order);
+            Element itemsTable = createItemsTable(order);
             Element doneDate = createDoneDate();
             Element signature = createSignatureTable();
 

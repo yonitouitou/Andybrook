@@ -17,7 +17,7 @@ public class ProductItemInfoJsonSerializer extends JsonDeserializer<ProductItemI
         JsonNode json = oc.readTree(jp);
         Long id = json.get("orderItemId") == null || json.get("orderItemId").asText().isEmpty() ? null : json.get("orderItemId").asLong();
         long productId = json.get("productId").asLong();
-        int quantity = json.get("requestedQuantity").asInt();
+        int quantity = json.get("requestedQty").asInt();
         return new ProductItemInfo(id, productId, quantity);
     }
 }

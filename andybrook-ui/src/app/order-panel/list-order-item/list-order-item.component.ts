@@ -54,14 +54,6 @@ export class ListOrderItemComponent implements OnInit {
               private modalBuilder: ModalBuilder) {}
 
   ngOnInit() {
-    this.productService.getAllProductNames().subscribe(
-      data => {
-        for (let idAndNameProduct of data) {
-          this.productIdMapByName.set(idAndNameProduct.second, idAndNameProduct.first)
-          this.productNames.push(idAndNameProduct.second);
-        }
-      }
-    )
   }
 
   onBlurNewItemInput() {
@@ -143,7 +135,7 @@ export class ListOrderItemComponent implements OnInit {
   }
 
   displayDeletionConfirmationModal(orderItems: OrderItem[]) {
-    const modalRef = this.modalBuilder.openCenteredModal(DeleteOrderItemsModalComponent)
+    const modalRef = this.modalBuilder.openCenteredLargeModal(DeleteOrderItemsModalComponent)
     modalRef.componentInstance.title = "Are you sure you want to delete the following order items ?"
     modalRef.componentInstance.orderItems = orderItems;
     modalRef.result.then((response) => {

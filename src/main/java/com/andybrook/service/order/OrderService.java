@@ -15,6 +15,7 @@ import com.andybrook.service.setting.IAdminSettingService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 import java.util.Set;
@@ -131,7 +132,7 @@ public class OrderService implements IOrderService {
             if (order.getItem(orderItemId) != null) {
                 OrderItem deletedOrderItem = order.deleteItem(orderItemId);
                 orderItemService.delete(deletedOrderItem);
-                dao.updateOrderAudit(order);
+                updateAudit(order);
             } else {
                 throw new OrderItemNotFound(orderItemId);
             }
@@ -144,8 +145,13 @@ public class OrderService implements IOrderService {
     private Order getOrderById(long id) throws OrderNotFound {
         Optional<Order> orderOpt = dao.findOrder(id);
         if (! orderOpt.isPresent()) {
-            throw new OrderNotFound(languageResolver.get(ORDER_NOT_FOUND) + " : " + id);
+            throw new OrderNotFound(id);
         }
         return orderOpt.get();
+    }
+
+    private void updateAudit(Order order) {
+        order.setLastModifiedDateTime(LocalDateTime.now());
+        dao.updateOrderAudit(order);
     }
 }

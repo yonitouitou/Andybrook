@@ -20,4 +20,8 @@ export class ProductService {
     getAllProductNames(): Observable<any> {
         return this.http.get("/v1/stock/getAllExistingProductNames")
     }
+
+    getProductStockInfo(productId: number): Observable<any> {
+        return this.http.get("/v1/stock/productStockInfo/" + productId);
+    }
 }

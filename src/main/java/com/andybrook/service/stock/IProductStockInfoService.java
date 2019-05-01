@@ -1,5 +1,6 @@
 package com.andybrook.service.stock;
 
+import com.andybrook.model.stock.ProductStockInfo;
 import org.springframework.data.util.Pair;
 
 import java.util.List;
@@ -7,6 +8,8 @@ import java.util.List;
 public interface IProductStockInfoService {
 
     void add(long productId);
+
+    ProductStockInfo get(long productId);
 
     List<Pair<Long, String>> getAllProductNamesWithQuantityMoreThan(int quantity);
 

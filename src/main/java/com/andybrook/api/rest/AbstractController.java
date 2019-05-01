@@ -1,8 +1,6 @@
 package com.andybrook.api.rest;
 
-import com.andybrook.exception.CustomerNotFound;
-import com.andybrook.exception.StoreNotFound;
-import com.andybrook.exception.ValidationRuntimeException;
+import com.andybrook.exception.*;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -32,6 +30,24 @@ public abstract class AbstractController {
     public ResponseEntity<?> handleCustomerNotFound(CustomerNotFound e) {
         LOGGER.log(Level.WARNING, "Customer not found : " + e.getMessage());
         return new ResponseEntity("Customer not found : " + e.getMessage(), HttpStatus.BAD_REQUEST);
+    }
+
+    @ExceptionHandler(ProductNotFound.class)
+    public ResponseEntity<?> handleProductNotFound(ProductNotFound e) {
+        LOGGER.log(Level.WARNING, "Product not found : " + e.getMessage());
+        return new ResponseEntity("Product not found : " + e.getMessage(), HttpStatus.BAD_REQUEST);
+    }
+
+    @ExceptionHandler(OrderItemNotFound.class)
+    public ResponseEntity<?> handleOrderItemNotFound(OrderItemNotFound e) {
+        LOGGER.log(Level.WARNING, "Order item not found : " + e.getMessage());
+        return new ResponseEntity("Order item not found : " + e.getMessage(), HttpStatus.BAD_REQUEST);
+    }
+
+    @ExceptionHandler(OrderNotFound.class)
+    public ResponseEntity<?> handleOrderNotFound(OrderNotFound e) {
+        LOGGER.log(Level.WARNING, "Order not found : " + e.getMessage());
+        return new ResponseEntity("Order not found : " + e.getMessage(), HttpStatus.BAD_REQUEST);
     }
 
     @ExceptionHandler(ValidationRuntimeException.class)

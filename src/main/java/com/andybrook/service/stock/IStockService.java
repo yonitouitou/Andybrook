@@ -1,6 +1,7 @@
 package com.andybrook.service.stock;
 
 import com.andybrook.model.stock.ProductItem;
+import com.andybrook.model.stock.ProductStockInfo;
 import org.springframework.data.util.Pair;
 
 import java.util.List;
@@ -15,6 +16,8 @@ public interface IStockService {
     void onProductItemLinked(ProductItem productItem);
 
     void onProductItemUnlinked(ProductItem productItem);
+
+    ProductStockInfo getProductStockInfo(long productId);
 
     int getFreeQuantity(long productId);
 

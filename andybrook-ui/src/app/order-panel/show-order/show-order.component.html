@@ -2,6 +2,7 @@
   <show-order-header
     [order]="order"
     (onCloseOrderEvent)="onCloseOrder()"
+    (onAddOrderItemEvent)="onOrderItemAdded()"
   ></show-order-header>
   <list-order-item *ngIf="order"
     [order]="order"

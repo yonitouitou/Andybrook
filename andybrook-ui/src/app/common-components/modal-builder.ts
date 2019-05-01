@@ -13,7 +13,11 @@ export class ModalBuilder {
         return this.modalService.open(component)
     }
 
-    openCenteredModal(component: any): NgbModalRef {
+    openCenteredLargeModal(component: any): NgbModalRef {
         return this.modalService.open(component, {size: 'lg', centered: true})
+    }
+
+    openCenteredModal(component: any): NgbModalRef {
+        return this.modalService.open(component, {centered: true})
     }
 }
