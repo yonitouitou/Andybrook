@@ -116,7 +116,7 @@ public class InitSystemTest {
         Long productItemId = productItemsIdMapByProductId.get(productId).get(RANDOM.nextInt(0, PRODUCT_ITEM_FOR_EACH_PRODUCT_100));
         ProductItem productItem = stockService.getProductItem(productItemId);
         OrderItem item = OrderItemGenerator.generateOrderItem(productItem);
-        ProductItemInfo info = new ProductItemInfo(item.getId(), productItem.getProductId(), RANDOM.nextInt(1, 3));
+        ProductItemInfo info = new ProductItemInfo(item.getId(), productItem.getProductId(), RANDOM.nextInt(1, 5));
         OrderItemAddRequest request = new OrderItemAddRequest(orderId, info);
         System.out.println("Add " + request.getQuantityRequested() + " order items of product " + productId + " into order " + orderId);
         orderManager.addOrderItems(request);

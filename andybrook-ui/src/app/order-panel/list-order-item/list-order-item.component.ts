@@ -11,7 +11,6 @@ import { AddOrderItemReq } from 'src/app/model/request/AddOrderItemReq';
 import { ModifyOrderItemReq } from 'src/app/model/request/ModifyOrderItemReq';
 import { AggregatedOrder } from 'src/app/model/AggregatedOrder';
 import { AggregatedOrderItem } from 'src/app/model/AggregatedOrderItem';
-import { ShowOrderItemsModalComponent } from 'src/app/modal/show-order-items-modal/show-order-items-modal.component';
 import { DeleteOrderItemsModalComponent } from 'src/app/modal/delete-order-items-modal/delete-order-items-modal.component';
 import { DeleteOrderItemsReq } from 'src/app/model/request/DeleteOrderItemsReq';
 
@@ -28,11 +27,11 @@ export class ListOrderItemComponent implements OnInit {
   inputQuantity: number
   inputPrice: number
   selectedRow: number
-  isScanMode: boolean
   areNewOrderItemFieldsSet = false
   searchString: string
-  selectedOrderItems: OrderItem[] = [];
+  selectedOrderItems: Map<number, OrderItem> = new Map();
   productNames: string[] = []
+  deleteOrderItemInProgressArray: boolean[] = [];
   productIdMapByName: Map<string, number> = new Map()
   
   search = (text$: Observable<string>) =>
@@ -55,6 +54,13 @@ export class ListOrderItemComponent implements OnInit {
               private modalBuilder: ModalBuilder) {}
 
   ngOnInit() {
+    this.initDeleteOrderItemButtonStatus();
+  }
+
+  private initDeleteOrderItemButtonStatus() {
+    for (let i = 0; i < this.deleteOrderItemInProgressArray.length; i++) {
+      this.deleteOrderItemInProgressArray.push(false);
+    }
   }
 
   onBlurNewItemInput() {
@@ -117,13 +123,19 @@ export class ListOrderItemComponent implements OnInit {
       })
   }
 
+  deleteSingleOrderItem(orderItem: OrderItem) {
+    const orderItems: OrderItem[] = [orderItem];
+    this.deleteOrderItem(orderItems);
+    this.selectedOrderItems.delete(orderItem.id);
+  }
+
   deleteOrderItem(orderItems: OrderItem[]) {
     const ids = orderItems.map(item => item.id);
     const req = new DeleteOrderItemsReq(this.order.id, ids);
     this.orderService.deleteOrderItems(req).subscribe(
       data => {
           this.onDeleteOrderItemEvent.emit(ids);
-          this.selectedOrderItems = [];
+          this.deleteFromSelectedOrderItem(ids);
       },
       error => {
         const modalRef = this.modalBuilder.open(InfoModalComponent)
@@ -133,7 +145,18 @@ export class ListOrderItemComponent implements OnInit {
     )
   }
 
-  displayDeletionConfirmationModal(orderItems: OrderItem[]) {
+  private deleteFromSelectedOrderItem(ids: number[]) {
+    for(let id of ids) {
+      this.selectedOrderItems.delete(id);
+    }
+  }
+
+  onClickDeleteOrderItemButton(rowTableIndex: number, orderItems: OrderItem[]) {
+    this.setDeleteOrderItemButtonStatus(rowTableIndex, true);
+    this.displayDeletionConfirmationModal(rowTableIndex, orderItems);
+  }
+
+  displayDeletionConfirmationModal(rowTableIndex:number, orderItems: OrderItem[]) {
     const modalRef = this.modalBuilder.openCenteredLargeModal(DeleteOrderItemsModalComponent)
     modalRef.componentInstance.title = "Are you sure you want to delete the following order items ?"
     modalRef.componentInstance.orderItems = orderItems;
@@ -141,6 +164,7 @@ export class ListOrderItemComponent implements OnInit {
       if (response) {
         this.deleteOrderItem(orderItems);
       }
+      this.setDeleteOrderItemButtonStatus(rowTableIndex, false);
     })
   }
 
@@ -157,7 +181,15 @@ export class ListOrderItemComponent implements OnInit {
     this.selectedRow = index
   }
 
-  onClickShowOrderItems(selectedOrderItems: OrderItem[]) {
-    this.selectedOrderItems = selectedOrderItems;
+  onClickShowSelectedOrderItems(selectedOrderItems: OrderItem[]) {
+    let tmp = new Map<number, OrderItem>();
+    for (let orderItem of selectedOrderItems) {
+      tmp.set(orderItem.id, orderItem);
+    }
+    this.selectedOrderItems = tmp;
+  }
+
+  setDeleteOrderItemButtonStatus(index: number, isInProgress: boolean) {
+      this.deleteOrderItemInProgressArray[index] = isInProgress;
   }
 }

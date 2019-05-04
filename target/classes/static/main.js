@@ -1628,7 +1628,7 @@ module.exports = ".table tr.active td {\n    background-color:#275e94 !important
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"row justify-content-between\">\n  <div class=\"col-5\">\n    <!--<form>\n      <div class=\"form-group\">\n        <div class=\"input-group\">\n          <div class=\"input-group-addon\">\n            <i class=\"glyphicon glyphicon-search\"></i>\n          </div>\n          <input type=\"text\"\n            class=\"form-control\"\n            name=\"searchString\"\n            placeholder=\"Type to search...\"\n            [(ngModel)]=\"searchString\">\n        </div>\n      </div>\n    </form>-->\n    <table class=\"table table-striped\">\n      <thead>\n        <tr>\n          <th>#</th>\n          <th>Name</th>\n          <th>Price</th>\n          <th>Qty</th>\n          <th>Total Price</th>\n          <th>Last Modified Date</th>\n          <th></th>\n        </tr>\n      </thead>\n      <tbody>\n        <tr *ngFor=\"let item of orderItems | filter : 'name' : searchString; let i = index\"\n        (mouseover)=\"setSelectedRow(i)\"\n        (click)=\"onClickShowOrderItems(item.orderItems)\"\n          [class.active]=\"i == selectedRow\">\n          <td>{{ i+1 }}</td>\n          <td>{{ item.product.name }}</td>\n          <td>{{ item.product.price }} €</td>\n          <td\n            contenteditable=\"order.status !== 'CLOSED'\"\n            (blur)=\"onChangeOrderItemQuantity(item, $event)\">\n            {{ item.quantity }}\n          </td>\n          <td>{{ item.ttlPrice }} €</td>\n          <td>{{ item.lastModifiedDatetime }}</td>\n          <td>\n            <button *ngIf=\"order.status !== 'CLOSED'\" (click)=\"displayDeletionConfirmationModal(item.orderItems)\" class=\"btn btn-danger btn-sm\">\n              Delete</button>\n          </td>\n        </tr>\n      </tbody>\n    </table>\n  </div>\n  <div class=\"col-7\">\n      <selected-order-items-list [selectedOrderItems]=\"selectedOrderItems\"></selected-order-items-list>\n  </div>\n</div>\n"
+module.exports = "<div class=\"row justify-content-between\">\n  <div class=\"col-5\">\n    <!--<form>\n      <div class=\"form-group\">\n        <div class=\"input-group\">\n          <div class=\"input-group-addon\">\n            <i class=\"glyphicon glyphicon-search\"></i>\n          </div>\n          <input type=\"text\"\n            class=\"form-control\"\n            name=\"searchString\"\n            placeholder=\"Type to search...\"\n            [(ngModel)]=\"searchString\">\n        </div>\n      </div>\n    </form>-->\n    <table class=\"table table-striped\">\n      <thead>\n        <tr>\n          <th>#</th>\n          <th>Name</th>\n          <th>Price</th>\n          <th>Qty</th>\n          <th>Total Price</th>\n          <th>Last Modified Date</th>\n          <th></th>\n        </tr>\n      </thead>\n      <tbody>\n        <tr *ngFor=\"let item of orderItems | filter : 'name' : searchString; let i = index\"\n        (mouseover)=\"setSelectedRow(i)\"\n        (click)=\"onClickShowSelectedOrderItems(item.orderItems)\"\n          [class.active]=\"i == selectedRow\">\n          <td>{{ i+1 }}</td>\n          <td>{{ item.product.name }}</td>\n          <td>{{ item.product.price }} €</td>\n          <td\n            contenteditable=\"order.status !== 'CLOSED'\"\n            (blur)=\"onChangeOrderItemQuantity(item, $event)\">\n            {{ item.quantity }}\n          </td>\n          <td>{{ item.ttlPrice }} €</td>\n          <td>{{ item.lastModifiedDatetime }}</td>\n          <td>\n            <button *ngIf=\"order.status !== 'CLOSED'\"\n            (click)=\"onClickDeleteOrderItemButton(i, item.orderItems)\"\n            [disabled]=\"deleteOrderItemInProgressArray[i]\"\n            class=\"btn btn-danger btn-sm\">\n                <span *ngIf=\"deleteOrderItemInProgressArray[i]\" class=\"spinner-border spinner-border-sm\" role=\"status\" aria-hidden=\"true\"></span>\n              Delete</button>\n          </td>\n        </tr>\n      </tbody>\n    </table>\n  </div>\n  <div class=\"col-7\">\n    <selected-order-items-list\n      [selectedOrderItems]=\"selectedOrderItems\"\n      [order]=\"order\"\n      (onDeleteOrderItemEvent)=\"deleteSingleOrderItem($event)\"\n    ></selected-order-items-list>\n  </div>\n</div>\n"
 
 /***/ }),
 
@@ -1675,8 +1675,9 @@ var ListOrderItemComponent = /** @class */ (function () {
         this.productService = productService;
         this.modalBuilder = modalBuilder;
         this.areNewOrderItemFieldsSet = false;
-        this.selectedOrderItems = [];
+        this.selectedOrderItems = new Map();
         this.productNames = [];
+        this.deleteOrderItemInProgressArray = [];
         this.productIdMapByName = new Map();
         this.search = function (text$) {
             return text$.pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_8__["debounceTime"])(200), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_8__["distinctUntilChanged"])(), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_8__["map"])(function (term) { return term.length < 1 ? []
@@ -1687,6 +1688,12 @@ var ListOrderItemComponent = /** @class */ (function () {
         this.onDeleteOrderItemEvent = new _angular_core__WEBPACK_IMPORTED_MODULE_1__["EventEmitter"]();
     }
     ListOrderItemComponent.prototype.ngOnInit = function () {
+        this.initDeleteOrderItemButtonStatus();
+    };
+    ListOrderItemComponent.prototype.initDeleteOrderItemButtonStatus = function () {
+        for (var i = 0; i < this.deleteOrderItemInProgressArray.length; i++) {
+            this.deleteOrderItemInProgressArray.push(false);
+        }
     };
     ListOrderItemComponent.prototype.onBlurNewItemInput = function () {
         this.checkInputFieldSet();
@@ -1738,20 +1745,35 @@ var ListOrderItemComponent = /** @class */ (function () {
             modalRef.componentInstance.message = error.error;
         });
     };
+    ListOrderItemComponent.prototype.deleteSingleOrderItem = function (orderItem) {
+        var orderItems = [orderItem];
+        this.deleteOrderItem(orderItems);
+        this.selectedOrderItems.delete(orderItem.id);
+    };
     ListOrderItemComponent.prototype.deleteOrderItem = function (orderItems) {
         var _this = this;
         var ids = orderItems.map(function (item) { return item.id; });
         var req = new src_app_model_request_DeleteOrderItemsReq__WEBPACK_IMPORTED_MODULE_12__["DeleteOrderItemsReq"](this.order.id, ids);
         this.orderService.deleteOrderItems(req).subscribe(function (data) {
             _this.onDeleteOrderItemEvent.emit(ids);
-            _this.selectedOrderItems = [];
+            _this.deleteFromSelectedOrderItem(ids);
         }, function (error) {
             var modalRef = _this.modalBuilder.open(src_app_modal_info_modal_info_modal_component__WEBPACK_IMPORTED_MODULE_6__["InfoModalComponent"]);
             modalRef.componentInstance.title = "Error : Failed to delete the order items.";
             modalRef.componentInstance.message = error.error;
         });
     };
-    ListOrderItemComponent.prototype.displayDeletionConfirmationModal = function (orderItems) {
+    ListOrderItemComponent.prototype.deleteFromSelectedOrderItem = function (ids) {
+        for (var _i = 0, ids_1 = ids; _i < ids_1.length; _i++) {
+            var id = ids_1[_i];
+            this.selectedOrderItems.delete(id);
+        }
+    };
+    ListOrderItemComponent.prototype.onClickDeleteOrderItemButton = function (rowTableIndex, orderItems) {
+        this.setDeleteOrderItemButtonStatus(rowTableIndex, true);
+        this.displayDeletionConfirmationModal(rowTableIndex, orderItems);
+    };
+    ListOrderItemComponent.prototype.displayDeletionConfirmationModal = function (rowTableIndex, orderItems) {
         var _this = this;
         var modalRef = this.modalBuilder.openCenteredLargeModal(src_app_modal_delete_order_items_modal_delete_order_items_modal_component__WEBPACK_IMPORTED_MODULE_11__["DeleteOrderItemsModalComponent"]);
         modalRef.componentInstance.title = "Are you sure you want to delete the following order items ?";
@@ -1760,6 +1782,7 @@ var ListOrderItemComponent = /** @class */ (function () {
             if (response) {
                 _this.deleteOrderItem(orderItems);
             }
+            _this.setDeleteOrderItemButtonStatus(rowTableIndex, false);
         });
     };
     ListOrderItemComponent.prototype.onChangeOrderItemQuantity = function (orderItem, event) {
@@ -1773,8 +1796,16 @@ var ListOrderItemComponent = /** @class */ (function () {
     ListOrderItemComponent.prototype.setSelectedRow = function (index) {
         this.selectedRow = index;
     };
-    ListOrderItemComponent.prototype.onClickShowOrderItems = function (selectedOrderItems) {
-        this.selectedOrderItems = selectedOrderItems;
+    ListOrderItemComponent.prototype.onClickShowSelectedOrderItems = function (selectedOrderItems) {
+        var tmp = new Map();
+        for (var _i = 0, selectedOrderItems_1 = selectedOrderItems; _i < selectedOrderItems_1.length; _i++) {
+            var orderItem = selectedOrderItems_1[_i];
+            tmp.set(orderItem.id, orderItem);
+        }
+        this.selectedOrderItems = tmp;
+    };
+    ListOrderItemComponent.prototype.setDeleteOrderItemButtonStatus = function (index, isInProgress) {
+        this.deleteOrderItemInProgressArray[index] = isInProgress;
     };
     tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Input"])(),
@@ -1831,7 +1862,7 @@ module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"user-container\">\n  <table class=\"table table-striped\">\n    <thead>\n      <tr>\n        <th>#</th>\n        <th>Id</th>\n        <th>BarCode</th>\n        <th>Created Date</th>\n        <th>Last Modified Date</th>\n      </tr>\n    </thead>\n    <tbody>\n      <tr *ngFor=\"let item of selectedOrderItems; let i = index\"\n          (mouseover)=\"setSelectedRow(i)\" [class.active]=\"i == selectedRow\">\n        <td>{{ i+1 }}</td>\n        <td>{{ item.productItem.id }}</td>\n        <td>{{ item.productItem.barCode }}</td>\n        <td>{{ item.createdDatetime }}</td>\n        <td>{{ item.lastModifiedDatetime }}</td>\n      </tr>\n    </tbody>\n  </table>\n</div>"
+module.exports = "<div class=\"user-container\">\n  <table class=\"table table-striped\">\n    <thead>\n      <tr>\n        <th>#</th>\n        <th>Id</th>\n        <th>BarCode</th>\n        <th>Created Date</th>\n        <th>Last Modified Date</th>\n        <th></th>\n      </tr>\n    </thead>\n    <tbody>\n      <tr *ngFor=\"let item of selectedOrderItems.values(); let i = index\">\n        <td>{{ i+1 }}</td>\n        <td>{{ item.productItem.id }}</td>\n        <td>{{ item.productItem.barCode }}</td>\n        <td>{{ item.createdDatetime }}</td>\n        <td>{{ item.lastModifiedDatetime }}</td>\n        <td>\n          <button\n          (click)=\"onClickDeleteOrderItemButton(i, item)\"\n          [disabled]=\"deleteOrderItemInProgressArray[i]\"\n          class=\"btn btn-danger btn-sm\">\n          <span *ngIf=\"deleteOrderItemInProgressArray[i]\" class=\"spinner-border spinner-border-sm\" role=\"status\" aria-hidden=\"true\"></span>\n            Delete</button>\n        </td>\n      </tr>\n    </tbody>\n  </table>\n</div>"
 
 /***/ }),
 
@@ -1847,24 +1878,90 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "SelectedOrderItemsListComponent", function() { return SelectedOrderItemsListComponent; });
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var src_app_modal_delete_order_items_modal_delete_order_items_modal_component__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! src/app/modal/delete-order-items-modal/delete-order-items-modal.component */ "./src/app/modal/delete-order-items-modal/delete-order-items-modal.component.ts");
+/* harmony import */ var src_app_common_components_modal_builder__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! src/app/common-components/modal-builder */ "./src/app/common-components/modal-builder.ts");
+/* harmony import */ var src_app_model_AggregatedOrder__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! src/app/model/AggregatedOrder */ "./src/app/model/AggregatedOrder.ts");
+/* harmony import */ var src_app_model_request_DeleteOrderItemsReq__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! src/app/model/request/DeleteOrderItemsReq */ "./src/app/model/request/DeleteOrderItemsReq.ts");
+/* harmony import */ var src_app_service_order_service__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! src/app/service/order-service */ "./src/app/service/order-service.ts");
+/* harmony import */ var src_app_modal_info_modal_info_modal_component__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! src/app/modal/info-modal/info-modal.component */ "./src/app/modal/info-modal/info-modal.component.ts");
+
+
+
+
+
+
 
 
 var SelectedOrderItemsListComponent = /** @class */ (function () {
-    function SelectedOrderItemsListComponent() {
+    function SelectedOrderItemsListComponent(modalBuilder, orderService) {
+        this.modalBuilder = modalBuilder;
+        this.orderService = orderService;
+        this.selectedOrderItems = new Map();
+        this.onDeleteOrderItemEvent = new _angular_core__WEBPACK_IMPORTED_MODULE_1__["EventEmitter"]();
+        this.deleteOrderItemInProgressArray = [];
     }
     SelectedOrderItemsListComponent.prototype.ngOnInit = function () {
+        this.initDeleteOrderItemButtonStatus();
+    };
+    SelectedOrderItemsListComponent.prototype.initDeleteOrderItemButtonStatus = function () {
+        for (var i = 0; i < this.deleteOrderItemInProgressArray.length; i++) {
+            this.deleteOrderItemInProgressArray.push(false);
+        }
+    };
+    SelectedOrderItemsListComponent.prototype.onClickDeleteOrderItemButton = function (rowTableIndex, orderItem) {
+        this.setDeleteOrderItemButtonStatus(rowTableIndex, true);
+        this.displayDeletionConfirmationModal(rowTableIndex, orderItem);
+    };
+    SelectedOrderItemsListComponent.prototype.displayDeletionConfirmationModal = function (rowTableIndex, orderItem) {
+        var _this = this;
+        var modalRef = this.modalBuilder.openCenteredLargeModal(src_app_modal_delete_order_items_modal_delete_order_items_modal_component__WEBPACK_IMPORTED_MODULE_2__["DeleteOrderItemsModalComponent"]);
+        modalRef.componentInstance.title = "Are you sure you want to delete the following order item ?";
+        var orderItemToDelete = [];
+        orderItemToDelete.push(orderItem);
+        modalRef.componentInstance.orderItems = orderItemToDelete;
+        modalRef.result.then(function (response) {
+            if (response) {
+                _this.onDeleteOrderItemEvent.emit(orderItem);
+                //this.deleteOrderItem(orderItem);
+            }
+            _this.setDeleteOrderItemButtonStatus(rowTableIndex, false);
+        });
+    };
+    SelectedOrderItemsListComponent.prototype.deleteOrderItem = function (orderItem) {
+        var _this = this;
+        var id = [orderItem.id];
+        var req = new src_app_model_request_DeleteOrderItemsReq__WEBPACK_IMPORTED_MODULE_5__["DeleteOrderItemsReq"](this.order.id, id);
+        this.orderService.deleteOrderItems(req).subscribe(function (data) {
+            _this.selectedOrderItems.delete(orderItem.id);
+        }, function (error) {
+            var modalRef = _this.modalBuilder.open(src_app_modal_info_modal_info_modal_component__WEBPACK_IMPORTED_MODULE_7__["InfoModalComponent"]);
+            modalRef.componentInstance.title = "Error : Failed to delete the order items.";
+            modalRef.componentInstance.message = error.error;
+        });
+    };
+    SelectedOrderItemsListComponent.prototype.setDeleteOrderItemButtonStatus = function (index, isInProgress) {
+        this.deleteOrderItemInProgressArray[index] = isInProgress;
     };
     tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Input"])(),
-        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:type", Array)
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:type", Map)
     ], SelectedOrderItemsListComponent.prototype, "selectedOrderItems", void 0);
+    tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Input"])(),
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:type", src_app_model_AggregatedOrder__WEBPACK_IMPORTED_MODULE_4__["AggregatedOrder"])
+    ], SelectedOrderItemsListComponent.prototype, "order", void 0);
+    tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Output"])(),
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:type", Object)
+    ], SelectedOrderItemsListComponent.prototype, "onDeleteOrderItemEvent", void 0);
     SelectedOrderItemsListComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
             selector: 'selected-order-items-list',
             template: __webpack_require__(/*! ./selected-order-items-list.component.html */ "./src/app/order-panel/selected-order-items-list/selected-order-items-list.component.html"),
             styles: [__webpack_require__(/*! ./selected-order-items-list.component.css */ "./src/app/order-panel/selected-order-items-list/selected-order-items-list.component.css")]
         }),
-        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [])
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [src_app_common_components_modal_builder__WEBPACK_IMPORTED_MODULE_3__["ModalBuilder"],
+            src_app_service_order_service__WEBPACK_IMPORTED_MODULE_6__["OrderService"]])
     ], SelectedOrderItemsListComponent);
     return SelectedOrderItemsListComponent;
 }());

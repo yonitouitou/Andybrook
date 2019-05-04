@@ -29,7 +29,7 @@
       <tbody>
         <tr *ngFor="let item of orderItems | filter : 'name' : searchString; let i = index"
         (mouseover)="setSelectedRow(i)"
-        (click)="onClickShowOrderItems(item.orderItems)"
+        (click)="onClickShowSelectedOrderItems(item.orderItems)"
           [class.active]="i == selectedRow">
           <td>{{ i+1 }}</td>
           <td>{{ item.product.name }}</td>
@@ -42,7 +42,11 @@
           <td>{{ item.ttlPrice }} €</td>
           <td>{{ item.lastModifiedDatetime }}</td>
           <td>
-            <button *ngIf="order.status !== 'CLOSED'" (click)="displayDeletionConfirmationModal(item.orderItems)" class="btn btn-danger btn-sm">
+            <button *ngIf="order.status !== 'CLOSED'"
+            (click)="onClickDeleteOrderItemButton(i, item.orderItems)"
+            [disabled]="deleteOrderItemInProgressArray[i]"
+            class="btn btn-danger btn-sm">
+                <span *ngIf="deleteOrderItemInProgressArray[i]" class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
               Delete</button>
           </td>
         </tr>
@@ -50,6 +54,10 @@
     </table>
   </div>
   <div class="col-7">
-      <selected-order-items-list [selectedOrderItems]="selectedOrderItems"></selected-order-items-list>
+    <selected-order-items-list
+      [selectedOrderItems]="selectedOrderItems"
+      [order]="order"
+      (onDeleteOrderItemEvent)="deleteSingleOrderItem($event)"
+    ></selected-order-items-list>
   </div>
 </div>

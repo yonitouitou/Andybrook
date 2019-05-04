@@ -7,16 +7,24 @@
         <th>BarCode</th>
         <th>Created Date</th>
         <th>Last Modified Date</th>
+        <th></th>
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let item of selectedOrderItems; let i = index"
-          (mouseover)="setSelectedRow(i)" [class.active]="i == selectedRow">
+      <tr *ngFor="let item of selectedOrderItems.values(); let i = index">
         <td>{{ i+1 }}</td>
         <td>{{ item.productItem.id }}</td>
         <td>{{ item.productItem.barCode }}</td>
         <td>{{ item.createdDatetime }}</td>
         <td>{{ item.lastModifiedDatetime }}</td>
+        <td>
+          <button
+          (click)="onClickDeleteOrderItemButton(i, item)"
+          [disabled]="deleteOrderItemInProgressArray[i]"
+          class="btn btn-danger btn-sm">
+          <span *ngIf="deleteOrderItemInProgressArray[i]" class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+            Delete</button>
+        </td>
       </tr>
     </tbody>
   </table>
