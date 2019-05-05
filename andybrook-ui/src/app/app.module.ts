@@ -32,6 +32,7 @@ import { ShowOrderItemsModalComponent } from './modal/show-order-items-modal/sho
 import { SelectedOrderItemsListComponent } from './order-panel/selected-order-items-list/selected-order-items-list.component';
 import { DeleteOrderItemsModalComponent } from './modal/delete-order-items-modal/delete-order-items-modal.component';
 import { AddOrderItemModalComponent } from './modal/add-order-item-modal/add-order-item-modal.component';
+import { CookieService } from 'ngx-cookie-service';
 
 const appRoutes: Routes = [
   { path: '', component: OrdersManagerComponent },
@@ -81,7 +82,16 @@ const appRoutes: Routes = [
     SharedModule,
     RouterModule.forRoot(appRoutes)
   ],
-  providers: [OrderService, HttpService, AdminSettingService, NotificationService, ModalBuilder, CustomerService, ProductService],
+  providers: [
+    OrderService,
+    HttpService,
+    AdminSettingService,
+    NotificationService,
+    ModalBuilder,
+    CustomerService,
+    ProductService,
+    CookieService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

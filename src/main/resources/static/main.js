@@ -303,6 +303,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _order_panel_selected_order_items_list_selected_order_items_list_component__WEBPACK_IMPORTED_MODULE_32__ = __webpack_require__(/*! ./order-panel/selected-order-items-list/selected-order-items-list.component */ "./src/app/order-panel/selected-order-items-list/selected-order-items-list.component.ts");
 /* harmony import */ var _modal_delete_order_items_modal_delete_order_items_modal_component__WEBPACK_IMPORTED_MODULE_33__ = __webpack_require__(/*! ./modal/delete-order-items-modal/delete-order-items-modal.component */ "./src/app/modal/delete-order-items-modal/delete-order-items-modal.component.ts");
 /* harmony import */ var _modal_add_order_item_modal_add_order_item_modal_component__WEBPACK_IMPORTED_MODULE_34__ = __webpack_require__(/*! ./modal/add-order-item-modal/add-order-item-modal.component */ "./src/app/modal/add-order-item-modal/add-order-item-modal.component.ts");
+/* harmony import */ var ngx_cookie_service__WEBPACK_IMPORTED_MODULE_35__ = __webpack_require__(/*! ngx-cookie-service */ "./node_modules/ngx-cookie-service/index.js");
+
 
 
 
@@ -389,7 +391,16 @@ var AppModule = /** @class */ (function () {
                 _shared_module__WEBPACK_IMPORTED_MODULE_21__["SharedModule"],
                 _angular_router__WEBPACK_IMPORTED_MODULE_7__["RouterModule"].forRoot(appRoutes)
             ],
-            providers: [_service_order_service__WEBPACK_IMPORTED_MODULE_13__["OrderService"], _service_http_service__WEBPACK_IMPORTED_MODULE_14__["HttpService"], _service_admin_setting_service__WEBPACK_IMPORTED_MODULE_15__["AdminSettingService"], _service_notification_service__WEBPACK_IMPORTED_MODULE_23__["NotificationService"], _common_components_modal_builder__WEBPACK_IMPORTED_MODULE_26__["ModalBuilder"], _service_customer_service__WEBPACK_IMPORTED_MODULE_28__["CustomerService"], _service_product_service__WEBPACK_IMPORTED_MODULE_30__["ProductService"]],
+            providers: [
+                _service_order_service__WEBPACK_IMPORTED_MODULE_13__["OrderService"],
+                _service_http_service__WEBPACK_IMPORTED_MODULE_14__["HttpService"],
+                _service_admin_setting_service__WEBPACK_IMPORTED_MODULE_15__["AdminSettingService"],
+                _service_notification_service__WEBPACK_IMPORTED_MODULE_23__["NotificationService"],
+                _common_components_modal_builder__WEBPACK_IMPORTED_MODULE_26__["ModalBuilder"],
+                _service_customer_service__WEBPACK_IMPORTED_MODULE_28__["CustomerService"],
+                _service_product_service__WEBPACK_IMPORTED_MODULE_30__["ProductService"],
+                ngx_cookie_service__WEBPACK_IMPORTED_MODULE_35__["CookieService"]
+            ],
             bootstrap: [_app_component__WEBPACK_IMPORTED_MODULE_9__["AppComponent"]]
         })
     ], AppModule);
@@ -610,7 +621,7 @@ module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"modal-header\">\n    <h5 class=\"modal-title\" id=\"modal-basic-title\">Add order items</h5>\n    <button type=\"button\" class=\"close\" aria-label=\"Close\" (click)=\"onClose()\">\n      <span aria-hidden=\"true\">&times;</span>\n    </button>\n</div>\n<div class=\"modal-body\">\n  <form [formGroup]=\"addOrderItemForm\">\n    <div class=\"custom-control custom-switch\" style=\"float:right\">\n        <label class=\"custom-control-label\" for=\"Barcode Mode\">Barcode Mode</label>\n        <input type=\"checkbox\" class=\"custom-control-input\" id=\"customSwitch1\"\n          [(ngModel)]=\"barCodeMode\" [ngModelOptions]=\"{standalone: true}\">\n    </div>\n    <div *ngIf=\"barCodeMode\">\n      <div class=\"form-group\">\n          <label for=\"barCode\">BarCode</label>\n          <input type=\"text\" formControlName=\"barCode\"\n            (change)=\"onValueChange()\"\n            (blur)=\"onBlurBarCode()\"\n            class=\"form-control\"/>\n      </div>\n    </div>\n    <div *ngIf=\"! barCodeMode\">\n      <div class=\"form-group\">\n        <label for=\"Name\">Product Name</label>\n        <input type=\"text\" formControlName=\"productName\"\n          [(ngModel)]=\"inputProductName\"\n          [ngbTypeahead]=\"search\"\n          (change)=\"onProductNameChange()\"\n          (blur)=\"onBlurProductName()\"\n          class=\"form-control\"/>\n      </div>\n      <div class=\"form-group\">\n        <label for=\"quantity\">Quantity</label>\n        <input type=\"number\" formControlName=\"quantity\"\n          (change)=\"onValueChange()\"\n          class=\"form-control\"/>\n      </div>\n    </div>\n    <div *ngIf=\"productStockInfo\">\n      <table class=\"table table-striped\">\n        <thead>\n          <tr>\n            <th>Id</th>\n            <th>Name</th>\n            <th>Initial Qty</th>\n            <th>Free Qty</th>\n          </tr>\n        </thead>\n        <tbody>\n          <tr>\n            <td>{{ productStockInfo.product.id }}</td>\n            <td>{{ productStockInfo.product.name }}</td>\n            <td>{{ productStockInfo.createdQuantity }}</td>\n            <td>{{ productStockInfo.createdQuantity - productStockInfo.usedQuantity }}</td>\n          </tr>\n        </tbody>\n      </table>\n    </div>\n  </form>\n</div>\n<div class=\"modal-footer\">\n  <div class=\"container\">\n    <div class=\"row\">\n        <div class=\"col-md-auto\">\n            <ngb-alert *ngIf=\"errorMessage\" type=\"danger\" [dismissible]=\"true\" (close)=\"errorMessage = null\">{{ errorMessage }}</ngb-alert>\n        </div>\n        <div class=\"col\">\n          <button class=\"btn btn-outline-dark\" type=\"button\" [disabled]=\"isAddButtonDisabled\" (click)=\"onSubmit()\" style=\"float:right\">\n              <span *ngIf=\"addOrderItemInProgress\" class=\"spinner-border spinner-border-sm\" role=\"status\" aria-hidden=\"true\"></span>\n            Add</button>\n        </div>\n    </div>\n  </div>\n</div>"
+module.exports = "<div class=\"modal-header\">\n    <h5 class=\"modal-title\" id=\"modal-basic-title\">Add order items</h5>\n    <button type=\"button\" class=\"close\" aria-label=\"Close\" (click)=\"onClose()\">\n      <span aria-hidden=\"true\">&times;</span>\n    </button>\n</div>\n<div class=\"modal-body\">\n  <form [formGroup]=\"addOrderItemForm\">\n    <div class=\"custom-control custom-switch\" style=\"float: right\">\n      <input type=\"checkbox\" class=\"custom-control-input\" id=\"customSwitch1\" (click)=\"shouldEnableBarCodeMode($event)\" [(ngModel)]=\"barCodeMode\" [ngModelOptions]=\"{standalone: true}\">\n      <label class=\"custom-control-label\" for=\"customSwitch1\">Barcode Mode</label>\n    </div>\n    <div *ngIf=\"barCodeMode\">\n      <div class=\"form-group\">\n          <label for=\"barCode\">BarCode</label>\n          <input type=\"text\" formControlName=\"barCode\"\n            (change)=\"onValueChange()\"\n            (blur)=\"onBlurBarCode()\"\n            class=\"form-control\"/>\n      </div>\n    </div>\n    <div *ngIf=\"! barCodeMode\">\n      <div class=\"form-group\">\n        <label for=\"Name\">Product Name</label>\n        <input type=\"text\" formControlName=\"productName\"\n          [(ngModel)]=\"inputProductName\"\n          [ngbTypeahead]=\"search\"\n          (change)=\"onProductNameChange()\"\n          (blur)=\"onBlurProductName()\"\n          class=\"form-control\"/>\n      </div>\n      <div class=\"form-group\">\n        <label for=\"quantity\">Quantity</label>\n        <input type=\"number\" formControlName=\"quantity\"\n          (change)=\"onValueChange()\"\n          class=\"form-control\"/>\n      </div>\n    </div>\n    <div *ngIf=\"productStockInfo\">\n      <table class=\"table table-striped\">\n        <thead>\n          <tr>\n            <th>Id</th>\n            <th>Name</th>\n            <th>Initial Qty</th>\n            <th>Free Qty</th>\n          </tr>\n        </thead>\n        <tbody>\n          <tr>\n            <td>{{ productStockInfo.product.id }}</td>\n            <td>{{ productStockInfo.product.name }}</td>\n            <td>{{ productStockInfo.createdQuantity }}</td>\n            <td>{{ productStockInfo.createdQuantity - productStockInfo.usedQuantity }}</td>\n          </tr>\n        </tbody>\n      </table>\n    </div>\n  </form>\n</div>\n<div class=\"modal-footer\">\n  <div class=\"container\">\n    <div class=\"row\">\n        <div class=\"col-md-auto\">\n            <ngb-alert *ngIf=\"errorMessage\" type=\"danger\" [dismissible]=\"true\" (close)=\"errorMessage = null\">{{ errorMessage }}</ngb-alert>\n        </div>\n        <div class=\"col\">\n          <button class=\"btn btn-outline-dark\" type=\"button\" [disabled]=\"isAddButtonDisabled\" (click)=\"onSubmit()\" style=\"float:right\">\n              <span *ngIf=\"addOrderItemInProgress\" class=\"spinner-border spinner-border-sm\" role=\"status\" aria-hidden=\"true\"></span>\n            Add</button>\n        </div>\n    </div>\n  </div>\n</div>"
 
 /***/ }),
 
@@ -631,10 +642,14 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var src_app_model_request_AddOrderItemReq__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! src/app/model/request/AddOrderItemReq */ "./src/app/model/request/AddOrderItemReq.ts");
 /* harmony import */ var _ng_bootstrap_ng_bootstrap__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @ng-bootstrap/ng-bootstrap */ "./node_modules/@ng-bootstrap/ng-bootstrap/fesm5/ng-bootstrap.js");
 /* harmony import */ var src_app_service_product_service__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! src/app/service/product-service */ "./src/app/service/product-service.ts");
-/* harmony import */ var rxjs__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! rxjs */ "./node_modules/rxjs/_esm5/index.js");
-/* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! rxjs/operators */ "./node_modules/rxjs/_esm5/operators/index.js");
-/* harmony import */ var src_app_model_ProductStockInfo__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! src/app/model/ProductStockInfo */ "./src/app/model/ProductStockInfo.ts");
-/* harmony import */ var src_app_model_request_AddOrderItemByBarCodeReq__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! src/app/model/request/AddOrderItemByBarCodeReq */ "./src/app/model/request/AddOrderItemByBarCodeReq.ts");
+/* harmony import */ var ngx_cookie_service__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ngx-cookie-service */ "./node_modules/ngx-cookie-service/index.js");
+/* harmony import */ var rxjs__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! rxjs */ "./node_modules/rxjs/_esm5/index.js");
+/* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! rxjs/operators */ "./node_modules/rxjs/_esm5/operators/index.js");
+/* harmony import */ var src_app_model_ProductStockInfo__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! src/app/model/ProductStockInfo */ "./src/app/model/ProductStockInfo.ts");
+/* harmony import */ var src_app_model_request_AddOrderItemByBarCodeReq__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! src/app/model/request/AddOrderItemByBarCodeReq */ "./src/app/model/request/AddOrderItemByBarCodeReq.ts");
+/* harmony import */ var src_app_util_TypeUtil__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! src/app/util/TypeUtil */ "./src/app/util/TypeUtil.ts");
+
+
 
 
 
@@ -647,26 +662,28 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var AddOrderItemModalComponent = /** @class */ (function () {
-    function AddOrderItemModalComponent(formBuilder, modal, productService, orderService) {
+    function AddOrderItemModalComponent(formBuilder, modal, cookieService, productService, orderService) {
         var _this = this;
         this.formBuilder = formBuilder;
         this.modal = modal;
+        this.cookieService = cookieService;
         this.productService = productService;
         this.orderService = orderService;
         this.productNames = [];
         this.productIdMapByName = new Map();
-        this._error = new rxjs__WEBPACK_IMPORTED_MODULE_7__["Subject"]();
+        this._error = new rxjs__WEBPACK_IMPORTED_MODULE_8__["Subject"]();
         this.search = function (text$) {
-            return text$.pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_8__["debounceTime"])(200), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_8__["distinctUntilChanged"])(), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_8__["map"])(function (term) { return term.length < 1 ? []
+            return text$.pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_9__["debounceTime"])(200), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_9__["distinctUntilChanged"])(), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_9__["map"])(function (term) { return term.length < 1 ? []
                 : _this.productNames.filter(function (v) { return v.toLowerCase().indexOf(term.toLowerCase()) > -1; }).slice(0, 10); }));
         };
     }
     AddOrderItemModalComponent.prototype.ngOnInit = function () {
         var _this = this;
+        this.initBarCodeMode();
         this.initForm();
         this.getAllCustomers();
         this._error.subscribe(function (msg) { return _this.errorMessage = msg; });
-        this._error.pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_8__["debounceTime"])(4000)).subscribe(function () { return _this.errorMessage = null; });
+        this._error.pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_9__["debounceTime"])(4000)).subscribe(function () { return _this.errorMessage = null; });
     };
     AddOrderItemModalComponent.prototype.onProductNameChange = function () {
         this.onValueChange();
@@ -676,7 +693,6 @@ var AddOrderItemModalComponent = /** @class */ (function () {
         this.errorMessage = null;
     };
     AddOrderItemModalComponent.prototype.initForm = function () {
-        this.barCodeMode = true;
         if (this.barCodeMode) {
             this.disableAddButton(false);
         }
@@ -686,6 +702,12 @@ var AddOrderItemModalComponent = /** @class */ (function () {
             productId: [''],
             quantity: ['', _angular_forms__WEBPACK_IMPORTED_MODULE_2__["Validators"].min(1)]
         });
+    };
+    AddOrderItemModalComponent.prototype.initBarCodeMode = function () {
+        this.barCodeMode = this.cookieService.check("barCodeMode") ? src_app_util_TypeUtil__WEBPACK_IMPORTED_MODULE_12__["TypeUtil"].toBoolean(this.cookieService.get("barCodeMode")) : true;
+    };
+    AddOrderItemModalComponent.prototype.shouldEnableBarCodeMode = function (event) {
+        this.cookieService.set("barCodeMode", String(event.currentTarget.checked));
     };
     AddOrderItemModalComponent.prototype.getAllCustomers = function () {
         var _this = this;
@@ -703,7 +725,7 @@ var AddOrderItemModalComponent = /** @class */ (function () {
         var productName = this.addOrderItemForm.get("productName").value;
         var productId = this.productIdMapByName.get(productName);
         this.productService.getProductStockInfo(productId).subscribe(function (data) {
-            _this.productStockInfo = src_app_model_ProductStockInfo__WEBPACK_IMPORTED_MODULE_9__["ProductStockInfo"].fromJson(data);
+            _this.productStockInfo = src_app_model_ProductStockInfo__WEBPACK_IMPORTED_MODULE_10__["ProductStockInfo"].fromJson(data);
         }, function (error) {
             _this.changeErrorMessage(error.error);
             _this.productStockInfo = null;
@@ -713,7 +735,7 @@ var AddOrderItemModalComponent = /** @class */ (function () {
         var _this = this;
         var barCode = this.addOrderItemForm.get("barCode").value;
         this.productService.getProductStockInfoByBarCode(barCode).subscribe(function (data) {
-            _this.productStockInfo = src_app_model_ProductStockInfo__WEBPACK_IMPORTED_MODULE_9__["ProductStockInfo"].fromJson(data);
+            _this.productStockInfo = src_app_model_ProductStockInfo__WEBPACK_IMPORTED_MODULE_10__["ProductStockInfo"].fromJson(data);
             _this.disableAddButton(false);
         }, function (error) {
             _this.disableAddButton(true);
@@ -737,7 +759,7 @@ var AddOrderItemModalComponent = /** @class */ (function () {
         }
         else {
             this.addInProgress(true);
-            var request = new src_app_model_request_AddOrderItemByBarCodeReq__WEBPACK_IMPORTED_MODULE_10__["AddOrderItemByBarCodeReq"](this.orderId, barCode);
+            var request = new src_app_model_request_AddOrderItemByBarCodeReq__WEBPACK_IMPORTED_MODULE_11__["AddOrderItemByBarCodeReq"](this.orderId, barCode);
             this.orderService.addOrderItemByBarCode(request).subscribe(function (data) {
                 console.log(data);
                 _this.modal.close(true);
@@ -799,6 +821,7 @@ var AddOrderItemModalComponent = /** @class */ (function () {
         }),
         tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormBuilder"],
             _ng_bootstrap_ng_bootstrap__WEBPACK_IMPORTED_MODULE_5__["NgbActiveModal"],
+            ngx_cookie_service__WEBPACK_IMPORTED_MODULE_7__["CookieService"],
             src_app_service_product_service__WEBPACK_IMPORTED_MODULE_6__["ProductService"],
             src_app_service_order_service__WEBPACK_IMPORTED_MODULE_3__["OrderService"]])
     ], AddOrderItemModalComponent);
@@ -2723,6 +2746,29 @@ var SharedModule = /** @class */ (function () {
         })
     ], SharedModule);
     return SharedModule;
+}());
+
+
+
+/***/ }),
+
+/***/ "./src/app/util/TypeUtil.ts":
+/*!**********************************!*\
+  !*** ./src/app/util/TypeUtil.ts ***!
+  \**********************************/
+/*! exports provided: TypeUtil */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "TypeUtil", function() { return TypeUtil; });
+var TypeUtil = /** @class */ (function () {
+    function TypeUtil() {
+    }
+    TypeUtil.toBoolean = function (str) {
+        return str.toLowerCase() == 'true';
+    };
+    return TypeUtil;
 }());
 
 

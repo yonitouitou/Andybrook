@@ -4,10 +4,12 @@ import { OrderService } from 'src/app/service/order-service';
 import { AddOrderItemReq } from 'src/app/model/request/AddOrderItemReq';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { ProductService } from 'src/app/service/product-service';
+import { CookieService } from 'ngx-cookie-service';
 import { Observable, Subject } from 'rxjs';
 import { debounceTime, distinctUntilChanged, map } from 'rxjs/operators';
 import { ProductStockInfo } from 'src/app/model/ProductStockInfo';
 import { AddOrderItemByBarCodeReq } from 'src/app/model/request/AddOrderItemByBarCodeReq';
+import { TypeUtil } from 'src/app/util/TypeUtil';
 
 @Component({
   selector: 'add-order-item-modal',
@@ -31,10 +33,12 @@ export class AddOrderItemModalComponent implements OnInit {
 
   constructor(private formBuilder: FormBuilder,
               private modal: NgbActiveModal,
+              private cookieService: CookieService,
               private productService: ProductService,
               private orderService: OrderService) {}
 
   ngOnInit() {
+    this.initBarCodeMode();
     this.initForm();
     this.getAllCustomers();
     this._error.subscribe((msg) => this.errorMessage = msg)
@@ -59,7 +63,6 @@ export class AddOrderItemModalComponent implements OnInit {
   }
 
   initForm() {
-    this.barCodeMode = true;
     if (this.barCodeMode) {
       this.disableAddButton(false);
     }
@@ -69,6 +72,14 @@ export class AddOrderItemModalComponent implements OnInit {
       productId: [''],
       quantity: ['', Validators.min(1)]
     });
+  }
+
+  private initBarCodeMode() {
+    this.barCodeMode = this.cookieService.check("barCodeMode") ? TypeUtil.toBoolean(this.cookieService.get("barCodeMode")) : true;
+  }
+
+  private shouldEnableBarCodeMode(event) {
+      this.cookieService.set("barCodeMode", String(event.currentTarget.checked));
   }
 
   getAllCustomers() {

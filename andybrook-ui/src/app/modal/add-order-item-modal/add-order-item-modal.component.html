@@ -6,10 +6,9 @@
 </div>
 <div class="modal-body">
   <form [formGroup]="addOrderItemForm">
-    <div class="custom-control custom-switch" style="float:right">
-        <label class="custom-control-label" for="Barcode Mode">Barcode Mode</label>
-        <input type="checkbox" class="custom-control-input" id="customSwitch1"
-          [(ngModel)]="barCodeMode" [ngModelOptions]="{standalone: true}">
+    <div class="custom-control custom-switch" style="float: right">
+      <input type="checkbox" class="custom-control-input" id="customSwitch1" (click)="shouldEnableBarCodeMode($event)" [(ngModel)]="barCodeMode" [ngModelOptions]="{standalone: true}">
+      <label class="custom-control-label" for="customSwitch1">Barcode Mode</label>
     </div>
     <div *ngIf="barCodeMode">
       <div class="form-group">
