@@ -13,11 +13,15 @@ public interface IStockService {
 
     ProductItem getProductItem(long productItemId);
 
+    ProductItem getProductItemByBarCode(String barCodeId);
+
     void onProductItemLinked(ProductItem productItem);
 
     void onProductItemUnlinked(ProductItem productItem);
 
     ProductStockInfo getProductStockInfo(long productId);
+
+    ProductStockInfo getProductStockInfoByBarCodeId(String barCodeId);
 
     int getFreeQuantity(long productId);
 

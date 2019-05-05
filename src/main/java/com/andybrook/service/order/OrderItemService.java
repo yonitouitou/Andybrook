@@ -2,6 +2,7 @@ package com.andybrook.service.order;
 
 import com.andybrook.dao.stock.IOrderItemDao;
 import com.andybrook.exception.InsufficientQuantityException;
+import com.andybrook.exception.ProductItemNotFree;
 import com.andybrook.model.BarCode;
 import com.andybrook.model.order.Order;
 import com.andybrook.model.order.OrderItem;
@@ -41,7 +42,7 @@ public class OrderItemService implements IOrderItemService {
                     ProductItem productItem = productItemOpt.get();
                     OrderItem orderItem = buildOrderItem(productItem);
                     persist(order, orderItem);
-                    productItem.setOrderItemIdOpt(OptionalLong.of(orderItem.getId()));
+                    productItem.markAsUsed(orderItem.getId());
                     orderItems.add(orderItem);
                     stockService.onProductItemLinked(productItem);
                 } else {
@@ -56,12 +57,11 @@ public class OrderItemService implements IOrderItemService {
 
     @Override
     public OrderItem createSingleItemByBarCode(BarCode barCode) {
-        /*ProductItem productItem = stockService.getProductItemByBarCode(barCode);
+        ProductItem productItem = stockService.getProductItemByBarCode(barCode.getId());
         if (productItem.isInOrder()) {
             throw new ProductItemNotFree(productItem.getId());
         }
-        return buildOrderItem(productItem);*/
-        return null;
+        return buildOrderItem(productItem);
     }
 
     @Override

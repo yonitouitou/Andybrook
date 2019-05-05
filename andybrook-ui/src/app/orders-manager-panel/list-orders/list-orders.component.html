@@ -1,4 +1,4 @@
-<div class="col-md-20 user-container">
+<div class="table-responsive">
     <table class="table table-striped">
         <thead>
             <tr>
@@ -47,16 +47,16 @@
             </tr>
         </tbody>
     </table>
-    <div class="row justify-content-between">
-        <div class="col-4">
-            <ngb-pagination [collectionSize]="collectionSize" [(page)]="page" [pageSize]="pageSize"></ngb-pagination>
-        </div>
-        <div class="col-2">
-            <select class="custom-select" [(ngModel)]="pageSize">
-                <option [ngValue]="5">5 items per page</option>
-                <option [ngValue]="10">10 items per page</option>
-                <option [ngValue]="20">20 items per page</option>
-            </select>
-        </div>
+</div>
+<div class="row justify-content-between">
+    <div class="col-4">
+        <ngb-pagination [collectionSize]="collectionSize" [(page)]="page" [pageSize]="pageSize"></ngb-pagination>
+    </div>
+    <div class="col-2">
+        <select class="custom-select" [(ngModel)]="pageSize">
+            <option [ngValue]="5">5 items per page</option>
+            <option [ngValue]="10">10 items per page</option>
+            <option [ngValue]="20">20 items per page</option>
+        </select>
     </div>
 </div>

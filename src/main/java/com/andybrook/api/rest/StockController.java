@@ -28,6 +28,12 @@ public class StockController extends AbstractController {
         return stockManager.getProductStockInfo(productId);
     }
 
+    @GetMapping(path = "/productStockInfoByBarCode/{barCode}")
+    public ProductStockInfo getProductStockInfo(@PathVariable String barCode) {
+        LOGGER.log(Level.INFO, "Get product stock info for barCode : " + barCode);
+        return stockManager.getProductStockInfoByBarCodeId(barCode);
+    }
+
     @GetMapping(path = "/getAllExistingProductNames")
     public List<Pair<Long, String>> getAllProductNames() {
         LOGGER.log(Level.INFO, "Get all products name with quantity > 0");

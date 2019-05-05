@@ -5,7 +5,18 @@
     white-space: nowrap;
   }
 
-.table tr td {
+.table table-striped tr td {
   padding: 1.5%;
+}
+
+/* Scroll Bar Aggregated Order Item table */
+.my-custom-scrollbar {
+  position: relative;
+  max-height: 450px;
+  overflow: auto;
+}
+
+.table-wrapper-scroll-y {
+  display: block;
 }
 

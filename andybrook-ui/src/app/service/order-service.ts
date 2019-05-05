@@ -6,6 +6,7 @@ import { Observable } from 'rxjs';
 import { AddOrderItemReq } from '../model/request/AddOrderItemReq';
 import { OrderItem } from '../model/OrderItem';
 import { DeleteOrderItemsReq } from '../model/request/DeleteOrderItemsReq';
+import { AddOrderItemByBarCodeReq } from '../model/request/AddOrderItemByBarCodeReq';
 
 @Injectable()
 export class OrderService {
@@ -22,18 +23,23 @@ export class OrderService {
     }
 
     getOrder(id: number): Observable<any> {
-        console.log("Get report " + id)
-        return this.httpApi.get("/v1/order/get/" + id)
+        console.log("Get order by id " + id);
+        return this.httpApi.get("/v1/order/get/" + id);
     }
 
     getOrderByName(name: string): Observable<any> {
-        console.log("Get report by name : " + name)
-        return this.httpApi.get("/v1/order/searchByName/" + name)
+        console.log("Get order by name : " + name);
+        return this.httpApi.get("/v1/order/searchByName/" + name);
     }
 
     addOrderItem(req: AddOrderItemReq) : Observable<any> {
-        console.log("Add item[ " + ", " + req.requestedQty + " to order " + req.orderId)
-        return this.httpApi.post("/v1/order/addOrderItemByInfo", req)
+        console.log("Add order item[ " + ", " + req.requestedQty + " to order " + req.orderId);
+        return this.httpApi.post("/v1/order/addOrderItemByInfo", req);
+    }
+
+    addOrderItemByBarCode(req: AddOrderItemByBarCodeReq) : Observable<any> {
+        console.log("Add order item by barCode to order " + req.orderId + " : " + req.barCode);
+        return this.httpApi.post("/v1/order/addSingleOrderItemsByBarCode", req);
     }
 
     updateStockItem(order: Order, itemToUpdate: OrderItem): Observable<any> {

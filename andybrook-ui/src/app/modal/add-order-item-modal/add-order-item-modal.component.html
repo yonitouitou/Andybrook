@@ -3,57 +3,73 @@
     <button type="button" class="close" aria-label="Close" (click)="onClose()">
       <span aria-hidden="true">&times;</span>
     </button>
-  </div>
-  <div class="modal-body">
-    <form [formGroup]="addOrderItemForm" (ngSubmit)="onSubmit()">
-      <div class="modal-body">
-        <div class="form-group">
-          <label for="Name">Product Name</label>
-          <input type="text" formControlName="productName"
-            [(ngModel)]="inputProductName"
-            [ngbTypeahead]="search"
-            (change)="onProductNameChange()"
-            (blur)="onBlurProductName()"
-            class="form-control"/>
-        </div>
-        <div class="form-group">
-          <label for="quantity">Quantity</label>
-          <input type="number" formControlName="quantity"
+</div>
+<div class="modal-body">
+  <form [formGroup]="addOrderItemForm">
+    <div class="custom-control custom-switch" style="float:right">
+        <label class="custom-control-label" for="Barcode Mode">Barcode Mode</label>
+        <input type="checkbox" class="custom-control-input" id="customSwitch1"
+          [(ngModel)]="barCodeMode" [ngModelOptions]="{standalone: true}">
+    </div>
+    <div *ngIf="barCodeMode">
+      <div class="form-group">
+          <label for="barCode">BarCode</label>
+          <input type="text" formControlName="barCode"
             (change)="onValueChange()"
+            (blur)="onBlurBarCode()"
             class="form-control"/>
-        </div>
-        <div *ngIf="productStockInfo">
-          <table class="table table-striped">
-            <thead>
-              <tr>
-                <th>Id</th>
-                <th>Name</th>
-                <th>Initial Qty</th>
-                <th>Free Qty</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>{{ productStockInfo.product.id }}</td>
-                <td>{{ productStockInfo.product.name }}</td>
-                <td>{{ productStockInfo.createdQuantity }}</td>
-                <td>{{ productStockInfo.createdQuantity - productStockInfo.usedQuantity }}</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-      </div>
-    </form>
-  </div>
-  <div class="modal-footer">
-    <div class="container">
-      <div class="row">
-          <div class="col-md-auto">
-              <ngb-alert *ngIf="errorMessage" type="danger" [dismissible]="true" (close)="errorMessage = null">{{ errorMessage }}</ngb-alert>
-          </div>
-          <div class="col">
-            <button class="btn btn-outline-dark" (click)="onSubmit()" style="float:right">Add</button>
-          </div>
       </div>
     </div>
+    <div *ngIf="! barCodeMode">
+      <div class="form-group">
+        <label for="Name">Product Name</label>
+        <input type="text" formControlName="productName"
+          [(ngModel)]="inputProductName"
+          [ngbTypeahead]="search"
+          (change)="onProductNameChange()"
+          (blur)="onBlurProductName()"
+          class="form-control"/>
+      </div>
+      <div class="form-group">
+        <label for="quantity">Quantity</label>
+        <input type="number" formControlName="quantity"
+          (change)="onValueChange()"
+          class="form-control"/>
+      </div>
+    </div>
+    <div *ngIf="productStockInfo">
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th>Id</th>
+            <th>Name</th>
+            <th>Initial Qty</th>
+            <th>Free Qty</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>{{ productStockInfo.product.id }}</td>
+            <td>{{ productStockInfo.product.name }}</td>
+            <td>{{ productStockInfo.createdQuantity }}</td>
+            <td>{{ productStockInfo.createdQuantity - productStockInfo.usedQuantity }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </form>
+</div>
+<div class="modal-footer">
+  <div class="container">
+    <div class="row">
+        <div class="col-md-auto">
+            <ngb-alert *ngIf="errorMessage" type="danger" [dismissible]="true" (close)="errorMessage = null">{{ errorMessage }}</ngb-alert>
+        </div>
+        <div class="col">
+          <button class="btn btn-outline-dark" type="button" [disabled]="isAddButtonDisabled" (click)="onSubmit()" style="float:right">
+              <span *ngIf="addOrderItemInProgress" class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+            Add</button>
+        </div>
+    </div>
   </div>
+</div>

@@ -9,5 +9,7 @@ public interface IStockManager {
 
     ProductStockInfo getProductStockInfo(long productId);
 
+    ProductStockInfo getProductStockInfoByBarCodeId(String barCodeId);
+
     List<Pair<Long, String>> getAllProductNamesWithQuantityMoreThan(int quantity);
 }

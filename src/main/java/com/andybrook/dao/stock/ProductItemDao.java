@@ -53,6 +53,16 @@ public class ProductItemDao implements IProductItemDao {
     }
 
     @Override
+    public Optional<ProductItem> findByBarCodeId(String barCodeId) {
+        Optional<ProductItem> productItemOpt = Optional.empty();
+        ProductItemEntity entity = repository.findByBarCodeId(barCodeId);
+        if (entity != null) {
+            productItemOpt = Optional.of(entityFactory.createProductItem(entity));
+        }
+        return productItemOpt;
+    }
+
+    @Override
     public Optional<ProductItem> findFreeProductItemOf(long productId) {
         Optional<ProductItem> productItemOpt = Optional.empty();
         ProductItemEntity entity = repository.getFreeProductItemOf(productId);

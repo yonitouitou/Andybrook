@@ -2,20 +2,20 @@ package com.andybrook.api.rest.ctx;
 
 public class OrderItemAddByBarCodeRestRequest extends OrderItemRestRequest {
 
-    private final String barCodeId;
+    private String barCode;
 
-    public OrderItemAddByBarCodeRestRequest(String barCodeId) {
-        this.barCodeId = barCodeId;
+    public void setBarCode(String barCode) {
+        this.barCode = barCode;
     }
 
-    public String getBarCodeId() {
-        return barCodeId;
+    public String getBarCode() {
+        return barCode;
     }
 
     @Override
     public String toString() {
         return "OrderItemAddByBarCodeRestRequest{" +
-                "barCodeId='" + barCodeId + '\'' +
+                "barCode='" + barCode + '\'' +
                 '}';
     }
 }

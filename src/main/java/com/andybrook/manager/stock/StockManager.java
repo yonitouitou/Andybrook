@@ -20,6 +20,11 @@ public class StockManager implements IStockManager {
     }
 
     @Override
+    public ProductStockInfo getProductStockInfoByBarCodeId(String barCodeId) {
+        return stockService.getProductStockInfoByBarCodeId(barCodeId);
+    }
+
+    @Override
     public List<Pair<Long, String>> getAllProductNamesWithQuantityMoreThan(int quantity) {
         return stockService.getAllProductNamesWithQuantityMoreThan(quantity);
     }

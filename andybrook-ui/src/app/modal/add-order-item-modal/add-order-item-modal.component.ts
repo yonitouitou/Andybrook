@@ -7,6 +7,7 @@ import { ProductService } from 'src/app/service/product-service';
 import { Observable, Subject } from 'rxjs';
 import { debounceTime, distinctUntilChanged, map } from 'rxjs/operators';
 import { ProductStockInfo } from 'src/app/model/ProductStockInfo';
+import { AddOrderItemByBarCodeReq } from 'src/app/model/request/AddOrderItemByBarCodeReq';
 
 @Component({
   selector: 'add-order-item-modal',
@@ -18,6 +19,9 @@ export class AddOrderItemModalComponent implements OnInit {
   @Input() orderId: number
 
   addOrderItemForm: FormGroup
+  addOrderItemInProgress: boolean
+  isAddButtonDisabled: boolean
+  barCodeMode: boolean
   productNames: string[] = []
   productIdMapByName: Map<string, number> = new Map()
   inputProductName: string
@@ -55,7 +59,12 @@ export class AddOrderItemModalComponent implements OnInit {
   }
 
   initForm() {
+    this.barCodeMode = true;
+    if (this.barCodeMode) {
+      this.disableAddButton(false);
+    }
     this.addOrderItemForm = this.formBuilder.group({
+      barCode: [''],
       productName: [''],
       productId: [''],
       quantity: ['', Validators.min(1)]
@@ -82,20 +91,66 @@ export class AddOrderItemModalComponent implements OnInit {
         this.productStockInfo = ProductStockInfo.fromJson(data);
       },
       error => {
+        this.changeErrorMessage(error.error);
         this.productStockInfo = null;
       }
     ) 
   }
+
+  onBlurBarCode() {
+    let barCode = this.addOrderItemForm.get("barCode").value;
+    this.productService.getProductStockInfoByBarCode(barCode).subscribe(
+      data => {
+        this.productStockInfo = ProductStockInfo.fromJson(data);
+        this.disableAddButton(false);
+      },
+      error => {
+        this.disableAddButton(true);
+        this.changeErrorMessage(error.error);
+        this.productStockInfo = null;
+      }
+    )
+  }
+
   onSubmit() {
+    if (this.barCodeMode) {
+      this.onSubmitBarCodeMode();
+    } else {
+      this.onSubmitNoBarCodeMode();
+    }
+  }
+  
+  private onSubmitBarCodeMode() {
+    let barCode = this.addOrderItemForm.get("barCode").value;
+    if (barCode == null || barCode.length == 0) {
+      this.changeErrorMessage("Please enter a barcode.")
+    } else {
+      this.addInProgress(true);
+      let request = new AddOrderItemByBarCodeReq(this.orderId, barCode);
+      this.orderService.addOrderItemByBarCode(request).subscribe(
+        data => {
+          console.log(data);
+          this.modal.close(true);
+        },
+        error => {
+          this.changeErrorMessage(error.error);
+          this.addInProgress(false);
+        });
+      this.errorMessage = null;
+    }
+  }
+
+  private onSubmitNoBarCodeMode() {
     let productName = this.addOrderItemForm.get("productName").value;
     let productId = this.productIdMapByName.get(productName);
     const qty = this.addOrderItemForm.get("quantity").value;
     if (this.productStockInfo === null) {
-      this.errorMessage = 'Please select a product from the auto-complete list.';
+      this.changeErrorMessage('Please select a product from the auto-complete list.');
     } else if (! this.isValidQuantity(qty)) {
-      this.errorMessage = 'Please choose a quantity between 1 to ' + this.productStockInfo.getFreeQuantity();
+      this.changeErrorMessage('Please choose a quantity between 1 to ' + this.productStockInfo.getFreeQuantity());
     } else {
-      let request = new AddOrderItemReq(this.orderId, productId, null, qty);
+      this.addInProgress(true);
+      let request = new AddOrderItemReq(this.orderId, productId, qty);
       this.orderService.addOrderItem(request).subscribe(
         data => {
           console.log(data);
@@ -103,9 +158,14 @@ export class AddOrderItemModalComponent implements OnInit {
         },
         error => {
           this.changeErrorMessage(error.error);
+          this.addInProgress(false);
         });
       this.errorMessage = null;
     }
+  }
+
+  private addInProgress(isInProgress: boolean) {
+    this.addOrderItemInProgress = isInProgress;
   }
 
   private changeErrorMessage(errorMessage: string) {
@@ -114,6 +174,10 @@ export class AddOrderItemModalComponent implements OnInit {
 
   private isValidQuantity(qty: number): boolean {
     return qty > 0 && qty <= this.productStockInfo.getFreeQuantity();
+  }
+
+  private disableAddButton(disabled: boolean) {
+    this.isAddButtonDisabled = disabled;
   }
   
 

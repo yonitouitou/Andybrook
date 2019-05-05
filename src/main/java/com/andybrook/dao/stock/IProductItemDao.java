@@ -14,5 +14,7 @@ public interface IProductItemDao {
 
     Optional<ProductItem> find(long id);
 
+    Optional<ProductItem> findByBarCodeId(String barCodeId);
+
     Optional<ProductItem> findFreeProductItemOf(long productId);
 }

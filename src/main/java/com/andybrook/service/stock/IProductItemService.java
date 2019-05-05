@@ -10,6 +10,8 @@ interface IProductItemService {
 
     ProductItem get(long productItemId);
 
+    ProductItem getByBarCodeId(String barCodeId);
+
     int getProductItemSize(long productId);
 
     void update(ProductItem productItem);

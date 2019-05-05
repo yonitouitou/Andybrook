@@ -13,15 +13,15 @@ export class ProductService {
         return this.http.get("/v1/productItem/get/" + id)
     }
 
-    getByBarCode(barCode: string): Observable<Product> {
-        return this.http.get("/v1/productItem/getByBarCode/" + barCode);
-    }
-
     getAllProductNames(): Observable<any> {
         return this.http.get("/v1/stock/getAllExistingProductNames")
     }
 
     getProductStockInfo(productId: number): Observable<any> {
         return this.http.get("/v1/stock/productStockInfo/" + productId);
+    }
+
+    getProductStockInfoByBarCode(barCode: string): Observable<Product> {
+        return this.http.get("/v1/stock/productStockInfoByBarCode/" + barCode);
     }
 }

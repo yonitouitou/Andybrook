@@ -63,64 +63,10 @@ export class ListOrderItemComponent implements OnInit {
     }
   }
 
-  onBlurNewItemInput() {
-    this.checkInputFieldSet()
-  }
-
-  onBlurBarCode() {
-    this.productService.getByBarCode(this.inputBarCode.trim()).subscribe(
-      data => {
-        const product = Product.fromJson(data);
-        this.inputId = product.id;
-        this.inputName = product.name;
-        this.inputQuantity = 1;
-        this.createNewOrderItem()
-      },
-      error => {
-        const modalRef = this.modalBuilder.open(InfoModalComponent)
-        modalRef.componentInstance.title = "Error : Product not added to order " + this.order.name
-        modalRef.componentInstance.message = error.error
-      }
-    )
-  }
-
-  onBlurInputName() {
-    const id = this.productIdMapByName.get(this.inputName.trim())
-    if (id != null) {
-      this.productService.get(id).subscribe(
-        data => {
-          this.inputId = data.id
-          this.inputPrice = data.price
-          this.inputQuantity = 1
-        },
-        error => {
-          const modalRef = this.modalBuilder.open(InfoModalComponent)
-          modalRef.componentInstance.title = "Error : Product " + this.inputName + " not found"
-          modalRef.componentInstance.message = error.error
-        }
-      )
-    }
-    this.checkInputFieldSet();
-  }
-
   checkInputFieldSet() {
     this.areNewOrderItemFieldsSet = this.inputName.trim().length > 0
                                       && this.inputQuantity > 0
                                       && this.inputPrice > 0
-  }
-
-  createNewOrderItem() {
-    var req = new AddOrderItemReq(this.order.id, this.inputId, this.inputBarCode, this.inputQuantity);
-    this.orderService.addOrderItem(req).subscribe(
-      data => {
-          let orderItem = OrderItem.fromJson(data);
-          this.onCreateOrderItemEvent.emit(orderItem)
-      },
-      error => {
-        const modalRef = this.modalBuilder.open(InfoModalComponent)
-        modalRef.componentInstance.title = "Error : Product item " + this.inputName + " not added to order " + this.order.name
-        modalRef.componentInstance.message = error.error
-      })
   }
 
   deleteSingleOrderItem(orderItem: OrderItem) {

@@ -81,7 +81,7 @@ public class OrderController extends AbstractController {
     @PostMapping(path = "/addSingleOrderItemsByBarCode")
     public OrderItem addOrderItems(@RequestBody OrderItemAddByBarCodeRestRequest request) {
         LOGGER.log(Level.INFO, "Request received to updateProductItem order : " + request);
-        return orderManager.addOrderItemByBarCode(new OrderItemAddRequestByBarCode(request.getOrderId(), request.getBarCodeId()));
+        return orderManager.addOrderItemByBarCode(new OrderItemAddRequestByBarCode(request.getOrderId(), request.getBarCode()));
     }
 
     @DeleteMapping(path = "/deleteOrderItem/{orderId}/{orderItemId}")

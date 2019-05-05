@@ -36,4 +36,15 @@ public interface IProductItemCrudRepository extends CrudRepository<ProductItemEn
 
     @Query(value = COUNT_BY_PRODUCT_ID_QUERY, nativeQuery = true)
     int countByProductId(@Param("productId") long productId);
+
+    String SELECT_BY_BAR_CODE_ID_QUERY =
+            "SELECT " +
+                    "* " +
+            "FROM " +
+                    TABLE_NAME +
+            " WHERE " +
+                    COLUMN_BAR_CODE + " = :barCodeId";
+
+    @Query(value = SELECT_BY_BAR_CODE_ID_QUERY, nativeQuery = true)
+    ProductItemEntity findByBarCodeId(@Param("barCodeId") String barCodeId);
 }

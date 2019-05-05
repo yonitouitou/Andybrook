@@ -610,7 +610,7 @@ module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"modal-header\">\n    <h5 class=\"modal-title\" id=\"modal-basic-title\">Add order items</h5>\n    <button type=\"button\" class=\"close\" aria-label=\"Close\" (click)=\"onClose()\">\n      <span aria-hidden=\"true\">&times;</span>\n    </button>\n  </div>\n  <div class=\"modal-body\">\n    <form [formGroup]=\"addOrderItemForm\" (ngSubmit)=\"onSubmit()\">\n      <div class=\"modal-body\">\n        <div class=\"form-group\">\n          <label for=\"Name\">Product Name</label>\n          <input type=\"text\" formControlName=\"productName\"\n            [(ngModel)]=\"inputProductName\"\n            [ngbTypeahead]=\"search\"\n            (change)=\"onProductNameChange()\"\n            (blur)=\"onBlurProductName()\"\n            class=\"form-control\"/>\n        </div>\n        <div class=\"form-group\">\n          <label for=\"quantity\">Quantity</label>\n          <input type=\"number\" formControlName=\"quantity\"\n            (change)=\"onValueChange()\"\n            class=\"form-control\"/>\n        </div>\n        <div *ngIf=\"productStockInfo\">\n          <table class=\"table table-striped\">\n            <thead>\n              <tr>\n                <th>Id</th>\n                <th>Name</th>\n                <th>Initial Qty</th>\n                <th>Free Qty</th>\n              </tr>\n            </thead>\n            <tbody>\n              <tr>\n                <td>{{ productStockInfo.product.id }}</td>\n                <td>{{ productStockInfo.product.name }}</td>\n                <td>{{ productStockInfo.createdQuantity }}</td>\n                <td>{{ productStockInfo.createdQuantity - productStockInfo.usedQuantity }}</td>\n              </tr>\n            </tbody>\n          </table>\n        </div>\n      </div>\n    </form>\n  </div>\n  <div class=\"modal-footer\">\n    <div class=\"container\">\n      <div class=\"row\">\n          <div class=\"col-md-auto\">\n              <ngb-alert *ngIf=\"errorMessage\" type=\"danger\" [dismissible]=\"true\" (close)=\"errorMessage = null\">{{ errorMessage }}</ngb-alert>\n          </div>\n          <div class=\"col\">\n            <button class=\"btn btn-outline-dark\" (click)=\"onSubmit()\" style=\"float:right\">Add</button>\n          </div>\n      </div>\n    </div>\n  </div>"
+module.exports = "<div class=\"modal-header\">\n    <h5 class=\"modal-title\" id=\"modal-basic-title\">Add order items</h5>\n    <button type=\"button\" class=\"close\" aria-label=\"Close\" (click)=\"onClose()\">\n      <span aria-hidden=\"true\">&times;</span>\n    </button>\n</div>\n<div class=\"modal-body\">\n  <form [formGroup]=\"addOrderItemForm\">\n    <div class=\"custom-control custom-switch\" style=\"float:right\">\n        <label class=\"custom-control-label\" for=\"Barcode Mode\">Barcode Mode</label>\n        <input type=\"checkbox\" class=\"custom-control-input\" id=\"customSwitch1\"\n           [ngModelOptions]=\"{standalone: true}\">\n    </div>\n    <div *ngIf=\"barCodeMode\">\n      <div class=\"form-group\">\n          <label for=\"barCode\">BarCode</label>\n          <input type=\"text\" formControlName=\"barCode\"\n            (change)=\"onValueChange()\"\n            (blur)=\"onBlurBarCode()\"\n            class=\"form-control\"/>\n      </div>\n    </div>\n    <div *ngIf=\"! barCodeMode\">\n      <div class=\"form-group\">\n        <label for=\"Name\">Product Name</label>\n        <input type=\"text\" formControlName=\"productName\"\n          [(ngModel)]=\"inputProductName\"\n          [ngbTypeahead]=\"search\"\n          (change)=\"onProductNameChange()\"\n          (blur)=\"onBlurProductName()\"\n          class=\"form-control\"/>\n      </div>\n      <div class=\"form-group\">\n        <label for=\"quantity\">Quantity</label>\n        <input type=\"number\" formControlName=\"quantity\"\n          (change)=\"onValueChange()\"\n          class=\"form-control\"/>\n      </div>\n    </div>\n    <div *ngIf=\"productStockInfo\">\n      <table class=\"table table-striped\">\n        <thead>\n          <tr>\n            <th>Id</th>\n            <th>Name</th>\n            <th>Initial Qty</th>\n            <th>Free Qty</th>\n          </tr>\n        </thead>\n        <tbody>\n          <tr>\n            <td>{{ productStockInfo.product.id }}</td>\n            <td>{{ productStockInfo.product.name }}</td>\n            <td>{{ productStockInfo.createdQuantity }}</td>\n            <td>{{ productStockInfo.createdQuantity - productStockInfo.usedQuantity }}</td>\n          </tr>\n        </tbody>\n      </table>\n    </div>\n  </form>\n</div>\n<div class=\"modal-footer\">\n  <div class=\"container\">\n    <div class=\"row\">\n        <div class=\"col-md-auto\">\n            <ngb-alert *ngIf=\"errorMessage\" type=\"danger\" [dismissible]=\"true\" (close)=\"errorMessage = null\">{{ errorMessage }}</ngb-alert>\n        </div>\n        <div class=\"col\">\n          <button class=\"btn btn-outline-dark\" type=\"button\" [disabled]=\"isAddButtonDisabled\" (click)=\"onSubmit()\" style=\"float:right\">\n              <span *ngIf=\"addOrderItemInProgress\" class=\"spinner-border spinner-border-sm\" role=\"status\" aria-hidden=\"true\"></span>\n            Add</button>\n        </div>\n    </div>\n  </div>\n</div>"
 
 /***/ }),
 
@@ -634,6 +634,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var rxjs__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! rxjs */ "./node_modules/rxjs/_esm5/index.js");
 /* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! rxjs/operators */ "./node_modules/rxjs/_esm5/operators/index.js");
 /* harmony import */ var src_app_model_ProductStockInfo__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! src/app/model/ProductStockInfo */ "./src/app/model/ProductStockInfo.ts");
+/* harmony import */ var src_app_model_request_AddOrderItemByBarCodeReq__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! src/app/model/request/AddOrderItemByBarCodeReq */ "./src/app/model/request/AddOrderItemByBarCodeReq.ts");
+
 
 
 
@@ -674,7 +676,12 @@ var AddOrderItemModalComponent = /** @class */ (function () {
         this.errorMessage = null;
     };
     AddOrderItemModalComponent.prototype.initForm = function () {
+        this.barCodeMode = true;
+        if (this.barCodeMode) {
+            this.disableAddButton(false);
+        }
         this.addOrderItemForm = this.formBuilder.group({
+            barCode: [''],
             productName: [''],
             productId: [''],
             quantity: ['', _angular_forms__WEBPACK_IMPORTED_MODULE_2__["Validators"].min(1)]
@@ -698,36 +705,84 @@ var AddOrderItemModalComponent = /** @class */ (function () {
         this.productService.getProductStockInfo(productId).subscribe(function (data) {
             _this.productStockInfo = src_app_model_ProductStockInfo__WEBPACK_IMPORTED_MODULE_9__["ProductStockInfo"].fromJson(data);
         }, function (error) {
+            _this.changeErrorMessage(error.error);
+            _this.productStockInfo = null;
+        });
+    };
+    AddOrderItemModalComponent.prototype.onBlurBarCode = function () {
+        var _this = this;
+        var barCode = this.addOrderItemForm.get("barCode").value;
+        this.productService.getProductStockInfoByBarCode(barCode).subscribe(function (data) {
+            _this.productStockInfo = src_app_model_ProductStockInfo__WEBPACK_IMPORTED_MODULE_9__["ProductStockInfo"].fromJson(data);
+            _this.disableAddButton(false);
+        }, function (error) {
+            _this.disableAddButton(true);
+            _this.changeErrorMessage(error.error);
             _this.productStockInfo = null;
         });
     };
     AddOrderItemModalComponent.prototype.onSubmit = function () {
+        if (this.barCodeMode) {
+            this.onSubmitBarCodeMode();
+        }
+        else {
+            this.onSubmitNoBarCodeMode();
+        }
+    };
+    AddOrderItemModalComponent.prototype.onSubmitBarCodeMode = function () {
+        var _this = this;
+        var barCode = this.addOrderItemForm.get("barCode").value;
+        if (barCode == null || barCode.length == 0) {
+            this.changeErrorMessage("Please enter a barcode.");
+        }
+        else {
+            this.addInProgress(true);
+            var request = new src_app_model_request_AddOrderItemByBarCodeReq__WEBPACK_IMPORTED_MODULE_10__["AddOrderItemByBarCodeReq"](this.orderId, barCode);
+            this.orderService.addOrderItemByBarCode(request).subscribe(function (data) {
+                console.log(data);
+                _this.modal.close(true);
+            }, function (error) {
+                _this.changeErrorMessage(error.error);
+                _this.addInProgress(false);
+            });
+            this.errorMessage = null;
+        }
+    };
+    AddOrderItemModalComponent.prototype.onSubmitNoBarCodeMode = function () {
         var _this = this;
         var productName = this.addOrderItemForm.get("productName").value;
         var productId = this.productIdMapByName.get(productName);
         var qty = this.addOrderItemForm.get("quantity").value;
         if (this.productStockInfo === null) {
-            this.errorMessage = 'Please select a product from the auto-complete list.';
+            this.changeErrorMessage('Please select a product from the auto-complete list.');
         }
         else if (!this.isValidQuantity(qty)) {
-            this.errorMessage = 'Please choose a quantity between 1 to ' + this.productStockInfo.getFreeQuantity();
+            this.changeErrorMessage('Please choose a quantity between 1 to ' + this.productStockInfo.getFreeQuantity());
         }
         else {
-            var request = new src_app_model_request_AddOrderItemReq__WEBPACK_IMPORTED_MODULE_4__["AddOrderItemReq"](this.orderId, productId, null, qty);
+            this.addInProgress(true);
+            var request = new src_app_model_request_AddOrderItemReq__WEBPACK_IMPORTED_MODULE_4__["AddOrderItemReq"](this.orderId, productId, qty);
             this.orderService.addOrderItem(request).subscribe(function (data) {
                 console.log(data);
                 _this.modal.close(true);
             }, function (error) {
                 _this.changeErrorMessage(error.error);
+                _this.addInProgress(false);
             });
             this.errorMessage = null;
         }
+    };
+    AddOrderItemModalComponent.prototype.addInProgress = function (isInProgress) {
+        this.addOrderItemInProgress = isInProgress;
     };
     AddOrderItemModalComponent.prototype.changeErrorMessage = function (errorMessage) {
         this._error.next(errorMessage);
     };
     AddOrderItemModalComponent.prototype.isValidQuantity = function (qty) {
         return qty > 0 && qty <= this.productStockInfo.getFreeQuantity();
+    };
+    AddOrderItemModalComponent.prototype.disableAddButton = function (disabled) {
+        this.isAddButtonDisabled = disabled;
     };
     AddOrderItemModalComponent.prototype.onClose = function () {
         this.modal.close(false);
@@ -964,7 +1019,7 @@ var CreateOrderModalComponent = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJzcmMvYXBwL21vZGFsL2RlbGV0ZS1vcmRlci1pdGVtcy1tb2RhbC9kZWxldGUtb3JkZXItaXRlbXMtbW9kYWwuY29tcG9uZW50LmNzcyJ9 */"
+module.exports = ".my-custom-scrollbar {\n    position: relative;\n    max-height: 500px;\n    overflow: auto;\n}\n\n.table-wrapper-scroll-y {\n    display: block;\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvbW9kYWwvZGVsZXRlLW9yZGVyLWl0ZW1zLW1vZGFsL2RlbGV0ZS1vcmRlci1pdGVtcy1tb2RhbC5jb21wb25lbnQuY3NzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBO0lBQ0ksa0JBQWtCO0lBQ2xCLGlCQUFpQjtJQUNqQixjQUFjO0FBQ2xCOztBQUVBO0lBQ0ksY0FBYztBQUNsQiIsImZpbGUiOiJzcmMvYXBwL21vZGFsL2RlbGV0ZS1vcmRlci1pdGVtcy1tb2RhbC9kZWxldGUtb3JkZXItaXRlbXMtbW9kYWwuY29tcG9uZW50LmNzcyIsInNvdXJjZXNDb250ZW50IjpbIi5teS1jdXN0b20tc2Nyb2xsYmFyIHtcbiAgICBwb3NpdGlvbjogcmVsYXRpdmU7XG4gICAgbWF4LWhlaWdodDogNTAwcHg7XG4gICAgb3ZlcmZsb3c6IGF1dG87XG59XG5cbi50YWJsZS13cmFwcGVyLXNjcm9sbC15IHtcbiAgICBkaXNwbGF5OiBibG9jaztcbn0iXX0= */"
 
 /***/ }),
 
@@ -975,7 +1030,7 @@ module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"modal-header\">\n  <h4 class=\"modal-title\" id=\"modal-basic-title\">{{ title }}</h4>\n  <button type=\"button\" class=\"close\" aria-label=\"Close\" (click)=\"onClickClose()\">\n    <span aria-hidden=\"true\">&times;</span>\n  </button>\n</div>\n<div class=\"modal-body\">\n  <table class=\"table table-striped\">\n    <thead>\n      <tr>\n        <th>#</th>\n        <th>Id</th>\n        <th>Product Name</th>\n        <th>BarCode</th>\n      </tr>\n    </thead>\n    <tbody>\n      <tr *ngFor=\"let item of orderItems; let i = index\">\n        <td>{{ i+1 }}</td>\n        <td>{{ item.productItem.id }}</td>\n        <td>{{ item.productItem.product.name }}</td>\n        <td>{{ item.productItem.barCode }}</td>\n      </tr>\n    </tbody>\n  </table>\n</div>\n<div class=\"modal-footer\">\n<button type=\"button\" class=\"btn btn-secondary\" (click)=\"onClickClose()\">No</button>\n<button type=\"button\" class=\"btn btn-primary\" (click)=\"onClickYes()\">Yes</button>\n</div>\n"
+module.exports = "<div class=\"modal-header\">\n  <h4 class=\"modal-title\" id=\"modal-basic-title\">{{ title }}</h4>\n  <button type=\"button\" class=\"close\" aria-label=\"Close\" (click)=\"onClickClose()\">\n    <span aria-hidden=\"true\">&times;</span>\n  </button>\n</div>\n<div class=\"modal-body\">\n  <div class=\"table-wrapper-scroll-y my-custom-scrollbar\">\n    <table class=\"table table-striped\">\n      <thead>\n        <tr>\n          <th>#</th>\n          <th>Id</th>\n          <th>Product Name</th>\n          <th>BarCode</th>\n        </tr>\n      </thead>\n      <tbody>\n        <tr *ngFor=\"let item of orderItems; let i = index\">\n          <td>{{ i+1 }}</td>\n          <td>{{ item.productItem.id }}</td>\n          <td>{{ item.productItem.product.name }}</td>\n          <td>{{ item.productItem.barCode }}</td>\n        </tr>\n      </tbody>\n    </table>\n  </div>\n</div>\n<div class=\"modal-footer\">\n<button type=\"button\" class=\"btn btn-secondary\" (click)=\"onClickClose()\">No</button>\n<button type=\"button\" class=\"btn btn-primary\" (click)=\"onClickYes()\">Yes</button>\n</div>\n"
 
 /***/ }),
 
@@ -1564,6 +1619,28 @@ var AdminSetting = /** @class */ (function () {
 
 /***/ }),
 
+/***/ "./src/app/model/request/AddOrderItemByBarCodeReq.ts":
+/*!***********************************************************!*\
+  !*** ./src/app/model/request/AddOrderItemByBarCodeReq.ts ***!
+  \***********************************************************/
+/*! exports provided: AddOrderItemByBarCodeReq */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "AddOrderItemByBarCodeReq", function() { return AddOrderItemByBarCodeReq; });
+var AddOrderItemByBarCodeReq = /** @class */ (function () {
+    function AddOrderItemByBarCodeReq(orderId, barCode) {
+        this.orderId = orderId;
+        this.barCode = barCode;
+    }
+    return AddOrderItemByBarCodeReq;
+}());
+
+
+
+/***/ }),
+
 /***/ "./src/app/model/request/AddOrderItemReq.ts":
 /*!**************************************************!*\
   !*** ./src/app/model/request/AddOrderItemReq.ts ***!
@@ -1575,11 +1652,10 @@ var AdminSetting = /** @class */ (function () {
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "AddOrderItemReq", function() { return AddOrderItemReq; });
 var AddOrderItemReq = /** @class */ (function () {
-    function AddOrderItemReq(orderId, productId, barCode, requestedQty) {
+    function AddOrderItemReq(orderId, productId, requestedQty) {
         this.orderId = orderId;
         this.productId = productId;
         this.requestedQty = requestedQty;
-        this.barCode = barCode;
     }
     return AddOrderItemReq;
 }());
@@ -1617,7 +1693,7 @@ var DeleteOrderItemsReq = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = ".table tr.active td {\n    background-color:#275e94 !important;\n    color: white;\n    font-weight: bold;\n    white-space: nowrap;\n  }\n\n.table tr td {\n  padding: 1.5%;\n}\n\n\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvb3JkZXItcGFuZWwvbGlzdC1vcmRlci1pdGVtL2xpc3Qtb3JkZXItaXRlbS5jb21wb25lbnQuY3NzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBO0lBQ0ksbUNBQW1DO0lBQ25DLFlBQVk7SUFDWixpQkFBaUI7SUFDakIsbUJBQW1CO0VBQ3JCOztBQUVGO0VBQ0UsYUFBYTtBQUNmIiwiZmlsZSI6InNyYy9hcHAvb3JkZXItcGFuZWwvbGlzdC1vcmRlci1pdGVtL2xpc3Qtb3JkZXItaXRlbS5jb21wb25lbnQuY3NzIiwic291cmNlc0NvbnRlbnQiOlsiLnRhYmxlIHRyLmFjdGl2ZSB0ZCB7XG4gICAgYmFja2dyb3VuZC1jb2xvcjojMjc1ZTk0ICFpbXBvcnRhbnQ7XG4gICAgY29sb3I6IHdoaXRlO1xuICAgIGZvbnQtd2VpZ2h0OiBib2xkO1xuICAgIHdoaXRlLXNwYWNlOiBub3dyYXA7XG4gIH1cblxuLnRhYmxlIHRyIHRkIHtcbiAgcGFkZGluZzogMS41JTtcbn1cblxuIl19 */"
+module.exports = ".table tr.active td {\n    background-color:#275e94 !important;\n    color: white;\n    font-weight: bold;\n    white-space: nowrap;\n  }\n\n.table table-striped tr td {\n  padding: 1.5%;\n}\n\n/* Scroll Bar Aggregated Order Item table */\n\n.my-custom-scrollbar {\n  position: relative;\n  max-height: 450px;\n  overflow: auto;\n}\n\n.table-wrapper-scroll-y {\n  display: block;\n}\n\n\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvb3JkZXItcGFuZWwvbGlzdC1vcmRlci1pdGVtL2xpc3Qtb3JkZXItaXRlbS5jb21wb25lbnQuY3NzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBO0lBQ0ksbUNBQW1DO0lBQ25DLFlBQVk7SUFDWixpQkFBaUI7SUFDakIsbUJBQW1CO0VBQ3JCOztBQUVGO0VBQ0UsYUFBYTtBQUNmOztBQUVBLDJDQUEyQzs7QUFDM0M7RUFDRSxrQkFBa0I7RUFDbEIsaUJBQWlCO0VBQ2pCLGNBQWM7QUFDaEI7O0FBRUE7RUFDRSxjQUFjO0FBQ2hCIiwiZmlsZSI6InNyYy9hcHAvb3JkZXItcGFuZWwvbGlzdC1vcmRlci1pdGVtL2xpc3Qtb3JkZXItaXRlbS5jb21wb25lbnQuY3NzIiwic291cmNlc0NvbnRlbnQiOlsiLnRhYmxlIHRyLmFjdGl2ZSB0ZCB7XG4gICAgYmFja2dyb3VuZC1jb2xvcjojMjc1ZTk0ICFpbXBvcnRhbnQ7XG4gICAgY29sb3I6IHdoaXRlO1xuICAgIGZvbnQtd2VpZ2h0OiBib2xkO1xuICAgIHdoaXRlLXNwYWNlOiBub3dyYXA7XG4gIH1cblxuLnRhYmxlIHRhYmxlLXN0cmlwZWQgdHIgdGQge1xuICBwYWRkaW5nOiAxLjUlO1xufVxuXG4vKiBTY3JvbGwgQmFyIEFnZ3JlZ2F0ZWQgT3JkZXIgSXRlbSB0YWJsZSAqL1xuLm15LWN1c3RvbS1zY3JvbGxiYXIge1xuICBwb3NpdGlvbjogcmVsYXRpdmU7XG4gIG1heC1oZWlnaHQ6IDQ1MHB4O1xuICBvdmVyZmxvdzogYXV0bztcbn1cblxuLnRhYmxlLXdyYXBwZXItc2Nyb2xsLXkge1xuICBkaXNwbGF5OiBibG9jaztcbn1cblxuIl19 */"
 
 /***/ }),
 
@@ -1628,7 +1704,7 @@ module.exports = ".table tr.active td {\n    background-color:#275e94 !important
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"row justify-content-between\">\n  <div class=\"col-5\">\n    <!--<form>\n      <div class=\"form-group\">\n        <div class=\"input-group\">\n          <div class=\"input-group-addon\">\n            <i class=\"glyphicon glyphicon-search\"></i>\n          </div>\n          <input type=\"text\"\n            class=\"form-control\"\n            name=\"searchString\"\n            placeholder=\"Type to search...\"\n            [(ngModel)]=\"searchString\">\n        </div>\n      </div>\n    </form>-->\n    <table class=\"table table-striped\">\n      <thead>\n        <tr>\n          <th>#</th>\n          <th>Name</th>\n          <th>Price</th>\n          <th>Qty</th>\n          <th>Total Price</th>\n          <th>Last Modified Date</th>\n          <th></th>\n        </tr>\n      </thead>\n      <tbody>\n        <tr *ngFor=\"let item of orderItems | filter : 'name' : searchString; let i = index\"\n        (mouseover)=\"setSelectedRow(i)\"\n        (click)=\"onClickShowSelectedOrderItems(item.orderItems)\"\n          [class.active]=\"i == selectedRow\">\n          <td>{{ i+1 }}</td>\n          <td>{{ item.product.name }}</td>\n          <td>{{ item.product.price }} €</td>\n          <td\n            contenteditable=\"order.status !== 'CLOSED'\"\n            (blur)=\"onChangeOrderItemQuantity(item, $event)\">\n            {{ item.quantity }}\n          </td>\n          <td>{{ item.ttlPrice }} €</td>\n          <td>{{ item.lastModifiedDatetime }}</td>\n          <td>\n            <button *ngIf=\"order.status !== 'CLOSED'\"\n            (click)=\"onClickDeleteOrderItemButton(i, item.orderItems)\"\n            [disabled]=\"deleteOrderItemInProgressArray[i]\"\n            class=\"btn btn-danger btn-sm\">\n                <span *ngIf=\"deleteOrderItemInProgressArray[i]\" class=\"spinner-border spinner-border-sm\" role=\"status\" aria-hidden=\"true\"></span>\n              Delete</button>\n          </td>\n        </tr>\n      </tbody>\n    </table>\n  </div>\n  <div class=\"col-7\">\n    <selected-order-items-list\n      [selectedOrderItems]=\"selectedOrderItems\"\n      [order]=\"order\"\n      (onDeleteOrderItemEvent)=\"deleteSingleOrderItem($event)\"\n    ></selected-order-items-list>\n  </div>\n</div>\n"
+module.exports = "<div class=\"table-responsive table-wrapper-scroll-y my-custom-scrollbar\">\n  <table class=\"table table-striped table-hover\">\n    <thead>\n      <tr>\n        <th>#</th>\n        <th>Name</th>\n        <th>Price</th>\n        <th>Qty</th>\n        <th>Total Price</th>\n        <th>Last Modified Date</th>\n        <th></th>\n      </tr>\n    </thead>\n    <tbody>\n      <tr *ngFor=\"let item of orderItems | filter : 'name' : searchString; let i = index\"\n      (click)=\"setSelectedRow(i); onClickShowSelectedOrderItems(item.orderItems)\"\n        [class.active]=\"i == selectedRow\">\n        <td>{{ i+1 }}</td>\n        <td>{{ item.product.name }}</td>\n        <td>{{ item.product.price }} €</td>\n        <td\n          contenteditable=\"order.status !== 'CLOSED'\"\n          (blur)=\"onChangeOrderItemQuantity(item, $event)\">\n          {{ item.quantity }}\n        </td>\n        <td>{{ item.ttlPrice }} €</td>\n        <td>{{ item.lastModifiedDatetime }}</td>\n        <td>\n          <button *ngIf=\"order.status !== 'CLOSED'\"\n          (click)=\"onClickDeleteOrderItemButton(i, item.orderItems)\"\n          [disabled]=\"deleteOrderItemInProgressArray[i]\"\n          class=\"btn btn-danger btn-sm\">\n              <span *ngIf=\"deleteOrderItemInProgressArray[i]\" class=\"spinner-border spinner-border-sm\" role=\"status\" aria-hidden=\"true\"></span>\n            Delete</button>\n        </td>\n      </tr>\n    </tbody>\n  </table>\n</div>\n<br>\n<selected-order-items-list\n  [selectedOrderItems]=\"selectedOrderItems\"\n  [order]=\"order\"\n  (onDeleteOrderItemEvent)=\"deleteSingleOrderItem($event)\"\n></selected-order-items-list>\n"
 
 /***/ }),
 
@@ -1644,20 +1720,14 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ListOrderItemComponent", function() { return ListOrderItemComponent; });
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
-/* harmony import */ var _model_OrderItem__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../model/OrderItem */ "./src/app/model/OrderItem.ts");
-/* harmony import */ var _model_Product__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../model/Product */ "./src/app/model/Product.ts");
-/* harmony import */ var src_app_service_order_service__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! src/app/service/order-service */ "./src/app/service/order-service.ts");
-/* harmony import */ var src_app_common_components_modal_builder__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! src/app/common-components/modal-builder */ "./src/app/common-components/modal-builder.ts");
-/* harmony import */ var src_app_modal_info_modal_info_modal_component__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! src/app/modal/info-modal/info-modal.component */ "./src/app/modal/info-modal/info-modal.component.ts");
-/* harmony import */ var src_app_service_product_service__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! src/app/service/product-service */ "./src/app/service/product-service.ts");
-/* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! rxjs/operators */ "./node_modules/rxjs/_esm5/operators/index.js");
-/* harmony import */ var src_app_model_request_AddOrderItemReq__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! src/app/model/request/AddOrderItemReq */ "./src/app/model/request/AddOrderItemReq.ts");
-/* harmony import */ var src_app_model_AggregatedOrder__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! src/app/model/AggregatedOrder */ "./src/app/model/AggregatedOrder.ts");
-/* harmony import */ var src_app_modal_delete_order_items_modal_delete_order_items_modal_component__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! src/app/modal/delete-order-items-modal/delete-order-items-modal.component */ "./src/app/modal/delete-order-items-modal/delete-order-items-modal.component.ts");
-/* harmony import */ var src_app_model_request_DeleteOrderItemsReq__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! src/app/model/request/DeleteOrderItemsReq */ "./src/app/model/request/DeleteOrderItemsReq.ts");
-
-
-
+/* harmony import */ var src_app_service_order_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! src/app/service/order-service */ "./src/app/service/order-service.ts");
+/* harmony import */ var src_app_common_components_modal_builder__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! src/app/common-components/modal-builder */ "./src/app/common-components/modal-builder.ts");
+/* harmony import */ var src_app_modal_info_modal_info_modal_component__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! src/app/modal/info-modal/info-modal.component */ "./src/app/modal/info-modal/info-modal.component.ts");
+/* harmony import */ var src_app_service_product_service__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! src/app/service/product-service */ "./src/app/service/product-service.ts");
+/* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! rxjs/operators */ "./node_modules/rxjs/_esm5/operators/index.js");
+/* harmony import */ var src_app_model_AggregatedOrder__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! src/app/model/AggregatedOrder */ "./src/app/model/AggregatedOrder.ts");
+/* harmony import */ var src_app_modal_delete_order_items_modal_delete_order_items_modal_component__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! src/app/modal/delete-order-items-modal/delete-order-items-modal.component */ "./src/app/modal/delete-order-items-modal/delete-order-items-modal.component.ts");
+/* harmony import */ var src_app_model_request_DeleteOrderItemsReq__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! src/app/model/request/DeleteOrderItemsReq */ "./src/app/model/request/DeleteOrderItemsReq.ts");
 
 
 
@@ -1680,7 +1750,7 @@ var ListOrderItemComponent = /** @class */ (function () {
         this.deleteOrderItemInProgressArray = [];
         this.productIdMapByName = new Map();
         this.search = function (text$) {
-            return text$.pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_8__["debounceTime"])(200), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_8__["distinctUntilChanged"])(), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_8__["map"])(function (term) { return term.length < 1 ? []
+            return text$.pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_6__["debounceTime"])(200), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_6__["distinctUntilChanged"])(), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_6__["map"])(function (term) { return term.length < 1 ? []
                 : _this.productNames.filter(function (v) { return v.toLowerCase().indexOf(term.toLowerCase()) > -1; }).slice(0, 10); }));
         };
         this.onCreateOrderItemEvent = new _angular_core__WEBPACK_IMPORTED_MODULE_1__["EventEmitter"]();
@@ -1695,55 +1765,10 @@ var ListOrderItemComponent = /** @class */ (function () {
             this.deleteOrderItemInProgressArray.push(false);
         }
     };
-    ListOrderItemComponent.prototype.onBlurNewItemInput = function () {
-        this.checkInputFieldSet();
-    };
-    ListOrderItemComponent.prototype.onBlurBarCode = function () {
-        var _this = this;
-        this.productService.getByBarCode(this.inputBarCode.trim()).subscribe(function (data) {
-            var product = _model_Product__WEBPACK_IMPORTED_MODULE_3__["Product"].fromJson(data);
-            _this.inputId = product.id;
-            _this.inputName = product.name;
-            _this.inputQuantity = 1;
-            _this.createNewOrderItem();
-        }, function (error) {
-            var modalRef = _this.modalBuilder.open(src_app_modal_info_modal_info_modal_component__WEBPACK_IMPORTED_MODULE_6__["InfoModalComponent"]);
-            modalRef.componentInstance.title = "Error : Product not added to order " + _this.order.name;
-            modalRef.componentInstance.message = error.error;
-        });
-    };
-    ListOrderItemComponent.prototype.onBlurInputName = function () {
-        var _this = this;
-        var id = this.productIdMapByName.get(this.inputName.trim());
-        if (id != null) {
-            this.productService.get(id).subscribe(function (data) {
-                _this.inputId = data.id;
-                _this.inputPrice = data.price;
-                _this.inputQuantity = 1;
-            }, function (error) {
-                var modalRef = _this.modalBuilder.open(src_app_modal_info_modal_info_modal_component__WEBPACK_IMPORTED_MODULE_6__["InfoModalComponent"]);
-                modalRef.componentInstance.title = "Error : Product " + _this.inputName + " not found";
-                modalRef.componentInstance.message = error.error;
-            });
-        }
-        this.checkInputFieldSet();
-    };
     ListOrderItemComponent.prototype.checkInputFieldSet = function () {
         this.areNewOrderItemFieldsSet = this.inputName.trim().length > 0
             && this.inputQuantity > 0
             && this.inputPrice > 0;
-    };
-    ListOrderItemComponent.prototype.createNewOrderItem = function () {
-        var _this = this;
-        var req = new src_app_model_request_AddOrderItemReq__WEBPACK_IMPORTED_MODULE_9__["AddOrderItemReq"](this.order.id, this.inputId, this.inputBarCode, this.inputQuantity);
-        this.orderService.addOrderItem(req).subscribe(function (data) {
-            var orderItem = _model_OrderItem__WEBPACK_IMPORTED_MODULE_2__["OrderItem"].fromJson(data);
-            _this.onCreateOrderItemEvent.emit(orderItem);
-        }, function (error) {
-            var modalRef = _this.modalBuilder.open(src_app_modal_info_modal_info_modal_component__WEBPACK_IMPORTED_MODULE_6__["InfoModalComponent"]);
-            modalRef.componentInstance.title = "Error : Product item " + _this.inputName + " not added to order " + _this.order.name;
-            modalRef.componentInstance.message = error.error;
-        });
     };
     ListOrderItemComponent.prototype.deleteSingleOrderItem = function (orderItem) {
         var orderItems = [orderItem];
@@ -1753,12 +1778,12 @@ var ListOrderItemComponent = /** @class */ (function () {
     ListOrderItemComponent.prototype.deleteOrderItem = function (orderItems) {
         var _this = this;
         var ids = orderItems.map(function (item) { return item.id; });
-        var req = new src_app_model_request_DeleteOrderItemsReq__WEBPACK_IMPORTED_MODULE_12__["DeleteOrderItemsReq"](this.order.id, ids);
+        var req = new src_app_model_request_DeleteOrderItemsReq__WEBPACK_IMPORTED_MODULE_9__["DeleteOrderItemsReq"](this.order.id, ids);
         this.orderService.deleteOrderItems(req).subscribe(function (data) {
             _this.onDeleteOrderItemEvent.emit(ids);
             _this.deleteFromSelectedOrderItem(ids);
         }, function (error) {
-            var modalRef = _this.modalBuilder.open(src_app_modal_info_modal_info_modal_component__WEBPACK_IMPORTED_MODULE_6__["InfoModalComponent"]);
+            var modalRef = _this.modalBuilder.open(src_app_modal_info_modal_info_modal_component__WEBPACK_IMPORTED_MODULE_4__["InfoModalComponent"]);
             modalRef.componentInstance.title = "Error : Failed to delete the order items.";
             modalRef.componentInstance.message = error.error;
         });
@@ -1775,7 +1800,7 @@ var ListOrderItemComponent = /** @class */ (function () {
     };
     ListOrderItemComponent.prototype.displayDeletionConfirmationModal = function (rowTableIndex, orderItems) {
         var _this = this;
-        var modalRef = this.modalBuilder.openCenteredLargeModal(src_app_modal_delete_order_items_modal_delete_order_items_modal_component__WEBPACK_IMPORTED_MODULE_11__["DeleteOrderItemsModalComponent"]);
+        var modalRef = this.modalBuilder.openCenteredLargeModal(src_app_modal_delete_order_items_modal_delete_order_items_modal_component__WEBPACK_IMPORTED_MODULE_8__["DeleteOrderItemsModalComponent"]);
         modalRef.componentInstance.title = "Are you sure you want to delete the following order items ?";
         modalRef.componentInstance.orderItems = orderItems;
         modalRef.result.then(function (response) {
@@ -1813,7 +1838,7 @@ var ListOrderItemComponent = /** @class */ (function () {
     ], ListOrderItemComponent.prototype, "orderItems", void 0);
     tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Input"])(),
-        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:type", src_app_model_AggregatedOrder__WEBPACK_IMPORTED_MODULE_10__["AggregatedOrder"])
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:type", src_app_model_AggregatedOrder__WEBPACK_IMPORTED_MODULE_7__["AggregatedOrder"])
     ], ListOrderItemComponent.prototype, "order", void 0);
     tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Output"])(),
@@ -1833,9 +1858,9 @@ var ListOrderItemComponent = /** @class */ (function () {
             template: __webpack_require__(/*! ./list-order-item.component.html */ "./src/app/order-panel/list-order-item/list-order-item.component.html"),
             styles: [__webpack_require__(/*! ./list-order-item.component.css */ "./src/app/order-panel/list-order-item/list-order-item.component.css")]
         }),
-        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [src_app_service_order_service__WEBPACK_IMPORTED_MODULE_4__["OrderService"],
-            src_app_service_product_service__WEBPACK_IMPORTED_MODULE_7__["ProductService"],
-            src_app_common_components_modal_builder__WEBPACK_IMPORTED_MODULE_5__["ModalBuilder"]])
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [src_app_service_order_service__WEBPACK_IMPORTED_MODULE_2__["OrderService"],
+            src_app_service_product_service__WEBPACK_IMPORTED_MODULE_5__["ProductService"],
+            src_app_common_components_modal_builder__WEBPACK_IMPORTED_MODULE_3__["ModalBuilder"]])
     ], ListOrderItemComponent);
     return ListOrderItemComponent;
 }());
@@ -1851,7 +1876,7 @@ var ListOrderItemComponent = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJzcmMvYXBwL29yZGVyLXBhbmVsL3NlbGVjdGVkLW9yZGVyLWl0ZW1zLWxpc3Qvc2VsZWN0ZWQtb3JkZXItaXRlbXMtbGlzdC5jb21wb25lbnQuY3NzIn0= */"
+module.exports = "/* Scroll Bar Aggregated Order Item table */\n.my-custom-scrollbar {\n    position: relative;\n    max-height: 200px;\n    overflow: auto;\n  }\n.table-wrapper-scroll-y {\n    display: block;\n  }\n  \n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvb3JkZXItcGFuZWwvc2VsZWN0ZWQtb3JkZXItaXRlbXMtbGlzdC9zZWxlY3RlZC1vcmRlci1pdGVtcy1saXN0LmNvbXBvbmVudC5jc3MiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUEsMkNBQTJDO0FBQzNDO0lBQ0ksa0JBQWtCO0lBQ2xCLGlCQUFpQjtJQUNqQixjQUFjO0VBQ2hCO0FBRUE7SUFDRSxjQUFjO0VBQ2hCIiwiZmlsZSI6InNyYy9hcHAvb3JkZXItcGFuZWwvc2VsZWN0ZWQtb3JkZXItaXRlbXMtbGlzdC9zZWxlY3RlZC1vcmRlci1pdGVtcy1saXN0LmNvbXBvbmVudC5jc3MiLCJzb3VyY2VzQ29udGVudCI6WyIvKiBTY3JvbGwgQmFyIEFnZ3JlZ2F0ZWQgT3JkZXIgSXRlbSB0YWJsZSAqL1xuLm15LWN1c3RvbS1zY3JvbGxiYXIge1xuICAgIHBvc2l0aW9uOiByZWxhdGl2ZTtcbiAgICBtYXgtaGVpZ2h0OiAyMDBweDtcbiAgICBvdmVyZmxvdzogYXV0bztcbiAgfVxuICBcbiAgLnRhYmxlLXdyYXBwZXItc2Nyb2xsLXkge1xuICAgIGRpc3BsYXk6IGJsb2NrO1xuICB9XG4gICJdfQ== */"
 
 /***/ }),
 
@@ -1862,7 +1887,7 @@ module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"user-container\">\n  <table class=\"table table-striped\">\n    <thead>\n      <tr>\n        <th>#</th>\n        <th>Id</th>\n        <th>BarCode</th>\n        <th>Created Date</th>\n        <th>Last Modified Date</th>\n        <th></th>\n      </tr>\n    </thead>\n    <tbody>\n      <tr *ngFor=\"let item of selectedOrderItems.values(); let i = index\">\n        <td>{{ i+1 }}</td>\n        <td>{{ item.productItem.id }}</td>\n        <td>{{ item.productItem.barCode }}</td>\n        <td>{{ item.createdDatetime }}</td>\n        <td>{{ item.lastModifiedDatetime }}</td>\n        <td>\n          <button\n          (click)=\"onClickDeleteOrderItemButton(i, item)\"\n          [disabled]=\"deleteOrderItemInProgressArray[i]\"\n          class=\"btn btn-danger btn-sm\">\n          <span *ngIf=\"deleteOrderItemInProgressArray[i]\" class=\"spinner-border spinner-border-sm\" role=\"status\" aria-hidden=\"true\"></span>\n            Delete</button>\n        </td>\n      </tr>\n    </tbody>\n  </table>\n</div>"
+module.exports = "<div class=\"table-responsive table-wrapper-scroll-y my-custom-scrollbar\">\n  <table class=\"table table-striped table-hover table-sm\">\n    <thead>\n      <tr>\n        <th>#</th>\n        <th>Id</th>\n        <th>BarCode</th>\n        <th>Created Date</th>\n        <th>Last Modified Date</th>\n        <th></th>\n      </tr>\n    </thead>\n    <tbody>\n      <tr *ngFor=\"let item of selectedOrderItems.values(); let i = index\">\n        <td>{{ i+1 }}</td>\n        <td>{{ item.productItem.id }}</td>\n        <td>{{ item.productItem.barCode }}</td>\n        <td>{{ item.createdDatetime }}</td>\n        <td>{{ item.lastModifiedDatetime }}</td>\n        <td>\n          <button\n          (click)=\"onClickDeleteOrderItemButton(i, item)\"\n          [disabled]=\"deleteOrderItemInProgressArray[i]\"\n          class=\"btn btn-danger btn-sm\">\n          <span *ngIf=\"deleteOrderItemInProgressArray[i]\" class=\"spinner-border spinner-border-sm\" role=\"status\" aria-hidden=\"true\"></span>\n            Delete</button>\n        </td>\n      </tr>\n    </tbody>\n  </table>\n</div>"
 
 /***/ }),
 
@@ -2186,7 +2211,7 @@ module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"col-md-20 user-container\">\n    <table class=\"table table-striped\">\n        <thead>\n            <tr>\n                <th>ID</th>\n                <th>Name</th>\n                <th>Store</th>\n                <th>Status</th>\n                <th>Total Product</th>\n                <th>Total Qty</th>\n                <th>Total Price</th>\n                <th>Creation Date</th>\n                <th>Last Modified Date</th>\n                <th>Close Date</th>\n                <th></th>\n                <th></th>\n            </tr>\n        </thead>\n        <tbody>\n            <tr *ngFor=\"let order of ordersArray\">\n                <td>{{ order.id }}</td>\n                <td>{{ order.name }}</td>\n                <td>{{ order.storeName }}</td>\n                <td>{{ order.status }}</td>\n                <td>{{ order.aggregatedOrderInfo.productSize }}</td>\n                <td>{{ order.aggregatedOrderInfo.orderItemSize }}</td>\n                <td>{{ order.aggregatedOrderInfo.totalPrice }} €</td>\n                <td>{{ order.createdDatetime  | date:'medium' }}</td>\n                <td>{{ order.lastModifiedDatetime  | date:'medium' }}</td>\n                <td>{{ order.closeDatetime  | date:'medium' }}</td>\n                <td><button\n                    class=\"btn btn-success\"\n                    [routerLink]=\"['/order', order.id]\"\n                    >See</button>\n                </td>\n                <td><button\n                    *ngIf=\"order.status !== 'CLOSED'\"\n                    class=\"btn btn-info\"\n                    (click)=\"onClickCloseOrder(order)\"\n                    >Close Order</button>\n                    <button\n                        *ngIf=\"order.status === 'CLOSED'\"\n                        class=\"btn btn-primary\"\n                        (click)=\"onClickNotify(order)\"\n                    >Notify</button>\n                </td>\n            </tr>\n        </tbody>\n    </table>\n    <div class=\"row justify-content-between\">\n        <div class=\"col-4\">\n            <ngb-pagination [collectionSize]=\"collectionSize\" [(page)]=\"page\" [pageSize]=\"pageSize\"></ngb-pagination>\n        </div>\n        <div class=\"col-2\">\n            <select class=\"custom-select\" [(ngModel)]=\"pageSize\">\n                <option [ngValue]=\"5\">5 items per page</option>\n                <option [ngValue]=\"10\">10 items per page</option>\n                <option [ngValue]=\"20\">20 items per page</option>\n            </select>\n        </div>\n    </div>\n</div>"
+module.exports = "<div class=\"table-responsive\">\n    <table class=\"table table-striped\">\n        <thead>\n            <tr>\n                <th>ID</th>\n                <th>Name</th>\n                <th>Store</th>\n                <th>Status</th>\n                <th>Total Product</th>\n                <th>Total Qty</th>\n                <th>Total Price</th>\n                <th>Creation Date</th>\n                <th>Last Modified Date</th>\n                <th>Close Date</th>\n                <th></th>\n                <th></th>\n            </tr>\n        </thead>\n        <tbody>\n            <tr *ngFor=\"let order of ordersArray\">\n                <td>{{ order.id }}</td>\n                <td>{{ order.name }}</td>\n                <td>{{ order.storeName }}</td>\n                <td>{{ order.status }}</td>\n                <td>{{ order.aggregatedOrderInfo.productSize }}</td>\n                <td>{{ order.aggregatedOrderInfo.orderItemSize }}</td>\n                <td>{{ order.aggregatedOrderInfo.totalPrice }} €</td>\n                <td>{{ order.createdDatetime  | date:'medium' }}</td>\n                <td>{{ order.lastModifiedDatetime  | date:'medium' }}</td>\n                <td>{{ order.closeDatetime  | date:'medium' }}</td>\n                <td><button\n                    class=\"btn btn-success\"\n                    [routerLink]=\"['/order', order.id]\"\n                    >See</button>\n                </td>\n                <td><button\n                    *ngIf=\"order.status !== 'CLOSED'\"\n                    class=\"btn btn-info\"\n                    (click)=\"onClickCloseOrder(order)\"\n                    >Close Order</button>\n                    <button\n                        *ngIf=\"order.status === 'CLOSED'\"\n                        class=\"btn btn-primary\"\n                        (click)=\"onClickNotify(order)\"\n                    >Notify</button>\n                </td>\n            </tr>\n        </tbody>\n    </table>\n</div>\n<div class=\"row justify-content-between\">\n    <div class=\"col-4\">\n        <ngb-pagination [collectionSize]=\"collectionSize\" [(page)]=\"page\" [pageSize]=\"pageSize\"></ngb-pagination>\n    </div>\n    <div class=\"col-2\">\n        <select class=\"custom-select\" [(ngModel)]=\"pageSize\">\n            <option [ngValue]=\"5\">5 items per page</option>\n            <option [ngValue]=\"10\">10 items per page</option>\n            <option [ngValue]=\"20\">20 items per page</option>\n        </select>\n    </div>\n</div>\n"
 
 /***/ }),
 
@@ -2573,16 +2598,20 @@ var OrderService = /** @class */ (function () {
         return this.httpApi.post("/v1/order/add", request);
     };
     OrderService.prototype.getOrder = function (id) {
-        console.log("Get report " + id);
+        console.log("Get order by id " + id);
         return this.httpApi.get("/v1/order/get/" + id);
     };
     OrderService.prototype.getOrderByName = function (name) {
-        console.log("Get report by name : " + name);
+        console.log("Get order by name : " + name);
         return this.httpApi.get("/v1/order/searchByName/" + name);
     };
     OrderService.prototype.addOrderItem = function (req) {
-        console.log("Add item[ " + ", " + req.requestedQty + " to order " + req.orderId);
+        console.log("Add order item[ " + ", " + req.requestedQty + " to order " + req.orderId);
         return this.httpApi.post("/v1/order/addOrderItemByInfo", req);
+    };
+    OrderService.prototype.addOrderItemByBarCode = function (req) {
+        console.log("Add order item by barCode to order " + req.orderId + " : " + req.barCode);
+        return this.httpApi.post("/v1/order/addSingleOrderItemsByBarCode", req);
     };
     OrderService.prototype.updateStockItem = function (order, itemToUpdate) {
         console.log("updateProductItem order " + order.id + " | " + itemToUpdate);
@@ -2636,14 +2665,14 @@ var ProductService = /** @class */ (function () {
     ProductService.prototype.get = function (id) {
         return this.http.get("/v1/productItem/get/" + id);
     };
-    ProductService.prototype.getByBarCode = function (barCode) {
-        return this.http.get("/v1/productItem/getByBarCode/" + barCode);
-    };
     ProductService.prototype.getAllProductNames = function () {
         return this.http.get("/v1/stock/getAllExistingProductNames");
     };
     ProductService.prototype.getProductStockInfo = function (productId) {
         return this.http.get("/v1/stock/productStockInfo/" + productId);
+    };
+    ProductService.prototype.getProductStockInfoByBarCode = function (barCode) {
+        return this.http.get("/v1/stock/productStockInfoByBarCode/" + barCode);
     };
     ProductService = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Injectable"])(),
