@@ -38,7 +38,7 @@ export class OrderHeaderComponent implements OnInit {
     let modalRef = this.modalBuilder.open(ConfirmModalComponent);
     modalRef.componentInstance.title = "Close Report Confirmation";
     modalRef.componentInstance.message = "Are you sure you want to close the order "
-          + this.order.name + " for the store " + this.order.storeName;
+          + this.order.name + " for the store " + this.order.customer.store.name;
 
     modalRef.result.then((response) => {
       if (response) {

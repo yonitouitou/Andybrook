@@ -6,20 +6,23 @@ public class Store {
     private String name;
     private String email;
     private String address;
+    private String phone;
     private Owner owner;
 
-    public Store(String name, String email, String address, Owner owner) {
+    public Store(String name, String email, String address, String phone, Owner owner) {
         this.id = null;
         this.name = name;
         this.email = email;
+        this.phone = phone;
         this.address = address;
         this.owner = owner;
     }
 
-    public Store(Long id, String name, String email, String address, Owner owner) {
+    public Store(Long id, String name, String email, String address, String phone, Owner owner) {
         this.id = id;
         this.name = name;
         this.email = email;
+        this.phone = phone;
         this.address = address;
         this.owner = owner;
     }
@@ -64,15 +67,23 @@ public class Store {
         this.owner = owner;
     }
 
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
+
     @Override
     public String toString() {
-        final StringBuilder sb = new StringBuilder("Store{");
-        sb.append("id=").append(id);
-        sb.append(", name='").append(name).append('\'');
-        sb.append(", email='").append(email).append('\'');
-        sb.append(", address='").append(address).append('\'');
-        sb.append(", owner=").append(owner);
-        sb.append('}');
-        return sb.toString();
+        return "Store{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", email='" + email + '\'' +
+                ", address='" + address + '\'' +
+                ", phone='" + phone + '\'' +
+                ", owner=" + owner +
+                '}';
     }
 }

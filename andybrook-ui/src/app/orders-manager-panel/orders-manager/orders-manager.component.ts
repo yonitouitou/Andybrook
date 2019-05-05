@@ -40,6 +40,8 @@ export class OrdersManagerComponent implements OnInit {
       data => {
         this.orders = this.parseOrderIntoArray(data)
         this.searchButtonDisabled = false
+      }, error => {
+        console.log("error in search : " + error);
       }
     )
   }

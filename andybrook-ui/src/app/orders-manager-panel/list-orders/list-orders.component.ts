@@ -28,9 +28,9 @@ export class ListOrdersComponent implements OnInit {
 
   onClickCloseOrder(orderToClose: AggregatedOrder) {
       let modalRef = this.modalBuilder.open(ConfirmModalComponent);
-      modalRef.componentInstance.title = "Close Report Confirmation";
+      modalRef.componentInstance.title = "Close Order Confirmation";
       modalRef.componentInstance.message = "Are you sure you want to close the order "
-            + orderToClose.name + " for the store " + orderToClose.storeName;
+            + orderToClose.name + " for the store " + orderToClose.customer.store.name + ' ?';
 
       modalRef.result.then((response) => {
         if (response) {

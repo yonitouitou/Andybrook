@@ -28,6 +28,10 @@ public final class OrderItem {
         return id != null;
     }
 
+    public String getProductName() {
+        return productItem.getName();
+    }
+
     public double getProductPrice() {
         return productItem.getPrice();
     }

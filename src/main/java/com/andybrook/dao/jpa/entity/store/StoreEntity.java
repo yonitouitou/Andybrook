@@ -23,16 +23,20 @@ public class StoreEntity {
     @Column(name = "address")
     private String address;
 
+    @Column(name = "phone")
+    private String phone;
+
     @OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinColumn(name = "ownerId")
     private OwnerEntity ownerEntity;
 
     public StoreEntity() {}
 
-    public StoreEntity(Long id, String name, String email, String address, OwnerEntity ownerEntity) {
+    public StoreEntity(Long id, String name, String email, String address, String phone, OwnerEntity ownerEntity) {
         this.id = id;
         this.name = name;
         this.email = email;
+        this.phone = phone;
         this.address = address;
         this.ownerEntity = ownerEntity;
     }
@@ -67,6 +71,14 @@ public class StoreEntity {
 
     public void setAddress(String address) {
         this.address = address;
+    }
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
     }
 
     public OwnerEntity getOwnerEntity() {

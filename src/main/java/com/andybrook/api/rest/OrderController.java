@@ -1,10 +1,8 @@
 package com.andybrook.api.rest;
 
 import com.andybrook.api.rest.ctx.*;
-import com.andybrook.exception.*;
 import com.andybrook.manager.order.IOrderManager;
-import com.andybrook.model.api.rest.AggregatedOrder;
-import com.andybrook.model.api.rest.AggregatedOrderInfo;
+import com.andybrook.model.api.AggregatedOrder;
 import com.andybrook.model.order.Order;
 import com.andybrook.model.order.OrderItem;
 import com.andybrook.model.request.order.NewOrderRequest;
@@ -61,9 +59,9 @@ public class OrderController extends AbstractController {
     }
 
     @GetMapping(path = "/searchByName/{name}")
-    public List<AggregatedOrderInfo> getByName(@PathVariable String name) {
+    public List<AggregatedOrder> getByName(@PathVariable String name) {
         LOGGER.log(Level.INFO, "Get order request received for name : " + name);
-        return AggregatedOrderInfo.toAggregatedOrdersInfo(orderManager.getOrdersByNameContaining(name.trim()).stream()).collect(Collectors.toList());
+        return AggregatedOrder.toAggregatedOrders(orderManager.getOrdersByNameContaining(name.trim()).stream()).collect(Collectors.toList());
     }
 
     @GetMapping(path = "/all")

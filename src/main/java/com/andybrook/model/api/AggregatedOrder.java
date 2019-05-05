@@ -1,7 +1,7 @@
-package com.andybrook.model.api.rest;
+package com.andybrook.model.api;
 
 import com.andybrook.enums.OrderStatus;
-import com.andybrook.model.customer.Store;
+import com.andybrook.model.customer.Customer;
 import com.andybrook.model.order.Order;
 import com.andybrook.model.order.OrderItem;
 
@@ -15,10 +15,9 @@ import java.util.stream.Stream;
 public final class AggregatedOrder {
 
     private final long id;
-    private final long storeId;
     private final String name;
-    private final String storeName;
     private final String comment;
+    private final Customer customer;
     private final OrderStatus status;
     private final LocalDateTime createdDatetime;
     private final LocalDateTime lastModifiedDatetime;
@@ -26,14 +25,13 @@ public final class AggregatedOrder {
     private final AggregatedOrderInfo aggregatedOrderInfo;
     private final List<AggregatedOrderItem> aggregatedOrderItems;
 
-    private AggregatedOrder(long id, long storeId, String name, String storeName, OrderStatus status,
+    private AggregatedOrder(long id, String name, Customer customer, OrderStatus status,
                            String comment, LocalDateTime createdDatetime, LocalDateTime lastModifiedDatetime,
                            LocalDateTime closeDatetime, AggregatedOrderInfo aggregatedOrderInfo,
                            List<AggregatedOrderItem> aggregatedOrderItems) {
         this.id = id;
-        this.storeId = storeId;
         this.name = name;
-        this.storeName = storeName;
+        this.customer = customer;
         this.comment = comment;
         this.status = status;
         this.createdDatetime = createdDatetime;
@@ -56,8 +54,7 @@ public final class AggregatedOrder {
             aggregatedOrderItems.add(new AggregatedOrderItem(v))
         );
         AggregatedOrderInfo info = AggregatedOrderInfo.toAggregatedOrderInfo(order);
-        Store store = order.getCustomer().getStore();
-        return new AggregatedOrder(order.getId(), store.getId(), order.getName(), store.getName(), order.getStatus(),
+        return new AggregatedOrder(order.getId(), order.getName(), order.getCustomer(), order.getStatus(),
                 order.getComment(), order.getCreatedDateTime(), order.getLastModifiedDateTime(),
                 order.getCloseDateTime(), info, aggregatedOrderItems);
     }
@@ -66,16 +63,12 @@ public final class AggregatedOrder {
         return id;
     }
 
-    public long getStoreId() {
-        return storeId;
+    public Customer getCustomer() {
+        return customer;
     }
 
     public String getName() {
         return name;
-    }
-
-    public String getStoreName() {
-        return storeName;
     }
 
     public OrderStatus getStatus() {

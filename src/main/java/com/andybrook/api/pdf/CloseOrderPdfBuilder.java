@@ -1,8 +1,8 @@
 package com.andybrook.api.pdf;
 
 import com.andybrook.language.Msg.Pdf;
-import com.andybrook.model.order.Order;
-import com.andybrook.model.order.OrderItem;
+import com.andybrook.model.api.AggregatedOrder;
+import com.andybrook.model.api.AggregatedOrderItem;
 import com.andybrook.model.customer.Owner;
 import com.andybrook.model.customer.Store;
 import com.itextpdf.text.*;
@@ -27,9 +27,9 @@ import java.time.format.DateTimeFormatter;
 import java.util.stream.Stream;
 
 @Component
-public class CloseReportPdfBuilder extends AbstractPdfBuilder implements IPdfBuilder<Order> {
+public class CloseOrderPdfBuilder extends AbstractPdfBuilder implements IPdfBuilder<AggregatedOrder> {
 
-    private static final Logger LOGGER = System.getLogger(CloseReportPdfBuilder.class.getSimpleName());
+    private static final Logger LOGGER = System.getLogger(CloseOrderPdfBuilder.class.getSimpleName());
     private static final NumberFormat PRICE_FORMATTER = new DecimalFormat("#0.00");
     private static final DateTimeFormatter DATE_FORMATTER = DateTimeFormatter.ofPattern("dd/MM/yyyy");
     private static final int NUMBER_OF_COLUMNS_5 = 5;
@@ -56,7 +56,7 @@ public class CloseReportPdfBuilder extends AbstractPdfBuilder implements IPdfBui
     }
 
     @Override
-    public Path generatePdf(Order order) {
+    public Path generatePdf(AggregatedOrder order) {
         String fileName = order.getName() + LocalDateTime.now().format(DateTimeFormatter.ISO_LOCAL_DATE_TIME);
         Path pdfFilePath = null;
         Document document = new Document(PageSize.A4, 20f, 20f, 7f, 7f);
@@ -100,12 +100,11 @@ public class CloseReportPdfBuilder extends AbstractPdfBuilder implements IPdfBui
     }
 
     private void initColumnsNameItems() {
-        String id = languageResolver.get(Pdf.ID);
         String name = languageResolver.get(Pdf.NAME);
         String quantity = languageResolver.get(Pdf.QUANTITY);
         String price = languageResolver.get(Pdf.UNIT_PRICE);
         String ttlPrice = languageResolver.get(Pdf.TOTAL);
-        COLUMNS_NAME_ITEMS[0] = id;
+        COLUMNS_NAME_ITEMS[0] = "#";
         COLUMNS_NAME_ITEMS[1] = name;
         COLUMNS_NAME_ITEMS[2] = quantity;
         COLUMNS_NAME_ITEMS[3] = price;
@@ -137,14 +136,14 @@ public class CloseReportPdfBuilder extends AbstractPdfBuilder implements IPdfBui
     }
 
 
-    private Element createTitle(Order report) {
+    private Element createTitle(AggregatedOrder order) {
         Paragraph title = new Paragraph();
 
-        Chunk subTitleId = new Chunk(languageResolver.get(Pdf.ORDER_FORM).toUpperCase() + " #" + report.getId());
+        Chunk subTitleId = new Chunk(languageResolver.get(Pdf.ORDER_FORM).toUpperCase() + " #" + order.getId());
         subTitleId.setUnderline(0.1f, -2f);
         subTitleId.setFont(new Font(FONT_TYPE_TIMES_ROMAN, TITLE_FONT_SIZE_20, Font.BOLD, headerTextColor));
 
-        Chunk subTitleName = new Chunk(report.getName());
+        Chunk subTitleName = new Chunk(order.getName());
         subTitleName.setFont(new Font(FONT_TYPE_TIMES_ROMAN, SUB_TITLE_FONT_SIZE_15, Font.ITALIC, headerTextColor));
 
         title.setAlignment(Element.ALIGN_CENTER);
@@ -155,7 +154,7 @@ public class CloseReportPdfBuilder extends AbstractPdfBuilder implements IPdfBui
         return title;
     }
 
-    private Element createCustomerMainDetailsTable(Order report) throws DocumentException {
+    private Element createCustomerMainDetailsTable(AggregatedOrder order) throws DocumentException {
         PdfPTable table = new PdfPTable(2);
         table.setWidthPercentage(100);
         table.setSpacingBefore(10f);
@@ -163,47 +162,47 @@ public class CloseReportPdfBuilder extends AbstractPdfBuilder implements IPdfBui
         float[] columnWidths = {1f, 1f};
         table.setWidths(columnWidths);
         addTableHeader(table, COLUMNS_NAME_CUSTOMER_MAIN_DETAILS);
-        addCustomerDetailsFirstRow(table, report);
+        addCustomerDetailsFirstRow(table, order);
         return table;
     }
 
-    private Element createCustomerContactDetailsTable(Order report) throws DocumentException {
+    private Element createCustomerContactDetailsTable(AggregatedOrder order) throws DocumentException {
         PdfPTable table2 = new PdfPTable(3);
         table2.setWidthPercentage(100);
         table2.setSpacingAfter(10f);
         float[] columnWidths2 = {1f, 1f, 1f};
         table2.setWidths(columnWidths2);
         addTableHeader(table2, COLUNS_NAME_CUSTOMER_CONTACT_DETAILS);
-        addCustomerDetailsSecondRow(table2, report);
+        addCustomerDetailsSecondRow(table2, order);
         return table2;
     }
 
-    private Element createItemsTable(Order report) throws DocumentException {
+    private Element createItemsTable(AggregatedOrder order) throws DocumentException {
         PdfPTable table = new PdfPTable(NUMBER_OF_COLUMNS_5);
         table.setWidthPercentage(100);
         table.setSpacingBefore(10f);
         table.setSpacingAfter(10f);
 
-        float[] columnWidths = {1f, 2f, 0.5f, 0.5f, 0.5f};
+        float[] columnWidths = {0.2f, 2f, 0.5f, 0.5f, 0.5f};
         table.setWidths(columnWidths);
 
         addTableHeader(table, COLUMNS_NAME_ITEMS);
-        addRows(table, report);
+        addRows(table, order);
 
         return table;
     }
 
-    private void addCustomerDetailsFirstRow(PdfPTable table, Order order) {
+    private void addCustomerDetailsFirstRow(PdfPTable table, AggregatedOrder order) {
         Store store = order.getCustomer().getStore();
         Owner owner = store.getOwner();
         table.addCell(getStringCell(store.getName()));
         table.addCell(getStringCell(owner.getFirstName() + " " + owner.getLastName()));
     }
 
-    private void addCustomerDetailsSecondRow(PdfPTable table, Order order) {
+    private void addCustomerDetailsSecondRow(PdfPTable table, AggregatedOrder order) {
         Store store = order.getCustomer().getStore();
         table.addCell(getStringCell(store.getAddress()));
-        table.addCell(getStringCell("01.39.87.54.54"));
+        table.addCell(getStringCell(store.getPhone()));
         table.addCell(getStringCell(store.getEmail()));
     }
 
@@ -220,13 +219,14 @@ public class CloseReportPdfBuilder extends AbstractPdfBuilder implements IPdfBui
                 });
     }
 
-    private void addRows(PdfPTable table, Order order) {
-        for (OrderItem item : order.getItems()) {
-            table.addCell(getStringCell(String.valueOf(item.getId())));;
-            table.addCell(getStringCell(item.getProductItem().getName()));
-            table.addCell(getNumericCell(String.valueOf(order.calculateQuantityOfProduct(item.getProductItem().getId()))));
-            table.addCell(getNumericCell(PRICE_FORMATTER.format(item.getProductItem().getPrice()) + "€"));
-            table.addCell(getNumericCell(PRICE_FORMATTER.format(order.calculateTotalPriceByProduct(item.getProductItem().getId())) + "€"));
+    private void addRows(PdfPTable table, AggregatedOrder order) {
+        for (int i = 0; i < order.getAggregatedOrderItems().size(); i++) {
+            AggregatedOrderItem item = order.getAggregatedOrderItems().get(i);
+            table.addCell(getStringCell(String.valueOf(i + 1)));
+            table.addCell(getStringCell(item.getProduct().getName()));
+            table.addCell(getNumericCell(String.valueOf(item.getQuantity())));
+            table.addCell(getNumericCell(PRICE_FORMATTER.format(item.getProduct().getPrice()) + " €"));
+            table.addCell(getNumericCell(PRICE_FORMATTER.format(item.getTtlPrice()) + " €"));
         }
         PdfPCell totalCell = new PdfPCell(new Phrase
                                 (languageResolver.get(Pdf.TOTAL).toUpperCase(),
@@ -243,7 +243,7 @@ public class CloseReportPdfBuilder extends AbstractPdfBuilder implements IPdfBui
         table.addCell(emptyCell);
 
         PdfPCell ttlPriceCell = new PdfPCell(new Phrase(
-                        PRICE_FORMATTER.format(order.calculateTotalPrice()) + "€",
+                        PRICE_FORMATTER.format(order.getAggregatedOrderInfo().getTotalPrice()) + "€",
                                 new Font(FontFamily.TIMES_ROMAN, TEXT_FONT_SIZE_11, Font.BOLD)));
         ttlPriceCell.setHorizontalAlignment(Element.ALIGN_RIGHT);
         ttlPriceCell.setVerticalAlignment(Element.ALIGN_CENTER);

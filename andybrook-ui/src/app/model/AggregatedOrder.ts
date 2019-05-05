@@ -1,12 +1,12 @@
 import { AggregatedOrderInfo } from './AggregatedOrderInfo';
 import { AggregatedOrderItem } from './AggregatedOrderItem';
+import { Customer } from './Customer';
 
 export class AggregatedOrder {
     id: number;
-    storeId: number;
     name: string;
-    storeName: string;
     comment: string;
+    customer: Customer;
     status: string;
     createdDatetime: Date;
     lastModifiedDatetime: Date;
@@ -19,9 +19,8 @@ export class AggregatedOrder {
     static fromJson(data: any): AggregatedOrder {
         let order = new AggregatedOrder();
         order.id = data.id;
-        order.storeId = data.storeId;
         order.name = data.name;
-        order.storeName = data.storeName;
+        order.customer = Customer.fromJson(data.customer);
         order.status = data.status;
         order.comment = data.comment;
         order.createdDatetime = data.createdDatetime;

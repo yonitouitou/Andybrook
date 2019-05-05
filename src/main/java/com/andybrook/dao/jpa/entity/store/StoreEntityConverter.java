@@ -19,12 +19,12 @@ public class StoreEntityConverter implements IEntityConverter<Store, StoreEntity
     @Override
     public Store toModel(StoreEntity entity) {
         Owner owner = entityFactory.createOwner(entity.getOwnerEntity());
-        return new Store(entity.getId(), entity.getName(), entity.getEmail(), entity.getAddress(), owner);
+        return new Store(entity.getId(), entity.getName(), entity.getEmail(), entity.getAddress(), entity.getPhone(), owner);
     }
 
     @Override
     public StoreEntity toEntity(Store model) {
         OwnerEntity ownerEntity = entityFactory.createOwnerEntity(model.getOwner());
-        return new StoreEntity(model.getId(), model.getName(), model.getEmail(), model.getAddress(), ownerEntity);
+        return new StoreEntity(model.getId(), model.getName(), model.getEmail(), model.getAddress(), model.getPhone(), ownerEntity);
     }
 }

@@ -1,6 +1,7 @@
 package com.andybrook.api.pdf;
 
 import com.andybrook.generator.OrderGenerator;
+import com.andybrook.model.api.AggregatedOrder;
 import com.andybrook.model.order.Order;
 import org.junit.Assert;
 import org.junit.Test;
@@ -14,7 +15,7 @@ import java.nio.file.Path;
 
 @ContextConfiguration(classes = PdfTestConfig.class)
 @RunWith(SpringJUnit4ClassRunner.class)
-public class CloseReportPdfBuilderTest {
+public class CloseOrderPdfBuilderTest {
 
     @Autowired
     private ApplicationContext applicationContext;
@@ -22,8 +23,8 @@ public class CloseReportPdfBuilderTest {
     @Test
     public void generatePdfTest() {
         Order order = OrderGenerator.generateBasicOrder();
-        CloseReportPdfBuilder builder = applicationContext.getBean(CloseReportPdfBuilder.class);
-        Path path = builder.generatePdf(order);
+        CloseOrderPdfBuilder builder = applicationContext.getBean(CloseOrderPdfBuilder.class);
+        Path path = builder.generatePdf(AggregatedOrder.toAggregatedOrder(order));
         Assert.assertNotNull(path);
         Assert.assertTrue(path.toFile().exists());
         System.out.println("PDF GENERATED : " + path.toAbsolutePath().toString());

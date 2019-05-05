@@ -1,14 +1,14 @@
 package com.andybrook.model.notification;
 
 import com.andybrook.ApplicationProperties;
-import com.andybrook.api.pdf.CloseReportPdfBuilder;
+import com.andybrook.api.pdf.CloseOrderPdfBuilder;
 import com.andybrook.api.pdf.IPdfBuilder;
-import com.andybrook.model.api.rest.AggregatedOrderItem;
+import com.andybrook.model.api.AggregatedOrder;
+import com.andybrook.model.api.AggregatedOrderItem;
 import com.andybrook.model.api.Email;
-import com.andybrook.model.order.Order;
 import com.andybrook.model.order.OrderItem;
+import com.andybrook.model.product.Product;
 import com.andybrook.model.setting.AdminSetting;
-import com.andybrook.util.OrderItemAggregatorUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.config.BeanDefinition;
 import org.springframework.context.ApplicationContext;
@@ -28,7 +28,7 @@ import java.util.List;
 
 @Component
 @Scope(BeanDefinition.SCOPE_PROTOTYPE)
-public class OrderClosedEmailNotification implements IEmailNotification<Order> {
+public class OrderClosedEmailNotification implements IEmailNotification<AggregatedOrder> {
 
     private static final Logger LOGGER = System.getLogger(OrderClosedEmailNotification.class.getSimpleName());
     private static final DateTimeFormatter DATE_TIME_FORMATTER_FILE_NAME = DateTimeFormatter.ofPattern("yyyy-MM-dd-hh-mm-ss");
@@ -39,29 +39,29 @@ public class OrderClosedEmailNotification implements IEmailNotification<Order> {
     private ApplicationContext applicationContext;
 
     @Override
-    public Email createEmail(AdminSetting adminSetting, Order report) {
+    public Email createEmail(AdminSetting adminSetting, AggregatedOrder order) {
         return Email.builder()
                 .fromAdress(applicationProperties.getNotificationEmailFrom())
                 .toAdresses(adminSetting.getEmails())
-                .withSubject("Report " + report.getId() + " closed")
-                .withBody(getBody(report))
-                .withAttachmentFile(getAttachmentsPaths(report))
+                .withSubject("Order " + order.getName() + " (" + order.getId() + ") closed")
+                .withBody(getBody(order))
+                .withAttachmentFile(getAttachmentsPaths(order))
                 .build();
 
     }
 
-    private Path[] getAttachmentsPaths(Order order) {
+    private Path[] getAttachmentsPaths(AggregatedOrder order) {
         Path csvPath = generateCsvFile(order);
         Path pdfPath = generatePdfFile(order);
         return new Path[] {csvPath, pdfPath};
     }
 
-    private Path generatePdfFile(Order report) {
-        IPdfBuilder<Order> builder = applicationContext.getBean(CloseReportPdfBuilder.class);
-        return builder.generatePdf(report);
+    private Path generatePdfFile(AggregatedOrder order) {
+        IPdfBuilder<AggregatedOrder> builder = applicationContext.getBean(CloseOrderPdfBuilder.class);
+        return builder.generatePdf(order);
     }
 
-    private Path generateCsvFile(Order order) {
+    private Path generateCsvFile(AggregatedOrder order) {
         Path csvFilePath = null;
         try {
             String content = generateCsvFileContent(order);
@@ -73,17 +73,17 @@ public class OrderClosedEmailNotification implements IEmailNotification<Order> {
         return csvFilePath;
     }
 
-    private String generateCsvFileContent(Order order) {
+    private String generateCsvFileContent(AggregatedOrder order) {
         StringBuilder sb = new StringBuilder();
         appendColumnsName(sb);
         sb.append(System.lineSeparator());
-        appendOrderItemsRows(sb, OrderItemAggregatorUtil.getAggregatedOrderItems(order));
+        appendOrderItemsRows(sb, order.getAggregatedOrderItems());
         return sb.toString();
     }
 
-    private Path writeCsvInFile(Order report, String csv) throws IOException {
+    private Path writeCsvInFile(AggregatedOrder order, String csv) throws IOException {
         System.out.println(csv);
-        String fileName = report.getName() + "-" + report.getCreatedDateTime().format(DATE_TIME_FORMATTER_FILE_NAME);
+        String fileName = order.getName() + "-" + order.getCreatedDatetime().format(DATE_TIME_FORMATTER_FILE_NAME);
         File tmpFile = File.createTempFile(fileName, ".csv");
         FileWriter writer = new FileWriter(tmpFile);
         try {
@@ -96,9 +96,8 @@ public class OrderClosedEmailNotification implements IEmailNotification<Order> {
     }
 
     private void appendColumnsName(StringBuilder sb) {
-        sb.append("Id").append(",")
-            .append("Name").append(",")
-            .append("quantityCreated").append(",")
+        sb.append("Name").append(",")
+            .append("Quantity").append(",")
             .append("Price");
     }
 
@@ -109,16 +108,16 @@ public class OrderClosedEmailNotification implements IEmailNotification<Order> {
     }
 
     private void generateOrderItemCsvRow(StringBuilder sb, AggregatedOrderItem aggregatedOrderItem) {
-        OrderItem orderItem = aggregatedOrderItem.getOrderItems().get(0);
-        sb.append(orderItem.getProductItem().getName()).append(",")
+        Product product = aggregatedOrderItem.getProduct();
+        sb.append(product.getName()).append(",")
                 .append(aggregatedOrderItem.getQuantity()).append(",")
-                .append(orderItem.getProductItem().getPrice())
+                .append(product.getPrice())
                 .append(System.lineSeparator());
     }
 
-    private String getBody(Order order) {
+    private String getBody(AggregatedOrder order) {
         StringBuilder sb = new StringBuilder();
-        sb.append("Report " + order.getId() + " has been closed on " + getFormattedDateTime(ZonedDateTime.now(ZoneId.of("Europe/Paris"))));
+        sb.append("Order " + order.getName() + " (" + order.getId() + ") has been closed on " + getFormattedDateTime(ZonedDateTime.now(ZoneId.of("Europe/Paris"))));
         sb.append("</br></br>");
 
         sb.append(
@@ -135,8 +134,8 @@ public class OrderClosedEmailNotification implements IEmailNotification<Order> {
                 "<tr align='center'>"
                         + "<td>" + order.getId() + "</td>"
                         + "<td>" + order.getName() + "</td>"
-                        + "<td>" + order.getTotalQuantity() + "</td>"
-                        + "<td>" + order.calculateTotalPrice() + " €</td>"
+                        + "<td>" + order.getAggregatedOrderInfo().getOrderItemSize() + "</td>"
+                        + "<td>" + order.getAggregatedOrderInfo().getTotalPrice() + " €</td>"
                 + "</tr>"
         );
 
@@ -145,21 +144,22 @@ public class OrderClosedEmailNotification implements IEmailNotification<Order> {
         sb.append(
                 "<table width='100%' border='1' align='center'>"
                         + "<tr align='center'>"
-                        + "<td><b>ID<b></td>"
                         + "<td><b>Name<b></td>"
+                        + "<td><b>Unit Price<b></td>"
                         + "<td><b>Quantity<b></td>"
                         + "<td><b>Price<b></td>"
                         + "</tr>"
         );
 
-        for (AggregatedOrderItem aggregatedOrderItem : OrderItemAggregatorUtil.getAggregatedOrderItems(order)) {
-            OrderItem orderItem = aggregatedOrderItem.getOrderItems().get(0);
+        for (int i = 0; i < order.getAggregatedOrderItems().size(); i++) {
+            AggregatedOrderItem aggregatedOrderItem = order.getAggregatedOrderItems().get(i);
+            Product product = aggregatedOrderItem.getProduct();
             sb.append(
                     "<tr align='center'>"
-                            + "<td>" + orderItem.getId() + "</td>"
-                            + "<td>" + orderItem.getProductItem().getName() + "</td>"
+                            + "<td>" + product.getName() + "</td>"
+                            + "<td>" + product.getPrice() + "€ </td>"
                             + "<td>" + aggregatedOrderItem.getQuantity() + "</td>"
-                            + "<td>" + orderItem.getProductItem().getPrice() + "</td>"
+                            + "<td>" + aggregatedOrderItem.getTtlPrice() + "€ </td>"
                             + "</tr>"
             );
         }

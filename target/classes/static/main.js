@@ -30,7 +30,7 @@ webpackEmptyAsyncContext.id = "./src/$$_lazy_route_resource lazy recursive";
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJzcmMvYXBwL2FkbWluL2FkbWluLXBhbmVsL2FkbWluLXBhbmVsLmNvbXBvbmVudC5jc3MifQ== */"
+module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiIuLi9zcmMvYXBwL2FkbWluL2FkbWluLXBhbmVsL2FkbWluLXBhbmVsLmNvbXBvbmVudC5jc3MifQ== */"
 
 /***/ }),
 
@@ -155,7 +155,7 @@ var AdminPanelComponent = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJzcmMvYXBwL2FwcC1uYXYtYmFyL2FwcC1uYXYtYmFyLmNvbXBvbmVudC5jc3MifQ== */"
+module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiIuLi9zcmMvYXBwL2FwcC1uYXYtYmFyL2FwcC1uYXYtYmFyLmNvbXBvbmVudC5jc3MifQ== */"
 
 /***/ }),
 
@@ -212,7 +212,7 @@ var AppNavBarComponent = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJzcmMvYXBwL2FwcC5jb21wb25lbnQuY3NzIn0= */"
+module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiIuLi9zcmMvYXBwL2FwcC5jb21wb25lbnQuY3NzIn0= */"
 
 /***/ }),
 
@@ -498,7 +498,7 @@ var FilterPipe = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJzcmMvYXBwL2N1c3RvbWVyL2N1c3RvbWVyLXBhbmVsL2N1c3RvbWVyLXBhbmVsLmNvbXBvbmVudC5jc3MifQ== */"
+module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiIuLi9zcmMvYXBwL2N1c3RvbWVyL2N1c3RvbWVyLXBhbmVsL2N1c3RvbWVyLXBhbmVsLmNvbXBvbmVudC5jc3MifQ== */"
 
 /***/ }),
 
@@ -554,7 +554,7 @@ var CustomerPanelComponent = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJzcmMvYXBwL2hlYWRlci1tZW51L2hlYWRlci1tZW51LmNvbXBvbmVudC5jc3MifQ== */"
+module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiIuLi9zcmMvYXBwL2hlYWRlci1tZW51L2hlYWRlci1tZW51LmNvbXBvbmVudC5jc3MifQ== */"
 
 /***/ }),
 
@@ -610,7 +610,7 @@ var HeaderMenuComponent = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJzcmMvYXBwL21vZGFsL2FkZC1vcmRlci1pdGVtLW1vZGFsL2FkZC1vcmRlci1pdGVtLW1vZGFsLmNvbXBvbmVudC5jc3MifQ== */"
+module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiIuLi9zcmMvYXBwL21vZGFsL2FkZC1vcmRlci1pdGVtLW1vZGFsL2FkZC1vcmRlci1pdGVtLW1vZGFsLmNvbXBvbmVudC5jc3MifQ== */"
 
 /***/ }),
 
@@ -707,7 +707,13 @@ var AddOrderItemModalComponent = /** @class */ (function () {
         this.barCodeMode = this.cookieService.check("barCodeMode") ? src_app_util_TypeUtil__WEBPACK_IMPORTED_MODULE_12__["TypeUtil"].toBoolean(this.cookieService.get("barCodeMode")) : true;
     };
     AddOrderItemModalComponent.prototype.shouldEnableBarCodeMode = function (event) {
+        this.resetForm();
         this.cookieService.set("barCodeMode", String(event.currentTarget.checked));
+    };
+    AddOrderItemModalComponent.prototype.resetForm = function () {
+        this.addOrderItemForm.reset();
+        this.productStockInfo = null;
+        this.changeErrorMessage(null);
     };
     AddOrderItemModalComponent.prototype.getAllCustomers = function () {
         var _this = this;
@@ -723,25 +729,30 @@ var AddOrderItemModalComponent = /** @class */ (function () {
     AddOrderItemModalComponent.prototype.onBlurProductName = function () {
         var _this = this;
         var productName = this.addOrderItemForm.get("productName").value;
-        var productId = this.productIdMapByName.get(productName);
-        this.productService.getProductStockInfo(productId).subscribe(function (data) {
-            _this.productStockInfo = src_app_model_ProductStockInfo__WEBPACK_IMPORTED_MODULE_10__["ProductStockInfo"].fromJson(data);
-        }, function (error) {
-            _this.changeErrorMessage(error.error);
-            _this.productStockInfo = null;
-        });
+        if (productName != null) {
+            var productId = this.productIdMapByName.get(productName);
+            if (productId != null) {
+                this.productService.getProductStockInfo(productId).subscribe(function (data) {
+                    _this.productStockInfo = src_app_model_ProductStockInfo__WEBPACK_IMPORTED_MODULE_10__["ProductStockInfo"].fromJson(data);
+                }, function (error) {
+                    _this.changeErrorMessage(error.error);
+                    _this.productStockInfo = null;
+                });
+            }
+        }
     };
     AddOrderItemModalComponent.prototype.onBlurBarCode = function () {
         var _this = this;
         var barCode = this.addOrderItemForm.get("barCode").value;
-        this.productService.getProductStockInfoByBarCode(barCode).subscribe(function (data) {
-            _this.productStockInfo = src_app_model_ProductStockInfo__WEBPACK_IMPORTED_MODULE_10__["ProductStockInfo"].fromJson(data);
-            _this.disableAddButton(false);
-        }, function (error) {
-            _this.disableAddButton(true);
-            _this.changeErrorMessage(error.error);
-            _this.productStockInfo = null;
-        });
+        if (barCode != null) {
+            this.productService.getProductStockInfoByBarCode(barCode).subscribe(function (data) {
+                _this.productStockInfo = src_app_model_ProductStockInfo__WEBPACK_IMPORTED_MODULE_10__["ProductStockInfo"].fromJson(data);
+                _this.disableAddButton(false);
+            }, function (error) {
+                _this.changeErrorMessage(error.error);
+                _this.productStockInfo = null;
+            });
+        }
     };
     AddOrderItemModalComponent.prototype.onSubmit = function () {
         if (this.barCodeMode) {
@@ -839,7 +850,7 @@ var AddOrderItemModalComponent = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJzcmMvYXBwL21vZGFsL2NvbmZpcm0tbW9kYWwvY29uZmlybS1tb2RhbC1jb21wb25lbnQuY3NzIn0= */"
+module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiIuLi9zcmMvYXBwL21vZGFsL2NvbmZpcm0tbW9kYWwvY29uZmlybS1tb2RhbC1jb21wb25lbnQuY3NzIn0= */"
 
 /***/ }),
 
@@ -912,7 +923,7 @@ var ConfirmModalComponent = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJzcmMvYXBwL21vZGFsL2NyZWF0ZS1vcmRlci1tb2RhbC9jcmVhdGUtb3JkZXItbW9kYWwuY29tcG9uZW50LmNzcyJ9 */"
+module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiIuLi9zcmMvYXBwL21vZGFsL2NyZWF0ZS1vcmRlci1tb2RhbC9jcmVhdGUtb3JkZXItbW9kYWwuY29tcG9uZW50LmNzcyJ9 */"
 
 /***/ }),
 
@@ -1042,7 +1053,7 @@ var CreateOrderModalComponent = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = ".my-custom-scrollbar {\n    position: relative;\n    max-height: 500px;\n    overflow: auto;\n}\n\n.table-wrapper-scroll-y {\n    display: block;\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvbW9kYWwvZGVsZXRlLW9yZGVyLWl0ZW1zLW1vZGFsL2RlbGV0ZS1vcmRlci1pdGVtcy1tb2RhbC5jb21wb25lbnQuY3NzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBO0lBQ0ksa0JBQWtCO0lBQ2xCLGlCQUFpQjtJQUNqQixjQUFjO0FBQ2xCOztBQUVBO0lBQ0ksY0FBYztBQUNsQiIsImZpbGUiOiJzcmMvYXBwL21vZGFsL2RlbGV0ZS1vcmRlci1pdGVtcy1tb2RhbC9kZWxldGUtb3JkZXItaXRlbXMtbW9kYWwuY29tcG9uZW50LmNzcyIsInNvdXJjZXNDb250ZW50IjpbIi5teS1jdXN0b20tc2Nyb2xsYmFyIHtcbiAgICBwb3NpdGlvbjogcmVsYXRpdmU7XG4gICAgbWF4LWhlaWdodDogNTAwcHg7XG4gICAgb3ZlcmZsb3c6IGF1dG87XG59XG5cbi50YWJsZS13cmFwcGVyLXNjcm9sbC15IHtcbiAgICBkaXNwbGF5OiBibG9jaztcbn0iXX0= */"
+module.exports = ".my-custom-scrollbar {\n    position: relative;\n    max-height: 500px;\n    overflow: auto;\n}\n\n.table-wrapper-scroll-y {\n    display: block;\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi4uL3NyYy9hcHAvbW9kYWwvZGVsZXRlLW9yZGVyLWl0ZW1zLW1vZGFsL2RlbGV0ZS1vcmRlci1pdGVtcy1tb2RhbC5jb21wb25lbnQuY3NzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBO0lBQ0ksa0JBQWtCO0lBQ2xCLGlCQUFpQjtJQUNqQixjQUFjO0FBQ2xCOztBQUVBO0lBQ0ksY0FBYztBQUNsQiIsImZpbGUiOiIuLi9zcmMvYXBwL21vZGFsL2RlbGV0ZS1vcmRlci1pdGVtcy1tb2RhbC9kZWxldGUtb3JkZXItaXRlbXMtbW9kYWwuY29tcG9uZW50LmNzcyIsInNvdXJjZXNDb250ZW50IjpbIi5teS1jdXN0b20tc2Nyb2xsYmFyIHtcbiAgICBwb3NpdGlvbjogcmVsYXRpdmU7XG4gICAgbWF4LWhlaWdodDogNTAwcHg7XG4gICAgb3ZlcmZsb3c6IGF1dG87XG59XG5cbi50YWJsZS13cmFwcGVyLXNjcm9sbC15IHtcbiAgICBkaXNwbGF5OiBibG9jaztcbn0iXX0= */"
 
 /***/ }),
 
@@ -1115,7 +1126,7 @@ var DeleteOrderItemsModalComponent = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJzcmMvYXBwL21vZGFsL2luZm8tbW9kYWwvaW5mby1tb2RhbC5jb21wb25lbnQuY3NzIn0= */"
+module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiIuLi9zcmMvYXBwL21vZGFsL2luZm8tbW9kYWwvaW5mby1tb2RhbC5jb21wb25lbnQuY3NzIn0= */"
 
 /***/ }),
 
@@ -1185,7 +1196,7 @@ var InfoModalComponent = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJzcmMvYXBwL21vZGFsL3Nob3ctb3JkZXItaXRlbXMtbW9kYWwvc2hvdy1vcmRlci1pdGVtcy1tb2RhbC5jb21wb25lbnQuY3NzIn0= */"
+module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiIuLi9zcmMvYXBwL21vZGFsL3Nob3ctb3JkZXItaXRlbXMtbW9kYWwvc2hvdy1vcmRlci1pdGVtcy1tb2RhbC5jb21wb25lbnQuY3NzIn0= */"
 
 /***/ }),
 
@@ -1256,6 +1267,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "AggregatedOrder", function() { return AggregatedOrder; });
 /* harmony import */ var _AggregatedOrderInfo__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./AggregatedOrderInfo */ "./src/app/model/AggregatedOrderInfo.ts");
 /* harmony import */ var _AggregatedOrderItem__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./AggregatedOrderItem */ "./src/app/model/AggregatedOrderItem.ts");
+/* harmony import */ var _Customer__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./Customer */ "./src/app/model/Customer.ts");
+
 
 
 var AggregatedOrder = /** @class */ (function () {
@@ -1265,9 +1278,8 @@ var AggregatedOrder = /** @class */ (function () {
     AggregatedOrder.fromJson = function (data) {
         var order = new AggregatedOrder();
         order.id = data.id;
-        order.storeId = data.storeId;
         order.name = data.name;
-        order.storeName = data.storeName;
+        order.customer = _Customer__WEBPACK_IMPORTED_MODULE_2__["Customer"].fromJson(data.customer);
         order.status = data.status;
         order.comment = data.comment;
         order.createdDatetime = data.createdDatetime;
@@ -1603,15 +1615,13 @@ __webpack_require__.r(__webpack_exports__);
 
 var Store = /** @class */ (function () {
     function Store() {
-        this.name = '';
-        this.email = '';
-        this.owner = new _Owner__WEBPACK_IMPORTED_MODULE_0__["Owner"]();
     }
     Store.fromJson = function (data) {
         var store = new Store();
         store.id = data.id;
         store.name = data.name;
         store.email = data.email;
+        store.phone = data.phone;
         store.owner = _Owner__WEBPACK_IMPORTED_MODULE_0__["Owner"].fromJson(data.owner);
         return store;
     };
@@ -1716,7 +1726,7 @@ var DeleteOrderItemsReq = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = ".table tr.active td {\n    background-color:#275e94 !important;\n    color: white;\n    font-weight: bold;\n    white-space: nowrap;\n  }\n\n.table table-striped tr td {\n  padding: 1.5%;\n}\n\n/* Scroll Bar Aggregated Order Item table */\n\n.my-custom-scrollbar {\n  position: relative;\n  max-height: 450px;\n  overflow: auto;\n}\n\n.table-wrapper-scroll-y {\n  display: block;\n}\n\n\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvb3JkZXItcGFuZWwvbGlzdC1vcmRlci1pdGVtL2xpc3Qtb3JkZXItaXRlbS5jb21wb25lbnQuY3NzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBO0lBQ0ksbUNBQW1DO0lBQ25DLFlBQVk7SUFDWixpQkFBaUI7SUFDakIsbUJBQW1CO0VBQ3JCOztBQUVGO0VBQ0UsYUFBYTtBQUNmOztBQUVBLDJDQUEyQzs7QUFDM0M7RUFDRSxrQkFBa0I7RUFDbEIsaUJBQWlCO0VBQ2pCLGNBQWM7QUFDaEI7O0FBRUE7RUFDRSxjQUFjO0FBQ2hCIiwiZmlsZSI6InNyYy9hcHAvb3JkZXItcGFuZWwvbGlzdC1vcmRlci1pdGVtL2xpc3Qtb3JkZXItaXRlbS5jb21wb25lbnQuY3NzIiwic291cmNlc0NvbnRlbnQiOlsiLnRhYmxlIHRyLmFjdGl2ZSB0ZCB7XG4gICAgYmFja2dyb3VuZC1jb2xvcjojMjc1ZTk0ICFpbXBvcnRhbnQ7XG4gICAgY29sb3I6IHdoaXRlO1xuICAgIGZvbnQtd2VpZ2h0OiBib2xkO1xuICAgIHdoaXRlLXNwYWNlOiBub3dyYXA7XG4gIH1cblxuLnRhYmxlIHRhYmxlLXN0cmlwZWQgdHIgdGQge1xuICBwYWRkaW5nOiAxLjUlO1xufVxuXG4vKiBTY3JvbGwgQmFyIEFnZ3JlZ2F0ZWQgT3JkZXIgSXRlbSB0YWJsZSAqL1xuLm15LWN1c3RvbS1zY3JvbGxiYXIge1xuICBwb3NpdGlvbjogcmVsYXRpdmU7XG4gIG1heC1oZWlnaHQ6IDQ1MHB4O1xuICBvdmVyZmxvdzogYXV0bztcbn1cblxuLnRhYmxlLXdyYXBwZXItc2Nyb2xsLXkge1xuICBkaXNwbGF5OiBibG9jaztcbn1cblxuIl19 */"
+module.exports = ".table tr.active td {\n    background-color:#275e94 !important;\n    color: white;\n    font-weight: bold;\n    white-space: nowrap;\n  }\n\n.table table-striped tr td {\n  padding: 1.5%;\n}\n\n/* Scroll Bar Aggregated Order Item table */\n\n.my-custom-scrollbar {\n  position: relative;\n  max-height: 450px;\n  overflow: auto;\n}\n\n.table-wrapper-scroll-y {\n  display: block;\n}\n\n\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi4uL3NyYy9hcHAvb3JkZXItcGFuZWwvbGlzdC1vcmRlci1pdGVtL2xpc3Qtb3JkZXItaXRlbS5jb21wb25lbnQuY3NzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBO0lBQ0ksbUNBQW1DO0lBQ25DLFlBQVk7SUFDWixpQkFBaUI7SUFDakIsbUJBQW1CO0VBQ3JCOztBQUVGO0VBQ0UsYUFBYTtBQUNmOztBQUVBLDJDQUEyQzs7QUFDM0M7RUFDRSxrQkFBa0I7RUFDbEIsaUJBQWlCO0VBQ2pCLGNBQWM7QUFDaEI7O0FBRUE7RUFDRSxjQUFjO0FBQ2hCIiwiZmlsZSI6Ii4uL3NyYy9hcHAvb3JkZXItcGFuZWwvbGlzdC1vcmRlci1pdGVtL2xpc3Qtb3JkZXItaXRlbS5jb21wb25lbnQuY3NzIiwic291cmNlc0NvbnRlbnQiOlsiLnRhYmxlIHRyLmFjdGl2ZSB0ZCB7XG4gICAgYmFja2dyb3VuZC1jb2xvcjojMjc1ZTk0ICFpbXBvcnRhbnQ7XG4gICAgY29sb3I6IHdoaXRlO1xuICAgIGZvbnQtd2VpZ2h0OiBib2xkO1xuICAgIHdoaXRlLXNwYWNlOiBub3dyYXA7XG4gIH1cblxuLnRhYmxlIHRhYmxlLXN0cmlwZWQgdHIgdGQge1xuICBwYWRkaW5nOiAxLjUlO1xufVxuXG4vKiBTY3JvbGwgQmFyIEFnZ3JlZ2F0ZWQgT3JkZXIgSXRlbSB0YWJsZSAqL1xuLm15LWN1c3RvbS1zY3JvbGxiYXIge1xuICBwb3NpdGlvbjogcmVsYXRpdmU7XG4gIG1heC1oZWlnaHQ6IDQ1MHB4O1xuICBvdmVyZmxvdzogYXV0bztcbn1cblxuLnRhYmxlLXdyYXBwZXItc2Nyb2xsLXkge1xuICBkaXNwbGF5OiBibG9jaztcbn1cblxuIl19 */"
 
 /***/ }),
 
@@ -1899,7 +1909,7 @@ var ListOrderItemComponent = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "/* Scroll Bar Aggregated Order Item table */\n.my-custom-scrollbar {\n    position: relative;\n    max-height: 200px;\n    overflow: auto;\n  }\n.table-wrapper-scroll-y {\n    display: block;\n  }\n  \n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvb3JkZXItcGFuZWwvc2VsZWN0ZWQtb3JkZXItaXRlbXMtbGlzdC9zZWxlY3RlZC1vcmRlci1pdGVtcy1saXN0LmNvbXBvbmVudC5jc3MiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUEsMkNBQTJDO0FBQzNDO0lBQ0ksa0JBQWtCO0lBQ2xCLGlCQUFpQjtJQUNqQixjQUFjO0VBQ2hCO0FBRUE7SUFDRSxjQUFjO0VBQ2hCIiwiZmlsZSI6InNyYy9hcHAvb3JkZXItcGFuZWwvc2VsZWN0ZWQtb3JkZXItaXRlbXMtbGlzdC9zZWxlY3RlZC1vcmRlci1pdGVtcy1saXN0LmNvbXBvbmVudC5jc3MiLCJzb3VyY2VzQ29udGVudCI6WyIvKiBTY3JvbGwgQmFyIEFnZ3JlZ2F0ZWQgT3JkZXIgSXRlbSB0YWJsZSAqL1xuLm15LWN1c3RvbS1zY3JvbGxiYXIge1xuICAgIHBvc2l0aW9uOiByZWxhdGl2ZTtcbiAgICBtYXgtaGVpZ2h0OiAyMDBweDtcbiAgICBvdmVyZmxvdzogYXV0bztcbiAgfVxuICBcbiAgLnRhYmxlLXdyYXBwZXItc2Nyb2xsLXkge1xuICAgIGRpc3BsYXk6IGJsb2NrO1xuICB9XG4gICJdfQ== */"
+module.exports = "/* Scroll Bar Aggregated Order Item table */\n.my-custom-scrollbar {\n    position: relative;\n    max-height: 200px;\n    overflow: auto;\n  }\n.table-wrapper-scroll-y {\n    display: block;\n  }\n  \n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi4uL3NyYy9hcHAvb3JkZXItcGFuZWwvc2VsZWN0ZWQtb3JkZXItaXRlbXMtbGlzdC9zZWxlY3RlZC1vcmRlci1pdGVtcy1saXN0LmNvbXBvbmVudC5jc3MiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUEsMkNBQTJDO0FBQzNDO0lBQ0ksa0JBQWtCO0lBQ2xCLGlCQUFpQjtJQUNqQixjQUFjO0VBQ2hCO0FBRUE7SUFDRSxjQUFjO0VBQ2hCIiwiZmlsZSI6Ii4uL3NyYy9hcHAvb3JkZXItcGFuZWwvc2VsZWN0ZWQtb3JkZXItaXRlbXMtbGlzdC9zZWxlY3RlZC1vcmRlci1pdGVtcy1saXN0LmNvbXBvbmVudC5jc3MiLCJzb3VyY2VzQ29udGVudCI6WyIvKiBTY3JvbGwgQmFyIEFnZ3JlZ2F0ZWQgT3JkZXIgSXRlbSB0YWJsZSAqL1xuLm15LWN1c3RvbS1zY3JvbGxiYXIge1xuICAgIHBvc2l0aW9uOiByZWxhdGl2ZTtcbiAgICBtYXgtaGVpZ2h0OiAyMDBweDtcbiAgICBvdmVyZmxvdzogYXV0bztcbiAgfVxuICBcbiAgLnRhYmxlLXdyYXBwZXItc2Nyb2xsLXkge1xuICAgIGRpc3BsYXk6IGJsb2NrO1xuICB9XG4gICJdfQ== */"
 
 /***/ }),
 
@@ -2025,7 +2035,7 @@ var SelectedOrderItemsListComponent = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJzcmMvYXBwL29yZGVyLXBhbmVsL3Nob3ctb3JkZXItaGVhZGVyL3Nob3ctb3JkZXItaGVhZGVyLmNvbXBvbmVudC5jc3MifQ== */"
+module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiIuLi9zcmMvYXBwL29yZGVyLXBhbmVsL3Nob3ctb3JkZXItaGVhZGVyL3Nob3ctb3JkZXItaGVhZGVyLmNvbXBvbmVudC5jc3MifQ== */"
 
 /***/ }),
 
@@ -2088,7 +2098,7 @@ var OrderHeaderComponent = /** @class */ (function () {
         var modalRef = this.modalBuilder.open(src_app_modal_confirm_modal_confirm_modal_component__WEBPACK_IMPORTED_MODULE_3__["ConfirmModalComponent"]);
         modalRef.componentInstance.title = "Close Report Confirmation";
         modalRef.componentInstance.message = "Are you sure you want to close the order "
-            + this.order.name + " for the store " + this.order.storeName;
+            + this.order.name + " for the store " + this.order.customer.store.name;
         modalRef.result.then(function (response) {
             if (response) {
                 _this.orderService.closeOrder(_this.order.id).subscribe(function (data) {
@@ -2133,7 +2143,7 @@ var OrderHeaderComponent = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJzcmMvYXBwL29yZGVyLXBhbmVsL3Nob3ctb3JkZXIvc2hvdy1vcmRlci5jb21wb25lbnQuY3NzIn0= */"
+module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiIuLi9zcmMvYXBwL29yZGVyLXBhbmVsL3Nob3ctb3JkZXIvc2hvdy1vcmRlci5jb21wb25lbnQuY3NzIn0= */"
 
 /***/ }),
 
@@ -2223,7 +2233,7 @@ var ShowOrderComponent = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJzcmMvYXBwL29yZGVycy1tYW5hZ2VyLXBhbmVsL2xpc3Qtb3JkZXJzL2xpc3Qtb3JkZXJzLmNvbXBvbmVudC5jc3MifQ== */"
+module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiIuLi9zcmMvYXBwL29yZGVycy1tYW5hZ2VyLXBhbmVsL2xpc3Qtb3JkZXJzL2xpc3Qtb3JkZXJzLmNvbXBvbmVudC5jc3MifQ== */"
 
 /***/ }),
 
@@ -2274,9 +2284,9 @@ var ListOrdersComponent = /** @class */ (function () {
     ListOrdersComponent.prototype.onClickCloseOrder = function (orderToClose) {
         var _this = this;
         var modalRef = this.modalBuilder.open(src_app_modal_confirm_modal_confirm_modal_component__WEBPACK_IMPORTED_MODULE_5__["ConfirmModalComponent"]);
-        modalRef.componentInstance.title = "Close Report Confirmation";
+        modalRef.componentInstance.title = "Close Order Confirmation";
         modalRef.componentInstance.message = "Are you sure you want to close the order "
-            + orderToClose.name + " for the store " + orderToClose.storeName;
+            + orderToClose.name + " for the store " + orderToClose.customer.store.name + ' ?';
         modalRef.result.then(function (response) {
             if (response) {
                 _this.orderService.closeOrder(orderToClose.id).subscribe(function (data) {
@@ -2333,7 +2343,7 @@ var ListOrdersComponent = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJzcmMvYXBwL29yZGVycy1tYW5hZ2VyLXBhbmVsL29yZGVycy1tYW5hZ2VyL29yZGVycy1tYW5hZ2VyLmNvbXBvbmVudC5jc3MifQ== */"
+module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiIuLi9zcmMvYXBwL29yZGVycy1tYW5hZ2VyLXBhbmVsL29yZGVycy1tYW5hZ2VyL29yZGVycy1tYW5hZ2VyLmNvbXBvbmVudC5jc3MifQ== */"
 
 /***/ }),
 
@@ -2398,6 +2408,8 @@ var OrdersManagerComponent = /** @class */ (function () {
         this.orderService.getOrderByName(name).subscribe(function (data) {
             _this.orders = _this.parseOrderIntoArray(data);
             _this.searchButtonDisabled = false;
+        }, function (error) {
+            console.log("error in search : " + error);
         });
     };
     OrdersManagerComponent.prototype.getAllOrders = function () {

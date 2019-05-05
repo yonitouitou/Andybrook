@@ -30,7 +30,7 @@ public class CustomerServiceTest {
     public void init() {
         long index = Clock.millis();
         owner = new Owner("Michael-" + index, "Jordan-" + index, "Owner." + index + "@gmail.com");
-        store = new Store("Name" + index, "name." + index + "@gmail.com", "address", owner);
+        store = new Store("Name" + index, "name." + index + "@gmail.com", "address", "01.43.45.32.11", owner);
         customer = new Customer(store);
     }
 

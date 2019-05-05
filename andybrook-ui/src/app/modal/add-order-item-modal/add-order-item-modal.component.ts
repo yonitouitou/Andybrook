@@ -78,8 +78,15 @@ export class AddOrderItemModalComponent implements OnInit {
     this.barCodeMode = this.cookieService.check("barCodeMode") ? TypeUtil.toBoolean(this.cookieService.get("barCodeMode")) : true;
   }
 
-  private shouldEnableBarCodeMode(event) {
-      this.cookieService.set("barCodeMode", String(event.currentTarget.checked));
+  shouldEnableBarCodeMode(event) {
+    this.resetForm();
+    this.cookieService.set("barCodeMode", String(event.currentTarget.checked));
+  }
+
+  private resetForm() {
+    this.addOrderItemForm.reset();
+    this.productStockInfo = null;
+    this.changeErrorMessage(null);
   }
 
   getAllCustomers() {
@@ -96,31 +103,36 @@ export class AddOrderItemModalComponent implements OnInit {
 
   onBlurProductName() {
     let productName = this.addOrderItemForm.get("productName").value;
-    let productId = this.productIdMapByName.get(productName);
-    this.productService.getProductStockInfo(productId).subscribe(
-      data => {
-        this.productStockInfo = ProductStockInfo.fromJson(data);
-      },
-      error => {
-        this.changeErrorMessage(error.error);
-        this.productStockInfo = null;
+    if (productName != null) {
+      let productId = this.productIdMapByName.get(productName);
+      if (productId != null) {
+        this.productService.getProductStockInfo(productId).subscribe(
+          data => {
+            this.productStockInfo = ProductStockInfo.fromJson(data);
+          },
+          error => {
+            this.changeErrorMessage(error.error);
+            this.productStockInfo = null;
+          }
+        )
       }
-    ) 
+    } 
   }
 
   onBlurBarCode() {
     let barCode = this.addOrderItemForm.get("barCode").value;
-    this.productService.getProductStockInfoByBarCode(barCode).subscribe(
-      data => {
-        this.productStockInfo = ProductStockInfo.fromJson(data);
-        this.disableAddButton(false);
-      },
-      error => {
-        this.disableAddButton(true);
-        this.changeErrorMessage(error.error);
-        this.productStockInfo = null;
-      }
-    )
+    if (barCode != null) {
+      this.productService.getProductStockInfoByBarCode(barCode).subscribe(
+        data => {
+          this.productStockInfo = ProductStockInfo.fromJson(data);
+          this.disableAddButton(false);
+        },
+        error => {
+          this.changeErrorMessage(error.error);
+          this.productStockInfo = null;
+        }
+      )
+    }
   }
 
   onSubmit() {

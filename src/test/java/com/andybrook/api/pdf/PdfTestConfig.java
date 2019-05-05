@@ -50,8 +50,8 @@ public class PdfTestConfig {
     }
 
     @Bean
-    CloseReportPdfBuilder closeReportPdfBuilder() {
-        return new CloseReportPdfBuilder();
+    CloseOrderPdfBuilder closeReportPdfBuilder() {
+        return new CloseOrderPdfBuilder();
     }
 
     @Bean

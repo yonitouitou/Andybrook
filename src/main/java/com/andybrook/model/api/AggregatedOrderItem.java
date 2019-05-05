@@ -1,4 +1,4 @@
-package com.andybrook.model.api.rest;
+package com.andybrook.model.api;
 
 import com.andybrook.model.order.OrderItem;
 import com.andybrook.model.product.Product;

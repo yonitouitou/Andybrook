@@ -1,6 +1,6 @@
 package com.andybrook.util;
 
-import com.andybrook.model.api.rest.AggregatedOrderItem;
+import com.andybrook.model.api.AggregatedOrderItem;
 import com.andybrook.model.order.Order;
 import com.andybrook.model.order.OrderItem;
 import com.andybrook.model.product.Product;
