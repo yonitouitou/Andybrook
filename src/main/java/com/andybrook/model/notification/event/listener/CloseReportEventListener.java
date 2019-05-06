@@ -1,12 +1,12 @@
 package com.andybrook.model.notification.event.listener;
 
 import com.andybrook.api.email.EmailSender;
+import com.andybrook.manager.setting.IAdminSettingManager;
 import com.andybrook.model.api.AggregatedOrder;
 import com.andybrook.model.notification.IEmailNotification;
 import com.andybrook.model.notification.OrderClosedEmailNotification;
 import com.andybrook.model.notification.event.ctx.CloseOrderEvent;
 import com.andybrook.model.setting.AdminSetting;
-import com.andybrook.service.setting.IAdminSettingService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.config.BeanDefinition;
 import org.springframework.context.ApplicationContext;
@@ -23,13 +23,13 @@ public class CloseReportEventListener implements IEventListener<CloseOrderEvent>
     @Autowired
     private EmailSender emailSender;
     @Autowired
-    private IAdminSettingService adminSettingService;
+    private IAdminSettingManager adminSettingManager;
 
     @Override
     @EventListener
     public void handleEvent(CloseOrderEvent event) {
         IEmailNotification<AggregatedOrder> closedReportNotif = applicationContext.getBean(OrderClosedEmailNotification.class);
-        AdminSetting adminSetting = adminSettingService.getAdminSetting();
+        AdminSetting adminSetting = adminSettingManager.getAdminSetting();
         emailSender.send(closedReportNotif.createEmail(adminSetting, event.getOrder()));
     }
 }
