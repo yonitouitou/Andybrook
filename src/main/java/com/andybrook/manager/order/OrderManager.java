@@ -40,11 +40,6 @@ public class OrderManager implements IOrderManager {
     }
 
     @Override
-    public List<Order> getOrdersByName(String name) {
-        return orderService.getOrdersByName(name);
-    }
-
-    @Override
     public List<Order> getOrdersByNameContaining(String name) {
         return orderService.getOrderByNameContaining(name);
     }
@@ -52,6 +47,11 @@ public class OrderManager implements IOrderManager {
     @Override
     public List<Order> getOrders(List<Long> ids) {
         return orderService.getOrders(ids);
+    }
+
+    @Override
+    public List<Order> getOrdersOfCustomer(long customerId) {
+        return orderService.getOrdersOfCustomer(customerId);
     }
 
     @Override

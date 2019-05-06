@@ -33,6 +33,9 @@ import { SelectedOrderItemsListComponent } from './order-panel/selected-order-it
 import { DeleteOrderItemsModalComponent } from './modal/delete-order-items-modal/delete-order-items-modal.component';
 import { AddOrderItemModalComponent } from './modal/add-order-item-modal/add-order-item-modal.component';
 import { CookieService } from 'ngx-cookie-service';
+import { ListCustomerComponent } from './customer/list-customer/list-customer.component';
+import { CustomerOrdersComponent } from './customer/customer-orders/customer-orders.component';
+import { CustomerInfoComponent } from './customer/customer-info/customer-info.component';
 
 const appRoutes: Routes = [
   { path: '', component: OrdersManagerComponent },
@@ -60,6 +63,9 @@ const appRoutes: Routes = [
     SelectedOrderItemsListComponent,
     DeleteOrderItemsModalComponent,
     AddOrderItemModalComponent,
+    ListCustomerComponent,
+    CustomerOrdersComponent,
+    CustomerInfoComponent,
   ],
   entryComponents: [
     CreateOrderModalComponent,

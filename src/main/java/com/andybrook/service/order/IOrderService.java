@@ -28,6 +28,8 @@ public interface IOrderService {
 
     List<Order> getOrders(List<Long> ids);
 
+    List<Order> getOrdersOfCustomer(long customerId);
+
     boolean canModifyOrder(long id) throws OrderNotFound;
 
     boolean canModifyOrder(Order order);

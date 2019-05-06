@@ -1,6 +1,8 @@
 package com.andybrook.api.rest;
 
 import com.andybrook.manager.customer.ICustomerManager;
+import com.andybrook.model.api.AggregatedOrder;
+import com.andybrook.model.api.AggregatedOrderInfo;
 import com.andybrook.model.customer.Customer;
 import com.andybrook.model.customer.Owner;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,5 +38,4 @@ public class CustomerController extends AbstractController {
         LOGGER.log(Level.INFO, "Get All customer request.");
         return customerManager.getAll();
     }
-
 }

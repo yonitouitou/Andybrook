@@ -101,6 +101,20 @@ public class OrderServiceTest {
         Assert.assertFalse(order.hasItem(orderItem.getId()));
     }
 
+    @Test
+    public void getOrdersOfCustomerTest() {
+        int nbOfOrderForCustomer = 3;
+        Customer customer = customerService.newCustomer(CustomerGenerator.generateCustomer());
+        for (int i = 0; i < nbOfOrderForCustomer; i++) {
+            orderService.newOrder(createNewOrderRequest(customer));
+        }
+        Customer customer2 = customerService.newCustomer(CustomerGenerator.generateCustomer());
+        orderService.newOrder(createNewOrderRequest(customer2));
+
+        List<Order> ordersOfCustomer = orderService.getOrdersOfCustomer(customer.getId());
+        Assert.assertEquals("OrderOfCustomerSize", nbOfOrderForCustomer, ordersOfCustomer.size());
+    }
+
     private List<OrderItem> addOrderItems(ProductItemInfo productItemInfo) {
         return orderService.addOrderItems(order.getId(), productItemInfo, productItemInfo.getRequestedQuantity());
     }

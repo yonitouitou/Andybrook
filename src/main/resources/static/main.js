@@ -30,7 +30,7 @@ webpackEmptyAsyncContext.id = "./src/$$_lazy_route_resource lazy recursive";
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiIuLi9zcmMvYXBwL2FkbWluL2FkbWluLXBhbmVsL2FkbWluLXBhbmVsLmNvbXBvbmVudC5jc3MifQ== */"
+module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJzcmMvYXBwL2FkbWluL2FkbWluLXBhbmVsL2FkbWluLXBhbmVsLmNvbXBvbmVudC5jc3MifQ== */"
 
 /***/ }),
 
@@ -155,7 +155,7 @@ var AdminPanelComponent = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiIuLi9zcmMvYXBwL2FwcC1uYXYtYmFyL2FwcC1uYXYtYmFyLmNvbXBvbmVudC5jc3MifQ== */"
+module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJzcmMvYXBwL2FwcC1uYXYtYmFyL2FwcC1uYXYtYmFyLmNvbXBvbmVudC5jc3MifQ== */"
 
 /***/ }),
 
@@ -166,7 +166,7 @@ module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<nav class=\"navbar navbar-expand-md navbar-dark bg-primary fixed-top\">\n    <a class=\"navbar-brand\" href=\"#\">Andybrook</a>\n    <button class=\"navbar-toggler hidden-sm-up\" type=\"button\" (click)=\"isNavbarCollapsed = !isNavbarCollapsed\" data-target=\"#navbarsDefault\" aria-controls=\"navbarsDefault\" aria-expanded=\"false\" aria-label=\"Toggle navigation\">\n      <span class=\"navbar-toggler-icon\"></span>\n    </button>\n    <div [ngbCollapse]=\"isNavbarCollapsed\" class=\"collapse navbar-collapse\" id=\"navbarsDefault\">\n      <ul class=\"navbar-nav mr-auto\">\n        <li class=\"nav-item\">\n          <a class=\"nav-link\"\n             routerLinkActive=\"active\"\n             [routerLinkActiveOptions]=\"{exact: true}\"\n             routerLink=\"/\"\n          >Home</a>\n        </li>\n        <li class=\"nav-item\">\n            <a class=\"nav-link\"\n               routerLink=\"/customer\"\n            >Customer</a>\n          </li>\n        <li class=\"nav-item\">\n          <a class=\"nav-link\"\n             routerLink=\"/admin\"\n          >Admin</a>\n        </li>\n        <li class=\"nav-item dropdown\" ngbDropdown>\n          <a class=\"nav-link dropdown-toggle\" id=\"id01\" href=\"#\" ngbDropdownToggle>Files</a>\n          <div class=\"dropdown-menu\" aria-labelledby=\"id01\" ngbDropdownMenu>\n            <a class=\"dropdown-item\" href=\"#\">HTML</a>\n            <a class=\"dropdown-item\" href=\"#\">TS</a>\n            <a class=\"dropdown-item\" href=\"#\">JS</a>\n          </div>\n        </li>\n      </ul>\n    </div>\n  </nav>"
+module.exports = "<nav class=\"navbar navbar-expand-md navbar-dark bg-primary fixed-top\">\n    <a class=\"navbar-brand\" href=\"#\">Andybrook</a>\n    <button class=\"navbar-toggler hidden-sm-up\" type=\"button\" (click)=\"isNavbarCollapsed = !isNavbarCollapsed\" data-target=\"#navbarsDefault\" aria-controls=\"navbarsDefault\" aria-expanded=\"false\" aria-label=\"Toggle navigation\">\n      <span class=\"navbar-toggler-icon\"></span>\n    </button>\n    <div [ngbCollapse]=\"isNavbarCollapsed\" class=\"collapse navbar-collapse\" id=\"navbarsDefault\">\n      <ul class=\"navbar-nav mr-auto\">\n        <li class=\"nav-item\">\n          <a class=\"nav-link\"\n             routerLinkActive=\"active\"\n             [routerLinkActiveOptions]=\"{exact: true}\"\n             routerLink=\"/\"\n          >Home</a>\n        </li>\n        <li class=\"nav-item\">\n            <a class=\"nav-link\"\n               routerLink=\"/customers\"\n            >Customers</a>\n          </li>\n        <li class=\"nav-item\">\n          <a class=\"nav-link\"\n             routerLink=\"/admin\"\n          >Admin</a>\n        </li>\n        <li class=\"nav-item dropdown\" ngbDropdown>\n          <a class=\"nav-link dropdown-toggle\" id=\"id01\" href=\"#\" ngbDropdownToggle>Files</a>\n          <div class=\"dropdown-menu\" aria-labelledby=\"id01\" ngbDropdownMenu>\n            <a class=\"dropdown-item\" href=\"#\">HTML</a>\n            <a class=\"dropdown-item\" href=\"#\">TS</a>\n            <a class=\"dropdown-item\" href=\"#\">JS</a>\n          </div>\n        </li>\n      </ul>\n    </div>\n  </nav>"
 
 /***/ }),
 
@@ -212,7 +212,7 @@ var AppNavBarComponent = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiIuLi9zcmMvYXBwL2FwcC5jb21wb25lbnQuY3NzIn0= */"
+module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJzcmMvYXBwL2FwcC5jb21wb25lbnQuY3NzIn0= */"
 
 /***/ }),
 
@@ -304,6 +304,12 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _modal_delete_order_items_modal_delete_order_items_modal_component__WEBPACK_IMPORTED_MODULE_33__ = __webpack_require__(/*! ./modal/delete-order-items-modal/delete-order-items-modal.component */ "./src/app/modal/delete-order-items-modal/delete-order-items-modal.component.ts");
 /* harmony import */ var _modal_add_order_item_modal_add_order_item_modal_component__WEBPACK_IMPORTED_MODULE_34__ = __webpack_require__(/*! ./modal/add-order-item-modal/add-order-item-modal.component */ "./src/app/modal/add-order-item-modal/add-order-item-modal.component.ts");
 /* harmony import */ var ngx_cookie_service__WEBPACK_IMPORTED_MODULE_35__ = __webpack_require__(/*! ngx-cookie-service */ "./node_modules/ngx-cookie-service/index.js");
+/* harmony import */ var _customer_list_customer_list_customer_component__WEBPACK_IMPORTED_MODULE_36__ = __webpack_require__(/*! ./customer/list-customer/list-customer.component */ "./src/app/customer/list-customer/list-customer.component.ts");
+/* harmony import */ var _customer_customer_orders_customer_orders_component__WEBPACK_IMPORTED_MODULE_37__ = __webpack_require__(/*! ./customer/customer-orders/customer-orders.component */ "./src/app/customer/customer-orders/customer-orders.component.ts");
+/* harmony import */ var _customer_customer_info_customer_info_component__WEBPACK_IMPORTED_MODULE_38__ = __webpack_require__(/*! ./customer/customer-info/customer-info.component */ "./src/app/customer/customer-info/customer-info.component.ts");
+
+
+
 
 
 
@@ -369,6 +375,9 @@ var AppModule = /** @class */ (function () {
                 _order_panel_selected_order_items_list_selected_order_items_list_component__WEBPACK_IMPORTED_MODULE_32__["SelectedOrderItemsListComponent"],
                 _modal_delete_order_items_modal_delete_order_items_modal_component__WEBPACK_IMPORTED_MODULE_33__["DeleteOrderItemsModalComponent"],
                 _modal_add_order_item_modal_add_order_item_modal_component__WEBPACK_IMPORTED_MODULE_34__["AddOrderItemModalComponent"],
+                _customer_list_customer_list_customer_component__WEBPACK_IMPORTED_MODULE_36__["ListCustomerComponent"],
+                _customer_customer_orders_customer_orders_component__WEBPACK_IMPORTED_MODULE_37__["CustomerOrdersComponent"],
+                _customer_customer_info_customer_info_component__WEBPACK_IMPORTED_MODULE_38__["CustomerInfoComponent"],
             ],
             entryComponents: [
                 _modal_create_order_modal_create_order_modal_component__WEBPACK_IMPORTED_MODULE_27__["CreateOrderModalComponent"],
@@ -491,6 +500,132 @@ var FilterPipe = /** @class */ (function () {
 
 /***/ }),
 
+/***/ "./src/app/customer/customer-info/customer-info.component.css":
+/*!********************************************************************!*\
+  !*** ./src/app/customer/customer-info/customer-info.component.css ***!
+  \********************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJzcmMvYXBwL2N1c3RvbWVyL2N1c3RvbWVyLWluZm8vY3VzdG9tZXItaW5mby5jb21wb25lbnQuY3NzIn0= */"
+
+/***/ }),
+
+/***/ "./src/app/customer/customer-info/customer-info.component.html":
+/*!*********************************************************************!*\
+  !*** ./src/app/customer/customer-info/customer-info.component.html ***!
+  \*********************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "<h5>Store Information</h5>\n<hr>\n<div>\n  <label>ID : {{ customer.id }}</label>\n  <br>\n  <label>Store : {{ customer.store.name }}</label>\n  <br>\n  <label>Address : {{ customer.store.address }}</label>\n  <br>\n  <label>Phone : {{ customer.store.phone }}</label>\n  <br>\n  <label>Email : {{ customer.store.email }}</label>\n</div>"
+
+/***/ }),
+
+/***/ "./src/app/customer/customer-info/customer-info.component.ts":
+/*!*******************************************************************!*\
+  !*** ./src/app/customer/customer-info/customer-info.component.ts ***!
+  \*******************************************************************/
+/*! exports provided: CustomerInfoComponent */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "CustomerInfoComponent", function() { return CustomerInfoComponent; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var src_app_model_Customer__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! src/app/model/Customer */ "./src/app/model/Customer.ts");
+
+
+
+var CustomerInfoComponent = /** @class */ (function () {
+    function CustomerInfoComponent() {
+    }
+    CustomerInfoComponent.prototype.ngOnInit = function () {
+    };
+    tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Input"])(),
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:type", src_app_model_Customer__WEBPACK_IMPORTED_MODULE_2__["Customer"])
+    ], CustomerInfoComponent.prototype, "customer", void 0);
+    CustomerInfoComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
+            selector: 'customer-info',
+            template: __webpack_require__(/*! ./customer-info.component.html */ "./src/app/customer/customer-info/customer-info.component.html"),
+            styles: [__webpack_require__(/*! ./customer-info.component.css */ "./src/app/customer/customer-info/customer-info.component.css")]
+        }),
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [])
+    ], CustomerInfoComponent);
+    return CustomerInfoComponent;
+}());
+
+
+
+/***/ }),
+
+/***/ "./src/app/customer/customer-orders/customer-orders.component.css":
+/*!************************************************************************!*\
+  !*** ./src/app/customer/customer-orders/customer-orders.component.css ***!
+  \************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "/* Scroll Bar Aggregated Order Item table */\n.my-custom-scrollbar {\n    position: relative;\n    max-height: 35%;\n    overflow: auto;\n  }\n.table-wrapper-scroll-y {\n    display: block;\n  }\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvY3VzdG9tZXIvY3VzdG9tZXItb3JkZXJzL2N1c3RvbWVyLW9yZGVycy5jb21wb25lbnQuY3NzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBLDJDQUEyQztBQUMzQztJQUNJLGtCQUFrQjtJQUNsQixlQUFlO0lBQ2YsY0FBYztFQUNoQjtBQUVBO0lBQ0UsY0FBYztFQUNoQiIsImZpbGUiOiJzcmMvYXBwL2N1c3RvbWVyL2N1c3RvbWVyLW9yZGVycy9jdXN0b21lci1vcmRlcnMuY29tcG9uZW50LmNzcyIsInNvdXJjZXNDb250ZW50IjpbIi8qIFNjcm9sbCBCYXIgQWdncmVnYXRlZCBPcmRlciBJdGVtIHRhYmxlICovXG4ubXktY3VzdG9tLXNjcm9sbGJhciB7XG4gICAgcG9zaXRpb246IHJlbGF0aXZlO1xuICAgIG1heC1oZWlnaHQ6IDM1JTtcbiAgICBvdmVyZmxvdzogYXV0bztcbiAgfVxuICBcbiAgLnRhYmxlLXdyYXBwZXItc2Nyb2xsLXkge1xuICAgIGRpc3BsYXk6IGJsb2NrO1xuICB9Il19 */"
+
+/***/ }),
+
+/***/ "./src/app/customer/customer-orders/customer-orders.component.html":
+/*!*************************************************************************!*\
+  !*** ./src/app/customer/customer-orders/customer-orders.component.html ***!
+  \*************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "<h5>Orders ({{ orders.length }})</h5>\n<div class=\"table-responsive table-wrapper-scroll-y my-custom-scrollbar\">\n  <table class=\"table table-striped table-bordered table-sm\">\n      <thead>\n          <tr>\n              <th>ID</th>\n              <th>Name</th>\n              <th>Status</th>\n              <th>Products</th>\n              <th>Qty</th>\n              <th>Amount</th>\n              <th>Creation</th>\n              <th></th>\n          </tr>\n      </thead>\n      <tbody>\n          <tr *ngFor=\"let order of orders\">\n              <td>{{ order.id }}</td>\n              <td>{{ order.name }}</td>\n              <td [ngClass]=\"order.status === 'OPEN' ? 'table-success' : 'table-danger'\">{{ order.status }}</td>\n              <td>{{ order.aggregatedOrderInfo.productSize }}</td>\n              <td>{{ order.aggregatedOrderInfo.orderItemSize }}</td>\n              <td>{{ order.aggregatedOrderInfo.totalPrice }} €</td>\n              <td>{{ order.createdDatetime  | date:'shortDate' }}</td>\n              <td>\n                <button\n                    class=\"btn btn-success btn-sm\"\n                    [routerLink]=\"['/order', order.id]\"\n                >See</button>\n              </td>\n          </tr>\n      </tbody>\n  </table>\n</div>\n"
+
+/***/ }),
+
+/***/ "./src/app/customer/customer-orders/customer-orders.component.ts":
+/*!***********************************************************************!*\
+  !*** ./src/app/customer/customer-orders/customer-orders.component.ts ***!
+  \***********************************************************************/
+/*! exports provided: CustomerOrdersComponent */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "CustomerOrdersComponent", function() { return CustomerOrdersComponent; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var src_app_service_order_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! src/app/service/order-service */ "./src/app/service/order-service.ts");
+
+
+
+var CustomerOrdersComponent = /** @class */ (function () {
+    function CustomerOrdersComponent(orderService) {
+        this.orderService = orderService;
+        this.orders = [];
+    }
+    CustomerOrdersComponent.prototype.ngOnInit = function () {
+    };
+    tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Input"])(),
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:type", Array)
+    ], CustomerOrdersComponent.prototype, "orders", void 0);
+    CustomerOrdersComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
+            selector: 'customer-orders',
+            template: __webpack_require__(/*! ./customer-orders.component.html */ "./src/app/customer/customer-orders/customer-orders.component.html"),
+            styles: [__webpack_require__(/*! ./customer-orders.component.css */ "./src/app/customer/customer-orders/customer-orders.component.css")]
+        }),
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [src_app_service_order_service__WEBPACK_IMPORTED_MODULE_2__["OrderService"]])
+    ], CustomerOrdersComponent);
+    return CustomerOrdersComponent;
+}());
+
+
+
+/***/ }),
+
 /***/ "./src/app/customer/customer-panel/customer-panel.component.css":
 /*!**********************************************************************!*\
   !*** ./src/app/customer/customer-panel/customer-panel.component.css ***!
@@ -498,7 +633,7 @@ var FilterPipe = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiIuLi9zcmMvYXBwL2N1c3RvbWVyL2N1c3RvbWVyLXBhbmVsL2N1c3RvbWVyLXBhbmVsLmNvbXBvbmVudC5jc3MifQ== */"
+module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJzcmMvYXBwL2N1c3RvbWVyL2N1c3RvbWVyLXBhbmVsL2N1c3RvbWVyLXBhbmVsLmNvbXBvbmVudC5jc3MifQ== */"
 
 /***/ }),
 
@@ -509,7 +644,7 @@ module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<p>\n  owner-panel works!\n</p>\n"
+module.exports = "<div class=\"row\">\n  <div class=\"col-md-auto\">\n    <list-customer (onCustomerSelected)=\"onCustomerSelected($event)\"></list-customer>\n  </div>\n  <div class=\"col\">\n    <customer-info [customer]=\"customer\"></customer-info>\n    <hr>\n    <customer-orders [orders]=\"orders\"></customer-orders>\n  </div>\n</div>"
 
 /***/ }),
 
@@ -525,12 +660,33 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "CustomerPanelComponent", function() { return CustomerPanelComponent; });
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var src_app_model_AggregatedOrder__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! src/app/model/AggregatedOrder */ "./src/app/model/AggregatedOrder.ts");
+/* harmony import */ var src_app_service_order_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! src/app/service/order-service */ "./src/app/service/order-service.ts");
+
+
 
 
 var CustomerPanelComponent = /** @class */ (function () {
-    function CustomerPanelComponent() {
+    function CustomerPanelComponent(orderService) {
+        this.orderService = orderService;
+        this.orders = [];
     }
     CustomerPanelComponent.prototype.ngOnInit = function () {
+    };
+    CustomerPanelComponent.prototype.onCustomerSelected = function (event) {
+        this.customer = event;
+        this.loadOrders(event.id);
+    };
+    CustomerPanelComponent.prototype.loadOrders = function (customerId) {
+        var _this = this;
+        this.orderService.getOrdersOfCustomer(customerId).subscribe(function (data) {
+            var arr = [];
+            for (var _i = 0, data_1 = data; _i < data_1.length; _i++) {
+                var order = data_1[_i];
+                arr.push(src_app_model_AggregatedOrder__WEBPACK_IMPORTED_MODULE_2__["AggregatedOrder"].fromJson(order));
+            }
+            _this.orders = arr;
+        });
     };
     CustomerPanelComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
@@ -538,9 +694,96 @@ var CustomerPanelComponent = /** @class */ (function () {
             template: __webpack_require__(/*! ./customer-panel.component.html */ "./src/app/customer/customer-panel/customer-panel.component.html"),
             styles: [__webpack_require__(/*! ./customer-panel.component.css */ "./src/app/customer/customer-panel/customer-panel.component.css")]
         }),
-        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [])
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [src_app_service_order_service__WEBPACK_IMPORTED_MODULE_3__["OrderService"]])
     ], CustomerPanelComponent);
     return CustomerPanelComponent;
+}());
+
+
+
+/***/ }),
+
+/***/ "./src/app/customer/list-customer/list-customer.component.css":
+/*!********************************************************************!*\
+  !*** ./src/app/customer/list-customer/list-customer.component.css ***!
+  \********************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "/* Scroll Bar Aggregated Order Item table */\n.my-custom-scrollbar {\n    position: relative;\n    max-height: 90%;\n    overflow: auto;\n  }\n.table-wrapper-scroll-y {\n    display: block;\n  }\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvY3VzdG9tZXIvbGlzdC1jdXN0b21lci9saXN0LWN1c3RvbWVyLmNvbXBvbmVudC5jc3MiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUEsMkNBQTJDO0FBQzNDO0lBQ0ksa0JBQWtCO0lBQ2xCLGVBQWU7SUFDZixjQUFjO0VBQ2hCO0FBRUE7SUFDRSxjQUFjO0VBQ2hCIiwiZmlsZSI6InNyYy9hcHAvY3VzdG9tZXIvbGlzdC1jdXN0b21lci9saXN0LWN1c3RvbWVyLmNvbXBvbmVudC5jc3MiLCJzb3VyY2VzQ29udGVudCI6WyIvKiBTY3JvbGwgQmFyIEFnZ3JlZ2F0ZWQgT3JkZXIgSXRlbSB0YWJsZSAqL1xuLm15LWN1c3RvbS1zY3JvbGxiYXIge1xuICAgIHBvc2l0aW9uOiByZWxhdGl2ZTtcbiAgICBtYXgtaGVpZ2h0OiA5MCU7XG4gICAgb3ZlcmZsb3c6IGF1dG87XG4gIH1cbiAgXG4gIC50YWJsZS13cmFwcGVyLXNjcm9sbC15IHtcbiAgICBkaXNwbGF5OiBibG9jaztcbiAgfSJdfQ== */"
+
+/***/ }),
+
+/***/ "./src/app/customer/list-customer/list-customer.component.html":
+/*!*********************************************************************!*\
+  !*** ./src/app/customer/list-customer/list-customer.component.html ***!
+  \*********************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "<h5>Customers</h5>\n<div class=\"table-responsive table-wrapper-scroll-y my-custom-scrollbar\">\n  <table class=\"table table-striped table-hover\">\n    <thead>\n      <tr>\n        <th>ID</th>\n        <th>Store</th>\n        <th>Owner</th>\n      </tr>\n    </thead>\n    <tbody>\n      <tr *ngFor=\"let customer of customers\" (click)=\"onClickCustomer(customer)\">\n        <td>{{ customer.id }}</td>\n        <td>{{ customer.store.name }}</td>\n        <td>{{ customer.store.owner.firstName + \" \" + customer.store.owner.lastName }}</td>\n      </tr>\n    </tbody>\n  </table>\n</div>"
+
+/***/ }),
+
+/***/ "./src/app/customer/list-customer/list-customer.component.ts":
+/*!*******************************************************************!*\
+  !*** ./src/app/customer/list-customer/list-customer.component.ts ***!
+  \*******************************************************************/
+/*! exports provided: ListCustomerComponent */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ListCustomerComponent", function() { return ListCustomerComponent; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var src_app_model_Customer__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! src/app/model/Customer */ "./src/app/model/Customer.ts");
+/* harmony import */ var src_app_common_components_modal_builder__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! src/app/common-components/modal-builder */ "./src/app/common-components/modal-builder.ts");
+/* harmony import */ var src_app_service_customer_service__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! src/app/service/customer-service */ "./src/app/service/customer-service.ts");
+/* harmony import */ var src_app_modal_info_modal_info_modal_component__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! src/app/modal/info-modal/info-modal.component */ "./src/app/modal/info-modal/info-modal.component.ts");
+
+
+
+
+
+
+var ListCustomerComponent = /** @class */ (function () {
+    function ListCustomerComponent(customerService, modalBuilder) {
+        this.customerService = customerService;
+        this.modalBuilder = modalBuilder;
+        this.onCustomerSelected = new _angular_core__WEBPACK_IMPORTED_MODULE_1__["EventEmitter"]();
+        this.customers = [];
+    }
+    ListCustomerComponent.prototype.ngOnInit = function () {
+        var _this = this;
+        this.customerService.getAllCustomers().subscribe(function (data) {
+            for (var _i = 0, data_1 = data; _i < data_1.length; _i++) {
+                var customer = data_1[_i];
+                _this.customers.push(src_app_model_Customer__WEBPACK_IMPORTED_MODULE_2__["Customer"].fromJson(customer));
+            }
+        }, function (error) {
+            var modalRef = _this.modalBuilder.open(src_app_modal_info_modal_info_modal_component__WEBPACK_IMPORTED_MODULE_5__["InfoModalComponent"]);
+            modalRef.componentInstance.title = "Cannot load the customers.";
+            modalRef.componentInstance.message = error.error;
+        });
+    };
+    ListCustomerComponent.prototype.onClickCustomer = function (customer) {
+        this.onCustomerSelected.emit(customer);
+    };
+    tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Output"])(),
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:type", Object)
+    ], ListCustomerComponent.prototype, "onCustomerSelected", void 0);
+    ListCustomerComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
+            selector: 'list-customer',
+            template: __webpack_require__(/*! ./list-customer.component.html */ "./src/app/customer/list-customer/list-customer.component.html"),
+            styles: [__webpack_require__(/*! ./list-customer.component.css */ "./src/app/customer/list-customer/list-customer.component.css")]
+        }),
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [src_app_service_customer_service__WEBPACK_IMPORTED_MODULE_4__["CustomerService"],
+            src_app_common_components_modal_builder__WEBPACK_IMPORTED_MODULE_3__["ModalBuilder"]])
+    ], ListCustomerComponent);
+    return ListCustomerComponent;
 }());
 
 
@@ -554,7 +797,7 @@ var CustomerPanelComponent = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiIuLi9zcmMvYXBwL2hlYWRlci1tZW51L2hlYWRlci1tZW51LmNvbXBvbmVudC5jc3MifQ== */"
+module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJzcmMvYXBwL2hlYWRlci1tZW51L2hlYWRlci1tZW51LmNvbXBvbmVudC5jc3MifQ== */"
 
 /***/ }),
 
@@ -610,7 +853,7 @@ var HeaderMenuComponent = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiIuLi9zcmMvYXBwL21vZGFsL2FkZC1vcmRlci1pdGVtLW1vZGFsL2FkZC1vcmRlci1pdGVtLW1vZGFsLmNvbXBvbmVudC5jc3MifQ== */"
+module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJzcmMvYXBwL21vZGFsL2FkZC1vcmRlci1pdGVtLW1vZGFsL2FkZC1vcmRlci1pdGVtLW1vZGFsLmNvbXBvbmVudC5jc3MifQ== */"
 
 /***/ }),
 
@@ -850,7 +1093,7 @@ var AddOrderItemModalComponent = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiIuLi9zcmMvYXBwL21vZGFsL2NvbmZpcm0tbW9kYWwvY29uZmlybS1tb2RhbC1jb21wb25lbnQuY3NzIn0= */"
+module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJzcmMvYXBwL21vZGFsL2NvbmZpcm0tbW9kYWwvY29uZmlybS1tb2RhbC1jb21wb25lbnQuY3NzIn0= */"
 
 /***/ }),
 
@@ -923,7 +1166,7 @@ var ConfirmModalComponent = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiIuLi9zcmMvYXBwL21vZGFsL2NyZWF0ZS1vcmRlci1tb2RhbC9jcmVhdGUtb3JkZXItbW9kYWwuY29tcG9uZW50LmNzcyJ9 */"
+module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJzcmMvYXBwL21vZGFsL2NyZWF0ZS1vcmRlci1tb2RhbC9jcmVhdGUtb3JkZXItbW9kYWwuY29tcG9uZW50LmNzcyJ9 */"
 
 /***/ }),
 
@@ -1053,7 +1296,7 @@ var CreateOrderModalComponent = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = ".my-custom-scrollbar {\n    position: relative;\n    max-height: 500px;\n    overflow: auto;\n}\n\n.table-wrapper-scroll-y {\n    display: block;\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi4uL3NyYy9hcHAvbW9kYWwvZGVsZXRlLW9yZGVyLWl0ZW1zLW1vZGFsL2RlbGV0ZS1vcmRlci1pdGVtcy1tb2RhbC5jb21wb25lbnQuY3NzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBO0lBQ0ksa0JBQWtCO0lBQ2xCLGlCQUFpQjtJQUNqQixjQUFjO0FBQ2xCOztBQUVBO0lBQ0ksY0FBYztBQUNsQiIsImZpbGUiOiIuLi9zcmMvYXBwL21vZGFsL2RlbGV0ZS1vcmRlci1pdGVtcy1tb2RhbC9kZWxldGUtb3JkZXItaXRlbXMtbW9kYWwuY29tcG9uZW50LmNzcyIsInNvdXJjZXNDb250ZW50IjpbIi5teS1jdXN0b20tc2Nyb2xsYmFyIHtcbiAgICBwb3NpdGlvbjogcmVsYXRpdmU7XG4gICAgbWF4LWhlaWdodDogNTAwcHg7XG4gICAgb3ZlcmZsb3c6IGF1dG87XG59XG5cbi50YWJsZS13cmFwcGVyLXNjcm9sbC15IHtcbiAgICBkaXNwbGF5OiBibG9jaztcbn0iXX0= */"
+module.exports = ".my-custom-scrollbar {\n    position: relative;\n    max-height: 500px;\n    overflow: auto;\n}\n\n.table-wrapper-scroll-y {\n    display: block;\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvbW9kYWwvZGVsZXRlLW9yZGVyLWl0ZW1zLW1vZGFsL2RlbGV0ZS1vcmRlci1pdGVtcy1tb2RhbC5jb21wb25lbnQuY3NzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBO0lBQ0ksa0JBQWtCO0lBQ2xCLGlCQUFpQjtJQUNqQixjQUFjO0FBQ2xCOztBQUVBO0lBQ0ksY0FBYztBQUNsQiIsImZpbGUiOiJzcmMvYXBwL21vZGFsL2RlbGV0ZS1vcmRlci1pdGVtcy1tb2RhbC9kZWxldGUtb3JkZXItaXRlbXMtbW9kYWwuY29tcG9uZW50LmNzcyIsInNvdXJjZXNDb250ZW50IjpbIi5teS1jdXN0b20tc2Nyb2xsYmFyIHtcbiAgICBwb3NpdGlvbjogcmVsYXRpdmU7XG4gICAgbWF4LWhlaWdodDogNTAwcHg7XG4gICAgb3ZlcmZsb3c6IGF1dG87XG59XG5cbi50YWJsZS13cmFwcGVyLXNjcm9sbC15IHtcbiAgICBkaXNwbGF5OiBibG9jaztcbn0iXX0= */"
 
 /***/ }),
 
@@ -1126,7 +1369,7 @@ var DeleteOrderItemsModalComponent = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiIuLi9zcmMvYXBwL21vZGFsL2luZm8tbW9kYWwvaW5mby1tb2RhbC5jb21wb25lbnQuY3NzIn0= */"
+module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJzcmMvYXBwL21vZGFsL2luZm8tbW9kYWwvaW5mby1tb2RhbC5jb21wb25lbnQuY3NzIn0= */"
 
 /***/ }),
 
@@ -1196,7 +1439,7 @@ var InfoModalComponent = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiIuLi9zcmMvYXBwL21vZGFsL3Nob3ctb3JkZXItaXRlbXMtbW9kYWwvc2hvdy1vcmRlci1pdGVtcy1tb2RhbC5jb21wb25lbnQuY3NzIn0= */"
+module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJzcmMvYXBwL21vZGFsL3Nob3ctb3JkZXItaXRlbXMtbW9kYWwvc2hvdy1vcmRlci1pdGVtcy1tb2RhbC5jb21wb25lbnQuY3NzIn0= */"
 
 /***/ }),
 
@@ -1726,7 +1969,7 @@ var DeleteOrderItemsReq = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = ".table tr.active td {\n    background-color:#275e94 !important;\n    color: white;\n    font-weight: bold;\n    white-space: nowrap;\n  }\n\n.table table-striped tr td {\n  padding: 1.5%;\n}\n\n/* Scroll Bar Aggregated Order Item table */\n\n.my-custom-scrollbar {\n  position: relative;\n  max-height: 450px;\n  overflow: auto;\n}\n\n.table-wrapper-scroll-y {\n  display: block;\n}\n\n\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi4uL3NyYy9hcHAvb3JkZXItcGFuZWwvbGlzdC1vcmRlci1pdGVtL2xpc3Qtb3JkZXItaXRlbS5jb21wb25lbnQuY3NzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBO0lBQ0ksbUNBQW1DO0lBQ25DLFlBQVk7SUFDWixpQkFBaUI7SUFDakIsbUJBQW1CO0VBQ3JCOztBQUVGO0VBQ0UsYUFBYTtBQUNmOztBQUVBLDJDQUEyQzs7QUFDM0M7RUFDRSxrQkFBa0I7RUFDbEIsaUJBQWlCO0VBQ2pCLGNBQWM7QUFDaEI7O0FBRUE7RUFDRSxjQUFjO0FBQ2hCIiwiZmlsZSI6Ii4uL3NyYy9hcHAvb3JkZXItcGFuZWwvbGlzdC1vcmRlci1pdGVtL2xpc3Qtb3JkZXItaXRlbS5jb21wb25lbnQuY3NzIiwic291cmNlc0NvbnRlbnQiOlsiLnRhYmxlIHRyLmFjdGl2ZSB0ZCB7XG4gICAgYmFja2dyb3VuZC1jb2xvcjojMjc1ZTk0ICFpbXBvcnRhbnQ7XG4gICAgY29sb3I6IHdoaXRlO1xuICAgIGZvbnQtd2VpZ2h0OiBib2xkO1xuICAgIHdoaXRlLXNwYWNlOiBub3dyYXA7XG4gIH1cblxuLnRhYmxlIHRhYmxlLXN0cmlwZWQgdHIgdGQge1xuICBwYWRkaW5nOiAxLjUlO1xufVxuXG4vKiBTY3JvbGwgQmFyIEFnZ3JlZ2F0ZWQgT3JkZXIgSXRlbSB0YWJsZSAqL1xuLm15LWN1c3RvbS1zY3JvbGxiYXIge1xuICBwb3NpdGlvbjogcmVsYXRpdmU7XG4gIG1heC1oZWlnaHQ6IDQ1MHB4O1xuICBvdmVyZmxvdzogYXV0bztcbn1cblxuLnRhYmxlLXdyYXBwZXItc2Nyb2xsLXkge1xuICBkaXNwbGF5OiBibG9jaztcbn1cblxuIl19 */"
+module.exports = ".table tr.active td {\n    background-color:#275e94 !important;\n    color: white;\n    font-weight: bold;\n    white-space: nowrap;\n  }\n\n.table table-striped tr td {\n  padding: 1.5%;\n}\n\n/* Scroll Bar Aggregated Order Item table */\n\n.my-custom-scrollbar {\n  position: relative;\n  max-height: 450px;\n  overflow: auto;\n}\n\n.table-wrapper-scroll-y {\n  display: block;\n}\n\n\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvb3JkZXItcGFuZWwvbGlzdC1vcmRlci1pdGVtL2xpc3Qtb3JkZXItaXRlbS5jb21wb25lbnQuY3NzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBO0lBQ0ksbUNBQW1DO0lBQ25DLFlBQVk7SUFDWixpQkFBaUI7SUFDakIsbUJBQW1CO0VBQ3JCOztBQUVGO0VBQ0UsYUFBYTtBQUNmOztBQUVBLDJDQUEyQzs7QUFDM0M7RUFDRSxrQkFBa0I7RUFDbEIsaUJBQWlCO0VBQ2pCLGNBQWM7QUFDaEI7O0FBRUE7RUFDRSxjQUFjO0FBQ2hCIiwiZmlsZSI6InNyYy9hcHAvb3JkZXItcGFuZWwvbGlzdC1vcmRlci1pdGVtL2xpc3Qtb3JkZXItaXRlbS5jb21wb25lbnQuY3NzIiwic291cmNlc0NvbnRlbnQiOlsiLnRhYmxlIHRyLmFjdGl2ZSB0ZCB7XG4gICAgYmFja2dyb3VuZC1jb2xvcjojMjc1ZTk0ICFpbXBvcnRhbnQ7XG4gICAgY29sb3I6IHdoaXRlO1xuICAgIGZvbnQtd2VpZ2h0OiBib2xkO1xuICAgIHdoaXRlLXNwYWNlOiBub3dyYXA7XG4gIH1cblxuLnRhYmxlIHRhYmxlLXN0cmlwZWQgdHIgdGQge1xuICBwYWRkaW5nOiAxLjUlO1xufVxuXG4vKiBTY3JvbGwgQmFyIEFnZ3JlZ2F0ZWQgT3JkZXIgSXRlbSB0YWJsZSAqL1xuLm15LWN1c3RvbS1zY3JvbGxiYXIge1xuICBwb3NpdGlvbjogcmVsYXRpdmU7XG4gIG1heC1oZWlnaHQ6IDQ1MHB4O1xuICBvdmVyZmxvdzogYXV0bztcbn1cblxuLnRhYmxlLXdyYXBwZXItc2Nyb2xsLXkge1xuICBkaXNwbGF5OiBibG9jaztcbn1cblxuIl19 */"
 
 /***/ }),
 
@@ -1737,7 +1980,7 @@ module.exports = ".table tr.active td {\n    background-color:#275e94 !important
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"table-responsive table-wrapper-scroll-y my-custom-scrollbar\">\n  <table class=\"table table-striped table-hover\">\n    <thead>\n      <tr>\n        <th>#</th>\n        <th>Name</th>\n        <th>Price</th>\n        <th>Qty</th>\n        <th>Total Price</th>\n        <th>Last Modified Date</th>\n        <th></th>\n      </tr>\n    </thead>\n    <tbody>\n      <tr *ngFor=\"let item of orderItems | filter : 'name' : searchString; let i = index\"\n      (click)=\"setSelectedRow(i); onClickShowSelectedOrderItems(item.orderItems)\"\n        [class.active]=\"i == selectedRow\">\n        <td>{{ i+1 }}</td>\n        <td>{{ item.product.name }}</td>\n        <td>{{ item.product.price }} €</td>\n        <td\n          contenteditable=\"order.status !== 'CLOSED'\"\n          (blur)=\"onChangeOrderItemQuantity(item, $event)\">\n          {{ item.quantity }}\n        </td>\n        <td>{{ item.ttlPrice }} €</td>\n        <td>{{ item.lastModifiedDatetime }}</td>\n        <td>\n          <button *ngIf=\"order.status !== 'CLOSED'\"\n          (click)=\"onClickDeleteOrderItemButton(i, item.orderItems)\"\n          [disabled]=\"deleteOrderItemInProgressArray[i]\"\n          class=\"btn btn-danger btn-sm\">\n              <span *ngIf=\"deleteOrderItemInProgressArray[i]\" class=\"spinner-border spinner-border-sm\" role=\"status\" aria-hidden=\"true\"></span>\n            Delete</button>\n        </td>\n      </tr>\n    </tbody>\n  </table>\n</div>\n<br>\n<selected-order-items-list\n  [selectedOrderItems]=\"selectedOrderItems\"\n  [order]=\"order\"\n  (onDeleteOrderItemEvent)=\"deleteSingleOrderItem($event)\"\n></selected-order-items-list>\n"
+module.exports = "<div class=\"table-responsive table-wrapper-scroll-y my-custom-scrollbar\">\n  <table class=\"table table-striped table-hover\">\n    <thead>\n      <tr>\n        <th>#</th>\n        <th>Name</th>\n        <th>Price</th>\n        <th>Qty</th>\n        <th>Total Price</th>\n        <th>Last Modified Date</th>\n        <th></th>\n      </tr>\n    </thead>\n    <tbody>\n      <tr *ngFor=\"let item of orderItems | filter : 'name' : searchString; let i = index\"\n      (click)=\"setSelectedRow(i); onClickShowSelectedOrderItems(item.orderItems)\"\n        [class.active]=\"i == selectedRow\">\n        <td>{{ i+1 }}</td>\n        <td>{{ item.product.name }}</td>\n        <td>{{ item.product.price }} €</td>\n        <td\n          contenteditable=\"order.status !== 'CLOSED'\"\n          (blur)=\"onChangeOrderItemQuantity(item, $event)\">\n          {{ item.quantity }}\n        </td>\n        <td>{{ item.ttlPrice }} €</td>\n        <td>{{ item.lastModifiedDatetime | date:'medium' }}</td>\n        <td>\n          <button *ngIf=\"order.status !== 'CLOSED'\"\n          (click)=\"onClickDeleteOrderItemButton(i, item.orderItems)\"\n          [disabled]=\"deleteOrderItemInProgressArray[i]\"\n          class=\"btn btn-danger btn-sm\">\n              <span *ngIf=\"deleteOrderItemInProgressArray[i]\" class=\"spinner-border spinner-border-sm\" role=\"status\" aria-hidden=\"true\"></span>\n            Delete</button>\n        </td>\n      </tr>\n    </tbody>\n  </table>\n</div>\n<br>\n<selected-order-items-list\n  [selectedOrderItems]=\"selectedOrderItems\"\n  [order]=\"order\"\n  (onDeleteOrderItemEvent)=\"deleteSingleOrderItem($event)\"\n></selected-order-items-list>\n"
 
 /***/ }),
 
@@ -1909,7 +2152,7 @@ var ListOrderItemComponent = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "/* Scroll Bar Aggregated Order Item table */\n.my-custom-scrollbar {\n    position: relative;\n    max-height: 200px;\n    overflow: auto;\n  }\n.table-wrapper-scroll-y {\n    display: block;\n  }\n  \n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi4uL3NyYy9hcHAvb3JkZXItcGFuZWwvc2VsZWN0ZWQtb3JkZXItaXRlbXMtbGlzdC9zZWxlY3RlZC1vcmRlci1pdGVtcy1saXN0LmNvbXBvbmVudC5jc3MiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUEsMkNBQTJDO0FBQzNDO0lBQ0ksa0JBQWtCO0lBQ2xCLGlCQUFpQjtJQUNqQixjQUFjO0VBQ2hCO0FBRUE7SUFDRSxjQUFjO0VBQ2hCIiwiZmlsZSI6Ii4uL3NyYy9hcHAvb3JkZXItcGFuZWwvc2VsZWN0ZWQtb3JkZXItaXRlbXMtbGlzdC9zZWxlY3RlZC1vcmRlci1pdGVtcy1saXN0LmNvbXBvbmVudC5jc3MiLCJzb3VyY2VzQ29udGVudCI6WyIvKiBTY3JvbGwgQmFyIEFnZ3JlZ2F0ZWQgT3JkZXIgSXRlbSB0YWJsZSAqL1xuLm15LWN1c3RvbS1zY3JvbGxiYXIge1xuICAgIHBvc2l0aW9uOiByZWxhdGl2ZTtcbiAgICBtYXgtaGVpZ2h0OiAyMDBweDtcbiAgICBvdmVyZmxvdzogYXV0bztcbiAgfVxuICBcbiAgLnRhYmxlLXdyYXBwZXItc2Nyb2xsLXkge1xuICAgIGRpc3BsYXk6IGJsb2NrO1xuICB9XG4gICJdfQ== */"
+module.exports = "/* Scroll Bar Aggregated Order Item table */\n.my-custom-scrollbar {\n    position: relative;\n    max-height: 200px;\n    overflow: auto;\n  }\n.table-wrapper-scroll-y {\n    display: block;\n  }\n  \n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvb3JkZXItcGFuZWwvc2VsZWN0ZWQtb3JkZXItaXRlbXMtbGlzdC9zZWxlY3RlZC1vcmRlci1pdGVtcy1saXN0LmNvbXBvbmVudC5jc3MiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUEsMkNBQTJDO0FBQzNDO0lBQ0ksa0JBQWtCO0lBQ2xCLGlCQUFpQjtJQUNqQixjQUFjO0VBQ2hCO0FBRUE7SUFDRSxjQUFjO0VBQ2hCIiwiZmlsZSI6InNyYy9hcHAvb3JkZXItcGFuZWwvc2VsZWN0ZWQtb3JkZXItaXRlbXMtbGlzdC9zZWxlY3RlZC1vcmRlci1pdGVtcy1saXN0LmNvbXBvbmVudC5jc3MiLCJzb3VyY2VzQ29udGVudCI6WyIvKiBTY3JvbGwgQmFyIEFnZ3JlZ2F0ZWQgT3JkZXIgSXRlbSB0YWJsZSAqL1xuLm15LWN1c3RvbS1zY3JvbGxiYXIge1xuICAgIHBvc2l0aW9uOiByZWxhdGl2ZTtcbiAgICBtYXgtaGVpZ2h0OiAyMDBweDtcbiAgICBvdmVyZmxvdzogYXV0bztcbiAgfVxuICBcbiAgLnRhYmxlLXdyYXBwZXItc2Nyb2xsLXkge1xuICAgIGRpc3BsYXk6IGJsb2NrO1xuICB9XG4gICJdfQ== */"
 
 /***/ }),
 
@@ -2035,7 +2278,7 @@ var SelectedOrderItemsListComponent = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiIuLi9zcmMvYXBwL29yZGVyLXBhbmVsL3Nob3ctb3JkZXItaGVhZGVyL3Nob3ctb3JkZXItaGVhZGVyLmNvbXBvbmVudC5jc3MifQ== */"
+module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJzcmMvYXBwL29yZGVyLXBhbmVsL3Nob3ctb3JkZXItaGVhZGVyL3Nob3ctb3JkZXItaGVhZGVyLmNvbXBvbmVudC5jc3MifQ== */"
 
 /***/ }),
 
@@ -2143,7 +2386,7 @@ var OrderHeaderComponent = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiIuLi9zcmMvYXBwL29yZGVyLXBhbmVsL3Nob3ctb3JkZXIvc2hvdy1vcmRlci5jb21wb25lbnQuY3NzIn0= */"
+module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJzcmMvYXBwL29yZGVyLXBhbmVsL3Nob3ctb3JkZXIvc2hvdy1vcmRlci5jb21wb25lbnQuY3NzIn0= */"
 
 /***/ }),
 
@@ -2233,7 +2476,7 @@ var ShowOrderComponent = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiIuLi9zcmMvYXBwL29yZGVycy1tYW5hZ2VyLXBhbmVsL2xpc3Qtb3JkZXJzL2xpc3Qtb3JkZXJzLmNvbXBvbmVudC5jc3MifQ== */"
+module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJzcmMvYXBwL29yZGVycy1tYW5hZ2VyLXBhbmVsL2xpc3Qtb3JkZXJzL2xpc3Qtb3JkZXJzLmNvbXBvbmVudC5jc3MifQ== */"
 
 /***/ }),
 
@@ -2343,7 +2586,7 @@ var ListOrdersComponent = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiIuLi9zcmMvYXBwL29yZGVycy1tYW5hZ2VyLXBhbmVsL29yZGVycy1tYW5hZ2VyL29yZGVycy1tYW5hZ2VyLmNvbXBvbmVudC5jc3MifQ== */"
+module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJzcmMvYXBwL29yZGVycy1tYW5hZ2VyLXBhbmVsL29yZGVycy1tYW5hZ2VyL29yZGVycy1tYW5hZ2VyLmNvbXBvbmVudC5jc3MifQ== */"
 
 /***/ }),
 
@@ -2639,6 +2882,10 @@ var OrderService = /** @class */ (function () {
     OrderService.prototype.getOrderByName = function (name) {
         console.log("Get order by name : " + name);
         return this.httpApi.get("/v1/order/searchByName/" + name);
+    };
+    OrderService.prototype.getOrdersOfCustomer = function (id) {
+        console.log("Get orders of customer " + id);
+        return this.httpApi.get("/v1/order/ordersOfCustomer/" + id);
     };
     OrderService.prototype.addOrderItem = function (req) {
         console.log("Add order item[ " + ", " + req.requestedQty + " to order " + req.orderId);

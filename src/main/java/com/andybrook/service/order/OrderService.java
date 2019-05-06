@@ -32,8 +32,6 @@ public class OrderService implements IOrderService {
     @Autowired
     private ICustomerService customerService;
     @Autowired
-    private LanguageResolver languageResolver;
-    @Autowired
     private IAdminSettingService adminSettingService;
 
     @Override
@@ -83,6 +81,11 @@ public class OrderService implements IOrderService {
     @Override
     public List<Order> getOrders(List<Long> ids) {
         return dao.getOrders(ids);
+    }
+
+    @Override
+    public List<Order> getOrdersOfCustomer(long customerId) {
+        return dao.getOrdersOfCustomer(customerId);
     }
 
     @Override

@@ -24,7 +24,7 @@
           {{ item.quantity }}
         </td>
         <td>{{ item.ttlPrice }} €</td>
-        <td>{{ item.lastModifiedDatetime }}</td>
+        <td>{{ item.lastModifiedDatetime | date:'medium' }}</td>
         <td>
           <button *ngIf="order.status !== 'CLOSED'"
           (click)="onClickDeleteOrderItemButton(i, item.orderItems)"

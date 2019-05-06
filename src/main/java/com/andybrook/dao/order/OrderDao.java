@@ -86,6 +86,17 @@ public class OrderDao implements IOrderDao {
     }
 
     @Override
+    public List<Order> getOrdersOfCustomer(long customerId) {
+        List<Order> orders = new LinkedList<>();
+        List<OrderEntity> entities = repository.getOrdersByCustomer(customerId);
+        for (OrderEntity entity : entities) {
+            Order order = entityFactory.createOrder(entity);
+            orders.add(order);
+        }
+        return orders;
+    }
+
+    @Override
     public List<Order> getByName(String name) {
         List<OrderEntity> ordersEntity = repository.findByName(name);
         return ordersEntity.stream()

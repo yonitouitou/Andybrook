@@ -25,11 +25,11 @@ public interface IOrderManager {
 
     Order closeOrder(long id) throws OrderNotFound, OrderClosed;
 
-    List<Order> getOrdersByName(String name);
-
     List<Order> getOrdersByNameContaining(String name);
 
     List<Order> getOrders(List<Long> ids);
+
+    List<Order> getOrdersOfCustomer(long customerId);
 
     List<OrderItem> addOrderItems(OrderItemAddRequest request) throws OrderNotFound, OrderClosed, ProductNotFound, InsufficientQuantityException, OrderItemNotFound, BarCodeNotFound;
 

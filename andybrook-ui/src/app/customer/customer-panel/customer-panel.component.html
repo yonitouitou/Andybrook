@@ -1,3 +1,10 @@
-<p>
-  owner-panel works!
-</p>
+<div class="row">
+  <div class="col-md-auto">
+    <list-customer (onCustomerSelected)="onCustomerSelected($event)"></list-customer>
+  </div>
+  <div class="col">
+    <customer-info [customer]="customer"></customer-info>
+    <hr>
+    <customer-orders [orders]="orders"></customer-orders>
+  </div>
+</div>

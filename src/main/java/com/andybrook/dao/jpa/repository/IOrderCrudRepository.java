@@ -14,13 +14,16 @@ import java.util.List;
 
 public interface IOrderCrudRepository extends JpaRepository<OrderEntity, Long> {
 
+    String TABLE_NAME = "orders";
     String ENTITY_NAME = "OrderEntity";
     String COLUMN_ID = "id";
     String COLUMN_NAME = "name";
     String COLUMN_COMMENT = "comment";
     String COLUMN_STATUS = "status";
+    String COLUMN_CREATED_DATETIME = "createddatetime";
     String COLUMN_CLOSE_DATETIME = "closeDatetime";
     String COLUMN_LAST_MODIFIED_DATE_TIME = "lastModifiedDatetime";
+    String COLUMN_CUSTOMER_ID = "customerid";
 
     List<OrderEntity> findByName(String name);
     List<OrderEntity> findByNameContaining(String name);
@@ -63,4 +66,18 @@ public interface IOrderCrudRepository extends JpaRepository<OrderEntity, Long> {
     @Transactional
     @Query(value = UPDATE_LAST_MODIFIED_DATE_TIME_QUERY)
     void updateOrderAuditing(@Param("id") long orderId, @Param("lastModifiedDatetime") LocalDateTime lastModifiedDateTime);
+
+    String SELECT_ORDERS_BY_CUSTOMER_QUERY =
+            "SELECT " +
+                "* " +
+            "FROM " +
+                TABLE_NAME +
+            " WHERE "  +
+                COLUMN_CUSTOMER_ID + " = :customerId" +
+            " ORDER BY " +
+                COLUMN_CREATED_DATETIME +
+            " DESC";
+
+    @Query(value = SELECT_ORDERS_BY_CUSTOMER_QUERY, nativeQuery = true)
+    List<OrderEntity> getOrdersByCustomer(@Param("customerId") long customerId);
 }

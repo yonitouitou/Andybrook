@@ -1,13 +1,11 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { OrderItem } from '../../model/OrderItem'
-import { Product } from '../../model/Product';
 import { OrderService } from 'src/app/service/order-service';
 import { ModalBuilder } from 'src/app/common-components/modal-builder';
 import { InfoModalComponent } from 'src/app/modal/info-modal/info-modal.component';
 import { ProductService } from 'src/app/service/product-service';
 import { Observable } from 'rxjs';
 import { debounceTime, distinctUntilChanged, map } from 'rxjs/operators';
-import { AddOrderItemReq } from 'src/app/model/request/AddOrderItemReq';
 import { ModifyOrderItemReq } from 'src/app/model/request/ModifyOrderItemReq';
 import { AggregatedOrder } from 'src/app/model/AggregatedOrder';
 import { AggregatedOrderItem } from 'src/app/model/AggregatedOrderItem';
