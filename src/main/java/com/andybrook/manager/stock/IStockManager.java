@@ -1,5 +1,6 @@
 package com.andybrook.manager.stock;
 
+import com.andybrook.model.stock.ProductItem;
 import com.andybrook.model.stock.ProductStockInfo;
 import org.springframework.data.util.Pair;
 
@@ -9,7 +10,7 @@ public interface IStockManager {
 
     ProductStockInfo getProductStockInfo(long productId);
 
-    ProductStockInfo getProductStockInfoByBarCodeId(String barCodeId);
+    ProductItem getProductItemByBarCodeId(String barCodeId);
 
     List<Pair<Long, String>> getAllProductNamesWithQuantityMoreThan(int quantity);
 }

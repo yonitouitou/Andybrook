@@ -10,6 +10,7 @@ import { debounceTime, distinctUntilChanged, map } from 'rxjs/operators';
 import { ProductStockInfo } from 'src/app/model/ProductStockInfo';
 import { AddOrderItemByBarCodeReq } from 'src/app/model/request/AddOrderItemByBarCodeReq';
 import { TypeUtil } from 'src/app/util/TypeUtil';
+import { ProductItem } from 'src/app/model/ProductItem';
 
 @Component({
   selector: 'add-order-item-modal',
@@ -28,6 +29,7 @@ export class AddOrderItemModalComponent implements OnInit {
   productIdMapByName: Map<string, number> = new Map()
   inputProductName: string
   productStockInfo: ProductStockInfo
+  productItem: ProductItem
   errorMessage: string
   private _error = new Subject<string>()
 
@@ -86,6 +88,7 @@ export class AddOrderItemModalComponent implements OnInit {
   private resetForm() {
     this.addOrderItemForm.reset();
     this.productStockInfo = null;
+    this.productItem = null;
     this.changeErrorMessage(null);
   }
 
@@ -102,6 +105,7 @@ export class AddOrderItemModalComponent implements OnInit {
   }
 
   onBlurProductName() {
+    this.productItem = null;
     let productName = this.addOrderItemForm.get("productName").value;
     if (productName != null) {
       let productId = this.productIdMapByName.get(productName);
@@ -120,16 +124,17 @@ export class AddOrderItemModalComponent implements OnInit {
   }
 
   onBlurBarCode() {
+    this.productStockInfo = null;
     let barCode = this.addOrderItemForm.get("barCode").value;
     if (barCode != null) {
-      this.productService.getProductStockInfoByBarCode(barCode).subscribe(
+      this.productService.getProductItemByBarCode(barCode).subscribe(
         data => {
-          this.productStockInfo = ProductStockInfo.fromJson(data);
+          this.productItem = ProductItem.fromJson(data);
           this.disableAddButton(false);
         },
         error => {
           this.changeErrorMessage(error.error);
-          this.productStockInfo = null;
+          this.productItem = null;
         }
       )
     }

@@ -56,6 +56,24 @@
         </tbody>
       </table>
     </div>
+    <div *ngIf="productItem">
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th>Id</th>
+            <th>Name</th>
+            <th>Free</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>{{ productItem.id }}</td>
+            <td>{{ productItem.product.name }}</td>
+            <td>{{ productItem.orderItemId ? 'No' : 'Yes' }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
   </form>
 </div>
 <div class="modal-footer">

@@ -44,9 +44,8 @@ public class StockService implements IStockService {
     }
 
     @Override
-    public ProductStockInfo getProductStockInfoByBarCodeId(String barCodeId) {
-        ProductItem productItem = productItemService.getByBarCodeId(barCodeId);
-        return productStockInfoService.get(productItem.getProductId());
+    public ProductItem getProductItemByBarCodeId(String barCodeId) {
+        return productItemService.getByBarCodeId(barCodeId);
     }
 
     @Override

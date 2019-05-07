@@ -21,7 +21,7 @@ export class ProductService {
         return this.http.get("/v1/stock/productStockInfo/" + productId);
     }
 
-    getProductStockInfoByBarCode(barCode: string): Observable<Product> {
-        return this.http.get("/v1/stock/productStockInfoByBarCode/" + barCode);
+    getProductItemByBarCode(barCode: string): Observable<Product> {
+        return this.http.get("/v1/stock/productItemByBarCode/" + barCode);
     }
 }

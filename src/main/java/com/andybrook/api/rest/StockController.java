@@ -1,6 +1,7 @@
 package com.andybrook.api.rest;
 
 import com.andybrook.manager.stock.IStockManager;
+import com.andybrook.model.stock.ProductItem;
 import com.andybrook.model.stock.ProductStockInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.util.Pair;
@@ -28,10 +29,10 @@ public class StockController extends AbstractController {
         return stockManager.getProductStockInfo(productId);
     }
 
-    @GetMapping(path = "/productStockInfoByBarCode/{barCode}")
-    public ProductStockInfo getProductStockInfo(@PathVariable String barCode) {
-        LOGGER.log(Level.INFO, "Get product stock info for barCode : " + barCode);
-        return stockManager.getProductStockInfoByBarCodeId(barCode);
+    @GetMapping(path = "/productItemByBarCode/{barCode}")
+    public ProductItem getProductStockInfo(@PathVariable String barCode) {
+        LOGGER.log(Level.INFO, "Get product item by barCode : " + barCode);
+        return stockManager.getProductItemByBarCodeId(barCode);
     }
 
     @GetMapping(path = "/getAllExistingProductNames")

@@ -21,7 +21,7 @@ public interface IStockService {
 
     ProductStockInfo getProductStockInfo(long productId);
 
-    ProductStockInfo getProductStockInfoByBarCodeId(String barCodeId);
+    ProductItem getProductItemByBarCodeId(String barCodeId);
 
     int getFreeQuantity(long productId);
 
