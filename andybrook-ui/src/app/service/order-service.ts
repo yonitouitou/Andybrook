@@ -3,10 +3,10 @@ import { Injectable } from '@angular/core'
 import { HttpService } from './http-service'
 import { Order } from "../model/Order";
 import { Observable } from 'rxjs';
-import { AddOrderItemReq } from '../model/request/AddOrderItemReq';
+import { AddOrderItemReq } from '../model/request/order/AddOrderItemReq';
 import { OrderItem } from '../model/OrderItem';
-import { DeleteOrderItemsReq } from '../model/request/DeleteOrderItemsReq';
-import { AddOrderItemByBarCodeReq } from '../model/request/AddOrderItemByBarCodeReq';
+import { DeleteOrderItemsReq } from '../model/request/order/DeleteOrderItemsReq';
+import { AddOrderItemByBarCodeReq } from '../model/request/order/AddOrderItemByBarCodeReq';
 
 @Injectable()
 export class OrderService {

@@ -35,8 +35,8 @@ public class StockServiceTest {
 
     @Test
     public void addSingleProductItemTest() {
-        addAndAssertSingleProductItem(productItem);
-        Assert.assertEquals(1, stockService.getProductItemSize(productItem.getId()));
+        productItem = addAndAssertSingleProductItem(productItem);
+        Assert.assertEquals(1, stockService.getProductItemSizeOfProduct(productItem.getProductId()));
     }
 
     @Test
@@ -46,7 +46,7 @@ public class StockServiceTest {
             ProductItem newProductItem = ProductItemGenerator.generateSingleProductItem(product);
             addAndAssertSingleProductItem(newProductItem);
         }
-        Assert.assertEquals(createdQuantity, stockService.getProductItemSize(product.getId()));
+        Assert.assertEquals(createdQuantity, stockService.getProductItemSizeOfProduct(product.getId()));
         Assert.assertEquals(createdQuantity, stockService.getFreeQuantity(product.getId()));
     }
 
@@ -56,10 +56,11 @@ public class StockServiceTest {
         stockService.getProductItem(Long.MAX_VALUE);
     }
 
-    private void addAndAssertSingleProductItem(ProductItem productItem) {
+    private ProductItem addAndAssertSingleProductItem(ProductItem productItem) {
         stockService.addProductItem(productItem);
         ProductItem productItemSaved = stockService.getProductItem(productItem.getId());
         assertProductItem(productItem, productItemSaved);
+        return productItemSaved;
     }
 
     private void assertProductItem(ProductItem expected, ProductItem actual) {

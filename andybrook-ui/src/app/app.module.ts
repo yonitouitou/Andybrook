@@ -36,12 +36,15 @@ import { CookieService } from 'ngx-cookie-service';
 import { ListCustomerComponent } from './customer/list-customer/list-customer.component';
 import { CustomerOrdersComponent } from './customer/customer-orders/customer-orders.component';
 import { CustomerInfoComponent } from './customer/customer-info/customer-info.component';
+import { CustomerHeaderComponent } from './customer/customer-header/customer-header.component';
+import { NewCustomerComponent } from './customer/new-customer/new-customer.component';
 
 const appRoutes: Routes = [
   { path: '', component: OrdersManagerComponent },
   { path: 'order/:id', component: ShowOrderComponent },
   { path: 'admin', component: AdminPanelComponent},
-  { path: 'customers', component: CustomerPanelComponent}
+  { path: 'new-customer', component: NewCustomerComponent},
+  { path: 'customer-dashboard', component: CustomerPanelComponent}
 ];
 
 @NgModule({
@@ -66,6 +69,8 @@ const appRoutes: Routes = [
     ListCustomerComponent,
     CustomerOrdersComponent,
     CustomerInfoComponent,
+    CustomerHeaderComponent,
+    NewCustomerComponent,
   ],
   entryComponents: [
     CreateOrderModalComponent,

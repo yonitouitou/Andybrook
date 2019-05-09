@@ -31,5 +31,5 @@ public interface IStockService {
 
     List<Pair<Long, String>> getAllProductNamesWithQuantityMoreThan(int quantity);
 
-    int getProductItemSize(long productId);
+    int getProductItemSizeOfProduct(long productId);
 }

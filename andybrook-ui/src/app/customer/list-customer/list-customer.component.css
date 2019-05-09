@@ -1,7 +1,7 @@
-/* Scroll Bar Aggregated Order Item table */
+/* Scroll Bar customer list table */
 .my-custom-scrollbar {
     position: relative;
-    max-height: 90%;
+    max-height: 45%;
     overflow: auto;
   }
   

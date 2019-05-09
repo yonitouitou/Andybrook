@@ -15,7 +15,8 @@ public class DocumentEntityConverter implements IEntityConverter<AbstractDocumen
     public AbstractDocument toModel(DocumentEntity entity) {
         AbstractDocument doc;
         if (DocType.ORDER_FORM.getName().equals(entity.getTypeName())) {
-            doc = new OrderForm(entity.getId(), entity.getData(), entity.getCreatedDatetime(), entity.getOrderId());
+            doc = new OrderForm(entity.getId(), entity.getData(), entity.getCreatedDatetime(),
+                    entity.getOrderId(), entity.getCustomerId());
         } else {
             throw new UnsupportedOperationException("Unsupported Document Type : " + entity.getTypeName());
         }
@@ -36,6 +37,7 @@ public class DocumentEntityConverter implements IEntityConverter<AbstractDocumen
     private DocumentEntity buildEntityFromOrderForm(OrderForm model) {
         DocumentEntity entity = new DocumentEntity(model.getId(), model.getType().getName(), model.getData(), model.getCreatedDatetime());
         entity.setOrderId(model.getOrderId());
+        entity.setCustomerId(model.getCustomerId());
         return entity;
     }
 }

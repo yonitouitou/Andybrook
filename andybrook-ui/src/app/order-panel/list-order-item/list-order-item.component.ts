@@ -6,11 +6,11 @@ import { InfoModalComponent } from 'src/app/modal/info-modal/info-modal.componen
 import { ProductService } from 'src/app/service/product-service';
 import { Observable } from 'rxjs';
 import { debounceTime, distinctUntilChanged, map } from 'rxjs/operators';
-import { ModifyOrderItemReq } from 'src/app/model/request/ModifyOrderItemReq';
+import { ModifyOrderItemReq } from 'src/app/model/request/order/ModifyOrderItemReq';
 import { AggregatedOrder } from 'src/app/model/AggregatedOrder';
 import { AggregatedOrderItem } from 'src/app/model/AggregatedOrderItem';
 import { DeleteOrderItemsModalComponent } from 'src/app/modal/delete-order-items-modal/delete-order-items-modal.component';
-import { DeleteOrderItemsReq } from 'src/app/model/request/DeleteOrderItemsReq';
+import { DeleteOrderItemsReq } from 'src/app/model/request/order/DeleteOrderItemsReq';
 
 @Component({
   selector: 'list-order-item',

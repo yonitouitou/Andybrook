@@ -5,6 +5,7 @@ import com.andybrook.exception.CustomerNotFound;
 import com.andybrook.model.customer.Customer;
 import com.andybrook.model.customer.Owner;
 import com.andybrook.model.customer.Store;
+import com.andybrook.model.request.customer.AddCustomerRequest;
 import com.andybrook.service.customer.ICustomerService;
 import com.andybrook.util.clock.Clock;
 import org.junit.Assert;
@@ -14,6 +15,13 @@ import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
+
+import static com.andybrook.generator.CustomerGenerator.createAddCustomerRequest;
 
 @SpringBootTest
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -25,32 +33,43 @@ public class CustomerServiceTest {
     private Owner owner;
     private Store store;
     private Customer customer;
+    private AddCustomerRequest addCustomerRequest;
 
     @Before
     public void init() {
-        long index = Clock.millis();
-        owner = new Owner("Michael-" + index, "Jordan-" + index, "Owner." + index + "@gmail.com");
-        store = new Store("Name" + index, "name." + index + "@gmail.com", "address", "01.43.45.32.11", owner);
-        customer = new Customer(store);
+        addCustomerRequest = createAddCustomerRequest(Clock.millis());
     }
 
     @Test
     public void createSingleCustomerTest() {
-        Customer savedCustomer = customerService.newCustomer(customer);
+        Customer savedCustomer = customerService.newCustomer(addCustomerRequest);
         Assert.assertNotNull(savedCustomer.getId());
-        CustomerAssertor.assertEqualsStaticField(customer, savedCustomer);
+        CustomerAssertor.assertEqualsStaticField(addCustomerRequest.toCustomer(), savedCustomer);
     }
 
     @Test
     public void getCustomerTest() {
-        Customer savedCustomer = customerService.newCustomer(customer);
+        Customer savedCustomer = customerService.newCustomer(addCustomerRequest);
         Customer getCustomer = customerService.getById(savedCustomer.getId());
         CustomerAssertor.assertEquals(savedCustomer, getCustomer);
     }
 
     @Test
+    public void getOwnersSizeTest() {
+        int nbOwnerToCreate = 3;
+        int currentOwnersSize = customerService.getAllOwners().size();
+        for (int i = 0; i < nbOwnerToCreate; i++) {
+            customerService.newCustomer(createAddCustomerRequest(Clock.nanos()));
+        }
+        Map<Long, Owner> owners = customerService.getAllOwners();
+        Assert.assertEquals("Owner Size", currentOwnersSize + nbOwnerToCreate, owners.size());
+    }
+
+
+
+    @Test
     public void updateCustomerTest() {
-        customer = customerService.newCustomer(customer);
+        customer = customerService.newCustomer(addCustomerRequest);
         Store store = customer.getStore();
         store.setAddress("NewAddress");
         store.setEmail("NewEmail@gmail.com");

@@ -1,0 +1,73 @@
+<form [formGroup]="form" (ngSubmit)="onSubmit()">
+  <h5>Owner</h5>
+  <hr>
+  <div class="row">
+    <div class="col form-group">
+      <label for="newowner">New Owner &nbsp;</label>
+      <input type="checkbox" formControlName="isNewOwnerCheckbox" (click)="onClickNewOwnerCheckbox($event)">
+    </div>
+  </div>
+  <div class="row">
+    <div *ngIf="! showCreateOwnerForm" class="col-5 form-group">
+      <label for="Name">Select an existing owner :</label>
+      <input type="text" formControlName="ownerAutoComplete"
+        [(ngModel)]="inputOwnerName"
+        [ngbTypeahead]="search"
+        class="form-control"/>
+    </div>
+  </div>
+  <div *ngIf="showCreateOwnerForm" class="row">
+    <div class="col form-group">
+        <label for="firstName">FirstName</label>
+        <input type="text" formControlName="ownerFirstName" class="form-control"/>
+    </div>
+    <div class="col form-group">
+        <label for="lastName">LastName</label>
+        <input type="text" formControlName="ownerLastName" class="form-control"/>
+    </div>
+    <div class="col form-group">
+        <label for="email">Email</label>
+        <input type="text" formControlName="ownerEmail" class="form-control"/>
+    </div>
+  </div>
+  <br>
+  <h5>Store</h5>
+  <hr>
+  <div class="row">
+      <div class="col form-group">
+          <label for="name">Name</label>
+          <input type="text" formControlName="storeName" class="form-control"/>
+      </div>
+      <div class="col form-group">
+          <label for="address">Address</label>
+          <input type="text" formControlName="storeAddress" class="form-control"/>
+      </div>
+      <div class="col form-group">
+          <label for="zipCode">Zip Code</label>
+          <input type="text" formControlName="storeZipCode" class="form-control"/>
+      </div>
+      <div class="col form-group">
+          <label for="city">City</label>
+          <input type="text" formControlName="storeCity" class="form-control"/>
+      </div>
+  </div>
+  <div class="row">
+      <div class="col form-group">
+          <label for="phone">Phone</label>
+          <input type="text" formControlName="storePhone" class="form-control"/>
+      </div>
+      <div class="col form-group">
+          <label for="email">Email</label>
+          <input type="text" formControlName="storeEmail" class="form-control">
+      </div>
+  </div>
+  <hr>
+  <div class="row">
+    <div class="col">
+      <button class="btn btn-primary" type="submit">Add Customer</button>
+    </div>
+    <div class="col-md-auto">
+      <ngb-alert *ngIf="errorMessage" type="danger" [dismissible]="true" (close)="errorMessage = null">{{ errorMessage }}</ngb-alert>
+    </div>
+  </div>
+</form>

@@ -16,6 +16,7 @@ import com.andybrook.model.stock.ProductItem;
 import com.andybrook.service.customer.ICustomerService;
 import com.andybrook.service.product.IProductService;
 import com.andybrook.service.stock.IStockService;
+import com.andybrook.util.clock.Clock;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -25,6 +26,8 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import java.util.List;
+
+import static com.andybrook.generator.CustomerGenerator.createAddCustomerRequest;
 
 @SpringBootTest
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -48,7 +51,7 @@ public class OrderServiceTest {
 
     @Before
     public void init() {
-        customer = customerService.newCustomer(CustomerGenerator.generateCustomer());
+        customer = customerService.newCustomer(createAddCustomerRequest(Clock.millis()));
         order = orderService.newOrder(createNewOrderRequest(customer));
         product = ProductGenerator.generateProduct();
         product = productService.addProduct(product);
@@ -104,11 +107,11 @@ public class OrderServiceTest {
     @Test
     public void getOrdersOfCustomerTest() {
         int nbOfOrderForCustomer = 3;
-        Customer customer = customerService.newCustomer(CustomerGenerator.generateCustomer());
+        Customer customer = customerService.newCustomer(createAddCustomerRequest(Clock.millis()));
         for (int i = 0; i < nbOfOrderForCustomer; i++) {
             orderService.newOrder(createNewOrderRequest(customer));
         }
-        Customer customer2 = customerService.newCustomer(CustomerGenerator.generateCustomer());
+        Customer customer2 = customerService.newCustomer(createAddCustomerRequest(Clock.millis()));
         orderService.newOrder(createNewOrderRequest(customer2));
 
         List<Order> ordersOfCustomer = orderService.getOrdersOfCustomer(customer.getId());

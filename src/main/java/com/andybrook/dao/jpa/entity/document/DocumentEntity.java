@@ -25,6 +25,9 @@ public class DocumentEntity {
     @Column(name = "orderid")
     private long orderId;
 
+    @Column(name = "customerid")
+    private long customerId;
+
     @CreatedDate
     private LocalDateTime createdDatetime;
 
@@ -41,6 +44,14 @@ public class DocumentEntity {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public long getCustomerId() {
+        return customerId;
+    }
+
+    public void setCustomerId(long customerId) {
+        this.customerId = customerId;
     }
 
     public String getTypeName() {

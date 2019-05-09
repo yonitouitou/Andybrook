@@ -12,6 +12,13 @@
              routerLink="/"
           >Home</a>
         </li>
+        <li class="nav-item dropdown" ngbDropdown>
+          <a class="nav-link dropdown-toggle" id="id01" ngbDropdownToggle>Customers</a>
+          <div class="dropdown-menu" aria-labelledby="id01" ngbDropdownMenu>
+            <a class="dropdown-item" routerLink="/customer-dashboard">Dashboard</a>
+            <a class="dropdown-item" routerLink="/new-customer">New Customer</a>
+          </div>
+        </li>
         <li class="nav-item">
             <a class="nav-link"
                routerLink="/customers"

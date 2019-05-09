@@ -3,7 +3,7 @@ import { OrderItem } from 'src/app/model/OrderItem';
 import { DeleteOrderItemsModalComponent } from 'src/app/modal/delete-order-items-modal/delete-order-items-modal.component';
 import { ModalBuilder } from 'src/app/common-components/modal-builder';
 import { AggregatedOrder } from 'src/app/model/AggregatedOrder';
-import { DeleteOrderItemsReq } from 'src/app/model/request/DeleteOrderItemsReq';
+import { DeleteOrderItemsReq } from 'src/app/model/request/order/DeleteOrderItemsReq';
 import { OrderService } from 'src/app/service/order-service';
 import { InfoModalComponent } from 'src/app/modal/info-modal/info-modal.component';
 

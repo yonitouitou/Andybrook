@@ -1,14 +1,14 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { OrderService } from 'src/app/service/order-service';
-import { AddOrderItemReq } from 'src/app/model/request/AddOrderItemReq';
+import { AddOrderItemReq } from 'src/app/model/request/order/AddOrderItemReq';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { ProductService } from 'src/app/service/product-service';
 import { CookieService } from 'ngx-cookie-service';
 import { Observable, Subject } from 'rxjs';
 import { debounceTime, distinctUntilChanged, map } from 'rxjs/operators';
 import { ProductStockInfo } from 'src/app/model/ProductStockInfo';
-import { AddOrderItemByBarCodeReq } from 'src/app/model/request/AddOrderItemByBarCodeReq';
+import { AddOrderItemByBarCodeReq } from 'src/app/model/request/order/AddOrderItemByBarCodeReq';
 import { TypeUtil } from 'src/app/util/TypeUtil';
 import { ProductItem } from 'src/app/model/ProductItem';
 
@@ -43,8 +43,8 @@ export class AddOrderItemModalComponent implements OnInit {
     this.initBarCodeMode();
     this.initForm();
     this.getAllCustomers();
-    this._error.subscribe((msg) => this.errorMessage = msg)
-    this._error.pipe(debounceTime(4000)).subscribe(() => this.errorMessage = null)
+    this._error.subscribe((msg) => this.errorMessage = msg);
+    this._error.pipe(debounceTime(4000)).subscribe(() => this.errorMessage = null);
   }
 
   search = (text$: Observable<string>) =>
@@ -99,7 +99,6 @@ export class AddOrderItemModalComponent implements OnInit {
           this.productIdMapByName.set(idAndNameProduct.second, idAndNameProduct.first)
           this.productNames.push(idAndNameProduct.second);
         }
-        console.log(this.productNames);
       }
     )
   }

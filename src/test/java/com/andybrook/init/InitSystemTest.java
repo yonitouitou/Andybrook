@@ -12,6 +12,7 @@ import com.andybrook.model.customer.Store;
 import com.andybrook.model.order.Order;
 import com.andybrook.model.order.OrderItem;
 import com.andybrook.model.product.Product;
+import com.andybrook.model.request.customer.AddCustomerRequest;
 import com.andybrook.model.request.order.NewOrderRequest;
 import com.andybrook.model.request.orderitem.OrderItemAddRequest;
 import com.andybrook.model.request.orderitem.ProductItemInfo;
@@ -27,6 +28,8 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import java.util.*;
 import java.util.concurrent.ThreadLocalRandom;
+
+import static com.andybrook.generator.CustomerGenerator.createAddCustomerRequest;
 
 @SpringBootTest
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -103,10 +106,8 @@ public class InitSystemTest {
     private List<Customer> createCustomers() {
         List<Customer> customers = new LinkedList<>();
         for (int i = 0; i < CUSTOMER_NUMBER_2; i++) {
-            Owner owner = new Owner("Steve_" + i, "Smith", "steve_" + i +".smith@optika.net");
-            Store store = new Store("Optika_" + i, "optika@gmail.com", "13 Avenue Paul Valery - Paris", "01.34.77.54.22", owner);
-            Customer customer = new Customer(store);
-            customers.add(customerService.newCustomer(customer));
+            AddCustomerRequest request = createAddCustomerRequest(i);
+            customers.add(customerService.newCustomer(request));
         }
         return customers;
     }

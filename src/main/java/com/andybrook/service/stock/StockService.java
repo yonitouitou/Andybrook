@@ -81,7 +81,7 @@ public class StockService implements IStockService {
     }
 
     @Override
-    public int getProductItemSize(long productId) {
+    public int getProductItemSizeOfProduct(long productId) {
         return productItemService.getProductItemSize(productId);
     }
 }
