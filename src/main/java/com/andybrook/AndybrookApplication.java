@@ -11,6 +11,8 @@ import org.springframework.core.task.SimpleAsyncTaskExecutor;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
 import org.springframework.scheduling.support.TaskUtils;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 
 import javax.persistence.EntityListeners;
 
@@ -39,6 +41,5 @@ public class AndybrookApplication {
 		messageSource.setCacheSeconds(3);
 		return messageSource;
 	}
-
 }
 

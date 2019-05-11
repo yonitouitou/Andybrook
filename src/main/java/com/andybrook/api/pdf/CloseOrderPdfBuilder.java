@@ -39,7 +39,7 @@ public class CloseOrderPdfBuilder extends AbstractPdfBuilder implements IPdfBuil
     private static final float TEXT_FONT_SIZE_11 = 11;
     private static final String[] COLUMNS_NAME_ITEMS = new String[5];
     private static final String[] COLUMNS_NAME_CUSTOMER_MAIN_DETAILS = new String[2];
-    private static final String[] COLUNS_NAME_CUSTOMER_CONTACT_DETAILS = new String[3];
+    private static final String[] COLUNS_NAME_CUSTOMER_CONTACT_DETAILS = new String[4];
     private static final FontFamily FONT_TYPE_TIMES_ROMAN = FontFamily.TIMES_ROMAN;
 
     private static BaseColor headerBackgroundColor;

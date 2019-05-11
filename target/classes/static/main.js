@@ -3136,7 +3136,7 @@ var NotificationService = /** @class */ (function () {
     }
     NotificationService.prototype.notifyOrder = function (id) {
         var request = { "id": id };
-        return this.httpApi.post("v1/notification/report", request);
+        return this.httpApi.post("v1/notification/notify", request);
     };
     NotificationService = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Injectable"])(),
