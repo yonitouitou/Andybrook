@@ -16,3 +16,4 @@ hs_err_pid*
 *.class
 
 application.properties
+/home/yoni/Documents/projects/andybrook/src/main/resources/application.properties
