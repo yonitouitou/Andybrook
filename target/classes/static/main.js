@@ -166,7 +166,7 @@ module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<nav class=\"navbar navbar-expand-md navbar-dark bg-primary fixed-top\">\n    <a class=\"navbar-brand\" href=\"#\">Andybrook</a>\n    <button class=\"navbar-toggler hidden-sm-up\" type=\"button\" (click)=\"isNavbarCollapsed = !isNavbarCollapsed\" data-target=\"#navbarsDefault\" aria-controls=\"navbarsDefault\" aria-expanded=\"false\" aria-label=\"Toggle navigation\">\n      <span class=\"navbar-toggler-icon\"></span>\n    </button>\n    <div [ngbCollapse]=\"isNavbarCollapsed\" class=\"collapse navbar-collapse\" id=\"navbarsDefault\">\n      <ul class=\"navbar-nav mr-auto\">\n        <li class=\"nav-item\">\n          <a class=\"nav-link\"\n             routerLinkActive=\"active\"\n             [routerLinkActiveOptions]=\"{exact: true}\"\n             routerLink=\"/\"\n          >Home</a>\n        </li>\n        <li class=\"nav-item dropdown\" ngbDropdown>\n          <a class=\"nav-link dropdown-toggle\" id=\"id01\" ngbDropdownToggle>Customers</a>\n          <div class=\"dropdown-menu\" aria-labelledby=\"id01\" ngbDropdownMenu>\n            <a class=\"dropdown-item\" routerLink=\"/customer-dashboard\">Dashboard</a>\n            <a class=\"dropdown-item\" routerLink=\"/new-customer\">New Customer</a>\n          </div>\n        </li>\n        <li class=\"nav-item\">\n            <a class=\"nav-link\"\n               routerLink=\"/customers\"\n            >Customers</a>\n          </li>\n        <li class=\"nav-item\">\n          <a class=\"nav-link\"\n             routerLink=\"/admin\"\n          >Admin</a>\n        </li>\n        <li class=\"nav-item dropdown\" ngbDropdown>\n          <a class=\"nav-link dropdown-toggle\" id=\"id01\" href=\"#\" ngbDropdownToggle>Files</a>\n          <div class=\"dropdown-menu\" aria-labelledby=\"id01\" ngbDropdownMenu>\n            <a class=\"dropdown-item\" href=\"#\">HTML</a>\n            <a class=\"dropdown-item\" href=\"#\">TS</a>\n            <a class=\"dropdown-item\" href=\"#\">JS</a>\n          </div>\n        </li>\n      </ul>\n    </div>\n  </nav>"
+module.exports = "<nav class=\"navbar navbar-expand-md navbar-dark bg-primary fixed-top\">\n    <a class=\"navbar-brand\" href=\"#\">Andybrook</a>\n    <button class=\"navbar-toggler hidden-sm-up\" type=\"button\" (click)=\"isNavbarCollapsed = !isNavbarCollapsed\" data-target=\"#navbarsDefault\" aria-controls=\"navbarsDefault\" aria-expanded=\"false\" aria-label=\"Toggle navigation\">\n      <span class=\"navbar-toggler-icon\"></span>\n    </button>\n    <div [ngbCollapse]=\"isNavbarCollapsed\" class=\"collapse navbar-collapse\" id=\"navbarsDefault\">\n      <ul class=\"navbar-nav mr-auto\">\n        <li class=\"nav-item\">\n          <a class=\"nav-link\"\n             routerLinkActive=\"active\"\n             [routerLinkActiveOptions]=\"{exact: true}\"\n             routerLink=\"/\"\n          >Home</a>\n        </li>\n        <li class=\"nav-item dropdown\" ngbDropdown>\n          <a class=\"nav-link dropdown-toggle\" id=\"id01\" ngbDropdownToggle>Customers</a>\n          <div class=\"dropdown-menu\" aria-labelledby=\"id01\" ngbDropdownMenu>\n            <a class=\"dropdown-item\" routerLink=\"/customer-dashboard\">Dashboard</a>\n            <a class=\"dropdown-item\" routerLink=\"/new-customer\">New Customer</a>\n          </div>\n        </li>\n        <li class=\"nav-item\">\n          <a class=\"nav-link\"\n             routerLink=\"/admin\"\n          >Admin</a>\n        </li>\n      </ul>\n    </div>\n  </nav>"
 
 /***/ }),
 
@@ -525,7 +525,7 @@ module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"container\">\n  <div class=\"row\">\n    <button type=\"button\" class=\"btn btn-primary btn-sm\">Add Customer</button>\n  </div>\n</div>"
+module.exports = ""
 
 /***/ }),
 
@@ -871,7 +871,7 @@ module.exports = ".ng-invalid:not(form)  {\n    border-left: 5px solid #a94442; 
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<form [formGroup]=\"form\" (ngSubmit)=\"onSubmit()\">\n  <h5>Owner</h5>\n  <hr>\n  <div class=\"row\">\n    <div class=\"col form-group\">\n      <label for=\"newowner\">New Owner &nbsp;</label>\n      <input type=\"checkbox\" formControlName=\"isNewOwnerCheckbox\" (click)=\"onClickNewOwnerCheckbox($event)\">\n    </div>\n  </div>\n  <div class=\"row\">\n    <div *ngIf=\"! showCreateOwnerForm\" class=\"col-5 form-group\">\n      <label for=\"Name\">Select an existing owner :</label>\n      <input type=\"text\" formControlName=\"ownerAutoComplete\"\n        [(ngModel)]=\"inputOwnerName\"\n        [ngbTypeahead]=\"search\"\n        class=\"form-control\"/>\n    </div>\n  </div>\n  <div *ngIf=\"showCreateOwnerForm\" class=\"row\">\n    <div class=\"col form-group\">\n        <label for=\"firstName\">FirstName</label>\n        <input type=\"text\" formControlName=\"ownerFirstName\" class=\"form-control\"/>\n    </div>\n    <div class=\"col form-group\">\n        <label for=\"lastName\">LastName</label>\n        <input type=\"text\" formControlName=\"ownerLastName\" class=\"form-control\"/>\n    </div>\n    <div class=\"col form-group\">\n        <label for=\"email\">Email</label>\n        <input type=\"text\" formControlName=\"ownerEmail\" class=\"form-control\"/>\n    </div>\n  </div>\n  <br>\n  <h5>Store</h5>\n  <hr>\n  <div class=\"row\">\n      <div class=\"col form-group\">\n          <label for=\"name\">Name</label>\n          <input type=\"text\" formControlName=\"storeName\" class=\"form-control\"/>\n      </div>\n      <div class=\"col form-group\">\n          <label for=\"address\">Address</label>\n          <input type=\"text\" formControlName=\"storeAddress\" class=\"form-control\"/>\n      </div>\n      <div class=\"col form-group\">\n          <label for=\"zipCode\">Zip Code</label>\n          <input type=\"text\" formControlName=\"storeZipCode\" class=\"form-control\"/>\n      </div>\n      <div class=\"col form-group\">\n          <label for=\"city\">City</label>\n          <input type=\"text\" formControlName=\"storeCity\" class=\"form-control\"/>\n      </div>\n  </div>\n  <div class=\"row\">\n      <div class=\"col form-group\">\n          <label for=\"phone\">Phone</label>\n          <input type=\"text\" formControlName=\"storePhone\" class=\"form-control\"/>\n      </div>\n      <div class=\"col form-group\">\n          <label for=\"email\">Email</label>\n          <input type=\"text\" formControlName=\"storeEmail\" class=\"form-control\">\n      </div>\n  </div>\n  <hr>\n  <div class=\"row\">\n    <div class=\"col\">\n      <button class=\"btn btn-primary\" type=\"submit\">Add Customer</button>\n    </div>\n    <div class=\"col-md-auto\">\n      <ngb-alert *ngIf=\"errorMessage\" type=\"danger\" [dismissible]=\"true\" (close)=\"errorMessage = null\">{{ errorMessage }}</ngb-alert>\n    </div>\n  </div>\n</form>"
+module.exports = "<form [formGroup]=\"form\" (ngSubmit)=\"onSubmit()\">\n  <h5>Owner</h5>\n  <hr>\n  <div class=\"row\">\n    <div class=\"col form-group\">\n      <label for=\"newowner\">New Owner &nbsp;</label>\n      <input type=\"checkbox\" formControlName=\"isNewOwnerCheckbox\" (click)=\"onClickNewOwnerCheckbox($event)\">\n    </div>\n  </div>\n  <div class=\"row\">\n    <div *ngIf=\"! showCreateOwnerForm\" class=\"col-5 form-group\">\n      <label for=\"Name\">Select an existing owner :</label>\n      <input type=\"text\" formControlName=\"ownerAutoComplete\"\n        (blur)=\"onBlurOwnerAutoComplete()\"\n        [(ngModel)]=\"inputOwnerName\"\n        [ngbTypeahead]=\"search\"\n        class=\"form-control\"/>\n    </div>\n  </div>\n  <div *ngIf=\"storesOfSelectedOwner.length > 0\" class=\"row\">\n    <div class=\"col-5\">\n      <table class=\"table table-striped table-bordered table-sm\">\n        <thead>\n          <tr>\n            <th>#</th>\n            <th>Id</th>\n            <th>Name</th>\n            <th>Email</th>\n            <th>Phone</th>\n          </tr>\n        </thead>\n        <tbody>\n          <tr *ngFor=\"let store of storesOfSelectedOwner; let i = index\">\n            <td>{{ i + 1 }}</td>\n            <td>{{ store.id }}</td>\n            <td>{{ store.name }}</td>\n            <td>{{ store.email }}</td>\n            <td>{{ store.phone }}</td>\n          </tr>\n        </tbody>\n      </table>\n    </div>\n  </div>\n  <div *ngIf=\"showCreateOwnerForm\" class=\"row\">\n    <div class=\"col form-group\">\n      <label for=\"compagnyName\">Compagny Nane</label>\n      <input type=\"text\" formControlName=\"ownerCompagnyName\" class=\"form-control\" (blur)=onBlurStringFormControl($event)/>\n    </div>\n    <div class=\"col form-group\">\n        <label for=\"firstName\">FirstName</label>\n        <input type=\"text\" formControlName=\"ownerFirstName\" class=\"form-control\" (blur)=onBlurStringFormControl($event)/>\n    </div>\n    <div class=\"col form-group\">\n        <label for=\"lastName\">LastName</label>\n        <input type=\"text\" formControlName=\"ownerLastName\" class=\"form-control\" (blur)=onBlurStringFormControl($event)/>\n    </div>\n    <div class=\"col form-group\">\n        <label for=\"email\">Email</label>\n        <input type=\"text\" formControlName=\"ownerEmail\" class=\"form-control\" (blur)=onBlurLowcaseStringFormControl($event)/>\n    </div>\n  </div>\n  <br>\n  <h5>Store</h5>\n  <hr>\n  <div class=\"row\">\n      <div class=\"col form-group\">\n          <label for=\"name\">Name</label>\n          <input type=\"text\" formControlName=\"storeName\" class=\"form-control\" (blur)=onBlurStringFormControl($event)/>\n      </div>\n      <div class=\"col form-group\">\n          <label for=\"address\">Address</label>\n          <input type=\"text\" formControlName=\"storeAddress\" class=\"form-control\"/>\n      </div>\n      <div class=\"col form-group\">\n          <label for=\"zipCode\">Zip Code</label>\n          <input type=\"text\" formControlName=\"storeZipCode\" class=\"form-control\"/>\n      </div>\n      <div class=\"col form-group\">\n          <label for=\"city\">City</label>\n          <input type=\"text\" formControlName=\"storeCity\" class=\"form-control\" (blur)=onBlurStringFormControl($event)/>\n      </div>\n  </div>\n  <div class=\"row\">\n      <div class=\"col form-group\">\n          <label for=\"phone\">Phone</label>\n          <input type=\"text\" formControlName=\"storePhone\" class=\"form-control\"/>\n      </div>\n      <div class=\"col form-group\">\n          <label for=\"email\">Email</label>\n          <input type=\"text\" formControlName=\"storeEmail\" class=\"form-control\" (blur)=onBlurLowcaseStringFormControl($event)>\n      </div>\n  </div>\n  <hr>\n  <div class=\"row\">\n    <div class=\"col\">\n      <button class=\"btn btn-primary\" type=\"submit\">Add Customer</button>\n    </div>\n    <div class=\"col-md-auto\">\n      <ngb-alert *ngIf=\"errorMessage\" type=\"danger\" [dismissible]=\"true\" (close)=\"errorMessage = null\">{{ errorMessage }}</ngb-alert>\n    </div>\n  </div>\n</form>"
 
 /***/ }),
 
@@ -892,6 +892,14 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var rxjs__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! rxjs */ "./node_modules/rxjs/_esm5/index.js");
 /* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! rxjs/operators */ "./node_modules/rxjs/_esm5/operators/index.js");
 /* harmony import */ var src_app_model_request_customer_AddCustomerReq__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! src/app/model/request/customer/AddCustomerReq */ "./src/app/model/request/customer/AddCustomerReq.ts");
+/* harmony import */ var src_app_model_Store__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! src/app/model/Store */ "./src/app/model/Store.ts");
+/* harmony import */ var src_app_common_components_modal_builder__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! src/app/common-components/modal-builder */ "./src/app/common-components/modal-builder.ts");
+/* harmony import */ var src_app_modal_info_modal_info_modal_component__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! src/app/modal/info-modal/info-modal.component */ "./src/app/modal/info-modal/info-modal.component.ts");
+/* harmony import */ var src_app_util_StringUtil__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! src/app/util/StringUtil */ "./src/app/util/StringUtil.ts");
+
+
+
+
 
 
 
@@ -900,12 +908,13 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var NewCustomerComponent = /** @class */ (function () {
-    function NewCustomerComponent(formBuilder, customerService) {
+    function NewCustomerComponent(formBuilder, modalBuilder, customerService) {
         var _this = this;
         this.formBuilder = formBuilder;
+        this.modalBuilder = modalBuilder;
         this.customerService = customerService;
         this.ownerNames = [];
-        this.ownerIdMapByName = new Map();
+        this.storesOfSelectedOwner = [];
         this._error = new rxjs__WEBPACK_IMPORTED_MODULE_4__["Subject"]();
         this.search = function (text$) {
             return text$.pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_5__["debounceTime"])(200), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_5__["distinctUntilChanged"])(), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_5__["map"])(function (term) { return term.length < 1 ? []
@@ -914,6 +923,7 @@ var NewCustomerComponent = /** @class */ (function () {
     }
     NewCustomerComponent.prototype.ngOnInit = function () {
         var _this = this;
+        this.ownerIdMapByName = new Map();
         this.initForm();
         this._error.subscribe(function (msg) { return _this.errorMessage = msg; });
         this._error.pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_5__["debounceTime"])(4000)).subscribe(function () { return _this.errorMessage = null; });
@@ -922,8 +932,9 @@ var NewCustomerComponent = /** @class */ (function () {
         this.showCreateOwnerForm = false;
         this.loadOwners();
         this.form = this.formBuilder.group({
-            ownerAutoComplete: ['', _angular_forms__WEBPACK_IMPORTED_MODULE_2__["Validators"].required],
+            ownerAutoComplete: [''],
             isNewOwnerCheckbox: [],
+            ownerCompagnyName: [''],
             ownerFirstName: [''],
             ownerLastName: [''],
             ownerEmail: ['', _angular_forms__WEBPACK_IMPORTED_MODULE_2__["Validators"].email],
@@ -945,18 +956,44 @@ var NewCustomerComponent = /** @class */ (function () {
             }
         });
     };
+    NewCustomerComponent.prototype.onBlurStringFormControl = function (event) {
+        event.srcElement.value = src_app_util_StringUtil__WEBPACK_IMPORTED_MODULE_10__["StringUtil"].capitalFirstLetter(event.srcElement.value);
+    };
+    NewCustomerComponent.prototype.onBlurLowcaseStringFormControl = function (event) {
+        event.srcElement.value = event.srcElement.value.toLowerCase();
+    };
     NewCustomerComponent.prototype.onClickNewOwnerCheckbox = function (event) {
         var controls = this.form.controls;
+        controls.ownerAutoComplete.reset();
         this.showCreateOwnerForm = event.currentTarget.checked;
         if (this.showCreateOwnerForm) {
             controls.ownerAutoComplete.setValidators(null);
-            controls.ownerFirstName.setValidators(_angular_forms__WEBPACK_IMPORTED_MODULE_2__["Validators"].required);
-            controls.ownerLastName.setValidators(_angular_forms__WEBPACK_IMPORTED_MODULE_2__["Validators"].required);
+            controls.ownerCompagnyName.setValidators(_angular_forms__WEBPACK_IMPORTED_MODULE_2__["Validators"].required);
         }
         else {
             controls.ownerAutoComplete.setValidators(_angular_forms__WEBPACK_IMPORTED_MODULE_2__["Validators"].required);
-            controls.ownerFirstName.setValidators(null);
-            controls.ownerLastName.setValidators(null);
+            controls.ownerCompagnyName.setValidators(null);
+        }
+        this.storesOfSelectedOwner = [];
+    };
+    NewCustomerComponent.prototype.onBlurOwnerAutoComplete = function () {
+        var _this = this;
+        var ownerNameSelected = this.form.controls.ownerAutoComplete.value;
+        var ownerId = this.ownerIdMapByName.get(ownerNameSelected);
+        if (ownerId != null) {
+            this.customerService.getStoresOfOwner(ownerId).subscribe(function (data) {
+                for (var _i = 0, data_2 = data; _i < data_2.length; _i++) {
+                    var store = data_2[_i];
+                    _this.storesOfSelectedOwner.push(src_app_model_Store__WEBPACK_IMPORTED_MODULE_7__["Store"].fromJson(store));
+                }
+            }, function (error) {
+                var modalRef = _this.modalBuilder.open(src_app_modal_info_modal_info_modal_component__WEBPACK_IMPORTED_MODULE_9__["InfoModalComponent"]);
+                modalRef.componentInstance.title = '';
+                modalRef.componentInstance.message = 'Cannot load the stores of the owner : ' + ownerNameSelected;
+            });
+        }
+        else {
+            this.storesOfSelectedOwner = [];
         }
     };
     NewCustomerComponent.prototype.changeErrorMessage = function (errorMessage) {
@@ -966,16 +1003,17 @@ var NewCustomerComponent = /** @class */ (function () {
         var _this = this;
         var controls = this.form.controls;
         if (this.form.valid) {
-            var ownerId = void 0, ownerFirstName = void 0, ownerLastName = void 0, ownerEmail = void 0;
+            var ownerId = void 0, ownerFirstName = void 0, ownerLastName = void 0, ownerEmail = void 0, ownerCompagnyName = void 0;
             var storeName = void 0, storeAddress = void 0, storePhone = void 0, storeEmail = void 0;
             if (controls.isNewOwnerCheckbox.value) {
                 ownerFirstName = controls.ownerFirstName.value;
+                ownerCompagnyName = controls.ownerCompagnyName.value;
                 ownerLastName = controls.ownerLastName.value;
                 ownerEmail = controls.ownerEmail.value;
             }
             else {
-                var ownerId_1 = this.ownerIdMapByName.get(controls.ownerAutoComplete.value);
-                if (ownerId_1 == null) {
+                ownerId = this.ownerIdMapByName.get(controls.ownerAutoComplete.value);
+                if (ownerId == null) {
                     // do validator 
                 }
             }
@@ -984,6 +1022,7 @@ var NewCustomerComponent = /** @class */ (function () {
             storePhone = controls.storePhone.value;
             storeEmail = controls.storeEmail.value;
             var req = new src_app_model_request_customer_AddCustomerReq__WEBPACK_IMPORTED_MODULE_6__["AddCustomerReq"](ownerId, storeName);
+            req.ownerCompagnyName = ownerCompagnyName;
             req.ownerFirstName = ownerFirstName;
             req.ownerLastName = ownerLastName;
             req.ownerEmail = ownerEmail;
@@ -991,6 +1030,8 @@ var NewCustomerComponent = /** @class */ (function () {
             req.storeEmail = storeEmail;
             req.storePhone = storePhone;
             this.customerService.addCustomer(req).subscribe(function (data) {
+                _this.form.reset();
+                _this.storesOfSelectedOwner = [];
             }, function (error) {
                 _this.changeErrorMessage(error.error);
             });
@@ -1006,6 +1047,7 @@ var NewCustomerComponent = /** @class */ (function () {
             styles: [__webpack_require__(/*! ./new-customer.component.css */ "./src/app/customer/new-customer/new-customer.component.css")]
         }),
         tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormBuilder"],
+            src_app_common_components_modal_builder__WEBPACK_IMPORTED_MODULE_8__["ModalBuilder"],
             src_app_service_customer_service__WEBPACK_IMPORTED_MODULE_3__["CustomerService"]])
     ], NewCustomerComponent);
     return NewCustomerComponent;
@@ -1958,14 +2000,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Owner", function() { return Owner; });
 var Owner = /** @class */ (function () {
     function Owner() {
-        this.firstName = '';
-        this.lastName = '';
-        this.email = '';
-        this.address = '';
     }
     Owner.fromJson = function (data) {
         var owner = new Owner();
         owner.id = data.id;
+        owner.compagnyName = data.compagnyName;
         owner.firstName = data.firstName;
         owner.lastName = data.lastName;
         owner.email = data.email;
@@ -2093,6 +2132,7 @@ var Store = /** @class */ (function () {
         var store = new Store();
         store.id = data.id;
         store.name = data.name;
+        store.address = data.address;
         store.email = data.email;
         store.phone = data.phone;
         store.owner = _Owner__WEBPACK_IMPORTED_MODULE_0__["Owner"].fromJson(data.owner);
@@ -3003,6 +3043,12 @@ var CustomerService = /** @class */ (function () {
         this.http = http;
         this.url = "v1/customer";
     }
+    CustomerService.prototype.addCustomer = function (req) {
+        return this.http.post(this.url + "/add", req);
+    };
+    CustomerService.prototype.getStoresOfOwner = function (ownerId) {
+        return this.http.get(this.url + "/storesOfOwner/" + ownerId);
+    };
     CustomerService.prototype.getAllCustomers = function () {
         return this.http.get(this.url + "/all");
     };
@@ -3261,6 +3307,29 @@ var SharedModule = /** @class */ (function () {
         })
     ], SharedModule);
     return SharedModule;
+}());
+
+
+
+/***/ }),
+
+/***/ "./src/app/util/StringUtil.ts":
+/*!************************************!*\
+  !*** ./src/app/util/StringUtil.ts ***!
+  \************************************/
+/*! exports provided: StringUtil */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "StringUtil", function() { return StringUtil; });
+var StringUtil = /** @class */ (function () {
+    function StringUtil() {
+    }
+    StringUtil.capitalFirstLetter = function (word) {
+        return word.charAt(0).toUpperCase() + word.slice(1);
+    };
+    return StringUtil;
 }());
 
 

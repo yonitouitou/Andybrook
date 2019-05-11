@@ -11,6 +11,9 @@ public class OwnerEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Column(name = "compagnyname", nullable = false)
+    private String compagnyName;
+
     @Column(name = "fistname")
     private String firstName;
 
@@ -23,8 +26,9 @@ public class OwnerEntity {
 
     public OwnerEntity() {}
 
-    public OwnerEntity(Long id, String firstName, String lastName, String email) {
+    public OwnerEntity(Long id, String compagnyName, String firstName, String lastName, String email) {
         this.id = id;
+        this.compagnyName = compagnyName;
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
@@ -36,6 +40,15 @@ public class OwnerEntity {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public String getCompagnyName() {
+        return compagnyName;
+    }
+
+    public OwnerEntity setCompagnyName(String compagnyName) {
+        this.compagnyName = compagnyName;
+        return this;
     }
 
     public String getFirstName() {

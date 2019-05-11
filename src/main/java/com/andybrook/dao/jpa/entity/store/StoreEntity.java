@@ -26,7 +26,7 @@ public class StoreEntity {
     @Column(name = "phone")
     private String phone;
 
-    @OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @ManyToOne
     @JoinColumn(name = "ownerId")
     private OwnerEntity ownerEntity;
 

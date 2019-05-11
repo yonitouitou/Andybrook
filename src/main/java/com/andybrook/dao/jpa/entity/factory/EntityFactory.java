@@ -143,7 +143,7 @@ public final class EntityFactory {
     }
 
     public final Owner createOwner(OwnerEntity entity) {
-        IEntityConverter converter = entityConverterMapByEntityClass.get(entity.getClass());
+        IEntityConverter converter = entityConverterMapByEntityClass.get(Hibernate.getClass(entity));
         return (Owner) converter.toModel(entity);
     }
 

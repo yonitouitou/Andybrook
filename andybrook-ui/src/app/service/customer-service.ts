@@ -15,7 +15,10 @@ export class CustomerService {
     addCustomer(req: AddCustomerReq): Observable<any> {
         return this.http.post(this.url + "/add", req);
     }
-
+    
+    getStoresOfOwner(ownerId: number): Observable<any> {
+        return this.http.get(this.url + "/storesOfOwner/" + ownerId);
+    }
     getAllCustomers(): Observable<any> {
         return this.http.get(this.url + "/all");
     }

@@ -1,13 +1,11 @@
 package com.andybrook.model.request.customer;
 
-import com.andybrook.model.customer.Customer;
-import com.andybrook.model.customer.Owner;
-import com.andybrook.model.customer.Store;
-
 import static com.andybrook.util.Arg.requireNonNullOrEmpty;
 
 public class AddCustomerRequest {
 
+    private final Long ownerId;
+    private final String ownerCompagnyName;
     private final String ownerFirstName;
     private final String ownerLastName;
     private final String ownerEmail;
@@ -18,6 +16,8 @@ public class AddCustomerRequest {
     private final String storeEmail;
 
     private AddCustomerRequest(Builder builder) {
+        ownerId = builder.ownerId;
+        ownerCompagnyName = builder.ownerCompagnyName;
         ownerFirstName = builder.ownerFirstName;
         ownerLastName = builder.ownerLastName;
         ownerEmail = builder.ownerEmail;
@@ -27,17 +27,19 @@ public class AddCustomerRequest {
         storeEmail = builder.storeEmail;
     }
 
-    public static Builder builder(String ownerFirstName, String ownerLastName, String storeName) {
-        requireNonNullOrEmpty(ownerFirstName);
-        requireNonNullOrEmpty(ownerLastName);
+    public static Builder builder(String ownerCompagnyName, String storeName) {
+        requireNonNullOrEmpty(ownerCompagnyName);
         requireNonNullOrEmpty(storeName);
-        return new Builder(ownerFirstName, ownerLastName, storeName);
+        return new Builder(ownerCompagnyName, storeName);
     }
 
-    public Customer toCustomer() {
-        Owner owner = new Owner(ownerFirstName, ownerLastName, ownerEmail);
-        Store store = new Store(storeName, storeEmail, storeAddress, storePhone, owner);
-        return new Customer(store);
+    public static Builder builder(long ownerId, String storeName) {
+        requireNonNullOrEmpty(storeName);
+        return new Builder(ownerId, storeName);
+    }
+
+    public Long getOwnerId() {
+        return ownerId;
     }
 
     public String getOwnerFirstName() {
@@ -68,8 +70,14 @@ public class AddCustomerRequest {
         return storeEmail;
     }
 
+    public String getOwnerCompagnyName() {
+        return ownerCompagnyName;
+    }
+
     public static class Builder {
 
+        private Long ownerId;
+        private String ownerCompagnyName;
         private String ownerFirstName;
         private String ownerLastName;
         private String ownerEmail;
@@ -81,10 +89,14 @@ public class AddCustomerRequest {
 
         private Builder() {}
 
-        public Builder(String ownerFirstName, String ownerLastName, String storeName) {
+        public Builder(String ownerCompagnyName, String storeName) {
             this.storeName = storeName;
-            this.ownerFirstName = ownerFirstName;
-            this.ownerLastName = ownerLastName;
+            this.ownerCompagnyName = ownerCompagnyName;
+        }
+
+        public Builder(long ownerId, String storeName) {
+            this.storeName = storeName;
+            this.ownerId = ownerId;
         }
 
         public AddCustomerRequest build() {
@@ -130,8 +142,30 @@ public class AddCustomerRequest {
             return storeEmail;
         }
 
+        public Long getOwnerId() {
+            return ownerId;
+        }
+
+        public String getStoreName() {
+            return storeName;
+        }
+
         public Builder setStoreEmail(String storeEmail) {
             this.storeEmail = storeEmail;
+            return this;
+        }
+
+        public String getOwnerCompagnyName() {
+            return ownerCompagnyName;
+        }
+
+        public Builder setOwnerFirstName(String ownerFirstName) {
+            this.ownerFirstName = ownerFirstName;
+            return this;
+        }
+
+        public Builder setOwnerLastName(String ownerLastName) {
+            this.ownerLastName = ownerLastName;
             return this;
         }
     }

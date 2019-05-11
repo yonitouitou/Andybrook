@@ -20,6 +20,7 @@ import com.andybrook.model.stock.ProductItem;
 import com.andybrook.service.customer.ICustomerService;
 import com.andybrook.service.stock.IStockService;
 import com.andybrook.util.clock.Clock;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -56,7 +57,7 @@ public class InitSystemTest {
     private IStockService stockService;
 
     @Test
-    //@Ignore
+    @Ignore
     public void initSystem() {
         products = createProducts();
         productItemsIdMapByProductId = createProductItems(products);

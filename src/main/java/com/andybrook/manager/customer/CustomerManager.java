@@ -2,6 +2,7 @@ package com.andybrook.manager.customer;
 
 import com.andybrook.model.customer.Customer;
 import com.andybrook.model.customer.Owner;
+import com.andybrook.model.customer.Store;
 import com.andybrook.model.request.customer.AddCustomerRequest;
 import com.andybrook.service.customer.ICustomerService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,5 +35,10 @@ public class CustomerManager implements ICustomerManager {
     @Override
     public Customer updateCustomer(Customer customer) {
         return customerService.updateCustomer(customer);
+    }
+
+    @Override
+    public Map<Long, Store> getStoresOfOwner(long ownerId) {
+        return customerService.getStoresOfOwner(ownerId);
     }
 }

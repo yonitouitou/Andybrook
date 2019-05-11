@@ -1,6 +1,7 @@
 export class AddCustomerReq {
 
     ownerId: number
+    ownerCompagnyName: string
     ownerFirstName: number
     ownerLastName: number
     ownerEmail: string

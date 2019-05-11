@@ -10,7 +10,9 @@ public final class CustomerGenerator {
     }
 
     public static final AddCustomerRequest createAddCustomerRequest(long random) {
-        return AddCustomerRequest.builder("Steve_" + random, "Smith", "Optika_" + random)
+        return AddCustomerRequest.builder("Compagny_" + random, "Optika_" + random)
+                .setOwnerFirstName("Steve_" + random)
+                .setOwnerLastName("Smith")
                 .setOwnerEmail("steve_" + random +".smith@optika.net")
                 .setStoreAddress(random + " Avenue Paul Valery - Paris")
                 .setStorePhone("01.34.77.54.22")

@@ -6,6 +6,8 @@ import java.util.Map;
 
 public interface IOwnerService {
 
+    Owner get(long ownerId);
+
     Map<Long, Owner> getAll();
 
     Owner update(Owner owner);

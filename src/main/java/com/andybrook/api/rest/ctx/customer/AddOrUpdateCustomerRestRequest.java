@@ -3,6 +3,7 @@ package com.andybrook.api.rest.ctx.customer;
 public class AddOrUpdateCustomerRestRequest extends CustomerRestRequest {
 
     private Long ownerId;
+    private String ownerCompagnyName;
     private String ownerFirstName;
     private String ownerLastName;
     private String ownerEmail;
@@ -19,6 +20,15 @@ public class AddOrUpdateCustomerRestRequest extends CustomerRestRequest {
 
     public void setOwnerId(Long ownerId) {
         this.ownerId = ownerId;
+    }
+
+    public String getOwnerCompagnyName() {
+        return ownerCompagnyName;
+    }
+
+    public AddOrUpdateCustomerRestRequest setOwnerCompagnyName(String ownerCompagnyName) {
+        this.ownerCompagnyName = ownerCompagnyName;
+        return this;
     }
 
     public String getOwnerFirstName() {
@@ -88,8 +98,8 @@ public class AddOrUpdateCustomerRestRequest extends CustomerRestRequest {
     @Override
     public String toString() {
         final StringBuilder sb = new StringBuilder("AddOrUpdateCustomerRestRequest{");
-        sb.append(", customerId=").append(customerId);
         sb.append("ownerId=").append(ownerId);
+        sb.append(", ownerCompagnyName='").append(ownerCompagnyName).append('\'');
         sb.append(", ownerFirstName='").append(ownerFirstName).append('\'');
         sb.append(", ownerLastName='").append(ownerLastName).append('\'');
         sb.append(", ownerEmail='").append(ownerEmail).append('\'');
@@ -98,6 +108,7 @@ public class AddOrUpdateCustomerRestRequest extends CustomerRestRequest {
         sb.append(", storeAddress='").append(storeAddress).append('\'');
         sb.append(", storePhone='").append(storePhone).append('\'');
         sb.append(", storeEmail='").append(storeEmail).append('\'');
+        sb.append(", customerId=").append(customerId);
         sb.append('}');
         return sb.toString();
     }

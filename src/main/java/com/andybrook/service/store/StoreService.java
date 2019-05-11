@@ -6,6 +6,7 @@ import com.andybrook.model.customer.Store;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Map;
 import java.util.Optional;
 
 @Service
@@ -17,6 +18,11 @@ public class StoreService implements IStoreService {
     @Override
     public Store newStore(Store store) {
         return storeDao.update(store);
+    }
+
+    @Override
+    public Map<Long, Store> getStoresOfOwner(long ownerId) {
+        return storeDao.getStoresOfOwner(ownerId);
     }
 
     @Override

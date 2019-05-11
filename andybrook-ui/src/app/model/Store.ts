@@ -5,6 +5,7 @@ export class Store {
     id: number
     name: string
     email: string
+    address: string
     phone: string
     owner: Owner
 
@@ -15,6 +16,7 @@ export class Store {
         let store = new Store();
         store.id = data.id;
         store.name = data.name;
+        store.address = data.address;
         store.email = data.email;
         store.phone = data.phone;
         store.owner = Owner.fromJson(data.owner);

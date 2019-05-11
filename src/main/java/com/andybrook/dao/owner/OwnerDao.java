@@ -1,6 +1,6 @@
 package com.andybrook.dao.owner;
 
-import com.andybrook.dao.jpa.repository.IOwnerCrudRepository;
+import com.andybrook.dao.jpa.repository.IOwnerJpaRepository;
 import com.andybrook.dao.jpa.entity.customer.OwnerEntity;
 import com.andybrook.dao.jpa.entity.factory.EntityFactory;
 import com.andybrook.model.customer.Owner;
@@ -9,6 +9,7 @@ import org.springframework.stereotype.Repository;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Optional;
 
 import static com.andybrook.util.PerfConst.OWNER_SIZE_512;
 
@@ -16,9 +17,24 @@ import static com.andybrook.util.PerfConst.OWNER_SIZE_512;
 public class OwnerDao implements IOwnerDao {
 
     @Autowired
-    private IOwnerCrudRepository repository;
+    private IOwnerJpaRepository repository;
     @Autowired
     private EntityFactory entityFactory;
+
+    @Override
+    public Optional<Owner> get(long ownerId) {
+        Optional<Owner> ownerOpt = Optional.empty();
+        Optional<OwnerEntity> entityOpt = repository.findById(ownerId);
+        if (entityOpt.isPresent()) {
+            ownerOpt = Optional.of(entityFactory.createOwner(entityOpt.get()));
+        }
+        return ownerOpt;
+    }
+
+    @Override
+    public OwnerEntity getOne(long ownerId) {
+        return repository.getOne(ownerId);
+    }
 
     @Override
     public Map<Long, Owner> getAll() {

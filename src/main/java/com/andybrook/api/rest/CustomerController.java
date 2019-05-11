@@ -6,6 +6,7 @@ import com.andybrook.model.api.AggregatedOrder;
 import com.andybrook.model.api.AggregatedOrderInfo;
 import com.andybrook.model.customer.Customer;
 import com.andybrook.model.customer.Owner;
+import com.andybrook.model.customer.Store;
 import com.andybrook.model.request.customer.AddCustomerRequest;
 import com.andybrook.model.request.customer.AddCustomerRequest.Builder;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -40,6 +41,12 @@ public class CustomerController extends AbstractController {
         return customerManager.updateCustomer(customer);
     }
 
+    @GetMapping(path = "/storesOfOwner/{ownerId}")
+    public Collection<Store> getStoresOfOwner(@PathVariable long ownerId) {
+        LOGGER.log(Level.INFO, "Get stores of owner : " + ownerId);
+        return customerManager.getStoresOfOwner(ownerId).values();
+    }
+
     @GetMapping(path = "/allOwnerIdsAndNames")
     public List<Pair<Long, String>> getAllOwnerIdsAndNames() {
         List<Pair<Long, String>> l = new LinkedList<>();
@@ -47,7 +54,7 @@ public class CustomerController extends AbstractController {
         return customerManager.getAllOwners()
                 .values()
                 .stream()
-                .map(owner -> Pair.of(owner.getId(), owner.getFirstName() + " " + owner.getLastName()))
+                .map(owner -> Pair.of(owner.getId(), owner.getCompagnyName()))
                 .collect(Collectors.toList());
     }
 
@@ -58,8 +65,12 @@ public class CustomerController extends AbstractController {
     }
 
     private AddCustomerRequest toCustomerRequest(AddOrUpdateCustomerRestRequest req) {
-        return AddCustomerRequest.builder(req.getOwnerFirstName(), req.getOwnerLastName(), req.getStoreName())
-                .setOwnerEmail(req.getOwnerEmail())
+        Builder builder = req.getOwnerId() != null
+                ? AddCustomerRequest.builder(req.getOwnerId(), req.getStoreName())
+                : AddCustomerRequest.builder(req.getOwnerCompagnyName(), req.getStoreName());
+        return builder.setOwnerEmail(req.getOwnerEmail())
+                .setOwnerFirstName(req.getOwnerFirstName())
+                .setOwnerLastName(req.getOwnerLastName())
                 .setStoreAddress(req.getStoreAddress())
                 .setStoreEmail(req.getStoreEmail())
                 .setStorePhone(req.getStorePhone())

@@ -16,11 +16,13 @@ public final class OwnerEntityConverter implements IEntityConverter<Owner, Owner
 
     @Override
     public Owner toModel(OwnerEntity entity) {
-        return new Owner(entity.getId(), entity.getFirstName(), entity.getLastName(), entity.getEmail());
+        return new Owner(entity.getId(), entity.getCompagnyName(), entity.getFirstName(),
+                entity.getLastName(), entity.getEmail());
     }
 
     @Override
     public OwnerEntity toEntity(Owner model) {
-        return new OwnerEntity(model.getId(), model.getFirstName(), model.getLastName(), model.getEmail());
+        return new OwnerEntity(model.getId(), model.getCompagnyName(), model.getFirstName(),
+                model.getLastName(), model.getEmail());
     }
 }
