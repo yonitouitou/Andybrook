@@ -14,8 +14,6 @@ import org.springframework.stereotype.Service;
 public class NotificationService implements INotificationService {
 
     @Autowired
-    private ApplicationContext applicationContext;
-    @Autowired
     private IOrderService orderService;
     @Autowired
     private ApplicationEventPublisher publisher;

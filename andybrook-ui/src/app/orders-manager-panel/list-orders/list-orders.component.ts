@@ -15,7 +15,7 @@ export class ListOrdersComponent implements OnInit {
   @Input() orders: AggregatedOrder[]
 
   page: number = 1
-  pageSize: number = 4
+  pageSize: number = 10
   collectionSize: number
 
   constructor(private orderService: OrderService,

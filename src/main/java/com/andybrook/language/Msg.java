@@ -22,6 +22,7 @@ public class Msg {
         public static final String EMAIL_ADDRESS = "pdf.email.address";
         public static final String DONE_ON_DATE = "pdf.done.on.date";
         public static final String SIGNATURE = "pdf.signature";
+        public static final String COMPAGNY = "pdf.compagny";
     }
 
 }

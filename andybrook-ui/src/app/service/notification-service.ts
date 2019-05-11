@@ -11,6 +11,6 @@ export class NotificationService {
 
     notifyOrder(id: number): Observable<any> {
         let request = { "id" : id }
-        return this.httpApi.post("v1/notification/report", request)
+        return this.httpApi.post("v1/notification/notify", request)
     }
 } 

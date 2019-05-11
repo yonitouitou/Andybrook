@@ -112,9 +112,9 @@ public class CloseOrderPdfBuilder extends AbstractPdfBuilder implements IPdfBuil
     }
 
     private void initColumnsCustomerMainDetails() {
-        String shopName = languageResolver.get(Pdf.SHOP_NAME);
+        String compagnyName = languageResolver.get(Pdf.COMPAGNY);
         String ownerName = languageResolver.get(Pdf.OWNER_NAME);
-        COLUMNS_NAME_CUSTOMER_MAIN_DETAILS[0] = shopName;
+        COLUMNS_NAME_CUSTOMER_MAIN_DETAILS[0] = compagnyName;
         COLUMNS_NAME_CUSTOMER_MAIN_DETAILS[1] = ownerName;
     }
 
@@ -122,9 +122,11 @@ public class CloseOrderPdfBuilder extends AbstractPdfBuilder implements IPdfBuil
         String address = languageResolver.get(Pdf.ADDRESS);
         String phoneNumber = languageResolver.get(Pdf.PHONE_NUMBER);
         String email = languageResolver.get(Pdf.EMAIL_ADDRESS);
-        COLUNS_NAME_CUSTOMER_CONTACT_DETAILS[0] = address;
-        COLUNS_NAME_CUSTOMER_CONTACT_DETAILS[1] = phoneNumber;
-        COLUNS_NAME_CUSTOMER_CONTACT_DETAILS[2] = email;
+        String shopName = languageResolver.get(Pdf.SHOP_NAME);
+        COLUMNS_NAME_CUSTOMER_MAIN_DETAILS[0] = shopName;
+        COLUNS_NAME_CUSTOMER_CONTACT_DETAILS[1] = address;
+        COLUNS_NAME_CUSTOMER_CONTACT_DETAILS[2] = phoneNumber;
+        COLUNS_NAME_CUSTOMER_CONTACT_DETAILS[3] = email;
     }
 
     private Element importLogoAndybrook() throws IOException, DocumentException {
@@ -167,10 +169,10 @@ public class CloseOrderPdfBuilder extends AbstractPdfBuilder implements IPdfBuil
     }
 
     private Element createCustomerContactDetailsTable(AggregatedOrder order) throws DocumentException {
-        PdfPTable table2 = new PdfPTable(3);
+        PdfPTable table2 = new PdfPTable(4);
         table2.setWidthPercentage(100);
         table2.setSpacingAfter(10f);
-        float[] columnWidths2 = {1f, 1f, 1f};
+        float[] columnWidths2 = {1f, 1f, 1f, 1f};
         table2.setWidths(columnWidths2);
         addTableHeader(table2, COLUNS_NAME_CUSTOMER_CONTACT_DETAILS);
         addCustomerDetailsSecondRow(table2, order);
@@ -195,12 +197,13 @@ public class CloseOrderPdfBuilder extends AbstractPdfBuilder implements IPdfBuil
     private void addCustomerDetailsFirstRow(PdfPTable table, AggregatedOrder order) {
         Store store = order.getCustomer().getStore();
         Owner owner = store.getOwner();
-        table.addCell(getStringCell(store.getName()));
+        table.addCell(getStringCell(owner.getCompagnyName()));
         table.addCell(getStringCell(owner.getFirstName() + " " + owner.getLastName()));
     }
 
     private void addCustomerDetailsSecondRow(PdfPTable table, AggregatedOrder order) {
         Store store = order.getCustomer().getStore();
+        table.addCell(getStringCell(store.getName()));
         table.addCell(getStringCell(store.getAddress()));
         table.addCell(getStringCell(store.getPhone()));
         table.addCell(getStringCell(store.getEmail()));

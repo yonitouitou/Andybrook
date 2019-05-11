@@ -18,7 +18,7 @@ public class NotificationController extends AbstractController {
     @Autowired
     private INotificationManager notificationManager;
 
-    @PostMapping(path = "/report")
+    @PostMapping(path = "/notify")
     public void notify(@RequestBody GenericRequestById request) throws OrderNotFound {
         LOGGER.log(Level.INFO, "Notifications request for order : " + request.getId());
         notificationManager.notifyOrder(request.getId());
