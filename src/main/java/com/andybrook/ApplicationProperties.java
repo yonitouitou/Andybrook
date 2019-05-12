@@ -18,7 +18,6 @@ public class ApplicationProperties {
     private String localeCountry;
     @Value("${zone.id:America/New_York}")
     private String zoneIdName;
-
     @Value("${notification.email.from}")
     private String notificationEmailFrom;
 

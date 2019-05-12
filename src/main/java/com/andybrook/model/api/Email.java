@@ -2,6 +2,7 @@ package com.andybrook.model.api;
 
 import java.nio.file.Path;
 import java.util.Arrays;
+import java.util.List;
 
 public class Email {
 
@@ -9,7 +10,7 @@ public class Email {
     private final String[] toAddresses;
     private final String subject;
     private final String body;
-    private final Path[] attachmentFilePath;
+    private final List<Path> attachmentFilePath;
 
     Email(Builder builder) {
         fromAddress = builder.fromAddress;
@@ -35,7 +36,7 @@ public class Email {
         return body;
     }
 
-    public Path[] getAttachmentFilePath() {
+    public List<Path> getAttachmentFilePath() {
         return attachmentFilePath;
     }
 
@@ -48,7 +49,7 @@ public class Email {
         private String[] toAddresses;
         private String subject;
         private String body;
-        private Path[] attachmentFilesPath;
+        private List<Path> attachmentFilesPath;
 
         public Builder fromAdress(String address) {
             this.fromAddress = address;
@@ -70,7 +71,7 @@ public class Email {
             return this;
         }
 
-        public Builder withAttachmentFile(Path[] filePath) {
+        public Builder withAttachmentFile(List<Path> filePath) {
             this.attachmentFilesPath = filePath;
             return this;
         }

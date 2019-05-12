@@ -5,6 +5,7 @@ import com.andybrook.model.api.AggregatedOrder;
 import com.andybrook.model.api.AggregatedOrderItem;
 import com.andybrook.model.customer.Owner;
 import com.andybrook.model.customer.Store;
+import com.andybrook.model.notification.ctx.DocSetting;
 import com.itextpdf.text.*;
 import com.itextpdf.text.Font.FontFamily;
 import com.itextpdf.text.pdf.PdfPCell;
@@ -56,14 +57,14 @@ public class CloseOrderPdfBuilder extends AbstractPdfBuilder implements IPdfBuil
     }
 
     @Override
-    public Path generatePdf(AggregatedOrder order) {
+    public Path generatePdf(AggregatedOrder order, DocSetting setting) {
         String fileName = order.getName() + LocalDateTime.now().format(DateTimeFormatter.ISO_LOCAL_DATE_TIME);
         Path pdfFilePath = null;
         Document document = new Document(PageSize.A4, 20f, 20f, 7f, 7f);
         PdfWriter writer = null;
         try {
             pdfFilePath = Files.createTempFile(fileName, ".pdf");
-            System.err.println("PDF File path : " + pdfFilePath.toAbsolutePath().toString());
+            LOGGER.log(Level.INFO, "PDF File path : " + pdfFilePath.toAbsolutePath().toString());
             writer = PdfWriter.getInstance(document, new FileOutputStream(pdfFilePath.toFile()));
 
             document.open();
@@ -73,7 +74,7 @@ public class CloseOrderPdfBuilder extends AbstractPdfBuilder implements IPdfBuil
             Element customerTable1 = createCustomerMainDetailsTable(order);
             Element customerTable2 = createCustomerContactDetailsTable(order);
             Element itemsTable = createItemsTable(order);
-            Element doneDate = createDoneDate();
+            Element doneDate = createDoneDate(setting);
             Element signature = createSignatureTable();
 
             document.add(logo);
@@ -254,9 +255,9 @@ public class CloseOrderPdfBuilder extends AbstractPdfBuilder implements IPdfBuil
         table.addCell(ttlPriceCell);
     }
 
-    private Element createDoneDate() {
+    private Element createDoneDate(DocSetting setting) {
         Paragraph p = new Paragraph();
-        String msg = languageResolver.get(Pdf.DONE_ON_DATE) + " " + languageResolver.getNowDateByZone().format(DATE_FORMATTER);
+        String msg = languageResolver.get(Pdf.DONE_ON_DATE) + " " + setting.getDateDocument().format(DATE_FORMATTER);
         Element phrase = new Phrase(msg, new Font(FontFamily.TIMES_ROMAN, TEXT_FONT_SIZE_11, Font.ITALIC));
         p.add(phrase);
         p.setAlignment(Element.ALIGN_RIGHT);

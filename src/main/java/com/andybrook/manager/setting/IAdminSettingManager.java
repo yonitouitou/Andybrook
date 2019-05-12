@@ -8,5 +8,5 @@ public interface IAdminSettingManager {
 
     AdminSetting updateAdminSetting(AdminSetting adminSetting);
 
-    boolean shouldNotifyOnCloseReport();
+    boolean shouldNotifyOnCloseOrder();
 }

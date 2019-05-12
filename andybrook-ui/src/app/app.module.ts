@@ -38,6 +38,7 @@ import { CustomerOrdersComponent } from './customer/customer-orders/customer-ord
 import { CustomerInfoComponent } from './customer/customer-info/customer-info.component';
 import { CustomerHeaderComponent } from './customer/customer-header/customer-header.component';
 import { NewCustomerComponent } from './customer/new-customer/new-customer.component';
+import { OrderNotificationModalComponent } from './modal/order-notification-modal/order-notification-modal.component';
 
 const appRoutes: Routes = [
   { path: '', component: OrdersManagerComponent },
@@ -71,6 +72,7 @@ const appRoutes: Routes = [
     CustomerInfoComponent,
     CustomerHeaderComponent,
     NewCustomerComponent,
+    OrderNotificationModalComponent,
   ],
   entryComponents: [
     CreateOrderModalComponent,
@@ -78,7 +80,8 @@ const appRoutes: Routes = [
     InfoModalComponent,
     ShowOrderItemsModalComponent,
     DeleteOrderItemsModalComponent,
-    AddOrderItemModalComponent
+    AddOrderItemModalComponent,
+    OrderNotificationModalComponent
   ],
   imports: [
     BrowserModule,

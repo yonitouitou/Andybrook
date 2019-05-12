@@ -1,0 +1,56 @@
+Index: andybrook-ui/src/app/service/notification-service.ts
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- andybrook-ui/src/app/service/notification-service.ts	(date 1557641910000)
++++ andybrook-ui/src/app/service/notification-service.ts	(date 1557641910000)
+@@ -11,6 +11,6 @@
+     constructor(private httpApi: HttpService) {}
+ 
+     notifyOrder(req: OrderNotificationRequest): Observable<any> {
+-        return this.httpApi.post(this.url + "/notify", req)
++        return this.httpApi.post(this.url + "/order-notification", req)
+     }
+ } 
+\ No newline at end of file
+Index: andybrook-ui/src/app/service/admin-setting-service.ts
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- andybrook-ui/src/app/service/admin-setting-service.ts	(date 1557642577000)
++++ andybrook-ui/src/app/service/admin-setting-service.ts	(date 1557642577000)
+@@ -10,12 +10,12 @@
+     constructor(private httpApi: HttpService) {}
+ 
+     getAdminSetting(adminSetting: AdminSetting) : Observable<any> {
+-        console.log("Get admin setting.");
+-        return this.httpApi.get("/v1/admin/setting/get")
++        console.log("Get admin ctx.");
++        return this.httpApi.get("/v1/admin/ctx/get")
+     }
+ 
+     updateAdminSetting(adminSetting: AdminSetting): Observable<any> {
+-        console.log("Update admin setting " + adminSetting);
+-        return this.httpApi.post("v1/admin/setting/update", adminSetting)
++        console.log("Update admin ctx " + adminSetting);
++        return this.httpApi.post("v1/admin/ctx/update", adminSetting)
+     }
+ }
+Index: andybrook-ui/src/polyfills.ts
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- andybrook-ui/src/polyfills.ts	(date 1557642700000)
++++ andybrook-ui/src/polyfills.ts	(date 1557642700000)
+@@ -52,7 +52,7 @@
+ 
+ /**
+  * By default, zone.js will patch all possible macroTask and DomEvents
+- * user can disable parts of macroTask/DomEvents patch by setting following flags
++ * user can disable parts of macroTask/DomEvents patch by ctx following flags
+  * because those flags need to be set before `zone.js` being loaded, and webpack
+  * will put import in the top of bundle, so user need to create a separate file
+  * in this directory (for example: zone-flags.ts), and put the following flags

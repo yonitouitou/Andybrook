@@ -18,8 +18,4 @@ public class LanguageResolver {
     public String get(String code) {
         return messageSource.getMessage(code, null, applicationProperties.getLocale());
     }
-
-    public LocalDate getNowDateByZone() {
-        return LocalDate.now(applicationProperties.getZoneId());
-    }
 }

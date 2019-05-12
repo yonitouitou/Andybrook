@@ -4,6 +4,7 @@ import { NotificationService } from 'src/app/service/notification-service';
 import { ModalBuilder } from 'src/app/common-components/modal-builder';
 import { ConfirmModalComponent } from 'src/app/modal/confirm-modal/confirm-modal-component';
 import { AggregatedOrder } from 'src/app/model/AggregatedOrder';
+import { OrderNotificationModalComponent } from 'src/app/modal/order-notification-modal/order-notification-modal.component';
 
 @Component({
   selector: 'list-orders',
@@ -27,34 +28,13 @@ export class ListOrdersComponent implements OnInit {
   }
 
   onClickCloseOrder(orderToClose: AggregatedOrder) {
-      let modalRef = this.modalBuilder.open(ConfirmModalComponent);
-      modalRef.componentInstance.title = "Close Order Confirmation";
-      modalRef.componentInstance.message = "Are you sure you want to close the order "
-            + orderToClose.name + " for the store " + orderToClose.customer.store.name + ' ?';
-
-      modalRef.result.then((response) => {
-        if (response) {
-          this.orderService.closeOrder(orderToClose.id).subscribe(
-            data => {
-              orderToClose.closeDatetime = data.closeDateTime
-              orderToClose.status = data.status
-            }
-          )
-        }
-      })
+      let modalRef = this.modalBuilder.open(OrderNotificationModalComponent);
+      modalRef.componentInstance.orderId = orderToClose.id;
   }
 
   onClickNotify(order: AggregatedOrder) {
-    let modalRef = this.modalBuilder.open(ConfirmModalComponent);
-    modalRef.componentInstance.title = "Notification Confirmation";
-    modalRef.componentInstance.message = "Are you sure you want to get notification about the order " + order.name + " ?";
-    modalRef.result.then((response) => {
-      if (response) {
-        this.notificationService.notifyOrder(order.id).subscribe(
-          data => console.log("Notify done : " + data)
-        )
-      }
-    })
+    let modalRef = this.modalBuilder.open(OrderNotificationModalComponent);
+    modalRef.componentInstance.orderId = order.id;
   }
 
   get ordersArray(): AggregatedOrder[] {

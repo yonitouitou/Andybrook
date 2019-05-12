@@ -2,6 +2,8 @@ package com.andybrook.service.notification;
 
 import com.andybrook.exception.OrderNotFound;
 import com.andybrook.model.api.AggregatedOrder;
+import com.andybrook.model.notification.ctx.DocSetting;
+import com.andybrook.model.notification.ctx.OrderDocumentCtx;
 import com.andybrook.model.notification.event.ctx.CloseOrderEvent;
 import com.andybrook.model.order.Order;
 import com.andybrook.service.order.IOrderService;
@@ -19,13 +21,13 @@ public class NotificationService implements INotificationService {
     private ApplicationEventPublisher publisher;
 
     @Override
-    public void notifyOrder(long orderId) throws OrderNotFound {
-        Order order = orderService.getOrder(orderId);
-        notifyOrderClosed(order);
+    public void notifyOrder(OrderDocumentCtx ctx) throws OrderNotFound {
+        Order order = orderService.getOrder(ctx.getOrderId());
+        notifyOrderClosed(order, ctx.getSetting());
     }
 
     @Override
-    public void notifyOrderClosed(Order order) {
-        publisher.publishEvent(new CloseOrderEvent(AggregatedOrder.toAggregatedOrder(order)));
+    public void notifyOrderClosed(Order order, DocSetting setting) {
+        publisher.publishEvent(new CloseOrderEvent(AggregatedOrder.toAggregatedOrder(order), setting));
     }
 }

@@ -309,6 +309,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _customer_customer_info_customer_info_component__WEBPACK_IMPORTED_MODULE_38__ = __webpack_require__(/*! ./customer/customer-info/customer-info.component */ "./src/app/customer/customer-info/customer-info.component.ts");
 /* harmony import */ var _customer_customer_header_customer_header_component__WEBPACK_IMPORTED_MODULE_39__ = __webpack_require__(/*! ./customer/customer-header/customer-header.component */ "./src/app/customer/customer-header/customer-header.component.ts");
 /* harmony import */ var _customer_new_customer_new_customer_component__WEBPACK_IMPORTED_MODULE_40__ = __webpack_require__(/*! ./customer/new-customer/new-customer.component */ "./src/app/customer/new-customer/new-customer.component.ts");
+/* harmony import */ var _modal_order_notification_modal_order_notification_modal_component__WEBPACK_IMPORTED_MODULE_41__ = __webpack_require__(/*! ./modal/order-notification-modal/order-notification-modal.component */ "./src/app/modal/order-notification-modal/order-notification-modal.component.ts");
+
 
 
 
@@ -385,6 +387,7 @@ var AppModule = /** @class */ (function () {
                 _customer_customer_info_customer_info_component__WEBPACK_IMPORTED_MODULE_38__["CustomerInfoComponent"],
                 _customer_customer_header_customer_header_component__WEBPACK_IMPORTED_MODULE_39__["CustomerHeaderComponent"],
                 _customer_new_customer_new_customer_component__WEBPACK_IMPORTED_MODULE_40__["NewCustomerComponent"],
+                _modal_order_notification_modal_order_notification_modal_component__WEBPACK_IMPORTED_MODULE_41__["OrderNotificationModalComponent"],
             ],
             entryComponents: [
                 _modal_create_order_modal_create_order_modal_component__WEBPACK_IMPORTED_MODULE_27__["CreateOrderModalComponent"],
@@ -392,7 +395,8 @@ var AppModule = /** @class */ (function () {
                 _modal_info_modal_info_modal_component__WEBPACK_IMPORTED_MODULE_29__["InfoModalComponent"],
                 _modal_show_order_items_modal_show_order_items_modal_component__WEBPACK_IMPORTED_MODULE_31__["ShowOrderItemsModalComponent"],
                 _modal_delete_order_items_modal_delete_order_items_modal_component__WEBPACK_IMPORTED_MODULE_33__["DeleteOrderItemsModalComponent"],
-                _modal_add_order_item_modal_add_order_item_modal_component__WEBPACK_IMPORTED_MODULE_34__["AddOrderItemModalComponent"]
+                _modal_add_order_item_modal_add_order_item_modal_component__WEBPACK_IMPORTED_MODULE_34__["AddOrderItemModalComponent"],
+                _modal_order_notification_modal_order_notification_modal_component__WEBPACK_IMPORTED_MODULE_41__["OrderNotificationModalComponent"]
             ],
             imports: [
                 _angular_platform_browser__WEBPACK_IMPORTED_MODULE_1__["BrowserModule"],
@@ -1703,6 +1707,92 @@ var InfoModalComponent = /** @class */ (function () {
 
 /***/ }),
 
+/***/ "./src/app/modal/order-notification-modal/order-notification-modal.component.css":
+/*!***************************************************************************************!*\
+  !*** ./src/app/modal/order-notification-modal/order-notification-modal.component.css ***!
+  \***************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJzcmMvYXBwL21vZGFsL29yZGVyLW5vdGlmaWNhdGlvbi1tb2RhbC9vcmRlci1ub3RpZmljYXRpb24tbW9kYWwuY29tcG9uZW50LmNzcyJ9 */"
+
+/***/ }),
+
+/***/ "./src/app/modal/order-notification-modal/order-notification-modal.component.html":
+/*!****************************************************************************************!*\
+  !*** ./src/app/modal/order-notification-modal/order-notification-modal.component.html ***!
+  \****************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "<div>\n  <div class=\"modal-header\">\n    <h3 class=\"modal-title\" id=\"modal-basic-title\">Order Notification Setting</h3>\n    <button type=\"button\" class=\"close\" aria-label=\"Close\" (click)=\"onClose()\">\n      <span aria-hidden=\"true\">&times;</span>\n    </button>\n  </div>\n  <div class=\"modal-body\">\n    <form [formGroup]=\"form\">\n      <div class=\"form-group\">\n        <label for=\"dateDocument\">Document's Date</label>\n        <div class=\"input-group\">\n          <input formControlName=\"dateDocument\" class=\"form-control\" placeholder=\"yyyy-mm-dd\" name=\"dp\" ngbDatepicker #dp=\"ngbDatepicker\">\n          <div class=\"input-group-append\">\n            <button class=\"btn btn-outline-secondary calendar\" (click)=\"dp.toggle()\" type=\"button\"></button>\n          </div>\n        </div>\n      </div>\n    </form>\n  </div>\n  <div class=\"modal-footer\">\n    <button type=\"button\" class=\"btn btn-outline-dark\" (click)=\"onSubmit()\">Save</button>\n  </div>\n</div>"
+
+/***/ }),
+
+/***/ "./src/app/modal/order-notification-modal/order-notification-modal.component.ts":
+/*!**************************************************************************************!*\
+  !*** ./src/app/modal/order-notification-modal/order-notification-modal.component.ts ***!
+  \**************************************************************************************/
+/*! exports provided: OrderNotificationModalComponent */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "OrderNotificationModalComponent", function() { return OrderNotificationModalComponent; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var _ng_bootstrap_ng_bootstrap__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @ng-bootstrap/ng-bootstrap */ "./node_modules/@ng-bootstrap/ng-bootstrap/fesm5/ng-bootstrap.js");
+/* harmony import */ var _angular_forms__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/forms */ "./node_modules/@angular/forms/fesm5/forms.js");
+/* harmony import */ var src_app_service_notification_service__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! src/app/service/notification-service */ "./src/app/service/notification-service.ts");
+/* harmony import */ var src_app_model_request_notification_OrderNotificationRequest__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! src/app/model/request/notification/OrderNotificationRequest */ "./src/app/model/request/notification/OrderNotificationRequest.ts");
+
+
+
+
+
+
+var OrderNotificationModalComponent = /** @class */ (function () {
+    function OrderNotificationModalComponent(modal, formBuilder, notificationService) {
+        this.modal = modal;
+        this.formBuilder = formBuilder;
+        this.notificationService = notificationService;
+    }
+    OrderNotificationModalComponent.prototype.ngOnInit = function () {
+        this.form = this.formBuilder.group({
+            dateDocument: [''],
+        });
+    };
+    OrderNotificationModalComponent.prototype.onSubmit = function () {
+        var dp = this.form.controls.dateDocument.value;
+        var dateDocument = new Date(dp.year, dp.month, dp.day);
+        var req = new src_app_model_request_notification_OrderNotificationRequest__WEBPACK_IMPORTED_MODULE_5__["OrderNotificationRequest"](this.orderId);
+        req.dateDocument = dateDocument.getTime();
+        this.notificationService.notifyOrder(req).subscribe(function (data) { return console.log("Notify done : " + data); });
+    };
+    OrderNotificationModalComponent.prototype.onClose = function () {
+        this.modal.close(false);
+    };
+    tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Input"])(),
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:type", Number)
+    ], OrderNotificationModalComponent.prototype, "orderId", void 0);
+    OrderNotificationModalComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
+            selector: 'app-order-notification-modal',
+            template: __webpack_require__(/*! ./order-notification-modal.component.html */ "./src/app/modal/order-notification-modal/order-notification-modal.component.html"),
+            styles: [__webpack_require__(/*! ./order-notification-modal.component.css */ "./src/app/modal/order-notification-modal/order-notification-modal.component.css")]
+        }),
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_ng_bootstrap_ng_bootstrap__WEBPACK_IMPORTED_MODULE_2__["NgbActiveModal"],
+            _angular_forms__WEBPACK_IMPORTED_MODULE_3__["FormBuilder"],
+            src_app_service_notification_service__WEBPACK_IMPORTED_MODULE_4__["NotificationService"]])
+    ], OrderNotificationModalComponent);
+    return OrderNotificationModalComponent;
+}());
+
+
+
+/***/ }),
+
 /***/ "./src/app/modal/show-order-items-modal/show-order-items-modal.component.css":
 /*!***********************************************************************************!*\
   !*** ./src/app/modal/show-order-items-modal/show-order-items-modal.component.css ***!
@@ -2181,6 +2271,28 @@ var AddCustomerReq = /** @class */ (function () {
         this.storeName = storeName;
     }
     return AddCustomerReq;
+}());
+
+
+
+/***/ }),
+
+/***/ "./src/app/model/request/notification/OrderNotificationRequest.ts":
+/*!************************************************************************!*\
+  !*** ./src/app/model/request/notification/OrderNotificationRequest.ts ***!
+  \************************************************************************/
+/*! exports provided: OrderNotificationRequest */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "OrderNotificationRequest", function() { return OrderNotificationRequest; });
+var OrderNotificationRequest = /** @class */ (function () {
+    function OrderNotificationRequest(orderId) {
+        this.dateDocument = new Date().getTime();
+        this.orderId = orderId;
+    }
+    return OrderNotificationRequest;
 }());
 
 
@@ -2798,7 +2910,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var src_app_service_order_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! src/app/service/order-service */ "./src/app/service/order-service.ts");
 /* harmony import */ var src_app_service_notification_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! src/app/service/notification-service */ "./src/app/service/notification-service.ts");
 /* harmony import */ var src_app_common_components_modal_builder__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! src/app/common-components/modal-builder */ "./src/app/common-components/modal-builder.ts");
-/* harmony import */ var src_app_modal_confirm_modal_confirm_modal_component__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! src/app/modal/confirm-modal/confirm-modal-component */ "./src/app/modal/confirm-modal/confirm-modal-component.ts");
+/* harmony import */ var src_app_modal_order_notification_modal_order_notification_modal_component__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! src/app/modal/order-notification-modal/order-notification-modal.component */ "./src/app/modal/order-notification-modal/order-notification-modal.component.ts");
 
 
 
@@ -2817,30 +2929,12 @@ var ListOrdersComponent = /** @class */ (function () {
         this.collectionSize = this.orders.length;
     };
     ListOrdersComponent.prototype.onClickCloseOrder = function (orderToClose) {
-        var _this = this;
-        var modalRef = this.modalBuilder.open(src_app_modal_confirm_modal_confirm_modal_component__WEBPACK_IMPORTED_MODULE_5__["ConfirmModalComponent"]);
-        modalRef.componentInstance.title = "Close Order Confirmation";
-        modalRef.componentInstance.message = "Are you sure you want to close the order "
-            + orderToClose.name + " for the store " + orderToClose.customer.store.name + ' ?';
-        modalRef.result.then(function (response) {
-            if (response) {
-                _this.orderService.closeOrder(orderToClose.id).subscribe(function (data) {
-                    orderToClose.closeDatetime = data.closeDateTime;
-                    orderToClose.status = data.status;
-                });
-            }
-        });
+        var modalRef = this.modalBuilder.open(src_app_modal_order_notification_modal_order_notification_modal_component__WEBPACK_IMPORTED_MODULE_5__["OrderNotificationModalComponent"]);
+        modalRef.componentInstance.orderId = orderToClose.id;
     };
     ListOrdersComponent.prototype.onClickNotify = function (order) {
-        var _this = this;
-        var modalRef = this.modalBuilder.open(src_app_modal_confirm_modal_confirm_modal_component__WEBPACK_IMPORTED_MODULE_5__["ConfirmModalComponent"]);
-        modalRef.componentInstance.title = "Notification Confirmation";
-        modalRef.componentInstance.message = "Are you sure you want to get notification about the order " + order.name + " ?";
-        modalRef.result.then(function (response) {
-            if (response) {
-                _this.notificationService.notifyOrder(order.id).subscribe(function (data) { return console.log("Notify done : " + data); });
-            }
-        });
+        var modalRef = this.modalBuilder.open(src_app_modal_order_notification_modal_order_notification_modal_component__WEBPACK_IMPORTED_MODULE_5__["OrderNotificationModalComponent"]);
+        modalRef.componentInstance.orderId = order.id;
     };
     Object.defineProperty(ListOrdersComponent.prototype, "ordersArray", {
         get: function () {
@@ -3004,12 +3098,12 @@ var AdminSettingService = /** @class */ (function () {
         this.httpApi = httpApi;
     }
     AdminSettingService.prototype.getAdminSetting = function (adminSetting) {
-        console.log("Get admin setting.");
-        return this.httpApi.get("/v1/admin/setting/get");
+        console.log("Get admin ctx.");
+        return this.httpApi.get("/v1/admin/ctx/get");
     };
     AdminSettingService.prototype.updateAdminSetting = function (adminSetting) {
-        console.log("Update admin setting " + adminSetting);
-        return this.httpApi.post("v1/admin/setting/update", adminSetting);
+        console.log("Update admin ctx " + adminSetting);
+        return this.httpApi.post("v1/admin/ctx/update", adminSetting);
     };
     AdminSettingService = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Injectable"])(),
@@ -3133,10 +3227,10 @@ __webpack_require__.r(__webpack_exports__);
 var NotificationService = /** @class */ (function () {
     function NotificationService(httpApi) {
         this.httpApi = httpApi;
+        this.url = "v1/notification";
     }
-    NotificationService.prototype.notifyOrder = function (id) {
-        var request = { "id": id };
-        return this.httpApi.post("v1/notification/notify", request);
+    NotificationService.prototype.notifyOrder = function (req) {
+        return this.httpApi.post(this.url + "/order-notification", req);
     };
     NotificationService = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Injectable"])(),

@@ -25,7 +25,7 @@ public class AdminSettingService implements IAdminSettingService {
         if (adminSettingOpt.isPresent()) {
             adminSetting = adminSettingOpt.get();
         } else {
-            LOGGER.log(Level.INFO, "No admin setting found in the database, create default admin setting");
+            LOGGER.log(Level.INFO, "No admin ctx found in the database, create default admin ctx");
             AdminSetting defaultAdminSetting = adminSettingDao.updateAdminSetting(AdminSetting.getDefaultAdminSetting());
             adminSetting = defaultAdminSetting;
         }

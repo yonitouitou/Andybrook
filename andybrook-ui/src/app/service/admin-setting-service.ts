@@ -10,12 +10,12 @@ export class AdminSettingService {
     constructor(private httpApi: HttpService) {}
 
     getAdminSetting(adminSetting: AdminSetting) : Observable<any> {
-        console.log("Get admin setting.");
-        return this.httpApi.get("/v1/admin/setting/get")
+        console.log("Get admin ctx.");
+        return this.httpApi.get("/v1/admin/ctx/get")
     }
 
     updateAdminSetting(adminSetting: AdminSetting): Observable<any> {
-        console.log("Update admin setting " + adminSetting);
-        return this.httpApi.post("v1/admin/setting/update", adminSetting)
+        console.log("Update admin ctx " + adminSetting);
+        return this.httpApi.post("v1/admin/ctx/update", adminSetting)
     }
 }

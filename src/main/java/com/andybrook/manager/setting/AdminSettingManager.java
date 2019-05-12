@@ -22,7 +22,7 @@ public class AdminSettingManager implements IAdminSettingManager {
     }
 
     @Override
-    public boolean shouldNotifyOnCloseReport() {
+    public boolean shouldNotifyOnCloseOrder() {
         return adminSettingService.shouldNotifyOnCloseReport();
     }
 }

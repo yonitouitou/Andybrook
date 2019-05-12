@@ -28,7 +28,7 @@ public class EmailSender {
         try {
             javaMailSender.send(toMimeMailMessage(email));
             LOGGER.log(Level.INFO, "Mail sent to " + Arrays.toString(email.getToAddresses()) +
-                    " with subject \"" + email.getSubject() + "\" and " + email.getAttachmentFilePath().length + " attachment(s)");
+                    " with subject " + email.getSubject() + " with " + email.getAttachmentFilePath().size() + " attachment(s)");
             isSent = true;
         } catch (MessagingException | IOException e) {
             LOGGER.log(Level.ERROR, "Mail not sent : " + email.getBody(), e);
@@ -47,9 +47,8 @@ public class EmailSender {
         messageBodyPart.setContent(email.getBody(), "text/html; charset=UTF-8");
         multipart.addBodyPart(messageBodyPart);
 
-        Path[] paths = email.getAttachmentFilePath();
-        for (int i = 0; i < paths.length; i++) {
-            addAttachment(multipart, paths[i]);
+        for (Path path : email.getAttachmentFilePath()) {
+            addAttachment(multipart, path);
         }
 
         message.setContent(multipart);
