@@ -1,13 +1,10 @@
 package com.andybrook.service.notification;
 
 import com.andybrook.exception.OrderNotFound;
-import com.andybrook.model.notification.ctx.DocSetting;
-import com.andybrook.model.notification.ctx.OrderDocumentCtx;
-import com.andybrook.model.order.Order;
+import com.andybrook.model.notification.request.NotificationRequest;
+import com.andybrook.model.notification.request.ctx.OrderDocumentCtx;
 
 public interface INotificationService {
 
-    void notifyOrder(OrderDocumentCtx ctx) throws OrderNotFound;
-
-    void notifyOrderClosed(Order order, DocSetting setting);
+    void notify(NotificationRequest request) throws OrderNotFound;
 }

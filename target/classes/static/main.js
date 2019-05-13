@@ -1725,7 +1725,7 @@ module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div>\n  <div class=\"modal-header\">\n    <h3 class=\"modal-title\" id=\"modal-basic-title\">Order Notification Setting</h3>\n    <button type=\"button\" class=\"close\" aria-label=\"Close\" (click)=\"onClose()\">\n      <span aria-hidden=\"true\">&times;</span>\n    </button>\n  </div>\n  <div class=\"modal-body\">\n    <form [formGroup]=\"form\">\n      <div class=\"form-group\">\n        <label for=\"dateDocument\">Document's Date</label>\n        <div class=\"input-group\">\n          <input formControlName=\"dateDocument\" class=\"form-control\" placeholder=\"yyyy-mm-dd\" name=\"dp\" ngbDatepicker #dp=\"ngbDatepicker\">\n          <div class=\"input-group-append\">\n            <button class=\"btn btn-outline-secondary calendar\" (click)=\"dp.toggle()\" type=\"button\"></button>\n          </div>\n        </div>\n      </div>\n    </form>\n  </div>\n  <div class=\"modal-footer\">\n    <button type=\"button\" class=\"btn btn-outline-dark\" (click)=\"onSubmit()\">Save</button>\n  </div>\n</div>"
+module.exports = "<div>\n  <div class=\"modal-header\">\n    <h3 class=\"modal-title\" id=\"modal-basic-title\">Order Notification Setting</h3>\n    <button type=\"button\" class=\"close\" aria-label=\"Close\" (click)=\"onClose()\">\n      <span aria-hidden=\"true\">&times;</span>\n    </button>\n  </div>\n  <div class=\"modal-body\">\n    <form [formGroup]=\"form\">\n      <div class=\"form-group\">\n        <label for=\"notifType\">Notification Type</label>\n        <select formControlName=\"notificationTypesSelect\" class=\"custom-select\">\n            <option *ngFor=\"let type of notificationTypes\" [ngValue]=\"type\">{{ type }}</option>\n        </select>\n      </div>\n      <div class=\"form-group\">\n        <label for=\"dateDocument\">Document's Date</label>\n        <div class=\"input-group\">\n          <input formControlName=\"dateDocument\" class=\"form-control\" placeholder=\"yyyy-mm-dd\" name=\"dp\" ngbDatepicker #dp=\"ngbDatepicker\">\n          <div class=\"input-group-append\">\n            <button class=\"btn btn-outline-secondary calendar\" (click)=\"dp.toggle()\" type=\"button\"></button>\n          </div>\n        </div>\n      </div>\n    </form>\n  </div>\n  <div class=\"modal-footer\">\n    <button type=\"button\" class=\"btn btn-outline-dark\" (click)=\"onSubmit()\">Save</button>\n  </div>\n</div>"
 
 /***/ }),
 
@@ -1756,18 +1756,36 @@ var OrderNotificationModalComponent = /** @class */ (function () {
         this.modal = modal;
         this.formBuilder = formBuilder;
         this.notificationService = notificationService;
+        this.notificationTypes = [];
     }
     OrderNotificationModalComponent.prototype.ngOnInit = function () {
+        this.initNotificationTypes();
         this.form = this.formBuilder.group({
-            dateDocument: [''],
+            notificationTypesSelect: [this.notificationTypes, _angular_forms__WEBPACK_IMPORTED_MODULE_3__["Validators"].required],
+            dateDocument: []
+        });
+    };
+    OrderNotificationModalComponent.prototype.initNotificationTypes = function () {
+        var _this = this;
+        this.notificationService.getNotificationTypes().subscribe(function (data) {
+            for (var _i = 0, data_1 = data; _i < data_1.length; _i++) {
+                var type = data_1[_i];
+                _this.notificationTypes.push(type);
+            }
+        }, function (error) {
+            console.log("Error : Cannot get the notification types : " + error);
         });
     };
     OrderNotificationModalComponent.prototype.onSubmit = function () {
+        var _this = this;
         var dp = this.form.controls.dateDocument.value;
         var dateDocument = new Date(dp.year, dp.month, dp.day);
         var req = new src_app_model_request_notification_OrderNotificationRequest__WEBPACK_IMPORTED_MODULE_5__["OrderNotificationRequest"](this.orderId);
         req.dateDocument = dateDocument.getTime();
-        this.notificationService.notifyOrder(req).subscribe(function (data) { return console.log("Notify done : " + data); });
+        this.notificationService.notifyOrder(req).subscribe(function (data) {
+            console.log("Notify done : " + data);
+            _this.modal.close();
+        });
     };
     OrderNotificationModalComponent.prototype.onClose = function () {
         this.modal.close(false);
@@ -3231,6 +3249,9 @@ var NotificationService = /** @class */ (function () {
     }
     NotificationService.prototype.notifyOrder = function (req) {
         return this.httpApi.post(this.url + "/order-notification", req);
+    };
+    NotificationService.prototype.getNotificationTypes = function () {
+        return this.httpApi.get(this.url + "/notification-types");
     };
     NotificationService = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Injectable"])(),

@@ -1,6 +1,7 @@
 package com.andybrook.api.rest.ctx.notification;
 
 import com.andybrook.api.rest.jackson.OrderDocumentRestRequestJsonSerializer;
+import com.andybrook.enums.NotificationType;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 
 @JsonDeserialize(using = OrderDocumentRestRequestJsonSerializer.class)
@@ -8,8 +9,8 @@ public class OrderDocumentRestRequest extends DocumentRestRequest {
 
     protected long orderId;
 
-    public OrderDocumentRestRequest() {
-        super();
+    public OrderDocumentRestRequest(NotificationType type) {
+        super(type);
     }
 
     public long getOrderId() {

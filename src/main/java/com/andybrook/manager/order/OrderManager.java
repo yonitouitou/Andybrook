@@ -1,7 +1,10 @@
 package com.andybrook.manager.order;
 
+import com.andybrook.enums.NotificationType;
 import com.andybrook.exception.*;
 import com.andybrook.manager.notification.INotificationManager;
+import com.andybrook.model.notification.request.NotificationRequest;
+import com.andybrook.model.notification.request.ctx.OrderDocumentCtx;
 import com.andybrook.model.order.Order;
 import com.andybrook.model.order.OrderItem;
 import com.andybrook.model.request.order.NewOrderRequest;
@@ -13,6 +16,8 @@ import com.andybrook.service.order.IOrderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.ZonedDateTime;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Set;
 
@@ -62,7 +67,7 @@ public class OrderManager implements IOrderManager {
     @Override
     public Order closeOrder(long id) throws OrderNotFound, OrderClosed {
         Order order = orderService.closeOrder(id);
-        notificationManager.notifyOrderClosed(order);
+        notify(NotificationType.ORDER_CLOSED, order);
         return order;
     }
 
@@ -89,5 +94,10 @@ public class OrderManager implements IOrderManager {
             throw new IllegalArgumentException("OrderItemDeleteRequest is not valid : " + request.toString());
         }
         return orderService.deleteOrderItem(request.getOrderId(), request.getOrderItemId());
+    }
+
+    private void notify(NotificationType type, Order order) {
+        OrderDocumentCtx ctx = OrderDocumentCtx.builder(true, order).build();
+        notificationManager.notify(new NotificationRequest(type, ctx));
     }
 }

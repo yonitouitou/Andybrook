@@ -1,14 +1,14 @@
-package com.andybrook.model.notification.event.ctx;
+package com.andybrook.model.notification.event;
 
 import com.andybrook.model.api.AggregatedOrder;
-import com.andybrook.model.notification.ctx.DocSetting;
+import com.andybrook.model.notification.request.ctx.NotifSetting;
 
-public class CloseOrderEvent {
+public class CloseOrderEvent extends AbstractEvent  {
 
     private final AggregatedOrder order;
-    private final DocSetting setting;
+    private final NotifSetting setting;
 
-    public CloseOrderEvent(AggregatedOrder order, DocSetting setting) {
+    public CloseOrderEvent(AggregatedOrder order, NotifSetting setting) {
         this.order = order;
         this.setting = setting;
     }
@@ -17,7 +17,7 @@ public class CloseOrderEvent {
         return order;
     }
 
-    public DocSetting getSetting() {
+    public NotifSetting getSetting() {
         return setting;
     }
 

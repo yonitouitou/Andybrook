@@ -8,8 +8,8 @@ import com.andybrook.model.api.AggregatedOrder;
 import com.andybrook.model.api.AggregatedOrderItem;
 import com.andybrook.model.notification.IEmailNotification;
 import com.andybrook.model.notification.OrderClosedEmailNotification;
-import com.andybrook.model.notification.ctx.DocSetting;
-import com.andybrook.model.notification.event.ctx.CloseOrderEvent;
+import com.andybrook.model.notification.request.ctx.NotifSetting;
+import com.andybrook.model.notification.event.CloseOrderEvent;
 import com.andybrook.model.product.Product;
 import com.andybrook.model.setting.AdminSetting;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -51,7 +51,7 @@ public class CloseOrderEventListener implements IEventListener<CloseOrderEvent> 
         emailSender.send(closedReportNotif.createEmail(adminSetting, event.getOrder(), getAttachmentsPaths(event.getOrder(), event.getSetting())));
     }
 
-    private List<Path> getAttachmentsPaths(AggregatedOrder order, DocSetting setting) {
+    private List<Path> getAttachmentsPaths(AggregatedOrder order, NotifSetting setting) {
         List<Path> attachements = new LinkedList<>();
         Path csvPath = generateCsvFile(order);
         Path pdfPath = generateCloseOrderPdfFile(order, setting);
@@ -60,7 +60,7 @@ public class CloseOrderEventListener implements IEventListener<CloseOrderEvent> 
         return attachements;
     }
 
-    private Path generateCloseOrderPdfFile(AggregatedOrder order, DocSetting setting) {
+    private Path generateCloseOrderPdfFile(AggregatedOrder order, NotifSetting setting) {
         IPdfBuilder<AggregatedOrder> builder = applicationContext.getBean(CloseOrderPdfBuilder.class);
         return builder.generatePdf(order, setting);
     }

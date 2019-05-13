@@ -1,15 +1,18 @@
-package com.andybrook.model.notification.ctx;
+package com.andybrook.model.notification.request.ctx;
 
 import java.time.ZonedDateTime;
+import java.util.List;
 
-public final class DocSetting {
+public final class NotifSetting {
 
+    private final List<String> emails;
     private final ZonedDateTime dateDocument;
     private final boolean isLiveEvent;
 
-    public DocSetting(boolean isLiveEvent, ZonedDateTime dateDocument) {
+    public NotifSetting(boolean isLiveEvent, ZonedDateTime dateDocument, List<String> emails) {
         this.isLiveEvent = isLiveEvent;
         this.dateDocument = dateDocument != null ? dateDocument : ZonedDateTime.now();
+        this.emails = emails;
     }
 
     public ZonedDateTime getDateDocument() {
@@ -20,10 +23,15 @@ public final class DocSetting {
         return isLiveEvent;
     }
 
+    public List<String> getEmails() {
+        return emails;
+    }
+
     @Override
     public String toString() {
-        final StringBuilder sb = new StringBuilder("DocSetting{");
-        sb.append("dateDocument=").append(dateDocument);
+        final StringBuilder sb = new StringBuilder("NotifSetting{");
+        sb.append("emails=").append(emails);
+        sb.append(", dateDocument=").append(dateDocument);
         sb.append(", isLiveEvent=").append(isLiveEvent);
         sb.append('}');
         return sb.toString();

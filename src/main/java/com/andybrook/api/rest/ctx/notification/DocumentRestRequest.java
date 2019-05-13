@@ -1,11 +1,13 @@
 package com.andybrook.api.rest.ctx.notification;
 
+import com.andybrook.enums.NotificationType;
+
 public class DocumentRestRequest extends NotificationRestRequest {
 
     protected long dateDocument;
 
-    protected DocumentRestRequest() {
-        super();
+    protected DocumentRestRequest(NotificationType type) {
+        super(type);
     }
 
     public long getDateDocument() {

@@ -11,6 +11,10 @@ export class NotificationService {
     constructor(private httpApi: HttpService) {}
 
     notifyOrder(req: OrderNotificationRequest): Observable<any> {
-        return this.httpApi.post(this.url + "/order-notification", req)
+        return this.httpApi.post(this.url + "/order-notification", req);
+    }
+
+    getNotificationTypes(): Observable<any> {
+        return this.httpApi.get(this.url + "/notification-types");
     }
 } 

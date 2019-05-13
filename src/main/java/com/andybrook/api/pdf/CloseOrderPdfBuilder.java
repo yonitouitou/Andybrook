@@ -5,7 +5,7 @@ import com.andybrook.model.api.AggregatedOrder;
 import com.andybrook.model.api.AggregatedOrderItem;
 import com.andybrook.model.customer.Owner;
 import com.andybrook.model.customer.Store;
-import com.andybrook.model.notification.ctx.DocSetting;
+import com.andybrook.model.notification.request.ctx.NotifSetting;
 import com.itextpdf.text.*;
 import com.itextpdf.text.Font.FontFamily;
 import com.itextpdf.text.pdf.PdfPCell;
@@ -57,7 +57,7 @@ public class CloseOrderPdfBuilder extends AbstractPdfBuilder implements IPdfBuil
     }
 
     @Override
-    public Path generatePdf(AggregatedOrder order, DocSetting setting) {
+    public Path generatePdf(AggregatedOrder order, NotifSetting setting) {
         String fileName = order.getName() + LocalDateTime.now().format(DateTimeFormatter.ISO_LOCAL_DATE_TIME);
         Path pdfFilePath = null;
         Document document = new Document(PageSize.A4, 20f, 20f, 7f, 7f);
@@ -255,7 +255,7 @@ public class CloseOrderPdfBuilder extends AbstractPdfBuilder implements IPdfBuil
         table.addCell(ttlPriceCell);
     }
 
-    private Element createDoneDate(DocSetting setting) {
+    private Element createDoneDate(NotifSetting setting) {
         Paragraph p = new Paragraph();
         String msg = languageResolver.get(Pdf.DONE_ON_DATE) + " " + setting.getDateDocument().format(DATE_FORMATTER);
         Element phrase = new Phrase(msg, new Font(FontFamily.TIMES_ROMAN, TEXT_FONT_SIZE_11, Font.ITALIC));
