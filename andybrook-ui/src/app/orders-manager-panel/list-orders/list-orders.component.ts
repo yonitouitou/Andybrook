@@ -28,8 +28,21 @@ export class ListOrdersComponent implements OnInit {
   }
 
   onClickCloseOrder(orderToClose: AggregatedOrder) {
-      let modalRef = this.modalBuilder.open(OrderNotificationModalComponent);
-      modalRef.componentInstance.orderId = orderToClose.id;
+    let modalRef = this.modalBuilder.open(ConfirmModalComponent);
+    modalRef.componentInstance.title = "Close Order Confirmation";
+    modalRef.componentInstance.message = "Are you sure you want to close the order "
+          + orderToClose.name + " for the store " + orderToClose.customer.store.name + ' ?';
+
+    modalRef.result.then((response) => {
+      if (response) {
+        this.orderService.closeOrder(orderToClose.id).subscribe(
+          data => {
+            orderToClose.closeDatetime = data.closeDateTime
+            orderToClose.status = data.status
+          }
+        )
+      }
+    });
   }
 
   onClickNotify(order: AggregatedOrder) {

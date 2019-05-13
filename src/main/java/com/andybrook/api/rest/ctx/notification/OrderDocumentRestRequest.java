@@ -4,22 +4,23 @@ import com.andybrook.api.rest.jackson.OrderDocumentRestRequestJsonSerializer;
 import com.andybrook.enums.NotificationType;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 
+import java.util.List;
+
 @JsonDeserialize(using = OrderDocumentRestRequestJsonSerializer.class)
 public class OrderDocumentRestRequest extends DocumentRestRequest {
 
     protected long orderId;
 
-    public OrderDocumentRestRequest(NotificationType type) {
-        super(type);
+    public OrderDocumentRestRequest(List<NotificationType> types) {
+        super(types);
     }
 
     public long getOrderId() {
         return orderId;
     }
 
-    public OrderDocumentRestRequest setOrderId(long orderId) {
+    public void setOrderId(long orderId) {
         this.orderId = orderId;
-        return this;
     }
 
     @Override

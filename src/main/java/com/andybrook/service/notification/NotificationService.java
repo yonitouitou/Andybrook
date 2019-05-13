@@ -1,5 +1,6 @@
 package com.andybrook.service.notification;
 
+import com.andybrook.enums.NotificationType;
 import com.andybrook.exception.OrderNotFound;
 import com.andybrook.model.api.AggregatedOrder;
 import com.andybrook.model.notification.event.AbstractEvent;
@@ -14,6 +15,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.stereotype.Service;
 
+import static com.andybrook.enums.NotificationType.ORDER_CLOSED;
+
 @Service
 public class NotificationService implements INotificationService {
 
@@ -22,19 +25,21 @@ public class NotificationService implements INotificationService {
 
     @Override
     public void notify(NotificationRequest request) throws OrderNotFound {
-        publisher.publishEvent(createEvent(request));
+        for (NotificationType type : request.getTypes()) {
+            publisher.publishEvent(createEvent(type, request.getCtx()));
+        }
+
     }
 
-    private AbstractEvent createEvent(NotificationRequest request) {
+    private AbstractEvent createEvent(NotificationType type, NotificationCtx ctx) {
         AbstractEvent event;
-        NotificationCtx ctx = request.getCtx();
-        switch (request.getType()) {
+        switch (type) {
             case ORDER_CLOSED:
-                OrderDocumentCtx docCtx = (OrderDocumentCtx) request.getCtx();
+                OrderDocumentCtx docCtx = (OrderDocumentCtx) ctx;
                 event = new CloseOrderEvent(AggregatedOrder.toAggregatedOrder(docCtx.getOrder()), ctx.getSetting());
                 break;
             default:
-                throw new UnsupportedOperationException("Unknown NotificationType : " + request.getType());
+                throw new UnsupportedOperationException("Unknown NotificationType : " + type);
         }
         return event;
     }

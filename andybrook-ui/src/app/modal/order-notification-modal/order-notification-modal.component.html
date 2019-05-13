@@ -22,9 +22,18 @@
           </div>
         </div>
       </div>
+      <button type="button" class="btn btn-outline-secondary btn-sm" (click)="addEmailInput()" style="float:right">
+        <span class="glyphicon glyphicon-plus"></span>+
+      </button>
+      <div formArrayName="emailInputs" *ngFor="let input of form.get('emailInputs').controls; let i = index;">
+        <div [formGroupName]="i">
+          <label for="email">Email {{ i + 1}} </label>
+          <input formControlName="email" class="form-control" style="margin-bottom: 6px">
+        </div>
+      </div>
     </form>
   </div>
   <div class="modal-footer">
-    <button type="button" class="btn btn-outline-dark" (click)="onSubmit()">Save</button>
+    <button type="button" class="btn btn-outline-dark" (click)="onSubmit()" [disabled]="! form.valid">Save</button>
   </div>
 </div>

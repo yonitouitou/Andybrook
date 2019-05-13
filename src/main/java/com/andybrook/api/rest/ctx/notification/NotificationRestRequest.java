@@ -8,20 +8,20 @@ import java.util.List;
 public class NotificationRestRequest {
 
     private long id;
-    private NotificationType type;
+    private List<NotificationType> types;
     private List<String> emails;
 
-    public NotificationRestRequest(NotificationType type) {
+    public NotificationRestRequest(List<NotificationType> types) {
         this.id = IdGenerator.generateId();
-        this.type = type;
+        this.types = types;
     }
 
     public long getId() {
         return id;
     }
 
-    public NotificationType getType() {
-        return type;
+    public List<NotificationType> getTypes() {
+        return types;
     }
 
     public List<String> getEmails() {

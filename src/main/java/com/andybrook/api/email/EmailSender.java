@@ -14,6 +14,7 @@ import java.lang.System.Logger;
 import java.lang.System.Logger.Level;
 import java.nio.file.Path;
 import java.util.Arrays;
+import java.util.List;
 
 @Component
 public class EmailSender {
@@ -27,7 +28,7 @@ public class EmailSender {
         boolean isSent = false;
         try {
             javaMailSender.send(toMimeMailMessage(email));
-            LOGGER.log(Level.INFO, "Mail sent to " + Arrays.toString(email.getToAddresses()) +
+            LOGGER.log(Level.INFO, "Mail sent to " + email.getToAddresses().toString() +
                     " with subject " + email.getSubject() + " with " + email.getAttachmentFilePath().size() + " attachment(s)");
             isSent = true;
         } catch (MessagingException | IOException e) {
@@ -61,10 +62,10 @@ public class EmailSender {
         multipart.addBodyPart(attachPart);
     }
 
-    private InternetAddress[] toAdresses(String[] addresses) throws AddressException {
-        InternetAddress[] array = new InternetAddress[addresses.length];
-        for (int i = 0; i < addresses.length; i++) {
-            array[i] = new InternetAddress(addresses[i]);
+    private InternetAddress[] toAdresses(List<String> addresses) throws AddressException {
+        InternetAddress[] array = new InternetAddress[addresses.size()];
+        for (int i = 0; i < addresses.size(); i++) {
+            array[i] = new InternetAddress(addresses.get(i));
         }
         return array;
     }

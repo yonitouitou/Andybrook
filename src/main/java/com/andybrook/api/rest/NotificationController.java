@@ -40,7 +40,7 @@ public class NotificationController extends AbstractController {
                 .setDateDocument(epochTimeInMillisToZdt(request.getDateDocument(), applicationProperties.getZoneId()))
                 .setEmails(request.getEmails())
                 .build();
-        notificationManager.notify(new NotificationRequest(request.getType(), ctx));
+        notificationManager.notify(new NotificationRequest(request.getTypes(), ctx));
     }
 
     @GetMapping(path = "/notification-types")

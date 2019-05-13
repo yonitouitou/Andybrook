@@ -40,15 +40,13 @@ public class CloseOrderEventListener implements IEventListener<CloseOrderEvent> 
     private ApplicationContext applicationContext;
     @Autowired
     private EmailSender emailSender;
-    @Autowired
-    private IAdminSettingManager adminSettingManager;
 
     @Override
     @EventListener
     public void handleEvent(CloseOrderEvent event) {
         IEmailNotification<AggregatedOrder> closedReportNotif = applicationContext.getBean(OrderClosedEmailNotification.class);
-        AdminSetting adminSetting = adminSettingManager.getAdminSetting();
-        emailSender.send(closedReportNotif.createEmail(adminSetting, event.getOrder(), getAttachmentsPaths(event.getOrder(), event.getSetting())));
+        List<Path> attachments = getAttachmentsPaths(event.getOrder(), event.getSetting());
+        emailSender.send(closedReportNotif.createEmail(event.getSetting(), event.getOrder(), attachments));
     }
 
     private List<Path> getAttachmentsPaths(AggregatedOrder order, NotifSetting setting) {

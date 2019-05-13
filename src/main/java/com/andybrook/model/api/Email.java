@@ -7,9 +7,9 @@ import java.util.List;
 public class Email {
 
     private final String fromAddress;
-    private final String[] toAddresses;
     private final String subject;
     private final String body;
+    private final List<String> toAddresses;
     private final List<Path> attachmentFilePath;
 
     Email(Builder builder) {
@@ -24,7 +24,7 @@ public class Email {
         return fromAddress;
     }
 
-    public String[] getToAddresses() {
+    public List<String> getToAddresses() {
         return toAddresses;
     }
 
@@ -46,9 +46,9 @@ public class Email {
 
     public static class Builder {
         private String fromAddress;
-        private String[] toAddresses;
         private String subject;
         private String body;
+        private List<String> toAddresses;
         private List<Path> attachmentFilesPath;
 
         public Builder fromAdress(String address) {
@@ -56,7 +56,7 @@ public class Email {
             return this;
         }
 
-        public Builder toAdresses(String[] addresses) {
+        public Builder toAdresses(List<String> addresses) {
             this.toAddresses = addresses;
             return this;
         }
@@ -85,7 +85,7 @@ public class Email {
     public String toString() {
         final StringBuilder sb = new StringBuilder("Email{");
         sb.append("fromAddress='").append(fromAddress).append('\'');
-        sb.append(", toAddresses=").append(Arrays.toString(toAddresses));
+        sb.append(", toAddresses=").append(toAddresses);
         sb.append(", subject='").append(subject).append('\'');
         sb.append(", body='").append(body).append('\'');
         sb.append('}');

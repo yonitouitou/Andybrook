@@ -1714,7 +1714,7 @@ var InfoModalComponent = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJzcmMvYXBwL21vZGFsL29yZGVyLW5vdGlmaWNhdGlvbi1tb2RhbC9vcmRlci1ub3RpZmljYXRpb24tbW9kYWwuY29tcG9uZW50LmNzcyJ9 */"
+module.exports = ".ng-invalid:not(form)  {\n    border-left: 5px solid #a94442; /* red */\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvbW9kYWwvb3JkZXItbm90aWZpY2F0aW9uLW1vZGFsL29yZGVyLW5vdGlmaWNhdGlvbi1tb2RhbC5jb21wb25lbnQuY3NzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBO0lBQ0ksOEJBQThCLEVBQUUsUUFBUTtBQUM1QyIsImZpbGUiOiJzcmMvYXBwL21vZGFsL29yZGVyLW5vdGlmaWNhdGlvbi1tb2RhbC9vcmRlci1ub3RpZmljYXRpb24tbW9kYWwuY29tcG9uZW50LmNzcyIsInNvdXJjZXNDb250ZW50IjpbIi5uZy1pbnZhbGlkOm5vdChmb3JtKSAge1xuICAgIGJvcmRlci1sZWZ0OiA1cHggc29saWQgI2E5NDQ0MjsgLyogcmVkICovXG59Il19 */"
 
 /***/ }),
 
@@ -1725,7 +1725,7 @@ module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div>\n  <div class=\"modal-header\">\n    <h3 class=\"modal-title\" id=\"modal-basic-title\">Order Notification Setting</h3>\n    <button type=\"button\" class=\"close\" aria-label=\"Close\" (click)=\"onClose()\">\n      <span aria-hidden=\"true\">&times;</span>\n    </button>\n  </div>\n  <div class=\"modal-body\">\n    <form [formGroup]=\"form\">\n      <div class=\"form-group\">\n        <label for=\"notifType\">Notification Type</label>\n        <select formControlName=\"notificationTypesSelect\" class=\"custom-select\">\n            <option *ngFor=\"let type of notificationTypes\" [ngValue]=\"type\">{{ type }}</option>\n        </select>\n      </div>\n      <div class=\"form-group\">\n        <label for=\"dateDocument\">Document's Date</label>\n        <div class=\"input-group\">\n          <input formControlName=\"dateDocument\" class=\"form-control\" placeholder=\"yyyy-mm-dd\" name=\"dp\" ngbDatepicker #dp=\"ngbDatepicker\">\n          <div class=\"input-group-append\">\n            <button class=\"btn btn-outline-secondary calendar\" (click)=\"dp.toggle()\" type=\"button\"></button>\n          </div>\n        </div>\n      </div>\n    </form>\n  </div>\n  <div class=\"modal-footer\">\n    <button type=\"button\" class=\"btn btn-outline-dark\" (click)=\"onSubmit()\">Save</button>\n  </div>\n</div>"
+module.exports = "<div>\n  <div class=\"modal-header\">\n    <h3 class=\"modal-title\" id=\"modal-basic-title\">Order Notification Setting</h3>\n    <button type=\"button\" class=\"close\" aria-label=\"Close\" (click)=\"onClose()\">\n      <span aria-hidden=\"true\">&times;</span>\n    </button>\n  </div>\n  <div class=\"modal-body\">\n    <form [formGroup]=\"form\">\n      <div class=\"form-group\">\n        <label for=\"notifType\">Notification Type</label>\n        <select formControlName=\"notificationTypesSelect\" class=\"custom-select\">\n            <option *ngFor=\"let type of notificationTypes\" [ngValue]=\"type\">{{ type }}</option>\n        </select>\n      </div>\n      <div class=\"form-group\">\n        <label for=\"dateDocument\">Document's Date</label>\n        <div class=\"input-group\">\n          <input formControlName=\"dateDocument\" class=\"form-control\" placeholder=\"yyyy-mm-dd\" name=\"dp\" ngbDatepicker #dp=\"ngbDatepicker\">\n          <div class=\"input-group-append\">\n            <button class=\"btn btn-outline-secondary calendar\" (click)=\"dp.toggle()\" type=\"button\"></button>\n          </div>\n        </div>\n      </div>\n      <button type=\"button\" class=\"btn btn-outline-secondary btn-sm\" (click)=\"addEmailInput()\" style=\"float:right\">\n        <span class=\"glyphicon glyphicon-plus\"></span>+\n      </button>\n      <div formArrayName=\"emailInputs\" *ngFor=\"let input of form.get('emailInputs').controls; let i = index;\">\n        <div [formGroupName]=\"i\">\n          <label for=\"email\">Email {{ i + 1}} </label>\n          <input formControlName=\"email\" class=\"form-control\" style=\"margin-bottom: 6px\">\n        </div>\n      </div>\n    </form>\n  </div>\n  <div class=\"modal-footer\">\n    <button type=\"button\" class=\"btn btn-outline-dark\" (click)=\"onSubmit()\" [disabled]=\"! form.valid\">Save</button>\n  </div>\n</div>"
 
 /***/ }),
 
@@ -1762,7 +1762,8 @@ var OrderNotificationModalComponent = /** @class */ (function () {
         this.initNotificationTypes();
         this.form = this.formBuilder.group({
             notificationTypesSelect: [this.notificationTypes, _angular_forms__WEBPACK_IMPORTED_MODULE_3__["Validators"].required],
-            dateDocument: []
+            dateDocument: [],
+            emailInputs: this.formBuilder.array([this.createEmailInput])
         });
     };
     OrderNotificationModalComponent.prototype.initNotificationTypes = function () {
@@ -1776,16 +1777,29 @@ var OrderNotificationModalComponent = /** @class */ (function () {
             console.log("Error : Cannot get the notification types : " + error);
         });
     };
+    OrderNotificationModalComponent.prototype.createEmailInput = function () {
+        return this.formBuilder.group({
+            email: ['', _angular_forms__WEBPACK_IMPORTED_MODULE_3__["Validators"].email]
+        });
+    };
+    OrderNotificationModalComponent.prototype.addEmailInput = function () {
+        this.emailInputs = this.form.get('emailInputs');
+        this.emailInputs.push(this.createEmailInput());
+    };
     OrderNotificationModalComponent.prototype.onSubmit = function () {
         var _this = this;
-        var dp = this.form.controls.dateDocument.value;
-        var dateDocument = new Date(dp.year, dp.month, dp.day);
-        var req = new src_app_model_request_notification_OrderNotificationRequest__WEBPACK_IMPORTED_MODULE_5__["OrderNotificationRequest"](this.orderId);
-        req.dateDocument = dateDocument.getTime();
-        this.notificationService.notifyOrder(req).subscribe(function (data) {
-            console.log("Notify done : " + data);
-            _this.modal.close();
-        });
+        if (this.form.valid) {
+            var dp = this.form.controls.dateDocument.value;
+            var dateDocument = new Date(dp.year, dp.month - 1, dp.day);
+            var types = [];
+            types.push(this.form.controls.notificationTypesSelect.value);
+            var req = new src_app_model_request_notification_OrderNotificationRequest__WEBPACK_IMPORTED_MODULE_5__["OrderNotificationRequest"](types, this.orderId);
+            req.dateDocument = dateDocument.getTime();
+            this.notificationService.notifyOrder(req).subscribe(function (data) {
+                console.log("Notify done : " + data);
+                _this.modal.close();
+            });
+        }
     };
     OrderNotificationModalComponent.prototype.onClose = function () {
         this.modal.close(false);
@@ -2295,6 +2309,27 @@ var AddCustomerReq = /** @class */ (function () {
 
 /***/ }),
 
+/***/ "./src/app/model/request/notification/NotificationRequest.ts":
+/*!*******************************************************************!*\
+  !*** ./src/app/model/request/notification/NotificationRequest.ts ***!
+  \*******************************************************************/
+/*! exports provided: NotificationRequest */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "NotificationRequest", function() { return NotificationRequest; });
+var NotificationRequest = /** @class */ (function () {
+    function NotificationRequest(types) {
+        this.types = types;
+    }
+    return NotificationRequest;
+}());
+
+
+
+/***/ }),
+
 /***/ "./src/app/model/request/notification/OrderNotificationRequest.ts":
 /*!************************************************************************!*\
   !*** ./src/app/model/request/notification/OrderNotificationRequest.ts ***!
@@ -2305,13 +2340,20 @@ var AddCustomerReq = /** @class */ (function () {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "OrderNotificationRequest", function() { return OrderNotificationRequest; });
-var OrderNotificationRequest = /** @class */ (function () {
-    function OrderNotificationRequest(orderId) {
-        this.dateDocument = new Date().getTime();
-        this.orderId = orderId;
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
+/* harmony import */ var _NotificationRequest__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./NotificationRequest */ "./src/app/model/request/notification/NotificationRequest.ts");
+
+
+var OrderNotificationRequest = /** @class */ (function (_super) {
+    tslib__WEBPACK_IMPORTED_MODULE_0__["__extends"](OrderNotificationRequest, _super);
+    function OrderNotificationRequest(types, orderId) {
+        var _this = _super.call(this, types) || this;
+        _this.dateDocument = new Date().getTime();
+        _this.orderId = orderId;
+        return _this;
     }
     return OrderNotificationRequest;
-}());
+}(_NotificationRequest__WEBPACK_IMPORTED_MODULE_1__["NotificationRequest"]));
 
 
 
@@ -2928,7 +2970,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var src_app_service_order_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! src/app/service/order-service */ "./src/app/service/order-service.ts");
 /* harmony import */ var src_app_service_notification_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! src/app/service/notification-service */ "./src/app/service/notification-service.ts");
 /* harmony import */ var src_app_common_components_modal_builder__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! src/app/common-components/modal-builder */ "./src/app/common-components/modal-builder.ts");
-/* harmony import */ var src_app_modal_order_notification_modal_order_notification_modal_component__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! src/app/modal/order-notification-modal/order-notification-modal.component */ "./src/app/modal/order-notification-modal/order-notification-modal.component.ts");
+/* harmony import */ var src_app_modal_confirm_modal_confirm_modal_component__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! src/app/modal/confirm-modal/confirm-modal-component */ "./src/app/modal/confirm-modal/confirm-modal-component.ts");
+/* harmony import */ var src_app_modal_order_notification_modal_order_notification_modal_component__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! src/app/modal/order-notification-modal/order-notification-modal.component */ "./src/app/modal/order-notification-modal/order-notification-modal.component.ts");
+
 
 
 
@@ -2947,11 +2991,22 @@ var ListOrdersComponent = /** @class */ (function () {
         this.collectionSize = this.orders.length;
     };
     ListOrdersComponent.prototype.onClickCloseOrder = function (orderToClose) {
-        var modalRef = this.modalBuilder.open(src_app_modal_order_notification_modal_order_notification_modal_component__WEBPACK_IMPORTED_MODULE_5__["OrderNotificationModalComponent"]);
-        modalRef.componentInstance.orderId = orderToClose.id;
+        var _this = this;
+        var modalRef = this.modalBuilder.open(src_app_modal_confirm_modal_confirm_modal_component__WEBPACK_IMPORTED_MODULE_5__["ConfirmModalComponent"]);
+        modalRef.componentInstance.title = "Close Order Confirmation";
+        modalRef.componentInstance.message = "Are you sure you want to close the order "
+            + orderToClose.name + " for the store " + orderToClose.customer.store.name + ' ?';
+        modalRef.result.then(function (response) {
+            if (response) {
+                _this.orderService.closeOrder(orderToClose.id).subscribe(function (data) {
+                    orderToClose.closeDatetime = data.closeDateTime;
+                    orderToClose.status = data.status;
+                });
+            }
+        });
     };
     ListOrdersComponent.prototype.onClickNotify = function (order) {
-        var modalRef = this.modalBuilder.open(src_app_modal_order_notification_modal_order_notification_modal_component__WEBPACK_IMPORTED_MODULE_5__["OrderNotificationModalComponent"]);
+        var modalRef = this.modalBuilder.open(src_app_modal_order_notification_modal_order_notification_modal_component__WEBPACK_IMPORTED_MODULE_6__["OrderNotificationModalComponent"]);
         modalRef.componentInstance.orderId = order.id;
     };
     Object.defineProperty(ListOrdersComponent.prototype, "ordersArray", {
@@ -3116,12 +3171,12 @@ var AdminSettingService = /** @class */ (function () {
         this.httpApi = httpApi;
     }
     AdminSettingService.prototype.getAdminSetting = function (adminSetting) {
-        console.log("Get admin ctx.");
-        return this.httpApi.get("/v1/admin/ctx/get");
+        console.log("Get admin setting.");
+        return this.httpApi.get("/v1/admin/setting/get");
     };
     AdminSettingService.prototype.updateAdminSetting = function (adminSetting) {
-        console.log("Update admin ctx " + adminSetting);
-        return this.httpApi.post("v1/admin/ctx/update", adminSetting);
+        console.log("Update admin setting " + adminSetting);
+        return this.httpApi.post("v1/admin/setting/update", adminSetting);
     };
     AdminSettingService = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Injectable"])(),

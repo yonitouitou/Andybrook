@@ -1,6 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators, FormControl, FormArray } from '@angular/forms';
 import { NotificationService } from 'src/app/service/notification-service';
 import { OrderNotificationRequest } from 'src/app/model/request/notification/OrderNotificationRequest';
 import { JsonPipe } from '@angular/common';
@@ -14,6 +14,7 @@ export class OrderNotificationModalComponent implements OnInit {
 
   @Input() orderId: number
   form: FormGroup
+  emailInputs: FormArray;
   notificationTypes: string[] = []
 
   constructor(private modal: NgbActiveModal,
@@ -24,7 +25,8 @@ export class OrderNotificationModalComponent implements OnInit {
     this.initNotificationTypes();
     this.form = this.formBuilder.group({
       notificationTypesSelect: [this.notificationTypes, Validators.required],
-      dateDocument: []
+      dateDocument: [],
+      emailInputs: this.formBuilder.array([this.createEmailInput])
     });
   }
 
@@ -41,17 +43,32 @@ export class OrderNotificationModalComponent implements OnInit {
     )
   }
 
+  private createEmailInput(): FormGroup {
+    return this.formBuilder.group({
+      email: ['', Validators.email]
+    });
+  }
+
+  addEmailInput() {
+    this.emailInputs = this.form.get('emailInputs') as FormArray;
+    this.emailInputs.push(this.createEmailInput());
+  }
+
   onSubmit() {
-    let dp = this.form.controls.dateDocument.value;
-    let dateDocument = new Date(dp.year, dp.month, dp.day);
-    let req = new OrderNotificationRequest(this.orderId);
-    req.dateDocument = dateDocument.getTime();
-    this.notificationService.notifyOrder(req).subscribe(
-       data => {
-         console.log("Notify done : " + data)
-         this.modal.close();
-       }
-    )
+    if (this.form.valid) {
+      let dp = this.form.controls.dateDocument.value;
+      let dateDocument = new Date(dp.year, dp.month - 1, dp.day);
+      let types: string[] = [];
+      types.push(this.form.controls.notificationTypesSelect.value);
+      let req = new OrderNotificationRequest(types, this.orderId);
+      req.dateDocument = dateDocument.getTime();
+      this.notificationService.notifyOrder(req).subscribe(
+        data => {
+          console.log("Notify done : " + data)
+          this.modal.close();
+        }
+      )
+    }
   }
 
   onClose() {

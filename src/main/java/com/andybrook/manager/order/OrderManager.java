@@ -98,6 +98,6 @@ public class OrderManager implements IOrderManager {
 
     private void notify(NotificationType type, Order order) {
         OrderDocumentCtx ctx = OrderDocumentCtx.builder(true, order).build();
-        notificationManager.notify(new NotificationRequest(type, ctx));
+        notificationManager.notify(new NotificationRequest(Arrays.asList(type), ctx));
     }
 }
