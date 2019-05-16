@@ -10,11 +10,14 @@ import com.andybrook.model.request.orderitem.OrderItemAddRequest;
 import com.andybrook.model.request.orderitem.OrderItemAddRequestByBarCode;
 import com.andybrook.model.request.orderitem.OrderItemDeleteRequest;
 import com.andybrook.model.request.order.UpdateOrderRequest;
+import com.andybrook.util.NumberUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.lang.System.Logger;
 import java.lang.System.Logger.Level;
+import java.util.Collections;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -58,10 +61,19 @@ public class OrderController extends AbstractController {
         return orderManager.getOrders(request.getIdsAsLong());
     }
 
-    @GetMapping(path = "/searchByName/{name}")
-    public List<AggregatedOrder> getByName(@PathVariable String name) {
-        LOGGER.log(Level.INFO, "Get order request received for name : " + name);
-        return AggregatedOrder.toAggregatedOrders(orderManager.getOrdersByNameContaining(name.trim()).stream()).collect(Collectors.toList());
+    @GetMapping(path = "/searchByIdOrName/{input}")
+    public List<AggregatedOrder> getByName(@PathVariable String input) {
+        LOGGER.log(Level.INFO, "Get order request received for input : " + input);
+        Long inputAsLong = NumberUtil.parseNumber(input, Long.class);
+        List<AggregatedOrder> orders = Collections.emptyList();
+        if (inputAsLong != null) {
+            if (inputAsLong > 0) {
+                orders = List.of(AggregatedOrder.toAggregatedOrder(orderManager.getOrder(inputAsLong)));
+            }
+        } else {
+            orders = AggregatedOrder.toAggregatedOrders(orderManager.getOrdersByNameContaining(input.trim()).stream()).collect(Collectors.toList());
+        }
+        return orders;
     }
 
     @GetMapping(path = "/all")

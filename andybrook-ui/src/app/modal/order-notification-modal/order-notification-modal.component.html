@@ -9,7 +9,7 @@
     <form [formGroup]="form">
       <div class="form-group">
         <label for="notifType">Notification Type</label>
-        <select formControlName="notificationTypesSelect" class="custom-select">
+        <select formControlName="notificationTypesSelect" class="custom-select" required>
             <option *ngFor="let type of notificationTypes" [ngValue]="type">{{ type }}</option>
         </select>
       </div>
@@ -27,7 +27,7 @@
       </button>
       <div formArrayName="emailInputs" *ngFor="let input of form.get('emailInputs').controls; let i = index;">
         <div [formGroupName]="i">
-          <label for="email">Email {{ i + 1}} </label>
+          <label for="email">Email {{ i + 1 }} </label>
           <input formControlName="email" class="form-control" style="margin-bottom: 6px">
         </div>
       </div>

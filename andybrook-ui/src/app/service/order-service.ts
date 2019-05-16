@@ -27,9 +27,9 @@ export class OrderService {
         return this.httpApi.get("/v1/order/get/" + id);
     }
 
-    getOrderByName(name: string): Observable<any> {
-        console.log("Get order by name : " + name);
-        return this.httpApi.get("/v1/order/searchByName/" + name);
+    searchOrderByIdOrName(input: string): Observable<any> {
+        console.log("Search orders by input : " + input);
+        return this.httpApi.get("/v1/order/searchByIdOrName/" + input);
     }
 
     getOrdersOfCustomer(id: number): Observable<any> {

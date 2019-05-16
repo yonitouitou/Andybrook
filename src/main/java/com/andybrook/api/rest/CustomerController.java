@@ -9,13 +9,17 @@ import com.andybrook.model.customer.Owner;
 import com.andybrook.model.customer.Store;
 import com.andybrook.model.request.customer.AddCustomerRequest;
 import com.andybrook.model.request.customer.AddCustomerRequest.Builder;
+import com.andybrook.util.NumberUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.util.Pair;
+import org.springframework.util.NumberUtils;
+import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
 
 import java.lang.System.Logger;
 import java.lang.System.Logger.Level;
 import java.util.Collection;
+import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -39,6 +43,21 @@ public class CustomerController extends AbstractController {
     public Customer updateCustomer(@RequestBody Customer customer) {
         LOGGER.log(Level.INFO, "Update Customer request : " + customer);
         return customerManager.updateCustomer(customer);
+    }
+
+    @GetMapping(path = "/searchByIdOrName/{input}")
+    public List<Customer> searchByIdOrName(@PathVariable String input) {
+        LOGGER.log(Level.INFO, "Search customer request received by input : " + input);
+        Long inputAsLong = NumberUtil.parseNumber(input, Long.class);
+        List<Customer> customers = Collections.emptyList();
+        if (inputAsLong != null) {
+            if (inputAsLong > 0) {
+                customers = List.of(customerManager.get(inputAsLong));
+            }
+        } else {
+            customers = customerManager.getByNameContaining(input.trim());
+        }
+        return customers;
     }
 
     @GetMapping(path = "/storesOfOwner/{ownerId}")

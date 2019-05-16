@@ -24,6 +24,7 @@ import java.nio.file.Path;
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
 import java.time.LocalDateTime;
+import java.time.ZonedDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.stream.Stream;
 
@@ -74,7 +75,7 @@ public class CloseOrderPdfBuilder extends AbstractPdfBuilder implements IPdfBuil
             Element customerTable1 = createCustomerMainDetailsTable(order);
             Element customerTable2 = createCustomerContactDetailsTable(order);
             Element itemsTable = createItemsTable(order);
-            Element doneDate = createDoneDate(setting);
+            Element doneDate = createDoneDate(setting, order);
             Element signature = createSignatureTable();
 
             document.add(logo);
@@ -255,9 +256,10 @@ public class CloseOrderPdfBuilder extends AbstractPdfBuilder implements IPdfBuil
         table.addCell(ttlPriceCell);
     }
 
-    private Element createDoneDate(NotifSetting setting) {
+    private Element createDoneDate(NotifSetting setting, AggregatedOrder order) {
         Paragraph p = new Paragraph();
-        String msg = languageResolver.get(Pdf.DONE_ON_DATE) + " " + setting.getDateDocument().format(DATE_FORMATTER);
+        ZonedDateTime dateDocument = setting.getDateDocument() != null ? setting.getDateDocument() : ZonedDateTime.of(order.getCloseDatetime(), applicationProperties.getZoneId());
+        String msg = languageResolver.get(Pdf.DONE_ON_DATE) + " " + dateDocument.format(DATE_FORMATTER);
         Element phrase = new Phrase(msg, new Font(FontFamily.TIMES_ROMAN, TEXT_FONT_SIZE_11, Font.ITALIC));
         p.add(phrase);
         p.setAlignment(Element.ALIGN_RIGHT);

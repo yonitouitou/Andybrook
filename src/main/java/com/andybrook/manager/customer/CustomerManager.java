@@ -23,6 +23,16 @@ public class CustomerManager implements ICustomerManager {
     }
 
     @Override
+    public Customer get(long id) {
+        return customerService.getById(id);
+    }
+
+    @Override
+    public List<Customer> getByNameContaining(String name) {
+        return null;
+    }
+
+    @Override
     public List<Customer> getAll() {
         return customerService.getAll();
     }

@@ -14,20 +14,21 @@ export class OrderNotificationModalComponent implements OnInit {
 
   @Input() orderId: number
   form: FormGroup
-  emailInputs: FormArray;
+  emailInputs: FormArray
   notificationTypes: string[] = []
 
   constructor(private modal: NgbActiveModal,
               private formBuilder: FormBuilder,
-              private notificationService: NotificationService) { }
+              private notificationService: NotificationService) {}
 
   ngOnInit() {
     this.initNotificationTypes();
     this.form = this.formBuilder.group({
-      notificationTypesSelect: [this.notificationTypes, Validators.required],
+      notificationTypesSelect: [this.notificationTypes, [Validators.required]],
       dateDocument: [],
-      emailInputs: this.formBuilder.array([this.createEmailInput])
+      emailInputs: this.formBuilder.array([])
     });
+    this.emailInputs.push(this.createEmailInput());
   }
 
   private initNotificationTypes() {
@@ -57,11 +58,13 @@ export class OrderNotificationModalComponent implements OnInit {
   onSubmit() {
     if (this.form.valid) {
       let dp = this.form.controls.dateDocument.value;
-      let dateDocument = new Date(dp.year, dp.month - 1, dp.day);
       let types: string[] = [];
       types.push(this.form.controls.notificationTypesSelect.value);
       let req = new OrderNotificationRequest(types, this.orderId);
-      req.dateDocument = dateDocument.getTime();
+      if (dp != null) {
+        req.dateDocument = new Date(dp.year, dp.month - 1, dp.day).getTime();
+      }
+      req.emails = this.getEmailsFromInputs();
       this.notificationService.notifyOrder(req).subscribe(
         data => {
           console.log("Notify done : " + data)
@@ -71,8 +74,19 @@ export class OrderNotificationModalComponent implements OnInit {
     }
   }
 
+  private getEmailsFromInputs(): string[] {
+    let emails: string[] = [];
+    let array = this.form.controls.emailInputs as FormArray;
+    for (let i = 0; i < array.length; i++) {
+      let emailObjValue = array.at(i).value;
+      if (emailObjValue.email.length > 0) {
+        emails.push(emailObjValue.email);
+      }
+    }
+    return emails;
+  }
+
   onClose() {
     this.modal.close(false);
   }
-
 }

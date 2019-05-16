@@ -14,6 +14,8 @@ public interface ICustomerService {
 
     Customer getById(long id);
 
+    List<Customer> getByNameContaining(String name);
+
     List<Customer> getAll();
 
     Map<Long, Owner> getAllOwners();

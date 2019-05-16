@@ -45,8 +45,10 @@ public class CloseOrderEventListener implements IEventListener<CloseOrderEvent> 
     @EventListener
     public void handleEvent(CloseOrderEvent event) {
         IEmailNotification<AggregatedOrder> closedReportNotif = applicationContext.getBean(OrderClosedEmailNotification.class);
-        List<Path> attachments = getAttachmentsPaths(event.getOrder(), event.getSetting());
-        emailSender.send(closedReportNotif.createEmail(event.getSetting(), event.getOrder(), attachments));
+        if (event.getSetting().getEmails().size() > 0) {
+            List<Path> attachments = getAttachmentsPaths(event.getOrder(), event.getSetting());
+            emailSender.send(closedReportNotif.createEmail(event.getSetting(), event.getOrder(), attachments));
+        }
     }
 
     private List<Path> getAttachmentsPaths(AggregatedOrder order, NotifSetting setting) {
@@ -84,7 +86,6 @@ public class CloseOrderEventListener implements IEventListener<CloseOrderEvent> 
     }
 
     private Path writeCsvInFile(AggregatedOrder order, String csv) throws IOException {
-        System.out.println(csv);
         String fileName = order.getName() + "-" + order.getCreatedDatetime().format(DATE_TIME_FORMATTER_FILE_NAME);
         File tmpFile = File.createTempFile(fileName, ".csv");
         FileWriter writer = new FileWriter(tmpFile);

@@ -18,21 +18,21 @@ import java.util.stream.Collectors;
 public class CustomerDao implements ICustomerDao {
 
     @Autowired
-    private ICustomerJpaRepository customerJpaRepository;
+    private ICustomerJpaRepository repository;
     @Autowired
     private EntityFactory entityFactory;
 
     @Override
     public Customer update(Customer customer) {
         CustomerEntity entity = entityFactory.createCustomerEntity(customer);
-        CustomerEntity savedEntity = customerJpaRepository.save(entity);
+        CustomerEntity savedEntity = repository.save(entity);
         return entityFactory.createCustomer(savedEntity);
     }
 
     @Override
     public Customer getById(long id) {
         Customer customer;
-        Optional<CustomerEntity> entityOpt = customerJpaRepository.findById(id);
+        Optional<CustomerEntity> entityOpt = repository.findById(id);
         if (entityOpt.isPresent()) {
             customer = entityFactory.createCustomer(entityOpt.get());
         } else {
@@ -42,8 +42,16 @@ public class CustomerDao implements ICustomerDao {
     }
 
     @Override
+    public List<Customer> getByNameContaining(String name) {
+        List<CustomerEntity> customerEntities = repository.getCustomerByNameContaining(name);
+        return customerEntities.stream()
+                .map(entityFactory::createCustomer)
+                .collect(Collectors.toList());
+    }
+
+    @Override
     public List<Customer> getAll() {
-        List<CustomerEntity> entities = customerJpaRepository.findAll(new Sort(Direction.ASC, "storeEntity.name"));
+        List<CustomerEntity> entities = repository.findAll(new Sort(Direction.ASC, "storeEntity.name"));
         return entities.stream()
                 .map(entityFactory::createCustomer)
                 .collect(Collectors.toList());

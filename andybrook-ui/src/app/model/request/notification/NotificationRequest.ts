@@ -1,6 +1,7 @@
 export class NotificationRequest {
 
-    types: string[]
+    types: string[] = []
+    emails: string[] = []
 
     constructor(types: string[]) {
         this.types = types;

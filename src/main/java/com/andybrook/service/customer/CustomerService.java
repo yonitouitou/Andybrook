@@ -39,6 +39,11 @@ public class CustomerService implements ICustomerService {
     }
 
     @Override
+    public List<Customer> getByNameContaining(String name) {
+        return dao.getByNameContaining(name);
+    }
+
+    @Override
     public List<Customer> getAll() {
         return dao.getAll();
     }

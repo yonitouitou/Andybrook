@@ -10,5 +10,7 @@ public interface ICustomerDao {
 
     Customer getById(long id);
 
+    List<Customer> getByNameContaining(String name);
+
     List<Customer> getAll();
 }

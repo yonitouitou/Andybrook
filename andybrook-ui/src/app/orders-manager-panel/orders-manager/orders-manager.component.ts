@@ -27,7 +27,7 @@ export class OrdersManagerComponent implements OnInit {
     if (value.length > 0) {
       this.searchButtonDisabled = true
       this.isOrderListFiltered = true
-      this.getOrderByName(value)
+      this.searchOrderByIdOrName(value)
     } else if (value.length == 0 && this.isOrderListFiltered) {
       this.searchButtonDisabled = true
       this.getAllOrders()
@@ -35,13 +35,15 @@ export class OrdersManagerComponent implements OnInit {
     }
   }
 
-  private getOrderByName(name: string) {
-    this.orderService.getOrderByName(name).subscribe(
+  private searchOrderByIdOrName(name: string) {
+    this.orderService.searchOrderByIdOrName(name).subscribe(
       data => {
         this.orders = this.parseOrderIntoArray(data)
         this.searchButtonDisabled = false
       }, error => {
         console.log("error in search : " + error);
+        this.orders = [];
+        this.searchButtonDisabled = false
       }
     )
   }

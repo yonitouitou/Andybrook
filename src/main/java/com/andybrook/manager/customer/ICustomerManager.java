@@ -12,6 +12,10 @@ public interface ICustomerManager {
 
     Customer newCustomer(AddCustomerRequest request);
 
+    Customer get(long id);
+
+    List<Customer> getByNameContaining(String name);
+
     List<Customer> getAll();
 
     Map<Long, Owner> getAllOwners();
