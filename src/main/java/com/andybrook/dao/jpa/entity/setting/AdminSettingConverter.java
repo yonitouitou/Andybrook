@@ -39,7 +39,7 @@ public class AdminSettingConverter implements IEntityConverter<AdminSetting, Adm
         NotificationPolicyEntity policyEntity = entityFactory.createNotificationPolicyEntity(model.getNotificationPolicy());
         return new AdminSettingEntity(
                 model.getId(),
-                model.getOrdersNbToShow(),
+                model.getLoadItemsLimit(),
                 arrayToString(model.getEmails()),
                 policyEntity,
                 model.getDocumentHeaderTableBackgroundColor().getRGB(),

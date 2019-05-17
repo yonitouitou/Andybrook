@@ -19,8 +19,13 @@ export class CustomerService {
     getStoresOfOwner(ownerId: number): Observable<any> {
         return this.http.get(this.url + "/storesOfOwner/" + ownerId);
     }
+    
     getAllCustomers(): Observable<any> {
         return this.http.get(this.url + "/all");
+    }
+
+    searchCustomerByIdOrNames(input: string): Observable<any> {
+        return this.http.get(this.url + "/searchByIdOrName/" + input);
     }
 
     getAllOwnersIdsAndNames(): Observable<any>{

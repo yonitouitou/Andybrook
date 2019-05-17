@@ -25,8 +25,6 @@ public class OrderDao implements IOrderDao {
     private IOrderCrudRepository repository;
     @Autowired
     private EntityFactory entityFactory;
-    @Autowired
-    private LanguageResolver languageResolver;
 
     @Override
     public Order newOrder(Order order) {

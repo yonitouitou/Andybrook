@@ -12,5 +12,5 @@ public interface ICustomerDao {
 
     List<Customer> getByNameContaining(String name);
 
-    List<Customer> getAll();
+    List<Customer> getAll(int limit);
 }

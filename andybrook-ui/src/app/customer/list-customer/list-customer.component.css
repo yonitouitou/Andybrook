@@ -1,7 +1,7 @@
 /* Scroll Bar customer list table */
 .my-custom-scrollbar {
     position: relative;
-    max-height: 45%;
+    max-height: 750px;
     overflow: auto;
   }
   

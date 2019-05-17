@@ -6,6 +6,7 @@ import com.andybrook.model.customer.Owner;
 import com.andybrook.model.customer.Store;
 import com.andybrook.model.request.customer.AddCustomerRequest;
 import com.andybrook.service.owner.IOwnerService;
+import com.andybrook.service.setting.IAdminSettingService;
 import com.andybrook.service.store.IStoreService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -22,6 +23,8 @@ public class CustomerService implements ICustomerService {
     private IOwnerService ownerService;
     @Autowired
     private IStoreService storeService;
+    @Autowired
+    private IAdminSettingService adminSettingService;
 
     @Override
     public Customer newCustomer(AddCustomerRequest request) {
@@ -45,7 +48,7 @@ public class CustomerService implements ICustomerService {
 
     @Override
     public List<Customer> getAll() {
-        return dao.getAll();
+        return dao.getAll(adminSettingService.getLoadItemsLimit());
     }
 
     @Override

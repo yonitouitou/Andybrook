@@ -5,7 +5,6 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Subject } from 'rxjs'
 import { debounceTime } from 'rxjs/operators'
 import { RGB } from 'src/app/model/RGB';
-import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'admin-panel',
@@ -29,26 +28,26 @@ export class AdminPanelComponent implements OnInit {
   ngOnInit() {
     this.adminForm = this.formBuilder.group({
       notification: [],
-      ordersNbToShow: ['', Validators.min(1)],
+      itemToShow: ['', Validators.min(1)],
       emails: ['', [Validators.required]]
     });
 
     this.adminSetting = new AdminSetting()
     this.adminSettingService.getAdminSetting(this.adminSetting)
         .subscribe(data => {
-          this.adminSetting.emails = data.emails
-          this.adminSetting.ordersNbToShow = data.ordersNbToShow
-          this.adminSetting.notifyOnCloseReport = data.notificationPolicy.onCloseReport
+          this.adminSetting.emails = data.emails;
+          this.adminSetting.itemToShow = data.loadItemsLimit;
+          this.adminSetting.notifyOnCloseReport = data.notificationPolicy.onCloseReport;
 
           this.adminForm.setValue({
             notification: this.adminSetting.notifyOnCloseReport,
             emails: this.adminSetting.emails.join(),
-            ordersNbToShow: this.adminSetting.ordersNbToShow
+            itemToShow: this.adminSetting.itemToShow
       })
     })
 
-    this._success.subscribe((msg) => this.alertMessage = msg)
-    this._success.pipe(debounceTime(5000)).subscribe(() => this.alertMessage = null)
+    this._success.subscribe((msg) => this.alertMessage = msg);
+    this._success.pipe(debounceTime(5000)).subscribe(() => this.alertMessage = null);
   }
 
   public changeAlertMessage() {
@@ -72,15 +71,15 @@ export class AdminPanelComponent implements OnInit {
       if (this.adminForm.invalid) {
           return;
       }
-      let values = this.adminForm.value
-      this.adminSetting.emails = values.emails.split(",")
-      this.adminSetting.ordersNbToShow = values.ordersNbToShow
-      this.adminSetting.notifyOnCloseReport = values.notification
+      let values = this.adminForm.value;
+      this.adminSetting.emails = values.emails.split(",");
+      this.adminSetting.itemToShow = values.itemToShow;
+      this.adminSetting.notifyOnCloseReport = values.notification;
       this.adminSettingService.updateAdminSetting(this.adminSetting).subscribe(data => {
-        this.adminSetting.emails = data.emails
-        this.adminSetting.ordersNbToShow = data.ordersNbToShow
-        this.adminSetting.notifyOnCloseReport = data.notificationPolicy.onCloseReport
-        this.settingSaved(true)
+        this.adminSetting.emails = data.emails;
+        this.adminSetting.itemToShow = data.loadItemsLimit;
+        this.adminSetting.notifyOnCloseReport = data.notificationPolicy.onCloseReport;
+        this.settingSaved(true);
     })
   }
 }

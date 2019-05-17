@@ -4,7 +4,6 @@ export class Owner {
     firstName: string
     lastName: string
     email: string
-    address: string
 
     constructor() {
     }
@@ -16,7 +15,6 @@ export class Owner {
         owner.firstName = data.firstName;
         owner.lastName = data.lastName;
         owner.email = data.email;
-        owner.address = data.address;
         return owner;
     }
 }

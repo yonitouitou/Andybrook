@@ -10,5 +10,5 @@ public interface IAdminSettingService {
 
     boolean shouldNotifyOnCloseReport();
 
-    int getOrdersNbToShow();
+    int getLoadItemsLimit();
 }

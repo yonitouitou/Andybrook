@@ -6,10 +6,12 @@ import com.andybrook.dao.jpa.entity.factory.EntityFactory;
 import com.andybrook.exception.CustomerNotFound;
 import com.andybrook.model.customer.Customer;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.domain.Sort.Direction;
 import org.springframework.stereotype.Repository;
 
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -50,10 +52,13 @@ public class CustomerDao implements ICustomerDao {
     }
 
     @Override
-    public List<Customer> getAll() {
-        List<CustomerEntity> entities = repository.findAll(new Sort(Direction.ASC, "storeEntity.name"));
-        return entities.stream()
-                .map(entityFactory::createCustomer)
-                .collect(Collectors.toList());
+    public List<Customer> getAll(int limit) {
+        Iterable<CustomerEntity> entities = repository.findAll(PageRequest.of(0, limit, new Sort(Direction.ASC, "id")));
+        List<Customer> customers = new LinkedList<>();
+        entities.forEach(entity -> {
+            Customer customer = entityFactory.createCustomer(entity);
+            customers.add(customer);
+        });
+        return customers;
     }
 }

@@ -41,7 +41,7 @@ module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"container-fluid\">\n    <form [formGroup]=\"adminForm\" (ngSubmit)=\"onSubmit()\">\n      <div class=\"form-group\">\n          <label class=\"form-check-label\" for=\"exampleCheck1\">Notification &nbsp;</label>\n          <input type=\"checkbox\" formControlName=\"notification\" class=\"form-check-input\" (input)=\"settingChanged()\">\n      </div>\n      <div class=\"form-group\">\n        <label for=\"Email\">Email addresses\n          <span style=\"font-size: 80%; font-style: italic\">(Use comma ',' delimiter for multiple emails)</span\n        ></label>\n        <input type=\"text\" formControlName=\"emails\"\n          (input)=\"settingChanged()\"\n          class=\"form-control\"\n        />\n      </div>\n      <div class=\"form-group\">\n        <label for=\"ordersNbToShow\">Orders number to show by default</label>\n        <input type=\"text\" formControlName=\"ordersNbToShow\"\n          (input)=\"settingChanged()\"\n          class=\"form-control\"\n        />\n      </div>\n      <div class=\"form-group\">\n        <button type=\"submit\" class=\"btn btn-primary\" [disabled]=\"saveButtonDisabled\">Save</button>\n      </div>\n    </form>\n    <ngb-alert *ngIf=\"alertMessage\" type=\"success\" (close)=\"alertMessage = null\">{{ alertMessage }}</ngb-alert>\n</div>"
+module.exports = "<div class=\"container-fluid\">\n    <form [formGroup]=\"adminForm\" (ngSubmit)=\"onSubmit()\">\n      <div class=\"form-group\">\n          <label class=\"form-check-label\" for=\"exampleCheck1\">Notification &nbsp;</label>\n          <input type=\"checkbox\" formControlName=\"notification\" class=\"form-check-input\" (input)=\"settingChanged()\">\n      </div>\n      <div class=\"form-group\">\n        <label for=\"Email\">Email addresses\n          <span style=\"font-size: 80%; font-style: italic\">(Use comma ',' delimiter for multiple emails)</span\n        ></label>\n        <input type=\"text\" formControlName=\"emails\"\n          (input)=\"settingChanged()\"\n          class=\"form-control\"\n        />\n      </div>\n      <div class=\"form-group\">\n        <label for=\"itemToShow\">List item number to load by default</label>\n        <input type=\"text\" formControlName=\"itemToShow\"\n          (input)=\"settingChanged()\"\n          class=\"form-control\"\n        />\n      </div>\n      <div class=\"form-group\">\n        <button type=\"submit\" class=\"btn btn-primary\" [disabled]=\"saveButtonDisabled\">Save</button>\n      </div>\n    </form>\n    <ngb-alert *ngIf=\"alertMessage\" type=\"success\" (close)=\"alertMessage = null\">{{ alertMessage }}</ngb-alert>\n</div>"
 
 /***/ }),
 
@@ -81,19 +81,19 @@ var AdminPanelComponent = /** @class */ (function () {
         var _this = this;
         this.adminForm = this.formBuilder.group({
             notification: [],
-            ordersNbToShow: ['', _angular_forms__WEBPACK_IMPORTED_MODULE_4__["Validators"].min(1)],
+            itemToShow: ['', _angular_forms__WEBPACK_IMPORTED_MODULE_4__["Validators"].min(1)],
             emails: ['', [_angular_forms__WEBPACK_IMPORTED_MODULE_4__["Validators"].required]]
         });
         this.adminSetting = new src_app_model_admin_AdminSetting__WEBPACK_IMPORTED_MODULE_3__["AdminSetting"]();
         this.adminSettingService.getAdminSetting(this.adminSetting)
             .subscribe(function (data) {
             _this.adminSetting.emails = data.emails;
-            _this.adminSetting.ordersNbToShow = data.ordersNbToShow;
+            _this.adminSetting.itemToShow = data.loadItemsLimit;
             _this.adminSetting.notifyOnCloseReport = data.notificationPolicy.onCloseReport;
             _this.adminForm.setValue({
                 notification: _this.adminSetting.notifyOnCloseReport,
                 emails: _this.adminSetting.emails.join(),
-                ordersNbToShow: _this.adminSetting.ordersNbToShow
+                itemToShow: _this.adminSetting.itemToShow
             });
         });
         this._success.subscribe(function (msg) { return _this.alertMessage = msg; });
@@ -123,11 +123,11 @@ var AdminPanelComponent = /** @class */ (function () {
         }
         var values = this.adminForm.value;
         this.adminSetting.emails = values.emails.split(",");
-        this.adminSetting.ordersNbToShow = values.ordersNbToShow;
+        this.adminSetting.itemToShow = values.itemToShow;
         this.adminSetting.notifyOnCloseReport = values.notification;
         this.adminSettingService.updateAdminSetting(this.adminSetting).subscribe(function (data) {
             _this.adminSetting.emails = data.emails;
-            _this.adminSetting.ordersNbToShow = data.ordersNbToShow;
+            _this.adminSetting.itemToShow = data.loadItemsLimit;
             _this.adminSetting.notifyOnCloseReport = data.notificationPolicy.onCloseReport;
             _this.settingSaved(true);
         });
@@ -574,7 +574,7 @@ var CustomerHeaderComponent = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJzcmMvYXBwL2N1c3RvbWVyL2N1c3RvbWVyLWluZm8vY3VzdG9tZXItaW5mby5jb21wb25lbnQuY3NzIn0= */"
+module.exports = "label {\n    font-weight: bold;\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvY3VzdG9tZXIvY3VzdG9tZXItaW5mby9jdXN0b21lci1pbmZvLmNvbXBvbmVudC5jc3MiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUE7SUFDSSxpQkFBaUI7QUFDckIiLCJmaWxlIjoic3JjL2FwcC9jdXN0b21lci9jdXN0b21lci1pbmZvL2N1c3RvbWVyLWluZm8uY29tcG9uZW50LmNzcyIsInNvdXJjZXNDb250ZW50IjpbImxhYmVsIHtcbiAgICBmb250LXdlaWdodDogYm9sZDtcbn0iXX0= */"
 
 /***/ }),
 
@@ -585,7 +585,7 @@ module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<h5>Store Information</h5>\n<hr>\n<div>\n  <label>ID : {{ customer.id }}</label>\n  <br>\n  <label>Store : {{ customer.store.name }}</label>\n  <br>\n  <label>Address : {{ customer.store.address }}</label>\n  <br>\n  <label>Phone : {{ customer.store.phone }}</label>\n  <br>\n  <label>Email : {{ customer.store.email }}</label>\n</div>"
+module.exports = "<div class=\"row\">\n  <div class=\"col\">\n    <h5>Store Information</h5>\n    <hr>\n    <div *ngIf=\"customer\">\n      <label>ID :</label> {{ customer.store.id }}\n      <br>\n      <label>Store :</label> {{ customer.store.name }}\n      <br>\n      <label>Address :</label> {{ customer.store.address }}\n      <br>\n      <label>Phone :</label> {{ customer.store.phone }}\n      <br>\n      <label>Email :</label> {{ customer.store.email }}\n    </div>\n  </div>\n  <div class=\"col\">\n      <h5>Owner Information</h5>\n      <hr>\n      <div *ngIf=\"customer\">\n        <label>ID :</label> {{ customer.store.owner.id }}\n        <br>\n        <label>Compagny :</label> {{ customer.store.owner.compagnyName }}\n        <br>\n        <label>Name :</label> {{ customer.store.owner.firstName + ' ' + customer.store.owner.lastName }}\n        <br>\n        <label>Email :</label> {{ customer.store.owner.email }}\n      </div>\n    </div>\n</div>"
 
 /***/ }),
 
@@ -777,7 +777,7 @@ var CustomerPanelComponent = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "/* Scroll Bar customer list table */\n.my-custom-scrollbar {\n    position: relative;\n    max-height: 45%;\n    overflow: auto;\n  }\n.table-wrapper-scroll-y {\n    display: block;\n  }\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvY3VzdG9tZXIvbGlzdC1jdXN0b21lci9saXN0LWN1c3RvbWVyLmNvbXBvbmVudC5jc3MiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUEsbUNBQW1DO0FBQ25DO0lBQ0ksa0JBQWtCO0lBQ2xCLGVBQWU7SUFDZixjQUFjO0VBQ2hCO0FBRUE7SUFDRSxjQUFjO0VBQ2hCIiwiZmlsZSI6InNyYy9hcHAvY3VzdG9tZXIvbGlzdC1jdXN0b21lci9saXN0LWN1c3RvbWVyLmNvbXBvbmVudC5jc3MiLCJzb3VyY2VzQ29udGVudCI6WyIvKiBTY3JvbGwgQmFyIGN1c3RvbWVyIGxpc3QgdGFibGUgKi9cbi5teS1jdXN0b20tc2Nyb2xsYmFyIHtcbiAgICBwb3NpdGlvbjogcmVsYXRpdmU7XG4gICAgbWF4LWhlaWdodDogNDUlO1xuICAgIG92ZXJmbG93OiBhdXRvO1xuICB9XG4gIFxuICAudGFibGUtd3JhcHBlci1zY3JvbGwteSB7XG4gICAgZGlzcGxheTogYmxvY2s7XG4gIH0iXX0= */"
+module.exports = "/* Scroll Bar customer list table */\n.my-custom-scrollbar {\n    position: relative;\n    max-height: 750px;\n    overflow: auto;\n  }\n.table-wrapper-scroll-y {\n    display: block;\n  }\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvY3VzdG9tZXIvbGlzdC1jdXN0b21lci9saXN0LWN1c3RvbWVyLmNvbXBvbmVudC5jc3MiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUEsbUNBQW1DO0FBQ25DO0lBQ0ksa0JBQWtCO0lBQ2xCLGlCQUFpQjtJQUNqQixjQUFjO0VBQ2hCO0FBRUE7SUFDRSxjQUFjO0VBQ2hCIiwiZmlsZSI6InNyYy9hcHAvY3VzdG9tZXIvbGlzdC1jdXN0b21lci9saXN0LWN1c3RvbWVyLmNvbXBvbmVudC5jc3MiLCJzb3VyY2VzQ29udGVudCI6WyIvKiBTY3JvbGwgQmFyIGN1c3RvbWVyIGxpc3QgdGFibGUgKi9cbi5teS1jdXN0b20tc2Nyb2xsYmFyIHtcbiAgICBwb3NpdGlvbjogcmVsYXRpdmU7XG4gICAgbWF4LWhlaWdodDogNzUwcHg7XG4gICAgb3ZlcmZsb3c6IGF1dG87XG4gIH1cbiAgXG4gIC50YWJsZS13cmFwcGVyLXNjcm9sbC15IHtcbiAgICBkaXNwbGF5OiBibG9jaztcbiAgfSJdfQ== */"
 
 /***/ }),
 
@@ -788,7 +788,7 @@ module.exports = "/* Scroll Bar customer list table */\n.my-custom-scrollbar {\n
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<h5>Customers</h5>\n<div class=\"table-responsive table-wrapper-scroll-y my-custom-scrollbar\">\n  <table class=\"table table-striped table-hover\">\n    <thead>\n      <tr>\n        <th>ID</th>\n        <th>Store</th>\n        <th>Owner</th>\n      </tr>\n    </thead>\n    <tbody>\n      <tr *ngFor=\"let customer of customers\" (click)=\"onClickCustomer(customer)\">\n        <td>{{ customer.id }}</td>\n        <td>{{ customer.store.name }}</td>\n        <td>{{ customer.store.owner.firstName + \" \" + customer.store.owner.lastName }}</td>\n      </tr>\n    </tbody>\n  </table>\n</div>"
+module.exports = "<div class=\"container\">\n  <div class=\"row\">\n    <div class=\"col\">\n      <h5>Customers</h5>\n    </div>\n    <div class=\"col\" style=\"float:right\">\n      <input #searchInput type=\"search\"\n        class=\"form-control\"\n        (keyup.enter)=\"onClickSearch(searchInput.value)\"\n        placeholder=\"Type to search a customer...\">\n    </div>\n  </div>\n  <div class=\"row\">\n    <div class=\"col\">\n      <div class=\"table-responsive table-wrapper-scroll-y my-custom-scrollbar\">\n        <table class=\"table table-striped table-hover\">\n          <thead>\n            <tr>\n              <th>ID</th>\n              <th>Store</th>\n              <th>Owner</th>\n            </tr>\n          </thead>\n          <tbody>\n            <tr *ngFor=\"let customer of customers\" (click)=\"onClickCustomer(customer)\">\n              <td>{{ customer.id }}</td>\n              <td>{{ customer.store.name }}</td>\n              <td>{{ customer.store.owner.firstName + \" \" + customer.store.owner.lastName }}</td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n  </div>  \n</div>"
 
 /***/ }),
 
@@ -807,8 +807,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var src_app_model_Customer__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! src/app/model/Customer */ "./src/app/model/Customer.ts");
 /* harmony import */ var src_app_common_components_modal_builder__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! src/app/common-components/modal-builder */ "./src/app/common-components/modal-builder.ts");
 /* harmony import */ var src_app_service_customer_service__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! src/app/service/customer-service */ "./src/app/service/customer-service.ts");
-/* harmony import */ var src_app_modal_info_modal_info_modal_component__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! src/app/modal/info-modal/info-modal.component */ "./src/app/modal/info-modal/info-modal.component.ts");
-
 
 
 
@@ -822,20 +820,32 @@ var ListCustomerComponent = /** @class */ (function () {
         this.customers = [];
     }
     ListCustomerComponent.prototype.ngOnInit = function () {
+        this.getCustomersList(null);
+    };
+    ListCustomerComponent.prototype.getCustomersList = function (searchInput) {
         var _this = this;
-        this.customerService.getAllCustomers().subscribe(function (data) {
+        var obs;
+        this.customers = [];
+        if (searchInput === null || searchInput.length == 0) {
+            obs = this.customerService.getAllCustomers();
+        }
+        else {
+            obs = this.customerService.searchCustomerByIdOrNames(searchInput);
+        }
+        obs.subscribe(function (data) {
             for (var _i = 0, data_1 = data; _i < data_1.length; _i++) {
                 var customer = data_1[_i];
                 _this.customers.push(src_app_model_Customer__WEBPACK_IMPORTED_MODULE_2__["Customer"].fromJson(customer));
             }
         }, function (error) {
-            var modalRef = _this.modalBuilder.open(src_app_modal_info_modal_info_modal_component__WEBPACK_IMPORTED_MODULE_5__["InfoModalComponent"]);
-            modalRef.componentInstance.title = "Cannot load the customers.";
-            modalRef.componentInstance.message = error.error;
+            _this.customers = [];
         });
     };
     ListCustomerComponent.prototype.onClickCustomer = function (customer) {
         this.onCustomerSelected.emit(customer);
+    };
+    ListCustomerComponent.prototype.onClickSearch = function (value) {
+        this.getCustomersList(value.trim());
     };
     tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Output"])(),
@@ -2144,7 +2154,6 @@ var Owner = /** @class */ (function () {
         owner.firstName = data.firstName;
         owner.lastName = data.lastName;
         owner.email = data.email;
-        owner.address = data.address;
         return owner;
     };
     return Owner;
@@ -3072,7 +3081,7 @@ module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"container-fluid\">\n    <div class=\"row justify-content-between\">\n        <div class=\"col-4\">\n            <button class=\"btn btn-primary\"\n                (click)=\"openCreateReportModal()\"\n            >New Order</button>\n        </div>\n        <div class=\"col-6\">\n            <div class=\"row justify-content-end\">\n                <div class=\"col-6\">\n                    <input #searchString type=\"text\"\n                        class=\"form-control\"\n                        (keyup.enter)=\"onClickSearch(searchString.value)\"\n                        placeholder=\"Type to search order...\">\n                </div>\n                <div class=\"col-4\">\n                    <button\n                        [disabled]=\"searchButtonDisabled\"\n                        class=\"btn btn-info search_button\"\n                        (click)=\"onClickSearch(searchString.value)\"\n                    >Search</button>\n                </div>\n            </div>\n        </div>\n    </div>\n    <br>\n    <h3 style=\"color: dimgray\" *ngIf=\"orders.length == 0\">{{ noOrdersFoundMessage }}</h3>\n    <div *ngIf=\"orders.length > 0\">\n        <list-orders\n            [orders]=\"orders\"\n        ></list-orders>\n    </div>\n</div>"
+module.exports = "<div class=\"container-fluid\">\n    <div class=\"row justify-content-between\">\n        <div class=\"col-4\">\n            <button class=\"btn btn-primary\"\n                (click)=\"openCreateReportModal()\"\n            >New Order</button>\n        </div>\n        <div class=\"col-6\">\n            <div class=\"row justify-content-end\">\n                <div class=\"col-6\">\n                    <input #searchString type=\"search\"\n                        class=\"form-control\"\n                        (keyup.enter)=\"onClickSearch(searchString.value)\"\n                        placeholder=\"Type to search order...\">\n                </div>\n                <div class=\"col-4\">\n                    <button\n                        [disabled]=\"searchButtonDisabled\"\n                        class=\"btn btn-info search_button\"\n                        (click)=\"onClickSearch(searchString.value)\"\n                    >Search</button>\n                </div>\n            </div>\n        </div>\n    </div>\n    <br>\n    <h3 style=\"color: dimgray\" *ngIf=\"orders.length == 0\">{{ noOrdersFoundMessage }}</h3>\n    <div *ngIf=\"orders.length > 0\">\n        <list-orders\n            [orders]=\"orders\"\n        ></list-orders>\n    </div>\n</div>"
 
 /***/ }),
 
@@ -3236,6 +3245,9 @@ var CustomerService = /** @class */ (function () {
     };
     CustomerService.prototype.getAllCustomers = function () {
         return this.http.get(this.url + "/all");
+    };
+    CustomerService.prototype.searchCustomerByIdOrNames = function (input) {
+        return this.http.get(this.url + "/searchByIdOrName/" + input);
     };
     CustomerService.prototype.getAllOwnersIdsAndNames = function () {
         return this.http.get(this.url + "/allOwnerIdsAndNames");

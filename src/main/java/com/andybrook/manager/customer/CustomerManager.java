@@ -29,7 +29,7 @@ public class CustomerManager implements ICustomerManager {
 
     @Override
     public List<Customer> getByNameContaining(String name) {
-        return null;
+        return customerService.getByNameContaining(name);
     }
 
     @Override

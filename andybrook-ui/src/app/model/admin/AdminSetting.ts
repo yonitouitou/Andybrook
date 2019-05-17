@@ -1,7 +1,7 @@
 export class AdminSetting {
 
     emails: string[]
-    ordersNbToShow: number
+    itemToShow: number
     notifyOnCloseReport: boolean
 
     constructor() {}

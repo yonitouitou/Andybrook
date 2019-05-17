@@ -11,22 +11,22 @@ public interface ICustomerJpaRepository extends JpaRepository<CustomerEntity, Lo
 
     String CUSTOMER_TABLE_NAME = "customer";
     String STORE_TABLE_NAME = "store";
-    String COLUMN_CUSTOMER_ID = "id";
+    String COLUMN_CUSTOMER_STORE_ID = "store_id";
     String COLUMN_STORE_ID = "id";
     String COLUMN_STORE_NAME = "name";
 
     String STORE_NAME_CONTAINING_QUERY =
             "SELECT " +
-                    "*" +
+                    "c.*" +
             " FROM " +
                     CUSTOMER_TABLE_NAME + " as c" +
             " INNER JOIN " +
                     STORE_TABLE_NAME + " as s " +
             " ON " +
-                    "c." + COLUMN_CUSTOMER_ID + " = s." + COLUMN_STORE_ID +
+                    "c." + COLUMN_CUSTOMER_STORE_ID + " = s." + COLUMN_STORE_ID +
             " WHERE " +
                     "s." + COLUMN_STORE_NAME +
-            " IS LIKE " +
+            " LIKE " +
                     "%:input%";
 
     @Query(value = STORE_NAME_CONTAINING_QUERY, nativeQuery = true)

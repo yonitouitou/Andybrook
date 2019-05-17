@@ -8,30 +8,30 @@ import java.util.Objects;
 
 public class AdminSetting {
 
-    private static final int DEFAULT_ORDERS_TO_SHOW_10 = 10;
+    private static final int DEFAULT_ITEMS_TO_LOAD_LIMIT_10 = 10;
 
     private Long id;
-    private int ordersNbToShow;
+    private int loadItemsLimit;
     private String[] emails;
     private Color documentHeaderTableBackgroundColor;
     private Color documentHeaderTableTextColor;
     private NotificationPolicy notificationPolicy;
 
-    public AdminSetting(Long id, String[] email, NotificationPolicy notificationPolicy, int ordersNbToShow,
+    public AdminSetting(Long id, String[] email, NotificationPolicy notificationPolicy, int loadItemsLimit,
                         Color documentHeaderTableBackgroundColor, Color documentHeaderTableTextColor) {
         this.id = id;
         this.emails = email;
         this.notificationPolicy = notificationPolicy;
         this.documentHeaderTableBackgroundColor = documentHeaderTableBackgroundColor;
         this.documentHeaderTableTextColor = documentHeaderTableTextColor;
-        this.ordersNbToShow = ordersNbToShow > 0 ? ordersNbToShow : DEFAULT_ORDERS_TO_SHOW_10;
+        this.loadItemsLimit = loadItemsLimit > 0 ? loadItemsLimit : DEFAULT_ITEMS_TO_LOAD_LIMIT_10;
     }
 
     public AdminSetting(AdminSetting other) {
         Objects.requireNonNull(other);
         this.id = other.id;
         this.emails = other.emails;
-        this.ordersNbToShow = other.ordersNbToShow;
+        this.loadItemsLimit = other.loadItemsLimit;
         this.documentHeaderTableBackgroundColor = other.documentHeaderTableBackgroundColor;
         this.documentHeaderTableTextColor = other.documentHeaderTableTextColor;
         this.notificationPolicy = new NotificationPolicy(other.notificationPolicy);
@@ -39,7 +39,7 @@ public class AdminSetting {
 
     public static AdminSetting getDefaultAdminSetting() {
         return new AdminSetting(null, new String[0], NotificationPolicy.getDefaultNotificationPolicy(),
-                DEFAULT_ORDERS_TO_SHOW_10, Color.LIGHT_GRAY, Color.BLACK);
+                DEFAULT_ITEMS_TO_LOAD_LIMIT_10, Color.LIGHT_GRAY, Color.BLACK);
     }
 
     public Long getId() {
@@ -66,12 +66,12 @@ public class AdminSetting {
         this.notificationPolicy = notificationPolicy;
     }
 
-    public int getOrdersNbToShow() {
-        return ordersNbToShow;
+    public int getLoadItemsLimit() {
+        return loadItemsLimit;
     }
 
-    public void setOrdersNbToShow(int ordersNbToShow) {
-        this.ordersNbToShow = ordersNbToShow;
+    public void setLoadItemsLimit(int loadItemsLimit) {
+        this.loadItemsLimit = loadItemsLimit;
     }
 
     public Color getDocumentHeaderTableBackgroundColor() {
@@ -94,7 +94,7 @@ public class AdminSetting {
     public String toString() {
         final StringBuilder sb = new StringBuilder("AdminSetting{");
         sb.append("id=").append(id);
-        sb.append(", ordersNbToShow=").append(ordersNbToShow);
+        sb.append(", loadItemsLimit=").append(loadItemsLimit);
         sb.append(", emails=").append(Arrays.toString(emails));
         sb.append(", documentHeaderTableBackgroundColor=").append(documentHeaderTableBackgroundColor);
         sb.append(", documentHeaderTableTextColor=").append(documentHeaderTableTextColor);

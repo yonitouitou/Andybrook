@@ -1,13 +1,30 @@
-<h5>Store Information</h5>
-<hr>
-<div>
-  <label>ID : {{ customer.id }}</label>
-  <br>
-  <label>Store : {{ customer.store.name }}</label>
-  <br>
-  <label>Address : {{ customer.store.address }}</label>
-  <br>
-  <label>Phone : {{ customer.store.phone }}</label>
-  <br>
-  <label>Email : {{ customer.store.email }}</label>
+<div class="row">
+  <div class="col">
+    <h5>Store Information</h5>
+    <hr>
+    <div *ngIf="customer">
+      <label>ID :</label> {{ customer.store.id }}
+      <br>
+      <label>Store :</label> {{ customer.store.name }}
+      <br>
+      <label>Address :</label> {{ customer.store.address }}
+      <br>
+      <label>Phone :</label> {{ customer.store.phone }}
+      <br>
+      <label>Email :</label> {{ customer.store.email }}
+    </div>
+  </div>
+  <div class="col">
+      <h5>Owner Information</h5>
+      <hr>
+      <div *ngIf="customer">
+        <label>ID :</label> {{ customer.store.owner.id }}
+        <br>
+        <label>Compagny :</label> {{ customer.store.owner.compagnyName }}
+        <br>
+        <label>Name :</label> {{ customer.store.owner.firstName + ' ' + customer.store.owner.lastName }}
+        <br>
+        <label>Email :</label> {{ customer.store.owner.email }}
+      </div>
+    </div>
 </div>

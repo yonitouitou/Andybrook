@@ -2,7 +2,6 @@ package com.andybrook.service.order;
 
 import com.andybrook.dao.order.IOrderDao;
 import com.andybrook.exception.*;
-import com.andybrook.language.LanguageResolver;
 import com.andybrook.model.BarCode;
 import com.andybrook.model.order.Order;
 import com.andybrook.model.order.OrderItem;
@@ -19,8 +18,6 @@ import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 import java.util.Set;
-
-import static com.andybrook.language.Msg.Error.ORDER_NOT_FOUND;
 
 @Service
 public class OrderService implements IOrderService {
@@ -58,7 +55,7 @@ public class OrderService implements IOrderService {
 
     @Override
     public Set<Order> getAll() {
-        return dao.getAll(adminSettingService.getOrdersNbToShow());
+        return dao.getAll(adminSettingService.getLoadItemsLimit());
     }
 
     @Override
