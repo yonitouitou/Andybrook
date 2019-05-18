@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Map;
+import java.util.OptionalInt;
 
 @Service
 public class CustomerManager implements ICustomerManager {
@@ -33,8 +34,8 @@ public class CustomerManager implements ICustomerManager {
     }
 
     @Override
-    public List<Customer> getAll() {
-        return customerService.getAll();
+    public List<Customer> getAll(OptionalInt limitOpt) {
+        return customerService.getAll(limitOpt);
     }
 
     @Override

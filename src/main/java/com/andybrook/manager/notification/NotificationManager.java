@@ -17,8 +17,6 @@ import java.util.Arrays;
 public class NotificationManager implements INotificationManager {
 
     @Autowired
-    private ApplicationProperties applicationProperties;
-    @Autowired
     private INotificationService notificationService;
     @Autowired
     private IAdminSettingManager adminSettingManager;

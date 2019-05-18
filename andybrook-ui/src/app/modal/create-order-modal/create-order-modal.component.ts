@@ -35,7 +35,7 @@ export class CreateOrderModalComponent implements OnInit {
       comment: ['']
     });
 
-    this.customerService.getAllCustomers().subscribe(data => {
+    this.customerService.getAllCustomersNoLimit().subscribe(data => {
       console.log(data)
       for (let i = 0; i < data.length; i++) {
         this.customersArray.push(Customer.fromJson(data[i]))

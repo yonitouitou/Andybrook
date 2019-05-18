@@ -3,6 +3,7 @@ package com.andybrook.manager.order;
 import com.andybrook.enums.NotificationType;
 import com.andybrook.exception.*;
 import com.andybrook.manager.notification.INotificationManager;
+import com.andybrook.manager.setting.IAdminSettingManager;
 import com.andybrook.model.notification.request.NotificationRequest;
 import com.andybrook.model.notification.request.ctx.OrderDocumentCtx;
 import com.andybrook.model.order.Order;
@@ -28,6 +29,8 @@ public class OrderManager implements IOrderManager {
     private IOrderService orderService;
     @Autowired
     private INotificationManager notificationManager;
+    @Autowired
+    private IAdminSettingManager adminSettingManager;
 
     @Override
     public Order newOrder(NewOrderRequest request) throws StoreNotFound {
@@ -97,7 +100,9 @@ public class OrderManager implements IOrderManager {
     }
 
     private void notify(NotificationType type, Order order) {
-        OrderDocumentCtx ctx = OrderDocumentCtx.builder(true, order).build();
+        OrderDocumentCtx ctx = OrderDocumentCtx.builder(true, order)
+                .setEmails(adminSettingManager.getNotificationEmails())
+                .build();
         notificationManager.notify(new NotificationRequest(Arrays.asList(type), ctx));
     }
 }

@@ -44,7 +44,7 @@ const appRoutes: Routes = [
   { path: '', component: OrdersManagerComponent },
   { path: 'order/:id', component: ShowOrderComponent },
   { path: 'admin', component: AdminPanelComponent},
-  { path: 'new-customer', component: NewCustomerComponent},
+  { path: 'new-customer/:id', component: NewCustomerComponent},
   { path: 'customer-dashboard', component: CustomerPanelComponent}
 ];
 

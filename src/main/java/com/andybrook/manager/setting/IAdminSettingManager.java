@@ -9,4 +9,8 @@ public interface IAdminSettingManager {
     AdminSetting updateAdminSetting(AdminSetting adminSetting);
 
     boolean shouldNotifyOnCloseOrder();
+
+    int getLoadItemsLimit();
+
+    String[] getNotificationEmails();
 }

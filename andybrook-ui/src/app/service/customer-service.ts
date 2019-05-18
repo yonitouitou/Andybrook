@@ -15,6 +15,10 @@ export class CustomerService {
     addCustomer(req: AddCustomerReq): Observable<any> {
         return this.http.post(this.url + "/add", req);
     }
+
+    getCustomer(id: number): Observable<any> {
+        return this.http.get(this.url + "/get/" + id);
+    }
     
     getStoresOfOwner(ownerId: number): Observable<any> {
         return this.http.get(this.url + "/storesOfOwner/" + ownerId);
@@ -22,6 +26,10 @@ export class CustomerService {
     
     getAllCustomers(): Observable<any> {
         return this.http.get(this.url + "/all");
+    }
+
+    getAllCustomersNoLimit(): Observable<any> {
+        return this.http.get(this.url + "/allNoLimit");
     }
 
     searchCustomerByIdOrNames(input: string): Observable<any> {

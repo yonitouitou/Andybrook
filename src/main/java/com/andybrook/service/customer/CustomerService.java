@@ -13,6 +13,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Map;
+import java.util.OptionalInt;
 
 @Service
 public class CustomerService implements ICustomerService {
@@ -47,8 +48,8 @@ public class CustomerService implements ICustomerService {
     }
 
     @Override
-    public List<Customer> getAll() {
-        return dao.getAll(adminSettingService.getLoadItemsLimit());
+    public List<Customer> getAll(OptionalInt limitOpt) {
+        return dao.getAll(limitOpt);
     }
 
     @Override

@@ -8,6 +8,8 @@ import { Store } from 'src/app/model/Store';
 import { ModalBuilder } from 'src/app/common-components/modal-builder';
 import { InfoModalComponent } from 'src/app/modal/info-modal/info-modal.component';
 import { StringUtil } from 'src/app/util/StringUtil';
+import { Customer } from 'src/app/model/Customer';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'new-customer',
@@ -23,22 +25,40 @@ export class NewCustomerComponent implements OnInit {
   ownerIdMapByName: Map<string, number>
   errorMessage: string
   storesOfSelectedOwner: Store[] = []
+  customerToUpdate: Customer;
   private _error = new Subject<string>()
 
   constructor(private formBuilder: FormBuilder,
               private modalBuilder: ModalBuilder,
+              private route: ActivatedRoute,
               private customerService: CustomerService) {}
 
   ngOnInit() {
     this.ownerIdMapByName = new Map();
     this.initForm();
+    this.loadCustomerToUpdateIfNecessary();
     this._error.subscribe((msg) => this.errorMessage = msg);
     this._error.pipe(debounceTime(4000)).subscribe(() => this.errorMessage = null);
   }
 
-  initForm() {
-    this.showCreateOwnerForm = false;
+  private loadCustomerToUpdateIfNecessary() {
+    let customerId = parseInt(this.route.snapshot.paramMap.get('id'));
+    if (customerId != -1) {
+      this.customerService.getCustomer(customerId).subscribe(
+        data => {
+          this.customerToUpdate = Customer.fromJson(data);
+          this.fillForm();
+        },
+        error => {
+          console.log('cannot load the customer : ' + customerId + ". Error :" + error);
+        }
+      )
+    }
+  }
+
+  private initForm() {
     this.loadOwners();
+    this.showCreateOwnerForm = false;
     this.form = this.formBuilder.group({
       ownerAutoComplete: [''],
       isNewOwnerCheckbox: [],
@@ -53,6 +73,35 @@ export class NewCustomerComponent implements OnInit {
       storePhone: [''],
       storeEmail: ['', Validators.email]
     });
+  }
+
+  private fillForm() {
+    this.showCreateOwnerForm = true;
+    let showOwnerForm = true;
+    let ownerCompagnyName = this.customerToUpdate.store.owner.compagnyName;
+    let ownerFirstName = this.customerToUpdate.store.owner.firstName;
+    let ownerLastName = this.customerToUpdate.store.owner.lastName;
+    let ownerEmail = this.customerToUpdate.store.owner.email;
+    let storeName = this.customerToUpdate.store.name;
+    let storeAddress = this.customerToUpdate.store.address;
+    //let storeZipCode = this.customerToUpdate ? this.customerToUpdate.store.z
+    let storePhone = this.customerToUpdate.store.phone;
+    let storeEmail = this.customerToUpdate.store.email;
+
+    this.form.setValue({
+      ownerAutoComplete: [''],
+      isNewOwnerCheckbox: [showOwnerForm],
+      ownerCompagnyName: [ownerCompagnyName],
+      ownerFirstName: [ownerFirstName],
+      ownerLastName: [ownerLastName],
+      ownerEmail: [ownerEmail, Validators.email],
+      storeName: [storeName, Validators.required],
+      storeAddress: [storeAddress],
+      storeZipCode: [''],
+      storeCity: [''],
+      storePhone: [storePhone],
+      storeEmail: [storeEmail, Validators.email]
+    })
   }
 
   loadOwners() {
@@ -148,6 +197,7 @@ export class NewCustomerComponent implements OnInit {
       req.storeAddress = storeAddress;
       req.storeEmail = storeEmail;
       req.storePhone = storePhone;
+
       this.customerService.addCustomer(req).subscribe(
         data => {
           this.form.reset();

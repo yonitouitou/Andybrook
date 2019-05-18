@@ -25,4 +25,14 @@ public class AdminSettingManager implements IAdminSettingManager {
     public boolean shouldNotifyOnCloseOrder() {
         return adminSettingService.shouldNotifyOnCloseReport();
     }
+
+    @Override
+    public int getLoadItemsLimit() {
+        return adminSettingService.getLoadItemsLimit();
+    }
+
+    @Override
+    public String[] getNotificationEmails() {
+        return adminSettingService.getNotificationEmails();
+    }
 }

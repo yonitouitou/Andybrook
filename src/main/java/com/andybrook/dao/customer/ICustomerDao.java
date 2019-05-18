@@ -3,6 +3,7 @@ package com.andybrook.dao.customer;
 import com.andybrook.model.customer.Customer;
 
 import java.util.List;
+import java.util.OptionalInt;
 
 public interface ICustomerDao {
 
@@ -12,5 +13,5 @@ public interface ICustomerDao {
 
     List<Customer> getByNameContaining(String name);
 
-    List<Customer> getAll(int limit);
+    List<Customer> getAll(OptionalInt limitOpt);
 }

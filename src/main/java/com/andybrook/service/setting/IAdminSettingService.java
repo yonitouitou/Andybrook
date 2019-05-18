@@ -11,4 +11,6 @@ public interface IAdminSettingService {
     boolean shouldNotifyOnCloseReport();
 
     int getLoadItemsLimit();
+
+    String[] getNotificationEmails();
 }

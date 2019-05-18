@@ -54,4 +54,9 @@ public class AdminSettingService implements IAdminSettingService {
     public int getLoadItemsLimit() {
         return adminSetting.getLoadItemsLimit();
     }
+
+    @Override
+    public String[] getNotificationEmails() {
+        return adminSetting.getEmails();
+    }
 }

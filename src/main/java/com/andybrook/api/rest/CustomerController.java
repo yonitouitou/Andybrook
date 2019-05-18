@@ -2,6 +2,7 @@ package com.andybrook.api.rest;
 
 import com.andybrook.api.rest.ctx.customer.AddOrUpdateCustomerRestRequest;
 import com.andybrook.manager.customer.ICustomerManager;
+import com.andybrook.manager.setting.IAdminSettingManager;
 import com.andybrook.model.api.AggregatedOrder;
 import com.andybrook.model.api.AggregatedOrderInfo;
 import com.andybrook.model.customer.Customer;
@@ -18,10 +19,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.lang.System.Logger;
 import java.lang.System.Logger.Level;
-import java.util.Collection;
-import java.util.Collections;
-import java.util.LinkedList;
-import java.util.List;
+import java.util.*;
 import java.util.stream.Collectors;
 
 @RestController
@@ -32,11 +30,19 @@ public class CustomerController extends AbstractController {
 
     @Autowired
     private ICustomerManager customerManager;
+    @Autowired
+    private IAdminSettingManager adminSettingManager;
 
     @PostMapping(path = "/add")
     public void newCustomer(@RequestBody AddOrUpdateCustomerRestRequest request) {
         LOGGER.log(Level.INFO, "New Customer request : " + request.toString());
         customerManager.newCustomer(toCustomerRequest(request));
+    }
+
+    @GetMapping(path = "/get/{id}")
+    public Customer getCustomer(@PathVariable long id) {
+        LOGGER.log(Level.INFO, "Get Customer request with id : " + id);
+        return customerManager.get(id);
     }
 
     @PostMapping(path = "/update")
@@ -79,8 +85,14 @@ public class CustomerController extends AbstractController {
 
     @GetMapping(path = "/all")
     public List<Customer> getAll() {
-        LOGGER.log(Level.INFO, "Get All customer request.");
-        return customerManager.getAll();
+        LOGGER.log(Level.INFO, "Get All customer request with limit");
+        return customerManager.getAll(OptionalInt.of(adminSettingManager.getLoadItemsLimit()));
+    }
+
+    @GetMapping(path = "/allNoLimit")
+    public List<Customer> getAllNoLimit() {
+        LOGGER.log(Level.INFO, "Get All customer request no limit.");
+        return customerManager.getAll(OptionalInt.empty());
     }
 
     private AddCustomerRequest toCustomerRequest(AddOrUpdateCustomerRestRequest req) {

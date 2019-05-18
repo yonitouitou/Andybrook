@@ -1,6 +1,7 @@
 package com.andybrook.model.notification.request.ctx;
 
 import java.time.ZonedDateTime;
+import java.util.LinkedList;
 import java.util.List;
 
 public final class NotifSetting {
@@ -12,7 +13,7 @@ public final class NotifSetting {
     public NotifSetting(boolean isLiveEvent, ZonedDateTime dateDocument, List<String> emails) {
         this.isLiveEvent = isLiveEvent;
         this.dateDocument = dateDocument != null ? dateDocument : ZonedDateTime.now();
-        this.emails = emails;
+        this.emails = emails != null ? emails : new LinkedList<>();
     }
 
     public ZonedDateTime getDateDocument() {

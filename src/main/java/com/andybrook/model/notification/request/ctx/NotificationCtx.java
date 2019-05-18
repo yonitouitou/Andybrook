@@ -2,7 +2,7 @@ package com.andybrook.model.notification.request.ctx;
 
 public class NotificationCtx {
 
-    private final NotifSetting setting;
+    protected final NotifSetting setting;
 
     public NotificationCtx(NotifSetting setting) {
         this.setting = setting;

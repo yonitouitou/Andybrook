@@ -3,6 +3,7 @@ package com.andybrook.model.notification.request.ctx;
 import com.andybrook.model.order.Order;
 
 import java.time.ZonedDateTime;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
@@ -26,8 +27,8 @@ public class OrderDocumentCtx extends NotificationCtx {
     @Override
     public String toString() {
         final StringBuilder sb = new StringBuilder("OrderDocumentCtx{");
-        sb.append("order=").append(order);
-        sb.append(((NotificationCtx) this).toString());
+        sb.append("Setting=").append(setting);
+        sb.append(", order=").append(order);
         sb.append('}');
         return sb.toString();
     }
@@ -72,6 +73,11 @@ public class OrderDocumentCtx extends NotificationCtx {
 
         public Builder setEmails(List<String> emails) {
             this.emails = emails != null ? emails : Collections.emptyList();
+            return this;
+        }
+
+        public Builder setEmails(String[] emails) {
+            this.emails = emails != null ? Arrays.asList(emails) : null;
             return this;
         }
     }

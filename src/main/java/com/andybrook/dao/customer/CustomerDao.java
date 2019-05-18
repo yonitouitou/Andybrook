@@ -14,6 +14,7 @@ import org.springframework.stereotype.Repository;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Optional;
+import java.util.OptionalInt;
 import java.util.stream.Collectors;
 
 @Repository
@@ -52,8 +53,10 @@ public class CustomerDao implements ICustomerDao {
     }
 
     @Override
-    public List<Customer> getAll(int limit) {
-        Iterable<CustomerEntity> entities = repository.findAll(PageRequest.of(0, limit, new Sort(Direction.ASC, "id")));
+    public List<Customer> getAll(OptionalInt limitOpt) {
+        Iterable<CustomerEntity> entities = limitOpt.isPresent()
+                ? repository.findAll(PageRequest.of(0, limitOpt.getAsInt(), new Sort(Direction.ASC, "id")))
+                : repository.findAll();
         List<Customer> customers = new LinkedList<>();
         entities.forEach(entity -> {
             Customer customer = entityFactory.createCustomer(entity);

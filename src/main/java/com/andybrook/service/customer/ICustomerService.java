@@ -7,6 +7,7 @@ import com.andybrook.model.request.customer.AddCustomerRequest;
 
 import java.util.List;
 import java.util.Map;
+import java.util.OptionalInt;
 
 public interface ICustomerService {
 
@@ -16,7 +17,7 @@ public interface ICustomerService {
 
     List<Customer> getByNameContaining(String name);
 
-    List<Customer> getAll();
+    List<Customer> getAll(OptionalInt limitOpt);
 
     Map<Long, Owner> getAllOwners();
 
