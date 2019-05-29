@@ -585,7 +585,7 @@ module.exports = "label {\n    font-weight: bold;\n}\n/*# sourceMappingURL=data:
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"row\">\n  <div class=\"col\">\n    <h5>Store Information</h5>\n    <hr>\n    <div *ngIf=\"customer\">\n      <label>ID :</label> {{ customer.store.id }}\n      <br>\n      <label>Store :</label> {{ customer.store.name }}\n      <br>\n      <label>Address :</label> {{ customer.store.address }}\n      <br>\n      <label>Phone :</label> {{ customer.store.phone }}\n      <br>\n      <label>Email :</label> {{ customer.store.email }}\n    </div>\n  </div>\n  <div class=\"col\">\n    <h5>Owner Information</h5>\n    <hr>\n    <div *ngIf=\"customer\">\n      <label>ID :</label> {{ customer.store.owner.id }}\n      <br>\n      <label>Compagny :</label> {{ customer.store.owner.compagnyName }}\n      <br>\n      <label>Name :</label> {{ customer.store.owner.firstName + ' ' + customer.store.owner.lastName }}\n      <br>\n      <label>Email :</label> {{ customer.store.owner.email }}\n    </div>\n  </div>\n</div>"
+module.exports = "<div class=\"row\">\n  <div class=\"col\">\n    <h5>Store Information</h5>\n    <hr>\n    <div *ngIf=\"customer\">\n      <label>ID :</label> {{ customer.store.id }}\n      <br>\n      <label>Store :</label> {{ customer.store.name }}\n      <br>\n      <label>Address :</label> {{ customer.store.address.format() }}\n      <br>\n      <label>Phone :</label> {{ customer.store.phone }}\n      <br>\n      <label>Email :</label> {{ customer.store.email }}\n    </div>\n  </div>\n  <div class=\"col\">\n    <h5>Owner Information</h5>\n    <hr>\n    <div *ngIf=\"customer\">\n      <label>ID :</label> {{ customer.store.owner.id }}\n      <br>\n      <label>Compagny :</label> {{ customer.store.owner.compagnyName }}\n      <br>\n      <label>Name :</label> {{ customer.store.owner.firstName + ' ' + customer.store.owner.lastName }}\n      <br>\n      <label>Email :</label> {{ customer.store.owner.email }}\n    </div>\n  </div>\n</div>"
 
 /***/ }),
 
@@ -647,7 +647,7 @@ module.exports = "/* Scroll Bar Aggregated Order Item table */\n.my-custom-scrol
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<h5>Orders ({{ orders.length }})</h5>\n<div class=\"table-responsive table-wrapper-scroll-y my-custom-scrollbar\">\n  <table class=\"table table-striped table-bordered table-sm\">\n      <thead>\n          <tr>\n              <th>ID</th>\n              <th>Name</th>\n              <th>Status</th>\n              <th>Products</th>\n              <th>Qty</th>\n              <th>Amount</th>\n              <th>Creation</th>\n              <th></th>\n          </tr>\n      </thead>\n      <tbody>\n          <tr *ngFor=\"let order of orders\">\n              <td>{{ order.id }}</td>\n              <td>{{ order.name }}</td>\n              <td [ngClass]=\"order.status === 'OPEN' ? 'table-success' : 'table-danger'\">{{ order.status }}</td>\n              <td>{{ order.aggregatedOrderInfo.productSize }}</td>\n              <td>{{ order.aggregatedOrderInfo.orderItemSize }}</td>\n              <td>{{ order.aggregatedOrderInfo.totalPrice }} €</td>\n              <td>{{ order.createdDatetime  | date:'shortDate' }}</td>\n              <td>\n                <button\n                    class=\"btn btn-success btn-sm\"\n                    [routerLink]=\"['/order', order.id]\"\n                >See</button>\n              </td>\n          </tr>\n      </tbody>\n  </table>\n</div>\n"
+module.exports = "<h5>Orders ({{ orders.length }})</h5>\n<div class=\"table-responsive table-wrapper-scroll-y my-custom-scrollbar\">\n  <table class=\"table table-striped table-bordered table-sm\">\n      <thead>\n          <tr>\n              <th>ID</th>\n              <th>Name</th>\n              <th>Status</th>\n              <th>Products</th>\n              <th>Qty</th>\n              <th>Amount</th>\n              <th>Creation</th>\n              <th>Closed</th>\n              <th></th>\n          </tr>\n      </thead>\n      <tbody>\n          <tr *ngFor=\"let order of orders\">\n              <td>{{ order.id }}</td>\n              <td>{{ order.name }}</td>\n              <td [ngClass]=\"order.status === 'OPEN' ? 'table-success' : 'table-danger'\">{{ order.status }}</td>\n              <td>{{ order.aggregatedOrderInfo.productSize }}</td>\n              <td>{{ order.aggregatedOrderInfo.orderItemSize }}</td>\n              <td>{{ order.aggregatedOrderInfo.totalPrice }} €</td>\n              <td>{{ order.createdDatetime  | date:'shortDate' }}</td>\n              <td>{{ order.closeDatetime  | date:'shortDate' }}</td>\n              <td>\n                <button\n                    class=\"btn btn-success btn-sm\"\n                    [routerLink]=\"['/order', order.id]\"\n                >See</button>\n              </td>\n          </tr>\n      </tbody>\n  </table>\n</div>\n"
 
 /***/ }),
 
@@ -663,13 +663,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "CustomerOrdersComponent", function() { return CustomerOrdersComponent; });
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
-/* harmony import */ var src_app_service_order_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! src/app/service/order-service */ "./src/app/service/order-service.ts");
-
 
 
 var CustomerOrdersComponent = /** @class */ (function () {
-    function CustomerOrdersComponent(orderService) {
-        this.orderService = orderService;
+    function CustomerOrdersComponent() {
         this.orders = [];
     }
     CustomerOrdersComponent.prototype.ngOnInit = function () {
@@ -684,7 +681,7 @@ var CustomerOrdersComponent = /** @class */ (function () {
             template: __webpack_require__(/*! ./customer-orders.component.html */ "./src/app/customer/customer-orders/customer-orders.component.html"),
             styles: [__webpack_require__(/*! ./customer-orders.component.css */ "./src/app/customer/customer-orders/customer-orders.component.css")]
         }),
-        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [src_app_service_order_service__WEBPACK_IMPORTED_MODULE_2__["OrderService"]])
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [])
     ], CustomerOrdersComponent);
     return CustomerOrdersComponent;
 }());
@@ -711,7 +708,7 @@ module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"row\">\n  <customer-header></customer-header>\n</div>\n<div class=\"row\">\n  <div class=\"col-md-auto\">\n    <list-customer (onCustomerSelected)=\"onCustomerSelected($event)\"></list-customer>\n  </div>\n  <div class=\"col\">\n    <new-customer></new-customer>\n    <hr>\n    <customer-info [customer]=\"customer\"></customer-info>\n    <hr>\n    <customer-orders [orders]=\"orders\"></customer-orders>\n  </div>\n</div>"
+module.exports = "<div class=\"row\">\n  <customer-header></customer-header>\n</div>\n<div class=\"row\">\n  <div class=\"col-md-auto\">\n    <list-customer (onCustomerSelected)=\"onCustomerSelected($event)\"></list-customer>\n  </div>\n  <div class=\"col\">\n    <new-customer [customer]=\"customer\"></new-customer>\n    <hr>\n    <customer-orders [orders]=\"orders\"></customer-orders>\n  </div>\n</div>"
 
 /***/ }),
 
@@ -885,7 +882,7 @@ module.exports = ".ng-invalid:not(form)  {\n    border-left: 5px solid #a94442; 
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<form [formGroup]=\"form\" (ngSubmit)=\"onSubmit()\">\n  <h5>Owner</h5>\n  <hr>\n  <div class=\"row\">\n    <div class=\"col form-group\">\n      <label for=\"newowner\">New Owner &nbsp;</label>\n      <input type=\"checkbox\" formControlName=\"isNewOwnerCheckbox\" (click)=\"onClickNewOwnerCheckbox($event)\">\n    </div>\n  </div>\n  <div class=\"row\">\n    <div *ngIf=\"! showCreateOwnerForm\" class=\"col-5 form-group\">\n      <label for=\"Name\">Select an existing owner :</label>\n      <input type=\"text\" formControlName=\"ownerAutoComplete\"\n        (blur)=\"onBlurOwnerAutoComplete()\"\n        [(ngModel)]=\"inputOwnerName\"\n        [ngbTypeahead]=\"search\"\n        class=\"form-control\"/>\n    </div>\n  </div>\n  <div *ngIf=\"storesOfSelectedOwner.length > 0\" class=\"row\">\n    <div class=\"col-5\">\n      <table class=\"table table-striped table-bordered table-sm\">\n        <thead>\n          <tr>\n            <th>#</th>\n            <th>Id</th>\n            <th>Name</th>\n            <th>Email</th>\n            <th>Phone</th>\n          </tr>\n        </thead>\n        <tbody>\n          <tr *ngFor=\"let store of storesOfSelectedOwner; let i = index\">\n            <td>{{ i + 1 }}</td>\n            <td>{{ store.id }}</td>\n            <td>{{ store.name }}</td>\n            <td>{{ store.email }}</td>\n            <td>{{ store.phone }}</td>\n          </tr>\n        </tbody>\n      </table>\n    </div>\n  </div>\n  <div *ngIf=\"showCreateOwnerForm\" class=\"row\">\n    <div class=\"col form-group\">\n      <label for=\"compagnyName\">Compagny Nane</label>\n      <input type=\"text\" formControlName=\"ownerCompagnyName\" class=\"form-control\" (blur)=onBlurStringFormControl($event)/>\n    </div>\n    <div class=\"col form-group\">\n        <label for=\"firstName\">FirstName</label>\n        <input type=\"text\" formControlName=\"ownerFirstName\" class=\"form-control\" (blur)=onBlurStringFormControl($event)/>\n    </div>\n    <div class=\"col form-group\">\n        <label for=\"lastName\">LastName</label>\n        <input type=\"text\" formControlName=\"ownerLastName\" class=\"form-control\" (blur)=onBlurStringFormControl($event)/>\n    </div>\n    <div class=\"col form-group\">\n        <label for=\"email\">Email</label>\n        <input type=\"text\" formControlName=\"ownerEmail\" class=\"form-control\" (blur)=onBlurLowcaseStringFormControl($event)/>\n    </div>\n  </div>\n  <br>\n  <h5>Store</h5>\n  <hr>\n  <div class=\"row\">\n      <div class=\"col form-group\">\n          <label for=\"name\">Name</label>\n          <input type=\"text\" formControlName=\"storeName\" class=\"form-control\" (blur)=onBlurStringFormControl($event)/>\n      </div>\n      <div class=\"col form-group\">\n          <label for=\"address\">Address</label>\n          <input type=\"text\" formControlName=\"storeAddress\" class=\"form-control\"/>\n      </div>\n      <div class=\"col form-group\">\n          <label for=\"zipCode\">Zip Code</label>\n          <input type=\"text\" formControlName=\"storeZipCode\" class=\"form-control\"/>\n      </div>\n      <div class=\"col form-group\">\n          <label for=\"city\">City</label>\n          <input type=\"text\" formControlName=\"storeCity\" class=\"form-control\" (blur)=onBlurStringFormControl($event)/>\n      </div>\n  </div>\n  <div class=\"row\">\n      <div class=\"col form-group\">\n          <label for=\"phone\">Phone</label>\n          <input type=\"text\" formControlName=\"storePhone\" class=\"form-control\"/>\n      </div>\n      <div class=\"col form-group\">\n          <label for=\"email\">Email</label>\n          <input type=\"text\" formControlName=\"storeEmail\" class=\"form-control\" (blur)=onBlurLowcaseStringFormControl($event)>\n      </div>\n  </div>\n  <hr>\n  <div class=\"row\">\n    <div class=\"col\">\n      <button class=\"btn btn-primary\" type=\"submit\">Save</button>\n    </div>\n    <div class=\"col-md-auto\">\n      <ngb-alert *ngIf=\"errorMessage\" type=\"danger\" [dismissible]=\"true\" (close)=\"errorMessage = null\">{{ errorMessage }}</ngb-alert>\n    </div>\n  </div>\n</form>"
+module.exports = "<form [formGroup]=\"form\" (ngSubmit)=\"onSubmit()\">\n  <h5>Owner</h5>\n  <hr>\n  <div class=\"row\">\n    <div class=\"col form-group\">\n      <label for=\"compagnyName\">Compagny Nane</label>\n      <input type=\"text\" formControlName=\"ownerAutoComplete\"\n        (blur)=\"onBlurOwnerAutoComplete()\"\n        [(ngModel)]=\"inputOwnerName\"\n        [ngbTypeahead]=\"search\"\n        class=\"form-control\"/>\n    </div>\n    <div class=\"col form-group\">\n        <label for=\"firstName\">FirstName</label>\n        <input type=\"text\" formControlName=\"ownerFirstName\" class=\"form-control\" (blur)=onBlurStringFormControl($event)/>\n    </div>\n    <div class=\"col form-group\">\n        <label for=\"lastName\">LastName</label>\n        <input type=\"text\" formControlName=\"ownerLastName\" class=\"form-control\" (blur)=onBlurStringFormControl($event)/>\n    </div>\n    <div class=\"col form-group\">\n        <label for=\"email\">Email</label>\n        <input type=\"text\" formControlName=\"ownerEmail\" class=\"form-control\" (blur)=onBlurLowcaseStringFormControl($event)/>\n    </div>\n  </div>\n  <div *ngIf=\"storesOfSelectedOwner.length > 0\" class=\"row\">\n    <div class=\"col-5\">\n      <table class=\"table table-striped table-bordered table-sm\">\n        <thead>\n          <tr>\n            <th>#</th>\n            <th>Id</th>\n            <th>Name</th>\n            <th>Email</th>\n            <th>Phone</th>\n          </tr>\n        </thead>\n        <tbody>\n          <tr *ngFor=\"let store of storesOfSelectedOwner; let i = index\">\n            <td>{{ i + 1 }}</td>\n            <td>{{ store.id }}</td>\n            <td>{{ store.name }}</td>\n            <td>{{ store.email }}</td>\n            <td>{{ store.phone }}</td>\n          </tr>\n        </tbody>\n      </table>\n    </div>\n  </div>\n  <h5>Store</h5>\n  <hr>\n  <div class=\"row\">\n      <div class=\"col form-group\">\n          <label for=\"name\">Name</label>\n          <input type=\"text\" formControlName=\"storeName\" class=\"form-control\" (blur)=onBlurStringFormControl($event)/>\n      </div>\n      <div class=\"col form-group\">\n        <label for=\"streetNumber\">Street Number</label>\n        <input type=\"text\" formControlName=\"storeStreetNumber\" class=\"form-control\"/>\n      </div>\n      <div class=\"col form-group\">\n          <label for=\"streetName\">Street</label>\n          <input type=\"text\" formControlName=\"storeStreetName\" class=\"form-control\"/>\n      </div>\n      <div class=\"col form-group\">\n          <label for=\"zipCode\">Zip Code</label>\n          <input type=\"text\" formControlName=\"storeZipCode\" class=\"form-control\"/>\n      </div>\n      <div class=\"col form-group\">\n          <label for=\"city\">City</label>\n          <input type=\"text\" formControlName=\"storeCity\" class=\"form-control\" (blur)=onBlurStringFormControl($event)/>\n      </div>\n      <div class=\"col form-group\">\n        <label for=\"country\">Country</label>\n        <input type=\"text\" formControlName=\"storeCountry\" class=\"form-control\" (blur)=onBlurStringFormControl($event)/>\n    </div>\n  </div>\n  <div class=\"row\">\n      <div class=\"col form-group\">\n          <label for=\"phone\">Phone</label>\n          <input type=\"text\" formControlName=\"storePhone\" class=\"form-control\"/>\n      </div>\n      <div class=\"col form-group\">\n          <label for=\"email\">Email</label>\n          <input type=\"text\" formControlName=\"storeEmail\" class=\"form-control\" (blur)=onBlurLowcaseStringFormControl($event)>\n      </div>\n  </div>\n  <div class=\"row\">\n    <div class=\"col\">\n      <button class=\"btn btn-primary\">Save</button>\n    </div>\n    <div class=\"col-md-auto\">\n      <ngb-alert *ngIf=\"errorMessage\" type=\"danger\" [dismissible]=\"true\" (close)=\"errorMessage = null\">{{ errorMessage }}</ngb-alert>\n    </div>\n  </div>\n</form>"
 
 /***/ }),
 
@@ -911,7 +908,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var src_app_modal_info_modal_info_modal_component__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! src/app/modal/info-modal/info-modal.component */ "./src/app/modal/info-modal/info-modal.component.ts");
 /* harmony import */ var src_app_util_StringUtil__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! src/app/util/StringUtil */ "./src/app/util/StringUtil.ts");
 /* harmony import */ var src_app_model_Customer__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! src/app/model/Customer */ "./src/app/model/Customer.ts");
-/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
+/* harmony import */ var src_app_model_Address__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! src/app/model/Address */ "./src/app/model/Address.ts");
 
 
 
@@ -926,11 +923,10 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var NewCustomerComponent = /** @class */ (function () {
-    function NewCustomerComponent(formBuilder, modalBuilder, route, customerService) {
+    function NewCustomerComponent(formBuilder, modalBuilder, customerService) {
         var _this = this;
         this.formBuilder = formBuilder;
         this.modalBuilder = modalBuilder;
-        this.route = route;
         this.customerService = customerService;
         this.ownerNames = [];
         this.storesOfSelectedOwner = [];
@@ -939,70 +935,53 @@ var NewCustomerComponent = /** @class */ (function () {
             return text$.pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_5__["debounceTime"])(200), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_5__["distinctUntilChanged"])(), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_5__["map"])(function (term) { return term.length < 1 ? []
                 : _this.ownerNames.filter(function (v) { return v.toLowerCase().indexOf(term.toLowerCase()) > -1; }).slice(0, 10); }));
         };
-    }
-    NewCustomerComponent.prototype.ngOnInit = function () {
-        var _this = this;
         this.ownerIdMapByName = new Map();
         this.initForm();
-        this.loadCustomerToUpdateIfNecessary();
         this._error.subscribe(function (msg) { return _this.errorMessage = msg; });
         this._error.pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_5__["debounceTime"])(4000)).subscribe(function () { return _this.errorMessage = null; });
+    }
+    NewCustomerComponent.prototype.ngOnInit = function () {
     };
-    NewCustomerComponent.prototype.loadCustomerToUpdateIfNecessary = function () {
-        var _this = this;
-        var customerId = parseInt(this.route.snapshot.paramMap.get('id'));
-        if (customerId != -1) {
-            this.customerService.getCustomer(customerId).subscribe(function (data) {
-                _this.customerToUpdate = src_app_model_Customer__WEBPACK_IMPORTED_MODULE_11__["Customer"].fromJson(data);
-                _this.fillForm();
-            }, function (error) {
-                console.log('cannot load the customer : ' + customerId + ". Error :" + error);
-            });
+    NewCustomerComponent.prototype.ngOnChanges = function (changes) {
+        if (this.customer != null) {
+            this.fillForm();
         }
     };
     NewCustomerComponent.prototype.initForm = function () {
         this.loadOwners();
-        this.showCreateOwnerForm = false;
         this.form = this.formBuilder.group({
-            ownerAutoComplete: [''],
-            isNewOwnerCheckbox: [],
-            ownerCompagnyName: [''],
-            ownerFirstName: [''],
-            ownerLastName: [''],
+            ownerAutoComplete: '',
+            ownerFirstName: '',
+            ownerLastName: '',
             ownerEmail: ['', _angular_forms__WEBPACK_IMPORTED_MODULE_2__["Validators"].email],
             storeName: ['', _angular_forms__WEBPACK_IMPORTED_MODULE_2__["Validators"].required],
-            storeAddress: [''],
-            storeZipCode: [''],
-            storeCity: [''],
-            storePhone: [''],
+            storeStreetNumber: '',
+            storeStreetName: '',
+            storeZipCode: '',
+            storeCity: '',
+            storeCountry: '',
+            storePhone: '',
             storeEmail: ['', _angular_forms__WEBPACK_IMPORTED_MODULE_2__["Validators"].email]
         });
+        if (this.customer != null) {
+            this.fillForm();
+        }
     };
     NewCustomerComponent.prototype.fillForm = function () {
-        this.showCreateOwnerForm = true;
-        var showOwnerForm = true;
-        var ownerCompagnyName = this.customerToUpdate.store.owner.compagnyName;
-        var ownerFirstName = this.customerToUpdate.store.owner.firstName;
-        var ownerLastName = this.customerToUpdate.store.owner.lastName;
-        var ownerEmail = this.customerToUpdate.store.owner.email;
-        var storeName = this.customerToUpdate.store.name;
-        var storeAddress = this.customerToUpdate.store.address;
-        //let storeZipCode = this.customerToUpdate ? this.customerToUpdate.store.z
-        var storePhone = this.customerToUpdate.store.phone;
-        var storeEmail = this.customerToUpdate.store.email;
+        var store = this.customer.store;
         this.form.setValue({
-            ownerAutoComplete: [''],
-            isNewOwnerCheckbox: [showOwnerForm],
-            ownerCompagnyName: [ownerCompagnyName],
-            ownerFirstName: [ownerFirstName],
-            ownerLastName: [ownerLastName],
-            ownerEmail: [ownerEmail, _angular_forms__WEBPACK_IMPORTED_MODULE_2__["Validators"].email],
-            storeName: [storeName, _angular_forms__WEBPACK_IMPORTED_MODULE_2__["Validators"].required],
-            storeAddress: [storeAddress],
-            storeZipCode: [''],
-            storeCity: [''],
-            storePhone: [storePhone],
-            storeEmail: [storeEmail, _angular_forms__WEBPACK_IMPORTED_MODULE_2__["Validators"].email]
+            ownerAutoComplete: store.owner.compagnyName,
+            ownerFirstName: store.owner.firstName,
+            ownerLastName: store.owner.lastName,
+            ownerEmail: store.owner.email,
+            storeName: store.name,
+            storeStreetNumber: store.address.streetNumber,
+            storeStreetName: store.address.streetName,
+            storeZipCode: store.address.zipCode,
+            storeCity: store.address.city,
+            storeCountry: store.address.country,
+            storePhone: store.phone,
+            storeEmail: store.email
         });
     };
     NewCustomerComponent.prototype.loadOwners = function () {
@@ -1020,20 +999,6 @@ var NewCustomerComponent = /** @class */ (function () {
     };
     NewCustomerComponent.prototype.onBlurLowcaseStringFormControl = function (event) {
         event.srcElement.value = event.srcElement.value.toLowerCase();
-    };
-    NewCustomerComponent.prototype.onClickNewOwnerCheckbox = function (event) {
-        var controls = this.form.controls;
-        controls.ownerAutoComplete.reset();
-        this.showCreateOwnerForm = event.currentTarget.checked;
-        if (this.showCreateOwnerForm) {
-            controls.ownerAutoComplete.setValidators(null);
-            controls.ownerCompagnyName.setValidators(_angular_forms__WEBPACK_IMPORTED_MODULE_2__["Validators"].required);
-        }
-        else {
-            controls.ownerAutoComplete.setValidators(_angular_forms__WEBPACK_IMPORTED_MODULE_2__["Validators"].required);
-            controls.ownerCompagnyName.setValidators(null);
-        }
-        this.storesOfSelectedOwner = [];
     };
     NewCustomerComponent.prototype.onBlurOwnerAutoComplete = function () {
         var _this = this;
@@ -1062,32 +1027,18 @@ var NewCustomerComponent = /** @class */ (function () {
         var _this = this;
         var controls = this.form.controls;
         if (this.form.valid) {
-            var ownerId = void 0, ownerFirstName = void 0, ownerLastName = void 0, ownerEmail = void 0, ownerCompagnyName = void 0;
-            var storeName = void 0, storeAddress = void 0, storePhone = void 0, storeEmail = void 0;
-            if (controls.isNewOwnerCheckbox.value) {
-                ownerFirstName = controls.ownerFirstName.value;
-                ownerCompagnyName = controls.ownerCompagnyName.value;
-                ownerLastName = controls.ownerLastName.value;
-                ownerEmail = controls.ownerEmail.value;
+            var ownerId = this.ownerIdMapByName.get(controls.ownerAutoComplete.value);
+            if (ownerId == null) {
+                ownerId = -1;
             }
-            else {
-                ownerId = this.ownerIdMapByName.get(controls.ownerAutoComplete.value);
-                if (ownerId == null) {
-                    // do validator 
-                }
-            }
-            storeName = controls.storeName.value;
-            storeAddress = controls.storeAddress.value + ' - ' + controls.storeZipCode.value + ' ' + controls.storeCity.value;
-            storePhone = controls.storePhone.value;
-            storeEmail = controls.storeEmail.value;
-            var req = new src_app_model_request_customer_AddCustomerReq__WEBPACK_IMPORTED_MODULE_6__["AddCustomerReq"](ownerId, storeName);
-            req.ownerCompagnyName = ownerCompagnyName;
-            req.ownerFirstName = ownerFirstName;
-            req.ownerLastName = ownerLastName;
-            req.ownerEmail = ownerEmail;
-            req.storeAddress = storeAddress;
-            req.storeEmail = storeEmail;
-            req.storePhone = storePhone;
+            var req = new src_app_model_request_customer_AddCustomerReq__WEBPACK_IMPORTED_MODULE_6__["AddCustomerReq"](ownerId, controls.storeName.value);
+            req.ownerCompagnyName = controls.ownerCompagnyName.value;
+            req.ownerFirstName = controls.ownerFirstName.value;
+            req.ownerLastName = controls.ownerLastName.value;
+            req.ownerEmail = controls.ownerEmail.value;
+            req.storeEmail = controls.storeEmail.value;
+            req.storePhone = controls.storePhone.value;
+            req.address = new src_app_model_Address__WEBPACK_IMPORTED_MODULE_12__["Address"](controls.storeStreetNumber.value, controls.storeStreetName.value, controls.storeZipCode.value, controls.storeCity.value, controls.storeCountry.value);
             this.customerService.addCustomer(req).subscribe(function (data) {
                 _this.form.reset();
                 _this.storesOfSelectedOwner = [];
@@ -1099,6 +1050,10 @@ var NewCustomerComponent = /** @class */ (function () {
             this.changeErrorMessage("Form not valid.");
         }
     };
+    tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Input"])(),
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:type", src_app_model_Customer__WEBPACK_IMPORTED_MODULE_11__["Customer"])
+    ], NewCustomerComponent.prototype, "customer", void 0);
     NewCustomerComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
             selector: 'new-customer',
@@ -1107,7 +1062,6 @@ var NewCustomerComponent = /** @class */ (function () {
         }),
         tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormBuilder"],
             src_app_common_components_modal_builder__WEBPACK_IMPORTED_MODULE_8__["ModalBuilder"],
-            _angular_router__WEBPACK_IMPORTED_MODULE_12__["ActivatedRoute"],
             src_app_service_customer_service__WEBPACK_IMPORTED_MODULE_3__["CustomerService"]])
     ], NewCustomerComponent);
     return NewCustomerComponent;
@@ -1961,6 +1915,37 @@ var ShowOrderItemsModalComponent = /** @class */ (function () {
 
 /***/ }),
 
+/***/ "./src/app/model/Address.ts":
+/*!**********************************!*\
+  !*** ./src/app/model/Address.ts ***!
+  \**********************************/
+/*! exports provided: Address */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Address", function() { return Address; });
+var Address = /** @class */ (function () {
+    function Address(streetNumber, streetName, zipCode, city, country) {
+        this.streetNumber = streetNumber;
+        this.streetName = streetName;
+        this.zipCode = zipCode;
+        this.city = city;
+        this.country = country;
+    }
+    Address.fromJson = function (data) {
+        return new Address(data.streetNumber, data.streetName, data.zipCode, data.city, data.country);
+    };
+    Address.prototype.format = function () {
+        return this.streetNumber + ', ' + this.streetName + ' - ' + this.zipCode + ' ' + this.city + ' - ' + this.country;
+    };
+    return Address;
+}());
+
+
+
+/***/ }),
+
 /***/ "./src/app/model/AggregatedOrder.ts":
 /*!******************************************!*\
   !*** ./src/app/model/AggregatedOrder.ts ***!
@@ -2315,6 +2300,8 @@ var ProductStockInfo = /** @class */ (function () {
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Store", function() { return Store; });
 /* harmony import */ var _Owner__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Owner */ "./src/app/model/Owner.ts");
+/* harmony import */ var _Address__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Address */ "./src/app/model/Address.ts");
+
 
 var Store = /** @class */ (function () {
     function Store() {
@@ -2323,9 +2310,9 @@ var Store = /** @class */ (function () {
         var store = new Store();
         store.id = data.id;
         store.name = data.name;
-        store.address = data.address;
         store.email = data.email;
         store.phone = data.phone;
+        store.address = _Address__WEBPACK_IMPORTED_MODULE_1__["Address"].fromJson(data.address);
         store.owner = _Owner__WEBPACK_IMPORTED_MODULE_0__["Owner"].fromJson(data.owner);
         return store;
     };

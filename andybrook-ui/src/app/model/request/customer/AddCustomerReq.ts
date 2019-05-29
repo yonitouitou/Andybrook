@@ -1,3 +1,5 @@
+import { Address } from '../../Address';
+
 export class AddCustomerReq {
 
     ownerId: number
@@ -6,9 +8,9 @@ export class AddCustomerReq {
     ownerLastName: number
     ownerEmail: string
     storeName: string
-    storeAddress: string
     storePhone: string
     storeEmail: string
+    address: Address
 
     constructor(ownerId: number, storeName: string) {
         this.ownerId = ownerId;

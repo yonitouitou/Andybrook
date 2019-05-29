@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
+import { Component, OnInit, Input, OnChanges, SimpleChanges } from '@angular/core';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { CustomerService } from 'src/app/service/customer-service';
 import { Observable, Subject } from 'rxjs';
 import { debounceTime, distinctUntilChanged, map } from 'rxjs/operators';
@@ -9,98 +9,79 @@ import { ModalBuilder } from 'src/app/common-components/modal-builder';
 import { InfoModalComponent } from 'src/app/modal/info-modal/info-modal.component';
 import { StringUtil } from 'src/app/util/StringUtil';
 import { Customer } from 'src/app/model/Customer';
-import { ActivatedRoute } from '@angular/router';
+import { Address } from 'src/app/model/Address';
 
 @Component({
   selector: 'new-customer',
   templateUrl: './new-customer.component.html',
   styleUrls: ['./new-customer.component.css']
 })
-export class NewCustomerComponent implements OnInit {
+export class NewCustomerComponent implements OnInit, OnChanges {
+
+  @Input() customer: Customer
 
   form: FormGroup
-  showCreateOwnerForm: boolean
   inputOwnerName: string
   ownerNames: string[] = []
   ownerIdMapByName: Map<string, number>
   errorMessage: string
   storesOfSelectedOwner: Store[] = []
-  customerToUpdate: Customer;
   private _error = new Subject<string>()
 
   constructor(private formBuilder: FormBuilder,
               private modalBuilder: ModalBuilder,
-              private route: ActivatedRoute,
-              private customerService: CustomerService) {}
-
-  ngOnInit() {
+              private customerService: CustomerService) {
     this.ownerIdMapByName = new Map();
     this.initForm();
-    this.loadCustomerToUpdateIfNecessary();
     this._error.subscribe((msg) => this.errorMessage = msg);
     this._error.pipe(debounceTime(4000)).subscribe(() => this.errorMessage = null);
   }
 
-  private loadCustomerToUpdateIfNecessary() {
-    let customerId = parseInt(this.route.snapshot.paramMap.get('id'));
-    if (customerId != -1) {
-      this.customerService.getCustomer(customerId).subscribe(
-        data => {
-          this.customerToUpdate = Customer.fromJson(data);
-          this.fillForm();
-        },
-        error => {
-          console.log('cannot load the customer : ' + customerId + ". Error :" + error);
-        }
-      )
+  ngOnInit() {
+  }
+
+  ngOnChanges(changes: SimpleChanges): void {
+    if (this.customer != null) {
+      this.fillForm();
     }
   }
 
   private initForm() {
     this.loadOwners();
-    this.showCreateOwnerForm = false;
     this.form = this.formBuilder.group({
-      ownerAutoComplete: [''],
-      isNewOwnerCheckbox: [],
-      ownerCompagnyName: [''],
-      ownerFirstName: [''],
-      ownerLastName: [''],
+      ownerAutoComplete: '',
+      ownerFirstName: '',
+      ownerLastName: '',
       ownerEmail: ['', Validators.email],
       storeName: ['', Validators.required],
-      storeAddress: [''],
-      storeZipCode: [''],
-      storeCity: [''],
-      storePhone: [''],
+      storeStreetNumber: '',
+      storeStreetName: '',
+      storeZipCode: '',
+      storeCity: '',
+      storeCountry: '',
+      storePhone: '',
       storeEmail: ['', Validators.email]
     });
+    if (this.customer != null) {
+      this.fillForm();
+    }
   }
 
   private fillForm() {
-    this.showCreateOwnerForm = true;
-    let showOwnerForm = true;
-    let ownerCompagnyName = this.customerToUpdate.store.owner.compagnyName;
-    let ownerFirstName = this.customerToUpdate.store.owner.firstName;
-    let ownerLastName = this.customerToUpdate.store.owner.lastName;
-    let ownerEmail = this.customerToUpdate.store.owner.email;
-    let storeName = this.customerToUpdate.store.name;
-    let storeAddress = this.customerToUpdate.store.address;
-    //let storeZipCode = this.customerToUpdate ? this.customerToUpdate.store.z
-    let storePhone = this.customerToUpdate.store.phone;
-    let storeEmail = this.customerToUpdate.store.email;
-
+    const store = this.customer.store;
     this.form.setValue({
-      ownerAutoComplete: [''],
-      isNewOwnerCheckbox: [showOwnerForm],
-      ownerCompagnyName: [ownerCompagnyName],
-      ownerFirstName: [ownerFirstName],
-      ownerLastName: [ownerLastName],
-      ownerEmail: [ownerEmail, Validators.email],
-      storeName: [storeName, Validators.required],
-      storeAddress: [storeAddress],
-      storeZipCode: [''],
-      storeCity: [''],
-      storePhone: [storePhone],
-      storeEmail: [storeEmail, Validators.email]
+      ownerAutoComplete: store.owner.compagnyName,
+      ownerFirstName: store.owner.firstName,
+      ownerLastName: store.owner.lastName,
+      ownerEmail: store.owner.email,
+      storeName: store.name,
+      storeStreetNumber: store.address.streetNumber,
+      storeStreetName: store.address.streetName,
+      storeZipCode: store.address.zipCode,
+      storeCity: store.address.city,
+      storeCountry: store.address.country,
+      storePhone: store.phone,
+      storeEmail: store.email
     })
   }
 
@@ -131,20 +112,6 @@ export class NewCustomerComponent implements OnInit {
         : this.ownerNames.filter(v => v.toLowerCase().indexOf(term.toLowerCase()) > -1).slice(0, 10))
   )
 
-  onClickNewOwnerCheckbox(event) {
-    let controls = this.form.controls;
-    controls.ownerAutoComplete.reset();
-    this.showCreateOwnerForm = event.currentTarget.checked;
-    if (this.showCreateOwnerForm) {
-      controls.ownerAutoComplete.setValidators(null);
-      controls.ownerCompagnyName.setValidators(Validators.required);
-    } else {
-      controls.ownerAutoComplete.setValidators(Validators.required);
-      controls.ownerCompagnyName.setValidators(null);
-    }
-    this.storesOfSelectedOwner = [];
-  }
-
   onBlurOwnerAutoComplete() {
     let ownerNameSelected = this.form.controls.ownerAutoComplete.value;
     let ownerId = this.ownerIdMapByName.get(ownerNameSelected);
@@ -172,31 +139,19 @@ export class NewCustomerComponent implements OnInit {
   onSubmit() {
     let controls = this.form.controls;
     if (this.form.valid) {
-      let ownerId, ownerFirstName, ownerLastName, ownerEmail, ownerCompagnyName;
-      let storeName, storeAddress, storePhone, storeEmail;
-      if (controls.isNewOwnerCheckbox.value) {
-        ownerFirstName = controls.ownerFirstName.value;
-        ownerCompagnyName = controls.ownerCompagnyName.value;
-        ownerLastName = controls.ownerLastName.value;
-        ownerEmail = controls.ownerEmail.value;
-      } else {
-        ownerId = this.ownerIdMapByName.get(controls.ownerAutoComplete.value);
-        if (ownerId == null) {
-          // do validator 
-        }
+      let ownerId = this.ownerIdMapByName.get(controls.ownerAutoComplete.value);
+      if (ownerId == null) {
+        ownerId = -1;
       }
-      storeName = controls.storeName.value;
-      storeAddress = controls.storeAddress.value + ' - ' + controls.storeZipCode.value + ' ' + controls.storeCity.value;
-      storePhone = controls.storePhone.value;
-      storeEmail = controls.storeEmail.value;
-      let req = new AddCustomerReq(ownerId, storeName);
-      req.ownerCompagnyName = ownerCompagnyName;
-      req.ownerFirstName = ownerFirstName;
-      req.ownerLastName = ownerLastName;
-      req.ownerEmail = ownerEmail;
-      req.storeAddress = storeAddress;
-      req.storeEmail = storeEmail;
-      req.storePhone = storePhone;
+      let req = new AddCustomerReq(ownerId, controls.storeName.value);
+      req.ownerCompagnyName = controls.ownerCompagnyName.value;
+      req.ownerFirstName = controls.ownerFirstName.value;
+      req.ownerLastName = controls.ownerLastName.value;
+      req.ownerEmail = controls.ownerEmail.value;
+      req.storeEmail = controls.storeEmail.value;
+      req.storePhone = controls.storePhone.value;
+      req.address = new Address(controls.storeStreetNumber.value, controls.storeStreetName.value,
+                                controls.storeZipCode.value, controls.storeCity.value, controls.storeCountry.value);
 
       this.customerService.addCustomer(req).subscribe(
         data => {

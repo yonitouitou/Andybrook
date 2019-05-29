@@ -8,6 +8,7 @@ import com.andybrook.model.customer.Store;
 import com.andybrook.model.notification.request.ctx.NotifSetting;
 import com.itextpdf.text.*;
 import com.itextpdf.text.Font.FontFamily;
+import com.itextpdf.text.pdf.BaseFont;
 import com.itextpdf.text.pdf.PdfPCell;
 import com.itextpdf.text.pdf.PdfPTable;
 import com.itextpdf.text.pdf.PdfWriter;
@@ -17,6 +18,8 @@ import org.springframework.util.ResourceUtils;
 import javax.annotation.PostConstruct;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.OutputStream;
+import java.io.OutputStreamWriter;
 import java.lang.System.Logger;
 import java.lang.System.Logger.Level;
 import java.nio.file.Files;
@@ -27,6 +30,8 @@ import java.time.LocalDateTime;
 import java.time.ZonedDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.stream.Stream;
+
+import static com.itextpdf.text.html.HtmlTags.FONT;
 
 @Component
 public class CloseOrderPdfBuilder extends AbstractPdfBuilder implements IPdfBuilder<AggregatedOrder> {
@@ -42,7 +47,7 @@ public class CloseOrderPdfBuilder extends AbstractPdfBuilder implements IPdfBuil
     private static final String[] COLUMNS_NAME_ITEMS = new String[5];
     private static final String[] COLUMNS_NAME_CUSTOMER_MAIN_DETAILS = new String[2];
     private static final String[] COLUNS_NAME_CUSTOMER_CONTACT_DETAILS = new String[4];
-    private static final FontFamily FONT_TYPE_TIMES_ROMAN = FontFamily.TIMES_ROMAN;
+    private static final Font FONT_TYPE_TIMES_ROMAN = FontFactory.getFont(FONT, BaseFont.IDENTITY_H, true);
 
     private static BaseColor headerBackgroundColor;
     private static BaseColor headerTextColor;
@@ -145,10 +150,10 @@ public class CloseOrderPdfBuilder extends AbstractPdfBuilder implements IPdfBuil
 
         Chunk subTitleId = new Chunk(languageResolver.get(Pdf.ORDER_FORM).toUpperCase() + " #" + order.getId());
         subTitleId.setUnderline(0.1f, -2f);
-        subTitleId.setFont(new Font(FONT_TYPE_TIMES_ROMAN, TITLE_FONT_SIZE_20, Font.BOLD, headerTextColor));
+        subTitleId.setFont(FONT_TYPE_TIMES_ROMAN);
 
         Chunk subTitleName = new Chunk(order.getName());
-        subTitleName.setFont(new Font(FONT_TYPE_TIMES_ROMAN, SUB_TITLE_FONT_SIZE_15, Font.ITALIC, headerTextColor));
+        subTitleName.setFont(FONT_TYPE_TIMES_ROMAN);
 
         title.setAlignment(Element.ALIGN_CENTER);
         title.add(subTitleId);
@@ -218,7 +223,7 @@ public class CloseOrderPdfBuilder extends AbstractPdfBuilder implements IPdfBuil
                     header.setBackgroundColor(headerBackgroundColor);
                     header.setHorizontalAlignment(Element.ALIGN_CENTER);
                     header.setVerticalAlignment(Element.ALIGN_CENTER);
-                    header.setPhrase(new Phrase(col, new Font(FontFamily.TIMES_ROMAN, TEXT_FONT_SIZE_11, Font.BOLD, headerTextColor)));
+                    header.setPhrase(new Phrase(col, FONT_TYPE_TIMES_ROMAN));
                     header.setPadding(PADDING_3);
                     table.addCell(header);
                 });

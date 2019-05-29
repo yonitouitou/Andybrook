@@ -11,7 +11,7 @@ export class CustomerOrdersComponent implements OnInit {
 
   @Input() orders: AggregatedOrder[] = []
 
-  constructor(private orderService: OrderService) { }
+  constructor() { }
 
   ngOnInit() {
   }

@@ -10,6 +10,7 @@
               <th>Qty</th>
               <th>Amount</th>
               <th>Creation</th>
+              <th>Closed</th>
               <th></th>
           </tr>
       </thead>
@@ -22,6 +23,7 @@
               <td>{{ order.aggregatedOrderInfo.orderItemSize }}</td>
               <td>{{ order.aggregatedOrderInfo.totalPrice }} €</td>
               <td>{{ order.createdDatetime  | date:'shortDate' }}</td>
+              <td>{{ order.closeDatetime  | date:'shortDate' }}</td>
               <td>
                 <button
                     class="btn btn-success btn-sm"

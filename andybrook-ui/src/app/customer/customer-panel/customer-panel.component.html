@@ -6,9 +6,7 @@
     <list-customer (onCustomerSelected)="onCustomerSelected($event)"></list-customer>
   </div>
   <div class="col">
-    <new-customer></new-customer>
-    <hr>
-    <customer-info [customer]="customer"></customer-info>
+    <new-customer [customer]="customer"></new-customer>
     <hr>
     <customer-orders [orders]="orders"></customer-orders>
   </div>

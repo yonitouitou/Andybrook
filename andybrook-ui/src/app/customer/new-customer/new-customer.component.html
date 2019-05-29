@@ -3,18 +3,24 @@
   <hr>
   <div class="row">
     <div class="col form-group">
-      <label for="newowner">New Owner &nbsp;</label>
-      <input type="checkbox" formControlName="isNewOwnerCheckbox" (click)="onClickNewOwnerCheckbox($event)">
-    </div>
-  </div>
-  <div class="row">
-    <div *ngIf="! showCreateOwnerForm" class="col-5 form-group">
-      <label for="Name">Select an existing owner :</label>
+      <label for="compagnyName">Compagny Nane</label>
       <input type="text" formControlName="ownerAutoComplete"
         (blur)="onBlurOwnerAutoComplete()"
         [(ngModel)]="inputOwnerName"
         [ngbTypeahead]="search"
         class="form-control"/>
+    </div>
+    <div class="col form-group">
+        <label for="firstName">FirstName</label>
+        <input type="text" formControlName="ownerFirstName" class="form-control" (blur)=onBlurStringFormControl($event)/>
+    </div>
+    <div class="col form-group">
+        <label for="lastName">LastName</label>
+        <input type="text" formControlName="ownerLastName" class="form-control" (blur)=onBlurStringFormControl($event)/>
+    </div>
+    <div class="col form-group">
+        <label for="email">Email</label>
+        <input type="text" formControlName="ownerEmail" class="form-control" (blur)=onBlurLowcaseStringFormControl($event)/>
     </div>
   </div>
   <div *ngIf="storesOfSelectedOwner.length > 0" class="row">
@@ -41,25 +47,6 @@
       </table>
     </div>
   </div>
-  <div *ngIf="showCreateOwnerForm" class="row">
-    <div class="col form-group">
-      <label for="compagnyName">Compagny Nane</label>
-      <input type="text" formControlName="ownerCompagnyName" class="form-control" (blur)=onBlurStringFormControl($event)/>
-    </div>
-    <div class="col form-group">
-        <label for="firstName">FirstName</label>
-        <input type="text" formControlName="ownerFirstName" class="form-control" (blur)=onBlurStringFormControl($event)/>
-    </div>
-    <div class="col form-group">
-        <label for="lastName">LastName</label>
-        <input type="text" formControlName="ownerLastName" class="form-control" (blur)=onBlurStringFormControl($event)/>
-    </div>
-    <div class="col form-group">
-        <label for="email">Email</label>
-        <input type="text" formControlName="ownerEmail" class="form-control" (blur)=onBlurLowcaseStringFormControl($event)/>
-    </div>
-  </div>
-  <br>
   <h5>Store</h5>
   <hr>
   <div class="row">
@@ -68,8 +55,12 @@
           <input type="text" formControlName="storeName" class="form-control" (blur)=onBlurStringFormControl($event)/>
       </div>
       <div class="col form-group">
-          <label for="address">Address</label>
-          <input type="text" formControlName="storeAddress" class="form-control"/>
+        <label for="streetNumber">Street Number</label>
+        <input type="text" formControlName="storeStreetNumber" class="form-control"/>
+      </div>
+      <div class="col form-group">
+          <label for="streetName">Street</label>
+          <input type="text" formControlName="storeStreetName" class="form-control"/>
       </div>
       <div class="col form-group">
           <label for="zipCode">Zip Code</label>
@@ -79,6 +70,10 @@
           <label for="city">City</label>
           <input type="text" formControlName="storeCity" class="form-control" (blur)=onBlurStringFormControl($event)/>
       </div>
+      <div class="col form-group">
+        <label for="country">Country</label>
+        <input type="text" formControlName="storeCountry" class="form-control" (blur)=onBlurStringFormControl($event)/>
+    </div>
   </div>
   <div class="row">
       <div class="col form-group">
@@ -90,10 +85,9 @@
           <input type="text" formControlName="storeEmail" class="form-control" (blur)=onBlurLowcaseStringFormControl($event)>
       </div>
   </div>
-  <hr>
   <div class="row">
     <div class="col">
-      <button class="btn btn-primary" type="submit">Save</button>
+      <button class="btn btn-primary">Save</button>
     </div>
     <div class="col-md-auto">
       <ngb-alert *ngIf="errorMessage" type="danger" [dismissible]="true" (close)="errorMessage = null">{{ errorMessage }}</ngb-alert>

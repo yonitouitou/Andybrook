@@ -1,12 +1,13 @@
 import { Owner } from './Owner';
+import { Address } from './Address';
 
 export class Store {
 
     id: number
     name: string
     email: string
-    address: string
     phone: string
+    address: Address
     owner: Owner
 
     constructor() {
@@ -16,9 +17,9 @@ export class Store {
         let store = new Store();
         store.id = data.id;
         store.name = data.name;
-        store.address = data.address;
         store.email = data.email;
         store.phone = data.phone;
+        store.address = Address.fromJson(data.address);
         store.owner = Owner.fromJson(data.owner);
         return store
     }

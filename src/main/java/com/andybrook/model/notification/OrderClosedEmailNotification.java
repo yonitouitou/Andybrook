@@ -6,7 +6,6 @@ import com.andybrook.model.api.AggregatedOrderItem;
 import com.andybrook.model.api.Email;
 import com.andybrook.model.notification.request.ctx.NotifSetting;
 import com.andybrook.model.product.Product;
-import com.andybrook.model.setting.AdminSetting;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.config.BeanDefinition;
 import org.springframework.context.annotation.Scope;
@@ -36,7 +35,7 @@ public class OrderClosedEmailNotification implements IEmailNotification<Aggregat
     }
 
     private String getSubject(NotifSetting setting, AggregatedOrder order) {
-        String prefix = setting.isLiveEvent() ? "[Event]" : "[Notification]";
+        String prefix = setting.isLiveEvent() ? "[Live]" : "[Notification]";
         return prefix + " Order " + order.getName() + " (" + order.getId() + ") closed";
     }
 
