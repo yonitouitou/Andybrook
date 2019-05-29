@@ -1,6 +1,7 @@
 package com.andybrook.dao.jpa.entity.store;
 
 import com.andybrook.dao.jpa.entity.customer.OwnerEntity;
+import com.andybrook.model.common.Address;
 
 import javax.persistence.*;
 import javax.validation.constraints.Email;
@@ -20,8 +21,20 @@ public class StoreEntity {
     @Column(name = "email")
     private String email;
 
-    @Column(name = "address")
-    private String address;
+    @Column(name = "streetnumber")
+    private String streetNumber;
+
+    @Column(name = "streetname")
+    private String streetName;
+
+    @Column(name = "zipcode")
+    private int zipCode;
+
+    @Column(name = "city")
+    private String city;
+
+    @Column(name = "country")
+    private String country;
 
     @Column(name = "phone")
     private String phone;
@@ -32,12 +45,16 @@ public class StoreEntity {
 
     public StoreEntity() {}
 
-    public StoreEntity(Long id, String name, String email, String address, String phone, OwnerEntity ownerEntity) {
+    public StoreEntity(Long id, String name, @Email String email, Address address, String phone, OwnerEntity ownerEntity) {
         this.id = id;
         this.name = name;
         this.email = email;
+        this.streetNumber = address.getStreetNumber();
+        this.streetName = address.getStreetName();
+        this.zipCode = address.getZipCode();
+        this.city = address.getCity();
+        this.country = address.getCountry();
         this.phone = phone;
-        this.address = address;
         this.ownerEntity = ownerEntity;
     }
 
@@ -65,12 +82,49 @@ public class StoreEntity {
         this.email = email;
     }
 
-    public String getAddress() {
-        return address;
+    public String getStreetNumber() {
+        return streetNumber;
     }
 
-    public void setAddress(String address) {
-        this.address = address;
+    public StoreEntity setStreetNumber(String streetNumber) {
+        this.streetNumber = streetNumber;
+        return this;
+    }
+
+    public String getStreetName() {
+        return streetName;
+    }
+
+    public StoreEntity setStreetName(String streetName) {
+        this.streetName = streetName;
+        return this;
+    }
+
+    public int getZipCode() {
+        return zipCode;
+    }
+
+    public StoreEntity setZipCode(int zipCode) {
+        this.zipCode = zipCode;
+        return this;
+    }
+
+    public String getCity() {
+        return city;
+    }
+
+    public StoreEntity setCity(String city) {
+        this.city = city;
+        return this;
+    }
+
+    public String getCountry() {
+        return country;
+    }
+
+    public StoreEntity setCountry(String country) {
+        this.country = country;
+        return this;
     }
 
     public String getPhone() {

@@ -10,7 +10,11 @@ public class AddOrUpdateCustomerRestRequest extends CustomerRestRequest {
 
     private Long storeId;
     private String storeName;
-    private String storeAddress;
+    private String storeStreetNumber;
+    private String storeStreetName;
+    private String storeCity;
+    private String storeCountry;
+    private int storeZipCode;
     private String storePhone;
     private String storeEmail;
 
@@ -71,12 +75,49 @@ public class AddOrUpdateCustomerRestRequest extends CustomerRestRequest {
         this.storeName = storeName;
     }
 
-    public String getStoreAddress() {
-        return storeAddress;
+    public String getStoreStreetNumber() {
+        return storeStreetNumber;
     }
 
-    public void setStoreAddress(String storeAddress) {
-        this.storeAddress = storeAddress;
+    public AddOrUpdateCustomerRestRequest setStoreStreetNumber(String storeStreetNumber) {
+        this.storeStreetNumber = storeStreetNumber;
+        return this;
+    }
+
+    public String getStoreStreetName() {
+        return storeStreetName;
+    }
+
+    public AddOrUpdateCustomerRestRequest setStoreStreetName(String storeStreetName) {
+        this.storeStreetName = storeStreetName;
+        return this;
+    }
+
+    public String getStoreCity() {
+        return storeCity;
+    }
+
+    public AddOrUpdateCustomerRestRequest setStoreCity(String storeCity) {
+        this.storeCity = storeCity;
+        return this;
+    }
+
+    public String getStoreCountry() {
+        return storeCountry;
+    }
+
+    public AddOrUpdateCustomerRestRequest setStoreCountry(String storeCountry) {
+        this.storeCountry = storeCountry;
+        return this;
+    }
+
+    public int getStoreZipCode() {
+        return storeZipCode;
+    }
+
+    public AddOrUpdateCustomerRestRequest setStoreZipCode(int storeZipCode) {
+        this.storeZipCode = storeZipCode;
+        return this;
     }
 
     public String getStorePhone() {
@@ -105,7 +146,11 @@ public class AddOrUpdateCustomerRestRequest extends CustomerRestRequest {
         sb.append(", ownerEmail='").append(ownerEmail).append('\'');
         sb.append(", storeId=").append(storeId);
         sb.append(", storeName='").append(storeName).append('\'');
-        sb.append(", storeAddress='").append(storeAddress).append('\'');
+        sb.append(", storeStreetNumber='").append(storeStreetNumber).append('\'');
+        sb.append(", storeStreetName='").append(storeStreetName).append('\'');
+        sb.append(", storeCity='").append(storeCity).append('\'');
+        sb.append(", storeCountry='").append(storeCountry).append('\'');
+        sb.append(", storeZipCode=").append(storeZipCode);
         sb.append(", storePhone='").append(storePhone).append('\'');
         sb.append(", storeEmail='").append(storeEmail).append('\'');
         sb.append(", customerId=").append(customerId);

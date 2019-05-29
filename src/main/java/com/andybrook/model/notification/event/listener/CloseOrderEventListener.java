@@ -45,19 +45,16 @@ public class CloseOrderEventListener implements IEventListener<CloseOrderEvent> 
     @EventListener
     public void handleEvent(CloseOrderEvent event) {
         IEmailNotification<AggregatedOrder> closedReportNotif = applicationContext.getBean(OrderClosedEmailNotification.class);
-        if (event.getSetting().getEmails().size() > 0) {
+        if (! event.getSetting().getEmails().isEmpty()) {
             List<Path> attachments = getAttachmentsPaths(event.getOrder(), event.getSetting());
             emailSender.send(closedReportNotif.createEmail(event.getSetting(), event.getOrder(), attachments));
         }
     }
 
     private List<Path> getAttachmentsPaths(AggregatedOrder order, NotifSetting setting) {
-        List<Path> attachements = new LinkedList<>();
         Path csvPath = generateCsvFile(order);
         Path pdfPath = generateCloseOrderPdfFile(order, setting);
-        attachements.add(csvPath);
-        attachements.add(pdfPath);
-        return attachements;
+        return List.of(csvPath, pdfPath);
     }
 
     private Path generateCloseOrderPdfFile(AggregatedOrder order, NotifSetting setting) {

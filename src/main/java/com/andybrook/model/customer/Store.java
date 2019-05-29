@@ -1,15 +1,17 @@
 package com.andybrook.model.customer;
 
+import com.andybrook.model.common.Address;
+
 public class Store {
 
     private Long id;
     private String name;
     private String email;
-    private String address;
     private String phone;
+    private Address address;
     private Owner owner;
 
-    public Store(String name, String email, String address, String phone, Owner owner) {
+    public Store(String name, String email, String phone, Address address, Owner owner) {
         this.id = null;
         this.name = name;
         this.email = email;
@@ -18,7 +20,7 @@ public class Store {
         this.owner = owner;
     }
 
-    public Store(Long id, String name, String email, String address, String phone, Owner owner) {
+    public Store(Long id, String name, String email, String phone, Address address, Owner owner) {
         this.id = id;
         this.name = name;
         this.email = email;
@@ -51,11 +53,11 @@ public class Store {
         this.email = email;
     }
 
-    public String getAddress() {
+    public Address getAddress() {
         return address;
     }
 
-    public void setAddress(String address) {
+    public void setAddress(Address address) {
         this.address = address;
     }
 

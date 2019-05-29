@@ -1,5 +1,7 @@
 package com.andybrook.model.request.customer;
 
+import com.andybrook.model.common.Address;
+
 import static com.andybrook.util.Arg.requireNonNullOrEmpty;
 
 public class AddCustomerRequest {
@@ -11,9 +13,9 @@ public class AddCustomerRequest {
     private final String ownerEmail;
 
     private final String storeName;
-    private final String storeAddress;
     private final String storePhone;
     private final String storeEmail;
+    private final Address storeAddress;
 
     private AddCustomerRequest(Builder builder) {
         ownerId = builder.ownerId;
@@ -22,9 +24,10 @@ public class AddCustomerRequest {
         ownerLastName = builder.ownerLastName;
         ownerEmail = builder.ownerEmail;
         storeName = builder.storeName;
-        storeAddress = builder.storeAddress;
         storePhone = builder.storePhone;
         storeEmail = builder.storeEmail;
+        storeAddress = new Address(builder.storeStreetNumber, builder.storeStreetName,
+                builder.storeCity, builder.storeCountry, builder.storeZipCode);
     }
 
     public static Builder builder(String ownerCompagnyName, String storeName) {
@@ -58,7 +61,7 @@ public class AddCustomerRequest {
         return storeName;
     }
 
-    public String getStoreAddress() {
+    public Address getStoreAddress() {
         return storeAddress;
     }
 
@@ -83,9 +86,13 @@ public class AddCustomerRequest {
         private String ownerEmail;
 
         private String storeName;
-        private String storeAddress;
         private String storePhone;
         private String storeEmail;
+        private String storeStreetNumber;
+        private String storeStreetName;
+        private String storeCity;
+        private String storeCountry;
+        private int storeZipCode;
 
         private Builder() {}
 
@@ -120,12 +127,53 @@ public class AddCustomerRequest {
             return this;
         }
 
-        public String getStoreAddress() {
-            return storeAddress;
+        public Builder setStoreName(String storeName) {
+            this.storeName = storeName;
+            return this;
         }
 
-        public Builder setStoreAddress(String storeAddress) {
-            this.storeAddress = storeAddress;
+        public String getStoreStreetNumber() {
+            return storeStreetNumber;
+        }
+
+        public Builder setStoreStreetNumber(String storeStreetNumber) {
+            this.storeStreetNumber = storeStreetNumber;
+            return this;
+        }
+
+        public String getStoreStreetName() {
+            return storeStreetName;
+        }
+
+        public Builder setStoreStreetName(String storeStreetName) {
+            this.storeStreetName = storeStreetName;
+            return this;
+        }
+
+        public String getStoreCity() {
+            return storeCity;
+        }
+
+        public Builder setStoreCity(String storeCity) {
+            this.storeCity = storeCity;
+            return this;
+        }
+
+        public String getStoreCountry() {
+            return storeCountry;
+        }
+
+        public Builder setStoreCountry(String storeCountry) {
+            this.storeCountry = storeCountry;
+            return this;
+        }
+
+        public int getStoreZipCode() {
+            return storeZipCode;
+        }
+
+        public Builder setStoreZipCode(int storeZipCode) {
+            this.storeZipCode = storeZipCode;
             return this;
         }
 

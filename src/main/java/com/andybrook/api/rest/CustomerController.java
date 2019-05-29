@@ -102,7 +102,11 @@ public class CustomerController extends AbstractController {
         return builder.setOwnerEmail(req.getOwnerEmail())
                 .setOwnerFirstName(req.getOwnerFirstName())
                 .setOwnerLastName(req.getOwnerLastName())
-                .setStoreAddress(req.getStoreAddress())
+                .setStoreStreetNumber(req.getStoreStreetNumber())
+                .setStoreStreetName(req.getStoreStreetName())
+                .setStoreZipCode(req.getStoreZipCode())
+                .setStoreCity(req.getStoreCity())
+                .setStoreCountry(req.getStoreCountry())
                 .setStoreEmail(req.getStoreEmail())
                 .setStorePhone(req.getStorePhone())
                 .build();

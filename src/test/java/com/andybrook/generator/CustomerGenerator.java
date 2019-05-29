@@ -14,7 +14,11 @@ public final class CustomerGenerator {
                 .setOwnerFirstName("Steve_" + random)
                 .setOwnerLastName("Smith")
                 .setOwnerEmail("steve_" + random +".smith@optika.net")
-                .setStoreAddress(random + " Avenue Paul Valery - Paris")
+                .setStoreStreetNumber("" + random)
+                .setStoreStreetName("Avenue Paul Valery")
+                .setStoreZipCode(75012)
+                .setStoreCity("Paris")
+                .setStoreCountry("France")
                 .setStorePhone("01.34.77.54.22")
                 .setStoreEmail("optika_" + random + "@gmail.com")
                 .build();

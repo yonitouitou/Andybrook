@@ -206,7 +206,7 @@ public class CloseOrderPdfBuilder extends AbstractPdfBuilder implements IPdfBuil
     private void addCustomerDetailsSecondRow(PdfPTable table, AggregatedOrder order) {
         Store store = order.getCustomer().getStore();
         table.addCell(getStringCell(store.getName()));
-        table.addCell(getStringCell(store.getAddress()));
+        table.addCell(getStringCell(store.getAddress().format(applicationProperties.getLocale())));
         table.addCell(getStringCell(store.getPhone()));
         table.addCell(getStringCell(store.getEmail()));
     }

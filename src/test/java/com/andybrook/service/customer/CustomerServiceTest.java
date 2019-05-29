@@ -2,6 +2,7 @@ package com.andybrook.service.customer;
 
 import com.andybrook.assertor.CustomerAssertor;
 import com.andybrook.exception.CustomerNotFound;
+import com.andybrook.model.common.Address;
 import com.andybrook.model.customer.Customer;
 import com.andybrook.model.customer.Owner;
 import com.andybrook.model.customer.Store;
@@ -71,7 +72,7 @@ public class CustomerServiceTest {
     public void updateCustomerTest() {
         customer = customerService.newCustomer(addCustomerRequest);
         Store store = customer.getStore();
-        store.setAddress("NewAddress");
+        store.setAddress(new Address("18", "avenue de la Paix", "Paris", "France", 75009));
         store.setEmail("NewEmail@gmail.com");
         store.setName("NewName");
         Owner owner = store.getOwner();

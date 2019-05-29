@@ -1,19 +1,35 @@
 package com.andybrook.model.common;
 
+import org.springframework.util.StringUtils;
+
+import java.util.Locale;
+
 public final class Address {
 
     private String streetNumber;
     private String streetName;
     private String city;
     private String country;
-    private int zipCode;
+    private Integer zipCode;
 
-    public Address(String streetNumber, String streetName, String city, String country, int zipCode) {
+    public Address(String streetNumber, String streetName, String city, String country, Integer zipCode) {
         this.streetNumber = streetNumber;
         this.streetName = streetName;
         this.city = city;
         this.country = country;
         this.zipCode = zipCode;
+    }
+
+    public String format(Locale locale) {
+        StringBuilder sb = new StringBuilder();
+        String number = ! StringUtils.isEmpty(streetNumber) ? streetNumber : "";
+        String name = ! StringUtils.isEmpty(streetName) ? streetName : "";
+        String cityName = ! StringUtils.isEmpty(city) ? city : "";
+        String countryName = ! StringUtils.isEmpty(country) ? country : "";
+        String zipCodeStr = zipCode != null ? zipCode.toString() : "";
+        return Locale.FRANCE.equals(locale) || Locale.FRENCH.equals(locale)
+                ? sb.append(number).append(", ").append(name).append(" - ").append(zipCodeStr).append(" ").append(cityName).append(" - ").append(countryName).toString()
+                : sb.append(name).append(", ").append(number).append(" ").append(zipCodeStr).append(" ").append(cityName).append(" - ").append(countryName).toString();
     }
 
     public String getStreetNumber() {

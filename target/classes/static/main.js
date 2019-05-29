@@ -711,7 +711,7 @@ module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"row\">\n  <customer-header></customer-header>\n</div>\n<div class=\"row\">\n  <div class=\"col-md-auto\">\n    <list-customer (onCustomerSelected)=\"onCustomerSelected($event)\"></list-customer>\n  </div>\n  <div class=\"col\">\n    <customer-info [customer]=\"customer\"></customer-info>\n    <hr>\n    <customer-orders [orders]=\"orders\"></customer-orders>\n  </div>\n</div>"
+module.exports = "<div class=\"row\">\n  <customer-header></customer-header>\n</div>\n<div class=\"row\">\n  <div class=\"col-md-auto\">\n    <list-customer (onCustomerSelected)=\"onCustomerSelected($event)\"></list-customer>\n  </div>\n  <div class=\"col\">\n    <new-customer></new-customer>\n    <hr>\n    <customer-info [customer]=\"customer\"></customer-info>\n    <hr>\n    <customer-orders [orders]=\"orders\"></customer-orders>\n  </div>\n</div>"
 
 /***/ }),
 
