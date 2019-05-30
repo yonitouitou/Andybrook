@@ -3,6 +3,8 @@ package com.andybrook.dao.customer;
 import com.andybrook.dao.jpa.repository.ICustomerJpaRepository;
 import com.andybrook.dao.jpa.entity.customer.CustomerEntity;
 import com.andybrook.dao.jpa.entity.factory.EntityFactory;
+import com.andybrook.dao.owner.IOwnerDao;
+import com.andybrook.dao.store.IStoreDao;
 import com.andybrook.exception.CustomerNotFound;
 import com.andybrook.model.customer.Customer;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,9 +26,15 @@ public class CustomerDao implements ICustomerDao {
     private ICustomerJpaRepository repository;
     @Autowired
     private EntityFactory entityFactory;
+    @Autowired
+    private IOwnerDao ownerDao;
+    @Autowired
+    private IStoreDao storeDao;
 
     @Override
     public Customer update(Customer customer) {
+        storeDao.update(customer.getStore());
+        ownerDao.update(customer.getStore().getOwner());
         CustomerEntity entity = entityFactory.createCustomerEntity(customer);
         CustomerEntity savedEntity = repository.save(entity);
         return entityFactory.createCustomer(savedEntity);

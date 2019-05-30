@@ -1457,25 +1457,16 @@
       <DataType>bigint(20)|0s</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <index id="341" parent="241" name="UK_d0p5ly1cv6guij7sq1mbnr8ec">
-      <ColNames>name</ColNames>
-      <Unique>1</Unique>
-      <Type>btree</Type>
-    </index>
-    <index id="342" parent="241" name="FKla1tvp88ake1vqnc6offvf54n">
+    <index id="341" parent="241" name="FKla1tvp88ake1vqnc6offvf54n">
       <ColNames>owner_id</ColNames>
       <Type>btree</Type>
     </index>
-    <key id="343" parent="241" name="PRIMARY">
+    <key id="342" parent="241" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>id</ColNames>
       <Primary>1</Primary>
     </key>
-    <key id="344" parent="241" name="UK_d0p5ly1cv6guij7sq1mbnr8ec">
-      <ColNames>name</ColNames>
-      <UnderlyingIndexName>UK_d0p5ly1cv6guij7sq1mbnr8ec</UnderlyingIndexName>
-    </key>
-    <foreign-key id="345" parent="241" name="FKla1tvp88ake1vqnc6offvf54n">
+    <foreign-key id="343" parent="241" name="FKla1tvp88ake1vqnc6offvf54n">
       <ColNames>owner_id</ColNames>
       <RefSchemaName>andybrook</RefSchemaName>
       <RefTableName>owner</RefTableName>

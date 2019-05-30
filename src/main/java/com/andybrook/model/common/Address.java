@@ -3,6 +3,7 @@ package com.andybrook.model.common;
 import org.springframework.util.StringUtils;
 
 import java.util.Locale;
+import java.util.Objects;
 
 public final class Address {
 
@@ -50,6 +51,23 @@ public final class Address {
 
     public Integer getZipCode() {
         return zipCode;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Address address = (Address) o;
+        return Objects.equals(streetNumber, address.streetNumber) &&
+                Objects.equals(streetName, address.streetName) &&
+                Objects.equals(city, address.city) &&
+                Objects.equals(country, address.country) &&
+                Objects.equals(zipCode, address.zipCode);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(streetNumber, streetName, city, country, zipCode);
     }
 
     @Override

@@ -2,6 +2,7 @@ package com.andybrook.dao.jpa.entity.store;
 
 import com.andybrook.dao.jpa.entity.customer.OwnerEntity;
 import com.andybrook.model.common.Address;
+import org.hibernate.engine.spi.CascadeStyle;
 
 import javax.persistence.*;
 import javax.validation.constraints.Email;

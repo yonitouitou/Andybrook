@@ -66,21 +66,40 @@ public class CustomerServiceTest {
         Map<Long, Owner> owners = customerService.getAllOwners();
         Assert.assertEquals("Owner Size", currentOwnersSize + nbOwnerToCreate, owners.size());
     }
-    
+
     @Test
     public void updateCustomerTest() {
         customer = customerService.newCustomer(addCustomerRequest);
+        String ownerCompagnyName = "CompagnyName1";
+        String ownerEmail = "NewOwnerEmail@gmail.com";
+        String ownerFirstName = "NewFirstName";
+        String ownerLastName = "NewLastName";
+        String storeName = "NewStoreName";
+        String storeEmail = "NewStoreEmail@gmail.com";
+        String storePhone = "01.34.87.54.66";
+        Address storeAddress = new Address("18", "avenue de la Paix", "Paris", "France", 75009);
         UpdateCustomerRequest request = UpdateCustomerRequest.builder(customer.getId())
-                .setOwnerCompagnyName("CompagnyName1")
-                .setOwnerEmail("NewOwnerEmail@gmail.com")
-                .setOwnerFirstName("NewFirstName")
-                .setOwnerLastName("NewLastName")
-                .setStoreAddress(new Address("18", "avenue de la Paix", "Paris", "France", 75009))
-                .setStoreEmail("NewStoreEmail@gmail.com")
-                .setStoreName("NewStoreName")
+                .setOwnerCompagnyName(ownerCompagnyName)
+                .setOwnerEmail(ownerEmail)
+                .setOwnerFirstName(ownerFirstName)
+                .setOwnerLastName(ownerLastName)
+                .setStoreAddress(storeAddress)
+                .setStoreEmail(storeEmail)
+                .setStoreName(storeName)
+                .setStorePhone(storePhone)
                 .build();
         Customer updatedCustomer = customerService.updateCustomer(request);
-        CustomerAssertor.assertEquals(customer, updatedCustomer);
+        Assert.assertEquals("Id", customer.getId(), updatedCustomer.getId());
+        Store updatedStore = updatedCustomer.getStore();
+        Owner updatedOwner = updatedStore.getOwner();
+        Assert.assertEquals("Owner.CompagnyName", ownerCompagnyName, updatedOwner.getCompagnyName());
+        Assert.assertEquals("Owner.FirstName", ownerFirstName, updatedOwner.getFirstName());
+        Assert.assertEquals("Owner.LastName", ownerLastName, updatedOwner.getLastName());
+        Assert.assertEquals("Owner.Email", ownerEmail, updatedOwner.getEmail());
+        Assert.assertEquals("Store.Name", storeName, updatedStore.getName());
+        Assert.assertEquals("Store.Email", storeEmail, updatedStore.getEmail());
+        Assert.assertEquals("Store.Phone", storePhone, updatedStore.getPhone());
+        Assert.assertEquals("Store.Address", storeAddress, updatedStore.getAddress());
     }
 
     @Test(expected = CustomerNotFound.class)
