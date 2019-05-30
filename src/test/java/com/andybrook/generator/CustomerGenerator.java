@@ -1,5 +1,6 @@
 package com.andybrook.generator;
 
+import com.andybrook.model.common.Address;
 import com.andybrook.model.customer.Customer;
 import com.andybrook.model.request.customer.AddCustomerRequest;
 
@@ -14,11 +15,7 @@ public final class CustomerGenerator {
                 .setOwnerFirstName("Steve_" + random)
                 .setOwnerLastName("Smith")
                 .setOwnerEmail("steve_" + random +".smith@optika.net")
-                .setStoreStreetNumber("" + random)
-                .setStoreStreetName("Avenue Paul Valery")
-                .setStoreZipCode(75012)
-                .setStoreCity("Paris")
-                .setStoreCountry("France")
+                .setStoreAddress(new Address("" + random, "Avenue Paul Valery", "Paris", "France", 75012))
                 .setStorePhone("01.34.77.54.22")
                 .setStoreEmail("optika_" + random + "@gmail.com")
                 .build();

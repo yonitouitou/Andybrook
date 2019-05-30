@@ -902,7 +902,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var src_app_service_customer_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! src/app/service/customer-service */ "./src/app/service/customer-service.ts");
 /* harmony import */ var rxjs__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! rxjs */ "./node_modules/rxjs/_esm5/index.js");
 /* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! rxjs/operators */ "./node_modules/rxjs/_esm5/operators/index.js");
-/* harmony import */ var src_app_model_request_customer_AddCustomerReq__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! src/app/model/request/customer/AddCustomerReq */ "./src/app/model/request/customer/AddCustomerReq.ts");
+/* harmony import */ var src_app_model_request_customer_AddOrUpdateCustomerReq__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! src/app/model/request/customer/AddOrUpdateCustomerReq */ "./src/app/model/request/customer/AddOrUpdateCustomerReq.ts");
 /* harmony import */ var src_app_model_Store__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! src/app/model/Store */ "./src/app/model/Store.ts");
 /* harmony import */ var src_app_common_components_modal_builder__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! src/app/common-components/modal-builder */ "./src/app/common-components/modal-builder.ts");
 /* harmony import */ var src_app_modal_info_modal_info_modal_component__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! src/app/modal/info-modal/info-modal.component */ "./src/app/modal/info-modal/info-modal.component.ts");
@@ -1028,17 +1028,18 @@ var NewCustomerComponent = /** @class */ (function () {
         var controls = this.form.controls;
         if (this.form.valid) {
             var ownerId = this.ownerIdMapByName.get(controls.ownerAutoComplete.value);
-            if (ownerId == null) {
-                ownerId = -1;
+            var req = new src_app_model_request_customer_AddOrUpdateCustomerReq__WEBPACK_IMPORTED_MODULE_6__["AddOrUpdateCustomerReq"](ownerId, controls.storeName.value);
+            if (this.customer != null) {
+                req.customerId = this.customer.id;
             }
-            var req = new src_app_model_request_customer_AddCustomerReq__WEBPACK_IMPORTED_MODULE_6__["AddCustomerReq"](ownerId, controls.storeName.value);
-            req.ownerCompagnyName = controls.ownerCompagnyName.value;
+            req.ownerCompagnyName = controls.ownerAutoComplete.value;
             req.ownerFirstName = controls.ownerFirstName.value;
             req.ownerLastName = controls.ownerLastName.value;
             req.ownerEmail = controls.ownerEmail.value;
+            req.storeName = controls.storeName.value;
             req.storeEmail = controls.storeEmail.value;
             req.storePhone = controls.storePhone.value;
-            req.address = new src_app_model_Address__WEBPACK_IMPORTED_MODULE_12__["Address"](controls.storeStreetNumber.value, controls.storeStreetName.value, controls.storeZipCode.value, controls.storeCity.value, controls.storeCountry.value);
+            req.storeAddress = new src_app_model_Address__WEBPACK_IMPORTED_MODULE_12__["Address"](controls.storeStreetNumber.value, controls.storeStreetName.value, controls.storeZipCode.value, controls.storeCity.value, controls.storeCountry.value);
             this.customerService.addCustomer(req).subscribe(function (data) {
                 _this.form.reset();
                 _this.storesOfSelectedOwner = [];
@@ -1735,7 +1736,7 @@ module.exports = ".ng-invalid:not(form)  {\n    border-left: 5px solid #a94442; 
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div>\n  <div class=\"modal-header\">\n    <h3 class=\"modal-title\" id=\"modal-basic-title\">Order Notification Setting</h3>\n    <button type=\"button\" class=\"close\" aria-label=\"Close\" (click)=\"onClose()\">\n      <span aria-hidden=\"true\">&times;</span>\n    </button>\n  </div>\n  <div class=\"modal-body\">\n    <form [formGroup]=\"form\">\n      <div class=\"form-group\">\n        <label for=\"notifType\">Notification Type</label>\n        <select formControlName=\"notificationTypesSelect\" class=\"custom-select\" required>\n            <option *ngFor=\"let type of notificationTypes\" [ngValue]=\"type\">{{ type }}</option>\n        </select>\n      </div>\n      <div class=\"form-group\">\n        <label for=\"dateDocument\">Document's Date</label>\n        <div class=\"input-group\">\n          <input formControlName=\"dateDocument\" class=\"form-control\" placeholder=\"yyyy-mm-dd\" name=\"dp\" ngbDatepicker #dp=\"ngbDatepicker\">\n          <div class=\"input-group-append\">\n            <button class=\"btn btn-outline-secondary calendar\" (click)=\"dp.toggle()\" type=\"button\"></button>\n          </div>\n        </div>\n      </div>\n      <button type=\"button\" class=\"btn btn-outline-secondary btn-sm\" (click)=\"addEmailInput()\" style=\"float:right\">\n        <span class=\"glyphicon glyphicon-plus\"></span>+\n      </button>\n      <div formArrayName=\"emailInputs\" *ngFor=\"let input of form.get('emailInputs').controls; let i = index;\">\n        <div [formGroupName]=\"i\">\n          <label for=\"email\">Email {{ i + 1 }} </label>\n          <input formControlName=\"email\" class=\"form-control\" style=\"margin-bottom: 6px\">\n        </div>\n      </div>\n    </form>\n  </div>\n  <div class=\"modal-footer\">\n    <button type=\"button\" class=\"btn btn-outline-dark\" (click)=\"onSubmit()\" [disabled]=\"! form.valid\">Save</button>\n  </div>\n</div>"
+module.exports = "<div>\n  <div class=\"modal-header\">\n    <h3 class=\"modal-title\" id=\"modal-basic-title\">Order Notification Setting</h3>\n    <button type=\"button\" class=\"close\" aria-label=\"Close\" (click)=\"onClose()\">\n      <span aria-hidden=\"true\">&times;</span>\n    </button>\n  </div>\n  <div class=\"modal-body\">\n    <form [formGroup]=\"form\">\n      <div class=\"form-group\">\n        <label for=\"notifType\">Notification Type</label>\n        <select formControlName=\"notificationTypesSelect\" class=\"custom-select\" required>\n            <option *ngFor=\"let type of notificationTypes\" [ngValue]=\"type\">{{ type }}</option>\n        </select>\n      </div>\n      <div class=\"form-group\">\n        <label for=\"dateDocument\">Document's Date</label>\n        <div class=\"input-group\">\n          <input formControlName=\"dateDocument\" class=\"form-control\" placeholder=\"yyyy-mm-dd\" name=\"dp\" ngbDatepicker #dp=\"ngbDatepicker\">\n          <div class=\"input-group-append\">\n            <button class=\"btn btn-outline-secondary calendar\" (click)=\"dp.toggle()\" type=\"button\"></button>\n          </div>\n        </div>\n      </div>\n      <button type=\"button\" class=\"btn btn-outline-secondary btn-sm\" (click)=\"addEmailInput()\" style=\"float:right\">\n        <span class=\"glyphicon glyphicon-plus\"></span>+\n      </button>\n      <div formArrayName=\"emailInputs\" *ngFor=\"let input of form.get('emailInputs').controls; let i = index;\">\n        <div [formGroupName]=\"i\">\n          <label for=\"email\">Email {{ i + 1 }} </label>\n          <input formControlName=\"email\" class=\"form-control\" style=\"margin-bottom: 6px\">\n        </div>\n      </div>\n    </form>\n  </div>\n  <div class=\"modal-footer\">\n    <button type=\"button\" class=\"btn btn-outline-dark\" (click)=\"onSubmit()\" [disabled]=\"! form.valid\">Notify</button>\n  </div>\n</div>"
 
 /***/ }),
 
@@ -1805,7 +1806,7 @@ var OrderNotificationModalComponent = /** @class */ (function () {
             types.push(this.form.controls.notificationTypesSelect.value);
             var req = new src_app_model_request_notification_OrderNotificationRequest__WEBPACK_IMPORTED_MODULE_5__["OrderNotificationRequest"](types, this.orderId);
             if (dp != null) {
-                req.dateDocument = new Date(dp.year, dp.month - 1, dp.day).getTime();
+                req.dateDocument = new Date(dp.year, dp.month - 1, dp.day + 1).getTime();
             }
             req.emails = this.getEmailsFromInputs();
             this.notificationService.notifyOrder(req).subscribe(function (data) {
@@ -2343,22 +2344,22 @@ var AdminSetting = /** @class */ (function () {
 
 /***/ }),
 
-/***/ "./src/app/model/request/customer/AddCustomerReq.ts":
-/*!**********************************************************!*\
-  !*** ./src/app/model/request/customer/AddCustomerReq.ts ***!
-  \**********************************************************/
-/*! exports provided: AddCustomerReq */
+/***/ "./src/app/model/request/customer/AddOrUpdateCustomerReq.ts":
+/*!******************************************************************!*\
+  !*** ./src/app/model/request/customer/AddOrUpdateCustomerReq.ts ***!
+  \******************************************************************/
+/*! exports provided: AddOrUpdateCustomerReq */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "AddCustomerReq", function() { return AddCustomerReq; });
-var AddCustomerReq = /** @class */ (function () {
-    function AddCustomerReq(ownerId, storeName) {
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "AddOrUpdateCustomerReq", function() { return AddOrUpdateCustomerReq; });
+var AddOrUpdateCustomerReq = /** @class */ (function () {
+    function AddOrUpdateCustomerReq(ownerId, storeName) {
         this.ownerId = ownerId;
         this.storeName = storeName;
     }
-    return AddCustomerReq;
+    return AddOrUpdateCustomerReq;
 }());
 
 

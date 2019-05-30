@@ -48,7 +48,7 @@ public final class Address {
         return country;
     }
 
-    public int getZipCode() {
+    public Integer getZipCode() {
         return zipCode;
     }
 

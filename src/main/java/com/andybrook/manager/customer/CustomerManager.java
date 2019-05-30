@@ -4,6 +4,7 @@ import com.andybrook.model.customer.Customer;
 import com.andybrook.model.customer.Owner;
 import com.andybrook.model.customer.Store;
 import com.andybrook.model.request.customer.AddCustomerRequest;
+import com.andybrook.model.request.customer.UpdateCustomerRequest;
 import com.andybrook.service.customer.ICustomerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -24,6 +25,11 @@ public class CustomerManager implements ICustomerManager {
     }
 
     @Override
+    public Customer updateCustomer(UpdateCustomerRequest request) {
+        return customerService.updateCustomer(request);
+    }
+
+    @Override
     public Customer get(long id) {
         return customerService.getById(id);
     }
@@ -41,11 +47,6 @@ public class CustomerManager implements ICustomerManager {
     @Override
     public Map<Long, Owner> getAllOwners() {
         return customerService.getAllOwners();
-    }
-
-    @Override
-    public Customer updateCustomer(Customer customer) {
-        return customerService.updateCustomer(customer);
     }
 
     @Override

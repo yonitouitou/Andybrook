@@ -2,7 +2,7 @@
 import { Observable } from 'rxjs';
 import { HttpService } from './http-service';
 import { Injectable } from '@angular/core';
-import { AddCustomerReq } from '../model/request/customer/AddCustomerReq';
+import { AddCustomerReq } from '../model/request/customer/AddOrUpdateCustomerReq';
 
 @Injectable()
 export class CustomerService {

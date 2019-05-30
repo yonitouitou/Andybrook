@@ -1,6 +1,5 @@
 package com.andybrook.api.rest.jackson;
 
-import com.andybrook.api.pdf.CloseOrderPdfBuilder;
 import com.andybrook.api.rest.ctx.notification.OrderDocumentRestRequest;
 import com.andybrook.enums.NotificationType;
 import com.fasterxml.jackson.core.JsonParser;
@@ -17,9 +16,9 @@ import java.lang.System.Logger.Level;
 import java.util.LinkedList;
 import java.util.List;
 
-public class OrderDocumentRestRequestJsonSerializer extends JsonDeserializer<OrderDocumentRestRequest> {
+public class OrderDocumentRestRequestJsonDeserializer extends JsonDeserializer<OrderDocumentRestRequest> {
 
-    private static final Logger LOGGER = System.getLogger(OrderDocumentRestRequestJsonSerializer.class.getSimpleName());
+    private static final Logger LOGGER = System.getLogger(OrderDocumentRestRequestJsonDeserializer.class.getSimpleName());
 
     @Override
     public OrderDocumentRestRequest deserialize(JsonParser jp, DeserializationContext deserializationContext) throws IOException, JsonProcessingException {

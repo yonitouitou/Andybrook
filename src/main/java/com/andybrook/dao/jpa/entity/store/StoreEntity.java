@@ -14,7 +14,7 @@ public class StoreEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "name", nullable = false, unique = true)
+    @Column(name = "name", nullable = false)
     private String name;
 
     @Email
@@ -28,7 +28,7 @@ public class StoreEntity {
     private String streetName;
 
     @Column(name = "zipcode")
-    private int zipCode;
+    private Integer zipCode;
 
     @Column(name = "city")
     private String city;
@@ -100,11 +100,11 @@ public class StoreEntity {
         return this;
     }
 
-    public int getZipCode() {
+    public Integer getZipCode() {
         return zipCode;
     }
 
-    public StoreEntity setZipCode(int zipCode) {
+    public StoreEntity setZipCode(Integer zipCode) {
         this.zipCode = zipCode;
         return this;
     }

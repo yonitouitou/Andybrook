@@ -10,6 +10,7 @@ import com.andybrook.model.customer.Owner;
 import com.andybrook.model.customer.Store;
 import com.andybrook.model.request.customer.AddCustomerRequest;
 import com.andybrook.model.request.customer.AddCustomerRequest.Builder;
+import com.andybrook.model.request.customer.UpdateCustomerRequest;
 import com.andybrook.util.NumberUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.util.Pair;
@@ -39,16 +40,16 @@ public class CustomerController extends AbstractController {
         customerManager.newCustomer(toCustomerRequest(request));
     }
 
+    @PostMapping(path = "/update")
+    public Customer updateCustomer(@RequestBody AddOrUpdateCustomerRestRequest request) {
+        LOGGER.log(Level.INFO, "Update Customer request : " + request);
+        return customerManager.updateCustomer(toUpdateCustomerRequest(request));
+    }
+
     @GetMapping(path = "/get/{id}")
     public Customer getCustomer(@PathVariable long id) {
         LOGGER.log(Level.INFO, "Get Customer request with id : " + id);
         return customerManager.get(id);
-    }
-
-    @PostMapping(path = "/update")
-    public Customer updateCustomer(@RequestBody Customer customer) {
-        LOGGER.log(Level.INFO, "Update Customer request : " + customer);
-        return customerManager.updateCustomer(customer);
     }
 
     @GetMapping(path = "/searchByIdOrName/{input}")
@@ -102,13 +103,22 @@ public class CustomerController extends AbstractController {
         return builder.setOwnerEmail(req.getOwnerEmail())
                 .setOwnerFirstName(req.getOwnerFirstName())
                 .setOwnerLastName(req.getOwnerLastName())
-                .setStoreStreetNumber(req.getStoreStreetNumber())
-                .setStoreStreetName(req.getStoreStreetName())
-                .setStoreZipCode(req.getStoreZipCode())
-                .setStoreCity(req.getStoreCity())
-                .setStoreCountry(req.getStoreCountry())
+                .setStoreAddress(req.getStoreAddress())
                 .setStoreEmail(req.getStoreEmail())
                 .setStorePhone(req.getStorePhone())
+                .build();
+    }
+
+    private UpdateCustomerRequest toUpdateCustomerRequest(AddOrUpdateCustomerRestRequest request) {
+        return UpdateCustomerRequest.builder(request.getCustomerId())
+                .setOwnerCompagnyName(request.getOwnerCompagnyName())
+                .setOwnerFirstName(request.getOwnerFirstName())
+                .setOwnerLastName(request.getOwnerLastName())
+                .setOwnerEmail(request.getOwnerEmail())
+                .setStoreName(request.getStoreName())
+                .setStoreAddress(request.getStoreAddress())
+                .setStoreEmail(request.getStoreEmail())
+                .setStorePhone(request.getStorePhone())
                 .build();
     }
 }

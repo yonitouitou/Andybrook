@@ -3,7 +3,7 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { CustomerService } from 'src/app/service/customer-service';
 import { Observable, Subject } from 'rxjs';
 import { debounceTime, distinctUntilChanged, map } from 'rxjs/operators';
-import { AddCustomerReq } from 'src/app/model/request/customer/AddCustomerReq';
+import { AddOrUpdateCustomerReq } from 'src/app/model/request/customer/AddOrUpdateCustomerReq';
 import { Store } from 'src/app/model/Store';
 import { ModalBuilder } from 'src/app/common-components/modal-builder';
 import { InfoModalComponent } from 'src/app/modal/info-modal/info-modal.component';
@@ -85,7 +85,7 @@ export class NewCustomerComponent implements OnInit, OnChanges {
     })
   }
 
-  loadOwners() {
+  private loadOwners() {
     this.customerService.getAllOwnersIdsAndNames().subscribe(
       data => {
         for (let owner of data) {
@@ -140,17 +140,18 @@ export class NewCustomerComponent implements OnInit, OnChanges {
     let controls = this.form.controls;
     if (this.form.valid) {
       let ownerId = this.ownerIdMapByName.get(controls.ownerAutoComplete.value);
-      if (ownerId == null) {
-        ownerId = -1;
+      let req = new AddOrUpdateCustomerReq(ownerId, controls.storeName.value);
+      if (this.customer != null) {
+        req.customerId = this.customer.id;
       }
-      let req = new AddCustomerReq(ownerId, controls.storeName.value);
-      req.ownerCompagnyName = controls.ownerCompagnyName.value;
+      req.ownerCompagnyName = controls.ownerAutoComplete.value;
       req.ownerFirstName = controls.ownerFirstName.value;
       req.ownerLastName = controls.ownerLastName.value;
       req.ownerEmail = controls.ownerEmail.value;
+      req.storeName = controls.storeName.value;
       req.storeEmail = controls.storeEmail.value;
       req.storePhone = controls.storePhone.value;
-      req.address = new Address(controls.storeStreetNumber.value, controls.storeStreetName.value,
+      req.storeAddress = new Address(controls.storeStreetNumber.value, controls.storeStreetName.value,
                                 controls.storeZipCode.value, controls.storeCity.value, controls.storeCountry.value);
 
       this.customerService.addCustomer(req).subscribe(

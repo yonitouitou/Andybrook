@@ -26,8 +26,7 @@ public class AddCustomerRequest {
         storeName = builder.storeName;
         storePhone = builder.storePhone;
         storeEmail = builder.storeEmail;
-        storeAddress = new Address(builder.storeStreetNumber, builder.storeStreetName,
-                builder.storeCity, builder.storeCountry, builder.storeZipCode);
+        storeAddress = builder.storeAddress;
     }
 
     public static Builder builder(String ownerCompagnyName, String storeName) {
@@ -88,11 +87,7 @@ public class AddCustomerRequest {
         private String storeName;
         private String storePhone;
         private String storeEmail;
-        private String storeStreetNumber;
-        private String storeStreetName;
-        private String storeCity;
-        private String storeCountry;
-        private int storeZipCode;
+        private Address storeAddress;
 
         private Builder() {}
 
@@ -132,48 +127,17 @@ public class AddCustomerRequest {
             return this;
         }
 
-        public String getStoreStreetNumber() {
-            return storeStreetNumber;
+        public Address getStoreAddress() {
+            return storeAddress;
         }
 
-        public Builder setStoreStreetNumber(String storeStreetNumber) {
-            this.storeStreetNumber = storeStreetNumber;
+        public Builder setOwnerCompagnyName(String ownerCompagnyName) {
+            this.ownerCompagnyName = ownerCompagnyName;
             return this;
         }
 
-        public String getStoreStreetName() {
-            return storeStreetName;
-        }
-
-        public Builder setStoreStreetName(String storeStreetName) {
-            this.storeStreetName = storeStreetName;
-            return this;
-        }
-
-        public String getStoreCity() {
-            return storeCity;
-        }
-
-        public Builder setStoreCity(String storeCity) {
-            this.storeCity = storeCity;
-            return this;
-        }
-
-        public String getStoreCountry() {
-            return storeCountry;
-        }
-
-        public Builder setStoreCountry(String storeCountry) {
-            this.storeCountry = storeCountry;
-            return this;
-        }
-
-        public int getStoreZipCode() {
-            return storeZipCode;
-        }
-
-        public Builder setStoreZipCode(int storeZipCode) {
-            this.storeZipCode = storeZipCode;
+        public Builder setStoreAddress(Address storeAddress) {
+            this.storeAddress = storeAddress;
             return this;
         }
 

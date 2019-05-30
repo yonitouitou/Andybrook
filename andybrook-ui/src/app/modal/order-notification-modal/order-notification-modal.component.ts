@@ -62,7 +62,7 @@ export class OrderNotificationModalComponent implements OnInit {
       types.push(this.form.controls.notificationTypesSelect.value);
       let req = new OrderNotificationRequest(types, this.orderId);
       if (dp != null) {
-        req.dateDocument = new Date(dp.year, dp.month - 1, dp.day).getTime();
+        req.dateDocument = new Date(dp.year, dp.month - 1, dp.day + 1).getTime();
       }
       req.emails = this.getEmailsFromInputs();
       this.notificationService.notifyOrder(req).subscribe(

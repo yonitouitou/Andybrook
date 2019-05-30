@@ -1,7 +1,13 @@
 package com.andybrook.api.rest.ctx.customer;
 
+import com.andybrook.api.rest.jackson.AddOrUpdateCustomerRestRequestJsonDeserializer;
+import com.andybrook.model.common.Address;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+
+@JsonDeserialize(using = AddOrUpdateCustomerRestRequestJsonDeserializer.class)
 public class AddOrUpdateCustomerRestRequest extends CustomerRestRequest {
 
+    private Long customerId;
     private Long ownerId;
     private String ownerCompagnyName;
     private String ownerFirstName;
@@ -10,13 +16,18 @@ public class AddOrUpdateCustomerRestRequest extends CustomerRestRequest {
 
     private Long storeId;
     private String storeName;
-    private String storeStreetNumber;
-    private String storeStreetName;
-    private String storeCity;
-    private String storeCountry;
-    private int storeZipCode;
     private String storePhone;
     private String storeEmail;
+    private Address storeAddress;
+
+    public Long getCustomerId() {
+        return customerId;
+    }
+
+    public AddOrUpdateCustomerRestRequest setCustomerId(Long customerId) {
+        this.customerId = customerId;
+        return this;
+    }
 
     public Long getOwnerId() {
         return ownerId;
@@ -75,48 +86,12 @@ public class AddOrUpdateCustomerRestRequest extends CustomerRestRequest {
         this.storeName = storeName;
     }
 
-    public String getStoreStreetNumber() {
-        return storeStreetNumber;
+    public Address getStoreAddress() {
+        return storeAddress;
     }
 
-    public AddOrUpdateCustomerRestRequest setStoreStreetNumber(String storeStreetNumber) {
-        this.storeStreetNumber = storeStreetNumber;
-        return this;
-    }
-
-    public String getStoreStreetName() {
-        return storeStreetName;
-    }
-
-    public AddOrUpdateCustomerRestRequest setStoreStreetName(String storeStreetName) {
-        this.storeStreetName = storeStreetName;
-        return this;
-    }
-
-    public String getStoreCity() {
-        return storeCity;
-    }
-
-    public AddOrUpdateCustomerRestRequest setStoreCity(String storeCity) {
-        this.storeCity = storeCity;
-        return this;
-    }
-
-    public String getStoreCountry() {
-        return storeCountry;
-    }
-
-    public AddOrUpdateCustomerRestRequest setStoreCountry(String storeCountry) {
-        this.storeCountry = storeCountry;
-        return this;
-    }
-
-    public int getStoreZipCode() {
-        return storeZipCode;
-    }
-
-    public AddOrUpdateCustomerRestRequest setStoreZipCode(int storeZipCode) {
-        this.storeZipCode = storeZipCode;
+    public AddOrUpdateCustomerRestRequest setStoreAddress(Address storeAddress) {
+        this.storeAddress = storeAddress;
         return this;
     }
 
@@ -139,20 +114,17 @@ public class AddOrUpdateCustomerRestRequest extends CustomerRestRequest {
     @Override
     public String toString() {
         final StringBuilder sb = new StringBuilder("AddOrUpdateCustomerRestRequest{");
-        sb.append("ownerId=").append(ownerId);
+        sb.append("customerId=").append(customerId);
+        sb.append(", ownerId=").append(ownerId);
         sb.append(", ownerCompagnyName='").append(ownerCompagnyName).append('\'');
         sb.append(", ownerFirstName='").append(ownerFirstName).append('\'');
         sb.append(", ownerLastName='").append(ownerLastName).append('\'');
         sb.append(", ownerEmail='").append(ownerEmail).append('\'');
         sb.append(", storeId=").append(storeId);
         sb.append(", storeName='").append(storeName).append('\'');
-        sb.append(", storeStreetNumber='").append(storeStreetNumber).append('\'');
-        sb.append(", storeStreetName='").append(storeStreetName).append('\'');
-        sb.append(", storeCity='").append(storeCity).append('\'');
-        sb.append(", storeCountry='").append(storeCountry).append('\'');
-        sb.append(", storeZipCode=").append(storeZipCode);
         sb.append(", storePhone='").append(storePhone).append('\'');
         sb.append(", storeEmail='").append(storeEmail).append('\'');
+        sb.append(", storeAddress=").append(storeAddress);
         sb.append(", customerId=").append(customerId);
         sb.append('}');
         return sb.toString();

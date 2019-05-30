@@ -18,8 +18,6 @@ import org.springframework.util.ResourceUtils;
 import javax.annotation.PostConstruct;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.OutputStream;
-import java.io.OutputStreamWriter;
 import java.lang.System.Logger;
 import java.lang.System.Logger.Level;
 import java.nio.file.Files;
@@ -129,7 +127,7 @@ public class CloseOrderPdfBuilder extends AbstractPdfBuilder implements IPdfBuil
         String address = languageResolver.get(Pdf.ADDRESS);
         String phoneNumber = languageResolver.get(Pdf.PHONE_NUMBER);
         String email = languageResolver.get(Pdf.EMAIL_ADDRESS);
-        String shopName = languageResolver.get(Pdf.SHOP_NAME);
+        String shopName = languageResolver.get(Pdf.STORE_NAME);
         COLUMNS_NAME_CUSTOMER_MAIN_DETAILS[0] = shopName;
         COLUNS_NAME_CUSTOMER_CONTACT_DETAILS[1] = address;
         COLUNS_NAME_CUSTOMER_CONTACT_DETAILS[2] = phoneNumber;

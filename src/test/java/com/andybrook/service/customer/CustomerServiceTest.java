@@ -7,6 +7,7 @@ import com.andybrook.model.customer.Customer;
 import com.andybrook.model.customer.Owner;
 import com.andybrook.model.customer.Store;
 import com.andybrook.model.request.customer.AddCustomerRequest;
+import com.andybrook.model.request.customer.UpdateCustomerRequest;
 import com.andybrook.service.customer.ICustomerService;
 import com.andybrook.util.clock.Clock;
 import org.junit.Assert;
@@ -65,21 +66,20 @@ public class CustomerServiceTest {
         Map<Long, Owner> owners = customerService.getAllOwners();
         Assert.assertEquals("Owner Size", currentOwnersSize + nbOwnerToCreate, owners.size());
     }
-
-
-
+    
     @Test
     public void updateCustomerTest() {
         customer = customerService.newCustomer(addCustomerRequest);
-        Store store = customer.getStore();
-        store.setAddress(new Address("18", "avenue de la Paix", "Paris", "France", 75009));
-        store.setEmail("NewEmail@gmail.com");
-        store.setName("NewName");
-        Owner owner = store.getOwner();
-        owner.setEmail("NewStoreEmail@gmail.com");
-        owner.setFirstName("NewFirstName");
-        owner.setLastName("NewLastName");
-        Customer updatedCustomer = customerService.updateCustomer(this.customer);
+        UpdateCustomerRequest request = UpdateCustomerRequest.builder(customer.getId())
+                .setOwnerCompagnyName("CompagnyName1")
+                .setOwnerEmail("NewOwnerEmail@gmail.com")
+                .setOwnerFirstName("NewFirstName")
+                .setOwnerLastName("NewLastName")
+                .setStoreAddress(new Address("18", "avenue de la Paix", "Paris", "France", 75009))
+                .setStoreEmail("NewStoreEmail@gmail.com")
+                .setStoreName("NewStoreName")
+                .build();
+        Customer updatedCustomer = customerService.updateCustomer(request);
         CustomerAssertor.assertEquals(customer, updatedCustomer);
     }
 

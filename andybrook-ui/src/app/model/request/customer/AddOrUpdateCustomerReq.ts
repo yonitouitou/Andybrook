@@ -1,7 +1,8 @@
 import { Address } from '../../Address';
 
-export class AddCustomerReq {
+export class AddOrUpdateCustomerReq {
 
+    customerId: number
     ownerId: number
     ownerCompagnyName: string
     ownerFirstName: number
@@ -10,7 +11,7 @@ export class AddCustomerReq {
     storeName: string
     storePhone: string
     storeEmail: string
-    address: Address
+    storeAddress: Address
 
     constructor(ownerId: number, storeName: string) {
         this.ownerId = ownerId;
