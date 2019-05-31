@@ -32,11 +32,11 @@ public class AddOrUpdateCustomerRestRequestJsonDeserializer extends JsonDeserial
 
         if (json.has("storeAddress")) {
             JsonNode jsonAddr = json.get("storeAddress");
-            String storeStreetNumber = (hasStringValue(json, "streetNumber") ? jsonAddr.get("streetNumber").asText() : null);
-            String storeStreetName = (hasStringValue(json, "streetName") ? jsonAddr.get("streetName").asText() : null);
-            String storeCity = (hasStringValue(json, "city") ? jsonAddr.get("city").asText() : null);
-            String storeCountry = (hasStringValue(json, "country") ? jsonAddr.get("country").asText() : null);
-            Integer storeZipCode = (hasNumericValue(json, "zipCode") ? jsonAddr.get("zipCode").asInt() : null);
+            String storeStreetNumber = (hasStringValue(jsonAddr, "streetNumber") ? jsonAddr.get("streetNumber").asText() : null);
+            String storeStreetName = (hasStringValue(jsonAddr, "streetName") ? jsonAddr.get("streetName").asText() : null);
+            String storeCity = (hasStringValue(jsonAddr, "city") ? jsonAddr.get("city").asText() : null);
+            String storeCountry = (hasStringValue(jsonAddr, "country") ? jsonAddr.get("country").asText() : null);
+            Integer storeZipCode = (hasNumericValue(jsonAddr, "zipCode") ? jsonAddr.get("zipCode").asInt() : null);
             req.setStoreAddress(new Address(storeStreetNumber, storeStreetName, storeCity, storeCountry, storeZipCode));
         }
         return req;

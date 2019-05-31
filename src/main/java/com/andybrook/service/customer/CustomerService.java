@@ -29,8 +29,7 @@ public class CustomerService implements ICustomerService {
     public Customer newCustomer(AddCustomerRequest request) {
         Customer customer = toCustomer(request);
         if (shouldCreateOwner(customer)) {
-            Owner owner = ownerService.update(customer.getStore().getOwner());
-            customer.getStore().setOwner(owner);
+            ownerService.update(customer.getStore().getOwner());
         }
         return update(customer);
     }

@@ -77,9 +77,9 @@ public class OrderController extends AbstractController {
     }
 
     @GetMapping(path = "/all")
-    public Set<AggregatedOrder> getAll() {
+    public List<AggregatedOrder> getAll() {
         LOGGER.log(Level.INFO, "Get all aggregated orders request received");
-        return AggregatedOrder.toAggregatedOrders(orderManager.getAll().stream()).collect(Collectors.toSet());
+        return AggregatedOrder.toAggregatedOrders(orderManager.getAll().stream()).collect(Collectors.toList());
     }
 
     @PostMapping(path = "/addOrderItemByInfo")

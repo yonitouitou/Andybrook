@@ -14,5 +14,5 @@ public interface IOwnerDao {
 
     Map<Long, Owner> getAll();
 
-    Owner update(Owner owner);
+    void update(Owner owner);
 }

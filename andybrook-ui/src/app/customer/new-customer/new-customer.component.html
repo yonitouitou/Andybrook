@@ -90,7 +90,7 @@
       <button class="btn btn-primary">Save</button>
     </div>
     <div class="col-md-auto">
-      <ngb-alert *ngIf="errorMessage" type="danger" [dismissible]="true" (close)="errorMessage = null">{{ errorMessage }}</ngb-alert>
+      <ngb-alert *ngIf="errorMessage" [type]="typeAlert" [dismissible]="true" (close)="errorMessage = null">{{ errorMessage }}</ngb-alert>
     </div>
   </div>
 </form>

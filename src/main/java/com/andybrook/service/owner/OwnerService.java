@@ -25,7 +25,7 @@ public class OwnerService implements IOwnerService {
     }
 
     @Override
-    public Owner update(Owner owner) {
-        return dao.update(owner);
+    public void update(Owner owner) {
+        dao.update(owner);
     }
 }

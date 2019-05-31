@@ -26,6 +26,7 @@ export class NewCustomerComponent implements OnInit, OnChanges {
   ownerIdMapByName: Map<string, number>
   errorMessage: string
   storesOfSelectedOwner: Store[] = []
+  typeAlert: string = 'success'
   private _error = new Subject<string>()
 
   constructor(private formBuilder: FormBuilder,
@@ -132,7 +133,7 @@ export class NewCustomerComponent implements OnInit, OnChanges {
     }
   }
 
-  private changeErrorMessage(errorMessage: string) {
+  private changeAlertMessage(errorMessage: string) {
     this._error.next(errorMessage);
   }
 
@@ -154,17 +155,24 @@ export class NewCustomerComponent implements OnInit, OnChanges {
       req.storeAddress = new Address(controls.storeStreetNumber.value, controls.storeStreetName.value,
                                 controls.storeZipCode.value, controls.storeCity.value, controls.storeCountry.value);
 
-      this.customerService.addCustomer(req).subscribe(
-        data => {
-          this.form.reset();
-          this.storesOfSelectedOwner = [];
-        },
-        error => {
-          this.changeErrorMessage(error.error);
-        }
-      );
+      this.sendCustomerRequest(req, this.customer != null)
     } else {
-      this.changeErrorMessage("Form not valid.");
+      this.typeAlert = 'danger';
+      this.changeAlertMessage("Form not valid.");
     }
+  }
+
+  private sendCustomerRequest(req: AddOrUpdateCustomerReq, isUpdateRequest: boolean) {
+    let observable = isUpdateRequest ? this.customerService.updateCustomer(req) : this.customerService.addCustomer(req); 
+    observable.subscribe(
+      data => {
+        this.typeAlert = 'success';
+        this.changeAlertMessage("Customer successfully saved");
+      },
+      error => {
+        this.typeAlert = 'danger';
+        this.changeAlertMessage(error.error);
+      }
+    );
   }
 }

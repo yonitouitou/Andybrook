@@ -38,10 +38,10 @@ public class InitSystemTest {
 
     private static final ThreadLocalRandom RANDOM = ThreadLocalRandom.current();
     private static final int CUSTOMER_NUMBER_2 = 2;
-    private static final int PRODUCT_NUMBER_70 = 70;
-    private static final int PRODUCT_ITEM_FOR_EACH_PRODUCT_100 = 100;
+    private static final int PRODUCT_NUMBER_70 = 90;
+    private static final int PRODUCT_ITEM_FOR_EACH_PRODUCT_100 = 500;
     private static final int ORDER_NUMBER_10 = 10;
-    private static final int MAX_ITEM_IN_ORDER_35 = 35;
+    private static final int MAX_ITEM_IN_ORDER_35 = 95;
 
     private List<Product> products;
     private Map<Long, List<Long>> productItemsIdMapByProductId;

@@ -882,7 +882,7 @@ module.exports = ".ng-invalid:not(form)  {\n    border-left: 5px solid #a94442; 
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<form [formGroup]=\"form\" (ngSubmit)=\"onSubmit()\">\n  <h5>Owner</h5>\n  <hr>\n  <div class=\"row\">\n    <div class=\"col form-group\">\n      <label for=\"compagnyName\">Compagny Nane</label>\n      <input type=\"text\" formControlName=\"ownerAutoComplete\"\n        (blur)=\"onBlurOwnerAutoComplete()\"\n        [(ngModel)]=\"inputOwnerName\"\n        [ngbTypeahead]=\"search\"\n        class=\"form-control\"/>\n    </div>\n    <div class=\"col form-group\">\n        <label for=\"firstName\">FirstName</label>\n        <input type=\"text\" formControlName=\"ownerFirstName\" class=\"form-control\" (blur)=onBlurStringFormControl($event)/>\n    </div>\n    <div class=\"col form-group\">\n        <label for=\"lastName\">LastName</label>\n        <input type=\"text\" formControlName=\"ownerLastName\" class=\"form-control\" (blur)=onBlurStringFormControl($event)/>\n    </div>\n    <div class=\"col form-group\">\n        <label for=\"email\">Email</label>\n        <input type=\"text\" formControlName=\"ownerEmail\" class=\"form-control\" (blur)=onBlurLowcaseStringFormControl($event)/>\n    </div>\n  </div>\n  <div *ngIf=\"storesOfSelectedOwner.length > 0\" class=\"row\">\n    <div class=\"col-5\">\n      <table class=\"table table-striped table-bordered table-sm\">\n        <thead>\n          <tr>\n            <th>#</th>\n            <th>Id</th>\n            <th>Name</th>\n            <th>Email</th>\n            <th>Phone</th>\n          </tr>\n        </thead>\n        <tbody>\n          <tr *ngFor=\"let store of storesOfSelectedOwner; let i = index\">\n            <td>{{ i + 1 }}</td>\n            <td>{{ store.id }}</td>\n            <td>{{ store.name }}</td>\n            <td>{{ store.email }}</td>\n            <td>{{ store.phone }}</td>\n          </tr>\n        </tbody>\n      </table>\n    </div>\n  </div>\n  <h5>Store</h5>\n  <hr>\n  <div class=\"row\">\n      <div class=\"col form-group\">\n          <label for=\"name\">Name</label>\n          <input type=\"text\" formControlName=\"storeName\" class=\"form-control\" (blur)=onBlurStringFormControl($event)/>\n      </div>\n      <div class=\"col form-group\">\n        <label for=\"streetNumber\">Street Number</label>\n        <input type=\"text\" formControlName=\"storeStreetNumber\" class=\"form-control\"/>\n      </div>\n      <div class=\"col form-group\">\n          <label for=\"streetName\">Street</label>\n          <input type=\"text\" formControlName=\"storeStreetName\" class=\"form-control\"/>\n      </div>\n      <div class=\"col form-group\">\n          <label for=\"zipCode\">Zip Code</label>\n          <input type=\"text\" formControlName=\"storeZipCode\" class=\"form-control\"/>\n      </div>\n      <div class=\"col form-group\">\n          <label for=\"city\">City</label>\n          <input type=\"text\" formControlName=\"storeCity\" class=\"form-control\" (blur)=onBlurStringFormControl($event)/>\n      </div>\n      <div class=\"col form-group\">\n        <label for=\"country\">Country</label>\n        <input type=\"text\" formControlName=\"storeCountry\" class=\"form-control\" (blur)=onBlurStringFormControl($event)/>\n    </div>\n  </div>\n  <div class=\"row\">\n      <div class=\"col form-group\">\n          <label for=\"phone\">Phone</label>\n          <input type=\"text\" formControlName=\"storePhone\" class=\"form-control\"/>\n      </div>\n      <div class=\"col form-group\">\n          <label for=\"email\">Email</label>\n          <input type=\"text\" formControlName=\"storeEmail\" class=\"form-control\" (blur)=onBlurLowcaseStringFormControl($event)>\n      </div>\n  </div>\n  <div class=\"row\">\n    <div class=\"col\">\n      <button class=\"btn btn-primary\">Save</button>\n    </div>\n    <div class=\"col-md-auto\">\n      <ngb-alert *ngIf=\"errorMessage\" type=\"danger\" [dismissible]=\"true\" (close)=\"errorMessage = null\">{{ errorMessage }}</ngb-alert>\n    </div>\n  </div>\n</form>"
+module.exports = "<form [formGroup]=\"form\" (ngSubmit)=\"onSubmit()\">\n  <h5>Owner</h5>\n  <hr>\n  <div class=\"row\">\n    <div class=\"col form-group\">\n      <label for=\"compagnyName\">Compagny Nane</label>\n      <input type=\"text\" formControlName=\"ownerAutoComplete\"\n        (blur)=\"onBlurOwnerAutoComplete()\"\n        [(ngModel)]=\"inputOwnerName\"\n        [ngbTypeahead]=\"search\"\n        class=\"form-control\"/>\n    </div>\n    <div class=\"col form-group\">\n        <label for=\"firstName\">FirstName</label>\n        <input type=\"text\" formControlName=\"ownerFirstName\" class=\"form-control\" (blur)=onBlurStringFormControl($event)/>\n    </div>\n    <div class=\"col form-group\">\n        <label for=\"lastName\">LastName</label>\n        <input type=\"text\" formControlName=\"ownerLastName\" class=\"form-control\" (blur)=onBlurStringFormControl($event)/>\n    </div>\n    <div class=\"col form-group\">\n        <label for=\"email\">Email</label>\n        <input type=\"text\" formControlName=\"ownerEmail\" class=\"form-control\" (blur)=onBlurLowcaseStringFormControl($event)/>\n    </div>\n  </div>\n  <div *ngIf=\"storesOfSelectedOwner.length > 0\" class=\"row\">\n    <div class=\"col-5\">\n      <table class=\"table table-striped table-bordered table-sm\">\n        <thead>\n          <tr>\n            <th>#</th>\n            <th>Id</th>\n            <th>Name</th>\n            <th>Email</th>\n            <th>Phone</th>\n          </tr>\n        </thead>\n        <tbody>\n          <tr *ngFor=\"let store of storesOfSelectedOwner; let i = index\">\n            <td>{{ i + 1 }}</td>\n            <td>{{ store.id }}</td>\n            <td>{{ store.name }}</td>\n            <td>{{ store.email }}</td>\n            <td>{{ store.phone }}</td>\n          </tr>\n        </tbody>\n      </table>\n    </div>\n  </div>\n  <h5>Store</h5>\n  <hr>\n  <div class=\"row\">\n      <div class=\"col form-group\">\n          <label for=\"name\">Name</label>\n          <input type=\"text\" formControlName=\"storeName\" class=\"form-control\" (blur)=onBlurStringFormControl($event)/>\n      </div>\n      <div class=\"col form-group\">\n        <label for=\"streetNumber\">Street Number</label>\n        <input type=\"text\" formControlName=\"storeStreetNumber\" class=\"form-control\"/>\n      </div>\n      <div class=\"col form-group\">\n          <label for=\"streetName\">Street</label>\n          <input type=\"text\" formControlName=\"storeStreetName\" class=\"form-control\"/>\n      </div>\n      <div class=\"col form-group\">\n          <label for=\"zipCode\">Zip Code</label>\n          <input type=\"text\" formControlName=\"storeZipCode\" class=\"form-control\"/>\n      </div>\n      <div class=\"col form-group\">\n          <label for=\"city\">City</label>\n          <input type=\"text\" formControlName=\"storeCity\" class=\"form-control\" (blur)=onBlurStringFormControl($event)/>\n      </div>\n      <div class=\"col form-group\">\n        <label for=\"country\">Country</label>\n        <input type=\"text\" formControlName=\"storeCountry\" class=\"form-control\" (blur)=onBlurStringFormControl($event)/>\n    </div>\n  </div>\n  <div class=\"row\">\n      <div class=\"col form-group\">\n          <label for=\"phone\">Phone</label>\n          <input type=\"text\" formControlName=\"storePhone\" class=\"form-control\"/>\n      </div>\n      <div class=\"col form-group\">\n          <label for=\"email\">Email</label>\n          <input type=\"text\" formControlName=\"storeEmail\" class=\"form-control\" (blur)=onBlurLowcaseStringFormControl($event)>\n      </div>\n  </div>\n  <div class=\"row\">\n    <div class=\"col\">\n      <button class=\"btn btn-primary\">Save</button>\n    </div>\n    <div class=\"col-md-auto\">\n      <ngb-alert *ngIf=\"errorMessage\" [type]=\"typeAlert\" [dismissible]=\"true\" (close)=\"errorMessage = null\">{{ errorMessage }}</ngb-alert>\n    </div>\n  </div>\n</form>"
 
 /***/ }),
 
@@ -930,6 +930,7 @@ var NewCustomerComponent = /** @class */ (function () {
         this.customerService = customerService;
         this.ownerNames = [];
         this.storesOfSelectedOwner = [];
+        this.typeAlert = 'success';
         this._error = new rxjs__WEBPACK_IMPORTED_MODULE_4__["Subject"]();
         this.search = function (text$) {
             return text$.pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_5__["debounceTime"])(200), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_5__["distinctUntilChanged"])(), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_5__["map"])(function (term) { return term.length < 1 ? []
@@ -1020,11 +1021,10 @@ var NewCustomerComponent = /** @class */ (function () {
             this.storesOfSelectedOwner = [];
         }
     };
-    NewCustomerComponent.prototype.changeErrorMessage = function (errorMessage) {
+    NewCustomerComponent.prototype.changeAlertMessage = function (errorMessage) {
         this._error.next(errorMessage);
     };
     NewCustomerComponent.prototype.onSubmit = function () {
-        var _this = this;
         var controls = this.form.controls;
         if (this.form.valid) {
             var ownerId = this.ownerIdMapByName.get(controls.ownerAutoComplete.value);
@@ -1040,16 +1040,23 @@ var NewCustomerComponent = /** @class */ (function () {
             req.storeEmail = controls.storeEmail.value;
             req.storePhone = controls.storePhone.value;
             req.storeAddress = new src_app_model_Address__WEBPACK_IMPORTED_MODULE_12__["Address"](controls.storeStreetNumber.value, controls.storeStreetName.value, controls.storeZipCode.value, controls.storeCity.value, controls.storeCountry.value);
-            this.customerService.addCustomer(req).subscribe(function (data) {
-                _this.form.reset();
-                _this.storesOfSelectedOwner = [];
-            }, function (error) {
-                _this.changeErrorMessage(error.error);
-            });
+            this.sendCustomerRequest(req, this.customer != null);
         }
         else {
-            this.changeErrorMessage("Form not valid.");
+            this.typeAlert = 'danger';
+            this.changeAlertMessage("Form not valid.");
         }
+    };
+    NewCustomerComponent.prototype.sendCustomerRequest = function (req, isUpdateRequest) {
+        var _this = this;
+        var observable = isUpdateRequest ? this.customerService.updateCustomer(req) : this.customerService.addCustomer(req);
+        observable.subscribe(function (data) {
+            _this.typeAlert = 'success';
+            _this.changeAlertMessage("Customer successfully saved");
+        }, function (error) {
+            _this.typeAlert = 'danger';
+            _this.changeAlertMessage(error.error);
+        });
     };
     tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Input"])(),
@@ -3273,6 +3280,9 @@ var CustomerService = /** @class */ (function () {
     }
     CustomerService.prototype.addCustomer = function (req) {
         return this.http.post(this.url + "/add", req);
+    };
+    CustomerService.prototype.updateCustomer = function (req) {
+        return this.http.post(this.url + "/update", req);
     };
     CustomerService.prototype.getCustomer = function (id) {
         return this.http.get(this.url + "/get/" + id);

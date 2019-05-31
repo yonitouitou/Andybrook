@@ -10,5 +10,5 @@ public interface IOwnerService {
 
     Map<Long, Owner> getAll();
 
-    Owner update(Owner owner);
+    void update(Owner owner);
 }

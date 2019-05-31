@@ -48,9 +48,9 @@ public class OwnerDao implements IOwnerDao {
     }
 
     @Override
-    public Owner update(Owner owner) {
+    public void update(Owner owner) {
         OwnerEntity entity = entityFactory.createOwnerEntity(owner);
         OwnerEntity savedEntity = repository.save(entity);
-        return entityFactory.createOwner(savedEntity);
+        owner.setId(entity.getId());
     }
 }

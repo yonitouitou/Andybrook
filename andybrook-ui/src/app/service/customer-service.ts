@@ -2,7 +2,7 @@
 import { Observable } from 'rxjs';
 import { HttpService } from './http-service';
 import { Injectable } from '@angular/core';
-import { AddCustomerReq } from '../model/request/customer/AddOrUpdateCustomerReq';
+import { AddOrUpdateCustomerReq } from '../model/request/customer/AddOrUpdateCustomerReq';
 
 @Injectable()
 export class CustomerService {
@@ -12,8 +12,12 @@ export class CustomerService {
     constructor(private http: HttpService) {
     }
 
-    addCustomer(req: AddCustomerReq): Observable<any> {
+    addCustomer(req: AddOrUpdateCustomerReq): Observable<any> {
         return this.http.post(this.url + "/add", req);
+    }
+
+    updateCustomer(req: AddOrUpdateCustomerReq): Observable<any> {
+        return this.http.post(this.url + "/update", req);
     }
 
     getCustomer(id: number): Observable<any> {

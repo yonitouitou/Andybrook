@@ -28,6 +28,7 @@ public class StoreDao implements IStoreDao {
 
     @Override
     public Store update(Store store) {
+        ownerDao.update(store.getOwner());
         StoreEntity entity = entityFactory.createStoreEntity(store);
         StoreEntity savedEntity = repository.save(entity);
         return entityFactory.createStore(savedEntity);
