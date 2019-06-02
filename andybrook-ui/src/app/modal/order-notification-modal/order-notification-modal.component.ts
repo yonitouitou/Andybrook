@@ -3,7 +3,7 @@ import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { FormGroup, FormBuilder, Validators, FormControl, FormArray } from '@angular/forms';
 import { NotificationService } from 'src/app/service/notification-service';
 import { OrderNotificationRequest } from 'src/app/model/request/notification/OrderNotificationRequest';
-import { JsonPipe } from '@angular/common';
+import * as fileSaver from 'file-saver'
 
 @Component({
   selector: 'app-order-notification-modal',
@@ -28,7 +28,7 @@ export class OrderNotificationModalComponent implements OnInit {
       dateDocument: [],
       emailInputs: this.formBuilder.array([])
     });
-    this.emailInputs.push(this.createEmailInput());
+    //this.emailInputs.push(this.createEmailInput());
   }
 
   private initNotificationTypes() {
@@ -65,13 +65,18 @@ export class OrderNotificationModalComponent implements OnInit {
         req.dateDocument = new Date(dp.year, dp.month - 1, dp.day + 1).getTime();
       }
       req.emails = this.getEmailsFromInputs();
-      this.notificationService.notifyOrder(req).subscribe(
-        data => {
-          console.log("Notify done : " + data)
+      this.notificationService.syncNotifyOrder(req).subscribe(
+        response => {
+          this.saveFile(response.body, response.headers.get('filename'), response.headers.get('Content-type'));
           this.modal.close();
         }
       )
     }
+  }
+
+  saveFile(data: any, filename?: string, contentType?: string) {
+    const blob = new Blob([data], {type: contentType});
+    fileSaver.saveAs(blob, filename);
   }
 
   private getEmailsFromInputs(): string[] {

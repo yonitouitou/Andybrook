@@ -5,30 +5,48 @@ import com.andybrook.exception.OrderNotFound;
 import com.andybrook.model.api.AggregatedOrder;
 import com.andybrook.model.notification.event.AbstractEvent;
 import com.andybrook.model.notification.event.CloseOrderEvent;
+import com.andybrook.model.notification.handler.IDocumentHandler;
 import com.andybrook.model.notification.request.NotificationRequest;
-import com.andybrook.model.notification.request.ctx.NotifSetting;
 import com.andybrook.model.notification.request.ctx.NotificationCtx;
 import com.andybrook.model.notification.request.ctx.OrderDocumentCtx;
-import com.andybrook.model.order.Order;
-import com.andybrook.service.order.IOrderService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationEventPublisher;
+import org.springframework.core.io.Resource;
 import org.springframework.stereotype.Service;
 
-import static com.andybrook.enums.NotificationType.ORDER_CLOSED;
+
+import java.nio.file.Path;
+import java.util.LinkedList;
+import java.util.List;
 
 @Service
 public class NotificationService implements INotificationService {
 
     @Autowired
+    private ApplicationContext applicationContext;
+    @Autowired
     private ApplicationEventPublisher publisher;
+    @Autowired
+    private IDocumentHandlerService documentHandlerService;
 
     @Override
-    public void notify(NotificationRequest request) throws OrderNotFound {
+    public void asyncNotify(NotificationRequest request) throws OrderNotFound {
         for (NotificationType type : request.getTypes()) {
             publisher.publishEvent(createEvent(type, request.getCtx()));
         }
+    }
 
+    @Override
+    public List<Path> syncNotify(NotificationRequest request) {
+        List<Path> resources = new LinkedList<>();
+        for (NotificationType type : request.getTypes()) {
+            Class<IDocumentHandler> handlerClass = documentHandlerService.getHandler(type);
+            IDocumentHandler handler = applicationContext.getBean(handlerClass);
+            Path path = handler.generateDocument(request.getCtx());
+            resources.add(path);
+        }
+        return resources;
     }
 
     private AbstractEvent createEvent(NotificationType type, NotificationCtx ctx) {

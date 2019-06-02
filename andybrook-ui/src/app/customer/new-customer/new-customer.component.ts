@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, OnChanges, SimpleChanges } from '@angular/core';
+import { Component, OnInit, Input, OnChanges, SimpleChanges, Output, EventEmitter } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { CustomerService } from 'src/app/service/customer-service';
 import { Observable, Subject } from 'rxjs';
@@ -19,6 +19,7 @@ import { Address } from 'src/app/model/Address';
 export class NewCustomerComponent implements OnInit, OnChanges {
 
   @Input() customer: Customer
+  @Output() onUpdateCustomerEvent = new EventEmitter<number>();
 
   form: FormGroup
   inputOwnerName: string
@@ -71,19 +72,27 @@ export class NewCustomerComponent implements OnInit, OnChanges {
   private fillForm() {
     const store = this.customer.store;
     this.form.setValue({
-      ownerAutoComplete: store.owner.compagnyName,
-      ownerFirstName: store.owner.firstName,
-      ownerLastName: store.owner.lastName,
-      ownerEmail: store.owner.email,
-      storeName: store.name,
-      storeStreetNumber: store.address.streetNumber,
-      storeStreetName: store.address.streetName,
-      storeZipCode: store.address.zipCode,
-      storeCity: store.address.city,
-      storeCountry: store.address.country,
-      storePhone: store.phone,
-      storeEmail: store.email
+      ownerAutoComplete: this.getStringValue(store.owner.compagnyName),
+      ownerFirstName: this.getStringValue(store.owner.firstName),
+      ownerLastName: this.getStringValue(store.owner.lastName),
+      ownerEmail: this.getStringValue(store.owner.email),
+      storeName: this.getStringValue(store.name),
+      storeStreetNumber: this.getStringValue(store.address.streetNumber),
+      storeStreetName: this.getStringValue(store.address.streetName),
+      storeZipCode: this.getNumericValue(store.address.zipCode),
+      storeCity: this.getStringValue(store.address.city),
+      storeCountry: this.getStringValue(store.address.country),
+      storePhone: this.getStringValue(store.phone),
+      storeEmail: this.getStringValue(store.email)
     })
+  }
+
+  private getStringValue(value: string): string {
+    return value.length > 0 || value == 'null' ? value : "";
+  }
+
+  private getNumericValue(value: number): string {
+    return value <= 0 ? "" : value.toString();
   }
 
   private loadOwners() {
@@ -133,7 +142,8 @@ export class NewCustomerComponent implements OnInit, OnChanges {
     }
   }
 
-  private changeAlertMessage(errorMessage: string) {
+  private changeAlertMessage(type: string, errorMessage: string) {
+    this.typeAlert = type;
     this._error.next(errorMessage);
   }
 
@@ -157,8 +167,7 @@ export class NewCustomerComponent implements OnInit, OnChanges {
 
       this.sendCustomerRequest(req, this.customer != null)
     } else {
-      this.typeAlert = 'danger';
-      this.changeAlertMessage("Form not valid.");
+      this.changeAlertMessage("danger", "Form not valid.");
     }
   }
 
@@ -166,12 +175,11 @@ export class NewCustomerComponent implements OnInit, OnChanges {
     let observable = isUpdateRequest ? this.customerService.updateCustomer(req) : this.customerService.addCustomer(req); 
     observable.subscribe(
       data => {
-        this.typeAlert = 'success';
-        this.changeAlertMessage("Customer successfully saved");
+        this.changeAlertMessage("success", "Customer successfully saved");
+        this.onUpdateCustomerEvent.emit(this.customer.id);
       },
       error => {
-        this.typeAlert = 'danger';
-        this.changeAlertMessage(error.error);
+        this.changeAlertMessage("danger", error.error);
       }
     );
   }

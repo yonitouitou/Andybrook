@@ -2,10 +2,13 @@ package com.andybrook.manager.notification;
 
 import com.andybrook.exception.OrderNotFound;
 import com.andybrook.model.notification.request.NotificationRequest;
-import com.andybrook.model.notification.request.ctx.OrderDocumentCtx;
-import com.andybrook.model.order.Order;
+
+import java.nio.file.Path;
+import java.util.List;
 
 public interface INotificationManager {
 
     void notify(NotificationRequest request) throws OrderNotFound;
+
+    List<Path> generateDocuments(NotificationRequest request);
 }

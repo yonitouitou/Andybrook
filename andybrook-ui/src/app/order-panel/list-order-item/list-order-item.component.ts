@@ -19,6 +19,13 @@ import { DeleteOrderItemsReq } from 'src/app/model/request/order/DeleteOrderItem
 })
 export class ListOrderItemComponent implements OnInit {
 
+  @Input() orderItems: IterableIterator<AggregatedOrderItem>
+  @Input() order: AggregatedOrder
+
+  @Output() onCreateOrderItemEvent = new EventEmitter<OrderItem>()
+  @Output() onChangeOrderItemEvent = new EventEmitter<ModifyOrderItemReq>()
+  @Output() onDeleteOrderItemEvent = new EventEmitter<number[]>()
+  
   inputId: number
   inputBarCode: string
   inputName: string
@@ -39,13 +46,6 @@ export class ListOrderItemComponent implements OnInit {
       map(term => term.length < 1 ? []
         : this.productNames.filter(v => v.toLowerCase().indexOf(term.toLowerCase()) > -1).slice(0, 10))
     )
-
-  @Input() orderItems: IterableIterator<AggregatedOrderItem>
-  @Input() order: AggregatedOrder
-
-  @Output() onCreateOrderItemEvent = new EventEmitter<OrderItem>()
-  @Output() onChangeOrderItemEvent = new EventEmitter<ModifyOrderItemReq>()
-  @Output() onDeleteOrderItemEvent = new EventEmitter<number[]>()
 
   constructor(private orderService: OrderService,
               private productService: ProductService,

@@ -3,11 +3,11 @@
 </div>
 <div class="row">
   <div class="col-md-auto">
-    <list-customer (onCustomerSelected)="onCustomerSelected($event)"></list-customer>
+    <list-customer [customer]="customer" (onCustomerSelected)="onCustomerSelected($event)"></list-customer>
   </div>
   <div class="col">
-    <new-customer [customer]="customer"></new-customer>
+    <new-customer [customer]="customer" (onUpdateCustomerEvent)="onUpdateCustomer($event)"></new-customer>
     <hr>
-    <customer-orders [orders]="orders"></customer-orders>
+    <customer-orders [customer]="customer"></customer-orders>
   </div>
 </div>

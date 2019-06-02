@@ -663,25 +663,48 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "CustomerOrdersComponent", function() { return CustomerOrdersComponent; });
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var src_app_model_AggregatedOrder__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! src/app/model/AggregatedOrder */ "./src/app/model/AggregatedOrder.ts");
+/* harmony import */ var src_app_service_order_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! src/app/service/order-service */ "./src/app/service/order-service.ts");
+/* harmony import */ var src_app_model_Customer__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! src/app/model/Customer */ "./src/app/model/Customer.ts");
+
+
+
 
 
 var CustomerOrdersComponent = /** @class */ (function () {
-    function CustomerOrdersComponent() {
+    function CustomerOrdersComponent(orderService) {
+        this.orderService = orderService;
         this.orders = [];
     }
     CustomerOrdersComponent.prototype.ngOnInit = function () {
     };
+    CustomerOrdersComponent.prototype.ngOnChanges = function () {
+        this.loadOrders();
+    };
+    CustomerOrdersComponent.prototype.loadOrders = function () {
+        var _this = this;
+        if (this.customer != null) {
+            this.orderService.getOrdersOfCustomer(this.customer.id).subscribe(function (data) {
+                var arr = [];
+                for (var _i = 0, data_1 = data; _i < data_1.length; _i++) {
+                    var order = data_1[_i];
+                    arr.push(src_app_model_AggregatedOrder__WEBPACK_IMPORTED_MODULE_2__["AggregatedOrder"].fromJson(order));
+                }
+                _this.orders = arr;
+            });
+        }
+    };
     tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Input"])(),
-        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:type", Array)
-    ], CustomerOrdersComponent.prototype, "orders", void 0);
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:type", src_app_model_Customer__WEBPACK_IMPORTED_MODULE_4__["Customer"])
+    ], CustomerOrdersComponent.prototype, "customer", void 0);
     CustomerOrdersComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
             selector: 'customer-orders',
             template: __webpack_require__(/*! ./customer-orders.component.html */ "./src/app/customer/customer-orders/customer-orders.component.html"),
             styles: [__webpack_require__(/*! ./customer-orders.component.css */ "./src/app/customer/customer-orders/customer-orders.component.css")]
         }),
-        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [])
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [src_app_service_order_service__WEBPACK_IMPORTED_MODULE_3__["OrderService"]])
     ], CustomerOrdersComponent);
     return CustomerOrdersComponent;
 }());
@@ -708,7 +731,7 @@ module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"row\">\n  <customer-header></customer-header>\n</div>\n<div class=\"row\">\n  <div class=\"col-md-auto\">\n    <list-customer (onCustomerSelected)=\"onCustomerSelected($event)\"></list-customer>\n  </div>\n  <div class=\"col\">\n    <new-customer [customer]=\"customer\"></new-customer>\n    <hr>\n    <customer-orders [orders]=\"orders\"></customer-orders>\n  </div>\n</div>"
+module.exports = "<div class=\"row\">\n  <customer-header></customer-header>\n</div>\n<div class=\"row\">\n  <div class=\"col-md-auto\">\n    <list-customer [customer]=\"customer\" (onCustomerSelected)=\"onCustomerSelected($event)\"></list-customer>\n  </div>\n  <div class=\"col\">\n    <new-customer [customer]=\"customer\" (onUpdateCustomerEvent)=\"onUpdateCustomer($event)\"></new-customer>\n    <hr>\n    <customer-orders [customer]=\"customer\"></customer-orders>\n  </div>\n</div>"
 
 /***/ }),
 
@@ -724,32 +747,29 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "CustomerPanelComponent", function() { return CustomerPanelComponent; });
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
-/* harmony import */ var src_app_model_AggregatedOrder__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! src/app/model/AggregatedOrder */ "./src/app/model/AggregatedOrder.ts");
-/* harmony import */ var src_app_service_order_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! src/app/service/order-service */ "./src/app/service/order-service.ts");
+/* harmony import */ var src_app_service_order_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! src/app/service/order-service */ "./src/app/service/order-service.ts");
+/* harmony import */ var src_app_model_Customer__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! src/app/model/Customer */ "./src/app/model/Customer.ts");
+/* harmony import */ var src_app_service_customer_service__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! src/app/service/customer-service */ "./src/app/service/customer-service.ts");
+
 
 
 
 
 var CustomerPanelComponent = /** @class */ (function () {
-    function CustomerPanelComponent(orderService) {
+    function CustomerPanelComponent(orderService, customerService) {
         this.orderService = orderService;
+        this.customerService = customerService;
         this.orders = [];
     }
     CustomerPanelComponent.prototype.ngOnInit = function () {
     };
     CustomerPanelComponent.prototype.onCustomerSelected = function (event) {
         this.customer = event;
-        this.loadOrders(event.id);
     };
-    CustomerPanelComponent.prototype.loadOrders = function (customerId) {
+    CustomerPanelComponent.prototype.onUpdateCustomer = function (event) {
         var _this = this;
-        this.orderService.getOrdersOfCustomer(customerId).subscribe(function (data) {
-            var arr = [];
-            for (var _i = 0, data_1 = data; _i < data_1.length; _i++) {
-                var order = data_1[_i];
-                arr.push(src_app_model_AggregatedOrder__WEBPACK_IMPORTED_MODULE_2__["AggregatedOrder"].fromJson(order));
-            }
-            _this.orders = arr;
+        this.customerService.getCustomer(event.id).subscribe(function (data) {
+            _this.customer = src_app_model_Customer__WEBPACK_IMPORTED_MODULE_3__["Customer"].fromJson(data);
         });
     };
     CustomerPanelComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
@@ -758,7 +778,8 @@ var CustomerPanelComponent = /** @class */ (function () {
             template: __webpack_require__(/*! ./customer-panel.component.html */ "./src/app/customer/customer-panel/customer-panel.component.html"),
             styles: [__webpack_require__(/*! ./customer-panel.component.css */ "./src/app/customer/customer-panel/customer-panel.component.css")]
         }),
-        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [src_app_service_order_service__WEBPACK_IMPORTED_MODULE_3__["OrderService"]])
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [src_app_service_order_service__WEBPACK_IMPORTED_MODULE_2__["OrderService"],
+            src_app_service_customer_service__WEBPACK_IMPORTED_MODULE_4__["CustomerService"]])
     ], CustomerPanelComponent);
     return CustomerPanelComponent;
 }());
@@ -802,17 +823,14 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
 /* harmony import */ var src_app_model_Customer__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! src/app/model/Customer */ "./src/app/model/Customer.ts");
-/* harmony import */ var src_app_common_components_modal_builder__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! src/app/common-components/modal-builder */ "./src/app/common-components/modal-builder.ts");
-/* harmony import */ var src_app_service_customer_service__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! src/app/service/customer-service */ "./src/app/service/customer-service.ts");
-
+/* harmony import */ var src_app_service_customer_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! src/app/service/customer-service */ "./src/app/service/customer-service.ts");
 
 
 
 
 var ListCustomerComponent = /** @class */ (function () {
-    function ListCustomerComponent(customerService, modalBuilder) {
+    function ListCustomerComponent(customerService) {
         this.customerService = customerService;
-        this.modalBuilder = modalBuilder;
         this.onCustomerSelected = new _angular_core__WEBPACK_IMPORTED_MODULE_1__["EventEmitter"]();
         this.customers = [];
     }
@@ -848,14 +866,17 @@ var ListCustomerComponent = /** @class */ (function () {
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Output"])(),
         tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:type", Object)
     ], ListCustomerComponent.prototype, "onCustomerSelected", void 0);
+    tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Input"])(),
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:type", src_app_model_Customer__WEBPACK_IMPORTED_MODULE_2__["Customer"])
+    ], ListCustomerComponent.prototype, "customer", void 0);
     ListCustomerComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
             selector: 'list-customer',
             template: __webpack_require__(/*! ./list-customer.component.html */ "./src/app/customer/list-customer/list-customer.component.html"),
             styles: [__webpack_require__(/*! ./list-customer.component.css */ "./src/app/customer/list-customer/list-customer.component.css")]
         }),
-        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [src_app_service_customer_service__WEBPACK_IMPORTED_MODULE_4__["CustomerService"],
-            src_app_common_components_modal_builder__WEBPACK_IMPORTED_MODULE_3__["ModalBuilder"]])
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [src_app_service_customer_service__WEBPACK_IMPORTED_MODULE_3__["CustomerService"]])
     ], ListCustomerComponent);
     return ListCustomerComponent;
 }());
@@ -928,6 +949,7 @@ var NewCustomerComponent = /** @class */ (function () {
         this.formBuilder = formBuilder;
         this.modalBuilder = modalBuilder;
         this.customerService = customerService;
+        this.onUpdateCustomerEvent = new _angular_core__WEBPACK_IMPORTED_MODULE_1__["EventEmitter"]();
         this.ownerNames = [];
         this.storesOfSelectedOwner = [];
         this.typeAlert = 'success';
@@ -971,19 +993,25 @@ var NewCustomerComponent = /** @class */ (function () {
     NewCustomerComponent.prototype.fillForm = function () {
         var store = this.customer.store;
         this.form.setValue({
-            ownerAutoComplete: store.owner.compagnyName,
-            ownerFirstName: store.owner.firstName,
-            ownerLastName: store.owner.lastName,
-            ownerEmail: store.owner.email,
-            storeName: store.name,
-            storeStreetNumber: store.address.streetNumber,
-            storeStreetName: store.address.streetName,
-            storeZipCode: store.address.zipCode,
-            storeCity: store.address.city,
-            storeCountry: store.address.country,
-            storePhone: store.phone,
-            storeEmail: store.email
+            ownerAutoComplete: this.getStringValue(store.owner.compagnyName),
+            ownerFirstName: this.getStringValue(store.owner.firstName),
+            ownerLastName: this.getStringValue(store.owner.lastName),
+            ownerEmail: this.getStringValue(store.owner.email),
+            storeName: this.getStringValue(store.name),
+            storeStreetNumber: this.getStringValue(store.address.streetNumber),
+            storeStreetName: this.getStringValue(store.address.streetName),
+            storeZipCode: this.getNumericValue(store.address.zipCode),
+            storeCity: this.getStringValue(store.address.city),
+            storeCountry: this.getStringValue(store.address.country),
+            storePhone: this.getStringValue(store.phone),
+            storeEmail: this.getStringValue(store.email)
         });
+    };
+    NewCustomerComponent.prototype.getStringValue = function (value) {
+        return value.length > 0 || value == 'null' ? value : "";
+    };
+    NewCustomerComponent.prototype.getNumericValue = function (value) {
+        return value <= 0 ? "" : value.toString();
     };
     NewCustomerComponent.prototype.loadOwners = function () {
         var _this = this;
@@ -1021,7 +1049,8 @@ var NewCustomerComponent = /** @class */ (function () {
             this.storesOfSelectedOwner = [];
         }
     };
-    NewCustomerComponent.prototype.changeAlertMessage = function (errorMessage) {
+    NewCustomerComponent.prototype.changeAlertMessage = function (type, errorMessage) {
+        this.typeAlert = type;
         this._error.next(errorMessage);
     };
     NewCustomerComponent.prototype.onSubmit = function () {
@@ -1043,25 +1072,27 @@ var NewCustomerComponent = /** @class */ (function () {
             this.sendCustomerRequest(req, this.customer != null);
         }
         else {
-            this.typeAlert = 'danger';
-            this.changeAlertMessage("Form not valid.");
+            this.changeAlertMessage("danger", "Form not valid.");
         }
     };
     NewCustomerComponent.prototype.sendCustomerRequest = function (req, isUpdateRequest) {
         var _this = this;
         var observable = isUpdateRequest ? this.customerService.updateCustomer(req) : this.customerService.addCustomer(req);
         observable.subscribe(function (data) {
-            _this.typeAlert = 'success';
-            _this.changeAlertMessage("Customer successfully saved");
+            _this.changeAlertMessage("success", "Customer successfully saved");
+            _this.onUpdateCustomerEvent.emit(_this.customer.id);
         }, function (error) {
-            _this.typeAlert = 'danger';
-            _this.changeAlertMessage(error.error);
+            _this.changeAlertMessage("danger", error.error);
         });
     };
     tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Input"])(),
         tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:type", src_app_model_Customer__WEBPACK_IMPORTED_MODULE_11__["Customer"])
     ], NewCustomerComponent.prototype, "customer", void 0);
+    tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Output"])(),
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:type", Object)
+    ], NewCustomerComponent.prototype, "onUpdateCustomerEvent", void 0);
     NewCustomerComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
             selector: 'new-customer',
@@ -1763,6 +1794,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _angular_forms__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/forms */ "./node_modules/@angular/forms/fesm5/forms.js");
 /* harmony import */ var src_app_service_notification_service__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! src/app/service/notification-service */ "./src/app/service/notification-service.ts");
 /* harmony import */ var src_app_model_request_notification_OrderNotificationRequest__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! src/app/model/request/notification/OrderNotificationRequest */ "./src/app/model/request/notification/OrderNotificationRequest.ts");
+/* harmony import */ var file_saver__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! file-saver */ "./node_modules/file-saver/dist/FileSaver.min.js");
+/* harmony import */ var file_saver__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(file_saver__WEBPACK_IMPORTED_MODULE_6__);
+
 
 
 
@@ -1783,7 +1817,7 @@ var OrderNotificationModalComponent = /** @class */ (function () {
             dateDocument: [],
             emailInputs: this.formBuilder.array([])
         });
-        this.emailInputs.push(this.createEmailInput());
+        //this.emailInputs.push(this.createEmailInput());
     };
     OrderNotificationModalComponent.prototype.initNotificationTypes = function () {
         var _this = this;
@@ -1816,11 +1850,15 @@ var OrderNotificationModalComponent = /** @class */ (function () {
                 req.dateDocument = new Date(dp.year, dp.month - 1, dp.day + 1).getTime();
             }
             req.emails = this.getEmailsFromInputs();
-            this.notificationService.notifyOrder(req).subscribe(function (data) {
-                console.log("Notify done : " + data);
+            this.notificationService.syncNotifyOrder(req).subscribe(function (response) {
+                _this.saveFile(response.body, response.headers.get('filename'), response.headers.get('Content-type'));
                 _this.modal.close();
             });
         }
+    };
+    OrderNotificationModalComponent.prototype.saveFile = function (data, filename, contentType) {
+        var blob = new Blob([data], { type: contentType });
+        file_saver__WEBPACK_IMPORTED_MODULE_6__["saveAs"](blob, filename);
     };
     OrderNotificationModalComponent.prototype.getEmailsFromInputs = function () {
         var emails = [];
@@ -2550,6 +2588,9 @@ var ListOrderItemComponent = /** @class */ (function () {
         this.orderService = orderService;
         this.productService = productService;
         this.modalBuilder = modalBuilder;
+        this.onCreateOrderItemEvent = new _angular_core__WEBPACK_IMPORTED_MODULE_1__["EventEmitter"]();
+        this.onChangeOrderItemEvent = new _angular_core__WEBPACK_IMPORTED_MODULE_1__["EventEmitter"]();
+        this.onDeleteOrderItemEvent = new _angular_core__WEBPACK_IMPORTED_MODULE_1__["EventEmitter"]();
         this.areNewOrderItemFieldsSet = false;
         this.selectedOrderItems = new Map();
         this.productNames = [];
@@ -2559,9 +2600,6 @@ var ListOrderItemComponent = /** @class */ (function () {
             return text$.pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_6__["debounceTime"])(200), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_6__["distinctUntilChanged"])(), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_6__["map"])(function (term) { return term.length < 1 ? []
                 : _this.productNames.filter(function (v) { return v.toLowerCase().indexOf(term.toLowerCase()) > -1; }).slice(0, 10); }));
         };
-        this.onCreateOrderItemEvent = new _angular_core__WEBPACK_IMPORTED_MODULE_1__["EventEmitter"]();
-        this.onChangeOrderItemEvent = new _angular_core__WEBPACK_IMPORTED_MODULE_1__["EventEmitter"]();
-        this.onDeleteOrderItemEvent = new _angular_core__WEBPACK_IMPORTED_MODULE_1__["EventEmitter"]();
     }
     ListOrderItemComponent.prototype.ngOnInit = function () {
         this.initDeleteOrderItemButtonStatus();
@@ -3336,8 +3374,8 @@ var HttpService = /** @class */ (function () {
     HttpService.prototype.get = function (url) {
         return this.http.get(url);
     };
-    HttpService.prototype.post = function (url, body) {
-        return this.http.post(url, body, this.getHeaders());
+    HttpService.prototype.post = function (url, body, options) {
+        return this.http.post(url, body, options != null ? options : this.getHeaders());
     };
     HttpService.prototype.delete = function (url) {
         return this.http.delete(url, this.getHeaders());
@@ -3382,8 +3420,15 @@ var NotificationService = /** @class */ (function () {
         this.httpApi = httpApi;
         this.url = "v1/notification";
     }
-    NotificationService.prototype.notifyOrder = function (req) {
-        return this.httpApi.post(this.url + "/order-notification", req);
+    NotificationService.prototype.asyncNotifyOrder = function (req) {
+        return this.httpApi.post(this.url + "/async-order-notification", req);
+    };
+    NotificationService.prototype.syncNotifyOrder = function (req) {
+        var options = {
+            responseType: 'blob',
+            observe: 'response'
+        };
+        return this.httpApi.post(this.url + "/sync-order-notification", req, options);
     };
     NotificationService.prototype.getNotificationTypes = function () {
         return this.httpApi.get(this.url + "/notification-types");

@@ -2,6 +2,7 @@ import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { AggregatedOrder } from 'src/app/model/AggregatedOrder';
 import { OrderService } from 'src/app/service/order-service';
 import { Customer } from 'src/app/model/Customer';
+import { CustomerService } from 'src/app/service/customer-service';
 
 @Component({
   selector: 'customer-panel',
@@ -13,7 +14,8 @@ export class CustomerPanelComponent implements OnInit {
   customer: Customer
   orders: AggregatedOrder[] = []
 
-  constructor(private orderService: OrderService) { }
+  constructor(private orderService: OrderService,
+              private customerService: CustomerService) { }
 
   ngOnInit() {
     
@@ -21,17 +23,12 @@ export class CustomerPanelComponent implements OnInit {
 
   onCustomerSelected(event) {
     this.customer = event;
-    this.loadOrders(event.id);
   }
 
-  private loadOrders(customerId: number) {
-    this.orderService.getOrdersOfCustomer(customerId).subscribe(
+  onUpdateCustomer(event) {
+    this.customerService.getCustomer(event.id).subscribe(
       data => {
-        let arr: AggregatedOrder[] = [];
-        for (let order of data) {
-          arr.push(AggregatedOrder.fromJson(order));
-        }
-        this.orders = arr;
+        this.customer = Customer.fromJson(data);
       }
     )
   }

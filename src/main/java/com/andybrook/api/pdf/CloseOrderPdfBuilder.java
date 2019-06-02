@@ -83,10 +83,8 @@ public class CloseOrderPdfBuilder extends AbstractPdfBuilder implements IPdfBuil
 
             document.add(logo);
             document.add(title);
-            addEmptyRow(document, 1);
             document.add(customerTable1);
             document.add(customerTable2);
-            addEmptyRow(document, 1);
             document.add(itemsTable);
             addEmptyRow(document, 1);
             document.add(doneDate);
@@ -128,7 +126,7 @@ public class CloseOrderPdfBuilder extends AbstractPdfBuilder implements IPdfBuil
         String phoneNumber = languageResolver.get(Pdf.PHONE_NUMBER);
         String email = languageResolver.get(Pdf.EMAIL_ADDRESS);
         String shopName = languageResolver.get(Pdf.STORE_NAME);
-        COLUMNS_NAME_CUSTOMER_MAIN_DETAILS[0] = shopName;
+        COLUNS_NAME_CUSTOMER_CONTACT_DETAILS[0] = shopName;
         COLUNS_NAME_CUSTOMER_CONTACT_DETAILS[1] = address;
         COLUNS_NAME_CUSTOMER_CONTACT_DETAILS[2] = phoneNumber;
         COLUNS_NAME_CUSTOMER_CONTACT_DETAILS[3] = email;

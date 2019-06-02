@@ -2,9 +2,13 @@ package com.andybrook.service.notification;
 
 import com.andybrook.exception.OrderNotFound;
 import com.andybrook.model.notification.request.NotificationRequest;
-import com.andybrook.model.notification.request.ctx.OrderDocumentCtx;
+
+import java.nio.file.Path;
+import java.util.List;
 
 public interface INotificationService {
 
-    void notify(NotificationRequest request) throws OrderNotFound;
+    void asyncNotify(NotificationRequest request) throws OrderNotFound;
+
+    List<Path> syncNotify(NotificationRequest request);
 }

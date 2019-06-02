@@ -11,8 +11,8 @@ export class HttpService {
         return this.http.get(url)
     }
 
-    post(url: string, body: any) : Observable<any> {
-        return this.http.post(url, body, this.getHeaders());
+    post(url: string, body: any, options?) : Observable<any> {
+        return this.http.post(url, body, options != null ? options : this.getHeaders());
     }
 
     delete(url: string) : Observable<any> {

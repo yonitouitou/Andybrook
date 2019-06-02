@@ -10,8 +10,16 @@ export class NotificationService {
 
     constructor(private httpApi: HttpService) {}
 
-    notifyOrder(req: OrderNotificationRequest): Observable<any> {
-        return this.httpApi.post(this.url + "/order-notification", req);
+    asyncNotifyOrder(req: OrderNotificationRequest): Observable<any> {
+        return this.httpApi.post(this.url + "/async-order-notification", req);
+    }
+
+    syncNotifyOrder(req: OrderNotificationRequest): Observable<any> {
+        let options = {
+            responseType: 'blob',
+            observe: 'response'
+        }; 
+        return this.httpApi.post(this.url + "/sync-order-notification", req, options);
     }
 
     getNotificationTypes(): Observable<any> {
