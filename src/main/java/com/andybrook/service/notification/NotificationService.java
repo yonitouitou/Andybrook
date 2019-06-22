@@ -20,6 +20,7 @@ import java.lang.System.Logger.Level;
 import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 @Service
@@ -36,25 +37,30 @@ public class NotificationService implements INotificationService {
 
     @Override
     public List<Path> notify(NotificationRequest request) throws OrderNotFound {
-        List<Path> paths = new ArrayList<>(request.getNotificationTypes().size());
+        DocumentRequest documentRequest = request.getDocumentRequest();
+        Class<IDocumentHandler> handlerClass = documentHandlerService.getHandler(documentRequest.getType());
+        IDocumentHandler handler = applicationContext.getBean(handlerClass);
+        List<Path> docs = generateDocuments(request.getDocumentRequest(), handler);
         for (NotificationType type : request.getNotificationTypes()) {
-            DocumentRequest documentRequest = request.getDocumentRequest();
-            Class<IDocumentHandler> handlerClass = documentHandlerService.getHandler(documentRequest.getType());
-            IDocumentHandler handler = applicationContext.getBean(handlerClass);
-            for (FileFormat format : documentRequest.getFormats()) {
-                try {
-                    Path path = handler.generateDocument(format, documentRequest.getCtx());
-                    paths.add(path);
-                } catch (Exception e) {
-                    LOGGER.log(Level.ERROR, "Error occurred when try to generate "
-                            + format + " document : " + request.toString(), e);
-                }
-            }
             if (type.isAsync()) {
                 EmailSetting setting = (EmailSetting) request.getSetting(type);
                 if (setting != null && setting.hasEmails()) {
-                    sendEmail(setting, handler, documentRequest.getCtx(), paths);
+                    sendEmail(setting, handler, documentRequest.getCtx(), docs);
                 }
+            }
+        }
+        return request.getNotificationTypes().stream().anyMatch(t -> ! t.isAsync()) ? docs : Collections.emptyList();
+    }
+
+    private List<Path> generateDocuments(DocumentRequest documentRequest, IDocumentHandler handler) {
+        List<Path> paths = new ArrayList<>();
+        for (FileFormat format : documentRequest.getFormats()) {
+            try {
+                Path path = handler.generateDocument(format, documentRequest.getCtx());
+                paths.add(path);
+            } catch (Exception e) {
+                LOGGER.log(Level.ERROR, "Error occurred when try to generate "
+                        + format + " document : " + documentRequest.toString(), e);
             }
         }
         return paths;

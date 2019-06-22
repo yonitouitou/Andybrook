@@ -4,7 +4,7 @@ import { FormGroup, FormBuilder, Validators, FormControl, FormArray } from '@ang
 import { NotificationService } from 'src/app/service/notification-service';
 import { OrderNotificationRequest } from 'src/app/model/request/notification/OrderNotificationRequest';
 import * as fileSaver from 'file-saver'
-import { NotificationType } from 'src/app/model/NotificationType';
+import { DocType } from 'src/app/model/DocType';
 
 @Component({
   selector: 'app-order-notification-modal',
@@ -15,8 +15,8 @@ export class OrderNotificationModalComponent implements OnInit {
 
   @Input() orderId: number
   form: FormGroup
-  notificationTypesMapByName: Map<string, NotificationType> = new Map();
-  selectedType: NotificationType;
+  docTypesMapByName: Map<string, DocType> = new Map();
+  selectedType: DocType;
   formatsOfSelectedType: string[];
 
   constructor(private modal: NgbActiveModal,
@@ -24,9 +24,9 @@ export class OrderNotificationModalComponent implements OnInit {
               private notificationService: NotificationService) {}
 
   ngOnInit() {
-    this.initNotificationTypes();
+    this.initDocTypes();
     this.form = this.formBuilder.group({
-      notificationTypesSelect: [[], [Validators.required]],
+      docTypesSelect: [[], [Validators.required]],
       formats: this.formBuilder.array([]),
       dateDocument: [],
       emailInputs: this.formBuilder.array([])
@@ -35,12 +35,12 @@ export class OrderNotificationModalComponent implements OnInit {
     emailInputs.push(this.createEmailInput());
   }
 
-  private initNotificationTypes() {
-    this.notificationService.getNotificationTypes().subscribe(
+  private initDocTypes() {
+    this.notificationService.getDocumentTypes().subscribe(
       data => {
         for (let i = 0; i < data.length; i++) {
-          let notif = NotificationType.fromJson(data[i]);
-          this.notificationTypesMapByName.set(notif.type, notif);
+          let notif = DocType.fromJson(data[i]);
+          this.docTypesMapByName.set(notif.type, notif);
         }
       },
       error => {
@@ -74,14 +74,14 @@ export class OrderNotificationModalComponent implements OnInit {
   onChangeType(event: any) {
     let selectedTypeName = event.target.selectedOptions[0].text;
     if (selectedTypeName != null) {
-      this.selectedType = this.notificationTypesMapByName.get(selectedTypeName);
+      this.selectedType = this.docTypesMapByName.get(selectedTypeName);
       if (this.selectedType != null) {
         this.formatsOfSelectedType = this.selectedType.supportedFormats;
         for (let i = 0; i < this.formatsOfSelectedType.length; i++) {
           this.addFormatCheckbox()
         }
       } else {
-        console.log("Unknown selected type name " + selectedTypeName + ". Known types : " + JSON.stringify(this.notificationTypesMapByName));
+        console.log("Unknown selected type name " + selectedTypeName + ". Known types : " + JSON.stringify(this.docTypesMapByName));
       }
     }
   }
@@ -89,17 +89,19 @@ export class OrderNotificationModalComponent implements OnInit {
   onSubmit() {
     if (this.form.valid) {
       let dp = this.form.controls.dateDocument.value;
-      let types: string[] = [];
-      types.push(this.form.controls.notificationTypesSelect.value);
-      let req = new OrderNotificationRequest(types, this.orderId);
+      let type = this.form.controls.docTypesSelect.value;
+      let req = new OrderNotificationRequest(type, this.orderId);
       if (dp != null) {
         req.dateDocument = new Date(dp.year, dp.month - 1, dp.day + 1).getTime();
       }
       req.emails = this.getEmailsFromInputs();
-      this.notificationService.syncNotifyOrder(req).subscribe(
+      this.notificationService.notify(req).subscribe(
         response => {
           this.saveFile(response.body, response.headers.get('filename'), response.headers.get('Content-type'));
           this.modal.close();
+        },
+        error => {
+         alert(JSON.stringify(error));
         }
       )
     }

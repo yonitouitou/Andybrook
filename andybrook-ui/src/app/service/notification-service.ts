@@ -1,7 +1,7 @@
-import {Injectable} from '@angular/core';
-import {HttpService} from './http-service';
-import {Observable} from 'rxjs';
-import {OrderNotificationRequest} from '../model/request/notification/OrderNotificationRequest';
+import { Injectable } from '@angular/core';
+import { HttpService } from './http-service';
+import { Observable } from 'rxjs';
+import { OrderNotificationRequest } from '../model/request/notification/OrderNotificationRequest';
 
 @Injectable()
 export class NotificationService {
@@ -11,7 +11,11 @@ export class NotificationService {
     constructor(private httpApi: HttpService) {}
 
     notify(req: OrderNotificationRequest): Observable<any> {
-        return this.httpApi.post(this.url + "/notify", req);
+        let options = {
+            responseType: 'blob',
+            observe: 'response'
+        }; 
+        return this.httpApi.post(this.url + "/notify", req, options);
     }
 
     getDocumentTypes(): Observable<any> {

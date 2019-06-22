@@ -20,8 +20,6 @@ import java.util.List;
 
 public class OrderDocumentRestRequestJsonDeserializer extends JsonDeserializer<OrderDocumentRestRequest> {
 
-    private static final Logger LOGGER = System.getLogger(OrderDocumentRestRequestJsonDeserializer.class.getSimpleName());
-
     @Override
     public OrderDocumentRestRequest deserialize(JsonParser jp, DeserializationContext deserializationContext) throws IOException {
         ObjectCodec oc = jp.getCodec();

@@ -1,9 +1,9 @@
 export class NotificationRequest {
 
-    types: string[] = []
+    docType: string
     emails: string[] = []
 
-    constructor(types: string[]) {
-        this.types = types;
+    constructor(docType: string) {
+        this.docType = docType;
     }
 }

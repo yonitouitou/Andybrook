@@ -1774,7 +1774,7 @@ module.exports = ".ng-invalid:not(form)  {\n    border-left: 5px solid #a94442; 
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div>\n  <div class=\"modal-header\">\n    <h3 class=\"modal-title\" id=\"modal-basic-title\">Order Notification Setting</h3>\n    <button type=\"button\" class=\"close\" aria-label=\"Close\" (click)=\"onClose()\">\n      <span aria-hidden=\"true\">&times;</span>\n    </button>\n  </div>\n  <div class=\"modal-body\">\n    <form [formGroup]=\"form\">\n      <div class=\"form-group\">\n        <label for=\"notifType\">Notification Type</label>\n        <select formControlName=\"notificationTypesSelect\" class=\"custom-select\" (change)=\"onChangeType($event)\" required>\n            <option *ngFor=\"let type of notificationTypesMapByName.keys()\" [ngValue]=\"type\">{{ type }}</option>\n        </select>\n      </div>\n      <div class=\"form-group\" *ngIf=\"selectedType\">\n        <label for=\"notifType\">Formats</label>\n        <div class=\"form-inline\">\n          <div formArrayName=\"formats\" *ngFor=\"let format of form.get('formats').controls; let i = index;\">\n            <label class=\"checkbox-inline\" style=\"margin-right:25px\" for=\"format\">{{ selectedType.supportedFormats[i] }}&nbsp;\n              <input formControlName=\"format\" type=\"checkbox\">\n            </label>\n          </div>\n        </div>\n      </div>\n      <div class=\"form-group\">\n        <label for=\"dateDocument\">Document's Date</label>\n        <div class=\"input-group\">\n          <input formControlName=\"dateDocument\" class=\"form-control\" placeholder=\"yyyy-mm-dd\" name=\"dp\" ngbDatepicker #dp=\"ngbDatepicker\">\n          <div class=\"input-group-append\">\n            <button class=\"btn btn-outline-secondary calendar\" (click)=\"dp.toggle()\" type=\"button\"></button>\n          </div>\n        </div>\n      </div>\n      <button type=\"button\" class=\"btn btn-outline-secondary btn-sm\" (click)=\"addEmailInput()\" style=\"float:right\">\n        <span class=\"glyphicon glyphicon-plus\"></span>+\n      </button>\n      <div formArrayName=\"emailInputs\" *ngFor=\"let input of form.get('emailInputs').controls; let i = index;\">\n        <div [formGroupName]=\"i\">\n          <label for=\"email\">Email {{ i + 1 }} </label>\n          <input formControlName=\"email\" class=\"form-control\" style=\"margin-bottom: 6px\">\n        </div>\n      </div>\n    </form>\n  </div>\n  <div class=\"modal-footer\">\n    <button type=\"button\" class=\"btn btn-outline-dark\" (click)=\"onSubmit()\" [disabled]=\"! form.valid\">Notify</button>\n  </div>\n</div>"
+module.exports = "<div>\n  <div class=\"modal-header\">\n    <h3 class=\"modal-title\" id=\"modal-basic-title\">Order Notification Setting</h3>\n    <button type=\"button\" class=\"close\" aria-label=\"Close\" (click)=\"onClose()\">\n      <span aria-hidden=\"true\">&times;</span>\n    </button>\n  </div>\n  <div class=\"modal-body\">\n    <form [formGroup]=\"form\">\n      <div class=\"form-group\">\n        <label for=\"notifType\">Notification Type</label>\n        <select formControlName=\"docTypesSelect\" class=\"custom-select\" (change)=\"onChangeType($event)\" required>\n            <option *ngFor=\"let type of docTypesMapByName.keys()\" [ngValue]=\"type\">{{ type }}</option>\n        </select>\n      </div>\n      <div class=\"form-group\" *ngIf=\"selectedType\">\n        <label for=\"formats\">Formats</label>\n        <div class=\"form-inline\">\n          <div formArrayName=\"formats\" *ngFor=\"let format of form.get('formats').controls; let i = index;\">\n            <label class=\"checkbox-inline\" style=\"margin-right:25px\" for=\"format\">{{ selectedType.supportedFormats[i] }}&nbsp;\n              <input formControlName=\"format\" type=\"checkbox\">\n            </label>\n          </div>\n        </div>\n      </div>\n      <div class=\"form-group\">\n        <label for=\"dateDocument\">Document's Date</label>\n        <div class=\"input-group\">\n          <input formControlName=\"dateDocument\" class=\"form-control\" placeholder=\"yyyy-mm-dd\" name=\"dp\" ngbDatepicker #dp=\"ngbDatepicker\">\n          <div class=\"input-group-append\">\n            <button class=\"btn btn-outline-secondary calendar\" (click)=\"dp.toggle()\" type=\"button\"></button>\n          </div>\n        </div>\n      </div>\n      <button type=\"button\" class=\"btn btn-outline-secondary btn-sm\" (click)=\"addEmailInput()\" style=\"float:right\">\n        <span class=\"glyphicon glyphicon-plus\"></span>+\n      </button>\n      <div formArrayName=\"emailInputs\" *ngFor=\"let input of form.get('emailInputs').controls; let i = index;\">\n        <div [formGroupName]=\"i\">\n          <label for=\"email\">Email {{ i + 1 }} </label>\n          <input formControlName=\"email\" class=\"form-control\" style=\"margin-bottom: 6px\">\n        </div>\n      </div>\n    </form>\n  </div>\n  <div class=\"modal-footer\">\n    <button type=\"button\" class=\"btn btn-outline-dark\" (click)=\"onSubmit()\" [disabled]=\"! form.valid\">Notify</button>\n  </div>\n</div>"
 
 /***/ }),
 
@@ -1796,7 +1796,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var src_app_model_request_notification_OrderNotificationRequest__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! src/app/model/request/notification/OrderNotificationRequest */ "./src/app/model/request/notification/OrderNotificationRequest.ts");
 /* harmony import */ var file_saver__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! file-saver */ "./node_modules/file-saver/dist/FileSaver.min.js");
 /* harmony import */ var file_saver__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(file_saver__WEBPACK_IMPORTED_MODULE_6__);
-/* harmony import */ var src_app_model_NotificationType__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! src/app/model/NotificationType */ "./src/app/model/NotificationType.ts");
+/* harmony import */ var src_app_model_DocType__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! src/app/model/DocType */ "./src/app/model/DocType.ts");
 
 
 
@@ -1810,12 +1810,12 @@ var OrderNotificationModalComponent = /** @class */ (function () {
         this.modal = modal;
         this.formBuilder = formBuilder;
         this.notificationService = notificationService;
-        this.notificationTypesMapByName = new Map();
+        this.docTypesMapByName = new Map();
     }
     OrderNotificationModalComponent.prototype.ngOnInit = function () {
-        this.initNotificationTypes();
+        this.initDocTypes();
         this.form = this.formBuilder.group({
-            notificationTypesSelect: [[], [_angular_forms__WEBPACK_IMPORTED_MODULE_3__["Validators"].required]],
+            docTypesSelect: [[], [_angular_forms__WEBPACK_IMPORTED_MODULE_3__["Validators"].required]],
             formats: this.formBuilder.array([]),
             dateDocument: [],
             emailInputs: this.formBuilder.array([])
@@ -1823,12 +1823,12 @@ var OrderNotificationModalComponent = /** @class */ (function () {
         var emailInputs = this.form.controls.emailInputs;
         emailInputs.push(this.createEmailInput());
     };
-    OrderNotificationModalComponent.prototype.initNotificationTypes = function () {
+    OrderNotificationModalComponent.prototype.initDocTypes = function () {
         var _this = this;
-        this.notificationService.getNotificationTypes().subscribe(function (data) {
+        this.notificationService.getDocumentTypes().subscribe(function (data) {
             for (var i = 0; i < data.length; i++) {
-                var notif = src_app_model_NotificationType__WEBPACK_IMPORTED_MODULE_7__["NotificationType"].fromJson(data[i]);
-                _this.notificationTypesMapByName.set(notif.type, notif);
+                var notif = src_app_model_DocType__WEBPACK_IMPORTED_MODULE_7__["DocType"].fromJson(data[i]);
+                _this.docTypesMapByName.set(notif.type, notif);
             }
         }, function (error) {
             console.log("Error : Cannot get the notification types : " + error);
@@ -1855,7 +1855,7 @@ var OrderNotificationModalComponent = /** @class */ (function () {
     OrderNotificationModalComponent.prototype.onChangeType = function (event) {
         var selectedTypeName = event.target.selectedOptions[0].text;
         if (selectedTypeName != null) {
-            this.selectedType = this.notificationTypesMapByName.get(selectedTypeName);
+            this.selectedType = this.docTypesMapByName.get(selectedTypeName);
             if (this.selectedType != null) {
                 this.formatsOfSelectedType = this.selectedType.supportedFormats;
                 for (var i = 0; i < this.formatsOfSelectedType.length; i++) {
@@ -1863,7 +1863,7 @@ var OrderNotificationModalComponent = /** @class */ (function () {
                 }
             }
             else {
-                console.log("Unknown selected type name " + selectedTypeName + ". Known types : " + JSON.stringify(this.notificationTypesMapByName));
+                console.log("Unknown selected type name " + selectedTypeName + ". Known types : " + JSON.stringify(this.docTypesMapByName));
             }
         }
     };
@@ -1871,16 +1871,17 @@ var OrderNotificationModalComponent = /** @class */ (function () {
         var _this = this;
         if (this.form.valid) {
             var dp = this.form.controls.dateDocument.value;
-            var types = [];
-            types.push(this.form.controls.notificationTypesSelect.value);
-            var req = new src_app_model_request_notification_OrderNotificationRequest__WEBPACK_IMPORTED_MODULE_5__["OrderNotificationRequest"](types, this.orderId);
+            var type = this.form.controls.docTypesSelect.value;
+            var req = new src_app_model_request_notification_OrderNotificationRequest__WEBPACK_IMPORTED_MODULE_5__["OrderNotificationRequest"](type, this.orderId);
             if (dp != null) {
                 req.dateDocument = new Date(dp.year, dp.month - 1, dp.day + 1).getTime();
             }
             req.emails = this.getEmailsFromInputs();
-            this.notificationService.syncNotifyOrder(req).subscribe(function (response) {
+            this.notificationService.notify(req).subscribe(function (response) {
                 _this.saveFile(response.body, response.headers.get('filename'), response.headers.get('Content-type'));
                 _this.modal.close();
+            }, function (error) {
+                alert(JSON.stringify(error));
             });
         }
     };
@@ -2157,26 +2158,26 @@ var Customer = /** @class */ (function () {
 
 /***/ }),
 
-/***/ "./src/app/model/NotificationType.ts":
-/*!*******************************************!*\
-  !*** ./src/app/model/NotificationType.ts ***!
-  \*******************************************/
-/*! exports provided: NotificationType */
+/***/ "./src/app/model/DocType.ts":
+/*!**********************************!*\
+  !*** ./src/app/model/DocType.ts ***!
+  \**********************************/
+/*! exports provided: DocType */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "NotificationType", function() { return NotificationType; });
-var NotificationType = /** @class */ (function () {
-    function NotificationType() {
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "DocType", function() { return DocType; });
+var DocType = /** @class */ (function () {
+    function DocType() {
     }
-    NotificationType.fromJson = function (data) {
-        var notif = new NotificationType();
+    DocType.fromJson = function (data) {
+        var notif = new DocType();
         notif.type = data.type;
         notif.supportedFormats = data.supportedFormats;
         return notif;
     };
-    return NotificationType;
+    return DocType;
 }());
 
 
@@ -2476,10 +2477,9 @@ var AddOrUpdateCustomerReq = /** @class */ (function () {
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "NotificationRequest", function() { return NotificationRequest; });
 var NotificationRequest = /** @class */ (function () {
-    function NotificationRequest(types) {
-        this.types = [];
+    function NotificationRequest(docType) {
         this.emails = [];
-        this.types = types;
+        this.docType = docType;
     }
     return NotificationRequest;
 }());
@@ -2504,8 +2504,8 @@ __webpack_require__.r(__webpack_exports__);
 
 var OrderNotificationRequest = /** @class */ (function (_super) {
     tslib__WEBPACK_IMPORTED_MODULE_0__["__extends"](OrderNotificationRequest, _super);
-    function OrderNotificationRequest(types, orderId) {
-        var _this = _super.call(this, types) || this;
+    function OrderNotificationRequest(type, orderId) {
+        var _this = _super.call(this, type) || this;
         _this.dateDocument = new Date().getTime();
         _this.orderId = orderId;
         return _this;
@@ -3475,7 +3475,11 @@ var NotificationService = /** @class */ (function () {
         this.url = "v1/notification";
     }
     NotificationService.prototype.notify = function (req) {
-        return this.httpApi.post(this.url + "/notify", req);
+        var options = {
+            responseType: 'blob',
+            observe: 'response'
+        };
+        return this.httpApi.post(this.url + "/notify", req, options);
     };
     NotificationService.prototype.getDocumentTypes = function () {
         return this.httpApi.get(this.url + "/document-types");

@@ -11,6 +11,7 @@ import com.andybrook.manager.order.IOrderManager;
 import com.andybrook.model.notification.request.DocumentRequest;
 import com.andybrook.model.notification.request.NotificationRequest;
 import com.andybrook.model.notification.request.ctx.OrderDocumentCtx;
+import com.andybrook.model.notification.request.setting.EmailSetting;
 import com.andybrook.model.order.Order;
 import com.andybrook.util.FileUtil;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -42,7 +43,7 @@ public class NotificationController extends AbstractController {
     @Autowired
     private IOrderManager orderManager;
 
-    @PostMapping(path = "/sync-order-notification")
+    @PostMapping(path = "/notify")
     public ResponseEntity<Resource> downloadFile(@RequestBody OrderDocumentRestRequest request) throws IOException {
         Order order = orderManager.getOrder(request.getOrderId());
         OrderDocumentCtx ctx = OrderDocumentCtx.builder(false, order)
@@ -50,6 +51,10 @@ public class NotificationController extends AbstractController {
                 .build();
         DocumentRequest documentRequest = new DocumentRequest(request.getDocType(), ctx, request.getFileFormats());
         NotificationRequest req = new NotificationRequest(false, documentRequest);
+        if (request.getEmails().length > 0) {
+            req.addNotificationType(NotificationType.EMAIL, new EmailSetting(request.getEmails()));
+        }
+        req.addNotificationType(NotificationType.DOWNLOAD, null);
         Path path = notificationManager.notify(req).get(0);
         String contentType = Files.probeContentType(path);
         if(contentType == null) {

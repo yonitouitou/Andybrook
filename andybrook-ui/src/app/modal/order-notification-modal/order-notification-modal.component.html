@@ -9,12 +9,12 @@
     <form [formGroup]="form">
       <div class="form-group">
         <label for="notifType">Notification Type</label>
-        <select formControlName="notificationTypesSelect" class="custom-select" (change)="onChangeType($event)" required>
-            <option *ngFor="let type of notificationTypesMapByName.keys()" [ngValue]="type">{{ type }}</option>
+        <select formControlName="docTypesSelect" class="custom-select" (change)="onChangeType($event)" required>
+            <option *ngFor="let type of docTypesMapByName.keys()" [ngValue]="type">{{ type }}</option>
         </select>
       </div>
       <div class="form-group" *ngIf="selectedType">
-        <label for="notifType">Formats</label>
+        <label for="formats">Formats</label>
         <div class="form-inline">
           <div formArrayName="formats" *ngFor="let format of form.get('formats').controls; let i = index;">
             <label class="checkbox-inline" style="margin-right:25px" for="format">{{ selectedType.supportedFormats[i] }}&nbsp;
