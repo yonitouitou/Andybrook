@@ -1,5 +1,6 @@
 package com.andybrook.model.notification.request.ctx;
 
+import com.andybrook.model.api.AggregatedOrder;
 import com.andybrook.model.order.Order;
 
 import java.time.ZonedDateTime;
@@ -7,13 +8,17 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
-public class OrderDocumentCtx extends NotificationCtx {
+public class OrderDocumentCtx extends DocumentCtx {
 
+    private final boolean isLiveEvent;
     private final Order order;
+    private final AggregatedOrder aggregatedOrder;
 
-    private OrderDocumentCtx(Order order, NotifSetting setting) {
-        super(setting);
+    private OrderDocumentCtx(boolean isLiveEvent, Order order, ZonedDateTime dateDocument) {
+        super(dateDocument);
+        this.isLiveEvent = isLiveEvent;
         this.order = order;
+        this.aggregatedOrder = order.aggregate();
     }
 
     public static Builder builder(boolean isLiveEvent, Order order) {
@@ -24,21 +29,19 @@ public class OrderDocumentCtx extends NotificationCtx {
         return order;
     }
 
-    @Override
-    public String toString() {
-        final StringBuilder sb = new StringBuilder("OrderDocumentCtx{");
-        sb.append("Setting=").append(setting);
-        sb.append(", order=").append(order);
-        sb.append('}');
-        return sb.toString();
+    public AggregatedOrder getAggregatedOrder() {
+        return aggregatedOrder;
+    }
+
+    public boolean isLiveEvent() {
+        return isLiveEvent;
     }
 
     public static class Builder {
 
+        private boolean isLiveEvent;
         private Order order;
         private ZonedDateTime dateDocument;
-        private List<String> emails;
-        private boolean isLiveEvent;
 
         private Builder(boolean isLiveEvent, Order order) {
             this.isLiveEvent = isLiveEvent;
@@ -46,8 +49,7 @@ public class OrderDocumentCtx extends NotificationCtx {
         }
 
         public OrderDocumentCtx build() {
-            NotifSetting setting = new NotifSetting(isLiveEvent, dateDocument, emails);
-            return new OrderDocumentCtx(order, setting);
+            return new OrderDocumentCtx(isLiveEvent, order, dateDocument);
         }
 
         public ZonedDateTime getDateDocument() {
@@ -62,23 +64,16 @@ public class OrderDocumentCtx extends NotificationCtx {
             this.dateDocument = dateDocument;
             return this;
         }
+    }
 
-        public boolean isLiveEvent() {
-            return isLiveEvent;
-        }
-
-        public List<String> getEmails() {
-            return emails;
-        }
-
-        public Builder setEmails(List<String> emails) {
-            this.emails = emails != null ? emails : Collections.emptyList();
-            return this;
-        }
-
-        public Builder setEmails(String[] emails) {
-            this.emails = emails != null ? Arrays.asList(emails) : null;
-            return this;
-        }
+    @Override
+    public String toString() {
+        final StringBuilder sb = new StringBuilder("OrderDocumentCtx{");
+        sb.append("isLiveEvent=").append(isLiveEvent);
+        sb.append(", order=").append(order);
+        sb.append(", aggregatedOrder=").append(aggregatedOrder);
+        sb.append(", dateDocument=").append(dateDocument);
+        sb.append('}');
+        return sb.toString();
     }
 }

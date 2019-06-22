@@ -5,7 +5,7 @@ import com.andybrook.model.api.AggregatedOrder;
 import com.andybrook.model.api.AggregatedOrderItem;
 import com.andybrook.model.customer.Owner;
 import com.andybrook.model.customer.Store;
-import com.andybrook.model.notification.request.ctx.NotifSetting;
+import com.andybrook.model.notification.request.ctx.OrderDocumentCtx;
 import com.itextpdf.text.*;
 import com.itextpdf.text.Font.FontFamily;
 import com.itextpdf.text.pdf.BaseFont;
@@ -32,7 +32,7 @@ import java.util.stream.Stream;
 import static com.itextpdf.text.html.HtmlTags.FONT;
 
 @Component
-public class CloseOrderPdfBuilder extends AbstractPdfBuilder implements IPdfBuilder<AggregatedOrder> {
+public class CloseOrderPdfBuilder extends AbstractPdfBuilder implements IPdfBuilder {
 
     private static final Logger LOGGER = System.getLogger(CloseOrderPdfBuilder.class.getSimpleName());
     private static final NumberFormat PRICE_FORMATTER = new DecimalFormat("#0.00");
@@ -61,7 +61,8 @@ public class CloseOrderPdfBuilder extends AbstractPdfBuilder implements IPdfBuil
     }
 
     @Override
-    public Path generatePdf(AggregatedOrder order, NotifSetting setting) {
+    public Path generatePdf(OrderDocumentCtx ctx) {
+        AggregatedOrder order = ctx.getAggregatedOrder();
         String fileName = order.getName() + LocalDateTime.now().format(DateTimeFormatter.ISO_LOCAL_DATE_TIME);
         Path pdfFilePath = null;
         Document document = new Document(PageSize.A4, 20f, 20f, 7f, 7f);
@@ -78,7 +79,7 @@ public class CloseOrderPdfBuilder extends AbstractPdfBuilder implements IPdfBuil
             Element customerTable1 = createCustomerMainDetailsTable(order);
             Element customerTable2 = createCustomerContactDetailsTable(order);
             Element itemsTable = createItemsTable(order);
-            Element doneDate = createDoneDate(setting, order);
+            Element doneDate = createDoneDate(ctx, order);
             Element signature = createSignatureTable();
 
             document.add(logo);
@@ -257,9 +258,9 @@ public class CloseOrderPdfBuilder extends AbstractPdfBuilder implements IPdfBuil
         table.addCell(ttlPriceCell);
     }
 
-    private Element createDoneDate(NotifSetting setting, AggregatedOrder order) {
+    private Element createDoneDate(OrderDocumentCtx ctx, AggregatedOrder order) {
         Paragraph p = new Paragraph();
-        ZonedDateTime dateDocument = setting.getDateDocument() != null ? setting.getDateDocument() : ZonedDateTime.of(order.getCloseDatetime(), applicationProperties.getZoneId());
+        ZonedDateTime dateDocument = ctx.getDateDocument() != null ? ctx.getDateDocument() : ZonedDateTime.of(order.getCloseDatetime(), applicationProperties.getZoneId());
         String msg = languageResolver.get(Pdf.DONE_ON_DATE) + " " + dateDocument.format(DATE_FORMATTER);
         Element phrase = new Phrase(msg, new Font(FontFamily.TIMES_ROMAN, TEXT_FONT_SIZE_11, Font.ITALIC));
         p.add(phrase);

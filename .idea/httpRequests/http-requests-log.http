@@ -1,0 +1,6 @@
+POST http://localhost:8080/v1/notification/sync-order-notification
+
+<> 2019-06-01T122524.400.json
+
+###
+

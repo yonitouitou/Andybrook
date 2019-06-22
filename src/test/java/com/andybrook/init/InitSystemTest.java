@@ -57,7 +57,7 @@ public class InitSystemTest {
     private IStockService stockService;
 
     @Test
-    //@Ignore
+    @Ignore
     public void initSystem() {
         products = createProducts();
         productItemsIdMapByProductId = createProductItems(products);

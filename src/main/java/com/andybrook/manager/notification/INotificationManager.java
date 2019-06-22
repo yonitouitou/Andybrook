@@ -8,7 +8,5 @@ import java.util.List;
 
 public interface INotificationManager {
 
-    void notify(NotificationRequest request) throws OrderNotFound;
-
-    List<Path> generateDocuments(NotificationRequest request);
+    List<Path> notify(NotificationRequest request) throws OrderNotFound;
 }

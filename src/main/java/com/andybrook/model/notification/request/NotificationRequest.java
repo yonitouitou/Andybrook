@@ -1,33 +1,53 @@
 package com.andybrook.model.notification.request;
 
 import com.andybrook.enums.NotificationType;
-import com.andybrook.model.notification.request.ctx.NotificationCtx;
+import com.andybrook.model.notification.request.setting.NotifSetting;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.Set;
 
 public class NotificationRequest {
 
-    private final List<NotificationType> types;
-    private final NotificationCtx ctx;
+    private final Map<NotificationType, NotifSetting> settingMapByNotifType;
+    private final DocumentRequest documentRequest;
+    private final boolean isLiveEvent;
 
-    public NotificationRequest(List<NotificationType> types, NotificationCtx ctx) {
-        this.types = types;
-        this.ctx = ctx;
+    public NotificationRequest(boolean isLiveEvent, DocumentRequest documentRequest) {
+        this.isLiveEvent = isLiveEvent;
+        this.documentRequest = documentRequest;
+        settingMapByNotifType = new HashMap<>();
     }
 
-    public List<NotificationType> getTypes() {
-        return types;
+    public NotificationRequest addNotificationType(NotificationType type, NotifSetting setting) {
+        settingMapByNotifType.put(type, setting);
+        return this;
     }
 
-    public NotificationCtx getCtx() {
-        return ctx;
+    public NotifSetting getSetting(NotificationType type) {
+        return settingMapByNotifType.get(type);
+    }
+
+
+    public Set<NotificationType> getNotificationTypes() {
+        return settingMapByNotifType.keySet();
+    }
+
+    public DocumentRequest getDocumentRequest() {
+        return documentRequest;
+    }
+
+    public boolean isLiveEvent() {
+        return isLiveEvent;
     }
 
     @Override
     public String toString() {
         final StringBuilder sb = new StringBuilder("NotificationRequest{");
-        sb.append("types=").append(types);
-        sb.append(", ctx=").append(ctx);
+        sb.append("settingMapByNotifType=").append(settingMapByNotifType);
+        sb.append(", documentRequest=").append(documentRequest);
+        sb.append(", isLiveEvent=").append(isLiveEvent);
         sb.append('}');
         return sb.toString();
     }

@@ -1,7 +1,7 @@
 <div class="container-fluid">
     <form [formGroup]="adminForm" (ngSubmit)="onSubmit()">
       <div class="form-group">
-          <label class="form-check-label" for="exampleCheck1">Notification &nbsp;</label>
+          <label class="form-check-label" for="notification">Notification &nbsp;</label>
           <input type="checkbox" formControlName="notification" class="form-check-input" (input)="settingChanged()">
       </div>
       <div class="form-group">

@@ -4,6 +4,7 @@ import { FormGroup, FormBuilder, Validators, FormControl, FormArray } from '@ang
 import { NotificationService } from 'src/app/service/notification-service';
 import { OrderNotificationRequest } from 'src/app/model/request/notification/OrderNotificationRequest';
 import * as fileSaver from 'file-saver'
+import { NotificationType } from 'src/app/model/NotificationType';
 
 @Component({
   selector: 'app-order-notification-modal',
@@ -14,8 +15,9 @@ export class OrderNotificationModalComponent implements OnInit {
 
   @Input() orderId: number
   form: FormGroup
-  emailInputs: FormArray
-  notificationTypes: string[] = []
+  notificationTypesMapByName: Map<string, NotificationType> = new Map();
+  selectedType: NotificationType;
+  formatsOfSelectedType: string[];
 
   constructor(private modal: NgbActiveModal,
               private formBuilder: FormBuilder,
@@ -24,18 +26,21 @@ export class OrderNotificationModalComponent implements OnInit {
   ngOnInit() {
     this.initNotificationTypes();
     this.form = this.formBuilder.group({
-      notificationTypesSelect: [this.notificationTypes, [Validators.required]],
+      notificationTypesSelect: [[], [Validators.required]],
+      formats: this.formBuilder.array([]),
       dateDocument: [],
       emailInputs: this.formBuilder.array([])
     });
-    //this.emailInputs.push(this.createEmailInput());
+    const emailInputs = this.form.controls.emailInputs as FormArray;
+    emailInputs.push(this.createEmailInput());
   }
 
   private initNotificationTypes() {
     this.notificationService.getNotificationTypes().subscribe(
       data => {
-        for (let type of data) {
-          this.notificationTypes.push(type);
+        for (let i = 0; i < data.length; i++) {
+          let notif = NotificationType.fromJson(data[i]);
+          this.notificationTypesMapByName.set(notif.type, notif);
         }
       },
       error => {
@@ -50,9 +55,35 @@ export class OrderNotificationModalComponent implements OnInit {
     });
   }
 
+  private createFormatCheckbox(): FormGroup {
+    return this.formBuilder.group({
+      format: []
+    });
+  }
+
+  addFormatCheckbox() {
+    let formats = this.form.get('formats') as FormArray;
+    formats.push(this.createFormatCheckbox());
+  }
+
   addEmailInput() {
-    this.emailInputs = this.form.get('emailInputs') as FormArray;
-    this.emailInputs.push(this.createEmailInput());
+    let emailInputs = this.form.get('emailInputs') as FormArray;
+    emailInputs.push(this.createEmailInput());
+  }
+
+  onChangeType(event: any) {
+    let selectedTypeName = event.target.selectedOptions[0].text;
+    if (selectedTypeName != null) {
+      this.selectedType = this.notificationTypesMapByName.get(selectedTypeName);
+      if (this.selectedType != null) {
+        this.formatsOfSelectedType = this.selectedType.supportedFormats;
+        for (let i = 0; i < this.formatsOfSelectedType.length; i++) {
+          this.addFormatCheckbox()
+        }
+      } else {
+        console.log("Unknown selected type name " + selectedTypeName + ". Known types : " + JSON.stringify(this.notificationTypesMapByName));
+      }
+    }
   }
 
   onSubmit() {

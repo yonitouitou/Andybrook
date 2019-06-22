@@ -4,7 +4,10 @@ import com.andybrook.ApplicationProperties;
 import com.andybrook.model.api.AggregatedOrder;
 import com.andybrook.model.api.AggregatedOrderItem;
 import com.andybrook.model.api.Email;
-import com.andybrook.model.notification.request.ctx.NotifSetting;
+import com.andybrook.model.notification.request.ctx.DocumentCtx;
+import com.andybrook.model.notification.request.ctx.OrderDocumentCtx;
+import com.andybrook.model.notification.request.setting.EmailSetting;
+import com.andybrook.model.notification.request.setting.NotifSetting;
 import com.andybrook.model.product.Product;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.config.BeanDefinition;
@@ -24,24 +27,27 @@ public class OrderClosedEmailNotification implements IEmailNotification<Aggregat
     private ApplicationProperties applicationProperties;
 
     @Override
-    public Email createEmail(NotifSetting setting, AggregatedOrder order, List<Path> attachments) {
+    public Email createEmail(EmailSetting setting, DocumentCtx docCtx, List<Path> attachments) {
+        OrderDocumentCtx ctx = (OrderDocumentCtx) docCtx;
+        AggregatedOrder order = ctx.getAggregatedOrder();
         return Email.builder()
                 .fromAdress(applicationProperties.getNotificationEmailFrom())
-                .toAdresses(setting.getEmails())
-                .withSubject(getSubject(setting, order))
-                .withBody(getBody(setting, order))
+                .toAddresses(setting.getEmails())
+                .withSubject(getSubject(ctx))
+                .withBody(getBody(ctx, order))
                 .withAttachmentFile(attachments)
                 .build();
     }
 
-    private String getSubject(NotifSetting setting, AggregatedOrder order) {
-        String prefix = setting.isLiveEvent() ? "[Live]" : "[Notification]";
+    private String getSubject(OrderDocumentCtx ctx) {
+        AggregatedOrder order = ctx.getAggregatedOrder();
+        String prefix = ctx.isLiveEvent() ? "[Live]" : "[Notification]";
         return prefix + " Order " + order.getName() + " (" + order.getId() + ") closed";
     }
 
-    private String getBody(NotifSetting setting, AggregatedOrder order) {
+    private String getBody(OrderDocumentCtx ctx, AggregatedOrder order) {
         StringBuilder sb = new StringBuilder();
-        sb.append(getHeaderOfBody(setting, order));
+        sb.append(getHeaderOfBody(ctx, order));
         sb.append("</br></br>");
 
         sb.append(
@@ -92,9 +98,9 @@ public class OrderClosedEmailNotification implements IEmailNotification<Aggregat
         return sb.toString();
     }
 
-    private String getHeaderOfBody(NotifSetting setting, AggregatedOrder order) {
+    private String getHeaderOfBody(OrderDocumentCtx ctx, AggregatedOrder order) {
         StringBuilder sb = new StringBuilder();
-        if (setting.isLiveEvent()) {
+        if (ctx.isLiveEvent()) {
             sb.append("Order ").append(order.getName()).append(" (" ).append(order.getId()).append(") of store ")
                     .append(order.getCustomer().getStore().getName()).append(" has been closed on ")
                     .append(getFormattedDateTime(ZonedDateTime.now(applicationProperties.getZoneId())));

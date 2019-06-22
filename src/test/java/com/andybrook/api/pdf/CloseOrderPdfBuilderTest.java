@@ -2,7 +2,8 @@ package com.andybrook.api.pdf;
 
 import com.andybrook.generator.OrderGenerator;
 import com.andybrook.model.api.AggregatedOrder;
-import com.andybrook.model.notification.request.ctx.NotifSetting;
+import com.andybrook.model.notification.request.ctx.OrderDocumentCtx;
+import com.andybrook.model.notification.request.setting.NotifSetting;
 import com.andybrook.model.order.Order;
 import org.junit.Assert;
 import org.junit.Test;
@@ -26,7 +27,10 @@ public class CloseOrderPdfBuilderTest {
     public void generatePdfTest() {
         Order order = OrderGenerator.generateBasicOrder();
         CloseOrderPdfBuilder builder = applicationContext.getBean(CloseOrderPdfBuilder.class);
-        Path path = builder.generatePdf(AggregatedOrder.toAggregatedOrder(order), new NotifSetting(true, ZonedDateTime.now(), null));
+        OrderDocumentCtx ctx = OrderDocumentCtx.builder(true, order)
+                .setDateDocument(ZonedDateTime.now())
+                .build();
+        Path path = builder.generatePdf(ctx);
         Assert.assertNotNull(path);
         Assert.assertTrue(path.toFile().exists());
         System.out.println("PDF GENERATED : " + path.toAbsolutePath().toString());

@@ -56,7 +56,12 @@ public class Email {
             return this;
         }
 
-        public Builder toAdresses(List<String> addresses) {
+        public Builder toAddresses(String... addresses) {
+            this.toAddresses = Arrays.asList(addresses);
+            return this;
+        }
+
+        public Builder toAddresses(List<String> addresses) {
             this.toAddresses = addresses;
             return this;
         }

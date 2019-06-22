@@ -1,6 +1,6 @@
 package com.andybrook.annotation;
 
-import com.andybrook.enums.NotificationType;
+import com.andybrook.enums.DocType;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
@@ -11,5 +11,5 @@ import java.lang.annotation.Target;
 @Retention(RetentionPolicy.RUNTIME)
 public @interface DocumentHandler {
 
-    NotificationType type();
+    DocType type();
 }

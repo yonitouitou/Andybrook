@@ -41,7 +41,7 @@ module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"container-fluid\">\n    <form [formGroup]=\"adminForm\" (ngSubmit)=\"onSubmit()\">\n      <div class=\"form-group\">\n          <label class=\"form-check-label\" for=\"exampleCheck1\">Notification &nbsp;</label>\n          <input type=\"checkbox\" formControlName=\"notification\" class=\"form-check-input\" (input)=\"settingChanged()\">\n      </div>\n      <div class=\"form-group\">\n        <label for=\"Email\">Email addresses\n          <span style=\"font-size: 80%; font-style: italic\">(Use comma ',' delimiter for multiple emails)</span\n        ></label>\n        <input type=\"text\" formControlName=\"emails\"\n          (input)=\"settingChanged()\"\n          class=\"form-control\"\n        />\n      </div>\n      <div class=\"form-group\">\n        <label for=\"itemToShow\">List item number to load by default</label>\n        <input type=\"text\" formControlName=\"itemToShow\"\n          (input)=\"settingChanged()\"\n          class=\"form-control\"\n        />\n      </div>\n      <div class=\"form-group\">\n        <button type=\"submit\" class=\"btn btn-primary\" [disabled]=\"saveButtonDisabled\">Save</button>\n      </div>\n    </form>\n    <ngb-alert *ngIf=\"alertMessage\" type=\"success\" (close)=\"alertMessage = null\">{{ alertMessage }}</ngb-alert>\n</div>"
+module.exports = "<div class=\"container-fluid\">\n    <form [formGroup]=\"adminForm\" (ngSubmit)=\"onSubmit()\">\n      <div class=\"form-group\">\n          <label class=\"form-check-label\" for=\"notification\">Notification &nbsp;</label>\n          <input type=\"checkbox\" formControlName=\"notification\" class=\"form-check-input\" (input)=\"settingChanged()\">\n      </div>\n      <div class=\"form-group\">\n        <label for=\"Email\">Email addresses\n          <span style=\"font-size: 80%; font-style: italic\">(Use comma ',' delimiter for multiple emails)</span\n        ></label>\n        <input type=\"text\" formControlName=\"emails\"\n          (input)=\"settingChanged()\"\n          class=\"form-control\"\n        />\n      </div>\n      <div class=\"form-group\">\n        <label for=\"itemToShow\">List item number to load by default</label>\n        <input type=\"text\" formControlName=\"itemToShow\"\n          (input)=\"settingChanged()\"\n          class=\"form-control\"\n        />\n      </div>\n      <div class=\"form-group\">\n        <button type=\"submit\" class=\"btn btn-primary\" [disabled]=\"saveButtonDisabled\">Save</button>\n      </div>\n    </form>\n    <ngb-alert *ngIf=\"alertMessage\" type=\"success\" (close)=\"alertMessage = null\">{{ alertMessage }}</ngb-alert>\n</div>"
 
 /***/ }),
 
@@ -1774,7 +1774,7 @@ module.exports = ".ng-invalid:not(form)  {\n    border-left: 5px solid #a94442; 
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div>\n  <div class=\"modal-header\">\n    <h3 class=\"modal-title\" id=\"modal-basic-title\">Order Notification Setting</h3>\n    <button type=\"button\" class=\"close\" aria-label=\"Close\" (click)=\"onClose()\">\n      <span aria-hidden=\"true\">&times;</span>\n    </button>\n  </div>\n  <div class=\"modal-body\">\n    <form [formGroup]=\"form\">\n      <div class=\"form-group\">\n        <label for=\"notifType\">Notification Type</label>\n        <select formControlName=\"notificationTypesSelect\" class=\"custom-select\" required>\n            <option *ngFor=\"let type of notificationTypes\" [ngValue]=\"type\">{{ type }}</option>\n        </select>\n      </div>\n      <div class=\"form-group\">\n        <label for=\"dateDocument\">Document's Date</label>\n        <div class=\"input-group\">\n          <input formControlName=\"dateDocument\" class=\"form-control\" placeholder=\"yyyy-mm-dd\" name=\"dp\" ngbDatepicker #dp=\"ngbDatepicker\">\n          <div class=\"input-group-append\">\n            <button class=\"btn btn-outline-secondary calendar\" (click)=\"dp.toggle()\" type=\"button\"></button>\n          </div>\n        </div>\n      </div>\n      <button type=\"button\" class=\"btn btn-outline-secondary btn-sm\" (click)=\"addEmailInput()\" style=\"float:right\">\n        <span class=\"glyphicon glyphicon-plus\"></span>+\n      </button>\n      <div formArrayName=\"emailInputs\" *ngFor=\"let input of form.get('emailInputs').controls; let i = index;\">\n        <div [formGroupName]=\"i\">\n          <label for=\"email\">Email {{ i + 1 }} </label>\n          <input formControlName=\"email\" class=\"form-control\" style=\"margin-bottom: 6px\">\n        </div>\n      </div>\n    </form>\n  </div>\n  <div class=\"modal-footer\">\n    <button type=\"button\" class=\"btn btn-outline-dark\" (click)=\"onSubmit()\" [disabled]=\"! form.valid\">Notify</button>\n  </div>\n</div>"
+module.exports = "<div>\n  <div class=\"modal-header\">\n    <h3 class=\"modal-title\" id=\"modal-basic-title\">Order Notification Setting</h3>\n    <button type=\"button\" class=\"close\" aria-label=\"Close\" (click)=\"onClose()\">\n      <span aria-hidden=\"true\">&times;</span>\n    </button>\n  </div>\n  <div class=\"modal-body\">\n    <form [formGroup]=\"form\">\n      <div class=\"form-group\">\n        <label for=\"notifType\">Notification Type</label>\n        <select formControlName=\"notificationTypesSelect\" class=\"custom-select\" (change)=\"onChangeType($event)\" required>\n            <option *ngFor=\"let type of notificationTypesMapByName.keys()\" [ngValue]=\"type\">{{ type }}</option>\n        </select>\n      </div>\n      <div class=\"form-group\" *ngIf=\"selectedType\">\n        <label for=\"notifType\">Formats</label>\n        <div class=\"form-inline\">\n          <div formArrayName=\"formats\" *ngFor=\"let format of form.get('formats').controls; let i = index;\">\n            <label class=\"checkbox-inline\" style=\"margin-right:25px\" for=\"format\">{{ selectedType.supportedFormats[i] }}&nbsp;\n              <input formControlName=\"format\" type=\"checkbox\">\n            </label>\n          </div>\n        </div>\n      </div>\n      <div class=\"form-group\">\n        <label for=\"dateDocument\">Document's Date</label>\n        <div class=\"input-group\">\n          <input formControlName=\"dateDocument\" class=\"form-control\" placeholder=\"yyyy-mm-dd\" name=\"dp\" ngbDatepicker #dp=\"ngbDatepicker\">\n          <div class=\"input-group-append\">\n            <button class=\"btn btn-outline-secondary calendar\" (click)=\"dp.toggle()\" type=\"button\"></button>\n          </div>\n        </div>\n      </div>\n      <button type=\"button\" class=\"btn btn-outline-secondary btn-sm\" (click)=\"addEmailInput()\" style=\"float:right\">\n        <span class=\"glyphicon glyphicon-plus\"></span>+\n      </button>\n      <div formArrayName=\"emailInputs\" *ngFor=\"let input of form.get('emailInputs').controls; let i = index;\">\n        <div [formGroupName]=\"i\">\n          <label for=\"email\">Email {{ i + 1 }} </label>\n          <input formControlName=\"email\" class=\"form-control\" style=\"margin-bottom: 6px\">\n        </div>\n      </div>\n    </form>\n  </div>\n  <div class=\"modal-footer\">\n    <button type=\"button\" class=\"btn btn-outline-dark\" (click)=\"onSubmit()\" [disabled]=\"! form.valid\">Notify</button>\n  </div>\n</div>"
 
 /***/ }),
 
@@ -1796,6 +1796,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var src_app_model_request_notification_OrderNotificationRequest__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! src/app/model/request/notification/OrderNotificationRequest */ "./src/app/model/request/notification/OrderNotificationRequest.ts");
 /* harmony import */ var file_saver__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! file-saver */ "./node_modules/file-saver/dist/FileSaver.min.js");
 /* harmony import */ var file_saver__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(file_saver__WEBPACK_IMPORTED_MODULE_6__);
+/* harmony import */ var src_app_model_NotificationType__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! src/app/model/NotificationType */ "./src/app/model/NotificationType.ts");
+
 
 
 
@@ -1808,23 +1810,25 @@ var OrderNotificationModalComponent = /** @class */ (function () {
         this.modal = modal;
         this.formBuilder = formBuilder;
         this.notificationService = notificationService;
-        this.notificationTypes = [];
+        this.notificationTypesMapByName = new Map();
     }
     OrderNotificationModalComponent.prototype.ngOnInit = function () {
         this.initNotificationTypes();
         this.form = this.formBuilder.group({
-            notificationTypesSelect: [this.notificationTypes, [_angular_forms__WEBPACK_IMPORTED_MODULE_3__["Validators"].required]],
+            notificationTypesSelect: [[], [_angular_forms__WEBPACK_IMPORTED_MODULE_3__["Validators"].required]],
+            formats: this.formBuilder.array([]),
             dateDocument: [],
             emailInputs: this.formBuilder.array([])
         });
-        //this.emailInputs.push(this.createEmailInput());
+        var emailInputs = this.form.controls.emailInputs;
+        emailInputs.push(this.createEmailInput());
     };
     OrderNotificationModalComponent.prototype.initNotificationTypes = function () {
         var _this = this;
         this.notificationService.getNotificationTypes().subscribe(function (data) {
-            for (var _i = 0, data_1 = data; _i < data_1.length; _i++) {
-                var type = data_1[_i];
-                _this.notificationTypes.push(type);
+            for (var i = 0; i < data.length; i++) {
+                var notif = src_app_model_NotificationType__WEBPACK_IMPORTED_MODULE_7__["NotificationType"].fromJson(data[i]);
+                _this.notificationTypesMapByName.set(notif.type, notif);
             }
         }, function (error) {
             console.log("Error : Cannot get the notification types : " + error);
@@ -1835,9 +1839,33 @@ var OrderNotificationModalComponent = /** @class */ (function () {
             email: ['', _angular_forms__WEBPACK_IMPORTED_MODULE_3__["Validators"].email]
         });
     };
+    OrderNotificationModalComponent.prototype.createFormatCheckbox = function () {
+        return this.formBuilder.group({
+            format: []
+        });
+    };
+    OrderNotificationModalComponent.prototype.addFormatCheckbox = function () {
+        var formats = this.form.get('formats');
+        formats.push(this.createFormatCheckbox());
+    };
     OrderNotificationModalComponent.prototype.addEmailInput = function () {
-        this.emailInputs = this.form.get('emailInputs');
-        this.emailInputs.push(this.createEmailInput());
+        var emailInputs = this.form.get('emailInputs');
+        emailInputs.push(this.createEmailInput());
+    };
+    OrderNotificationModalComponent.prototype.onChangeType = function (event) {
+        var selectedTypeName = event.target.selectedOptions[0].text;
+        if (selectedTypeName != null) {
+            this.selectedType = this.notificationTypesMapByName.get(selectedTypeName);
+            if (this.selectedType != null) {
+                this.formatsOfSelectedType = this.selectedType.supportedFormats;
+                for (var i = 0; i < this.formatsOfSelectedType.length; i++) {
+                    this.addFormatCheckbox();
+                }
+            }
+            else {
+                console.log("Unknown selected type name " + selectedTypeName + ". Known types : " + JSON.stringify(this.notificationTypesMapByName));
+            }
+        }
     };
     OrderNotificationModalComponent.prototype.onSubmit = function () {
         var _this = this;
@@ -2123,6 +2151,32 @@ var Customer = /** @class */ (function () {
         return customer;
     };
     return Customer;
+}());
+
+
+
+/***/ }),
+
+/***/ "./src/app/model/NotificationType.ts":
+/*!*******************************************!*\
+  !*** ./src/app/model/NotificationType.ts ***!
+  \*******************************************/
+/*! exports provided: NotificationType */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "NotificationType", function() { return NotificationType; });
+var NotificationType = /** @class */ (function () {
+    function NotificationType() {
+    }
+    NotificationType.fromJson = function (data) {
+        var notif = new NotificationType();
+        notif.type = data.type;
+        notif.supportedFormats = data.supportedFormats;
+        return notif;
+    };
+    return NotificationType;
 }());
 
 
@@ -3420,18 +3474,11 @@ var NotificationService = /** @class */ (function () {
         this.httpApi = httpApi;
         this.url = "v1/notification";
     }
-    NotificationService.prototype.asyncNotifyOrder = function (req) {
-        return this.httpApi.post(this.url + "/async-order-notification", req);
+    NotificationService.prototype.notify = function (req) {
+        return this.httpApi.post(this.url + "/notify", req);
     };
-    NotificationService.prototype.syncNotifyOrder = function (req) {
-        var options = {
-            responseType: 'blob',
-            observe: 'response'
-        };
-        return this.httpApi.post(this.url + "/sync-order-notification", req, options);
-    };
-    NotificationService.prototype.getNotificationTypes = function () {
-        return this.httpApi.get(this.url + "/notification-types");
+    NotificationService.prototype.getDocumentTypes = function () {
+        return this.httpApi.get(this.url + "/document-types");
     };
     NotificationService = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Injectable"])(),

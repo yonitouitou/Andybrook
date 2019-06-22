@@ -1,11 +1,10 @@
 package com.andybrook.manager.order;
 
-import com.andybrook.enums.NotificationType;
 import com.andybrook.exception.*;
 import com.andybrook.manager.notification.INotificationManager;
 import com.andybrook.manager.setting.IAdminSettingManager;
-import com.andybrook.model.notification.request.NotificationRequest;
-import com.andybrook.model.notification.request.ctx.OrderDocumentCtx;
+import com.andybrook.model.api.AggregatedOrder;
+import com.andybrook.model.notification.event.OrderClosedEvent;
 import com.andybrook.model.order.Order;
 import com.andybrook.model.order.OrderItem;
 import com.andybrook.model.request.order.NewOrderRequest;
@@ -15,10 +14,9 @@ import com.andybrook.model.request.orderitem.OrderItemAddRequestByBarCode;
 import com.andybrook.model.request.orderitem.OrderItemDeleteRequest;
 import com.andybrook.service.order.IOrderService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.stereotype.Service;
 
-import java.time.ZonedDateTime;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Set;
 
@@ -31,6 +29,8 @@ public class OrderManager implements IOrderManager {
     private INotificationManager notificationManager;
     @Autowired
     private IAdminSettingManager adminSettingManager;
+    @Autowired
+    private ApplicationEventPublisher publisher;
 
     @Override
     public Order newOrder(NewOrderRequest request) throws StoreNotFound {
@@ -70,7 +70,7 @@ public class OrderManager implements IOrderManager {
     @Override
     public Order closeOrder(long id) throws OrderNotFound, OrderClosed {
         Order order = orderService.closeOrder(id);
-        notify(NotificationType.ORDER_CLOSED, order);
+        notifyCloseOrder(order);
         return order;
     }
 
@@ -99,10 +99,7 @@ public class OrderManager implements IOrderManager {
         return orderService.deleteOrderItem(request.getOrderId(), request.getOrderItemId());
     }
 
-    private void notify(NotificationType type, Order order) {
-        OrderDocumentCtx ctx = OrderDocumentCtx.builder(true, order)
-                .setEmails(adminSettingManager.getNotificationEmails())
-                .build();
-        notificationManager.notify(new NotificationRequest(Arrays.asList(type), ctx));
+    private void notifyCloseOrder(Order order) {
+        publisher.publishEvent(new OrderClosedEvent(order));
     }
 }

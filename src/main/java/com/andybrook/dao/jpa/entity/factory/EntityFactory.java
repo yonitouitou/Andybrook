@@ -4,7 +4,6 @@ import com.andybrook.annotation.EntityConverter;
 import com.andybrook.annotation.ProductConverterByProductType;
 import com.andybrook.dao.jpa.entity.customer.CustomerEntity;
 import com.andybrook.dao.jpa.entity.customer.OwnerEntity;
-import com.andybrook.dao.jpa.entity.document.DocumentEntity;
 import com.andybrook.dao.jpa.entity.order.OrderEntity;
 import com.andybrook.dao.jpa.entity.order.OrderItemEntity;
 import com.andybrook.dao.jpa.entity.order.OrderItemEntityConverter;
@@ -18,7 +17,6 @@ import com.andybrook.model.BarCode;
 import com.andybrook.model.customer.Customer;
 import com.andybrook.model.customer.Owner;
 import com.andybrook.model.customer.Store;
-import com.andybrook.model.document.AbstractDocument;
 import com.andybrook.model.notification.NotificationPolicy;
 import com.andybrook.model.order.Order;
 import com.andybrook.model.order.OrderItem;
@@ -185,15 +183,5 @@ public final class EntityFactory {
     public final ProductStockInfoEntity createProductStockInfoEntity(ProductStockInfo model) {
         IEntityConverter converter = entityConverterMapByModelClass.get(model.getClass());
         return (ProductStockInfoEntity) converter.toEntity(model);
-    }
-
-    public final AbstractDocument createDocument(DocumentEntity entity) {
-        IEntityConverter converter = entityConverterMapByModelClass.get(entity.getClass());
-        return (AbstractDocument) converter.toModel(entity);
-    }
-
-    public final DocumentEntity createDocumentEntity(AbstractDocument model) {
-        IEntityConverter converter = entityConverterMapByModelClass.get(model.getClass().getSuperclass());
-        return (DocumentEntity) converter.toModel(model);
     }
 }

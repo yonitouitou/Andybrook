@@ -1,28 +1,23 @@
 package com.andybrook.model.notification.handler;
 
 import com.andybrook.annotation.DocumentHandler;
-import com.andybrook.api.email.EmailSender;
 import com.andybrook.api.pdf.CloseOrderPdfBuilder;
 import com.andybrook.api.pdf.IPdfBuilder;
-import com.andybrook.enums.NotificationType;
-import com.andybrook.exception.GenerateDocumentException;
+import com.andybrook.enums.DocType;
+import com.andybrook.enums.FileFormat;
+import com.andybrook.exception.UnsupportedFormatFile;
 import com.andybrook.model.api.AggregatedOrder;
 import com.andybrook.model.api.AggregatedOrderItem;
+import com.andybrook.model.api.Email;
 import com.andybrook.model.notification.IEmailNotification;
 import com.andybrook.model.notification.OrderClosedEmailNotification;
-import com.andybrook.model.notification.event.IEventListener;
-import com.andybrook.model.notification.request.ctx.NotifSetting;
-import com.andybrook.model.notification.event.CloseOrderEvent;
-import com.andybrook.model.notification.request.ctx.NotificationCtx;
+import com.andybrook.model.notification.request.ctx.DocumentCtx;
 import com.andybrook.model.notification.request.ctx.OrderDocumentCtx;
+import com.andybrook.model.notification.request.setting.EmailSetting;
+import com.andybrook.model.order.Order;
 import com.andybrook.model.product.Product;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.config.BeanDefinition;
 import org.springframework.context.ApplicationContext;
-import org.springframework.context.annotation.Scope;
-import org.springframework.context.event.EventListener;
-import org.springframework.core.io.FileUrlResource;
-import org.springframework.core.io.Resource;
 import org.springframework.stereotype.Component;
 
 import java.io.File;
@@ -30,49 +25,48 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.lang.System.Logger;
 import java.lang.System.Logger.Level;
-import java.net.MalformedURLException;
-import java.net.URI;
 import java.nio.file.Path;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 @Component
-@DocumentHandler(type = NotificationType.ORDER_CLOSED)
-public class CloseOrderNotificationHandler implements IDocumentHandler, IEventListener<CloseOrderEvent> {
+@DocumentHandler(type = DocType.ORDER_FORM)
+public class CloseOrderNotificationHandler implements IDocumentHandler<Order> {
 
     private static final Logger LOGGER = System.getLogger(CloseOrderNotificationHandler.class.getSimpleName());
     private static final DateTimeFormatter DATE_TIME_FORMATTER_FILE_NAME = DateTimeFormatter.ofPattern("yyyy-MM-dd-hh-mm-ss");
 
     @Autowired
     private ApplicationContext applicationContext;
-    @Autowired
-    private EmailSender emailSender;
 
     @Override
-    @EventListener
-    public void handleEvent(CloseOrderEvent event) {
-        IEmailNotification<AggregatedOrder> closedReportNotif = applicationContext.getBean(OrderClosedEmailNotification.class);
-        if (! event.getSetting().getEmails().isEmpty()) {
-            List<Path> attachments = getAttachmentsPaths(event.getOrder(), event.getSetting());
-            emailSender.send(closedReportNotif.createEmail(event.getSetting(), event.getOrder(), attachments));
-        }
-    }
-
-    @Override
-    public Path generateDocument(NotificationCtx ctx) {
+    public Email generateEmail(EmailSetting setting, DocumentCtx ctx, List<Path> attachments) {
         OrderDocumentCtx docCtx = (OrderDocumentCtx) ctx;
-        return generateCloseOrderPdfFile(AggregatedOrder.toAggregatedOrder(docCtx.getOrder()), docCtx.getSetting());
+        IEmailNotification<AggregatedOrder> emailHandler = applicationContext.getBean(OrderClosedEmailNotification.class);
+        return emailHandler.createEmail(setting, docCtx, attachments);
     }
 
-    private List<Path> getAttachmentsPaths(AggregatedOrder order, NotifSetting setting) {
-        Path csvPath = generateCsvFile(order);
-        Path pdfPath = generateCloseOrderPdfFile(order, setting);
-        return List.of(csvPath, pdfPath);
+    @Override
+    public Path generateDocument(FileFormat format, DocumentCtx ctx) {
+        Path path;
+        OrderDocumentCtx docCtx = (OrderDocumentCtx) ctx;
+        Order order = docCtx.getOrder();
+        switch (format) {
+            case PDF:
+                path = generatePdfFile(order.aggregate(), docCtx);
+                break;
+            case CSV:
+                path = generateCsvFile(order.aggregate());
+                break;
+            default:
+                throw new UnsupportedFormatFile(format);
+        }
+        return path;
     }
 
-    private Path generateCloseOrderPdfFile(AggregatedOrder order, NotifSetting setting) {
-        IPdfBuilder<AggregatedOrder> builder = applicationContext.getBean(CloseOrderPdfBuilder.class);
-        return builder.generatePdf(order, setting);
+    private Path generatePdfFile(AggregatedOrder order, OrderDocumentCtx ctx) {
+        IPdfBuilder builder = applicationContext.getBean(CloseOrderPdfBuilder.class);
+        return builder.generatePdf(ctx);
     }
 
     private Path generateCsvFile(AggregatedOrder order) {
@@ -98,12 +92,9 @@ public class CloseOrderNotificationHandler implements IDocumentHandler, IEventLi
     private Path writeCsvInFile(AggregatedOrder order, String csv) throws IOException {
         String fileName = order.getName() + "-" + order.getCreatedDatetime().format(DATE_TIME_FORMATTER_FILE_NAME);
         File tmpFile = File.createTempFile(fileName, ".csv");
-        FileWriter writer = new FileWriter(tmpFile);
-        try {
+        try (FileWriter writer = new FileWriter(tmpFile)) {
             writer.write(csv);
             writer.flush();
-        } finally {
-            writer.close();
         }
         return tmpFile.toPath();
     }

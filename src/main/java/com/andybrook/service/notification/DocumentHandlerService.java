@@ -1,6 +1,7 @@
 package com.andybrook.service.notification;
 
 import com.andybrook.annotation.DocumentHandler;
+import com.andybrook.enums.DocType;
 import com.andybrook.enums.NotificationType;
 import com.andybrook.exception.AnnotationNotFound;
 import com.andybrook.model.notification.handler.IDocumentHandler;
@@ -18,7 +19,7 @@ public class DocumentHandlerService implements IDocumentHandlerService {
     @Autowired
     private ApplicationContext applicationContext;
 
-    private Map<NotificationType, Class<IDocumentHandler>> handlerClassMapByType = new EnumMap<>(NotificationType.class);
+    private Map<DocType, Class<IDocumentHandler>> handlerClassMapByType = new EnumMap<>(DocType.class);
 
     @PostConstruct
     private void init() {
@@ -27,7 +28,7 @@ public class DocumentHandlerService implements IDocumentHandlerService {
             Class<IDocumentHandler> clazz = (Class<IDocumentHandler>) handler.getClass();
             DocumentHandler annotation = clazz.getAnnotation(DocumentHandler.class);
             if (annotation != null) {
-                NotificationType type = annotation.type();
+                DocType type = annotation.type();
                 handlerClassMapByType.put(type, clazz);
             } else {
                 throw new AnnotationNotFound(DocumentHandler.class.getSimpleName());
@@ -36,7 +37,7 @@ public class DocumentHandlerService implements IDocumentHandlerService {
     }
 
     @Override
-    public Class<IDocumentHandler> getHandler(NotificationType type) {
+    public Class<IDocumentHandler> getHandler(DocType type) {
         return handlerClassMapByType.get(type);
     }
 }

@@ -8,7 +8,5 @@ import java.util.List;
 
 public interface INotificationService {
 
-    void asyncNotify(NotificationRequest request) throws OrderNotFound;
-
-    List<Path> syncNotify(NotificationRequest request);
+    List<Path> notify(NotificationRequest request) throws OrderNotFound;
 }

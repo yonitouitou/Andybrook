@@ -2,6 +2,7 @@ package com.andybrook.model.order;
 
 import com.andybrook.enums.OrderStatus;
 import com.andybrook.exception.OrderClosed;
+import com.andybrook.model.api.AggregatedOrder;
 import com.andybrook.model.customer.Customer;
 
 import java.time.LocalDateTime;
@@ -60,6 +61,10 @@ public class Order {
         }
         status = OrderStatus.CLOSED;
         closeDateTime = LocalDateTime.now();
+    }
+
+    public AggregatedOrder aggregate() {
+        return AggregatedOrder.toAggregatedOrder(this);
     }
 
     public int getTotalQuantity() {
