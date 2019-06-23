@@ -1184,7 +1184,7 @@ module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"modal-header\">\n    <h5 class=\"modal-title\" id=\"modal-basic-title\">Add order items</h5>\n    <button type=\"button\" class=\"close\" aria-label=\"Close\" (click)=\"onClose()\">\n      <span aria-hidden=\"true\">&times;</span>\n    </button>\n</div>\n<div class=\"modal-body\">\n  <form [formGroup]=\"addOrderItemForm\">\n    <div class=\"custom-control custom-switch\" style=\"float: right\">\n      <input type=\"checkbox\" class=\"custom-control-input\" id=\"customSwitch1\" (click)=\"shouldEnableBarCodeMode($event)\" [(ngModel)]=\"barCodeMode\" [ngModelOptions]=\"{standalone: true}\">\n      <label class=\"custom-control-label\" for=\"customSwitch1\">Barcode Mode</label>\n    </div>\n    <div *ngIf=\"barCodeMode\">\n      <div class=\"form-group\">\n          <label for=\"barCode\">BarCode</label>\n          <input type=\"text\" formControlName=\"barCode\"\n            (change)=\"onValueChange()\"\n            (blur)=\"onBlurBarCode()\"\n            class=\"form-control\"/>\n      </div>\n    </div>\n    <div *ngIf=\"! barCodeMode\">\n      <div class=\"form-group\">\n        <label for=\"Name\">Product Name</label>\n        <input type=\"text\" formControlName=\"productName\"\n          [(ngModel)]=\"inputProductName\"\n          [ngbTypeahead]=\"search\"\n          (change)=\"onProductNameChange()\"\n          (blur)=\"onBlurProductName()\"\n          class=\"form-control\"/>\n      </div>\n      <div class=\"form-group\">\n        <label for=\"quantity\">Quantity</label>\n        <input type=\"number\" formControlName=\"quantity\"\n          (change)=\"onValueChange()\"\n          class=\"form-control\"/>\n      </div>\n    </div>\n    <div *ngIf=\"productStockInfo\">\n      <table class=\"table table-striped\">\n        <thead>\n          <tr>\n            <th>Id</th>\n            <th>Name</th>\n            <th>Initial Qty</th>\n            <th>Free Qty</th>\n          </tr>\n        </thead>\n        <tbody>\n          <tr>\n            <td>{{ productStockInfo.product.id }}</td>\n            <td>{{ productStockInfo.product.name }}</td>\n            <td>{{ productStockInfo.createdQuantity }}</td>\n            <td>{{ productStockInfo.createdQuantity - productStockInfo.usedQuantity }}</td>\n          </tr>\n        </tbody>\n      </table>\n    </div>\n    <div *ngIf=\"productItem\">\n      <table class=\"table table-striped\">\n        <thead>\n          <tr>\n            <th>Id</th>\n            <th>Name</th>\n            <th>Free</th>\n          </tr>\n        </thead>\n        <tbody>\n          <tr>\n            <td>{{ productItem.id }}</td>\n            <td>{{ productItem.product.name }}</td>\n            <td>{{ productItem.orderItemId ? 'No' : 'Yes' }}</td>\n          </tr>\n        </tbody>\n      </table>\n    </div>\n  </form>\n</div>\n<div class=\"modal-footer\">\n  <div class=\"container\">\n    <div class=\"row\">\n        <div class=\"col-md-auto\">\n            <ngb-alert *ngIf=\"errorMessage\" type=\"danger\" [dismissible]=\"true\" (close)=\"errorMessage = null\">{{ errorMessage }}</ngb-alert>\n        </div>\n        <div class=\"col\">\n          <button class=\"btn btn-outline-dark\" type=\"button\" [disabled]=\"isAddButtonDisabled\" (click)=\"onSubmit()\" style=\"float:right\">\n              <span *ngIf=\"addOrderItemInProgress\" class=\"spinner-border spinner-border-sm\" role=\"status\" aria-hidden=\"true\"></span>\n            Add</button>\n        </div>\n    </div>\n  </div>\n</div>"
+module.exports = "<div class=\"modal-header\">\n    <h5 class=\"modal-title\" id=\"modal-basic-title\">Add order items</h5>\n    <button type=\"button\" class=\"close\" aria-label=\"Close\" (click)=\"onClose()\">\n      <span aria-hidden=\"true\">&times;</span>\n    </button>\n</div>\n<div class=\"modal-body\">\n  <form [formGroup]=\"addOrderItemForm\">\n    <div class=\"custom-control custom-switch\" style=\"float: right\">\n      <input type=\"checkbox\" class=\"custom-control-input\" id=\"customSwitch1\" (click)=\"shouldEnableBarCodeMode($event)\" [(ngModel)]=\"barCodeMode\" [ngModelOptions]=\"{standalone: true}\">\n      <label class=\"custom-control-label\" for=\"customSwitch1\">Barcode Mode</label>\n    </div>\n    <div *ngIf=\"barCodeMode\">\n      <div class=\"form-group\">\n          <label for=\"barCode\">BarCode</label>\n          <input type=\"text\" formControlName=\"barCode\"\n            (change)=\"onValueChange()\"\n            (blur)=\"onBlurBarCode()\"\n            class=\"form-control\"/>\n      </div>\n    </div>\n    <div *ngIf=\"! barCodeMode\">\n      <div class=\"form-group\">\n        <label for=\"Name\">Product Name</label>\n        <input type=\"text\" formControlName=\"productName\"\n          [(ngModel)]=\"inputProductName\"\n          [ngbTypeahead]=\"search\"\n          (change)=\"onProductNameChange()\"\n          (blur)=\"onBlurProductName()\"\n          class=\"form-control\"/>\n      </div>\n      <div class=\"form-group\">\n        <label for=\"quantity\">Quantity</label>\n        <input type=\"number\" formControlName=\"quantity\"\n          (change)=\"onValueChange()\"\n          class=\"form-control\"/>\n      </div>\n    </div>\n    <div *ngIf=\"productStockInfo\">\n      <table class=\"table table-striped\">\n        <thead>\n          <tr>\n            <th>Id</th>\n            <th>Name</th>\n            <th>Initial Qty</th>\n            <th>Free Qty</th>\n          </tr>\n        </thead>\n        <tbody>\n          <tr>\n            <td>{{ productStockInfo.product.id }}</td>\n            <td>{{ productStockInfo.product.name }}</td>\n            <td>{{ productStockInfo.createdQuantity }}</td>\n            <td>{{ productStockInfo.createdQuantity - productStockInfo.usedQuantity }}</td>\n          </tr>\n        </tbody>\n      </table>\n    </div>\n    <div *ngIf=\"productItem\">\n      <table class=\"table table-striped\">\n        <thead>\n          <tr>\n            <th>Id</th>\n            <th>Name</th>\n            <th>Free</th>\n          </tr>\n        </thead>\n        <tbody>\n          <tr>\n            <td>{{ productItem.id }}</td>\n            <td>{{ productItem.product.name }}</td>\n            <td>{{ productItem.orderItemId ? 'No' : 'Yes' }}</td>\n          </tr>\n        </tbody>\n      </table>\n    </div>\n  </form>\n</div>\n<div class=\"modal-footer\">\n  <div class=\"container\">\n    <div class=\"row\">\n        <div class=\"col\">\n          <button class=\"btn btn-outline-dark\" type=\"button\" [disabled]=\"isAddButtonDisabled\" (click)=\"onSubmit(true)\" style=\"float:left\">\n              <span *ngIf=\"addOrderItemInProgress\" class=\"spinner-border spinner-border-sm\" role=\"status\" aria-hidden=\"true\"></span>\n            Add Another</button>\n        </div>\n        <div class=\"col-md-auto\">\n            <ngb-alert *ngIf=\"errorMessage\" type=\"danger\" [dismissible]=\"true\" (close)=\"errorMessage = null\">{{ errorMessage }}</ngb-alert>\n        </div>\n        <div class=\"col\">\n          <button class=\"btn btn-outline-dark\" type=\"button\" [disabled]=\"isAddButtonDisabled\" (click)=\"onSubmit(false)\" style=\"float:right\">\n              <span *ngIf=\"addOrderItemInProgress\" class=\"spinner-border spinner-border-sm\" role=\"status\" aria-hidden=\"true\"></span>\n            Add</button>\n        </div>\n    </div>\n  </div>\n</div>"
 
 /***/ }),
 
@@ -1234,6 +1234,7 @@ var AddOrderItemModalComponent = /** @class */ (function () {
         this.cookieService = cookieService;
         this.productService = productService;
         this.orderService = orderService;
+        this.addOrderItemEvent = new _angular_core__WEBPACK_IMPORTED_MODULE_1__["EventEmitter"]();
         this.productNames = [];
         this.productIdMapByName = new Map();
         this._error = new rxjs__WEBPACK_IMPORTED_MODULE_8__["Subject"]();
@@ -1321,15 +1322,15 @@ var AddOrderItemModalComponent = /** @class */ (function () {
             });
         }
     };
-    AddOrderItemModalComponent.prototype.onSubmit = function () {
+    AddOrderItemModalComponent.prototype.onSubmit = function (addAnother) {
         if (this.barCodeMode) {
-            this.onSubmitBarCodeMode();
+            this.onSubmitBarCodeMode(addAnother);
         }
         else {
-            this.onSubmitNoBarCodeMode();
+            this.onSubmitNoBarCodeMode(addAnother);
         }
     };
-    AddOrderItemModalComponent.prototype.onSubmitBarCodeMode = function () {
+    AddOrderItemModalComponent.prototype.onSubmitBarCodeMode = function (addAnother) {
         var _this = this;
         var barCode = this.addOrderItemForm.get("barCode").value;
         if (barCode == null || barCode.length == 0) {
@@ -1339,8 +1340,13 @@ var AddOrderItemModalComponent = /** @class */ (function () {
             this.addInProgress(true);
             var request = new src_app_model_request_order_AddOrderItemByBarCodeReq__WEBPACK_IMPORTED_MODULE_11__["AddOrderItemByBarCodeReq"](this.orderId, barCode);
             this.orderService.addOrderItemByBarCode(request).subscribe(function (data) {
-                console.log(data);
-                _this.modal.close(true);
+                _this.addOrderItemEvent.emit();
+                if (addAnother) {
+                    _this.resetModal();
+                }
+                else {
+                    _this.modal.close(true);
+                }
             }, function (error) {
                 _this.changeErrorMessage(error.error);
                 _this.addInProgress(false);
@@ -1348,7 +1354,7 @@ var AddOrderItemModalComponent = /** @class */ (function () {
             this.errorMessage = null;
         }
     };
-    AddOrderItemModalComponent.prototype.onSubmitNoBarCodeMode = function () {
+    AddOrderItemModalComponent.prototype.onSubmitNoBarCodeMode = function (addAnother) {
         var _this = this;
         var productName = this.addOrderItemForm.get("productName").value;
         var productId = this.productIdMapByName.get(productName);
@@ -1363,8 +1369,13 @@ var AddOrderItemModalComponent = /** @class */ (function () {
             this.addInProgress(true);
             var request = new src_app_model_request_order_AddOrderItemReq__WEBPACK_IMPORTED_MODULE_4__["AddOrderItemReq"](this.orderId, productId, qty);
             this.orderService.addOrderItem(request).subscribe(function (data) {
-                console.log(data);
-                _this.modal.close(true);
+                _this.addOrderItemEvent.emit();
+                if (addAnother) {
+                    _this.resetModal();
+                }
+                else {
+                    _this.modal.close(true);
+                }
             }, function (error) {
                 _this.changeErrorMessage(error.error);
                 _this.addInProgress(false);
@@ -1384,9 +1395,18 @@ var AddOrderItemModalComponent = /** @class */ (function () {
     AddOrderItemModalComponent.prototype.disableAddButton = function (disabled) {
         this.isAddButtonDisabled = disabled;
     };
+    AddOrderItemModalComponent.prototype.resetModal = function () {
+        this.addOrderItemForm.reset();
+        this.addInProgress(false);
+        this.productStockInfo = null;
+    };
     AddOrderItemModalComponent.prototype.onClose = function () {
         this.modal.close(false);
     };
+    tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Output"])(),
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:type", Object)
+    ], AddOrderItemModalComponent.prototype, "addOrderItemEvent", void 0);
     tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Input"])(),
         tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:type", Number)
@@ -1827,8 +1847,8 @@ var OrderNotificationModalComponent = /** @class */ (function () {
         var _this = this;
         this.notificationService.getDocumentTypes().subscribe(function (data) {
             for (var i = 0; i < data.length; i++) {
-                var notif = src_app_model_DocType__WEBPACK_IMPORTED_MODULE_7__["DocType"].fromJson(data[i]);
-                _this.docTypesMapByName.set(notif.type, notif);
+                var docType = src_app_model_DocType__WEBPACK_IMPORTED_MODULE_7__["DocType"].fromJson(data[i]);
+                _this.docTypesMapByName.set(docType.type, docType);
             }
         }, function (error) {
             console.log("Error : Cannot get the notification types : " + error);
@@ -2952,10 +2972,8 @@ var OrderHeaderComponent = /** @class */ (function () {
         var _this = this;
         var modalRef = this.modalBuilder.openCenteredLargeModal(src_app_modal_add_order_item_modal_add_order_item_modal_component__WEBPACK_IMPORTED_MODULE_6__["AddOrderItemModalComponent"]);
         modalRef.componentInstance.orderId = this.order.id;
-        modalRef.result.then(function (response) {
-            if (response) {
-                _this.onAddOrderItemEvent.emit();
-            }
+        modalRef.componentInstance.addOrderItemEvent.subscribe(function ($e) {
+            _this.onAddOrderItemEvent.emit();
         });
     };
     OrderHeaderComponent.prototype.onClickCloseOrder = function () {

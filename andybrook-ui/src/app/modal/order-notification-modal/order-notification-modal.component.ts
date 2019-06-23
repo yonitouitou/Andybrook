@@ -39,8 +39,8 @@ export class OrderNotificationModalComponent implements OnInit {
     this.notificationService.getDocumentTypes().subscribe(
       data => {
         for (let i = 0; i < data.length; i++) {
-          let notif = DocType.fromJson(data[i]);
-          this.docTypesMapByName.set(notif.type, notif);
+          let docType = DocType.fromJson(data[i]);
+          this.docTypesMapByName.set(docType.type, docType);
         }
       },
       error => {

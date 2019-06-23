@@ -79,11 +79,16 @@
 <div class="modal-footer">
   <div class="container">
     <div class="row">
+        <div class="col">
+          <button class="btn btn-outline-dark" type="button" [disabled]="isAddButtonDisabled" (click)="onSubmit(true)" style="float:left">
+              <span *ngIf="addOrderItemInProgress" class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+            Add Another</button>
+        </div>
         <div class="col-md-auto">
             <ngb-alert *ngIf="errorMessage" type="danger" [dismissible]="true" (close)="errorMessage = null">{{ errorMessage }}</ngb-alert>
         </div>
         <div class="col">
-          <button class="btn btn-outline-dark" type="button" [disabled]="isAddButtonDisabled" (click)="onSubmit()" style="float:right">
+          <button class="btn btn-outline-dark" type="button" [disabled]="isAddButtonDisabled" (click)="onSubmit(false)" style="float:right">
               <span *ngIf="addOrderItemInProgress" class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
             Add</button>
         </div>

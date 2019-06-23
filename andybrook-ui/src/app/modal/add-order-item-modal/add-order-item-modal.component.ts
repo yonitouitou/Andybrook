@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { OrderService } from 'src/app/service/order-service';
 import { AddOrderItemReq } from 'src/app/model/request/order/AddOrderItemReq';
@@ -19,6 +19,7 @@ import { ProductItem } from 'src/app/model/ProductItem';
 })
 export class AddOrderItemModalComponent implements OnInit {
 
+  @Output() addOrderItemEvent = new EventEmitter<string>();
   @Input() orderId: number
 
   addOrderItemForm: FormGroup
@@ -139,15 +140,15 @@ export class AddOrderItemModalComponent implements OnInit {
     }
   }
 
-  onSubmit() {
+  onSubmit(addAnother: boolean) {
     if (this.barCodeMode) {
-      this.onSubmitBarCodeMode();
+      this.onSubmitBarCodeMode(addAnother);
     } else {
-      this.onSubmitNoBarCodeMode();
+      this.onSubmitNoBarCodeMode(addAnother);
     }
   }
   
-  private onSubmitBarCodeMode() {
+  private onSubmitBarCodeMode(addAnother: boolean) {
     let barCode = this.addOrderItemForm.get("barCode").value;
     if (barCode == null || barCode.length == 0) {
       this.changeErrorMessage("Please enter a barcode.")
@@ -156,8 +157,13 @@ export class AddOrderItemModalComponent implements OnInit {
       let request = new AddOrderItemByBarCodeReq(this.orderId, barCode);
       this.orderService.addOrderItemByBarCode(request).subscribe(
         data => {
-          console.log(data);
-          this.modal.close(true);
+          this.addOrderItemEvent.emit();
+          if (addAnother) {
+            this.resetModal();
+          } else {
+            this.modal.close(true);
+          }
+          
         },
         error => {
           this.changeErrorMessage(error.error);
@@ -167,7 +173,7 @@ export class AddOrderItemModalComponent implements OnInit {
     }
   }
 
-  private onSubmitNoBarCodeMode() {
+  private onSubmitNoBarCodeMode(addAnother: boolean) {
     let productName = this.addOrderItemForm.get("productName").value;
     let productId = this.productIdMapByName.get(productName);
     const qty = this.addOrderItemForm.get("quantity").value;
@@ -180,8 +186,12 @@ export class AddOrderItemModalComponent implements OnInit {
       let request = new AddOrderItemReq(this.orderId, productId, qty);
       this.orderService.addOrderItem(request).subscribe(
         data => {
-          console.log(data);
-          this.modal.close(true);
+          this.addOrderItemEvent.emit();
+          if (addAnother) {
+            this.resetModal();
+          } else {
+            this.modal.close(true);
+          }
         },
         error => {
           this.changeErrorMessage(error.error);
@@ -205,6 +215,12 @@ export class AddOrderItemModalComponent implements OnInit {
 
   private disableAddButton(disabled: boolean) {
     this.isAddButtonDisabled = disabled;
+  }
+
+  private resetModal() {
+    this.addOrderItemForm.reset();
+    this.addInProgress(false);
+    this.productStockInfo = null;
   }
   
 

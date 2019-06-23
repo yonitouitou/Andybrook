@@ -26,11 +26,8 @@ export class OrderHeaderComponent implements OnInit {
   onClickAddOrderItem() {
     let modalRef = this.modalBuilder.openCenteredLargeModal(AddOrderItemModalComponent);
     modalRef.componentInstance.orderId = this.order.id;
-    modalRef.result.then((response)=> {
-      if (response) {
-        this.onAddOrderItemEvent.emit();
-      }
-
+    modalRef.componentInstance.addOrderItemEvent.subscribe(($e) => {
+      this.onAddOrderItemEvent.emit();
     })
   }
 
