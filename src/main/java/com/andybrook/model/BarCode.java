@@ -15,6 +15,7 @@ public class BarCode {
 
     public BarCode(String id) {
         this.id = id;
+        isUsed = false;
     }
 
     public String getId() {
