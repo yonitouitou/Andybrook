@@ -6,7 +6,6 @@ import com.andybrook.model.api.ProductItemsFileUploadResult;
 import com.andybrook.model.product.Glasses;
 import com.andybrook.model.product.Product;
 import com.andybrook.model.stock.ProductItem;
-import com.andybrook.service.order.OrderItemService;
 import com.andybrook.util.IdGenerator;
 import org.springframework.stereotype.Service;
 

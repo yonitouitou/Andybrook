@@ -38,14 +38,18 @@ import { CustomerOrdersComponent } from './customer/customer-orders/customer-ord
 import { CustomerInfoComponent } from './customer/customer-info/customer-info.component';
 import { CustomerHeaderComponent } from './customer/customer-header/customer-header.component';
 import { NewCustomerComponent } from './customer/new-customer/new-customer.component';
+import { FileUploadModule } from 'ng2-file-upload';
 import { OrderNotificationModalComponent } from './modal/order-notification-modal/order-notification-modal.component';
+import { UploadProductFileModalComponent } from './modal/upload-product-file-modal/upload-product-file-modal.component';
+import { ProductsPanelComponent } from './product/products-panel/products-panel.component';
 
 const appRoutes: Routes = [
   { path: '', component: OrdersManagerComponent },
   { path: 'order/:id', component: ShowOrderComponent },
-  { path: 'admin', component: AdminPanelComponent},
-  { path: 'new-customer/:id', component: NewCustomerComponent},
-  { path: 'customer-dashboard', component: CustomerPanelComponent}
+  { path: 'admin', component: AdminPanelComponent },
+  { path: 'new-customer/:id', component: NewCustomerComponent },
+  { path: 'customer-dashboard', component: CustomerPanelComponent },
+  { path: 'products', component: ProductsPanelComponent }
 ];
 
 @NgModule({
@@ -73,6 +77,8 @@ const appRoutes: Routes = [
     CustomerHeaderComponent,
     NewCustomerComponent,
     OrderNotificationModalComponent,
+    UploadProductFileModalComponent,
+    ProductsPanelComponent,
   ],
   entryComponents: [
     CreateOrderModalComponent,
@@ -94,6 +100,7 @@ const appRoutes: Routes = [
     ReactiveFormsModule,
     NgbModule,
     SharedModule,
+    FileUploadModule,
     RouterModule.forRoot(appRoutes)
   ],
   providers: [

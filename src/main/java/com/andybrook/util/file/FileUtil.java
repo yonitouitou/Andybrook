@@ -4,10 +4,14 @@ import com.andybrook.util.file.zip.IZipCompress;
 import com.andybrook.util.file.zip.Zip4j;
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.FilenameUtils;
+import org.springframework.util.FileCopyUtils;
 
 import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
+import java.nio.file.Files;
 import java.nio.file.Path;
+import java.nio.file.StandardCopyOption;
 import java.util.List;
 import java.util.Objects;
 
@@ -43,5 +47,11 @@ public final class FileUtil {
 
     public static void writeToFile(File file, String data) throws IOException {
         FileUtils.writeStringToFile(file, data, "UTF-8");
+    }
+
+    public static File writeToFile(InputStream inputStream, String fileName) throws IOException {
+        File tmpFile = new File(TMP_DIRECTORY, fileName);
+        Files.copy(inputStream, tmpFile.toPath(), StandardCopyOption.REPLACE_EXISTING);
+        return tmpFile;
     }
 }

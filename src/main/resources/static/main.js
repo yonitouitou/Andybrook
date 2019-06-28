@@ -166,7 +166,7 @@ module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<nav class=\"navbar navbar-expand-md navbar-dark bg-primary fixed-top\">\n    <a class=\"navbar-brand\" href=\"#\">Andybrook</a>\n    <button class=\"navbar-toggler hidden-sm-up\" type=\"button\" (click)=\"isNavbarCollapsed = !isNavbarCollapsed\" data-target=\"#navbarsDefault\" aria-controls=\"navbarsDefault\" aria-expanded=\"false\" aria-label=\"Toggle navigation\">\n      <span class=\"navbar-toggler-icon\"></span>\n    </button>\n    <div [ngbCollapse]=\"isNavbarCollapsed\" class=\"collapse navbar-collapse\" id=\"navbarsDefault\">\n      <ul class=\"navbar-nav mr-auto\">\n        <li class=\"nav-item\">\n          <a class=\"nav-link\"\n             routerLinkActive=\"active\"\n             [routerLinkActiveOptions]=\"{exact: true}\"\n             routerLink=\"/\"\n          >Home</a>\n        </li>\n        <li class=\"nav-item dropdown\" ngbDropdown>\n          <a class=\"nav-link dropdown-toggle\" id=\"id01\" ngbDropdownToggle>Customers</a>\n          <div class=\"dropdown-menu\" aria-labelledby=\"id01\" ngbDropdownMenu>\n            <a class=\"dropdown-item\" routerLink=\"/customer-dashboard\">Dashboard</a>\n            <a class=\"dropdown-item\" routerLink=\"/new-customer/-1\">New Customer</a>\n          </div>\n        </li>\n        <li class=\"nav-item\">\n          <a class=\"nav-link\"\n             routerLink=\"/admin\"\n          >Admin</a>\n        </li>\n      </ul>\n    </div>\n  </nav>"
+module.exports = "<nav class=\"navbar navbar-expand-md navbar-dark bg-primary fixed-top\">\n    <a class=\"navbar-brand\" href=\"#\">Andybrook</a>\n    <button class=\"navbar-toggler hidden-sm-up\" type=\"button\" (click)=\"isNavbarCollapsed = !isNavbarCollapsed\" data-target=\"#navbarsDefault\" aria-controls=\"navbarsDefault\" aria-expanded=\"false\" aria-label=\"Toggle navigation\">\n      <span class=\"navbar-toggler-icon\"></span>\n    </button>\n    <div [ngbCollapse]=\"isNavbarCollapsed\" class=\"collapse navbar-collapse\" id=\"navbarsDefault\">\n      <ul class=\"navbar-nav mr-auto\">\n        <li class=\"nav-item\">\n          <a class=\"nav-link\"\n             routerLinkActive=\"active\"\n             [routerLinkActiveOptions]=\"{exact: true}\"\n             routerLink=\"/\"\n          >Home</a>\n        </li>\n        <li class=\"nav-item dropdown\" ngbDropdown>\n          <a class=\"nav-link dropdown-toggle\" id=\"id01\" ngbDropdownToggle>Customers</a>\n          <div class=\"dropdown-menu\" aria-labelledby=\"id01\" ngbDropdownMenu>\n            <a class=\"dropdown-item\" routerLink=\"/customer-dashboard\">Dashboard</a>\n            <a class=\"dropdown-item\" routerLink=\"/new-customer/-1\">New Customer</a>\n          </div>\n        </li>\n        <li class=\"nav-item\">\n          <a class=\"nav-link\"\n             routerLink=\"/products\"\n          >Products</a>\n        </li>\n        <li class=\"nav-item\">\n          <a class=\"nav-link\"\n             routerLink=\"/admin\"\n          >Admin</a>\n        </li>\n      </ul>\n    </div>\n  </nav>"
 
 /***/ }),
 
@@ -309,7 +309,14 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _customer_customer_info_customer_info_component__WEBPACK_IMPORTED_MODULE_38__ = __webpack_require__(/*! ./customer/customer-info/customer-info.component */ "./src/app/customer/customer-info/customer-info.component.ts");
 /* harmony import */ var _customer_customer_header_customer_header_component__WEBPACK_IMPORTED_MODULE_39__ = __webpack_require__(/*! ./customer/customer-header/customer-header.component */ "./src/app/customer/customer-header/customer-header.component.ts");
 /* harmony import */ var _customer_new_customer_new_customer_component__WEBPACK_IMPORTED_MODULE_40__ = __webpack_require__(/*! ./customer/new-customer/new-customer.component */ "./src/app/customer/new-customer/new-customer.component.ts");
-/* harmony import */ var _modal_order_notification_modal_order_notification_modal_component__WEBPACK_IMPORTED_MODULE_41__ = __webpack_require__(/*! ./modal/order-notification-modal/order-notification-modal.component */ "./src/app/modal/order-notification-modal/order-notification-modal.component.ts");
+/* harmony import */ var ng2_file_upload__WEBPACK_IMPORTED_MODULE_41__ = __webpack_require__(/*! ng2-file-upload */ "./node_modules/ng2-file-upload/index.js");
+/* harmony import */ var ng2_file_upload__WEBPACK_IMPORTED_MODULE_41___default = /*#__PURE__*/__webpack_require__.n(ng2_file_upload__WEBPACK_IMPORTED_MODULE_41__);
+/* harmony import */ var _modal_order_notification_modal_order_notification_modal_component__WEBPACK_IMPORTED_MODULE_42__ = __webpack_require__(/*! ./modal/order-notification-modal/order-notification-modal.component */ "./src/app/modal/order-notification-modal/order-notification-modal.component.ts");
+/* harmony import */ var _modal_upload_product_file_modal_upload_product_file_modal_component__WEBPACK_IMPORTED_MODULE_43__ = __webpack_require__(/*! ./modal/upload-product-file-modal/upload-product-file-modal.component */ "./src/app/modal/upload-product-file-modal/upload-product-file-modal.component.ts");
+/* harmony import */ var _product_products_panel_products_panel_component__WEBPACK_IMPORTED_MODULE_44__ = __webpack_require__(/*! ./product/products-panel/products-panel.component */ "./src/app/product/products-panel/products-panel.component.ts");
+
+
+
 
 
 
@@ -357,7 +364,8 @@ var appRoutes = [
     { path: 'order/:id', component: _order_panel_show_order_show_order_component__WEBPACK_IMPORTED_MODULE_12__["ShowOrderComponent"] },
     { path: 'admin', component: _admin_admin_panel_admin_panel_component__WEBPACK_IMPORTED_MODULE_20__["AdminPanelComponent"] },
     { path: 'new-customer/:id', component: _customer_new_customer_new_customer_component__WEBPACK_IMPORTED_MODULE_40__["NewCustomerComponent"] },
-    { path: 'customer-dashboard', component: _customer_customer_panel_customer_panel_component__WEBPACK_IMPORTED_MODULE_22__["CustomerPanelComponent"] }
+    { path: 'customer-dashboard', component: _customer_customer_panel_customer_panel_component__WEBPACK_IMPORTED_MODULE_22__["CustomerPanelComponent"] },
+    { path: 'products', component: _product_products_panel_products_panel_component__WEBPACK_IMPORTED_MODULE_44__["ProductsPanelComponent"] }
 ];
 var AppModule = /** @class */ (function () {
     function AppModule() {
@@ -387,7 +395,9 @@ var AppModule = /** @class */ (function () {
                 _customer_customer_info_customer_info_component__WEBPACK_IMPORTED_MODULE_38__["CustomerInfoComponent"],
                 _customer_customer_header_customer_header_component__WEBPACK_IMPORTED_MODULE_39__["CustomerHeaderComponent"],
                 _customer_new_customer_new_customer_component__WEBPACK_IMPORTED_MODULE_40__["NewCustomerComponent"],
-                _modal_order_notification_modal_order_notification_modal_component__WEBPACK_IMPORTED_MODULE_41__["OrderNotificationModalComponent"],
+                _modal_order_notification_modal_order_notification_modal_component__WEBPACK_IMPORTED_MODULE_42__["OrderNotificationModalComponent"],
+                _modal_upload_product_file_modal_upload_product_file_modal_component__WEBPACK_IMPORTED_MODULE_43__["UploadProductFileModalComponent"],
+                _product_products_panel_products_panel_component__WEBPACK_IMPORTED_MODULE_44__["ProductsPanelComponent"],
             ],
             entryComponents: [
                 _modal_create_order_modal_create_order_modal_component__WEBPACK_IMPORTED_MODULE_27__["CreateOrderModalComponent"],
@@ -396,7 +406,7 @@ var AppModule = /** @class */ (function () {
                 _modal_show_order_items_modal_show_order_items_modal_component__WEBPACK_IMPORTED_MODULE_31__["ShowOrderItemsModalComponent"],
                 _modal_delete_order_items_modal_delete_order_items_modal_component__WEBPACK_IMPORTED_MODULE_33__["DeleteOrderItemsModalComponent"],
                 _modal_add_order_item_modal_add_order_item_modal_component__WEBPACK_IMPORTED_MODULE_34__["AddOrderItemModalComponent"],
-                _modal_order_notification_modal_order_notification_modal_component__WEBPACK_IMPORTED_MODULE_41__["OrderNotificationModalComponent"]
+                _modal_order_notification_modal_order_notification_modal_component__WEBPACK_IMPORTED_MODULE_42__["OrderNotificationModalComponent"]
             ],
             imports: [
                 _angular_platform_browser__WEBPACK_IMPORTED_MODULE_1__["BrowserModule"],
@@ -409,6 +419,7 @@ var AppModule = /** @class */ (function () {
                 _angular_forms__WEBPACK_IMPORTED_MODULE_3__["ReactiveFormsModule"],
                 _ng_bootstrap_ng_bootstrap__WEBPACK_IMPORTED_MODULE_19__["NgbModule"],
                 _shared_module__WEBPACK_IMPORTED_MODULE_21__["SharedModule"],
+                ng2_file_upload__WEBPACK_IMPORTED_MODULE_41__["FileUploadModule"],
                 _angular_router__WEBPACK_IMPORTED_MODULE_7__["RouterModule"].forRoot(appRoutes)
             ],
             providers: [
@@ -636,7 +647,7 @@ var CustomerInfoComponent = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "/* Scroll Bar Aggregated Order Item table */\n.my-custom-scrollbar {\n    position: relative;\n    max-height: 35%;\n    overflow: auto;\n  }\n.table-wrapper-scroll-y {\n    display: block;\n  }\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvY3VzdG9tZXIvY3VzdG9tZXItb3JkZXJzL2N1c3RvbWVyLW9yZGVycy5jb21wb25lbnQuY3NzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBLDJDQUEyQztBQUMzQztJQUNJLGtCQUFrQjtJQUNsQixlQUFlO0lBQ2YsY0FBYztFQUNoQjtBQUVBO0lBQ0UsY0FBYztFQUNoQiIsImZpbGUiOiJzcmMvYXBwL2N1c3RvbWVyL2N1c3RvbWVyLW9yZGVycy9jdXN0b21lci1vcmRlcnMuY29tcG9uZW50LmNzcyIsInNvdXJjZXNDb250ZW50IjpbIi8qIFNjcm9sbCBCYXIgQWdncmVnYXRlZCBPcmRlciBJdGVtIHRhYmxlICovXG4ubXktY3VzdG9tLXNjcm9sbGJhciB7XG4gICAgcG9zaXRpb246IHJlbGF0aXZlO1xuICAgIG1heC1oZWlnaHQ6IDM1JTtcbiAgICBvdmVyZmxvdzogYXV0bztcbiAgfVxuICBcbiAgLnRhYmxlLXdyYXBwZXItc2Nyb2xsLXkge1xuICAgIGRpc3BsYXk6IGJsb2NrO1xuICB9Il19 */"
+module.exports = "/* Scroll Bar Aggregated Order Item table */\n.my-custom-scrollbar {\n    position: relative;\n    max-height: 35%;\n    overflow: auto;\n  }\n.table-wrapper-scroll-y {\n  display: block;\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvY3VzdG9tZXIvY3VzdG9tZXItb3JkZXJzL2N1c3RvbWVyLW9yZGVycy5jb21wb25lbnQuY3NzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBLDJDQUEyQztBQUMzQztJQUNJLGtCQUFrQjtJQUNsQixlQUFlO0lBQ2YsY0FBYztFQUNoQjtBQUVGO0VBQ0UsY0FBYztBQUNoQiIsImZpbGUiOiJzcmMvYXBwL2N1c3RvbWVyL2N1c3RvbWVyLW9yZGVycy9jdXN0b21lci1vcmRlcnMuY29tcG9uZW50LmNzcyIsInNvdXJjZXNDb250ZW50IjpbIi8qIFNjcm9sbCBCYXIgQWdncmVnYXRlZCBPcmRlciBJdGVtIHRhYmxlICovXG4ubXktY3VzdG9tLXNjcm9sbGJhciB7XG4gICAgcG9zaXRpb246IHJlbGF0aXZlO1xuICAgIG1heC1oZWlnaHQ6IDM1JTtcbiAgICBvdmVyZmxvdzogYXV0bztcbiAgfVxuICBcbi50YWJsZS13cmFwcGVyLXNjcm9sbC15IHtcbiAgZGlzcGxheTogYmxvY2s7XG59Il19 */"
 
 /***/ }),
 
@@ -2010,6 +2021,93 @@ var ShowOrderItemsModalComponent = /** @class */ (function () {
 
 /***/ }),
 
+/***/ "./src/app/modal/upload-product-file-modal/upload-product-file-modal.component.css":
+/*!*****************************************************************************************!*\
+  !*** ./src/app/modal/upload-product-file-modal/upload-product-file-modal.component.css ***!
+  \*****************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = ".my-custom-scrollbar {\n  position: relative;\n  height: 450px;\n  overflow: auto;\n}\n\n.table-wrapper-scroll-y {\n  display: block;\n}\n\n.drop-box {\n  cursor: pointer;\n  background: #F8F8F8;\n  border: 5px dashed #DDD;\n  text-align: center;\n  padding: 40px;\n}\n\n.drag-over-title {\n  display: none;\n}\n\n.drop-box.dragover {\n  opacity: 0.6;\n}\n\n.drop-box.dragover .drag-over-title {\n  display: block;\n}\n\n.drop-box.dragover .drag-in-title {\n  display: none;\n}\n\ninput[type='file'] {\n  display: none;\n}\n\np { display: inline }\n\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvbW9kYWwvdXBsb2FkLXByb2R1Y3QtZmlsZS1tb2RhbC91cGxvYWQtcHJvZHVjdC1maWxlLW1vZGFsLmNvbXBvbmVudC5jc3MiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUE7RUFDRSxrQkFBa0I7RUFDbEIsYUFBYTtFQUNiLGNBQWM7QUFDaEI7O0FBRUE7RUFDRSxjQUFjO0FBQ2hCOztBQUVBO0VBQ0UsZUFBZTtFQUNmLG1CQUFtQjtFQUNuQix1QkFBdUI7RUFDdkIsa0JBQWtCO0VBQ2xCLGFBQWE7QUFDZjs7QUFFQTtFQUNFLGFBQWE7QUFDZjs7QUFFQTtFQUNFLFlBQVk7QUFDZDs7QUFFQTtFQUNFLGNBQWM7QUFDaEI7O0FBRUE7RUFDRSxhQUFhO0FBQ2Y7O0FBRUE7RUFDRSxhQUFhO0FBQ2Y7O0FBRUEsSUFBSSxnQkFBZ0IiLCJmaWxlIjoic3JjL2FwcC9tb2RhbC91cGxvYWQtcHJvZHVjdC1maWxlLW1vZGFsL3VwbG9hZC1wcm9kdWN0LWZpbGUtbW9kYWwuY29tcG9uZW50LmNzcyIsInNvdXJjZXNDb250ZW50IjpbIi5teS1jdXN0b20tc2Nyb2xsYmFyIHtcbiAgcG9zaXRpb246IHJlbGF0aXZlO1xuICBoZWlnaHQ6IDQ1MHB4O1xuICBvdmVyZmxvdzogYXV0bztcbn1cblxuLnRhYmxlLXdyYXBwZXItc2Nyb2xsLXkge1xuICBkaXNwbGF5OiBibG9jaztcbn1cblxuLmRyb3AtYm94IHtcbiAgY3Vyc29yOiBwb2ludGVyO1xuICBiYWNrZ3JvdW5kOiAjRjhGOEY4O1xuICBib3JkZXI6IDVweCBkYXNoZWQgI0RERDtcbiAgdGV4dC1hbGlnbjogY2VudGVyO1xuICBwYWRkaW5nOiA0MHB4O1xufVxuICBcbi5kcmFnLW92ZXItdGl0bGUge1xuICBkaXNwbGF5OiBub25lO1xufVxuICBcbi5kcm9wLWJveC5kcmFnb3ZlciB7XG4gIG9wYWNpdHk6IDAuNjtcbn1cbiAgXG4uZHJvcC1ib3guZHJhZ292ZXIgLmRyYWctb3Zlci10aXRsZSB7XG4gIGRpc3BsYXk6IGJsb2NrO1xufVxuICBcbi5kcm9wLWJveC5kcmFnb3ZlciAuZHJhZy1pbi10aXRsZSB7XG4gIGRpc3BsYXk6IG5vbmU7XG59XG4gIFxuaW5wdXRbdHlwZT0nZmlsZSddIHtcbiAgZGlzcGxheTogbm9uZTtcbn1cblxucCB7IGRpc3BsYXk6IGlubGluZSB9XG4iXX0= */"
+
+/***/ }),
+
+/***/ "./src/app/modal/upload-product-file-modal/upload-product-file-modal.component.html":
+/*!******************************************************************************************!*\
+  !*** ./src/app/modal/upload-product-file-modal/upload-product-file-modal.component.html ***!
+  \******************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "<div>\n  <input #fileInput type=\"file\" ng2FileSelect [uploader]=\"uploader\"/>\n \n  <div class=\"drop-box\" ng2FileDrop\n       [ngClass]=\"{'dragover': isDropOver}\"\n       [uploader]=\"uploader\"\n       (fileOver)=\"fileOverAnother($event)\"\n       (click)=\"fileClicked()\">\n    <span class=\"drag-in-title\">Import or drag file here</span>\n    <span class=\"drag-over-title\">Drop the file</span>\n  </div>\n  <br>\n  <div *ngIf=\"result\">\n    <p>Rows in file : {{ result.rowsInFile }}</p>\n    <p> | </p>\n    <p>Rows Processed : {{result.rowsProcessed }}</p>\n    <div class=\"table-wrapper-scroll-y my-custom-scrollbar\">\n      <table class=\"table table-sm table-striped\">\n        <thead>\n          <tr>\n            <th class=\"th-sm\">Name</th>\n            <th class=\"th-sm\">Price</th>\n            <th class=\"th-sm\">BarCode</th>\n          </tr>\n        </thead>\n        <tbody>\n          <tr *ngFor=\"let productItem of result.productItems\">\n            <td>{{ productItem.product.name }}</td>\n            <td>{{ productItem.product.price }} €</td>\n            <td>{{ productItem.barCode }}</td>\n          </tr>\n        </tbody>\n      </table>\n    </div>\n  </div>\n\n\n</div>\n<router-outlet></router-outlet>"
+
+/***/ }),
+
+/***/ "./src/app/modal/upload-product-file-modal/upload-product-file-modal.component.ts":
+/*!****************************************************************************************!*\
+  !*** ./src/app/modal/upload-product-file-modal/upload-product-file-modal.component.ts ***!
+  \****************************************************************************************/
+/*! exports provided: UploadProductFileModalComponent */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "UploadProductFileModalComponent", function() { return UploadProductFileModalComponent; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var ng2_file_upload__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ng2-file-upload */ "./node_modules/ng2-file-upload/index.js");
+/* harmony import */ var ng2_file_upload__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(ng2_file_upload__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var src_app_model_UploadProductsFileResult__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! src/app/model/UploadProductsFileResult */ "./src/app/model/UploadProductsFileResult.ts");
+
+
+
+
+var UploadProductFileModalComponent = /** @class */ (function () {
+    function UploadProductFileModalComponent() {
+    }
+    UploadProductFileModalComponent.prototype.ngOnInit = function () {
+        var _this = this;
+        var headers = [{ name: 'Accept', value: 'application/json' }];
+        this.uploader = new ng2_file_upload__WEBPACK_IMPORTED_MODULE_2__["FileUploader"]({
+            url: 'v1/productItemFileUpload/upload',
+            autoUpload: true,
+            headers: headers
+        });
+        this.uploader.onErrorItem = function (item, response, status, headers) { return _this.onErrorItem(item, response, status, headers); };
+        this.uploader.onSuccessItem = function (item, response, status, headers) { return _this.onSuccessItem(item, response, status, headers); };
+        //this.uploader.onCompleteAll = () => alert('File uploaded');
+    };
+    UploadProductFileModalComponent.prototype.onSuccessItem = function (item, response, status, headers) {
+        this.result = src_app_model_UploadProductsFileResult__WEBPACK_IMPORTED_MODULE_3__["UploadProductsFileResult"].fromJson(JSON.parse(response));
+    };
+    UploadProductFileModalComponent.prototype.onErrorItem = function (item, response, status, headers) {
+        alert('Error : ' + JSON.stringify(response)); //error server response
+    };
+    UploadProductFileModalComponent.prototype.fileOverAnother = function (e) {
+        this.result = null;
+        this.isDropOver = e;
+    };
+    UploadProductFileModalComponent.prototype.fileClicked = function () {
+        this.fileInput.nativeElement.click();
+    };
+    tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["ViewChild"])('fileInput'),
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:type", _angular_core__WEBPACK_IMPORTED_MODULE_1__["ElementRef"])
+    ], UploadProductFileModalComponent.prototype, "fileInput", void 0);
+    UploadProductFileModalComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
+            selector: 'upload-product-file-modal',
+            template: __webpack_require__(/*! ./upload-product-file-modal.component.html */ "./src/app/modal/upload-product-file-modal/upload-product-file-modal.component.html"),
+            styles: [__webpack_require__(/*! ./upload-product-file-modal.component.css */ "./src/app/modal/upload-product-file-modal/upload-product-file-modal.component.css")]
+        })
+    ], UploadProductFileModalComponent);
+    return UploadProductFileModalComponent;
+}());
+
+
+
+/***/ }),
+
 /***/ "./src/app/model/Address.ts":
 /*!**********************************!*\
   !*** ./src/app/model/Address.ts ***!
@@ -2438,6 +2536,41 @@ var Store = /** @class */ (function () {
         return store;
     };
     return Store;
+}());
+
+
+
+/***/ }),
+
+/***/ "./src/app/model/UploadProductsFileResult.ts":
+/*!***************************************************!*\
+  !*** ./src/app/model/UploadProductsFileResult.ts ***!
+  \***************************************************/
+/*! exports provided: UploadProductsFileResult */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "UploadProductsFileResult", function() { return UploadProductsFileResult; });
+/* harmony import */ var _ProductItem__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./ProductItem */ "./src/app/model/ProductItem.ts");
+
+var UploadProductsFileResult = /** @class */ (function () {
+    function UploadProductsFileResult() {
+        this.productItems = [];
+    }
+    UploadProductsFileResult.fromJson = function (data) {
+        var result = new UploadProductsFileResult();
+        result.rowsInFile = data.rowsInFile;
+        result.rowsProcessed = data.rowsProcessed;
+        var products = [];
+        for (var _i = 0, _a = data.productItems; _i < _a.length; _i++) {
+            var item = _a[_i];
+            products.push(_ProductItem__WEBPACK_IMPORTED_MODULE_0__["ProductItem"].fromJson(item));
+        }
+        result.productItems = products;
+        return result;
+    };
+    return UploadProductsFileResult;
 }());
 
 
@@ -3322,6 +3455,62 @@ var OrdersManagerComponent = /** @class */ (function () {
             src_app_common_components_modal_builder__WEBPACK_IMPORTED_MODULE_3__["ModalBuilder"]])
     ], OrdersManagerComponent);
     return OrdersManagerComponent;
+}());
+
+
+
+/***/ }),
+
+/***/ "./src/app/product/products-panel/products-panel.component.css":
+/*!*********************************************************************!*\
+  !*** ./src/app/product/products-panel/products-panel.component.css ***!
+  \*********************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJzcmMvYXBwL3Byb2R1Y3QvcHJvZHVjdHMtcGFuZWwvcHJvZHVjdHMtcGFuZWwuY29tcG9uZW50LmNzcyJ9 */"
+
+/***/ }),
+
+/***/ "./src/app/product/products-panel/products-panel.component.html":
+/*!**********************************************************************!*\
+  !*** ./src/app/product/products-panel/products-panel.component.html ***!
+  \**********************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "<div class=\"container\">\n  <upload-product-file-modal></upload-product-file-modal>\n</div>"
+
+/***/ }),
+
+/***/ "./src/app/product/products-panel/products-panel.component.ts":
+/*!********************************************************************!*\
+  !*** ./src/app/product/products-panel/products-panel.component.ts ***!
+  \********************************************************************/
+/*! exports provided: ProductsPanelComponent */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ProductsPanelComponent", function() { return ProductsPanelComponent; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+
+
+var ProductsPanelComponent = /** @class */ (function () {
+    function ProductsPanelComponent() {
+    }
+    ProductsPanelComponent.prototype.ngOnInit = function () {
+    };
+    ProductsPanelComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
+            selector: 'products-panel',
+            template: __webpack_require__(/*! ./products-panel.component.html */ "./src/app/product/products-panel/products-panel.component.html"),
+            styles: [__webpack_require__(/*! ./products-panel.component.css */ "./src/app/product/products-panel/products-panel.component.css")]
+        }),
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [])
+    ], ProductsPanelComponent);
+    return ProductsPanelComponent;
 }());
 
 

@@ -1,0 +1,39 @@
+<div>
+  <input #fileInput type="file" ng2FileSelect [uploader]="uploader"/>
+ 
+  <div class="drop-box" ng2FileDrop
+       [ngClass]="{'dragover': isDropOver}"
+       [uploader]="uploader"
+       (fileOver)="fileOverAnother($event)"
+       (click)="fileClicked()">
+    <span class="drag-in-title">Import or drag file here</span>
+    <span class="drag-over-title">Drop the file</span>
+  </div>
+  <br>
+  <div *ngIf="result">
+    <p>Rows in file : {{ result.rowsInFile }}</p>
+    <p> | </p>
+    <p>Rows Processed : {{result.rowsProcessed }}</p>
+    <div class="table-wrapper-scroll-y my-custom-scrollbar">
+      <table class="table table-sm table-striped">
+        <thead>
+          <tr>
+            <th class="th-sm">Name</th>
+            <th class="th-sm">Price</th>
+            <th class="th-sm">BarCode</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let productItem of result.productItems">
+            <td>{{ productItem.product.name }}</td>
+            <td>{{ productItem.product.price }} €</td>
+            <td>{{ productItem.barCode }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+
+</div>
+<router-outlet></router-outlet>

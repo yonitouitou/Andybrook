@@ -2,6 +2,7 @@ package com.andybrook.service.api;
 
 import com.andybrook.model.api.ProductItemsFileUploadResult;
 import com.andybrook.model.stock.ProductItem;
+import com.andybrook.util.clock.Clock;
 import com.andybrook.util.file.FileUtil;
 import org.junit.Assert;
 import org.junit.Test;
@@ -77,7 +78,7 @@ public class ProductItemFileParserServiceTest {
                 .append("A3");
         File file = null;
         try {
-            file = File.createTempFile("" + System.currentTimeMillis(), ".csv");
+            file = File.createTempFile("" + Clock.millis(), ".csv");
             FileUtil.writeToFile(file, sb.toString());
             ProductItemsFileUploadResult result = productItemFileParserService.parseCsvFile(file);
             Assert.assertEquals("RowsInFile", 3, result.getRowsInFile());
@@ -102,7 +103,7 @@ public class ProductItemFileParserServiceTest {
         Assert.assertEquals("BarCode", barCode, actual.getBarCode().getId());
     }
 
-    private String getColumnsRow() {
+    public static String getColumnsRow() {
         return "Name;Price;BarCodes";
     }
 }
