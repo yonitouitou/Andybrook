@@ -5,14 +5,21 @@ import com.andybrook.model.stock.ProductItem;
 import java.time.LocalDateTime;
 import java.util.List;
 
-public final class ProductItemsFileUploadResult {
+public final class StockItemsFileUpload {
 
     private final int rowsInFile;
     private final int rowsProcessed;
     private final List<ProductItem> productItems;
     private final LocalDateTime uploadDateTime;
 
-    public ProductItemsFileUploadResult(int rowsInFile, int rowsProcessed, List<ProductItem> productItems) {
+    public StockItemsFileUpload(int rowsInFile, int rowsProcessed, List<ProductItem> productItems, LocalDateTime uploadDateTime) {
+        this.rowsInFile = rowsInFile;
+        this.rowsProcessed = rowsProcessed;
+        this.productItems = productItems;
+        this.uploadDateTime = uploadDateTime;
+    }
+
+    public StockItemsFileUpload(int rowsInFile, int rowsProcessed, List<ProductItem> productItems) {
         this.rowsInFile = rowsInFile;
         this.productItems = productItems;
         this.rowsProcessed = rowsProcessed;
@@ -37,7 +44,7 @@ public final class ProductItemsFileUploadResult {
 
     @Override
     public String toString() {
-        final StringBuilder sb = new StringBuilder("ProductItemsFileUploadResult{");
+        final StringBuilder sb = new StringBuilder("StockItemsFileUpload{");
         sb.append("rowsInFile=").append(rowsInFile);
         sb.append(", rowsProcessed=").append(rowsProcessed);
         sb.append(", productItems=").append(productItems);

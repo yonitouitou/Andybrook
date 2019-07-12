@@ -12,8 +12,10 @@ import com.andybrook.dao.jpa.entity.setting.AdminSettingEntity;
 import com.andybrook.dao.jpa.entity.setting.notification.NotificationPolicyEntity;
 import com.andybrook.dao.jpa.entity.stock.*;
 import com.andybrook.dao.jpa.entity.store.StoreEntity;
+import com.andybrook.dao.jpa.entity.stock.StockItemFileUploadEntity;
 import com.andybrook.enums.ProductType;
 import com.andybrook.model.BarCode;
+import com.andybrook.model.api.StockItemsFileUpload;
 import com.andybrook.model.customer.Customer;
 import com.andybrook.model.customer.Owner;
 import com.andybrook.model.customer.Store;
@@ -183,5 +185,15 @@ public final class EntityFactory {
     public final ProductStockInfoEntity createProductStockInfoEntity(ProductStockInfo model) {
         IEntityConverter converter = entityConverterMapByModelClass.get(model.getClass());
         return (ProductStockInfoEntity) converter.toEntity(model);
+    }
+
+    public final StockItemFileUploadEntity createStockItemFileUploadEntity(StockItemsFileUpload model) {
+        IEntityConverter converter = entityConverterMapByModelClass.get(model.getClass());
+        return (StockItemFileUploadEntity) converter.toEntity(model);
+    }
+
+    public final StockItemsFileUpload createStockItemFileUpload(StockItemFileUploadEntity entity) {
+        IEntityConverter converter = entityConverterMapByEntityClass.get(entity.getClass());
+        return (StockItemsFileUpload) converter.toModel(entity);
     }
 }

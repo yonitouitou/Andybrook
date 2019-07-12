@@ -25,7 +25,6 @@ export class UploadProductFileModalComponent implements OnInit {
     });
     this.uploader.onErrorItem = (item, response, status, headers) => this.onErrorItem(item, response, status, headers);
     this.uploader.onSuccessItem = (item, response, status, headers) => this.onSuccessItem(item, response, status, headers);
-    //this.uploader.onCompleteAll = () => alert('File uploaded');
   }
 
   onSuccessItem(item: FileItem, response: string, status: number, headers: ParsedResponseHeaders) {

@@ -13,7 +13,9 @@
   <div *ngIf="result">
     <p>Rows in file : {{ result.rowsInFile }}</p>
     <p> | </p>
-    <p>Rows Processed : {{result.rowsProcessed }}</p>
+    <p>Rows Processed : {{ result.rowsProcessed }}</p>
+    <p> | </p>
+    <p>Total Product Items : {{ result.productItems.length }}</p>
     <div class="table-wrapper-scroll-y my-custom-scrollbar">
       <table class="table table-sm table-striped">
         <thead>
@@ -36,4 +38,3 @@
 
 
 </div>
-<router-outlet></router-outlet>

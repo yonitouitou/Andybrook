@@ -14,16 +14,14 @@ public class ProductItemFileUploadGenerator {
 
     private static final ThreadLocalRandom RANDOM = ThreadLocalRandom.current();
 
-    @Test
-    public void generateProductFile() throws IOException {
-        String content = generateFileContent();
+    public static File generateProductFile(int linesNb) throws IOException {
+        String content = generateFileContent(linesNb);
         File file = new File(FileUtil.TMP_DIRECTORY, "Test-" + Clock.millis() + ".csv");
         FileUtil.writeToFile(file, content);
-        System.out.println("File Generated : " + file.getAbsolutePath());
+        return file;
     }
 
-    private String generateFileContent() {
-        int linesNb = 200;
+    private static String generateFileContent(int linesNb) {
         StringBuilder sb = new StringBuilder();
         generateColumnsLine(sb);
         for (int i = 0; i < linesNb; i++) {
@@ -34,11 +32,11 @@ public class ProductItemFileUploadGenerator {
         }
         return sb.toString();
     }
-    private void generateColumnsLine(StringBuilder sb) {
+    private static void generateColumnsLine(StringBuilder sb) {
         sb.append(ProductItemFileParserServiceTest.getColumnsRow()).append(System.lineSeparator());
     }
 
-    private void generateProductLine(StringBuilder sb) {
+    private static void generateProductLine(StringBuilder sb) {
         sb.append("A-" + Clock.nanos()).append(";")
                 .append(RANDOM.nextInt(10, 500)).append(";");
         int limit = RANDOM.nextInt(1, 3);

@@ -1,7 +1,8 @@
 package com.andybrook.service.api;
 
-import com.andybrook.model.api.ProductItemsFileUploadResult;
+import com.andybrook.model.api.StockItemsFileUpload;
 import com.andybrook.model.stock.ProductItem;
+import com.andybrook.util.ProductItemFileUploadGenerator;
 import com.andybrook.util.clock.Clock;
 import com.andybrook.util.file.FileUtil;
 import org.junit.Assert;
@@ -14,6 +15,8 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+
+import static com.andybrook.service.api.ProductItemFileParserService.LIMIT_ITEMS_BY_FILE_5000;
 
 @SpringBootTest
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -32,7 +35,7 @@ public class ProductItemFileParserServiceTest {
         try {
             file = File.createTempFile("" + System.currentTimeMillis(), ".csv");
             FileUtil.writeToFile(file, sb.toString());
-            ProductItemsFileUploadResult result = productItemFileParserService.parseCsvFile(file);
+            StockItemsFileUpload result = productItemFileParserService.parseCsvFile(file);
             Assert.assertEquals("RowsInFile", 3, result.getRowsInFile());
             Assert.assertEquals("RowsProcessed", 3, result.getRowsProcessed());
             Assert.assertEquals("ProductItemSize", 13, result.getProductItems().size());
@@ -58,7 +61,7 @@ public class ProductItemFileParserServiceTest {
         try {
             file = File.createTempFile("" + System.currentTimeMillis(), ".csv");
             FileUtil.writeToFile(file, sb.toString());
-            ProductItemsFileUploadResult result = productItemFileParserService.parseCsvFile(file);
+            StockItemsFileUpload result = productItemFileParserService.parseCsvFile(file);
             Assert.assertEquals("ProductItemSize", 3, result.getProductItems().size());
             assertContentResult(result.getProductItems().get(0), name, price, bc1);
             assertContentResult(result.getProductItems().get(1), name, price, bc2);
@@ -80,10 +83,24 @@ public class ProductItemFileParserServiceTest {
         try {
             file = File.createTempFile("" + Clock.millis(), ".csv");
             FileUtil.writeToFile(file, sb.toString());
-            ProductItemsFileUploadResult result = productItemFileParserService.parseCsvFile(file);
+            StockItemsFileUpload result = productItemFileParserService.parseCsvFile(file);
             Assert.assertEquals("RowsInFile", 3, result.getRowsInFile());
             Assert.assertEquals("RowsProcessed", 2, result.getRowsProcessed());
             Assert.assertEquals("ProductItemSize", 8, result.getProductItems().size());
+            Assert.assertNotNull("UploadDateTime", result.getUploadDateTime());
+        } finally {
+            if (file != null) {
+                file.delete();
+            }
+        }
+    }
+
+    @Test
+    public void processFileUntilLimitItems() throws IOException {
+        File file = ProductItemFileUploadGenerator.generateProductFile(LIMIT_ITEMS_BY_FILE_5000 + 100);
+        try {
+            StockItemsFileUpload result = productItemFileParserService.parseCsvFile(file);
+            Assert.assertEquals("ProductItemSize", LIMIT_ITEMS_BY_FILE_5000, result.getProductItems().size());
             Assert.assertNotNull("UploadDateTime", result.getUploadDateTime());
         } finally {
             if (file != null) {

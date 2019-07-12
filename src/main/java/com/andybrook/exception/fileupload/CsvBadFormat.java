@@ -1,4 +1,4 @@
-package com.andybrook.exception;
+package com.andybrook.exception.fileupload;
 
 public class CsvBadFormat extends Exception {
 

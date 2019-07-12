@@ -1,6 +1,6 @@
 package com.andybrook.manager.api;
 
-import com.andybrook.model.api.ProductItemsFileUploadResult;
+import com.andybrook.model.api.StockItemsFileUpload;
 import com.andybrook.service.api.IProductItemFileParserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -15,7 +15,7 @@ public class ProductItemFileParserManager implements IProductItemFileParserManag
     private IProductItemFileParserService productItemFileParserService;
 
     @Override
-    public ProductItemsFileUploadResult parseCsvFile(File csv) throws IOException {
+    public StockItemsFileUpload parseCsvFile(File csv) throws IOException {
         return productItemFileParserService.parseCsvFile(csv);
     }
 }
