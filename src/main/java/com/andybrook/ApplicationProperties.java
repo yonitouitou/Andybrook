@@ -12,6 +12,12 @@ public class ApplicationProperties {
     private Locale locale;
     private ZoneId zoneId;
 
+    @Value("${elasticsearch.host}")
+    private String esHost;
+    @Value("${elasticsearch.port}")
+    private String esPort;
+    @Value("${elasticsearch.clustername}")
+    private String esClusterName;
     @Value("${language.locale.code:en}")
     private String localeCode;
     @Value("${language.locale.code:US}")
@@ -20,6 +26,18 @@ public class ApplicationProperties {
     private String zoneIdName;
     @Value("${notification.email.from}")
     private String notificationEmailFrom;
+
+    public String getEsHost() {
+        return esHost;
+    }
+
+    public int getEsPort() {
+        return Integer.parseInt(esPort);
+    }
+
+    public String getEsClusterName() {
+        return esClusterName;
+    }
 
     public String getNotificationEmailFrom() {
         return notificationEmailFrom;

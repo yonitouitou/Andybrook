@@ -7,8 +7,6 @@ import com.andybrook.manager.order.IOrderManager;
 import com.andybrook.manager.product.IProductManager;
 import com.andybrook.model.BarCode;
 import com.andybrook.model.customer.Customer;
-import com.andybrook.model.customer.Owner;
-import com.andybrook.model.customer.Store;
 import com.andybrook.model.order.Order;
 import com.andybrook.model.order.OrderItem;
 import com.andybrook.model.product.Product;

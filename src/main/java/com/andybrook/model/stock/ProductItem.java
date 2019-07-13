@@ -5,36 +5,35 @@ import com.andybrook.model.BarCode;
 import com.andybrook.model.product.Product;
 
 import java.time.LocalDateTime;
-import java.util.OptionalLong;
 
 public class ProductItem {
 
     private Long id;
     private Product product;
     private BarCode barCode;
-    private OptionalLong orderItemIdOpt;
+    private Long orderItemId;
     protected LocalDateTime createdDatetime;
     protected LocalDateTime lastModifiedDatetime;
 
     public ProductItem(Product product, BarCode barCode) {
         this.product = product;
         this.barCode = barCode;
-        this.orderItemIdOpt = OptionalLong.empty();
+        this.orderItemId = null;
     }
 
     public ProductItem(Long id, Product product, BarCode barCode) {
         this.id = id;
         this.product = product;
         this.barCode = barCode;
-        this.orderItemIdOpt = OptionalLong.empty();
+        this.orderItemId = null;
     }
 
     public void markAsUsed(long orderItemId) {
-        orderItemIdOpt = OptionalLong.of(orderItemId);
+        this.orderItemId = orderItemId;
     }
 
     public boolean isInOrder() {
-        return orderItemIdOpt.isPresent();
+        return orderItemId != null;
     }
 
     public double getPrice() {
@@ -93,16 +92,12 @@ public class ProductItem {
         this.lastModifiedDatetime = lastModifiedDatetime;
     }
 
-    public OptionalLong getOrderItemIdOpt() {
-        return orderItemIdOpt;
+    public Long getOrderItemId() {
+        return orderItemId;
     }
 
-    public void setOrderItemIdOpt(OptionalLong orderItemIdOpt) {
-        if (orderItemIdOpt == null) {
-            this.orderItemIdOpt = OptionalLong.empty();
-        } else {
-            this.orderItemIdOpt = orderItemIdOpt;
-        }
+    public void setOrderItemId(Long orderItemId) {
+        this.orderItemId = orderItemId;
     }
 
     @Override
@@ -111,6 +106,7 @@ public class ProductItem {
                 "id=" + id +
                 ", product=" + product +
                 ", barCode=" + barCode +
+                ", orderItemId=" + orderItemId +
                 ", createdDatetime=" + createdDatetime +
                 ", lastModifiedDatetime=" + lastModifiedDatetime +
                 '}';

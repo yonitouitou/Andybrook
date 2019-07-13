@@ -68,7 +68,7 @@ public class StockServiceTest {
         Assert.assertNotNull(actual.getId());
         Assert.assertNotNull(actual.getLastModifiedDatetime());
         Assert.assertNotNull(actual.getCreatedDatetime());
-        Assert.assertFalse(actual.getOrderItemIdOpt().isPresent());
+        Assert.assertFalse(actual.getOrderItemId() != null);
 
     }
 }

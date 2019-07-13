@@ -1,5 +1,7 @@
 package com.andybrook.dao.jpa.entity.stock;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import javax.persistence.*;
 import java.util.Objects;
 
@@ -12,6 +14,7 @@ public class BarCodeEntity {
 
     @ManyToOne(cascade = { CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
     @JoinColumn(name = "productstockitemid")
+    @JsonIgnoreProperties("barCodeEntity")
     private ProductItemEntity productItemEntity;
 
     private BarCodeEntity() {

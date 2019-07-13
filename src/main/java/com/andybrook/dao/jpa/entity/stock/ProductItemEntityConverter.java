@@ -11,9 +11,6 @@ import com.andybrook.model.stock.ProductItem;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import java.util.Optional;
-import java.util.OptionalLong;
-
 @Component
 @EntityConverter(model = ProductItem.class, entity = ProductItemEntity.class)
 public class ProductItemEntityConverter implements IEntityConverter<ProductItem, ProductItemEntity> {
@@ -30,10 +27,10 @@ public class ProductItemEntityConverter implements IEntityConverter<ProductItem,
         ProductItem productItem = new ProductItem(entity.getId(), product, barCode);
         productItem.setCreatedDatetime(entity.getCreatedDatetime());
         productItem.setLastModifiedDatetime(entity.getLastModifiedDatetime());
-        OptionalLong orderItemIdOpt = entity.getOrderItemEntity() != null
-                ? OptionalLong.of(entity.getOrderItemEntity().getId())
-                : OptionalLong.empty();
-            productItem.setOrderItemIdOpt(orderItemIdOpt);
+        Long orderItemId = entity.getOrderItemEntity() != null
+                ? entity.getOrderItemEntity().getId()
+                : null;
+            productItem.setOrderItemId(orderItemId);
         return productItem;
     }
 

@@ -7,23 +7,18 @@ import java.util.List;
 
 public final class StockItemsFileUpload {
 
-    private final int rowsInFile;
-    private final int rowsProcessed;
-    private final List<ProductItem> productItems;
-    private final LocalDateTime uploadDateTime;
+    private String id;
+    private int rowsInFile;
+    private int rowsProcessed;
+    private List<ProductItem> productItems;
+    private LocalDateTime uploadDateTime;
 
-    public StockItemsFileUpload(int rowsInFile, int rowsProcessed, List<ProductItem> productItems, LocalDateTime uploadDateTime) {
+    public StockItemsFileUpload(String id, int rowsInFile, int rowsProcessed, List<ProductItem> productItems, LocalDateTime uploadDateTime) {
+        this.id = id;
         this.rowsInFile = rowsInFile;
         this.rowsProcessed = rowsProcessed;
         this.productItems = productItems;
         this.uploadDateTime = uploadDateTime;
-    }
-
-    public StockItemsFileUpload(int rowsInFile, int rowsProcessed, List<ProductItem> productItems) {
-        this.rowsInFile = rowsInFile;
-        this.productItems = productItems;
-        this.rowsProcessed = rowsProcessed;
-        this.uploadDateTime = LocalDateTime.now();
     }
 
     public int getRowsInFile() {
@@ -40,6 +35,30 @@ public final class StockItemsFileUpload {
 
     public LocalDateTime getUploadDateTime() {
         return uploadDateTime;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public void setRowsInFile(int rowsInFile) {
+        this.rowsInFile = rowsInFile;
+    }
+
+    public void setRowsProcessed(int rowsProcessed) {
+        this.rowsProcessed = rowsProcessed;
+    }
+
+    public void setProductItems(List<ProductItem> productItems) {
+        this.productItems = productItems;
+    }
+
+    public void setUploadDateTime(LocalDateTime uploadDateTime) {
+        this.uploadDateTime = uploadDateTime;
     }
 
     @Override

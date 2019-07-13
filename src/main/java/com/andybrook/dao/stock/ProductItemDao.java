@@ -23,8 +23,8 @@ public class ProductItemDao implements IProductItemDao {
     @Override
     public void update(ProductItem productItem) {
         OrderItemEntity orderItemEntity = null;
-        if (productItem.getOrderItemIdOpt().isPresent()) {
-            orderItemEntity = orderItemDao.getEntity(productItem.getOrderItemIdOpt().getAsLong());
+        if (productItem.getOrderItemId() != null) {
+            orderItemEntity = orderItemDao.getEntity(productItem.getOrderItemId());
         }
         ProductItemEntity entity = entityFactory.createProductItemEntity(productItem, orderItemEntity);
         ProductItemEntity savedEntity = repository.save(entity);

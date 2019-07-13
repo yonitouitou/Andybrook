@@ -6,6 +6,7 @@ import com.andybrook.model.api.AggregatedOrderItem;
 import com.andybrook.model.customer.Owner;
 import com.andybrook.model.customer.Store;
 import com.andybrook.model.notification.request.ctx.OrderDocumentCtx;
+import com.andybrook.util.clock.Clock;
 import com.itextpdf.text.*;
 import com.itextpdf.text.Font.FontFamily;
 import com.itextpdf.text.pdf.BaseFont;
@@ -63,7 +64,7 @@ public class CloseOrderPdfBuilder extends AbstractPdfBuilder implements IPdfBuil
     @Override
     public Path generatePdf(OrderDocumentCtx ctx) {
         AggregatedOrder order = ctx.getAggregatedOrder();
-        String fileName = order.getName() + LocalDateTime.now().format(DateTimeFormatter.ISO_LOCAL_DATE_TIME);
+        String fileName = order.getName() + LocalDateTime.now().format(DateTimeFormatter.ISO_LOCAL_DATE) + "-" + Clock.millis();
         Path pdfFilePath = null;
         Document document = new Document(PageSize.A4, 20f, 20f, 7f, 7f);
         PdfWriter writer = null;

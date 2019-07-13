@@ -29,10 +29,10 @@ export class UploadProductFileModalComponent implements OnInit {
 
   onSuccessItem(item: FileItem, response: string, status: number, headers: ParsedResponseHeaders) {
     this.result = UploadProductsFileResult.fromJson(JSON.parse(response));
-}
-onErrorItem(item: FileItem, response: string, status: number, headers: ParsedResponseHeaders){
-    alert('Error : ' + JSON.stringify(response)); //error server response
-}
+  }
+  onErrorItem(item: FileItem, response: string, status: number, headers: ParsedResponseHeaders){
+      alert('Error : ' + JSON.stringify(response)); //error server response
+  }
  
   fileOverAnother(e: any): void {
     this.result = null;

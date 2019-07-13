@@ -8,7 +8,6 @@ import com.andybrook.model.order.Order;
 import com.andybrook.model.order.OrderItem;
 import com.andybrook.model.request.orderitem.ProductItemInfo;
 import com.andybrook.model.stock.ProductItem;
-import com.andybrook.service.stock.IProductStockInfoService;
 import com.andybrook.service.stock.IStockService;
 import com.andybrook.util.IdGenerator;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,7 +18,6 @@ import java.lang.System.Logger.Level;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Optional;
-import java.util.OptionalLong;
 
 @Service
 public class OrderItemService implements IOrderItemService {
@@ -77,7 +75,7 @@ public class OrderItemService implements IOrderItemService {
 
     private void updateStockOnDelete(OrderItem orderItemToDelete) {
         ProductItem productItem = orderItemToDelete.getProductItem();
-        productItem.setOrderItemIdOpt(OptionalLong.empty());
+        productItem.setOrderItemId(null);
         stockService.onProductItemUnlinked(productItem);
     }
 

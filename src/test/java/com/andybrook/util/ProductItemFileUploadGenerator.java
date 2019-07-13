@@ -1,9 +1,8 @@
 package com.andybrook.util;
 
-import com.andybrook.service.api.ProductItemFileParserServiceTest;
+import com.andybrook.service.api.StockItemsFileParserServiceTest;
 import com.andybrook.util.clock.Clock;
 import com.andybrook.util.file.FileUtil;
-import org.junit.Test;
 
 import java.io.File;
 import java.io.IOException;
@@ -33,7 +32,7 @@ public class ProductItemFileUploadGenerator {
         return sb.toString();
     }
     private static void generateColumnsLine(StringBuilder sb) {
-        sb.append(ProductItemFileParserServiceTest.getColumnsRow()).append(System.lineSeparator());
+        sb.append(StockItemsFileParserServiceTest.getColumnsRow()).append(System.lineSeparator());
     }
 
     private static void generateProductLine(StringBuilder sb) {
