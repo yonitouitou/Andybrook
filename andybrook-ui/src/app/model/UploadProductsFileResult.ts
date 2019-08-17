@@ -2,14 +2,16 @@ import { ProductItem } from './ProductItem';
 
 export class UploadProductsFileResult {
 
-    private rowsInFile: number;
-    private rowsProcessed: number;
-    private productItems: ProductItem[] = [];
+    id: string;
+    rowsInFile: number;
+    rowsProcessed: number;
+    productItems: ProductItem[] = [];
 
     constructor() {}
 
     public static fromJson(data: any) : UploadProductsFileResult {
         let result = new UploadProductsFileResult();
+        result.id = data.id;
         result.rowsInFile = data.rowsInFile;
         result.rowsProcessed = data.rowsProcessed;
         let products: ProductItem[] = [];

@@ -19,6 +19,10 @@ export class HttpService {
         return this.http.delete(url, this.getHeaders());
     }
 
+    put(url: string): Observable<any> {
+      return this.http.put(url, this.getHeaders());
+    }
+
     private getHeaders() {
         let httpHeaders = new HttpHeaders()
             .set('Content-Type', 'application/json')

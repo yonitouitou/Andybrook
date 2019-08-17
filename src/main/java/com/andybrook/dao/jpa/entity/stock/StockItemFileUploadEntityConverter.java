@@ -24,7 +24,7 @@ public class StockItemFileUploadEntityConverter implements IEntityConverter<Stoc
         for (ProductItemEntity itemEntity : entity.getProducts()) {
             items.add(entityFactory.createProductItem(itemEntity));
         }
-        return new StockItemsFileUpload(entity.getId(), entity.getRowsInFile(), entity.getRowsProcessed(), items, entity.getUploadDateTime());
+        return new StockItemsFileUpload(entity.getId(), entity.getRowsInFile(), entity.getRowsProcessed(), items, entity.getUploadTimestamp());
     }
 
     @Override
@@ -33,6 +33,6 @@ public class StockItemFileUploadEntityConverter implements IEntityConverter<Stoc
         for (ProductItem item : model.getProductItems()) {
             itemEntities.add(entityFactory.createProductItemEntity(item, null));
         }
-        return new StockItemFileUploadEntity(model.getId(), model.getRowsInFile(), model.getRowsProcessed(), itemEntities, model.getUploadDateTime());
+        return new StockItemFileUploadEntity(model.getId(), model.getRowsInFile(), model.getRowsProcessed(), itemEntities, model.getUploadTimestamp());
     }
 }

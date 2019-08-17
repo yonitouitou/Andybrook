@@ -3,6 +3,7 @@ package com.andybrook.model.stock;
 import com.andybrook.enums.ProductType;
 import com.andybrook.model.BarCode;
 import com.andybrook.model.product.Product;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import java.time.LocalDateTime;
 
@@ -14,6 +15,8 @@ public class ProductItem {
     private Long orderItemId;
     protected LocalDateTime createdDatetime;
     protected LocalDateTime lastModifiedDatetime;
+
+    private ProductItem() {}
 
     public ProductItem(Product product, BarCode barCode) {
         this.product = product;
@@ -32,22 +35,27 @@ public class ProductItem {
         this.orderItemId = orderItemId;
     }
 
+    @JsonIgnore
     public boolean isInOrder() {
         return orderItemId != null;
     }
 
+    @JsonIgnore
     public double getPrice() {
         return product.getPrice();
     }
 
+    @JsonIgnore
     public String getName() {
         return product.getName();
     }
 
+    @JsonIgnore
     public long getProductId() {
         return product.getId();
     }
 
+    @JsonIgnore
     public ProductType getProductType() {
         return product.getType();
     }

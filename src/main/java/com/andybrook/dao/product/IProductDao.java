@@ -12,6 +12,10 @@ public interface IProductDao {
 
     Optional<Product> get(Long id);
 
+    Optional<Product> getByName(String name);
+
+    boolean isExist(long id);
+
     List<? extends Product> getByNameContaining(String name);
 
     Product update(Product product);

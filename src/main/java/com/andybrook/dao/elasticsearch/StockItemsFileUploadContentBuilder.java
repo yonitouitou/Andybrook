@@ -25,7 +25,7 @@ public final class StockItemsFileUploadContentBuilder implements IContentBuilder
                 .field("id", entity.getId())
                 .field("rowsInFile", entity.getRowsInFile())
                 .field("rowsProcessed", entity.getRowsProcessed())
-                .field("uploadDateTime", entity.getUploadDateTime())
+                .field("uploadDateTime", entity.getUploadTimestamp())
                 .field("productItems", entity.getProductItems());
         for (ProductItem productItem : entity.getProductItems()) {
             PRODUCT_ITEM_BUILDER.builder(builder, productItem);

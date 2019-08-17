@@ -11,14 +11,16 @@ public final class StockItemsFileUpload {
     private int rowsInFile;
     private int rowsProcessed;
     private List<ProductItem> productItems;
-    private LocalDateTime uploadDateTime;
+    private long uploadTimestamp;
 
-    public StockItemsFileUpload(String id, int rowsInFile, int rowsProcessed, List<ProductItem> productItems, LocalDateTime uploadDateTime) {
+    private StockItemsFileUpload() {}
+
+    public StockItemsFileUpload(String id, int rowsInFile, int rowsProcessed, List<ProductItem> productItems, long uploadTimestamp) {
         this.id = id;
         this.rowsInFile = rowsInFile;
         this.rowsProcessed = rowsProcessed;
         this.productItems = productItems;
-        this.uploadDateTime = uploadDateTime;
+        this.uploadTimestamp = uploadTimestamp;
     }
 
     public int getRowsInFile() {
@@ -33,8 +35,8 @@ public final class StockItemsFileUpload {
         return productItems;
     }
 
-    public LocalDateTime getUploadDateTime() {
-        return uploadDateTime;
+    public long getUploadTimestamp() {
+        return uploadTimestamp;
     }
 
     public String getId() {
@@ -57,8 +59,8 @@ public final class StockItemsFileUpload {
         this.productItems = productItems;
     }
 
-    public void setUploadDateTime(LocalDateTime uploadDateTime) {
-        this.uploadDateTime = uploadDateTime;
+    public void setUploadTimestamp(long uploadTimestamp) {
+        this.uploadTimestamp = uploadTimestamp;
     }
 
     @Override
@@ -67,7 +69,7 @@ public final class StockItemsFileUpload {
         sb.append("rowsInFile=").append(rowsInFile);
         sb.append(", rowsProcessed=").append(rowsProcessed);
         sb.append(", productItems=").append(productItems);
-        sb.append(", uploadDateTime=").append(uploadDateTime);
+        sb.append(", uploadDateTime=").append(uploadTimestamp);
         sb.append('}');
         return sb.toString();
     }

@@ -4,10 +4,15 @@ import com.andybrook.exception.ProductNotFound;
 import com.andybrook.model.product.Product;
 
 import java.util.List;
+import java.util.Optional;
 
 public interface IProductService {
 
     Product get(long id) throws ProductNotFound;
+
+    Optional<Product> getByName(String name);
+
+    boolean isExist(long id);
 
     Product getByBarCode(String barCodeId);
 

@@ -9,7 +9,7 @@ import java.util.Optional;
 
 public interface IStockService {
 
-    void addProductItem(ProductItem productItem);
+    void addProductItem(ProductItem productItem, boolean addProductIfNotExist);
 
     ProductItem getProductItem(long productItemId);
 

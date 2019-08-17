@@ -57,7 +57,7 @@ public class StockServiceTest {
     }
 
     private ProductItem addAndAssertSingleProductItem(ProductItem productItem) {
-        stockService.addProductItem(productItem);
+        stockService.addProductItem(productItem, false);
         ProductItem productItemSaved = stockService.getProductItem(productItem.getId());
         assertProductItem(productItem, productItemSaved);
         return productItemSaved;

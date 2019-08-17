@@ -48,7 +48,7 @@ public class ProductStockInfoServiceTest {
         int qty = 20;
         List<ProductItem> productItems = ProductItemGenerator.generateProductItem(product, qty);
         for (ProductItem item : productItems) {
-            stockService.addProductItem(item);
+            stockService.addProductItem(item, false);
         }
         ProductStockInfo stockInfo = get(product.getId());
         assertCreatedQuantity(qty, stockInfo.getQuantityCreated());

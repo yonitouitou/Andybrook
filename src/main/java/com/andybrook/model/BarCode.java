@@ -1,7 +1,6 @@
 package com.andybrook.model;
 
 import java.util.Objects;
-import java.util.UUID;
 
 public class BarCode {
 
@@ -9,7 +8,7 @@ public class BarCode {
     private boolean isUsed;
 
     public BarCode() {
-        id = UUID.randomUUID().toString();
+        id = null;
         isUsed = false;
     }
 

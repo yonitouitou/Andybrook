@@ -39,7 +39,6 @@ public class StockItemsFileParserServiceTest {
             Assert.assertEquals("RowsInFile", 3, result.getRowsInFile());
             Assert.assertEquals("RowsProcessed", 3, result.getRowsProcessed());
             Assert.assertEquals("ProductItemSize", 13, result.getProductItems().size());
-            Assert.assertNotNull("UploadDateTime", result.getUploadDateTime());
         } finally {
             if (file != null) {
                 file.delete();
@@ -87,7 +86,6 @@ public class StockItemsFileParserServiceTest {
             Assert.assertEquals("RowsInFile", 3, result.getRowsInFile());
             Assert.assertEquals("RowsProcessed", 2, result.getRowsProcessed());
             Assert.assertEquals("ProductItemSize", 8, result.getProductItems().size());
-            Assert.assertNotNull("UploadDateTime", result.getUploadDateTime());
         } finally {
             if (file != null) {
                 file.delete();
@@ -101,7 +99,6 @@ public class StockItemsFileParserServiceTest {
         try {
             StockItemsFileUpload result = stockItemsFileParserService.parseFile(file);
             Assert.assertEquals("ProductItemSize", LIMIT_ITEMS_BY_FILE_5000, result.getProductItems().size());
-            Assert.assertNotNull("UploadDateTime", result.getUploadDateTime());
         } finally {
             if (file != null) {
                 file.delete();

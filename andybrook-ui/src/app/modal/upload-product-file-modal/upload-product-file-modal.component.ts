@@ -1,6 +1,7 @@
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { FileUploader, FileItem, ParsedResponseHeaders } from 'ng2-file-upload';
 import { UploadProductsFileResult } from 'src/app/model/UploadProductsFileResult';
+import { ProductService } from '../../service/product-service';
 
 @Component({
   selector: 'upload-product-file-modal',
@@ -15,6 +16,9 @@ export class UploadProductFileModalComponent implements OnInit {
  
   uploader: FileUploader;
   isDropOver: boolean;
+  showConfirmUploadButton: boolean = false;
+
+  constructor(private productService: ProductService){}
  
   ngOnInit(): void {
     const headers = [{name: 'Accept', value: 'application/json'}];
@@ -29,17 +33,38 @@ export class UploadProductFileModalComponent implements OnInit {
 
   onSuccessItem(item: FileItem, response: string, status: number, headers: ParsedResponseHeaders) {
     this.result = UploadProductsFileResult.fromJson(JSON.parse(response));
+    this.showConfirmUploadButton = true;
   }
   onErrorItem(item: FileItem, response: string, status: number, headers: ParsedResponseHeaders){
       alert('Error : ' + JSON.stringify(response)); //error server response
+      this.showConfirmUploadButton = false;
   }
  
   fileOverAnother(e: any): void {
-    this.result = null;
+    this.reset();
     this.isDropOver = e;
   }
  
   fileClicked() {
     this.fileInput.nativeElement.click();
   }
+
+  onClickYes() {
+    alert('yes');
+    this.productService.confirmProductItemFileUpload(this.result.id).subscribe(
+      data => {
+        this.reset();
+      }
+     )
+
+  }
+
+  onClickNo() {
+    alert('no');
+  }
+
+  private reset() {
+    this.result = null;
+  }
+
 }

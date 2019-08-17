@@ -8,4 +8,6 @@ import java.io.IOException;
 public interface IStockItemsFileParserService {
 
     StockItemsFileUpload processCsvFile(File csv) throws IOException;
+
+    void processUpload(String uploadId);
 }

@@ -33,6 +33,16 @@ public class ProductService implements IProductService {
     }
 
     @Override
+    public Optional<Product> getByName(String name) {
+        return dao.getByName(name);
+    }
+
+    @Override
+    public boolean isExist(long id) {
+        return dao.isExist(id);
+    }
+
+    @Override
     public Product getByBarCode(String barCodeId) {
         return barCodeService.getProduct(barCodeId);
     }

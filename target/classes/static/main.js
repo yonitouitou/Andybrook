@@ -30,7 +30,7 @@ webpackEmptyAsyncContext.id = "./src/$$_lazy_route_resource lazy recursive";
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJzcmMvYXBwL2FkbWluL2FkbWluLXBhbmVsL2FkbWluLXBhbmVsLmNvbXBvbmVudC5jc3MifQ== */"
+module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJhcHAvYWRtaW4vYWRtaW4tcGFuZWwvYWRtaW4tcGFuZWwuY29tcG9uZW50LmNzcyJ9 */"
 
 /***/ }),
 
@@ -41,7 +41,7 @@ module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"container-fluid\">\n    <form [formGroup]=\"adminForm\" (ngSubmit)=\"onSubmit()\">\n      <div class=\"form-group\">\n          <label class=\"form-check-label\" for=\"notification\">Notification &nbsp;</label>\n          <input type=\"checkbox\" formControlName=\"notification\" class=\"form-check-input\" (input)=\"settingChanged()\">\n      </div>\n      <div class=\"form-group\">\n        <label for=\"Email\">Email addresses\n          <span style=\"font-size: 80%; font-style: italic\">(Use comma ',' delimiter for multiple emails)</span\n        ></label>\n        <input type=\"text\" formControlName=\"emails\"\n          (input)=\"settingChanged()\"\n          class=\"form-control\"\n        />\n      </div>\n      <div class=\"form-group\">\n        <label for=\"itemToShow\">List item number to load by default</label>\n        <input type=\"text\" formControlName=\"itemToShow\"\n          (input)=\"settingChanged()\"\n          class=\"form-control\"\n        />\n      </div>\n      <div class=\"form-group\">\n        <button type=\"submit\" class=\"btn btn-primary\" [disabled]=\"saveButtonDisabled\">Save</button>\n      </div>\n    </form>\n    <ngb-alert *ngIf=\"alertMessage\" type=\"success\" (close)=\"alertMessage = null\">{{ alertMessage }}</ngb-alert>\n</div>"
+module.exports = "<div class=\"container-fluid\">\r\n    <form [formGroup]=\"adminForm\" (ngSubmit)=\"onSubmit()\">\r\n      <div class=\"form-group\">\r\n          <label class=\"form-check-label\" for=\"notification\">Notification &nbsp;</label>\r\n          <input type=\"checkbox\" formControlName=\"notification\" class=\"form-check-input\" (input)=\"settingChanged()\">\r\n      </div>\r\n      <div class=\"form-group\">\r\n        <label for=\"Email\">Email addresses\r\n          <span style=\"font-size: 80%; font-style: italic\">(Use comma ',' delimiter for multiple emails)</span\r\n        ></label>\r\n        <input type=\"text\" formControlName=\"emails\"\r\n          (input)=\"settingChanged()\"\r\n          class=\"form-control\"\r\n        />\r\n      </div>\r\n      <div class=\"form-group\">\r\n        <label for=\"itemToShow\">List item number to load by default</label>\r\n        <input type=\"text\" formControlName=\"itemToShow\"\r\n          (input)=\"settingChanged()\"\r\n          class=\"form-control\"\r\n        />\r\n      </div>\r\n      <div class=\"form-group\">\r\n        <button type=\"submit\" class=\"btn btn-primary\" [disabled]=\"saveButtonDisabled\">Save</button>\r\n      </div>\r\n    </form>\r\n    <ngb-alert *ngIf=\"alertMessage\" type=\"success\" (close)=\"alertMessage = null\">{{ alertMessage }}</ngb-alert>\r\n</div>"
 
 /***/ }),
 
@@ -155,7 +155,7 @@ var AdminPanelComponent = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJzcmMvYXBwL2FwcC1uYXYtYmFyL2FwcC1uYXYtYmFyLmNvbXBvbmVudC5jc3MifQ== */"
+module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJhcHAvYXBwLW5hdi1iYXIvYXBwLW5hdi1iYXIuY29tcG9uZW50LmNzcyJ9 */"
 
 /***/ }),
 
@@ -166,7 +166,7 @@ module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<nav class=\"navbar navbar-expand-md navbar-dark bg-primary fixed-top\">\n    <a class=\"navbar-brand\" href=\"#\">Andybrook</a>\n    <button class=\"navbar-toggler hidden-sm-up\" type=\"button\" (click)=\"isNavbarCollapsed = !isNavbarCollapsed\" data-target=\"#navbarsDefault\" aria-controls=\"navbarsDefault\" aria-expanded=\"false\" aria-label=\"Toggle navigation\">\n      <span class=\"navbar-toggler-icon\"></span>\n    </button>\n    <div [ngbCollapse]=\"isNavbarCollapsed\" class=\"collapse navbar-collapse\" id=\"navbarsDefault\">\n      <ul class=\"navbar-nav mr-auto\">\n        <li class=\"nav-item\">\n          <a class=\"nav-link\"\n             routerLinkActive=\"active\"\n             [routerLinkActiveOptions]=\"{exact: true}\"\n             routerLink=\"/\"\n          >Home</a>\n        </li>\n        <li class=\"nav-item dropdown\" ngbDropdown>\n          <a class=\"nav-link dropdown-toggle\" id=\"id01\" ngbDropdownToggle>Customers</a>\n          <div class=\"dropdown-menu\" aria-labelledby=\"id01\" ngbDropdownMenu>\n            <a class=\"dropdown-item\" routerLink=\"/customer-dashboard\">Dashboard</a>\n            <a class=\"dropdown-item\" routerLink=\"/new-customer/-1\">New Customer</a>\n          </div>\n        </li>\n        <li class=\"nav-item\">\n          <a class=\"nav-link\"\n             routerLink=\"/products\"\n          >Products</a>\n        </li>\n        <li class=\"nav-item\">\n          <a class=\"nav-link\"\n             routerLink=\"/admin\"\n          >Admin</a>\n        </li>\n      </ul>\n    </div>\n  </nav>"
+module.exports = "<nav class=\"navbar navbar-expand-md navbar-dark bg-primary fixed-top\">\r\n    <a class=\"navbar-brand\" href=\"#\">Andybrook</a>\r\n    <button class=\"navbar-toggler hidden-sm-up\" type=\"button\" (click)=\"isNavbarCollapsed = !isNavbarCollapsed\" data-target=\"#navbarsDefault\" aria-controls=\"navbarsDefault\" aria-expanded=\"false\" aria-label=\"Toggle navigation\">\r\n      <span class=\"navbar-toggler-icon\"></span>\r\n    </button>\r\n    <div [ngbCollapse]=\"isNavbarCollapsed\" class=\"collapse navbar-collapse\" id=\"navbarsDefault\">\r\n      <ul class=\"navbar-nav mr-auto\">\r\n        <li class=\"nav-item\">\r\n          <a class=\"nav-link\"\r\n             routerLinkActive=\"active\"\r\n             [routerLinkActiveOptions]=\"{exact: true}\"\r\n             routerLink=\"/\"\r\n          >Home</a>\r\n        </li>\r\n        <li class=\"nav-item dropdown\" ngbDropdown>\r\n          <a class=\"nav-link dropdown-toggle\" id=\"id01\" ngbDropdownToggle>Customers</a>\r\n          <div class=\"dropdown-menu\" aria-labelledby=\"id01\" ngbDropdownMenu>\r\n            <a class=\"dropdown-item\" routerLink=\"/customer-dashboard\">Dashboard</a>\r\n            <a class=\"dropdown-item\" routerLink=\"/new-customer/-1\">New Customer</a>\r\n          </div>\r\n        </li>\r\n        <li class=\"nav-item\">\r\n          <a class=\"nav-link\"\r\n             routerLink=\"/products\"\r\n          >Products</a>\r\n        </li>\r\n        <li class=\"nav-item\">\r\n          <a class=\"nav-link\"\r\n             routerLink=\"/admin\"\r\n          >Admin</a>\r\n        </li>\r\n      </ul>\r\n    </div>\r\n  </nav>"
 
 /***/ }),
 
@@ -212,7 +212,7 @@ var AppNavBarComponent = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJzcmMvYXBwL2FwcC5jb21wb25lbnQuY3NzIn0= */"
+module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJhcHAvYXBwLmNvbXBvbmVudC5jc3MifQ== */"
 
 /***/ }),
 
@@ -223,7 +223,7 @@ module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<app-app-nav-bar></app-app-nav-bar>\n<br>\n<br>\n<br>\n<div class=\"container-fluid\">\n    <router-outlet></router-outlet>\n</div>\n\n"
+module.exports = "<app-app-nav-bar></app-app-nav-bar>\r\n<br>\r\n<br>\r\n<br>\r\n<div class=\"container-fluid\">\r\n    <router-outlet></router-outlet>\r\n</div>\r\n\r\n"
 
 /***/ }),
 
@@ -529,7 +529,7 @@ var FilterPipe = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJzcmMvYXBwL2N1c3RvbWVyL2N1c3RvbWVyLWhlYWRlci9jdXN0b21lci1oZWFkZXIuY29tcG9uZW50LmNzcyJ9 */"
+module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJhcHAvY3VzdG9tZXIvY3VzdG9tZXItaGVhZGVyL2N1c3RvbWVyLWhlYWRlci5jb21wb25lbnQuY3NzIn0= */"
 
 /***/ }),
 
@@ -585,7 +585,7 @@ var CustomerHeaderComponent = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "label {\n    font-weight: bold;\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvY3VzdG9tZXIvY3VzdG9tZXItaW5mby9jdXN0b21lci1pbmZvLmNvbXBvbmVudC5jc3MiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUE7SUFDSSxpQkFBaUI7QUFDckIiLCJmaWxlIjoic3JjL2FwcC9jdXN0b21lci9jdXN0b21lci1pbmZvL2N1c3RvbWVyLWluZm8uY29tcG9uZW50LmNzcyIsInNvdXJjZXNDb250ZW50IjpbImxhYmVsIHtcbiAgICBmb250LXdlaWdodDogYm9sZDtcbn0iXX0= */"
+module.exports = "label {\r\n    font-weight: bold;\r\n}\r\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbImFwcC9jdXN0b21lci9jdXN0b21lci1pbmZvL2N1c3RvbWVyLWluZm8uY29tcG9uZW50LmNzcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQTtJQUNJLGlCQUFpQjtBQUNyQiIsImZpbGUiOiJhcHAvY3VzdG9tZXIvY3VzdG9tZXItaW5mby9jdXN0b21lci1pbmZvLmNvbXBvbmVudC5jc3MiLCJzb3VyY2VzQ29udGVudCI6WyJsYWJlbCB7XHJcbiAgICBmb250LXdlaWdodDogYm9sZDtcclxufSJdfQ== */"
 
 /***/ }),
 
@@ -596,7 +596,7 @@ module.exports = "label {\n    font-weight: bold;\n}\n/*# sourceMappingURL=data:
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"row\">\n  <div class=\"col\">\n    <h5>Store Information</h5>\n    <hr>\n    <div *ngIf=\"customer\">\n      <label>ID :</label> {{ customer.store.id }}\n      <br>\n      <label>Store :</label> {{ customer.store.name }}\n      <br>\n      <label>Address :</label> {{ customer.store.address.format() }}\n      <br>\n      <label>Phone :</label> {{ customer.store.phone }}\n      <br>\n      <label>Email :</label> {{ customer.store.email }}\n    </div>\n  </div>\n  <div class=\"col\">\n    <h5>Owner Information</h5>\n    <hr>\n    <div *ngIf=\"customer\">\n      <label>ID :</label> {{ customer.store.owner.id }}\n      <br>\n      <label>Compagny :</label> {{ customer.store.owner.compagnyName }}\n      <br>\n      <label>Name :</label> {{ customer.store.owner.firstName + ' ' + customer.store.owner.lastName }}\n      <br>\n      <label>Email :</label> {{ customer.store.owner.email }}\n    </div>\n  </div>\n</div>"
+module.exports = "<div class=\"row\">\r\n  <div class=\"col\">\r\n    <h5>Store Information</h5>\r\n    <hr>\r\n    <div *ngIf=\"customer\">\r\n      <label>ID :</label> {{ customer.store.id }}\r\n      <br>\r\n      <label>Store :</label> {{ customer.store.name }}\r\n      <br>\r\n      <label>Address :</label> {{ customer.store.address.format() }}\r\n      <br>\r\n      <label>Phone :</label> {{ customer.store.phone }}\r\n      <br>\r\n      <label>Email :</label> {{ customer.store.email }}\r\n    </div>\r\n  </div>\r\n  <div class=\"col\">\r\n    <h5>Owner Information</h5>\r\n    <hr>\r\n    <div *ngIf=\"customer\">\r\n      <label>ID :</label> {{ customer.store.owner.id }}\r\n      <br>\r\n      <label>Compagny :</label> {{ customer.store.owner.compagnyName }}\r\n      <br>\r\n      <label>Name :</label> {{ customer.store.owner.firstName + ' ' + customer.store.owner.lastName }}\r\n      <br>\r\n      <label>Email :</label> {{ customer.store.owner.email }}\r\n    </div>\r\n  </div>\r\n</div>"
 
 /***/ }),
 
@@ -647,7 +647,7 @@ var CustomerInfoComponent = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "/* Scroll Bar Aggregated Order Item table */\n.my-custom-scrollbar {\n    position: relative;\n    max-height: 35%;\n    overflow: auto;\n  }\n.table-wrapper-scroll-y {\n  display: block;\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvY3VzdG9tZXIvY3VzdG9tZXItb3JkZXJzL2N1c3RvbWVyLW9yZGVycy5jb21wb25lbnQuY3NzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBLDJDQUEyQztBQUMzQztJQUNJLGtCQUFrQjtJQUNsQixlQUFlO0lBQ2YsY0FBYztFQUNoQjtBQUVGO0VBQ0UsY0FBYztBQUNoQiIsImZpbGUiOiJzcmMvYXBwL2N1c3RvbWVyL2N1c3RvbWVyLW9yZGVycy9jdXN0b21lci1vcmRlcnMuY29tcG9uZW50LmNzcyIsInNvdXJjZXNDb250ZW50IjpbIi8qIFNjcm9sbCBCYXIgQWdncmVnYXRlZCBPcmRlciBJdGVtIHRhYmxlICovXG4ubXktY3VzdG9tLXNjcm9sbGJhciB7XG4gICAgcG9zaXRpb246IHJlbGF0aXZlO1xuICAgIG1heC1oZWlnaHQ6IDM1JTtcbiAgICBvdmVyZmxvdzogYXV0bztcbiAgfVxuICBcbi50YWJsZS13cmFwcGVyLXNjcm9sbC15IHtcbiAgZGlzcGxheTogYmxvY2s7XG59Il19 */"
+module.exports = "/* Scroll Bar Aggregated Order Item table */\r\n.my-custom-scrollbar {\r\n    position: relative;\r\n    max-height: 35%;\r\n    overflow: auto;\r\n  }\r\n.table-wrapper-scroll-y {\r\n  display: block;\r\n}\r\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbImFwcC9jdXN0b21lci9jdXN0b21lci1vcmRlcnMvY3VzdG9tZXItb3JkZXJzLmNvbXBvbmVudC5jc3MiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUEsMkNBQTJDO0FBQzNDO0lBQ0ksa0JBQWtCO0lBQ2xCLGVBQWU7SUFDZixjQUFjO0VBQ2hCO0FBRUY7RUFDRSxjQUFjO0FBQ2hCIiwiZmlsZSI6ImFwcC9jdXN0b21lci9jdXN0b21lci1vcmRlcnMvY3VzdG9tZXItb3JkZXJzLmNvbXBvbmVudC5jc3MiLCJzb3VyY2VzQ29udGVudCI6WyIvKiBTY3JvbGwgQmFyIEFnZ3JlZ2F0ZWQgT3JkZXIgSXRlbSB0YWJsZSAqL1xyXG4ubXktY3VzdG9tLXNjcm9sbGJhciB7XHJcbiAgICBwb3NpdGlvbjogcmVsYXRpdmU7XHJcbiAgICBtYXgtaGVpZ2h0OiAzNSU7XHJcbiAgICBvdmVyZmxvdzogYXV0bztcclxuICB9XHJcbiAgXHJcbi50YWJsZS13cmFwcGVyLXNjcm9sbC15IHtcclxuICBkaXNwbGF5OiBibG9jaztcclxufSJdfQ== */"
 
 /***/ }),
 
@@ -658,7 +658,7 @@ module.exports = "/* Scroll Bar Aggregated Order Item table */\n.my-custom-scrol
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<h5>Orders ({{ orders.length }})</h5>\n<div class=\"table-responsive table-wrapper-scroll-y my-custom-scrollbar\">\n  <table class=\"table table-striped table-bordered table-sm\">\n      <thead>\n          <tr>\n              <th>ID</th>\n              <th>Name</th>\n              <th>Status</th>\n              <th>Products</th>\n              <th>Qty</th>\n              <th>Amount</th>\n              <th>Creation</th>\n              <th>Closed</th>\n              <th></th>\n          </tr>\n      </thead>\n      <tbody>\n          <tr *ngFor=\"let order of orders\">\n              <td>{{ order.id }}</td>\n              <td>{{ order.name }}</td>\n              <td [ngClass]=\"order.status === 'OPEN' ? 'table-success' : 'table-danger'\">{{ order.status }}</td>\n              <td>{{ order.aggregatedOrderInfo.productSize }}</td>\n              <td>{{ order.aggregatedOrderInfo.orderItemSize }}</td>\n              <td>{{ order.aggregatedOrderInfo.totalPrice }} €</td>\n              <td>{{ order.createdDatetime  | date:'shortDate' }}</td>\n              <td>{{ order.closeDatetime  | date:'shortDate' }}</td>\n              <td>\n                <button\n                    class=\"btn btn-success btn-sm\"\n                    [routerLink]=\"['/order', order.id]\"\n                >See</button>\n              </td>\n          </tr>\n      </tbody>\n  </table>\n</div>\n"
+module.exports = "<h5>Orders ({{ orders.length }})</h5>\r\n<div class=\"table-responsive table-wrapper-scroll-y my-custom-scrollbar\">\r\n  <table class=\"table table-striped table-bordered table-sm\">\r\n      <thead>\r\n          <tr>\r\n              <th>ID</th>\r\n              <th>Name</th>\r\n              <th>Status</th>\r\n              <th>Products</th>\r\n              <th>Qty</th>\r\n              <th>Amount</th>\r\n              <th>Creation</th>\r\n              <th>Closed</th>\r\n              <th></th>\r\n          </tr>\r\n      </thead>\r\n      <tbody>\r\n          <tr *ngFor=\"let order of orders\">\r\n              <td>{{ order.id }}</td>\r\n              <td>{{ order.name }}</td>\r\n              <td [ngClass]=\"order.status === 'OPEN' ? 'table-success' : 'table-danger'\">{{ order.status }}</td>\r\n              <td>{{ order.aggregatedOrderInfo.productSize }}</td>\r\n              <td>{{ order.aggregatedOrderInfo.orderItemSize }}</td>\r\n              <td>{{ order.aggregatedOrderInfo.totalPrice }} €</td>\r\n              <td>{{ order.createdDatetime  | date:'shortDate' }}</td>\r\n              <td>{{ order.closeDatetime  | date:'shortDate' }}</td>\r\n              <td>\r\n                <button\r\n                    class=\"btn btn-success btn-sm\"\r\n                    [routerLink]=\"['/order', order.id]\"\r\n                >See</button>\r\n              </td>\r\n          </tr>\r\n      </tbody>\r\n  </table>\r\n</div>\r\n"
 
 /***/ }),
 
@@ -731,7 +731,7 @@ var CustomerOrdersComponent = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJzcmMvYXBwL2N1c3RvbWVyL2N1c3RvbWVyLXBhbmVsL2N1c3RvbWVyLXBhbmVsLmNvbXBvbmVudC5jc3MifQ== */"
+module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJhcHAvY3VzdG9tZXIvY3VzdG9tZXItcGFuZWwvY3VzdG9tZXItcGFuZWwuY29tcG9uZW50LmNzcyJ9 */"
 
 /***/ }),
 
@@ -742,7 +742,7 @@ module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"row\">\n  <customer-header></customer-header>\n</div>\n<div class=\"row\">\n  <div class=\"col-md-auto\">\n    <list-customer [customer]=\"customer\" (onCustomerSelected)=\"onCustomerSelected($event)\"></list-customer>\n  </div>\n  <div class=\"col\">\n    <new-customer [customer]=\"customer\" (onUpdateCustomerEvent)=\"onUpdateCustomer($event)\"></new-customer>\n    <hr>\n    <customer-orders [customer]=\"customer\"></customer-orders>\n  </div>\n</div>"
+module.exports = "<div class=\"row\">\r\n  <customer-header></customer-header>\r\n</div>\r\n<div class=\"row\">\r\n  <div class=\"col-md-auto\">\r\n    <list-customer [customer]=\"customer\" (onCustomerSelected)=\"onCustomerSelected($event)\"></list-customer>\r\n  </div>\r\n  <div class=\"col\">\r\n    <new-customer [customer]=\"customer\" (onUpdateCustomerEvent)=\"onUpdateCustomer($event)\"></new-customer>\r\n    <hr>\r\n    <customer-orders [customer]=\"customer\"></customer-orders>\r\n  </div>\r\n</div>"
 
 /***/ }),
 
@@ -806,7 +806,7 @@ var CustomerPanelComponent = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "/* Scroll Bar customer list table */\n.my-custom-scrollbar {\n    position: relative;\n    max-height: 750px;\n    overflow: auto;\n  }\n.table-wrapper-scroll-y {\n    display: block;\n  }\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvY3VzdG9tZXIvbGlzdC1jdXN0b21lci9saXN0LWN1c3RvbWVyLmNvbXBvbmVudC5jc3MiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUEsbUNBQW1DO0FBQ25DO0lBQ0ksa0JBQWtCO0lBQ2xCLGlCQUFpQjtJQUNqQixjQUFjO0VBQ2hCO0FBRUE7SUFDRSxjQUFjO0VBQ2hCIiwiZmlsZSI6InNyYy9hcHAvY3VzdG9tZXIvbGlzdC1jdXN0b21lci9saXN0LWN1c3RvbWVyLmNvbXBvbmVudC5jc3MiLCJzb3VyY2VzQ29udGVudCI6WyIvKiBTY3JvbGwgQmFyIGN1c3RvbWVyIGxpc3QgdGFibGUgKi9cbi5teS1jdXN0b20tc2Nyb2xsYmFyIHtcbiAgICBwb3NpdGlvbjogcmVsYXRpdmU7XG4gICAgbWF4LWhlaWdodDogNzUwcHg7XG4gICAgb3ZlcmZsb3c6IGF1dG87XG4gIH1cbiAgXG4gIC50YWJsZS13cmFwcGVyLXNjcm9sbC15IHtcbiAgICBkaXNwbGF5OiBibG9jaztcbiAgfSJdfQ== */"
+module.exports = "/* Scroll Bar customer list table */\r\n.my-custom-scrollbar {\r\n    position: relative;\r\n    max-height: 750px;\r\n    overflow: auto;\r\n  }\r\n.table-wrapper-scroll-y {\r\n    display: block;\r\n  }\r\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbImFwcC9jdXN0b21lci9saXN0LWN1c3RvbWVyL2xpc3QtY3VzdG9tZXIuY29tcG9uZW50LmNzcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQSxtQ0FBbUM7QUFDbkM7SUFDSSxrQkFBa0I7SUFDbEIsaUJBQWlCO0lBQ2pCLGNBQWM7RUFDaEI7QUFFQTtJQUNFLGNBQWM7RUFDaEIiLCJmaWxlIjoiYXBwL2N1c3RvbWVyL2xpc3QtY3VzdG9tZXIvbGlzdC1jdXN0b21lci5jb21wb25lbnQuY3NzIiwic291cmNlc0NvbnRlbnQiOlsiLyogU2Nyb2xsIEJhciBjdXN0b21lciBsaXN0IHRhYmxlICovXHJcbi5teS1jdXN0b20tc2Nyb2xsYmFyIHtcclxuICAgIHBvc2l0aW9uOiByZWxhdGl2ZTtcclxuICAgIG1heC1oZWlnaHQ6IDc1MHB4O1xyXG4gICAgb3ZlcmZsb3c6IGF1dG87XHJcbiAgfVxyXG4gIFxyXG4gIC50YWJsZS13cmFwcGVyLXNjcm9sbC15IHtcclxuICAgIGRpc3BsYXk6IGJsb2NrO1xyXG4gIH0iXX0= */"
 
 /***/ }),
 
@@ -817,7 +817,7 @@ module.exports = "/* Scroll Bar customer list table */\n.my-custom-scrollbar {\n
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"container\">\n  <div class=\"row\">\n    <div class=\"col\">\n      <h5>Customers</h5>\n    </div>\n    <div class=\"col\" style=\"float:right\">\n      <input #searchInput type=\"search\"\n        class=\"form-control\"\n        (keyup.enter)=\"onClickSearch(searchInput.value)\"\n        placeholder=\"Type to search a customer...\">\n    </div>\n  </div>\n  <div class=\"row\">\n    <div class=\"col\">\n      <div class=\"table-responsive table-wrapper-scroll-y my-custom-scrollbar\">\n        <table class=\"table table-striped table-hover\">\n          <thead>\n            <tr>\n              <th>ID</th>\n              <th>Store</th>\n              <th>Owner</th>\n            </tr>\n          </thead>\n          <tbody>\n            <tr *ngFor=\"let customer of customers\" (click)=\"onClickCustomer(customer)\">\n              <td>{{ customer.id }}</td>\n              <td>{{ customer.store.name }}</td>\n              <td>{{ customer.store.owner.firstName + \" \" + customer.store.owner.lastName }}</td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n    </div>\n  </div>  \n</div>"
+module.exports = "<div class=\"container\">\r\n  <div class=\"row\">\r\n    <div class=\"col\">\r\n      <h5>Customers</h5>\r\n    </div>\r\n    <div class=\"col\" style=\"float:right\">\r\n      <input #searchInput type=\"search\"\r\n        class=\"form-control\"\r\n        (keyup.enter)=\"onClickSearch(searchInput.value)\"\r\n        placeholder=\"Type to search a customer...\">\r\n    </div>\r\n  </div>\r\n  <div class=\"row\">\r\n    <div class=\"col\">\r\n      <div class=\"table-responsive table-wrapper-scroll-y my-custom-scrollbar\">\r\n        <table class=\"table table-striped table-hover\">\r\n          <thead>\r\n            <tr>\r\n              <th>ID</th>\r\n              <th>Store</th>\r\n              <th>Owner</th>\r\n            </tr>\r\n          </thead>\r\n          <tbody>\r\n            <tr *ngFor=\"let customer of customers\" (click)=\"onClickCustomer(customer)\">\r\n              <td>{{ customer.id }}</td>\r\n              <td>{{ customer.store.name }}</td>\r\n              <td>{{ customer.store.owner.firstName + \" \" + customer.store.owner.lastName }}</td>\r\n            </tr>\r\n          </tbody>\r\n        </table>\r\n      </div>\r\n    </div>\r\n  </div>  \r\n</div>"
 
 /***/ }),
 
@@ -903,7 +903,7 @@ var ListCustomerComponent = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = ".ng-invalid:not(form)  {\n    border-left: 5px solid #a94442; /* red */\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvY3VzdG9tZXIvbmV3LWN1c3RvbWVyL25ldy1jdXN0b21lci5jb21wb25lbnQuY3NzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBO0lBQ0ksOEJBQThCLEVBQUUsUUFBUTtBQUM1QyIsImZpbGUiOiJzcmMvYXBwL2N1c3RvbWVyL25ldy1jdXN0b21lci9uZXctY3VzdG9tZXIuY29tcG9uZW50LmNzcyIsInNvdXJjZXNDb250ZW50IjpbIi5uZy1pbnZhbGlkOm5vdChmb3JtKSAge1xuICAgIGJvcmRlci1sZWZ0OiA1cHggc29saWQgI2E5NDQ0MjsgLyogcmVkICovXG59Il19 */"
+module.exports = ".ng-invalid:not(form)  {\r\n    border-left: 5px solid #a94442; /* red */\r\n}\r\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbImFwcC9jdXN0b21lci9uZXctY3VzdG9tZXIvbmV3LWN1c3RvbWVyLmNvbXBvbmVudC5jc3MiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUE7SUFDSSw4QkFBOEIsRUFBRSxRQUFRO0FBQzVDIiwiZmlsZSI6ImFwcC9jdXN0b21lci9uZXctY3VzdG9tZXIvbmV3LWN1c3RvbWVyLmNvbXBvbmVudC5jc3MiLCJzb3VyY2VzQ29udGVudCI6WyIubmctaW52YWxpZDpub3QoZm9ybSkgIHtcclxuICAgIGJvcmRlci1sZWZ0OiA1cHggc29saWQgI2E5NDQ0MjsgLyogcmVkICovXHJcbn0iXX0= */"
 
 /***/ }),
 
@@ -914,7 +914,7 @@ module.exports = ".ng-invalid:not(form)  {\n    border-left: 5px solid #a94442; 
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<form [formGroup]=\"form\" (ngSubmit)=\"onSubmit()\">\n  <h5>Owner</h5>\n  <hr>\n  <div class=\"row\">\n    <div class=\"col form-group\">\n      <label for=\"compagnyName\">Compagny Nane</label>\n      <input type=\"text\" formControlName=\"ownerAutoComplete\"\n        (blur)=\"onBlurOwnerAutoComplete()\"\n        [(ngModel)]=\"inputOwnerName\"\n        [ngbTypeahead]=\"search\"\n        class=\"form-control\"/>\n    </div>\n    <div class=\"col form-group\">\n        <label for=\"firstName\">FirstName</label>\n        <input type=\"text\" formControlName=\"ownerFirstName\" class=\"form-control\" (blur)=onBlurStringFormControl($event)/>\n    </div>\n    <div class=\"col form-group\">\n        <label for=\"lastName\">LastName</label>\n        <input type=\"text\" formControlName=\"ownerLastName\" class=\"form-control\" (blur)=onBlurStringFormControl($event)/>\n    </div>\n    <div class=\"col form-group\">\n        <label for=\"email\">Email</label>\n        <input type=\"text\" formControlName=\"ownerEmail\" class=\"form-control\" (blur)=onBlurLowcaseStringFormControl($event)/>\n    </div>\n  </div>\n  <div *ngIf=\"storesOfSelectedOwner.length > 0\" class=\"row\">\n    <div class=\"col-5\">\n      <table class=\"table table-striped table-bordered table-sm\">\n        <thead>\n          <tr>\n            <th>#</th>\n            <th>Id</th>\n            <th>Name</th>\n            <th>Email</th>\n            <th>Phone</th>\n          </tr>\n        </thead>\n        <tbody>\n          <tr *ngFor=\"let store of storesOfSelectedOwner; let i = index\">\n            <td>{{ i + 1 }}</td>\n            <td>{{ store.id }}</td>\n            <td>{{ store.name }}</td>\n            <td>{{ store.email }}</td>\n            <td>{{ store.phone }}</td>\n          </tr>\n        </tbody>\n      </table>\n    </div>\n  </div>\n  <h5>Store</h5>\n  <hr>\n  <div class=\"row\">\n      <div class=\"col form-group\">\n          <label for=\"name\">Name</label>\n          <input type=\"text\" formControlName=\"storeName\" class=\"form-control\" (blur)=onBlurStringFormControl($event)/>\n      </div>\n      <div class=\"col form-group\">\n        <label for=\"streetNumber\">Street Number</label>\n        <input type=\"text\" formControlName=\"storeStreetNumber\" class=\"form-control\"/>\n      </div>\n      <div class=\"col form-group\">\n          <label for=\"streetName\">Street</label>\n          <input type=\"text\" formControlName=\"storeStreetName\" class=\"form-control\"/>\n      </div>\n      <div class=\"col form-group\">\n          <label for=\"zipCode\">Zip Code</label>\n          <input type=\"text\" formControlName=\"storeZipCode\" class=\"form-control\"/>\n      </div>\n      <div class=\"col form-group\">\n          <label for=\"city\">City</label>\n          <input type=\"text\" formControlName=\"storeCity\" class=\"form-control\" (blur)=onBlurStringFormControl($event)/>\n      </div>\n      <div class=\"col form-group\">\n        <label for=\"country\">Country</label>\n        <input type=\"text\" formControlName=\"storeCountry\" class=\"form-control\" (blur)=onBlurStringFormControl($event)/>\n    </div>\n  </div>\n  <div class=\"row\">\n      <div class=\"col form-group\">\n          <label for=\"phone\">Phone</label>\n          <input type=\"text\" formControlName=\"storePhone\" class=\"form-control\"/>\n      </div>\n      <div class=\"col form-group\">\n          <label for=\"email\">Email</label>\n          <input type=\"text\" formControlName=\"storeEmail\" class=\"form-control\" (blur)=onBlurLowcaseStringFormControl($event)>\n      </div>\n  </div>\n  <div class=\"row\">\n    <div class=\"col\">\n      <button class=\"btn btn-primary\">Save</button>\n    </div>\n    <div class=\"col-md-auto\">\n      <ngb-alert *ngIf=\"errorMessage\" [type]=\"typeAlert\" [dismissible]=\"true\" (close)=\"errorMessage = null\">{{ errorMessage }}</ngb-alert>\n    </div>\n  </div>\n</form>"
+module.exports = "<form [formGroup]=\"form\" (ngSubmit)=\"onSubmit()\">\r\n  <h5>Owner</h5>\r\n  <hr>\r\n  <div class=\"row\">\r\n    <div class=\"col form-group\">\r\n      <label for=\"compagnyName\">Compagny Nane</label>\r\n      <input type=\"text\" formControlName=\"ownerAutoComplete\"\r\n        (blur)=\"onBlurOwnerAutoComplete()\"\r\n        [(ngModel)]=\"inputOwnerName\"\r\n        [ngbTypeahead]=\"search\"\r\n        class=\"form-control\"/>\r\n    </div>\r\n    <div class=\"col form-group\">\r\n        <label for=\"firstName\">FirstName</label>\r\n        <input type=\"text\" formControlName=\"ownerFirstName\" class=\"form-control\" (blur)=onBlurStringFormControl($event)/>\r\n    </div>\r\n    <div class=\"col form-group\">\r\n        <label for=\"lastName\">LastName</label>\r\n        <input type=\"text\" formControlName=\"ownerLastName\" class=\"form-control\" (blur)=onBlurStringFormControl($event)/>\r\n    </div>\r\n    <div class=\"col form-group\">\r\n        <label for=\"email\">Email</label>\r\n        <input type=\"text\" formControlName=\"ownerEmail\" class=\"form-control\" (blur)=onBlurLowcaseStringFormControl($event)/>\r\n    </div>\r\n  </div>\r\n  <div *ngIf=\"storesOfSelectedOwner.length > 0\" class=\"row\">\r\n    <div class=\"col-5\">\r\n      <table class=\"table table-striped table-bordered table-sm\">\r\n        <thead>\r\n          <tr>\r\n            <th>#</th>\r\n            <th>Id</th>\r\n            <th>Name</th>\r\n            <th>Email</th>\r\n            <th>Phone</th>\r\n          </tr>\r\n        </thead>\r\n        <tbody>\r\n          <tr *ngFor=\"let store of storesOfSelectedOwner; let i = index\">\r\n            <td>{{ i + 1 }}</td>\r\n            <td>{{ store.id }}</td>\r\n            <td>{{ store.name }}</td>\r\n            <td>{{ store.email }}</td>\r\n            <td>{{ store.phone }}</td>\r\n          </tr>\r\n        </tbody>\r\n      </table>\r\n    </div>\r\n  </div>\r\n  <h5>Store</h5>\r\n  <hr>\r\n  <div class=\"row\">\r\n      <div class=\"col form-group\">\r\n          <label for=\"name\">Name</label>\r\n          <input type=\"text\" formControlName=\"storeName\" class=\"form-control\" (blur)=onBlurStringFormControl($event)/>\r\n      </div>\r\n      <div class=\"col form-group\">\r\n        <label for=\"streetNumber\">Street Number</label>\r\n        <input type=\"text\" formControlName=\"storeStreetNumber\" class=\"form-control\"/>\r\n      </div>\r\n      <div class=\"col form-group\">\r\n          <label for=\"streetName\">Street</label>\r\n          <input type=\"text\" formControlName=\"storeStreetName\" class=\"form-control\"/>\r\n      </div>\r\n      <div class=\"col form-group\">\r\n          <label for=\"zipCode\">Zip Code</label>\r\n          <input type=\"text\" formControlName=\"storeZipCode\" class=\"form-control\"/>\r\n      </div>\r\n      <div class=\"col form-group\">\r\n          <label for=\"city\">City</label>\r\n          <input type=\"text\" formControlName=\"storeCity\" class=\"form-control\" (blur)=onBlurStringFormControl($event)/>\r\n      </div>\r\n      <div class=\"col form-group\">\r\n        <label for=\"country\">Country</label>\r\n        <input type=\"text\" formControlName=\"storeCountry\" class=\"form-control\" (blur)=onBlurStringFormControl($event)/>\r\n    </div>\r\n  </div>\r\n  <div class=\"row\">\r\n      <div class=\"col form-group\">\r\n          <label for=\"phone\">Phone</label>\r\n          <input type=\"text\" formControlName=\"storePhone\" class=\"form-control\"/>\r\n      </div>\r\n      <div class=\"col form-group\">\r\n          <label for=\"email\">Email</label>\r\n          <input type=\"text\" formControlName=\"storeEmail\" class=\"form-control\" (blur)=onBlurLowcaseStringFormControl($event)>\r\n      </div>\r\n  </div>\r\n  <div class=\"row\">\r\n    <div class=\"col\">\r\n      <button class=\"btn btn-primary\">Save</button>\r\n    </div>\r\n    <div class=\"col-md-auto\">\r\n      <ngb-alert *ngIf=\"errorMessage\" [type]=\"typeAlert\" [dismissible]=\"true\" (close)=\"errorMessage = null\">{{ errorMessage }}</ngb-alert>\r\n    </div>\r\n  </div>\r\n</form>"
 
 /***/ }),
 
@@ -1128,7 +1128,7 @@ var NewCustomerComponent = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJzcmMvYXBwL2hlYWRlci1tZW51L2hlYWRlci1tZW51LmNvbXBvbmVudC5jc3MifQ== */"
+module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJhcHAvaGVhZGVyLW1lbnUvaGVhZGVyLW1lbnUuY29tcG9uZW50LmNzcyJ9 */"
 
 /***/ }),
 
@@ -1139,7 +1139,7 @@ module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<p>\n  header-menu works!\n</p>\n"
+module.exports = "<p>\r\n  header-menu works!\r\n</p>\r\n"
 
 /***/ }),
 
@@ -1184,7 +1184,7 @@ var HeaderMenuComponent = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJzcmMvYXBwL21vZGFsL2FkZC1vcmRlci1pdGVtLW1vZGFsL2FkZC1vcmRlci1pdGVtLW1vZGFsLmNvbXBvbmVudC5jc3MifQ== */"
+module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJhcHAvbW9kYWwvYWRkLW9yZGVyLWl0ZW0tbW9kYWwvYWRkLW9yZGVyLWl0ZW0tbW9kYWwuY29tcG9uZW50LmNzcyJ9 */"
 
 /***/ }),
 
@@ -1195,7 +1195,7 @@ module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"modal-header\">\n    <h5 class=\"modal-title\" id=\"modal-basic-title\">Add order items</h5>\n    <button type=\"button\" class=\"close\" aria-label=\"Close\" (click)=\"onClose()\">\n      <span aria-hidden=\"true\">&times;</span>\n    </button>\n</div>\n<div class=\"modal-body\">\n  <form [formGroup]=\"addOrderItemForm\">\n    <div class=\"custom-control custom-switch\" style=\"float: right\">\n      <input type=\"checkbox\" class=\"custom-control-input\" id=\"customSwitch1\" (click)=\"shouldEnableBarCodeMode($event)\" [(ngModel)]=\"barCodeMode\" [ngModelOptions]=\"{standalone: true}\">\n      <label class=\"custom-control-label\" for=\"customSwitch1\">Barcode Mode</label>\n    </div>\n    <div *ngIf=\"barCodeMode\">\n      <div class=\"form-group\">\n          <label for=\"barCode\">BarCode</label>\n          <input type=\"text\" formControlName=\"barCode\"\n            (change)=\"onValueChange()\"\n            (blur)=\"onBlurBarCode()\"\n            class=\"form-control\"/>\n      </div>\n    </div>\n    <div *ngIf=\"! barCodeMode\">\n      <div class=\"form-group\">\n        <label for=\"Name\">Product Name</label>\n        <input type=\"text\" formControlName=\"productName\"\n          [(ngModel)]=\"inputProductName\"\n          [ngbTypeahead]=\"search\"\n          (change)=\"onProductNameChange()\"\n          (blur)=\"onBlurProductName()\"\n          class=\"form-control\"/>\n      </div>\n      <div class=\"form-group\">\n        <label for=\"quantity\">Quantity</label>\n        <input type=\"number\" formControlName=\"quantity\"\n          (change)=\"onValueChange()\"\n          class=\"form-control\"/>\n      </div>\n    </div>\n    <div *ngIf=\"productStockInfo\">\n      <table class=\"table table-striped\">\n        <thead>\n          <tr>\n            <th>Id</th>\n            <th>Name</th>\n            <th>Initial Qty</th>\n            <th>Free Qty</th>\n          </tr>\n        </thead>\n        <tbody>\n          <tr>\n            <td>{{ productStockInfo.product.id }}</td>\n            <td>{{ productStockInfo.product.name }}</td>\n            <td>{{ productStockInfo.createdQuantity }}</td>\n            <td>{{ productStockInfo.createdQuantity - productStockInfo.usedQuantity }}</td>\n          </tr>\n        </tbody>\n      </table>\n    </div>\n    <div *ngIf=\"productItem\">\n      <table class=\"table table-striped\">\n        <thead>\n          <tr>\n            <th>Id</th>\n            <th>Name</th>\n            <th>Free</th>\n          </tr>\n        </thead>\n        <tbody>\n          <tr>\n            <td>{{ productItem.id }}</td>\n            <td>{{ productItem.product.name }}</td>\n            <td>{{ productItem.orderItemId ? 'No' : 'Yes' }}</td>\n          </tr>\n        </tbody>\n      </table>\n    </div>\n  </form>\n</div>\n<div class=\"modal-footer\">\n  <div class=\"container\">\n    <div class=\"row\">\n        <div class=\"col\">\n          <button class=\"btn btn-outline-dark\" type=\"button\" [disabled]=\"isAddButtonDisabled\" (click)=\"onSubmit(true)\" style=\"float:left\">\n              <span *ngIf=\"addOrderItemInProgress\" class=\"spinner-border spinner-border-sm\" role=\"status\" aria-hidden=\"true\"></span>\n            Add Another</button>\n        </div>\n        <div class=\"col-md-auto\">\n            <ngb-alert *ngIf=\"errorMessage\" type=\"danger\" [dismissible]=\"true\" (close)=\"errorMessage = null\">{{ errorMessage }}</ngb-alert>\n        </div>\n        <div class=\"col\">\n          <button class=\"btn btn-outline-dark\" type=\"button\" [disabled]=\"isAddButtonDisabled\" (click)=\"onSubmit(false)\" style=\"float:right\">\n              <span *ngIf=\"addOrderItemInProgress\" class=\"spinner-border spinner-border-sm\" role=\"status\" aria-hidden=\"true\"></span>\n            Add</button>\n        </div>\n    </div>\n  </div>\n</div>"
+module.exports = "<div class=\"modal-header\">\r\n    <h5 class=\"modal-title\" id=\"modal-basic-title\">Add order items</h5>\r\n    <button type=\"button\" class=\"close\" aria-label=\"Close\" (click)=\"onClose()\">\r\n      <span aria-hidden=\"true\">&times;</span>\r\n    </button>\r\n</div>\r\n<div class=\"modal-body\">\r\n  <form [formGroup]=\"addOrderItemForm\">\r\n    <div class=\"custom-control custom-switch\" style=\"float: right\">\r\n      <input type=\"checkbox\" class=\"custom-control-input\" id=\"customSwitch1\" (click)=\"shouldEnableBarCodeMode($event)\" [(ngModel)]=\"barCodeMode\" [ngModelOptions]=\"{standalone: true}\">\r\n      <label class=\"custom-control-label\" for=\"customSwitch1\">Barcode Mode</label>\r\n    </div>\r\n    <div *ngIf=\"barCodeMode\">\r\n      <div class=\"form-group\">\r\n          <label for=\"barCode\">BarCode</label>\r\n          <input type=\"text\" formControlName=\"barCode\"\r\n            (change)=\"onValueChange()\"\r\n            (blur)=\"onBlurBarCode()\"\r\n            class=\"form-control\"/>\r\n      </div>\r\n    </div>\r\n    <div *ngIf=\"! barCodeMode\">\r\n      <div class=\"form-group\">\r\n        <label for=\"Name\">Product Name</label>\r\n        <input type=\"text\" formControlName=\"productName\"\r\n          [(ngModel)]=\"inputProductName\"\r\n          [ngbTypeahead]=\"search\"\r\n          (change)=\"onProductNameChange()\"\r\n          (blur)=\"onBlurProductName()\"\r\n          class=\"form-control\"/>\r\n      </div>\r\n      <div class=\"form-group\">\r\n        <label for=\"quantity\">Quantity</label>\r\n        <input type=\"number\" formControlName=\"quantity\"\r\n          (change)=\"onValueChange()\"\r\n          class=\"form-control\"/>\r\n      </div>\r\n    </div>\r\n    <div *ngIf=\"productStockInfo\">\r\n      <table class=\"table table-striped\">\r\n        <thead>\r\n          <tr>\r\n            <th>Id</th>\r\n            <th>Name</th>\r\n            <th>Initial Qty</th>\r\n            <th>Free Qty</th>\r\n          </tr>\r\n        </thead>\r\n        <tbody>\r\n          <tr>\r\n            <td>{{ productStockInfo.product.id }}</td>\r\n            <td>{{ productStockInfo.product.name }}</td>\r\n            <td>{{ productStockInfo.createdQuantity }}</td>\r\n            <td>{{ productStockInfo.createdQuantity - productStockInfo.usedQuantity }}</td>\r\n          </tr>\r\n        </tbody>\r\n      </table>\r\n    </div>\r\n    <div *ngIf=\"productItem\">\r\n      <table class=\"table table-striped\">\r\n        <thead>\r\n          <tr>\r\n            <th>Id</th>\r\n            <th>Name</th>\r\n            <th>Free</th>\r\n          </tr>\r\n        </thead>\r\n        <tbody>\r\n          <tr>\r\n            <td>{{ productItem.id }}</td>\r\n            <td>{{ productItem.product.name }}</td>\r\n            <td>{{ productItem.orderItemId ? 'No' : 'Yes' }}</td>\r\n          </tr>\r\n        </tbody>\r\n      </table>\r\n    </div>\r\n  </form>\r\n</div>\r\n<div class=\"modal-footer\">\r\n  <div class=\"container\">\r\n    <div class=\"row\">\r\n        <div class=\"col\">\r\n          <button class=\"btn btn-outline-dark\" type=\"button\" [disabled]=\"isAddButtonDisabled\" (click)=\"onSubmit(true)\" style=\"float:left\">\r\n              <span *ngIf=\"addOrderItemInProgress\" class=\"spinner-border spinner-border-sm\" role=\"status\" aria-hidden=\"true\"></span>\r\n            Add Another</button>\r\n        </div>\r\n        <div class=\"col-md-auto\">\r\n            <ngb-alert *ngIf=\"errorMessage\" type=\"danger\" [dismissible]=\"true\" (close)=\"errorMessage = null\">{{ errorMessage }}</ngb-alert>\r\n        </div>\r\n        <div class=\"col\">\r\n          <button class=\"btn btn-outline-dark\" type=\"button\" [disabled]=\"isAddButtonDisabled\" (click)=\"onSubmit(false)\" style=\"float:right\">\r\n              <span *ngIf=\"addOrderItemInProgress\" class=\"spinner-border spinner-border-sm\" role=\"status\" aria-hidden=\"true\"></span>\r\n            Add</button>\r\n        </div>\r\n    </div>\r\n  </div>\r\n</div>"
 
 /***/ }),
 
@@ -1448,7 +1448,7 @@ var AddOrderItemModalComponent = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJzcmMvYXBwL21vZGFsL2NvbmZpcm0tbW9kYWwvY29uZmlybS1tb2RhbC1jb21wb25lbnQuY3NzIn0= */"
+module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJhcHAvbW9kYWwvY29uZmlybS1tb2RhbC9jb25maXJtLW1vZGFsLWNvbXBvbmVudC5jc3MifQ== */"
 
 /***/ }),
 
@@ -1459,7 +1459,7 @@ module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"modal-header\">\n    <h4 class=\"modal-title\" id=\"modal-basic-title\">{{ title }}</h4>\n    <button type=\"button\" class=\"close\" aria-label=\"Close\" (click)=\"onClickClose()\">\n      <span aria-hidden=\"true\">&times;</span>\n    </button>\n</div>\n<div class=\"modal-body\">\n    <p>{{ message }}</p>\n</div>\n<div class=\"modal-footer\">\n  <button type=\"button\" class=\"btn btn-secondary\" (click)=\"onClickClose()\">No</button>\n  <button type=\"button\" class=\"btn btn-primary\" (click)=\"onClickYes()\">Yes</button>\n</div>\n"
+module.exports = "<div class=\"modal-header\">\r\n    <h4 class=\"modal-title\" id=\"modal-basic-title\">{{ title }}</h4>\r\n    <button type=\"button\" class=\"close\" aria-label=\"Close\" (click)=\"onClickClose()\">\r\n      <span aria-hidden=\"true\">&times;</span>\r\n    </button>\r\n</div>\r\n<div class=\"modal-body\">\r\n    <p>{{ message }}</p>\r\n</div>\r\n<div class=\"modal-footer\">\r\n  <button type=\"button\" class=\"btn btn-secondary\" (click)=\"onClickClose()\">No</button>\r\n  <button type=\"button\" class=\"btn btn-primary\" (click)=\"onClickYes()\">Yes</button>\r\n</div>\r\n"
 
 /***/ }),
 
@@ -1521,7 +1521,7 @@ var ConfirmModalComponent = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJzcmMvYXBwL21vZGFsL2NyZWF0ZS1vcmRlci1tb2RhbC9jcmVhdGUtb3JkZXItbW9kYWwuY29tcG9uZW50LmNzcyJ9 */"
+module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJhcHAvbW9kYWwvY3JlYXRlLW9yZGVyLW1vZGFsL2NyZWF0ZS1vcmRlci1tb2RhbC5jb21wb25lbnQuY3NzIn0= */"
 
 /***/ }),
 
@@ -1532,7 +1532,7 @@ module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"modal-header\">\n  <h4 class=\"modal-title\" id=\"modal-basic-title\">New Order</h4>\n  <button type=\"button\" class=\"close\" aria-label=\"Close\" (click)=\"onClose()\">\n    <span aria-hidden=\"true\">&times;</span>\n  </button>\n</div>\n<form [formGroup]=\"createOrderForm\" (ngSubmit)=\"onSubmit()\">\n  <div class=\"modal-body\">\n      <div class=\"form-group\">\n        <label for=\"Name\">Name</label>\n        <input type=\"text\" formControlName=\"name\"\n          (input)=\"settingChanged()\"\n          class=\"form-control\"/>\n          <label *ngIf=\"isFormSubmitted && createOrderForm.get('name').invalid\" class=\"text-danger\">A name is required.</label>\n      </div>\n      <div class=\"form-group\">\n        <label for=\"comment\">Comment/Description</label>\n        <input type=\"text\" formControlName=\"comment\"\n          (input)=\"settingChanged()\"\n          class=\"form-control\"/>\n      </div>\n      <div class=\"form-group\">\n        <label for=\"customer\">Customer</label>\n        <select type=\"text\" formControlName=\"customers\"\n          (input)=\"settingChanged()\"\n          class=\"form-control\">\n          <option *ngFor=\"let customer of customersArray\"\n          [ngValue]=\"customer\">{{customer.id}} | {{ customer.store.name }} | {{ customer.store.owner.firstName }} {{ customer.store.owner.lastName }}</option>\n        </select>\n        <label *ngIf=\"isFormSubmitted && createOrderForm.get('customers').invalid\" class=\"text-danger\">A customer is required.</label>\n      </div>\n      <div>\n          <ngb-alert *ngIf=\"errorMessage\" type=\"danger\" [dismissible]=\"false\" (close)=\"errorMessage = null\">{{ errorMessage }}</ngb-alert>\n      </div>\n  </div>\n  <div class=\"modal-footer\">\n    <button type=\"submit\" class=\"btn btn-outline-dark\">Create</button>\n  </div>\n</form>"
+module.exports = "<div class=\"modal-header\">\r\n  <h4 class=\"modal-title\" id=\"modal-basic-title\">New Order</h4>\r\n  <button type=\"button\" class=\"close\" aria-label=\"Close\" (click)=\"onClose()\">\r\n    <span aria-hidden=\"true\">&times;</span>\r\n  </button>\r\n</div>\r\n<form [formGroup]=\"createOrderForm\" (ngSubmit)=\"onSubmit()\">\r\n  <div class=\"modal-body\">\r\n      <div class=\"form-group\">\r\n        <label for=\"Name\">Name</label>\r\n        <input type=\"text\" formControlName=\"name\"\r\n          (input)=\"settingChanged()\"\r\n          class=\"form-control\"/>\r\n          <label *ngIf=\"isFormSubmitted && createOrderForm.get('name').invalid\" class=\"text-danger\">A name is required.</label>\r\n      </div>\r\n      <div class=\"form-group\">\r\n        <label for=\"comment\">Comment/Description</label>\r\n        <input type=\"text\" formControlName=\"comment\"\r\n          (input)=\"settingChanged()\"\r\n          class=\"form-control\"/>\r\n      </div>\r\n      <div class=\"form-group\">\r\n        <label for=\"customer\">Customer</label>\r\n        <select type=\"text\" formControlName=\"customers\"\r\n          (input)=\"settingChanged()\"\r\n          class=\"form-control\">\r\n          <option *ngFor=\"let customer of customersArray\"\r\n          [ngValue]=\"customer\">{{customer.id}} | {{ customer.store.name }} | {{ customer.store.owner.firstName }} {{ customer.store.owner.lastName }}</option>\r\n        </select>\r\n        <label *ngIf=\"isFormSubmitted && createOrderForm.get('customers').invalid\" class=\"text-danger\">A customer is required.</label>\r\n      </div>\r\n      <div>\r\n          <ngb-alert *ngIf=\"errorMessage\" type=\"danger\" [dismissible]=\"false\" (close)=\"errorMessage = null\">{{ errorMessage }}</ngb-alert>\r\n      </div>\r\n  </div>\r\n  <div class=\"modal-footer\">\r\n    <button type=\"submit\" class=\"btn btn-outline-dark\">Create</button>\r\n  </div>\r\n</form>"
 
 /***/ }),
 
@@ -1651,7 +1651,7 @@ var CreateOrderModalComponent = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = ".my-custom-scrollbar {\n    position: relative;\n    max-height: 500px;\n    overflow: auto;\n}\n\n.table-wrapper-scroll-y {\n    display: block;\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvbW9kYWwvZGVsZXRlLW9yZGVyLWl0ZW1zLW1vZGFsL2RlbGV0ZS1vcmRlci1pdGVtcy1tb2RhbC5jb21wb25lbnQuY3NzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBO0lBQ0ksa0JBQWtCO0lBQ2xCLGlCQUFpQjtJQUNqQixjQUFjO0FBQ2xCOztBQUVBO0lBQ0ksY0FBYztBQUNsQiIsImZpbGUiOiJzcmMvYXBwL21vZGFsL2RlbGV0ZS1vcmRlci1pdGVtcy1tb2RhbC9kZWxldGUtb3JkZXItaXRlbXMtbW9kYWwuY29tcG9uZW50LmNzcyIsInNvdXJjZXNDb250ZW50IjpbIi5teS1jdXN0b20tc2Nyb2xsYmFyIHtcbiAgICBwb3NpdGlvbjogcmVsYXRpdmU7XG4gICAgbWF4LWhlaWdodDogNTAwcHg7XG4gICAgb3ZlcmZsb3c6IGF1dG87XG59XG5cbi50YWJsZS13cmFwcGVyLXNjcm9sbC15IHtcbiAgICBkaXNwbGF5OiBibG9jaztcbn0iXX0= */"
+module.exports = ".my-custom-scrollbar {\r\n    position: relative;\r\n    max-height: 500px;\r\n    overflow: auto;\r\n}\r\n\r\n.table-wrapper-scroll-y {\r\n    display: block;\r\n}\r\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbImFwcC9tb2RhbC9kZWxldGUtb3JkZXItaXRlbXMtbW9kYWwvZGVsZXRlLW9yZGVyLWl0ZW1zLW1vZGFsLmNvbXBvbmVudC5jc3MiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUE7SUFDSSxrQkFBa0I7SUFDbEIsaUJBQWlCO0lBQ2pCLGNBQWM7QUFDbEI7O0FBRUE7SUFDSSxjQUFjO0FBQ2xCIiwiZmlsZSI6ImFwcC9tb2RhbC9kZWxldGUtb3JkZXItaXRlbXMtbW9kYWwvZGVsZXRlLW9yZGVyLWl0ZW1zLW1vZGFsLmNvbXBvbmVudC5jc3MiLCJzb3VyY2VzQ29udGVudCI6WyIubXktY3VzdG9tLXNjcm9sbGJhciB7XHJcbiAgICBwb3NpdGlvbjogcmVsYXRpdmU7XHJcbiAgICBtYXgtaGVpZ2h0OiA1MDBweDtcclxuICAgIG92ZXJmbG93OiBhdXRvO1xyXG59XHJcblxyXG4udGFibGUtd3JhcHBlci1zY3JvbGwteSB7XHJcbiAgICBkaXNwbGF5OiBibG9jaztcclxufSJdfQ== */"
 
 /***/ }),
 
@@ -1662,7 +1662,7 @@ module.exports = ".my-custom-scrollbar {\n    position: relative;\n    max-heigh
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"modal-header\">\n  <h4 class=\"modal-title\" id=\"modal-basic-title\">{{ title }}</h4>\n  <button type=\"button\" class=\"close\" aria-label=\"Close\" (click)=\"onClickClose()\">\n    <span aria-hidden=\"true\">&times;</span>\n  </button>\n</div>\n<div class=\"modal-body\">\n  <div class=\"table-wrapper-scroll-y my-custom-scrollbar\">\n    <table class=\"table table-striped\">\n      <thead>\n        <tr>\n          <th>#</th>\n          <th>Id</th>\n          <th>Product Name</th>\n          <th>BarCode</th>\n        </tr>\n      </thead>\n      <tbody>\n        <tr *ngFor=\"let item of orderItems; let i = index\">\n          <td>{{ i+1 }}</td>\n          <td>{{ item.productItem.id }}</td>\n          <td>{{ item.productItem.product.name }}</td>\n          <td>{{ item.productItem.barCode }}</td>\n        </tr>\n      </tbody>\n    </table>\n  </div>\n</div>\n<div class=\"modal-footer\">\n<button type=\"button\" class=\"btn btn-secondary\" (click)=\"onClickClose()\">No</button>\n<button type=\"button\" class=\"btn btn-primary\" (click)=\"onClickYes()\">Yes</button>\n</div>\n"
+module.exports = "<div class=\"modal-header\">\r\n  <h4 class=\"modal-title\" id=\"modal-basic-title\">{{ title }}</h4>\r\n  <button type=\"button\" class=\"close\" aria-label=\"Close\" (click)=\"onClickClose()\">\r\n    <span aria-hidden=\"true\">&times;</span>\r\n  </button>\r\n</div>\r\n<div class=\"modal-body\">\r\n  <div class=\"table-wrapper-scroll-y my-custom-scrollbar\">\r\n    <table class=\"table table-striped\">\r\n      <thead>\r\n        <tr>\r\n          <th>#</th>\r\n          <th>Id</th>\r\n          <th>Product Name</th>\r\n          <th>BarCode</th>\r\n        </tr>\r\n      </thead>\r\n      <tbody>\r\n        <tr *ngFor=\"let item of orderItems; let i = index\">\r\n          <td>{{ i+1 }}</td>\r\n          <td>{{ item.productItem.id }}</td>\r\n          <td>{{ item.productItem.product.name }}</td>\r\n          <td>{{ item.productItem.barCode }}</td>\r\n        </tr>\r\n      </tbody>\r\n    </table>\r\n  </div>\r\n</div>\r\n<div class=\"modal-footer\">\r\n<button type=\"button\" class=\"btn btn-secondary\" (click)=\"onClickClose()\">No</button>\r\n<button type=\"button\" class=\"btn btn-primary\" (click)=\"onClickYes()\">Yes</button>\r\n</div>\r\n"
 
 /***/ }),
 
@@ -1724,7 +1724,7 @@ var DeleteOrderItemsModalComponent = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJzcmMvYXBwL21vZGFsL2luZm8tbW9kYWwvaW5mby1tb2RhbC5jb21wb25lbnQuY3NzIn0= */"
+module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJhcHAvbW9kYWwvaW5mby1tb2RhbC9pbmZvLW1vZGFsLmNvbXBvbmVudC5jc3MifQ== */"
 
 /***/ }),
 
@@ -1735,7 +1735,7 @@ module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"modal-header\">\n  <h4 class=\"modal-title\" id=\"modal-basic-title\">{{ title }}</h4>\n  <button type=\"button\" class=\"close\" aria-label=\"Close\" (click)=\"onClickClose()\">\n    <span aria-hidden=\"true\">&times;</span>\n  </button>\n</div>\n<div class=\"modal-body\">\n  <p>{{ message }}</p>\n</div>\n<div class=\"modal-footer\">\n  <button type=\"button\" class=\"btn btn-secondary\" (click)=\"onClickClose()\">OK</button>\n</div>\n"
+module.exports = "<div class=\"modal-header\">\r\n  <h4 class=\"modal-title\" id=\"modal-basic-title\">{{ title }}</h4>\r\n  <button type=\"button\" class=\"close\" aria-label=\"Close\" (click)=\"onClickClose()\">\r\n    <span aria-hidden=\"true\">&times;</span>\r\n  </button>\r\n</div>\r\n<div class=\"modal-body\">\r\n  <p>{{ message }}</p>\r\n</div>\r\n<div class=\"modal-footer\">\r\n  <button type=\"button\" class=\"btn btn-secondary\" (click)=\"onClickClose()\">OK</button>\r\n</div>\r\n"
 
 /***/ }),
 
@@ -1794,7 +1794,7 @@ var InfoModalComponent = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = ".ng-invalid:not(form)  {\n    border-left: 5px solid #a94442; /* red */\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvbW9kYWwvb3JkZXItbm90aWZpY2F0aW9uLW1vZGFsL29yZGVyLW5vdGlmaWNhdGlvbi1tb2RhbC5jb21wb25lbnQuY3NzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBO0lBQ0ksOEJBQThCLEVBQUUsUUFBUTtBQUM1QyIsImZpbGUiOiJzcmMvYXBwL21vZGFsL29yZGVyLW5vdGlmaWNhdGlvbi1tb2RhbC9vcmRlci1ub3RpZmljYXRpb24tbW9kYWwuY29tcG9uZW50LmNzcyIsInNvdXJjZXNDb250ZW50IjpbIi5uZy1pbnZhbGlkOm5vdChmb3JtKSAge1xuICAgIGJvcmRlci1sZWZ0OiA1cHggc29saWQgI2E5NDQ0MjsgLyogcmVkICovXG59Il19 */"
+module.exports = ".ng-invalid:not(form)  {\r\n    border-left: 5px solid #a94442; /* red */\r\n}\r\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbImFwcC9tb2RhbC9vcmRlci1ub3RpZmljYXRpb24tbW9kYWwvb3JkZXItbm90aWZpY2F0aW9uLW1vZGFsLmNvbXBvbmVudC5jc3MiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUE7SUFDSSw4QkFBOEIsRUFBRSxRQUFRO0FBQzVDIiwiZmlsZSI6ImFwcC9tb2RhbC9vcmRlci1ub3RpZmljYXRpb24tbW9kYWwvb3JkZXItbm90aWZpY2F0aW9uLW1vZGFsLmNvbXBvbmVudC5jc3MiLCJzb3VyY2VzQ29udGVudCI6WyIubmctaW52YWxpZDpub3QoZm9ybSkgIHtcclxuICAgIGJvcmRlci1sZWZ0OiA1cHggc29saWQgI2E5NDQ0MjsgLyogcmVkICovXHJcbn0iXX0= */"
 
 /***/ }),
 
@@ -1805,7 +1805,7 @@ module.exports = ".ng-invalid:not(form)  {\n    border-left: 5px solid #a94442; 
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div>\n  <div class=\"modal-header\">\n    <h3 class=\"modal-title\" id=\"modal-basic-title\">Order Notification Setting</h3>\n    <button type=\"button\" class=\"close\" aria-label=\"Close\" (click)=\"onClose()\">\n      <span aria-hidden=\"true\">&times;</span>\n    </button>\n  </div>\n  <div class=\"modal-body\">\n    <form [formGroup]=\"form\">\n      <div class=\"form-group\">\n        <label for=\"notifType\">Notification Type</label>\n        <select formControlName=\"docTypesSelect\" class=\"custom-select\" (change)=\"onChangeType($event)\" required>\n            <option *ngFor=\"let type of docTypesMapByName.keys()\" [ngValue]=\"type\">{{ type }}</option>\n        </select>\n      </div>\n      <div class=\"form-group\" *ngIf=\"selectedType\">\n        <label for=\"formats\">Formats</label>\n        <div class=\"form-inline\">\n          <div formArrayName=\"formats\" *ngFor=\"let format of form.get('formats').controls; let i = index;\">\n            <label class=\"checkbox-inline\" style=\"margin-right:25px\" for=\"format\">{{ selectedType.supportedFormats[i] }}&nbsp;\n              <input formControlName=\"format\" type=\"checkbox\">\n            </label>\n          </div>\n        </div>\n      </div>\n      <div class=\"form-group\">\n        <label for=\"dateDocument\">Document's Date</label>\n        <div class=\"input-group\">\n          <input formControlName=\"dateDocument\" class=\"form-control\" placeholder=\"yyyy-mm-dd\" name=\"dp\" ngbDatepicker #dp=\"ngbDatepicker\">\n          <div class=\"input-group-append\">\n            <button class=\"btn btn-outline-secondary calendar\" (click)=\"dp.toggle()\" type=\"button\"></button>\n          </div>\n        </div>\n      </div>\n      <button type=\"button\" class=\"btn btn-outline-secondary btn-sm\" (click)=\"addEmailInput()\" style=\"float:right\">\n        <span class=\"glyphicon glyphicon-plus\"></span>+\n      </button>\n      <div formArrayName=\"emailInputs\" *ngFor=\"let input of form.get('emailInputs').controls; let i = index;\">\n        <div [formGroupName]=\"i\">\n          <label for=\"email\">Email {{ i + 1 }} </label>\n          <input formControlName=\"email\" class=\"form-control\" style=\"margin-bottom: 6px\">\n        </div>\n      </div>\n    </form>\n  </div>\n  <div class=\"modal-footer\">\n    <button type=\"button\" class=\"btn btn-outline-dark\" (click)=\"onSubmit()\" [disabled]=\"! form.valid\">Notify</button>\n  </div>\n</div>"
+module.exports = "<div>\r\n  <div class=\"modal-header\">\r\n    <h3 class=\"modal-title\" id=\"modal-basic-title\">Order Notification Setting</h3>\r\n    <button type=\"button\" class=\"close\" aria-label=\"Close\" (click)=\"onClose()\">\r\n      <span aria-hidden=\"true\">&times;</span>\r\n    </button>\r\n  </div>\r\n  <div class=\"modal-body\">\r\n    <form [formGroup]=\"form\">\r\n      <div class=\"form-group\">\r\n        <label for=\"notifType\">Notification Type</label>\r\n        <select formControlName=\"docTypesSelect\" class=\"custom-select\" (change)=\"onChangeType($event)\" required>\r\n            <option *ngFor=\"let type of docTypesMapByName.keys()\" [ngValue]=\"type\">{{ type }}</option>\r\n        </select>\r\n      </div>\r\n      <div class=\"form-group\" *ngIf=\"selectedType\">\r\n        <label for=\"formats\">Formats</label>\r\n        <div class=\"form-inline\">\r\n          <div formArrayName=\"formats\" *ngFor=\"let format of form.get('formats').controls; let i = index;\">\r\n            <label class=\"checkbox-inline\" style=\"margin-right:25px\" for=\"format\">{{ selectedType.supportedFormats[i] }}&nbsp;\r\n              <input formControlName=\"format\" type=\"checkbox\">\r\n            </label>\r\n          </div>\r\n        </div>\r\n      </div>\r\n      <div class=\"form-group\">\r\n        <label for=\"dateDocument\">Document's Date</label>\r\n        <div class=\"input-group\">\r\n          <input formControlName=\"dateDocument\" class=\"form-control\" placeholder=\"yyyy-mm-dd\" name=\"dp\" ngbDatepicker #dp=\"ngbDatepicker\">\r\n          <div class=\"input-group-append\">\r\n            <button class=\"btn btn-outline-secondary calendar\" (click)=\"dp.toggle()\" type=\"button\"></button>\r\n          </div>\r\n        </div>\r\n      </div>\r\n      <button type=\"button\" class=\"btn btn-outline-secondary btn-sm\" (click)=\"addEmailInput()\" style=\"float:right\">\r\n        <span class=\"glyphicon glyphicon-plus\"></span>+\r\n      </button>\r\n      <div formArrayName=\"emailInputs\" *ngFor=\"let input of form.get('emailInputs').controls; let i = index;\">\r\n        <div [formGroupName]=\"i\">\r\n          <label for=\"email\">Email {{ i + 1 }} </label>\r\n          <input formControlName=\"email\" class=\"form-control\" style=\"margin-bottom: 6px\">\r\n        </div>\r\n      </div>\r\n    </form>\r\n  </div>\r\n  <div class=\"modal-footer\">\r\n    <button type=\"button\" class=\"btn btn-outline-dark\" (click)=\"onSubmit()\" [disabled]=\"! form.valid\">Notify</button>\r\n  </div>\r\n</div>"
 
 /***/ }),
 
@@ -1962,7 +1962,7 @@ var OrderNotificationModalComponent = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJzcmMvYXBwL21vZGFsL3Nob3ctb3JkZXItaXRlbXMtbW9kYWwvc2hvdy1vcmRlci1pdGVtcy1tb2RhbC5jb21wb25lbnQuY3NzIn0= */"
+module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJhcHAvbW9kYWwvc2hvdy1vcmRlci1pdGVtcy1tb2RhbC9zaG93LW9yZGVyLWl0ZW1zLW1vZGFsLmNvbXBvbmVudC5jc3MifQ== */"
 
 /***/ }),
 
@@ -1973,7 +1973,7 @@ module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"modal-header\">\n  <h5 class=\"modal-title\" id=\"modal-basic-title\">Order Items</h5>\n  <button type=\"button\" class=\"close\" aria-label=\"Close\" (click)=\"onClose()\">\n    <span aria-hidden=\"true\">&times;</span>\n  </button>\n</div>\n<div class=\"modal-body\">\n  <table class=\"table table-striped\">\n    <thead>\n      <tr>\n        <th>#</th>\n        <th>Id</th>\n        <th>Name</th>\n        <th>Price</th>\n        <th>Creation Date</th>\n        <th>Last Modified Date</th>\n        <th>BarCode</th>\n      </tr>\n    </thead>\n    <tbody>\n      <tr *ngFor=\"let item of orderItems; let i = index\">\n        <td>{{ i+1 }}</td>\n        <td>{{ item.productItem.id }}</td>\n        <td>{{ item.productItem.product.name }}</td>\n        <td>{{ item.productItem.product.price }} €</td>\n        <td>{{ item.createdDatetime }}</td>\n        <td>{{ item.lastModifiedDatetime }}</td>\n        <td>{{ item.productItem.barCode }}</td>\n      </tr>\n    </tbody>\n  </table>\n</div>\n<div class=\"modal-footer\">\n  <button class=\"btn btn-outline-dark\" (click)=\"onClose()\">Close</button>\n</div>"
+module.exports = "<div class=\"modal-header\">\r\n  <h5 class=\"modal-title\" id=\"modal-basic-title\">Order Items</h5>\r\n  <button type=\"button\" class=\"close\" aria-label=\"Close\" (click)=\"onClose()\">\r\n    <span aria-hidden=\"true\">&times;</span>\r\n  </button>\r\n</div>\r\n<div class=\"modal-body\">\r\n  <table class=\"table table-striped\">\r\n    <thead>\r\n      <tr>\r\n        <th>#</th>\r\n        <th>Id</th>\r\n        <th>Name</th>\r\n        <th>Price</th>\r\n        <th>Creation Date</th>\r\n        <th>Last Modified Date</th>\r\n        <th>BarCode</th>\r\n      </tr>\r\n    </thead>\r\n    <tbody>\r\n      <tr *ngFor=\"let item of orderItems; let i = index\">\r\n        <td>{{ i+1 }}</td>\r\n        <td>{{ item.productItem.id }}</td>\r\n        <td>{{ item.productItem.product.name }}</td>\r\n        <td>{{ item.productItem.product.price }} €</td>\r\n        <td>{{ item.createdDatetime }}</td>\r\n        <td>{{ item.lastModifiedDatetime }}</td>\r\n        <td>{{ item.productItem.barCode }}</td>\r\n      </tr>\r\n    </tbody>\r\n  </table>\r\n</div>\r\n<div class=\"modal-footer\">\r\n  <button class=\"btn btn-outline-dark\" (click)=\"onClose()\">Close</button>\r\n</div>"
 
 /***/ }),
 
@@ -2028,7 +2028,7 @@ var ShowOrderItemsModalComponent = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = ".my-custom-scrollbar {\n  position: relative;\n  height: 450px;\n  overflow: auto;\n}\n\n.table-wrapper-scroll-y {\n  display: block;\n}\n\n.drop-box {\n  cursor: pointer;\n  background: #F8F8F8;\n  border: 5px dashed #DDD;\n  text-align: center;\n  padding: 40px;\n}\n\n.drag-over-title {\n  display: none;\n}\n\n.drop-box.dragover {\n  opacity: 0.6;\n}\n\n.drop-box.dragover .drag-over-title {\n  display: block;\n}\n\n.drop-box.dragover .drag-in-title {\n  display: none;\n}\n\ninput[type='file'] {\n  display: none;\n}\n\np { display: inline }\n\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvbW9kYWwvdXBsb2FkLXByb2R1Y3QtZmlsZS1tb2RhbC91cGxvYWQtcHJvZHVjdC1maWxlLW1vZGFsLmNvbXBvbmVudC5jc3MiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUE7RUFDRSxrQkFBa0I7RUFDbEIsYUFBYTtFQUNiLGNBQWM7QUFDaEI7O0FBRUE7RUFDRSxjQUFjO0FBQ2hCOztBQUVBO0VBQ0UsZUFBZTtFQUNmLG1CQUFtQjtFQUNuQix1QkFBdUI7RUFDdkIsa0JBQWtCO0VBQ2xCLGFBQWE7QUFDZjs7QUFFQTtFQUNFLGFBQWE7QUFDZjs7QUFFQTtFQUNFLFlBQVk7QUFDZDs7QUFFQTtFQUNFLGNBQWM7QUFDaEI7O0FBRUE7RUFDRSxhQUFhO0FBQ2Y7O0FBRUE7RUFDRSxhQUFhO0FBQ2Y7O0FBRUEsSUFBSSxnQkFBZ0IiLCJmaWxlIjoic3JjL2FwcC9tb2RhbC91cGxvYWQtcHJvZHVjdC1maWxlLW1vZGFsL3VwbG9hZC1wcm9kdWN0LWZpbGUtbW9kYWwuY29tcG9uZW50LmNzcyIsInNvdXJjZXNDb250ZW50IjpbIi5teS1jdXN0b20tc2Nyb2xsYmFyIHtcbiAgcG9zaXRpb246IHJlbGF0aXZlO1xuICBoZWlnaHQ6IDQ1MHB4O1xuICBvdmVyZmxvdzogYXV0bztcbn1cblxuLnRhYmxlLXdyYXBwZXItc2Nyb2xsLXkge1xuICBkaXNwbGF5OiBibG9jaztcbn1cblxuLmRyb3AtYm94IHtcbiAgY3Vyc29yOiBwb2ludGVyO1xuICBiYWNrZ3JvdW5kOiAjRjhGOEY4O1xuICBib3JkZXI6IDVweCBkYXNoZWQgI0RERDtcbiAgdGV4dC1hbGlnbjogY2VudGVyO1xuICBwYWRkaW5nOiA0MHB4O1xufVxuICBcbi5kcmFnLW92ZXItdGl0bGUge1xuICBkaXNwbGF5OiBub25lO1xufVxuICBcbi5kcm9wLWJveC5kcmFnb3ZlciB7XG4gIG9wYWNpdHk6IDAuNjtcbn1cbiAgXG4uZHJvcC1ib3guZHJhZ292ZXIgLmRyYWctb3Zlci10aXRsZSB7XG4gIGRpc3BsYXk6IGJsb2NrO1xufVxuICBcbi5kcm9wLWJveC5kcmFnb3ZlciAuZHJhZy1pbi10aXRsZSB7XG4gIGRpc3BsYXk6IG5vbmU7XG59XG4gIFxuaW5wdXRbdHlwZT0nZmlsZSddIHtcbiAgZGlzcGxheTogbm9uZTtcbn1cblxucCB7IGRpc3BsYXk6IGlubGluZSB9XG4iXX0= */"
+module.exports = ".my-custom-scrollbar {\r\n  position: relative;\r\n  height: 450px;\r\n  overflow: auto;\r\n}\r\n\r\n.table-wrapper-scroll-y {\r\n  display: block;\r\n}\r\n\r\n.drop-box {\r\n  cursor: pointer;\r\n  background: #F8F8F8;\r\n  border: 5px dashed #DDD;\r\n  text-align: center;\r\n  padding: 40px;\r\n}\r\n\r\n.drag-over-title {\r\n  display: none;\r\n}\r\n\r\n.drop-box.dragover {\r\n  opacity: 0.6;\r\n}\r\n\r\n.drop-box.dragover .drag-over-title {\r\n  display: block;\r\n}\r\n\r\n.drop-box.dragover .drag-in-title {\r\n  display: none;\r\n}\r\n\r\ninput[type='file'] {\r\n  display: none;\r\n}\r\n\r\np { display: inline }\r\n\r\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbImFwcC9tb2RhbC91cGxvYWQtcHJvZHVjdC1maWxlLW1vZGFsL3VwbG9hZC1wcm9kdWN0LWZpbGUtbW9kYWwuY29tcG9uZW50LmNzcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQTtFQUNFLGtCQUFrQjtFQUNsQixhQUFhO0VBQ2IsY0FBYztBQUNoQjs7QUFFQTtFQUNFLGNBQWM7QUFDaEI7O0FBRUE7RUFDRSxlQUFlO0VBQ2YsbUJBQW1CO0VBQ25CLHVCQUF1QjtFQUN2QixrQkFBa0I7RUFDbEIsYUFBYTtBQUNmOztBQUVBO0VBQ0UsYUFBYTtBQUNmOztBQUVBO0VBQ0UsWUFBWTtBQUNkOztBQUVBO0VBQ0UsY0FBYztBQUNoQjs7QUFFQTtFQUNFLGFBQWE7QUFDZjs7QUFFQTtFQUNFLGFBQWE7QUFDZjs7QUFFQSxJQUFJLGdCQUFnQiIsImZpbGUiOiJhcHAvbW9kYWwvdXBsb2FkLXByb2R1Y3QtZmlsZS1tb2RhbC91cGxvYWQtcHJvZHVjdC1maWxlLW1vZGFsLmNvbXBvbmVudC5jc3MiLCJzb3VyY2VzQ29udGVudCI6WyIubXktY3VzdG9tLXNjcm9sbGJhciB7XHJcbiAgcG9zaXRpb246IHJlbGF0aXZlO1xyXG4gIGhlaWdodDogNDUwcHg7XHJcbiAgb3ZlcmZsb3c6IGF1dG87XHJcbn1cclxuXHJcbi50YWJsZS13cmFwcGVyLXNjcm9sbC15IHtcclxuICBkaXNwbGF5OiBibG9jaztcclxufVxyXG5cclxuLmRyb3AtYm94IHtcclxuICBjdXJzb3I6IHBvaW50ZXI7XHJcbiAgYmFja2dyb3VuZDogI0Y4RjhGODtcclxuICBib3JkZXI6IDVweCBkYXNoZWQgI0RERDtcclxuICB0ZXh0LWFsaWduOiBjZW50ZXI7XHJcbiAgcGFkZGluZzogNDBweDtcclxufVxyXG4gIFxyXG4uZHJhZy1vdmVyLXRpdGxlIHtcclxuICBkaXNwbGF5OiBub25lO1xyXG59XHJcbiAgXHJcbi5kcm9wLWJveC5kcmFnb3ZlciB7XHJcbiAgb3BhY2l0eTogMC42O1xyXG59XHJcbiAgXHJcbi5kcm9wLWJveC5kcmFnb3ZlciAuZHJhZy1vdmVyLXRpdGxlIHtcclxuICBkaXNwbGF5OiBibG9jaztcclxufVxyXG4gIFxyXG4uZHJvcC1ib3guZHJhZ292ZXIgLmRyYWctaW4tdGl0bGUge1xyXG4gIGRpc3BsYXk6IG5vbmU7XHJcbn1cclxuICBcclxuaW5wdXRbdHlwZT0nZmlsZSddIHtcclxuICBkaXNwbGF5OiBub25lO1xyXG59XHJcblxyXG5wIHsgZGlzcGxheTogaW5saW5lIH1cclxuIl19 */"
 
 /***/ }),
 
@@ -2039,7 +2039,7 @@ module.exports = ".my-custom-scrollbar {\n  position: relative;\n  height: 450px
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div>\n  <input #fileInput type=\"file\" ng2FileSelect [uploader]=\"uploader\"/>\n \n  <div class=\"drop-box\" ng2FileDrop\n       [ngClass]=\"{'dragover': isDropOver}\"\n       [uploader]=\"uploader\"\n       (fileOver)=\"fileOverAnother($event)\"\n       (click)=\"fileClicked()\">\n    <span class=\"drag-in-title\">Import or drag file here</span>\n    <span class=\"drag-over-title\">Drop the file</span>\n  </div>\n  <br>\n  <div *ngIf=\"result\">\n    <p>Rows in file : {{ result.rowsInFile }}</p>\n    <p> | </p>\n    <p>Rows Processed : {{ result.rowsProcessed }}</p>\n    <p> | </p>\n    <p>Total Product Items : {{ result.productItems.length }}</p>\n    <div class=\"table-wrapper-scroll-y my-custom-scrollbar\">\n      <table class=\"table table-sm table-striped\">\n        <thead>\n          <tr>\n            <th class=\"th-sm\">Name</th>\n            <th class=\"th-sm\">Price</th>\n            <th class=\"th-sm\">BarCode</th>\n          </tr>\n        </thead>\n        <tbody>\n          <tr *ngFor=\"let productItem of result.productItems\">\n            <td>{{ productItem.product.name }}</td>\n            <td>{{ productItem.product.price }} €</td>\n            <td>{{ productItem.barCode }}</td>\n          </tr>\n        </tbody>\n      </table>\n    </div>\n  </div>\n\n\n</div>\n"
+module.exports = "<div>\r\n  <input #fileInput type=\"file\" ng2FileSelect [uploader]=\"uploader\"/>\r\n \r\n  <div class=\"drop-box\" ng2FileDrop\r\n       [ngClass]=\"{'dragover': isDropOver}\"\r\n       [uploader]=\"uploader\"\r\n       (fileOver)=\"fileOverAnother($event)\"\r\n       (click)=\"fileClicked()\">\r\n    <span class=\"drag-in-title\">Import or drag file here</span>\r\n    <span class=\"drag-over-title\">Drop the file</span>\r\n  </div>\r\n  <br>\r\n  <div *ngIf=\"result\">\r\n    <p>Upload ID : {{ result.id }}</p>\r\n    <p> | </p>\r\n    <p>Rows in file : {{ result.rowsInFile }}</p>\r\n    <p> | </p>\r\n    <p>Rows Processed : {{ result.rowsProcessed }}</p>\r\n    <p> | </p>\r\n    <p>Total Product Items : {{ result.productItems.length }}</p>\r\n    <div class=\"table-wrapper-scroll-y my-custom-scrollbar\">\r\n      <table class=\"table table-sm table-striped\">\r\n        <thead>\r\n          <tr>\r\n            <th class=\"th-sm\">Name</th>\r\n            <th class=\"th-sm\">Price</th>\r\n            <th class=\"th-sm\">BarCode</th>\r\n          </tr>\r\n        </thead>\r\n        <tbody>\r\n          <tr *ngFor=\"let productItem of result.productItems\">\r\n            <td>{{ productItem.product.name }}</td>\r\n            <td>{{ productItem.product.price }} €</td>\r\n            <td>{{ productItem.barCode }}</td>\r\n          </tr>\r\n        </tbody>\r\n      </table>\r\n    </div>\r\n    <br>\r\n    <div class=\"row\" style=\"float:right\">\r\n      <div class=\"col-md-auto\">\r\n        <p>Are you sure you want to add the {{ result.productItems.length }} product items to the stock ?</p>\r\n      </div>\r\n      <div class=\"col col-lg-1\">\r\n        <button type=\"button\" class=\"btn btn-primary\" (click)=\"onClickYes()\">Yes</button>\r\n      </div>\r\n      <div class=\"col col-lg-1\">\r\n        <button type=\"button\" class=\"btn btn-secondary\" (click)=\"onClickNo()\">No</button>\r\n      </div>\r\n    </div>\r\n  </div>\r\n\r\n\r\n</div>\r\n"
 
 /***/ }),
 
@@ -2058,12 +2058,16 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var ng2_file_upload__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ng2-file-upload */ "./node_modules/ng2-file-upload/index.js");
 /* harmony import */ var ng2_file_upload__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(ng2_file_upload__WEBPACK_IMPORTED_MODULE_2__);
 /* harmony import */ var src_app_model_UploadProductsFileResult__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! src/app/model/UploadProductsFileResult */ "./src/app/model/UploadProductsFileResult.ts");
+/* harmony import */ var _service_product_service__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../service/product-service */ "./src/app/service/product-service.ts");
+
 
 
 
 
 var UploadProductFileModalComponent = /** @class */ (function () {
-    function UploadProductFileModalComponent() {
+    function UploadProductFileModalComponent(productService) {
+        this.productService = productService;
+        this.showConfirmUploadButton = false;
     }
     UploadProductFileModalComponent.prototype.ngOnInit = function () {
         var _this = this;
@@ -2078,16 +2082,31 @@ var UploadProductFileModalComponent = /** @class */ (function () {
     };
     UploadProductFileModalComponent.prototype.onSuccessItem = function (item, response, status, headers) {
         this.result = src_app_model_UploadProductsFileResult__WEBPACK_IMPORTED_MODULE_3__["UploadProductsFileResult"].fromJson(JSON.parse(response));
+        this.showConfirmUploadButton = true;
     };
     UploadProductFileModalComponent.prototype.onErrorItem = function (item, response, status, headers) {
         alert('Error : ' + JSON.stringify(response)); //error server response
+        this.showConfirmUploadButton = false;
     };
     UploadProductFileModalComponent.prototype.fileOverAnother = function (e) {
-        this.result = null;
+        this.reset();
         this.isDropOver = e;
     };
     UploadProductFileModalComponent.prototype.fileClicked = function () {
         this.fileInput.nativeElement.click();
+    };
+    UploadProductFileModalComponent.prototype.onClickYes = function () {
+        var _this = this;
+        alert('yes');
+        this.productService.confirmProductItemFileUpload(this.result.id).subscribe(function (data) {
+            _this.reset();
+        });
+    };
+    UploadProductFileModalComponent.prototype.onClickNo = function () {
+        alert('no');
+    };
+    UploadProductFileModalComponent.prototype.reset = function () {
+        this.result = null;
     };
     tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["ViewChild"])('fileInput'),
@@ -2098,7 +2117,8 @@ var UploadProductFileModalComponent = /** @class */ (function () {
             selector: 'upload-product-file-modal',
             template: __webpack_require__(/*! ./upload-product-file-modal.component.html */ "./src/app/modal/upload-product-file-modal/upload-product-file-modal.component.html"),
             styles: [__webpack_require__(/*! ./upload-product-file-modal.component.css */ "./src/app/modal/upload-product-file-modal/upload-product-file-modal.component.css")]
-        })
+        }),
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_service_product_service__WEBPACK_IMPORTED_MODULE_4__["ProductService"]])
     ], UploadProductFileModalComponent);
     return UploadProductFileModalComponent;
 }());
@@ -2459,7 +2479,7 @@ var ProductItem = /** @class */ (function () {
     ProductItem.fromJson = function (data) {
         var productItem = new ProductItem();
         productItem.id = data.id;
-        productItem.orderItemId = data.orderItemIdOpt;
+        productItem.orderItemId = data.orderItemId;
         productItem.product = _Product__WEBPACK_IMPORTED_MODULE_0__["Product"].fromJson(data.product);
         productItem.createdDatetime = data.createdDatetime;
         productItem.lastModifiedDatetime = data.lastModifiedDatetime;
@@ -2559,6 +2579,7 @@ var UploadProductsFileResult = /** @class */ (function () {
     }
     UploadProductsFileResult.fromJson = function (data) {
         var result = new UploadProductsFileResult();
+        result.id = data.id;
         result.rowsInFile = data.rowsInFile;
         result.rowsProcessed = data.rowsProcessed;
         var products = [];
@@ -2743,7 +2764,7 @@ var DeleteOrderItemsReq = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = ".table tr.active td {\n    background-color:#275e94 !important;\n    color: white;\n    font-weight: bold;\n    white-space: nowrap;\n  }\n\n.table table-striped tr td {\n  padding: 1.5%;\n}\n\n/* Scroll Bar Aggregated Order Item table */\n\n.my-custom-scrollbar {\n  position: relative;\n  max-height: 450px;\n  overflow: auto;\n}\n\n.table-wrapper-scroll-y {\n  display: block;\n}\n\n\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvb3JkZXItcGFuZWwvbGlzdC1vcmRlci1pdGVtL2xpc3Qtb3JkZXItaXRlbS5jb21wb25lbnQuY3NzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBO0lBQ0ksbUNBQW1DO0lBQ25DLFlBQVk7SUFDWixpQkFBaUI7SUFDakIsbUJBQW1CO0VBQ3JCOztBQUVGO0VBQ0UsYUFBYTtBQUNmOztBQUVBLDJDQUEyQzs7QUFDM0M7RUFDRSxrQkFBa0I7RUFDbEIsaUJBQWlCO0VBQ2pCLGNBQWM7QUFDaEI7O0FBRUE7RUFDRSxjQUFjO0FBQ2hCIiwiZmlsZSI6InNyYy9hcHAvb3JkZXItcGFuZWwvbGlzdC1vcmRlci1pdGVtL2xpc3Qtb3JkZXItaXRlbS5jb21wb25lbnQuY3NzIiwic291cmNlc0NvbnRlbnQiOlsiLnRhYmxlIHRyLmFjdGl2ZSB0ZCB7XG4gICAgYmFja2dyb3VuZC1jb2xvcjojMjc1ZTk0ICFpbXBvcnRhbnQ7XG4gICAgY29sb3I6IHdoaXRlO1xuICAgIGZvbnQtd2VpZ2h0OiBib2xkO1xuICAgIHdoaXRlLXNwYWNlOiBub3dyYXA7XG4gIH1cblxuLnRhYmxlIHRhYmxlLXN0cmlwZWQgdHIgdGQge1xuICBwYWRkaW5nOiAxLjUlO1xufVxuXG4vKiBTY3JvbGwgQmFyIEFnZ3JlZ2F0ZWQgT3JkZXIgSXRlbSB0YWJsZSAqL1xuLm15LWN1c3RvbS1zY3JvbGxiYXIge1xuICBwb3NpdGlvbjogcmVsYXRpdmU7XG4gIG1heC1oZWlnaHQ6IDQ1MHB4O1xuICBvdmVyZmxvdzogYXV0bztcbn1cblxuLnRhYmxlLXdyYXBwZXItc2Nyb2xsLXkge1xuICBkaXNwbGF5OiBibG9jaztcbn1cblxuIl19 */"
+module.exports = ".table tr.active td {\r\n    background-color:#275e94 !important;\r\n    color: white;\r\n    font-weight: bold;\r\n    white-space: nowrap;\r\n  }\r\n\r\n.table table-striped tr td {\r\n  padding: 1.5%;\r\n}\r\n\r\n/* Scroll Bar Aggregated Order Item table */\r\n\r\n.my-custom-scrollbar {\r\n  position: relative;\r\n  max-height: 450px;\r\n  overflow: auto;\r\n}\r\n\r\n.table-wrapper-scroll-y {\r\n  display: block;\r\n}\r\n\r\n\r\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbImFwcC9vcmRlci1wYW5lbC9saXN0LW9yZGVyLWl0ZW0vbGlzdC1vcmRlci1pdGVtLmNvbXBvbmVudC5jc3MiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUE7SUFDSSxtQ0FBbUM7SUFDbkMsWUFBWTtJQUNaLGlCQUFpQjtJQUNqQixtQkFBbUI7RUFDckI7O0FBRUY7RUFDRSxhQUFhO0FBQ2Y7O0FBRUEsMkNBQTJDOztBQUMzQztFQUNFLGtCQUFrQjtFQUNsQixpQkFBaUI7RUFDakIsY0FBYztBQUNoQjs7QUFFQTtFQUNFLGNBQWM7QUFDaEIiLCJmaWxlIjoiYXBwL29yZGVyLXBhbmVsL2xpc3Qtb3JkZXItaXRlbS9saXN0LW9yZGVyLWl0ZW0uY29tcG9uZW50LmNzcyIsInNvdXJjZXNDb250ZW50IjpbIi50YWJsZSB0ci5hY3RpdmUgdGQge1xyXG4gICAgYmFja2dyb3VuZC1jb2xvcjojMjc1ZTk0ICFpbXBvcnRhbnQ7XHJcbiAgICBjb2xvcjogd2hpdGU7XHJcbiAgICBmb250LXdlaWdodDogYm9sZDtcclxuICAgIHdoaXRlLXNwYWNlOiBub3dyYXA7XHJcbiAgfVxyXG5cclxuLnRhYmxlIHRhYmxlLXN0cmlwZWQgdHIgdGQge1xyXG4gIHBhZGRpbmc6IDEuNSU7XHJcbn1cclxuXHJcbi8qIFNjcm9sbCBCYXIgQWdncmVnYXRlZCBPcmRlciBJdGVtIHRhYmxlICovXHJcbi5teS1jdXN0b20tc2Nyb2xsYmFyIHtcclxuICBwb3NpdGlvbjogcmVsYXRpdmU7XHJcbiAgbWF4LWhlaWdodDogNDUwcHg7XHJcbiAgb3ZlcmZsb3c6IGF1dG87XHJcbn1cclxuXHJcbi50YWJsZS13cmFwcGVyLXNjcm9sbC15IHtcclxuICBkaXNwbGF5OiBibG9jaztcclxufVxyXG5cclxuIl19 */"
 
 /***/ }),
 
@@ -2754,7 +2775,7 @@ module.exports = ".table tr.active td {\n    background-color:#275e94 !important
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"table-responsive table-wrapper-scroll-y my-custom-scrollbar\">\n  <table class=\"table table-striped table-hover\">\n    <thead>\n      <tr>\n        <th>#</th>\n        <th>Name</th>\n        <th>Price</th>\n        <th>Qty</th>\n        <th>Total Price</th>\n        <th>Last Modified Date</th>\n        <th></th>\n      </tr>\n    </thead>\n    <tbody>\n      <tr *ngFor=\"let item of orderItems | filter : 'name' : searchString; let i = index\"\n      (click)=\"setSelectedRow(i); onClickShowSelectedOrderItems(item.orderItems)\"\n        [class.active]=\"i == selectedRow\">\n        <td>{{ i+1 }}</td>\n        <td>{{ item.product.name }}</td>\n        <td>{{ item.product.price }} €</td>\n        <td\n          contenteditable=\"order.status !== 'CLOSED'\"\n          (blur)=\"onChangeOrderItemQuantity(item, $event)\">\n          {{ item.quantity }}\n        </td>\n        <td>{{ item.ttlPrice }} €</td>\n        <td>{{ item.lastModifiedDatetime | date:'medium' }}</td>\n        <td>\n          <button *ngIf=\"order.status !== 'CLOSED'\"\n          (click)=\"onClickDeleteOrderItemButton(i, item.orderItems)\"\n          [disabled]=\"deleteOrderItemInProgressArray[i]\"\n          class=\"btn btn-danger btn-sm\">\n              <span *ngIf=\"deleteOrderItemInProgressArray[i]\" class=\"spinner-border spinner-border-sm\" role=\"status\" aria-hidden=\"true\"></span>\n            Delete</button>\n        </td>\n      </tr>\n    </tbody>\n  </table>\n</div>\n<br>\n<selected-order-items-list\n  [selectedOrderItems]=\"selectedOrderItems\"\n  [order]=\"order\"\n  (onDeleteOrderItemEvent)=\"deleteSingleOrderItem($event)\"\n></selected-order-items-list>\n"
+module.exports = "<div class=\"table-responsive table-wrapper-scroll-y my-custom-scrollbar\">\r\n  <table class=\"table table-striped table-hover\">\r\n    <thead>\r\n      <tr>\r\n        <th>#</th>\r\n        <th>Name</th>\r\n        <th>Price</th>\r\n        <th>Qty</th>\r\n        <th>Total Price</th>\r\n        <th>Last Modified Date</th>\r\n        <th></th>\r\n      </tr>\r\n    </thead>\r\n    <tbody>\r\n      <tr *ngFor=\"let item of orderItems | filter : 'name' : searchString; let i = index\"\r\n      (click)=\"setSelectedRow(i); onClickShowSelectedOrderItems(item.orderItems)\"\r\n        [class.active]=\"i == selectedRow\">\r\n        <td>{{ i+1 }}</td>\r\n        <td>{{ item.product.name }}</td>\r\n        <td>{{ item.product.price }} €</td>\r\n        <td\r\n          contenteditable=\"order.status !== 'CLOSED'\"\r\n          (blur)=\"onChangeOrderItemQuantity(item, $event)\">\r\n          {{ item.quantity }}\r\n        </td>\r\n        <td>{{ item.ttlPrice }} €</td>\r\n        <td>{{ item.lastModifiedDatetime | date:'medium' }}</td>\r\n        <td>\r\n          <button *ngIf=\"order.status !== 'CLOSED'\"\r\n          (click)=\"onClickDeleteOrderItemButton(i, item.orderItems)\"\r\n          [disabled]=\"deleteOrderItemInProgressArray[i]\"\r\n          class=\"btn btn-danger btn-sm\">\r\n              <span *ngIf=\"deleteOrderItemInProgressArray[i]\" class=\"spinner-border spinner-border-sm\" role=\"status\" aria-hidden=\"true\"></span>\r\n            Delete</button>\r\n        </td>\r\n      </tr>\r\n    </tbody>\r\n  </table>\r\n</div>\r\n<br>\r\n<selected-order-items-list\r\n  [selectedOrderItems]=\"selectedOrderItems\"\r\n  [order]=\"order\"\r\n  (onDeleteOrderItemEvent)=\"deleteSingleOrderItem($event)\"\r\n></selected-order-items-list>\r\n"
 
 /***/ }),
 
@@ -2926,7 +2947,7 @@ var ListOrderItemComponent = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "/* Scroll Bar Aggregated Order Item table */\n.my-custom-scrollbar {\n    position: relative;\n    max-height: 200px;\n    overflow: auto;\n  }\n.table-wrapper-scroll-y {\n    display: block;\n  }\n  \n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvb3JkZXItcGFuZWwvc2VsZWN0ZWQtb3JkZXItaXRlbXMtbGlzdC9zZWxlY3RlZC1vcmRlci1pdGVtcy1saXN0LmNvbXBvbmVudC5jc3MiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUEsMkNBQTJDO0FBQzNDO0lBQ0ksa0JBQWtCO0lBQ2xCLGlCQUFpQjtJQUNqQixjQUFjO0VBQ2hCO0FBRUE7SUFDRSxjQUFjO0VBQ2hCIiwiZmlsZSI6InNyYy9hcHAvb3JkZXItcGFuZWwvc2VsZWN0ZWQtb3JkZXItaXRlbXMtbGlzdC9zZWxlY3RlZC1vcmRlci1pdGVtcy1saXN0LmNvbXBvbmVudC5jc3MiLCJzb3VyY2VzQ29udGVudCI6WyIvKiBTY3JvbGwgQmFyIEFnZ3JlZ2F0ZWQgT3JkZXIgSXRlbSB0YWJsZSAqL1xuLm15LWN1c3RvbS1zY3JvbGxiYXIge1xuICAgIHBvc2l0aW9uOiByZWxhdGl2ZTtcbiAgICBtYXgtaGVpZ2h0OiAyMDBweDtcbiAgICBvdmVyZmxvdzogYXV0bztcbiAgfVxuICBcbiAgLnRhYmxlLXdyYXBwZXItc2Nyb2xsLXkge1xuICAgIGRpc3BsYXk6IGJsb2NrO1xuICB9XG4gICJdfQ== */"
+module.exports = "/* Scroll Bar Aggregated Order Item table */\r\n.my-custom-scrollbar {\r\n    position: relative;\r\n    max-height: 200px;\r\n    overflow: auto;\r\n  }\r\n.table-wrapper-scroll-y {\r\n    display: block;\r\n  }\r\n  \r\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbImFwcC9vcmRlci1wYW5lbC9zZWxlY3RlZC1vcmRlci1pdGVtcy1saXN0L3NlbGVjdGVkLW9yZGVyLWl0ZW1zLWxpc3QuY29tcG9uZW50LmNzcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQSwyQ0FBMkM7QUFDM0M7SUFDSSxrQkFBa0I7SUFDbEIsaUJBQWlCO0lBQ2pCLGNBQWM7RUFDaEI7QUFFQTtJQUNFLGNBQWM7RUFDaEIiLCJmaWxlIjoiYXBwL29yZGVyLXBhbmVsL3NlbGVjdGVkLW9yZGVyLWl0ZW1zLWxpc3Qvc2VsZWN0ZWQtb3JkZXItaXRlbXMtbGlzdC5jb21wb25lbnQuY3NzIiwic291cmNlc0NvbnRlbnQiOlsiLyogU2Nyb2xsIEJhciBBZ2dyZWdhdGVkIE9yZGVyIEl0ZW0gdGFibGUgKi9cclxuLm15LWN1c3RvbS1zY3JvbGxiYXIge1xyXG4gICAgcG9zaXRpb246IHJlbGF0aXZlO1xyXG4gICAgbWF4LWhlaWdodDogMjAwcHg7XHJcbiAgICBvdmVyZmxvdzogYXV0bztcclxuICB9XHJcbiAgXHJcbiAgLnRhYmxlLXdyYXBwZXItc2Nyb2xsLXkge1xyXG4gICAgZGlzcGxheTogYmxvY2s7XHJcbiAgfVxyXG4gICJdfQ== */"
 
 /***/ }),
 
@@ -2937,7 +2958,7 @@ module.exports = "/* Scroll Bar Aggregated Order Item table */\n.my-custom-scrol
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"table-responsive table-wrapper-scroll-y my-custom-scrollbar\">\n  <table class=\"table table-striped table-hover table-sm\">\n    <thead>\n      <tr>\n        <th>#</th>\n        <th>Id</th>\n        <th>BarCode</th>\n        <th>Created Date</th>\n        <th>Last Modified Date</th>\n        <th></th>\n      </tr>\n    </thead>\n    <tbody>\n      <tr *ngFor=\"let item of selectedOrderItems.values(); let i = index\">\n        <td>{{ i+1 }}</td>\n        <td>{{ item.productItem.id }}</td>\n        <td>{{ item.productItem.barCode }}</td>\n        <td>{{ item.createdDatetime }}</td>\n        <td>{{ item.lastModifiedDatetime }}</td>\n        <td>\n          <button\n          (click)=\"onClickDeleteOrderItemButton(i, item)\"\n          [disabled]=\"deleteOrderItemInProgressArray[i]\"\n          class=\"btn btn-danger btn-sm\">\n          <span *ngIf=\"deleteOrderItemInProgressArray[i]\" class=\"spinner-border spinner-border-sm\" role=\"status\" aria-hidden=\"true\"></span>\n            Delete</button>\n        </td>\n      </tr>\n    </tbody>\n  </table>\n</div>"
+module.exports = "<div class=\"table-responsive table-wrapper-scroll-y my-custom-scrollbar\">\r\n  <table class=\"table table-striped table-hover table-sm\">\r\n    <thead>\r\n      <tr>\r\n        <th>#</th>\r\n        <th>Id</th>\r\n        <th>BarCode</th>\r\n        <th>Created Date</th>\r\n        <th>Last Modified Date</th>\r\n        <th></th>\r\n      </tr>\r\n    </thead>\r\n    <tbody>\r\n      <tr *ngFor=\"let item of selectedOrderItems.values(); let i = index\">\r\n        <td>{{ i+1 }}</td>\r\n        <td>{{ item.productItem.id }}</td>\r\n        <td>{{ item.productItem.barCode }}</td>\r\n        <td>{{ item.createdDatetime }}</td>\r\n        <td>{{ item.lastModifiedDatetime }}</td>\r\n        <td>\r\n          <button\r\n          (click)=\"onClickDeleteOrderItemButton(i, item)\"\r\n          [disabled]=\"deleteOrderItemInProgressArray[i]\"\r\n          class=\"btn btn-danger btn-sm\">\r\n          <span *ngIf=\"deleteOrderItemInProgressArray[i]\" class=\"spinner-border spinner-border-sm\" role=\"status\" aria-hidden=\"true\"></span>\r\n            Delete</button>\r\n        </td>\r\n      </tr>\r\n    </tbody>\r\n  </table>\r\n</div>"
 
 /***/ }),
 
@@ -3052,7 +3073,7 @@ var SelectedOrderItemsListComponent = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJzcmMvYXBwL29yZGVyLXBhbmVsL3Nob3ctb3JkZXItaGVhZGVyL3Nob3ctb3JkZXItaGVhZGVyLmNvbXBvbmVudC5jc3MifQ== */"
+module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJhcHAvb3JkZXItcGFuZWwvc2hvdy1vcmRlci1oZWFkZXIvc2hvdy1vcmRlci1oZWFkZXIuY29tcG9uZW50LmNzcyJ9 */"
 
 /***/ }),
 
@@ -3063,7 +3084,7 @@ module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"container-fluid\" style=\"border-bottom: 1px solid black\">\n  <div class=\"row\">\n    <div class=\"col\">\n      <h5>{{ order.name }}</h5>\n    </div>\n    <div class=\"col\">\n      <p>Comment : {{ order.comment }}</p>\n    </div>\n    <div class=\"col\">\n      <div style=\"overflow: hidden;\">\n        <p style=\"float: left\">Customer : &nbsp;</p>\n        <p style=\"float: left; font-weight: bold\"> {{ order.customer.store.name }}</p>\n      </div>\n    </div>\n    <div class=\"col\">\n      <div style=\"overflow: hidden;\">\n        <p style=\"float: left;\">Status :&nbsp;</p>\n        <p style=\"float: left; font-weight: bold\"> {{ order.status }}</p>\n      </div>\n    </div>\n  </div>\n  <div class=\"row\">\n    <div class=\"col\">\n      <div class=\"row justify-content-between\">\n          <div class=\"col-4\">\n              <button\n                class=\"btn btn-outline-primary\"\n                (click)=\"onClickAddOrderItem()\"\n                [disabled]=\"order.status === 'CLOSED'\"\n              >Add Order Item</button>\n          </div>\n          <div class=\"col-4\">\n              <button\n                style=\"float: right\"\n                class=\"btn btn-outline-info\"\n                (click)=\"onClickCloseOrder()\"\n                [disabled]=\"order.status === 'CLOSED'\"\n              >Close the order</button>\n          </div>\n      </div>\n    </div>\n  </div>    \n  <br>\n</div>"
+module.exports = "<div class=\"container-fluid\" style=\"border-bottom: 1px solid black\">\r\n  <div class=\"row\">\r\n    <div class=\"col\">\r\n      <h5>{{ order.name }}</h5>\r\n    </div>\r\n    <div class=\"col\">\r\n      <p>Comment : {{ order.comment }}</p>\r\n    </div>\r\n    <div class=\"col\">\r\n      <div style=\"overflow: hidden;\">\r\n        <p style=\"float: left\">Customer : &nbsp;</p>\r\n        <p style=\"float: left; font-weight: bold\"> {{ order.customer.store.name }}</p>\r\n      </div>\r\n    </div>\r\n    <div class=\"col\">\r\n      <div style=\"overflow: hidden;\">\r\n        <p style=\"float: left;\">Status :&nbsp;</p>\r\n        <p style=\"float: left; font-weight: bold\"> {{ order.status }}</p>\r\n      </div>\r\n    </div>\r\n  </div>\r\n  <div class=\"row\">\r\n    <div class=\"col\">\r\n      <div class=\"row justify-content-between\">\r\n          <div class=\"col-4\">\r\n              <button\r\n                class=\"btn btn-outline-primary\"\r\n                (click)=\"onClickAddOrderItem()\"\r\n                [disabled]=\"order.status === 'CLOSED'\"\r\n              >Add Order Item</button>\r\n          </div>\r\n          <div class=\"col-4\">\r\n              <button\r\n                style=\"float: right\"\r\n                class=\"btn btn-outline-info\"\r\n                (click)=\"onClickCloseOrder()\"\r\n                [disabled]=\"order.status === 'CLOSED'\"\r\n              >Close the order</button>\r\n          </div>\r\n      </div>\r\n    </div>\r\n  </div>    \r\n  <br>\r\n</div>"
 
 /***/ }),
 
@@ -3158,7 +3179,7 @@ var OrderHeaderComponent = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJzcmMvYXBwL29yZGVyLXBhbmVsL3Nob3ctb3JkZXIvc2hvdy1vcmRlci5jb21wb25lbnQuY3NzIn0= */"
+module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJhcHAvb3JkZXItcGFuZWwvc2hvdy1vcmRlci9zaG93LW9yZGVyLmNvbXBvbmVudC5jc3MifQ== */"
 
 /***/ }),
 
@@ -3169,7 +3190,7 @@ module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div>\n  <show-order-header\n    [order]=\"order\"\n    (onCloseOrderEvent)=\"onCloseOrder()\"\n    (onAddOrderItemEvent)=\"onOrderItemAdded()\"\n  ></show-order-header>\n  <list-order-item *ngIf=\"order\"\n    [order]=\"order\"\n    [orderItems]=\"order.aggregatedOrderItems.values()\"\n    (onCreateOrderItemEvent)=\"onNewOrderItem($event)\"\n    (onChangeOrderItemEvent)=\"onChangeOrderItem($event)\"\n    (onDeleteOrderItemEvent)=\"onDeleteOrderItem($event)\"\n  ></list-order-item>\n  <div class=\"container=fluid\">\n    <button class=\"btn btn-primary\"\n        (click)=\"onClickBack()\"\n        style=\"float: right\"\n    >Back</button>\n</div>\n</div>"
+module.exports = "<div>\r\n  <show-order-header\r\n    [order]=\"order\"\r\n    (onCloseOrderEvent)=\"onCloseOrder()\"\r\n    (onAddOrderItemEvent)=\"onOrderItemAdded()\"\r\n  ></show-order-header>\r\n  <list-order-item *ngIf=\"order\"\r\n    [order]=\"order\"\r\n    [orderItems]=\"order.aggregatedOrderItems.values()\"\r\n    (onCreateOrderItemEvent)=\"onNewOrderItem($event)\"\r\n    (onChangeOrderItemEvent)=\"onChangeOrderItem($event)\"\r\n    (onDeleteOrderItemEvent)=\"onDeleteOrderItem($event)\"\r\n  ></list-order-item>\r\n  <div class=\"container=fluid\">\r\n    <button class=\"btn btn-primary\"\r\n        (click)=\"onClickBack()\"\r\n        style=\"float: right\"\r\n    >Back</button>\r\n</div>\r\n</div>"
 
 /***/ }),
 
@@ -3248,7 +3269,7 @@ var ShowOrderComponent = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJzcmMvYXBwL29yZGVycy1tYW5hZ2VyLXBhbmVsL2xpc3Qtb3JkZXJzL2xpc3Qtb3JkZXJzLmNvbXBvbmVudC5jc3MifQ== */"
+module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJhcHAvb3JkZXJzLW1hbmFnZXItcGFuZWwvbGlzdC1vcmRlcnMvbGlzdC1vcmRlcnMuY29tcG9uZW50LmNzcyJ9 */"
 
 /***/ }),
 
@@ -3259,7 +3280,7 @@ module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"table-responsive\">\n    <table class=\"table table-striped\">\n        <thead>\n            <tr>\n                <th>ID</th>\n                <th>Name</th>\n                <th>Store</th>\n                <th>Status</th>\n                <th>Total Product</th>\n                <th>Total Qty</th>\n                <th>Total Price</th>\n                <th>Creation Date</th>\n                <th>Last Modified Date</th>\n                <th>Close Date</th>\n                <th></th>\n                <th></th>\n            </tr>\n        </thead>\n        <tbody>\n            <tr *ngFor=\"let order of ordersArray\">\n                <td>{{ order.id }}</td>\n                <td>{{ order.name }}</td>\n                <td>{{ order.customer.store.name }}</td>\n                <td>{{ order.status }}</td>\n                <td>{{ order.aggregatedOrderInfo.productSize }}</td>\n                <td>{{ order.aggregatedOrderInfo.orderItemSize }}</td>\n                <td>{{ order.aggregatedOrderInfo.totalPrice }} €</td>\n                <td>{{ order.createdDatetime  | date:'medium' }}</td>\n                <td>{{ order.lastModifiedDatetime  | date:'medium' }}</td>\n                <td>{{ order.closeDatetime  | date:'medium' }}</td>\n                <td><button\n                    class=\"btn btn-success\"\n                    [routerLink]=\"['/order', order.id]\"\n                    >See</button>\n                </td>\n                <td><button\n                    *ngIf=\"order.status !== 'CLOSED'\"\n                    class=\"btn btn-info\"\n                    (click)=\"onClickCloseOrder(order)\"\n                    >Close Order</button>\n                    <button\n                        *ngIf=\"order.status === 'CLOSED'\"\n                        class=\"btn btn-primary\"\n                        (click)=\"onClickNotify(order)\"\n                    >Notify</button>\n                </td>\n            </tr>\n        </tbody>\n    </table>\n</div>\n<div class=\"row justify-content-between\">\n    <div class=\"col-4\">\n        <ngb-pagination [collectionSize]=\"collectionSize\" [(page)]=\"page\" [pageSize]=\"pageSize\"></ngb-pagination>\n    </div>\n    <div class=\"col-2\">\n        <select class=\"custom-select\" [(ngModel)]=\"pageSize\">\n            <option [ngValue]=\"5\">5 items per page</option>\n            <option [ngValue]=\"10\">10 items per page</option>\n            <option [ngValue]=\"20\">20 items per page</option>\n        </select>\n    </div>\n</div>\n"
+module.exports = "<div class=\"table-responsive\">\r\n    <table class=\"table table-striped\">\r\n        <thead>\r\n            <tr>\r\n                <th>ID</th>\r\n                <th>Name</th>\r\n                <th>Store</th>\r\n                <th>Status</th>\r\n                <th>Total Product</th>\r\n                <th>Total Qty</th>\r\n                <th>Total Price</th>\r\n                <th>Creation Date</th>\r\n                <th>Last Modified Date</th>\r\n                <th>Close Date</th>\r\n                <th></th>\r\n                <th></th>\r\n            </tr>\r\n        </thead>\r\n        <tbody>\r\n            <tr *ngFor=\"let order of ordersArray\">\r\n                <td>{{ order.id }}</td>\r\n                <td>{{ order.name }}</td>\r\n                <td>{{ order.customer.store.name }}</td>\r\n                <td>{{ order.status }}</td>\r\n                <td>{{ order.aggregatedOrderInfo.productSize }}</td>\r\n                <td>{{ order.aggregatedOrderInfo.orderItemSize }}</td>\r\n                <td>{{ order.aggregatedOrderInfo.totalPrice }} €</td>\r\n                <td>{{ order.createdDatetime  | date:'medium' }}</td>\r\n                <td>{{ order.lastModifiedDatetime  | date:'medium' }}</td>\r\n                <td>{{ order.closeDatetime  | date:'medium' }}</td>\r\n                <td><button\r\n                    class=\"btn btn-success\"\r\n                    [routerLink]=\"['/order', order.id]\"\r\n                    >See</button>\r\n                </td>\r\n                <td><button\r\n                    *ngIf=\"order.status !== 'CLOSED'\"\r\n                    class=\"btn btn-info\"\r\n                    (click)=\"onClickCloseOrder(order)\"\r\n                    >Close Order</button>\r\n                    <button\r\n                        *ngIf=\"order.status === 'CLOSED'\"\r\n                        class=\"btn btn-primary\"\r\n                        (click)=\"onClickNotify(order)\"\r\n                    >Notify</button>\r\n                </td>\r\n            </tr>\r\n        </tbody>\r\n    </table>\r\n</div>\r\n<div class=\"row justify-content-between\">\r\n    <div class=\"col-4\">\r\n        <ngb-pagination [collectionSize]=\"collectionSize\" [(page)]=\"page\" [pageSize]=\"pageSize\"></ngb-pagination>\r\n    </div>\r\n    <div class=\"col-2\">\r\n        <select class=\"custom-select\" [(ngModel)]=\"pageSize\">\r\n            <option [ngValue]=\"5\">5 items per page</option>\r\n            <option [ngValue]=\"10\">10 items per page</option>\r\n            <option [ngValue]=\"20\">20 items per page</option>\r\n        </select>\r\n    </div>\r\n</div>\r\n"
 
 /***/ }),
 
@@ -3353,7 +3374,7 @@ var ListOrdersComponent = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJzcmMvYXBwL29yZGVycy1tYW5hZ2VyLXBhbmVsL29yZGVycy1tYW5hZ2VyL29yZGVycy1tYW5hZ2VyLmNvbXBvbmVudC5jc3MifQ== */"
+module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJhcHAvb3JkZXJzLW1hbmFnZXItcGFuZWwvb3JkZXJzLW1hbmFnZXIvb3JkZXJzLW1hbmFnZXIuY29tcG9uZW50LmNzcyJ9 */"
 
 /***/ }),
 
@@ -3364,7 +3385,7 @@ module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"container-fluid\">\n    <div class=\"row justify-content-between\">\n        <div class=\"col-4\">\n            <button class=\"btn btn-primary\"\n                (click)=\"openCreateReportModal()\"\n            >New Order</button>\n        </div>\n        <div class=\"col-6\">\n            <div class=\"row justify-content-end\">\n                <div class=\"col-6\">\n                    <input #searchString type=\"search\"\n                        class=\"form-control\"\n                        (keyup.enter)=\"onClickSearch(searchString.value)\"\n                        placeholder=\"Type to search order...\">\n                </div>\n                <div class=\"col-4\">\n                    <button\n                        [disabled]=\"searchButtonDisabled\"\n                        class=\"btn btn-info search_button\"\n                        (click)=\"onClickSearch(searchString.value)\"\n                    >Search</button>\n                </div>\n            </div>\n        </div>\n    </div>\n    <br>\n    <h3 style=\"color: dimgray\" *ngIf=\"orders.length == 0\">{{ noOrdersFoundMessage }}</h3>\n    <div *ngIf=\"orders.length > 0\">\n        <list-orders\n            [orders]=\"orders\"\n        ></list-orders>\n    </div>\n</div>"
+module.exports = "<div class=\"container-fluid\">\r\n    <div class=\"row justify-content-between\">\r\n        <div class=\"col-4\">\r\n            <button class=\"btn btn-primary\"\r\n                (click)=\"openCreateReportModal()\"\r\n            >New Order</button>\r\n        </div>\r\n        <div class=\"col-6\">\r\n            <div class=\"row justify-content-end\">\r\n                <div class=\"col-6\">\r\n                    <input #searchString type=\"search\"\r\n                        class=\"form-control\"\r\n                        (keyup.enter)=\"onClickSearch(searchString.value)\"\r\n                        placeholder=\"Type to search order...\">\r\n                </div>\r\n                <div class=\"col-4\">\r\n                    <button\r\n                        [disabled]=\"searchButtonDisabled\"\r\n                        class=\"btn btn-info search_button\"\r\n                        (click)=\"onClickSearch(searchString.value)\"\r\n                    >Search</button>\r\n                </div>\r\n            </div>\r\n        </div>\r\n    </div>\r\n    <br>\r\n    <h3 style=\"color: dimgray\" *ngIf=\"orders.length == 0\">{{ noOrdersFoundMessage }}</h3>\r\n    <div *ngIf=\"orders.length > 0\">\r\n        <list-orders\r\n            [orders]=\"orders\"\r\n        ></list-orders>\r\n    </div>\r\n</div>"
 
 /***/ }),
 
@@ -3467,7 +3488,7 @@ var OrdersManagerComponent = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJzcmMvYXBwL3Byb2R1Y3QvcHJvZHVjdHMtcGFuZWwvcHJvZHVjdHMtcGFuZWwuY29tcG9uZW50LmNzcyJ9 */"
+module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJhcHAvcHJvZHVjdC9wcm9kdWN0cy1wYW5lbC9wcm9kdWN0cy1wYW5lbC5jb21wb25lbnQuY3NzIn0= */"
 
 /***/ }),
 
@@ -3478,7 +3499,7 @@ module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"container\">\n  <upload-product-file-modal></upload-product-file-modal>\n</div>"
+module.exports = "<div class=\"container\">\r\n  <upload-product-file-modal></upload-product-file-modal>\r\n</div>"
 
 /***/ }),
 
@@ -3639,6 +3660,9 @@ var HttpService = /** @class */ (function () {
     };
     HttpService.prototype.delete = function (url) {
         return this.http.delete(url, this.getHeaders());
+    };
+    HttpService.prototype.put = function (url) {
+        return this.http.put(url, this.getHeaders());
     };
     HttpService.prototype.getHeaders = function () {
         var httpHeaders = new _angular_common_http__WEBPACK_IMPORTED_MODULE_1__["HttpHeaders"]()
@@ -3810,6 +3834,9 @@ var ProductService = /** @class */ (function () {
     ProductService.prototype.getProductItemByBarCode = function (barCode) {
         return this.http.get("/v1/stock/productItemByBarCode/" + barCode);
     };
+    ProductService.prototype.confirmProductItemFileUpload = function (uploadId) {
+        return this.http.put("/v1/productItemFileUpload/upload-confirm/" + uploadId);
+    };
     ProductService = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Injectable"])(),
         tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_http_service__WEBPACK_IMPORTED_MODULE_2__["HttpService"]])
@@ -3972,7 +3999,7 @@ Object(_angular_platform_browser_dynamic__WEBPACK_IMPORTED_MODULE_1__["platformB
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! /home/yoni/Documents/projects/andybrook/andybrook-ui/src/main.ts */"./src/main.ts");
+module.exports = __webpack_require__(/*! C:\Users\Yoni Touitou\Documents\projects\Andybrook\andybrook-ui\src\main.ts */"./src/main.ts");
 
 
 /***/ })

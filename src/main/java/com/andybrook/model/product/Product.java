@@ -1,13 +1,12 @@
 package com.andybrook.model.product;
 
 import com.andybrook.enums.ProductType;
-import com.andybrook.model.BarCode;
+import com.andybrook.serialization.jackson.custom.ProductDeserializer;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 
-import java.util.HashMap;
-import java.util.Map;
 import java.util.Objects;
-import java.util.Optional;
 
+@JsonDeserialize(using = ProductDeserializer.class)
 public abstract class Product {
 
     protected Long id;
@@ -16,7 +15,7 @@ public abstract class Product {
 
     public abstract ProductType getType();
 
-    private Product() {
+    protected Product() {
     }
 
     public Product(Long id, String name, double price) {

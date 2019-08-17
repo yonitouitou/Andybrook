@@ -11,6 +11,8 @@
   </div>
   <br>
   <div *ngIf="result">
+    <p>Upload ID : {{ result.id }}</p>
+    <p> | </p>
     <p>Rows in file : {{ result.rowsInFile }}</p>
     <p> | </p>
     <p>Rows Processed : {{ result.rowsProcessed }}</p>
@@ -33,6 +35,18 @@
           </tr>
         </tbody>
       </table>
+    </div>
+    <br>
+    <div class="row" style="float:right">
+      <div class="col-md-auto">
+        <p>Are you sure you want to add the {{ result.productItems.length }} product items to the stock ?</p>
+      </div>
+      <div class="col col-lg-1">
+        <button type="button" class="btn btn-primary" (click)="onClickYes()">Yes</button>
+      </div>
+      <div class="col col-lg-1">
+        <button type="button" class="btn btn-secondary" (click)="onClickNo()">No</button>
+      </div>
     </div>
   </div>
 

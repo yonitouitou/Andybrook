@@ -57,7 +57,7 @@ public class OrderServiceTest {
         product = productService.addProduct(product);
         List<ProductItem> productItems = ProductItemGenerator.generateProductItem(product, PRODUCT_QUANTITY);
         for (ProductItem item : productItems) {
-            stockService.addProductItem(item);
+            stockService.addProductItem(item, false);
         }
         productItemInfo = OrderItemGenerator.generateOrderItemInfo(product, PRODUCT_QUANTITY -1);
     }

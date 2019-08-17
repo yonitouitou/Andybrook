@@ -22,8 +22,12 @@ public class StockService implements IStockService {
     private IProductItemService productItemService;
 
     @Override
-    public void addProductItem(ProductItem productItem) {
-        Product product = productService.get(productItem.getProduct().getId());
+    public void addProductItem(ProductItem productItem, boolean addProductIfNotExist) {
+        long productId = productItem.getProductId();
+        boolean productExist = productService.isExist(productId);
+        Product product = productExist || ! addProductIfNotExist
+                ? productService.get(productId)
+                : productService.addProduct(productItem.getProduct());
         productItemService.add(productItem);
         productStockInfoService.incrementQuantityCreated(product.getId());
     }

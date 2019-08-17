@@ -5,4 +5,6 @@ import com.andybrook.model.api.StockItemsFileUpload;
 public interface IStockItemsFileUploadDao {
 
     String saveProductFileUpload(StockItemsFileUpload upload);
+
+    StockItemsFileUpload getById(String uploadId);
 }

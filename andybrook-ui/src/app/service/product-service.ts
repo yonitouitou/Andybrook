@@ -24,4 +24,8 @@ export class ProductService {
     getProductItemByBarCode(barCode: string): Observable<Product> {
         return this.http.get("/v1/stock/productItemByBarCode/" + barCode);
     }
+
+    confirmProductItemFileUpload(uploadId: string): Observable<any> {
+      return this.http.put("/v1/productItemFileUpload/upload-confirm/" + uploadId);
+    }
 }

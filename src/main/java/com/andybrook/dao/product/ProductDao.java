@@ -39,6 +39,22 @@ public class ProductDao implements IProductDao {
     }
 
     @Override
+    public Optional<Product> getByName(String name) {
+        Optional<Product> productOpt = Optional.empty();
+        Optional<ProductEntity> entityOpt = repository.findByName(name);
+        if (entityOpt.isPresent()) {
+            Product product = entityFactory.createProduct(entityOpt.get());
+            productOpt = Optional.of(product);
+        }
+        return productOpt;
+    }
+
+    @Override
+    public boolean isExist(long id) {
+        return repository.existsById(id);
+    }
+
+    @Override
     public List<? extends Product> getByNameContaining(String name) {
         List<ProductEntity> productEntities = repository.findByNameContaining(name);
         List<Product> products = new LinkedList<>();

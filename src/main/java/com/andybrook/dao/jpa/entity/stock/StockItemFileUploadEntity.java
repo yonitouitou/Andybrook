@@ -9,22 +9,22 @@ public class StockItemFileUploadEntity {
     private final int rowsInFile;
     private final int rowsProcessed;
     private final List<ProductItemEntity> products;
-    private final LocalDateTime uploadDateTime;
+    private final long uploadTimestamp;
 
-    public StockItemFileUploadEntity(String id, int rowsInFile, int rowsProcessed, List<ProductItemEntity> products, LocalDateTime uploadDateTime) {
+    public StockItemFileUploadEntity(String id, int rowsInFile, int rowsProcessed, List<ProductItemEntity> products, long uploadTimestamp) {
         this.id = id;
         this.rowsInFile = rowsInFile;
         this.rowsProcessed = rowsProcessed;
         this.products = products;
-        this.uploadDateTime = uploadDateTime;
+        this.uploadTimestamp = uploadTimestamp;
     }
 
     public List<ProductItemEntity> getProducts() {
         return products;
     }
 
-    public LocalDateTime getUploadDateTime() {
-        return uploadDateTime;
+    public long getUploadTimestamp() {
+        return uploadTimestamp;
     }
 
     public String getId() {

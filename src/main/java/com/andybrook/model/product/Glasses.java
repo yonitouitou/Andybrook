@@ -4,6 +4,10 @@ import com.andybrook.enums.ProductType;
 
 public class Glasses extends Product {
 
+    private Glasses() {
+        super();
+    }
+
     public Glasses(Long id, String name, double price) {
         super(id, name, price);
     }
