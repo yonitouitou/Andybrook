@@ -2,12 +2,11 @@
   <customer-header></customer-header>
 </div>
 <div class="row">
-  <div class="col-md-auto">
+  <div class="col">
     <list-customer [customer]="customer" (onCustomerSelected)="onCustomerSelected($event)"></list-customer>
   </div>
-  <div class="col">
+  <div class="col-md-auto">
     <new-customer [customer]="customer" (onUpdateCustomerEvent)="onUpdateCustomer($event)"></new-customer>
-    <hr>
     <customer-orders [customer]="customer"></customer-orders>
   </div>
 </div>

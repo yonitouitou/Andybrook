@@ -39,7 +39,7 @@ export class ShowOrderComponent implements OnInit {
   }
 
   onClickBack() {
-    this.router.navigate([''])
+    this.router.navigate(['/orders'])
   }
 
   private refreshOrder() {

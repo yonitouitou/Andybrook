@@ -1,96 +1,103 @@
-<form [formGroup]="form" (ngSubmit)="onSubmit()">
-  <h5>Owner</h5>
-  <hr>
-  <div class="row">
-    <div class="col form-group">
-      <label for="compagnyName">Compagny Nane</label>
-      <input type="text" formControlName="ownerAutoComplete"
-        (blur)="onBlurOwnerAutoComplete()"
-        [(ngModel)]="inputOwnerName"
-        [ngbTypeahead]="search"
-        class="form-control"/>
-    </div>
-    <div class="col form-group">
-        <label for="firstName">FirstName</label>
-        <input type="text" formControlName="ownerFirstName" class="form-control" (blur)=onBlurStringFormControl($event)/>
-    </div>
-    <div class="col form-group">
-        <label for="lastName">LastName</label>
-        <input type="text" formControlName="ownerLastName" class="form-control" (blur)=onBlurStringFormControl($event)/>
-    </div>
-    <div class="col form-group">
-        <label for="email">Email</label>
-        <input type="text" formControlName="ownerEmail" class="form-control" (blur)=onBlurLowcaseStringFormControl($event)/>
-    </div>
+<div class="card w-100">
+  <div class="card-header">
+      <h5>Customer Information</h5>
   </div>
-  <div *ngIf="storesOfSelectedOwner.length > 0" class="row">
-    <div class="col-5">
-      <table class="table table-striped table-bordered table-sm">
-        <thead>
-          <tr>
-            <th>#</th>
-            <th>Id</th>
-            <th>Name</th>
-            <th>Email</th>
-            <th>Phone</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr *ngFor="let store of storesOfSelectedOwner; let i = index">
-            <td>{{ i + 1 }}</td>
-            <td>{{ store.id }}</td>
-            <td>{{ store.name }}</td>
-            <td>{{ store.email }}</td>
-            <td>{{ store.phone }}</td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
+  <div class="card-body">
+    <form [formGroup]="form" (ngSubmit)="onSubmit()">
+      <h5>Owner</h5>
+      <hr>
+      <div class="row">
+        <div class="col form-group">
+          <label for="compagnyName">Compagny Nane</label>
+          <input type="text" formControlName="ownerAutoComplete"
+            (blur)="onBlurOwnerAutoComplete()"
+            [(ngModel)]="inputOwnerName"
+            [ngbTypeahead]="search"
+            class="form-control"/>
+        </div>
+        <div class="col form-group">
+            <label for="firstName">FirstName</label>
+            <input type="text" formControlName="ownerFirstName" class="form-control" (blur)=onBlurStringFormControl($event)/>
+        </div>
+        <div class="col form-group">
+            <label for="lastName">LastName</label>
+            <input type="text" formControlName="ownerLastName" class="form-control" (blur)=onBlurStringFormControl($event)/>
+        </div>
+        <div class="col form-group">
+            <label for="email">Email</label>
+            <input type="text" formControlName="ownerEmail" class="form-control" (blur)=onBlurLowcaseStringFormControl($event)/>
+        </div>
+      </div>
+      <div *ngIf="storesOfSelectedOwner.length > 0" class="row">
+        <div class="col-5">
+          <table class="table table-striped table-bordered table-sm">
+            <thead>
+              <tr>
+                <th>#</th>
+                <th>Id</th>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Phone</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let store of storesOfSelectedOwner; let i = index">
+                <td>{{ i + 1 }}</td>
+                <td>{{ store.id }}</td>
+                <td>{{ store.name }}</td>
+                <td>{{ store.email }}</td>
+                <td>{{ store.phone }}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <h5>Store</h5>
+      <hr>
+      <div class="row">
+          <div class="col form-group">
+              <label for="name">Name</label>
+              <input type="text" formControlName="storeName" class="form-control" (blur)=onBlurStringFormControl($event)/>
+          </div>
+          <div class="col form-group">
+            <label for="streetNumber">Street Number</label>
+            <input type="text" formControlName="storeStreetNumber" class="form-control"/>
+          </div>
+          <div class="col form-group">
+              <label for="streetName">Street</label>
+              <input type="text" formControlName="storeStreetName" class="form-control"/>
+          </div>
+          <div class="col form-group">
+              <label for="zipCode">Zip Code</label>
+              <input type="text" formControlName="storeZipCode" class="form-control"/>
+          </div>
+          <div class="col form-group">
+              <label for="city">City</label>
+              <input type="text" formControlName="storeCity" class="form-control" (blur)=onBlurStringFormControl($event)/>
+          </div>
+          <div class="col form-group">
+            <label for="country">Country</label>
+            <input type="text" formControlName="storeCountry" class="form-control" (blur)=onBlurStringFormControl($event)/>
+        </div>
+      </div>
+      <div class="row">
+          <div class="col form-group">
+              <label for="phone">Phone</label>
+              <input type="text" formControlName="storePhone" class="form-control"/>
+          </div>
+          <div class="col form-group">
+              <label for="email">Email</label>
+              <input type="text" formControlName="storeEmail" class="form-control" (blur)=onBlurLowcaseStringFormControl($event)>
+          </div>
+      </div>
+      <div class="row">
+        <div class="col">
+          <button class="btn btn-primary">Save</button>
+        </div>
+        <div class="col-md-auto">
+          <ngb-alert *ngIf="errorMessage" [type]="typeAlert" [dismissible]="true" (close)="errorMessage = null">{{ errorMessage }}</ngb-alert>
+        </div>
+      </div>
+    </form>
   </div>
-  <h5>Store</h5>
-  <hr>
-  <div class="row">
-      <div class="col form-group">
-          <label for="name">Name</label>
-          <input type="text" formControlName="storeName" class="form-control" (blur)=onBlurStringFormControl($event)/>
-      </div>
-      <div class="col form-group">
-        <label for="streetNumber">Street Number</label>
-        <input type="text" formControlName="storeStreetNumber" class="form-control"/>
-      </div>
-      <div class="col form-group">
-          <label for="streetName">Street</label>
-          <input type="text" formControlName="storeStreetName" class="form-control"/>
-      </div>
-      <div class="col form-group">
-          <label for="zipCode">Zip Code</label>
-          <input type="text" formControlName="storeZipCode" class="form-control"/>
-      </div>
-      <div class="col form-group">
-          <label for="city">City</label>
-          <input type="text" formControlName="storeCity" class="form-control" (blur)=onBlurStringFormControl($event)/>
-      </div>
-      <div class="col form-group">
-        <label for="country">Country</label>
-        <input type="text" formControlName="storeCountry" class="form-control" (blur)=onBlurStringFormControl($event)/>
-    </div>
-  </div>
-  <div class="row">
-      <div class="col form-group">
-          <label for="phone">Phone</label>
-          <input type="text" formControlName="storePhone" class="form-control"/>
-      </div>
-      <div class="col form-group">
-          <label for="email">Email</label>
-          <input type="text" formControlName="storeEmail" class="form-control" (blur)=onBlurLowcaseStringFormControl($event)>
-      </div>
-  </div>
-  <div class="row">
-    <div class="col">
-      <button class="btn btn-primary">Save</button>
-    </div>
-    <div class="col-md-auto">
-      <ngb-alert *ngIf="errorMessage" [type]="typeAlert" [dismissible]="true" (close)="errorMessage = null">{{ errorMessage }}</ngb-alert>
-    </div>
-  </div>
-</form>
+</div>
