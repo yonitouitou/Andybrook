@@ -1,4 +1,4 @@
-<div class="container-fluid">
+<div class="content-fluid">
     <div class="row justify-content-between">
         <div class="col-4">
             <button class="btn btn-primary"
@@ -25,7 +25,7 @@
     </div>
     <br>
     <h3 style="color: dimgray" *ngIf="orders.length == 0">{{ noOrdersFoundMessage }}</h3>
-    <div *ngIf="orders.length > 0">
+    <div *ngIf="orders.length > 0" class="card w-100 shadow-sm p-3 mb-5 bg-white rounded">
         <list-orders
             [orders]="orders"
         ></list-orders>

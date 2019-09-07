@@ -1,11 +1,13 @@
 package com.andybrook.service.api;
 
+import com.andybrook.ApplicationProperties;
 import com.andybrook.model.api.StockItemsFileUpload;
 import com.andybrook.model.stock.ProductItem;
 import com.andybrook.util.ProductItemFileUploadGenerator;
 import com.andybrook.util.clock.Clock;
 import com.andybrook.util.file.FileUtil;
 import org.junit.Assert;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,12 +18,12 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 
-import static com.andybrook.service.api.StockItemsFileParserService.LIMIT_ITEMS_BY_FILE_5000;
-
 @SpringBootTest
 @RunWith(SpringJUnit4ClassRunner.class)
 public class StockItemsFileParserServiceTest {
 
+    @Autowired
+    private ApplicationProperties applicationProperties;
     @Autowired
     private StockItemsFileParserService stockItemsFileParserService;
 
@@ -95,10 +97,10 @@ public class StockItemsFileParserServiceTest {
 
     @Test
     public void processFileUntilLimitItems() throws IOException {
-        File file = ProductItemFileUploadGenerator.generateProductFile(LIMIT_ITEMS_BY_FILE_5000 + 100);
+        File file = ProductItemFileUploadGenerator.generateProductFile(applicationProperties.getStockItemFileUploadLimitItems() + 100);
         try {
             StockItemsFileUpload result = stockItemsFileParserService.parseFile(file);
-            Assert.assertEquals("ProductItemSize", LIMIT_ITEMS_BY_FILE_5000, result.getProductItems().size());
+            Assert.assertEquals("ProductItemSize", applicationProperties.getStockItemFileUploadLimitItems(), result.getProductItems().size());
         } finally {
             if (file != null) {
                 file.delete();
@@ -114,7 +116,7 @@ public class StockItemsFileParserServiceTest {
     @Test
     //@Ignore
     public void generateStockItemFileUpload() throws IOException {
-        File file = ProductItemFileUploadGenerator.generateProductFile(1001);
+        File file = ProductItemFileUploadGenerator.generateProductFile(15000);
         System.out.println(file.getAbsolutePath());
     }
 

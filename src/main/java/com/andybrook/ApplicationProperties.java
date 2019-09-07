@@ -26,6 +26,8 @@ public class ApplicationProperties {
     private String zoneIdName;
     @Value("${notification.email.from}")
     private String notificationEmailFrom;
+    @Value("${stock.items.file.upload.items.limit: 5000}")
+    private String StockItemFileUploadLimitItems;
 
     public String getEsHost() {
         return esHost;
@@ -55,5 +57,9 @@ public class ApplicationProperties {
             zoneId = ZoneId.of(zoneIdName);
         }
         return zoneId;
+    }
+
+    public int getStockItemFileUploadLimitItems() {
+        return Integer.parseInt(StockItemFileUploadLimitItems);
     }
 }

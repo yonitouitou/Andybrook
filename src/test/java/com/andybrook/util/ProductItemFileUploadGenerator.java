@@ -36,7 +36,7 @@ public class ProductItemFileUploadGenerator {
     }
 
     private static void generateProductLine(StringBuilder sb) {
-        sb.append("A-" + Clock.nanos()).append(";")
+        sb.append("B-" + Clock.nanos()).append(";")
                 .append(RANDOM.nextInt(10, 500)).append(";");
         int limit = RANDOM.nextInt(1, 3);
         for (int i = 0; i < limit; i++) {

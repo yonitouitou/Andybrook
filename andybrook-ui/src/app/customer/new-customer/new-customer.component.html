@@ -1,4 +1,4 @@
-<div class="card w-100">
+<div class="card w-100 shadow-sm p-3 mb-5 bg-white rounded">
   <div class="card-header">
       <h5>Customer Information</h5>
   </div>
@@ -13,19 +13,19 @@
             (blur)="onBlurOwnerAutoComplete()"
             [(ngModel)]="inputOwnerName"
             [ngbTypeahead]="search"
-            class="form-control"/>
+            class="form-control form-control-sm"/>
         </div>
         <div class="col form-group">
             <label for="firstName">FirstName</label>
-            <input type="text" formControlName="ownerFirstName" class="form-control" (blur)=onBlurStringFormControl($event)/>
+            <input type="text" formControlName="ownerFirstName" class="form-control form-control-sm" (blur)=onBlurStringFormControl($event)/>
         </div>
         <div class="col form-group">
             <label for="lastName">LastName</label>
-            <input type="text" formControlName="ownerLastName" class="form-control" (blur)=onBlurStringFormControl($event)/>
+            <input type="text" formControlName="ownerLastName" class="form-control form-control-sm" (blur)=onBlurStringFormControl($event)/>
         </div>
         <div class="col form-group">
             <label for="email">Email</label>
-            <input type="text" formControlName="ownerEmail" class="form-control" (blur)=onBlurLowcaseStringFormControl($event)/>
+            <input type="text" formControlName="ownerEmail" class="form-control form-control-sm" (blur)=onBlurLowcaseStringFormControl($event)/>
         </div>
       </div>
       <div *ngIf="storesOfSelectedOwner.length > 0" class="row">
@@ -57,37 +57,37 @@
       <div class="row">
           <div class="col form-group">
               <label for="name">Name</label>
-              <input type="text" formControlName="storeName" class="form-control" (blur)=onBlurStringFormControl($event)/>
+              <input type="text" formControlName="storeName" class="form-control form-control-sm" (blur)=onBlurStringFormControl($event)/>
           </div>
           <div class="col form-group">
             <label for="streetNumber">Street Number</label>
-            <input type="text" formControlName="storeStreetNumber" class="form-control"/>
+            <input type="text" formControlName="storeStreetNumber" class="form-control form-control-sm"/>
           </div>
           <div class="col form-group">
               <label for="streetName">Street</label>
-              <input type="text" formControlName="storeStreetName" class="form-control"/>
+              <input type="text" formControlName="storeStreetName" class="form-control form-control-sm"/>
           </div>
           <div class="col form-group">
               <label for="zipCode">Zip Code</label>
-              <input type="text" formControlName="storeZipCode" class="form-control"/>
+              <input type="text" formControlName="storeZipCode" class="form-control form-control-sm"/>
           </div>
           <div class="col form-group">
               <label for="city">City</label>
-              <input type="text" formControlName="storeCity" class="form-control" (blur)=onBlurStringFormControl($event)/>
+              <input type="text" formControlName="storeCity" class="form-control form-control-sm" (blur)=onBlurStringFormControl($event)/>
           </div>
           <div class="col form-group">
             <label for="country">Country</label>
-            <input type="text" formControlName="storeCountry" class="form-control" (blur)=onBlurStringFormControl($event)/>
+            <input type="text" formControlName="storeCountry" class="form-control form-control-sm" (blur)=onBlurStringFormControl($event)/>
         </div>
       </div>
       <div class="row">
           <div class="col form-group">
               <label for="phone">Phone</label>
-              <input type="text" formControlName="storePhone" class="form-control"/>
+              <input type="text" formControlName="storePhone" class="form-control form-control-sm"/>
           </div>
           <div class="col form-group">
               <label for="email">Email</label>
-              <input type="text" formControlName="storeEmail" class="form-control" (blur)=onBlurLowcaseStringFormControl($event)>
+              <input type="text" formControlName="storeEmail" class="form-control form-control-sm" (blur)=onBlurLowcaseStringFormControl($event)>
           </div>
       </div>
       <div class="row">

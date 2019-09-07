@@ -43,7 +43,6 @@ public class StockItemsFileParserService implements IStockItemsFileParserService
     private IProductService productService;
 
     private static Logger LOGGER = System.getLogger(StockItemsFileParserService.class.getSimpleName());
-    static int LIMIT_ITEMS_BY_FILE_5000 = 5000;
 
     @Override
     public StockItemsFileUpload processCsvFile(File csv) throws IOException {
@@ -103,8 +102,8 @@ public class StockItemsFileParserService implements IStockItemsFileParserService
                 Product product = new Glasses(IdGenerator.generateId(), parts[0], Double.parseDouble(parts[1]));
                 String[] barCodeStr = parts[2].split(",");
                 for (String bc : barCodeStr) {
-                    if (items.size() == LIMIT_ITEMS_BY_FILE_5000) {
-                        throw new SizeFileLimitExceeded("Limit ProductItem by file : " + LIMIT_ITEMS_BY_FILE_5000);
+                    if (items.size() == applicationProperties.getStockItemFileUploadLimitItems()) {
+                        throw new SizeFileLimitExceeded("Limit ProductItem by file : " + applicationProperties.getStockItemFileUploadLimitItems());
                     }
                     items.add(new ProductItem(product, new BarCode(bc)));
                 }

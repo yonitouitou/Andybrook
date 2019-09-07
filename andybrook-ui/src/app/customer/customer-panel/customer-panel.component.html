@@ -6,7 +6,7 @@
     <list-customer [customer]="customer" (onCustomerSelected)="onCustomerSelected($event)"></list-customer>
   </div>
   <div class="col-md-auto">
-    <new-customer [customer]="customer" (onUpdateCustomerEvent)="onUpdateCustomer($event)"></new-customer>
+    <new-customer [customer]="customer" (onUpdateCustomerEvent)="onUpdateCustomer($event)" style="margin-bottom: 7px"></new-customer>
     <customer-orders [customer]="customer"></customer-orders>
   </div>
 </div>
