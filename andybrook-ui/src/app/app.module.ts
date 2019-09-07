@@ -42,9 +42,11 @@ import { FileUploadModule } from 'ng2-file-upload';
 import { OrderNotificationModalComponent } from './modal/order-notification-modal/order-notification-modal.component';
 import { UploadProductFileModalComponent } from './modal/upload-product-file-modal/upload-product-file-modal.component';
 import { ProductsPanelComponent } from './product/products-panel/products-panel.component';
+import { LoginComponent } from './authentication/login/login.component';
 
 const appRoutes: Routes = [
-  { path: '', component: OrdersManagerComponent },
+  { path: '', component: LoginComponent},
+  { path: 'orders', component: OrdersManagerComponent},
   { path: 'order/:id', component: ShowOrderComponent },
   { path: 'admin', component: AdminPanelComponent },
   { path: 'new-customer/:id', component: NewCustomerComponent },
@@ -79,6 +81,7 @@ const appRoutes: Routes = [
     OrderNotificationModalComponent,
     UploadProductFileModalComponent,
     ProductsPanelComponent,
+    LoginComponent,
   ],
   entryComponents: [
     CreateOrderModalComponent,

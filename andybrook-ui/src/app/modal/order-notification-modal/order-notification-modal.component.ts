@@ -1,6 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
-import { FormGroup, FormBuilder, Validators, FormControl, FormArray } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators, FormArray } from '@angular/forms';
 import { NotificationService } from 'src/app/service/notification-service';
 import { OrderNotificationRequest } from 'src/app/model/request/notification/OrderNotificationRequest';
 import * as fileSaver from 'file-saver'

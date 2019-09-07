@@ -20,7 +20,6 @@ export class ListOrdersComponent implements OnInit {
   collectionSize: number
 
   constructor(private orderService: OrderService,
-              private notificationService: NotificationService,
               private modalBuilder: ModalBuilder) {}
 
   ngOnInit() {

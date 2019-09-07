@@ -50,7 +50,6 @@ export class UploadProductFileModalComponent implements OnInit {
   }
 
   onClickYes() {
-    alert('yes');
     this.productService.confirmProductItemFileUpload(this.result.id).subscribe(
       data => {
         this.reset();
