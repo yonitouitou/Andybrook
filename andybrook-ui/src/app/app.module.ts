@@ -43,9 +43,11 @@ import { OrderNotificationModalComponent } from './modal/order-notification-moda
 import { UploadProductFileModalComponent } from './modal/upload-product-file-modal/upload-product-file-modal.component';
 import { ProductsPanelComponent } from './product/products-panel/products-panel.component';
 import { LoginComponent } from './authentication/login/login.component';
+import { LoginService } from './service/login-service';
 
 const appRoutes: Routes = [
   { path: '', component: LoginComponent},
+  { path: 'login', component: LoginComponent},
   { path: 'orders', component: OrdersManagerComponent},
   { path: 'order/:id', component: ShowOrderComponent },
   { path: 'admin', component: AdminPanelComponent },
@@ -114,7 +116,8 @@ const appRoutes: Routes = [
     ModalBuilder,
     CustomerService,
     ProductService,
-    CookieService
+    CookieService,
+    LoginService
   ],
   bootstrap: [AppComponent]
 })

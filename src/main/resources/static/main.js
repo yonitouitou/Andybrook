@@ -315,6 +315,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _modal_upload_product_file_modal_upload_product_file_modal_component__WEBPACK_IMPORTED_MODULE_43__ = __webpack_require__(/*! ./modal/upload-product-file-modal/upload-product-file-modal.component */ "./src/app/modal/upload-product-file-modal/upload-product-file-modal.component.ts");
 /* harmony import */ var _product_products_panel_products_panel_component__WEBPACK_IMPORTED_MODULE_44__ = __webpack_require__(/*! ./product/products-panel/products-panel.component */ "./src/app/product/products-panel/products-panel.component.ts");
 /* harmony import */ var _authentication_login_login_component__WEBPACK_IMPORTED_MODULE_45__ = __webpack_require__(/*! ./authentication/login/login.component */ "./src/app/authentication/login/login.component.ts");
+/* harmony import */ var _service_login_service__WEBPACK_IMPORTED_MODULE_46__ = __webpack_require__(/*! ./service/login-service */ "./src/app/service/login-service.ts");
+
 
 
 
@@ -363,6 +365,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var appRoutes = [
     { path: '', component: _authentication_login_login_component__WEBPACK_IMPORTED_MODULE_45__["LoginComponent"] },
+    { path: 'login', component: _authentication_login_login_component__WEBPACK_IMPORTED_MODULE_45__["LoginComponent"] },
     { path: 'orders', component: _orders_manager_panel_orders_manager_orders_manager_component__WEBPACK_IMPORTED_MODULE_11__["OrdersManagerComponent"] },
     { path: 'order/:id', component: _order_panel_show_order_show_order_component__WEBPACK_IMPORTED_MODULE_12__["ShowOrderComponent"] },
     { path: 'admin', component: _admin_admin_panel_admin_panel_component__WEBPACK_IMPORTED_MODULE_20__["AdminPanelComponent"] },
@@ -434,7 +437,8 @@ var AppModule = /** @class */ (function () {
                 _common_components_modal_builder__WEBPACK_IMPORTED_MODULE_26__["ModalBuilder"],
                 _service_customer_service__WEBPACK_IMPORTED_MODULE_28__["CustomerService"],
                 _service_product_service__WEBPACK_IMPORTED_MODULE_30__["ProductService"],
-                ngx_cookie_service__WEBPACK_IMPORTED_MODULE_35__["CookieService"]
+                ngx_cookie_service__WEBPACK_IMPORTED_MODULE_35__["CookieService"],
+                _service_login_service__WEBPACK_IMPORTED_MODULE_46__["LoginService"]
             ],
             bootstrap: [_app_component__WEBPACK_IMPORTED_MODULE_9__["AppComponent"]]
         })
@@ -482,21 +486,32 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
 /* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
 /* harmony import */ var _angular_forms__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/forms */ "./node_modules/@angular/forms/fesm5/forms.js");
+/* harmony import */ var _model_request_login_LoginRequest__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../model/request/login/LoginRequest */ "./src/app/model/request/login/LoginRequest.ts");
+/* harmony import */ var _service_login_service__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../service/login-service */ "./src/app/service/login-service.ts");
+
+
 
 
 
 
 var LoginComponent = /** @class */ (function () {
-    function LoginComponent(formBuilder, router) {
+    function LoginComponent(formBuilder, router, loginService) {
         this.formBuilder = formBuilder;
         this.router = router;
+        this.loginService = loginService;
         this.invalidLogin = false;
     }
     LoginComponent.prototype.onSubmit = function () {
-        if (this.loginForm.invalid) {
-            return;
+        var _this = this;
+        if (this.loginForm.valid) {
+            var loginRequest = new _model_request_login_LoginRequest__WEBPACK_IMPORTED_MODULE_4__["LoginRequest"](this.loginForm.get("username").value, this.loginForm.get("password").value);
+            this.loginService.authenticate(loginRequest).subscribe(function (data) {
+                alert('innnn');
+                _this.router.navigateByUrl('/orders');
+            }, function (error) {
+                alert('error');
+            });
         }
-        this.router.navigateByUrl('/orders');
     };
     LoginComponent.prototype.ngOnInit = function () {
         window.sessionStorage.removeItem('token');
@@ -511,7 +526,7 @@ var LoginComponent = /** @class */ (function () {
             template: __webpack_require__(/*! ./login.component.html */ "./src/app/authentication/login/login.component.html"),
             styles: [__webpack_require__(/*! ./login.component.css */ "./src/app/authentication/login/login.component.css")]
         }),
-        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_angular_forms__WEBPACK_IMPORTED_MODULE_3__["FormBuilder"], _angular_router__WEBPACK_IMPORTED_MODULE_2__["Router"]])
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_angular_forms__WEBPACK_IMPORTED_MODULE_3__["FormBuilder"], _angular_router__WEBPACK_IMPORTED_MODULE_2__["Router"], _service_login_service__WEBPACK_IMPORTED_MODULE_5__["LoginService"]])
     ], LoginComponent);
     return LoginComponent;
 }());
@@ -2716,6 +2731,28 @@ var AddOrUpdateCustomerReq = /** @class */ (function () {
 
 /***/ }),
 
+/***/ "./src/app/model/request/login/LoginRequest.ts":
+/*!*****************************************************!*\
+  !*** ./src/app/model/request/login/LoginRequest.ts ***!
+  \*****************************************************/
+/*! exports provided: LoginRequest */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "LoginRequest", function() { return LoginRequest; });
+var LoginRequest = /** @class */ (function () {
+    function LoginRequest(username, password) {
+        this.username = username;
+        this.password = password;
+    }
+    return LoginRequest;
+}());
+
+
+
+/***/ }),
+
 /***/ "./src/app/model/request/notification/NotificationRequest.ts":
 /*!*******************************************************************!*\
   !*** ./src/app/model/request/notification/NotificationRequest.ts ***!
@@ -3161,7 +3198,7 @@ module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"container-fluid\" style=\"border-bottom: 1px solid black\">\r\n  <div class=\"row\">\r\n    <div class=\"col\">\r\n      <h5>{{ order.name }}</h5>\r\n    </div>\r\n    <div class=\"col\">\r\n      <p>Comment : {{ order.comment }}</p>\r\n    </div>\r\n    <div class=\"col\">\r\n      <div style=\"overflow: hidden;\">\r\n        <p style=\"float: left\">Customer : &nbsp;</p>\r\n        <p style=\"float: left; font-weight: bold\"> {{ order.customer.store.name }}</p>\r\n      </div>\r\n    </div>\r\n    <div class=\"col\">\r\n      <div style=\"overflow: hidden;\">\r\n        <p style=\"float: left;\">Status :&nbsp;</p>\r\n        <p style=\"float: left; font-weight: bold\"> {{ order.status }}</p>\r\n      </div>\r\n    </div>\r\n  </div>\r\n  <div class=\"row\">\r\n    <div class=\"col\">\r\n      <div class=\"row justify-content-between\">\r\n          <div class=\"col-4\">\r\n              <button\r\n                class=\"btn btn-outline-primary\"\r\n                (click)=\"onClickAddOrderItem()\"\r\n                [disabled]=\"order.status === 'CLOSED'\"\r\n              >Add Order Item</button>\r\n          </div>\r\n          <div class=\"col-4\">\r\n              <button\r\n                style=\"float: right\"\r\n                class=\"btn btn-outline-info\"\r\n                (click)=\"onClickCloseOrder()\"\r\n                [disabled]=\"order.status === 'CLOSED'\"\r\n              >Close the order</button>\r\n          </div>\r\n      </div>\r\n    </div>\r\n  </div>    \r\n  <br>\r\n</div>"
+module.exports = "<div class=\"container-fluid\">\r\n  <div class=\"row\">\r\n    <div class=\"col\">\r\n      <h5>{{ order.name }}</h5>\r\n    </div>\r\n    <div class=\"col\">\r\n      <p>Comment : {{ order.comment }}</p>\r\n    </div>\r\n    <div class=\"col\">\r\n      <div style=\"overflow: hidden;\">\r\n        <p style=\"float: left\">Customer : &nbsp;</p>\r\n        <p style=\"float: left; font-weight: bold\"> {{ order.customer.store.name }}</p>\r\n      </div>\r\n    </div>\r\n    <div class=\"col\">\r\n      <div style=\"overflow: hidden;\">\r\n        <p style=\"float: left;\">Status :&nbsp;</p>\r\n        <p style=\"float: left; font-weight: bold\"> {{ order.status }}</p>\r\n      </div>\r\n    </div>\r\n  </div>\r\n  <div class=\"row\">\r\n    <div class=\"col\">\r\n      <div class=\"row justify-content-between\">\r\n          <div class=\"col-4\">\r\n              <button\r\n                class=\"btn btn-outline-primary\"\r\n                (click)=\"onClickAddOrderItem()\"\r\n                [disabled]=\"order.status === 'CLOSED'\"\r\n              >Add Order Item</button>\r\n          </div>\r\n          <div class=\"col-4\">\r\n              <button\r\n                style=\"float: right\"\r\n                class=\"btn btn-outline-info\"\r\n                (click)=\"onClickCloseOrder()\"\r\n                [disabled]=\"order.status === 'CLOSED'\"\r\n              >Close the order</button>\r\n          </div>\r\n      </div>\r\n    </div>\r\n  </div>    \r\n  <br>\r\n</div>"
 
 /***/ }),
 
@@ -3267,7 +3304,7 @@ module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div>\r\n  <show-order-header\r\n    [order]=\"order\"\r\n    (onCloseOrderEvent)=\"onCloseOrder()\"\r\n    (onAddOrderItemEvent)=\"onOrderItemAdded()\"\r\n  ></show-order-header>\r\n  <list-order-item *ngIf=\"order\"\r\n    [order]=\"order\"\r\n    [orderItems]=\"order.aggregatedOrderItems.values()\"\r\n    (onCreateOrderItemEvent)=\"onNewOrderItem($event)\"\r\n    (onChangeOrderItemEvent)=\"onChangeOrderItem($event)\"\r\n    (onDeleteOrderItemEvent)=\"onDeleteOrderItem($event)\"\r\n  ></list-order-item>\r\n  <div class=\"container=fluid\">\r\n    <button class=\"btn btn-primary\"\r\n        (click)=\"onClickBack()\"\r\n        style=\"float: right\"\r\n    >Back</button>\r\n</div>\r\n</div>"
+module.exports = "<div>\r\n  <show-order-header\r\n    [order]=\"order\"\r\n    (onCloseOrderEvent)=\"onCloseOrder()\"\r\n    (onAddOrderItemEvent)=\"onOrderItemAdded()\"\r\n  ></show-order-header>\r\n  <div class=\"card w-100 shadow-sm p-3 mb-5 bg-white rounded\">\r\n    <list-order-item *ngIf=\"order\"\r\n      [order]=\"order\"\r\n      [orderItems]=\"order.aggregatedOrderItems.values()\"\r\n      (onCreateOrderItemEvent)=\"onNewOrderItem($event)\"\r\n      (onChangeOrderItemEvent)=\"onChangeOrderItem($event)\"\r\n      (onDeleteOrderItemEvent)=\"onDeleteOrderItem($event)\"\r\n    ></list-order-item>\r\n  </div>\r\n  <div class=\"container=fluid\">\r\n    <button class=\"btn btn-primary\"\r\n        (click)=\"onClickBack()\"\r\n        style=\"float: right\"\r\n    >Back</button>\r\n  </div>\r\n</div>"
 
 /***/ }),
 
@@ -3750,6 +3787,44 @@ var HttpService = /** @class */ (function () {
         tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_angular_common_http__WEBPACK_IMPORTED_MODULE_1__["HttpClient"]])
     ], HttpService);
     return HttpService;
+}());
+
+
+
+/***/ }),
+
+/***/ "./src/app/service/login-service.ts":
+/*!******************************************!*\
+  !*** ./src/app/service/login-service.ts ***!
+  \******************************************/
+/*! exports provided: LoginService */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "LoginService", function() { return LoginService; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var _http_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./http-service */ "./src/app/service/http-service.ts");
+/* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/common/http */ "./node_modules/@angular/common/fesm5/http.js");
+
+
+
+
+var LoginService = /** @class */ (function () {
+    function LoginService(httpApi) {
+        this.httpApi = httpApi;
+        this.isUserLogged = false;
+    }
+    LoginService.prototype.authenticate = function (req) {
+        var headers = new _angular_common_http__WEBPACK_IMPORTED_MODULE_3__["HttpHeaders"]({ Authorization: 'Basic ' + btoa(req.username + ':' + req.password) });
+        return this.httpApi.post("/login", req, headers);
+    };
+    LoginService = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Injectable"])(),
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_http_service__WEBPACK_IMPORTED_MODULE_2__["HttpService"]])
+    ], LoginService);
+    return LoginService;
 }());
 
 
