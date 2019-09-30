@@ -468,7 +468,7 @@ module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"card mt-5 shadow-sm p-3 mb-5 bg-white rounded\" style=\"margin: auto; width: 35rem;\">\n  <div class=\"card-body\">\n    <img src=\"../../../assets/img/andibrook-logo.png\">\n    <form [formGroup]=\"loginForm\" (ngSubmit)=\"onSubmit()\">\n      <div class=\"form-group\">\n        <label for=\"username\">Username :</label>\n        <input type=\"text\" class=\"form-control\" formControlName=\"username\" id=\"username\" autocomplete=\"off\">\n        <div class=\"error\" *ngIf=\"loginForm.controls['username'].hasError('required') && loginForm.controls['username'].touched\">Username is required</div>\n      </div>\n      <div class=\"form-group\">\n        <label for=\"pwd\">Password :</label>\n        <input type=\"password\" class=\"form-control\" formControlName=\"password\" id=\"pwd\" autocomplete=\"off\">\n        <div class=\"error\" *ngIf=\"loginForm.controls['password'].hasError('required') && loginForm.controls['password'].touched\">Password is required</div>\n      </div>\n      <button class=\"btn btn-success\" [disabled]=\"loginForm.invalid\">Login</button>\n      <div *ngIf=\"invalidLogin\" class=\"error\">\n        <div>Invalid credentials.</div>\n      </div>\n    </form>\n  </div>\n</div>"
+module.exports = "<div class=\"card mt-5 shadow-sm p-3 mb-5 bg-white rounded\" style=\"margin: auto; width: 35rem;\">\n  <div class=\"card-body\">\n    <img src=\"../../../assets/img/andybrook-logo.png\">\n    <form [formGroup]=\"loginForm\" (ngSubmit)=\"onSubmit()\">\n      <div class=\"form-group\">\n        <label for=\"username\">Username :</label>\n        <input type=\"text\" class=\"form-control\" formControlName=\"username\" id=\"username\" autocomplete=\"off\">\n        <div class=\"error\" *ngIf=\"loginForm.controls['username'].hasError('required') && loginForm.controls['username'].touched\">Username is required</div>\n      </div>\n      <div class=\"form-group\">\n        <label for=\"pwd\">Password :</label>\n        <input type=\"password\" class=\"form-control\" formControlName=\"password\" id=\"pwd\" autocomplete=\"off\">\n        <div class=\"error\" *ngIf=\"loginForm.controls['password'].hasError('required') && loginForm.controls['password'].touched\">Password is required</div>\n      </div>\n        <div class=\"row\">\n          <div class=\"col\">\n            <button class=\"btn btn-success\" [disabled]=\"loginForm.invalid\">Login</button>\n          </div>\n          <div class=\"col\">\n            <ngb-alert *ngIf=\"_errorMessage\" type=\"danger\" [dismissible]=\"true\" (close)=\"_errorMessage = null\">{{ _errorMessage }}</ngb-alert>\n          </div>\n        </div>\n    </form>\n  </div>\n</div>"
 
 /***/ }),
 
@@ -488,6 +488,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _angular_forms__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/forms */ "./node_modules/@angular/forms/fesm5/forms.js");
 /* harmony import */ var _model_request_login_LoginRequest__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../model/request/login/LoginRequest */ "./src/app/model/request/login/LoginRequest.ts");
 /* harmony import */ var _service_login_service__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../service/login-service */ "./src/app/service/login-service.ts");
+/* harmony import */ var rxjs__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! rxjs */ "./node_modules/rxjs/_esm5/index.js");
+/* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! rxjs/operators */ "./node_modules/rxjs/_esm5/operators/index.js");
+
+
 
 
 
@@ -500,25 +504,31 @@ var LoginComponent = /** @class */ (function () {
         this.router = router;
         this.loginService = loginService;
         this.invalidLogin = false;
+        this._error = new rxjs__WEBPACK_IMPORTED_MODULE_6__["Subject"]();
     }
-    LoginComponent.prototype.onSubmit = function () {
-        var _this = this;
-        if (this.loginForm.valid) {
-            var loginRequest = new _model_request_login_LoginRequest__WEBPACK_IMPORTED_MODULE_4__["LoginRequest"](this.loginForm.get("username").value, this.loginForm.get("password").value);
-            this.loginService.authenticate(loginRequest).subscribe(function (data) {
-                alert('innnn');
-                _this.router.navigateByUrl('/orders');
-            }, function (error) {
-                alert('error');
-            });
-        }
-    };
     LoginComponent.prototype.ngOnInit = function () {
+        var _this = this;
+        this._error.subscribe(function (msg) { return _this._errorMessage = msg; });
+        this._error.pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_7__["debounceTime"])(2000)).subscribe(function () { return _this._errorMessage = null; });
         window.sessionStorage.removeItem('token');
         this.loginForm = this.formBuilder.group({
             username: ['', _angular_forms__WEBPACK_IMPORTED_MODULE_3__["Validators"].compose([_angular_forms__WEBPACK_IMPORTED_MODULE_3__["Validators"].required])],
             password: ['', _angular_forms__WEBPACK_IMPORTED_MODULE_3__["Validators"].required]
         });
+    };
+    LoginComponent.prototype.onSubmit = function () {
+        var _this = this;
+        if (this.loginForm.valid) {
+            var loginRequest = new _model_request_login_LoginRequest__WEBPACK_IMPORTED_MODULE_4__["LoginRequest"](this.loginForm.get("username").value, this.loginForm.get("password").value);
+            this.loginService.authenticate2(loginRequest).subscribe(function (data) {
+                _this.router.navigateByUrl('/orders');
+            }, function (error) {
+                _this.changeErrorMessage("Invalid credentials");
+            });
+        }
+    };
+    LoginComponent.prototype.changeErrorMessage = function (errorMessage) {
+        this._error.next(errorMessage);
     };
     LoginComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
@@ -3762,11 +3772,12 @@ var HttpService = /** @class */ (function () {
     function HttpService(http) {
         this.http = http;
     }
-    HttpService.prototype.get = function (url) {
-        return this.http.get(url);
+    HttpService.prototype.get = function (url, options) {
+        return this.http.get(url, options);
     };
     HttpService.prototype.post = function (url, body, options) {
-        return this.http.post(url, body, options != null ? options : this.getHeaders());
+        var req = this.http.post(url, body, options != null ? options : this.getHeaders());
+        return req;
     };
     HttpService.prototype.delete = function (url) {
         return this.http.delete(url, this.getHeaders());
@@ -3817,8 +3828,26 @@ var LoginService = /** @class */ (function () {
         this.isUserLogged = false;
     }
     LoginService.prototype.authenticate = function (req) {
-        var headers = new _angular_common_http__WEBPACK_IMPORTED_MODULE_3__["HttpHeaders"]({ Authorization: 'Basic ' + btoa(req.username + ':' + req.password) });
-        return this.httpApi.post("/login", req, headers);
+        var body = {
+            'username': req.username,
+            'password': req.password
+        };
+        var httpHeaders = new _angular_common_http__WEBPACK_IMPORTED_MODULE_3__["HttpHeaders"]()
+            .set('Content-Type', 'application/json')
+            .set('Authorization', 'Basic ' + btoa('admin' + ':' + 'admin'));
+        var options = {
+            headers: httpHeaders
+        };
+        return this.httpApi.post("/login?username=" + req.username + "&password=" + req.password, body, options);
+    };
+    LoginService.prototype.authenticate2 = function (req) {
+        var httpHeaders = new _angular_common_http__WEBPACK_IMPORTED_MODULE_3__["HttpHeaders"]()
+            .set('Content-Type', 'application/json')
+            .set('Authorization', 'Basic ' + btoa(req.username + ':' + req.password));
+        var options = {
+            headers: httpHeaders
+        };
+        return this.httpApi.get("/user", options);
     };
     LoginService = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Injectable"])(),

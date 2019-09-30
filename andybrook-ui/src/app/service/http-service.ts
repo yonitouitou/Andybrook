@@ -7,12 +7,13 @@ export class HttpService {
 
     constructor(private http: HttpClient){}
 
-    get(url: string) : Observable<any> {
-        return this.http.get(url)
+    get(url: string, options?) : Observable<any> {
+        return this.http.get(url, options)
     }
 
     post(url: string, body: any, options?) : Observable<any> {
-        return this.http.post(url, body, options != null ? options : this.getHeaders());
+        const req = this.http.post(url, body, options != null ? options : this.getHeaders());
+        return req;
     }
 
     delete(url: string) : Observable<any> {

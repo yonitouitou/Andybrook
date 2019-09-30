@@ -1,6 +1,6 @@
 <div class="card mt-5 shadow-sm p-3 mb-5 bg-white rounded" style="margin: auto; width: 35rem;">
   <div class="card-body">
-    <img src="../../../assets/img/andibrook-logo.png">
+    <img src="../../../assets/img/andybrook-logo.png">
     <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
       <div class="form-group">
         <label for="username">Username :</label>
@@ -12,10 +12,14 @@
         <input type="password" class="form-control" formControlName="password" id="pwd" autocomplete="off">
         <div class="error" *ngIf="loginForm.controls['password'].hasError('required') && loginForm.controls['password'].touched">Password is required</div>
       </div>
-      <button class="btn btn-success" [disabled]="loginForm.invalid">Login</button>
-      <div *ngIf="invalidLogin" class="error">
-        <div>Invalid credentials.</div>
-      </div>
+        <div class="row">
+          <div class="col">
+            <button class="btn btn-success" [disabled]="loginForm.invalid">Login</button>
+          </div>
+          <div class="col">
+            <ngb-alert *ngIf="_errorMessage" type="danger" [dismissible]="true" (close)="_errorMessage = null">{{ _errorMessage }}</ngb-alert>
+          </div>
+        </div>
     </form>
   </div>
 </div>

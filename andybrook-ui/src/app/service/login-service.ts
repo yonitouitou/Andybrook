@@ -11,11 +11,26 @@ export class LoginService {
     constructor(private httpApi: HttpService) {}
 
     authenticate(req: LoginRequest) {
-        const headers = new HttpHeaders(
-            { Authorization: 'Basic ' + btoa(req.username + ':' + req.password) }
-        );
-        return this.httpApi.post("/login", req, headers)
+        const body = {
+                        'username': req.username,
+                        'password': req.password
+                     }
+        let httpHeaders = new HttpHeaders()
+            .set('Content-Type', 'application/json')
+            .set('Authorization', 'Basic ' + btoa('admin' + ':' + 'admin'))
+        let options = {
+            headers: httpHeaders
+        }; 
+        return this.httpApi.post("/login?username=" + req.username + "&password=" + req.password, body, options)
     }
 
-
+    authenticate2(req: LoginRequest) {
+        let httpHeaders = new HttpHeaders()
+            .set('Content-Type', 'application/json')
+            .set('Authorization', 'Basic ' + btoa(req.username + ':' + req.password))
+        let options = {
+            headers: httpHeaders
+        }; 
+        return this.httpApi.get("/user", options)
+    }
 }
