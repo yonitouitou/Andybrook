@@ -13,7 +13,6 @@ import { ShowOrderComponent } from './order-panel/show-order/show-order.componen
 import { OrderService } from './service/order-service';
 import { HttpService } from './service/http-service';
 import { AdminSettingService } from './service/admin-setting-service';
-import { HeaderMenuComponent } from './header-menu/header-menu.component';
 import { OrderHeaderComponent } from './order-panel/show-order-header/show-order-header.component';
 import { ListOrdersComponent } from './orders-manager-panel/list-orders/list-orders.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
@@ -44,6 +43,7 @@ import { UploadProductFileModalComponent } from './modal/upload-product-file-mod
 import { ProductsPanelComponent } from './product/products-panel/products-panel.component';
 import { LoginComponent } from './authentication/login/login.component';
 import { LoginService } from './service/login-service';
+import { httpInterceptorProviders } from './http-interceptor/Interceptors-manager';
 
 const appRoutes: Routes = [
   { path: '', component: LoginComponent},
@@ -62,7 +62,6 @@ const appRoutes: Routes = [
     ListOrderItemComponent,
     OrdersManagerComponent,
     ShowOrderComponent,
-    HeaderMenuComponent,
     OrderHeaderComponent,
     ListOrdersComponent,
     AdminPanelComponent,
@@ -83,7 +82,7 @@ const appRoutes: Routes = [
     OrderNotificationModalComponent,
     UploadProductFileModalComponent,
     ProductsPanelComponent,
-    LoginComponent,
+    LoginComponent
   ],
   entryComponents: [
     CreateOrderModalComponent,
@@ -117,7 +116,8 @@ const appRoutes: Routes = [
     CustomerService,
     ProductService,
     CookieService,
-    LoginService
+    LoginService,
+    httpInterceptorProviders
   ],
   bootstrap: [AppComponent]
 })

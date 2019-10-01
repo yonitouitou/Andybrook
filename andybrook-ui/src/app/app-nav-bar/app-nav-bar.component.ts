@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Observable } from 'rxjs';
+import { LoginService } from '../service/login-service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-app-nav-bar',
@@ -7,11 +10,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AppNavBarComponent implements OnInit {
 
-  isNavbarCollapsed=true;
-  
-  constructor() { }
+  isNavbarCollapsed = true;
+  isLoggedIn$: Observable<boolean>;     
+
+  constructor(private loginService: LoginService, private router: Router) { }
 
   ngOnInit() {
+    this.isLoggedIn$ = this.loginService.getUserLoggedObservable();
   }
 
+  onLogout() {
+    this.loginService.logout();
+    this.router.navigateByUrl('/');
+  }
 }

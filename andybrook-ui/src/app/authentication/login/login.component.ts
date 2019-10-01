@@ -22,7 +22,6 @@ export class LoginComponent implements OnInit {
   ngOnInit() {
     this._error.subscribe((msg) => this._errorMessage = msg);
     this._error.pipe(debounceTime(2000)).subscribe(() => this._errorMessage = null);
-    window.sessionStorage.removeItem('token');
     this.loginForm = this.formBuilder.group({
       username: ['', Validators.compose([Validators.required])],
       password: ['', Validators.required]
@@ -31,10 +30,12 @@ export class LoginComponent implements OnInit {
 
   onSubmit() {
     if (this.loginForm.valid) {
-      let loginRequest = new LoginRequest(this.loginForm.get("username").value, this.loginForm.get("password").value)
-      this.loginService.authenticate2(loginRequest).subscribe(
+      let username = this.loginForm.get("username").value;
+      let loginRequest = new LoginRequest(username, this.loginForm.get("password").value)
+      this.loginService.authenticate(loginRequest).subscribe(
         data => {
-          this.router.navigateByUrl('/orders');  
+          this.router.navigateByUrl('/orders');
+          this.loginService.setUserLoggedIn(true, username);  
         },
         error => {
           this.changeErrorMessage("Invalid credentials");
