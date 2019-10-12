@@ -1,0 +1,55 @@
+<div class="container-fluid">
+  <div class="row justify-content-center">
+
+    <div class="col">
+      <div *ngIf="cpuSystemCount" class="card bg-light shadow-sm mb-3" style="width: 18rem; height: 18rem;">
+        <div class="card-header">System CPU count</div>
+        <div class="card-body">
+          <h1 class="card-title" style="font-size: 400%">{{ cpuSystemCount.values[0] }}</h1>
+          <p class="card-text">{{ cpuSystemCount.description }}</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="col">
+      <div *ngIf="cpuUsage" class="card bg-light shadow-sm mb-3" style="width: 18rem; height: 18rem;">
+        <div class="card-header">Process CPU Usage</div>
+        <div class="card-body">
+          <h1 class="card-title" style="font-size: 400%">{{ (cpuUsage.values[0] * 100).toFixed(2) }} %</h1>
+          <p class="card-text">{{ cpuUsage.description }}</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="col">
+      <div *ngIf="jvmMemoryUsed" class="card bg-light shadow-sm mb-3" style="width: 18rem; height: 18rem;">
+        <div class="card-header">JVM Memory Used</div>
+        <div class="card-body">
+          <h1 class="card-title" style="font-size: 400%">{{ (jvmMemoryUsed.values[0] / 1000000).toFixed(0) }} MB</h1>
+          <p class="card-text">{{ jvmMemoryUsed.description }}</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="col">
+      <div *ngIf="jvmThreadLive" class="card bg-light shadow-sm mb-3" style="width: 18rem; height: 18rem;">
+        <div class="card-header">JVM Live Threads</div>
+        <div class="card-body">
+          <h1 class="card-title" style="font-size: 400%">{{ jvmThreadLive.values[0] }}</h1>
+          <p class="card-text">{{ jvmThreadLive.description }}</p>
+        </div>
+      </div>
+    </div>
+
+  </div>
+  <div class="row justify-content-center">
+    <div class="col">
+        <div *ngIf="logFile" class="card bg-light shadow-sm mb-3">
+            <div class="card-header">Andybrook Log</div>
+            <div class="card-body">
+              <p class="card-text">{{ logFile }}</p>
+            </div>
+          </div>
+    </div>
+  </div>
+</div>

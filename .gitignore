@@ -6,6 +6,7 @@
 .idea/**/shelf
 .idea/**
 
+*.log
 # IntelliJ
 out/
 

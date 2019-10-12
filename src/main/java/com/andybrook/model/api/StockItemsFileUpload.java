@@ -2,7 +2,6 @@ package com.andybrook.model.api;
 
 import com.andybrook.model.stock.ProductItem;
 
-import java.time.LocalDateTime;
 import java.util.List;
 
 public final class StockItemsFileUpload {

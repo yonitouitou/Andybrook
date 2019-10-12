@@ -44,6 +44,8 @@ import { ProductsPanelComponent } from './product/products-panel/products-panel.
 import { LoginComponent } from './authentication/login/login.component';
 import { LoginService } from './service/login-service';
 import { httpInterceptorProviders } from './http-interceptor/Interceptors-manager';
+import { DashboardComponent } from './monitoring/dashboard/dashboard.component';
+import { MonitoringService } from './service/monitoring-service';
 
 const appRoutes: Routes = [
   { path: '', component: LoginComponent},
@@ -53,7 +55,8 @@ const appRoutes: Routes = [
   { path: 'admin', component: AdminPanelComponent },
   { path: 'new-customer/:id', component: NewCustomerComponent },
   { path: 'customer-dashboard', component: CustomerPanelComponent },
-  { path: 'products', component: ProductsPanelComponent }
+  { path: 'products', component: ProductsPanelComponent },
+  { path: 'monitoring', component: DashboardComponent}
 ];
 
 @NgModule({
@@ -82,7 +85,8 @@ const appRoutes: Routes = [
     OrderNotificationModalComponent,
     UploadProductFileModalComponent,
     ProductsPanelComponent,
-    LoginComponent
+    LoginComponent,
+    DashboardComponent
   ],
   entryComponents: [
     CreateOrderModalComponent,
@@ -117,6 +121,7 @@ const appRoutes: Routes = [
     ProductService,
     CookieService,
     LoginService,
+    MonitoringService,
     httpInterceptorProviders
   ],
   bootstrap: [AppComponent]

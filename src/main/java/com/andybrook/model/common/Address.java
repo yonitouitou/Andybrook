@@ -29,8 +29,8 @@ public final class Address {
         String countryName = ! StringUtils.isEmpty(country) ? country : "";
         String zipCodeStr = zipCode != null ? zipCode.toString() : "";
         return Locale.FRANCE.equals(locale) || Locale.FRENCH.equals(locale)
-                ? sb.append(number).append(", ").append(name).append(" - ").append(zipCodeStr).append(" ").append(cityName).append(" - ").append(countryName).toString()
-                : sb.append(name).append(", ").append(number).append(" ").append(zipCodeStr).append(" ").append(cityName).append(" - ").append(countryName).toString();
+                ? sb.append(number).append(", ").append(name).append(" - ").append(zipCodeStr).append(" ").append(cityName).append(" - ").toString()
+                : sb.append(name).append(", ").append(number).append(" ").append(zipCodeStr).append(" ").append(cityName).append(" - ").toString();
     }
 
     public String getStreetNumber() {

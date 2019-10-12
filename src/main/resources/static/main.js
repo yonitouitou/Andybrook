@@ -166,7 +166,7 @@ module.exports = "a {\r\n color: gray\r\n}\r\n/*# sourceMappingURL=data:applicat
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<nav *ngIf=\"isLoggedIn$ | async\" class=\"navbar navbar-light navbar-expand-md fixed-top border-bottom\" style=\"background-color: white\">\r\n  <img src=\"../../assets/img/andybrook-logo-home.png\">\r\n  <button class=\"navbar-toggler hidden-sm-up\" type=\"button\" (click)=\"isNavbarCollapsed = !isNavbarCollapsed\" data-target=\"#navbarsDefault\" aria-controls=\"navbarsDefault\" aria-expanded=\"false\" aria-label=\"Toggle navigation\">\r\n    <span class=\"navbar-toggler-icon\"></span>\r\n  </button>\r\n  <div [ngbCollapse]=\"isNavbarCollapsed\" class=\"collapse navbar-collapse\" id=\"navbarsDefault\">\r\n    <ul class=\"navbar-nav mr-auto\">\r\n      <li class=\"nav-item\">\r\n        <a class=\"nav-link\"\r\n            routerLink=\"/orders\"\r\n        >Orders</a>\r\n      </li>\r\n      <li class=\"nav-item dropdown\" ngbDropdown>\r\n        <a class=\"nav-link dropdown-toggle\" id=\"id01\" ngbDropdownToggle>Customers</a>\r\n        <div class=\"dropdown-menu\" aria-labelledby=\"id01\" ngbDropdownMenu>\r\n          <a class=\"dropdown-item\" routerLink=\"/customer-dashboard\">Dashboard</a>\r\n          <a class=\"dropdown-item\" routerLink=\"/new-customer/-1\">New Customer</a>\r\n        </div>\r\n      </li>\r\n      <li class=\"nav-item\">\r\n        <a class=\"nav-link\"\r\n            routerLink=\"/products\"\r\n        >Products</a>\r\n      </li>\r\n      <li class=\"nav-item\">\r\n        <a class=\"nav-link\"\r\n            routerLink=\"/admin\"\r\n        >Admin</a>\r\n      </li>\r\n    </ul>\r\n    <ul class=\"navbar-nav\">\r\n        <li class=\"nav-item\">\r\n            <a (click)=\"onLogout()\">\r\n              <img src=\"../../assets/icon/account-logout.png\">\r\n            </a>\r\n        </li>\r\n      </ul>\r\n  </div>\r\n</nav>"
+module.exports = "<nav *ngIf=\"isLoggedIn$ | async\" class=\"navbar navbar-light navbar-expand-md fixed-top border-bottom\" style=\"background-color: white\">\r\n  <img src=\"../../assets/img/andybrook-logo-home.png\">\r\n  <button class=\"navbar-toggler hidden-sm-up\" type=\"button\" (click)=\"isNavbarCollapsed = !isNavbarCollapsed\" data-target=\"#navbarsDefault\" aria-controls=\"navbarsDefault\" aria-expanded=\"false\" aria-label=\"Toggle navigation\">\r\n    <span class=\"navbar-toggler-icon\"></span>\r\n  </button>\r\n  <div [ngbCollapse]=\"isNavbarCollapsed\" class=\"collapse navbar-collapse\" id=\"navbarsDefault\">\r\n    <ul class=\"navbar-nav mr-auto\">\r\n      <li class=\"nav-item\">\r\n        <a class=\"nav-link\"\r\n            routerLink=\"/orders\"\r\n        >Orders</a>\r\n      </li>\r\n      <li class=\"nav-item dropdown\" ngbDropdown>\r\n        <a class=\"nav-link dropdown-toggle\" id=\"id01\" ngbDropdownToggle>Customers</a>\r\n        <div class=\"dropdown-menu\" aria-labelledby=\"id01\" ngbDropdownMenu>\r\n          <a class=\"dropdown-item\" routerLink=\"/customer-dashboard\">Dashboard</a>\r\n          <a class=\"dropdown-item\" routerLink=\"/new-customer/-1\">New Customer</a>\r\n        </div>\r\n      </li>\r\n      <li class=\"nav-item\">\r\n        <a class=\"nav-link\"\r\n            routerLink=\"/products\"\r\n        >Products</a>\r\n      </li>\r\n      <li class=\"nav-item\">\r\n        <a class=\"nav-link\"\r\n            routerLink=\"/monitoring\"\r\n        >Monitoring</a>\r\n      </li>\r\n      <li class=\"nav-item\">\r\n        <a class=\"nav-link\"\r\n            routerLink=\"/admin\"\r\n        >Admin</a>\r\n      </li>\r\n    </ul>\r\n    <ul class=\"navbar-nav\">\r\n        <li class=\"nav-item\">\r\n            <a (click)=\"onLogout()\">\r\n              <img src=\"../../assets/icon/account-logout.png\">\r\n            </a>\r\n        </li>\r\n      </ul>\r\n  </div>\r\n</nav>"
 
 /***/ }),
 
@@ -327,6 +327,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _authentication_login_login_component__WEBPACK_IMPORTED_MODULE_44__ = __webpack_require__(/*! ./authentication/login/login.component */ "./src/app/authentication/login/login.component.ts");
 /* harmony import */ var _service_login_service__WEBPACK_IMPORTED_MODULE_45__ = __webpack_require__(/*! ./service/login-service */ "./src/app/service/login-service.ts");
 /* harmony import */ var _http_interceptor_Interceptors_manager__WEBPACK_IMPORTED_MODULE_46__ = __webpack_require__(/*! ./http-interceptor/Interceptors-manager */ "./src/app/http-interceptor/Interceptors-manager.ts");
+/* harmony import */ var _monitoring_dashboard_dashboard_component__WEBPACK_IMPORTED_MODULE_47__ = __webpack_require__(/*! ./monitoring/dashboard/dashboard.component */ "./src/app/monitoring/dashboard/dashboard.component.ts");
+/* harmony import */ var _service_monitoring_service__WEBPACK_IMPORTED_MODULE_48__ = __webpack_require__(/*! ./service/monitoring-service */ "./src/app/service/monitoring-service.ts");
+
+
 
 
 
@@ -382,7 +386,8 @@ var appRoutes = [
     { path: 'admin', component: _admin_admin_panel_admin_panel_component__WEBPACK_IMPORTED_MODULE_19__["AdminPanelComponent"] },
     { path: 'new-customer/:id', component: _customer_new_customer_new_customer_component__WEBPACK_IMPORTED_MODULE_39__["NewCustomerComponent"] },
     { path: 'customer-dashboard', component: _customer_customer_panel_customer_panel_component__WEBPACK_IMPORTED_MODULE_21__["CustomerPanelComponent"] },
-    { path: 'products', component: _product_products_panel_products_panel_component__WEBPACK_IMPORTED_MODULE_43__["ProductsPanelComponent"] }
+    { path: 'products', component: _product_products_panel_products_panel_component__WEBPACK_IMPORTED_MODULE_43__["ProductsPanelComponent"] },
+    { path: 'monitoring', component: _monitoring_dashboard_dashboard_component__WEBPACK_IMPORTED_MODULE_47__["DashboardComponent"] }
 ];
 var AppModule = /** @class */ (function () {
     function AppModule() {
@@ -414,7 +419,8 @@ var AppModule = /** @class */ (function () {
                 _modal_order_notification_modal_order_notification_modal_component__WEBPACK_IMPORTED_MODULE_41__["OrderNotificationModalComponent"],
                 _modal_upload_product_file_modal_upload_product_file_modal_component__WEBPACK_IMPORTED_MODULE_42__["UploadProductFileModalComponent"],
                 _product_products_panel_products_panel_component__WEBPACK_IMPORTED_MODULE_43__["ProductsPanelComponent"],
-                _authentication_login_login_component__WEBPACK_IMPORTED_MODULE_44__["LoginComponent"]
+                _authentication_login_login_component__WEBPACK_IMPORTED_MODULE_44__["LoginComponent"],
+                _monitoring_dashboard_dashboard_component__WEBPACK_IMPORTED_MODULE_47__["DashboardComponent"]
             ],
             entryComponents: [
                 _modal_create_order_modal_create_order_modal_component__WEBPACK_IMPORTED_MODULE_26__["CreateOrderModalComponent"],
@@ -449,6 +455,7 @@ var AppModule = /** @class */ (function () {
                 _service_product_service__WEBPACK_IMPORTED_MODULE_29__["ProductService"],
                 ngx_cookie_service__WEBPACK_IMPORTED_MODULE_34__["CookieService"],
                 _service_login_service__WEBPACK_IMPORTED_MODULE_45__["LoginService"],
+                _service_monitoring_service__WEBPACK_IMPORTED_MODULE_48__["MonitoringService"],
                 _http_interceptor_Interceptors_manager__WEBPACK_IMPORTED_MODULE_46__["httpInterceptorProviders"]
             ],
             bootstrap: [_app_component__WEBPACK_IMPORTED_MODULE_9__["AppComponent"]]
@@ -2798,6 +2805,38 @@ var AdminSetting = /** @class */ (function () {
 
 /***/ }),
 
+/***/ "./src/app/model/monitoring/actuator/ActuatorBasicResponse.ts":
+/*!********************************************************************!*\
+  !*** ./src/app/model/monitoring/actuator/ActuatorBasicResponse.ts ***!
+  \********************************************************************/
+/*! exports provided: ActuatorBasicResponse */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ActuatorBasicResponse", function() { return ActuatorBasicResponse; });
+var ActuatorBasicResponse = /** @class */ (function () {
+    function ActuatorBasicResponse() {
+        this.values = [];
+    }
+    ActuatorBasicResponse.fromJson = function (data) {
+        var res = new ActuatorBasicResponse();
+        res.name = data.name;
+        res.baseUnit = data.baseUnit != null ? data.baseUnit : "";
+        res.description = data.description;
+        for (var _i = 0, _a = data.measurements; _i < _a.length; _i++) {
+            var val = _a[_i];
+            res.values.push(val.value);
+        }
+        return res;
+    };
+    return ActuatorBasicResponse;
+}());
+
+
+
+/***/ }),
+
 /***/ "./src/app/model/request/customer/AddOrUpdateCustomerReq.ts":
 /*!******************************************************************!*\
   !*** ./src/app/model/request/customer/AddOrUpdateCustomerReq.ts ***!
@@ -2954,6 +2993,108 @@ var DeleteOrderItemsReq = /** @class */ (function () {
         this.orderItemsId = orderItemsId;
     }
     return DeleteOrderItemsReq;
+}());
+
+
+
+/***/ }),
+
+/***/ "./src/app/monitoring/dashboard/dashboard.component.css":
+/*!**************************************************************!*\
+  !*** ./src/app/monitoring/dashboard/dashboard.component.css ***!
+  \**************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJzcmMvYXBwL21vbml0b3JpbmcvZGFzaGJvYXJkL2Rhc2hib2FyZC5jb21wb25lbnQuY3NzIn0= */"
+
+/***/ }),
+
+/***/ "./src/app/monitoring/dashboard/dashboard.component.html":
+/*!***************************************************************!*\
+  !*** ./src/app/monitoring/dashboard/dashboard.component.html ***!
+  \***************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "<div class=\"container-fluid\">\n  <div class=\"row justify-content-center\">\n\n    <div class=\"col\">\n      <div *ngIf=\"cpuSystemCount\" class=\"card bg-light shadow-sm mb-3\" style=\"width: 18rem; height: 18rem;\">\n        <div class=\"card-header\">System CPU count</div>\n        <div class=\"card-body\">\n          <h1 class=\"card-title\" style=\"font-size: 400%\">{{ cpuSystemCount.values[0] }}</h1>\n          <p class=\"card-text\">{{ cpuSystemCount.description }}</p>\n        </div>\n      </div>\n    </div>\n\n    <div class=\"col\">\n      <div *ngIf=\"cpuUsage\" class=\"card bg-light shadow-sm mb-3\" style=\"width: 18rem; height: 18rem;\">\n        <div class=\"card-header\">Process CPU Usage</div>\n        <div class=\"card-body\">\n          <h1 class=\"card-title\" style=\"font-size: 400%\">{{ (cpuUsage.values[0] * 100).toFixed(2) }} %</h1>\n          <p class=\"card-text\">{{ cpuUsage.description }}</p>\n        </div>\n      </div>\n    </div>\n\n    <div class=\"col\">\n      <div *ngIf=\"jvmMemoryUsed\" class=\"card bg-light shadow-sm mb-3\" style=\"width: 18rem; height: 18rem;\">\n        <div class=\"card-header\">JVM Memory Used</div>\n        <div class=\"card-body\">\n          <h1 class=\"card-title\" style=\"font-size: 400%\">{{ (jvmMemoryUsed.values[0] / 1000000).toFixed(0) }} MB</h1>\n          <p class=\"card-text\">{{ jvmMemoryUsed.description }}</p>\n        </div>\n      </div>\n    </div>\n\n    <div class=\"col\">\n      <div *ngIf=\"jvmThreadLive\" class=\"card bg-light shadow-sm mb-3\" style=\"width: 18rem; height: 18rem;\">\n        <div class=\"card-header\">JVM Live Threads</div>\n        <div class=\"card-body\">\n          <h1 class=\"card-title\" style=\"font-size: 400%\">{{ jvmThreadLive.values[0] }}</h1>\n          <p class=\"card-text\">{{ jvmThreadLive.description }}</p>\n        </div>\n      </div>\n    </div>\n\n  </div>\n  <div class=\"row justify-content-center\">\n    <div class=\"col\">\n        <div *ngIf=\"logFile\" class=\"card bg-light shadow-sm mb-3\">\n            <div class=\"card-header\">Andybrook Log</div>\n            <div class=\"card-body\">\n              <p class=\"card-text\">{{ logFile }}</p>\n            </div>\n          </div>\n    </div>\n  </div>\n</div>"
+
+/***/ }),
+
+/***/ "./src/app/monitoring/dashboard/dashboard.component.ts":
+/*!*************************************************************!*\
+  !*** ./src/app/monitoring/dashboard/dashboard.component.ts ***!
+  \*************************************************************/
+/*! exports provided: DashboardComponent */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "DashboardComponent", function() { return DashboardComponent; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var rxjs__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! rxjs */ "./node_modules/rxjs/_esm5/index.js");
+/* harmony import */ var _service_monitoring_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../service/monitoring-service */ "./src/app/service/monitoring-service.ts");
+/* harmony import */ var _model_monitoring_actuator_ActuatorBasicResponse__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../model/monitoring/actuator/ActuatorBasicResponse */ "./src/app/model/monitoring/actuator/ActuatorBasicResponse.ts");
+
+
+
+
+
+var DashboardComponent = /** @class */ (function () {
+    function DashboardComponent(monitoringService) {
+        this.monitoringService = monitoringService;
+        this.timer = Object(rxjs__WEBPACK_IMPORTED_MODULE_2__["timer"])(0, 5000);
+    }
+    DashboardComponent.prototype.ngOnInit = function () {
+        var _this = this;
+        this.timer.subscribe(function (event) {
+            _this.getCpuUsage();
+            _this.getSystemCpuCount();
+            _this.getJvmThreadsLive();
+            _this.getJvmMemoryUsed();
+            _this.getLogFile();
+        });
+    };
+    DashboardComponent.prototype.getLogFile = function () {
+        var _this = this;
+        this.monitoringService.getServerLogFile().subscribe(function (res) {
+            _this.logFile = res;
+        });
+    };
+    DashboardComponent.prototype.getJvmMemoryUsed = function () {
+        var _this = this;
+        this.monitoringService.getJvmMemoryUsed().subscribe(function (res) {
+            _this.jvmMemoryUsed = _model_monitoring_actuator_ActuatorBasicResponse__WEBPACK_IMPORTED_MODULE_4__["ActuatorBasicResponse"].fromJson(res);
+        });
+    };
+    DashboardComponent.prototype.getJvmThreadsLive = function () {
+        var _this = this;
+        this.monitoringService.getJvmThreadsLive().subscribe(function (res) {
+            _this.jvmThreadLive = _model_monitoring_actuator_ActuatorBasicResponse__WEBPACK_IMPORTED_MODULE_4__["ActuatorBasicResponse"].fromJson(res);
+        });
+    };
+    DashboardComponent.prototype.getCpuUsage = function () {
+        var _this = this;
+        this.monitoringService.getCpuUsage().subscribe(function (res) {
+            _this.cpuUsage = _model_monitoring_actuator_ActuatorBasicResponse__WEBPACK_IMPORTED_MODULE_4__["ActuatorBasicResponse"].fromJson(res);
+        });
+    };
+    DashboardComponent.prototype.getSystemCpuCount = function () {
+        var _this = this;
+        this.monitoringService.getSystemCpuCount().subscribe(function (res) {
+            _this.cpuSystemCount = _model_monitoring_actuator_ActuatorBasicResponse__WEBPACK_IMPORTED_MODULE_4__["ActuatorBasicResponse"].fromJson(res);
+        });
+    };
+    DashboardComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
+            selector: 'app-dashboard',
+            template: __webpack_require__(/*! ./dashboard.component.html */ "./src/app/monitoring/dashboard/dashboard.component.html"),
+            styles: [__webpack_require__(/*! ./dashboard.component.css */ "./src/app/monitoring/dashboard/dashboard.component.css")]
+        }),
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_service_monitoring_service__WEBPACK_IMPORTED_MODULE_3__["MonitoringService"]])
+    ], DashboardComponent);
+    return DashboardComponent;
 }());
 
 
@@ -3936,6 +4077,57 @@ var LoginService = /** @class */ (function () {
         tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_http_service__WEBPACK_IMPORTED_MODULE_2__["HttpService"]])
     ], LoginService);
     return LoginService;
+}());
+
+
+
+/***/ }),
+
+/***/ "./src/app/service/monitoring-service.ts":
+/*!***********************************************!*\
+  !*** ./src/app/service/monitoring-service.ts ***!
+  \***********************************************/
+/*! exports provided: MonitoringService */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "MonitoringService", function() { return MonitoringService; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var _http_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./http-service */ "./src/app/service/http-service.ts");
+
+
+
+var MonitoringService = /** @class */ (function () {
+    function MonitoringService(httpApi) {
+        this.httpApi = httpApi;
+        this.ACTUATOR_URL = 'actuator/';
+        this.ACTUATOR_METRICS_URL = this.ACTUATOR_URL + 'metrics/';
+    }
+    MonitoringService.prototype.getCpuUsage = function () {
+        return this.httpApi.get(this.ACTUATOR_METRICS_URL + 'process.cpu.usage');
+    };
+    MonitoringService.prototype.getSystemCpuCount = function () {
+        return this.httpApi.get(this.ACTUATOR_METRICS_URL + 'system.cpu.count');
+    };
+    MonitoringService.prototype.getJvmThreadsLive = function () {
+        return this.httpApi.get(this.ACTUATOR_METRICS_URL + 'jvm.threads.live');
+    };
+    MonitoringService.prototype.getJvmMemoryUsed = function () {
+        return this.httpApi.get(this.ACTUATOR_METRICS_URL + 'jvm.memory.used');
+    };
+    MonitoringService.prototype.getServerLogFile = function () {
+        var options = {
+            responseType: 'text'
+        };
+        return this.httpApi.get(this.ACTUATOR_URL + 'logfile', options);
+    };
+    MonitoringService = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Injectable"])(),
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_http_service__WEBPACK_IMPORTED_MODULE_2__["HttpService"]])
+    ], MonitoringService);
+    return MonitoringService;
 }());
 
 
