@@ -5,8 +5,7 @@
 .idea/**/dictionaries
 .idea/**/shelf
 .idea/**
-
-*.log
+logs/
 # IntelliJ
 out/
 
