@@ -2,30 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="68c8b49c-970c-40ab-ab2d-b486fbd977e4" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/andybrook-ui/src/app/model/monitoring/actuator/ActuatorDbHealth.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/andybrook-ui/src/app/model/monitoring/actuator/ActuatorElasticsearchHealth.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/andybrook-ui/src/assets/icon/LoadingGrey.gif" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/andybrook-ui/src/assets/icon/loading.gif" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/andybrook-ui/src/assets/icon/statusGreen.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/andybrook-ui/src/assets/icon/statusRed.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/andybrook-ui/src/assets/icon/statusYellow.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/andybrook-ui/src/assets/img/Andybrook-short-logo.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/assets/icon/LoadingGrey.gif" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/assets/icon/connectionStatusFailed.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/assets/icon/connectionStatusOk.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/assets/icon/loading.gif" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/assets/icon/statusGreen.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/assets/icon/statusRed.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/assets/icon/statusYellow.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/assets/img/Andybrook-short-logo.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/assets/img/Andybrook-short-logo.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/andybrook-ui/src/app/authentication/login/login.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/andybrook-ui/src/app/authentication/login/login.component.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/andybrook-ui/src/app/monitoring/dashboard/dashboard.component.css" beforeDir="false" afterPath="$PROJECT_DIR$/andybrook-ui/src/app/monitoring/dashboard/dashboard.component.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/andybrook-ui/src/app/monitoring/dashboard/dashboard.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/andybrook-ui/src/app/monitoring/dashboard/dashboard.component.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/andybrook-ui/src/app/monitoring/dashboard/dashboard.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/andybrook-ui/src/app/monitoring/dashboard/dashboard.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/andybrook-ui/src/app/service/monitoring-service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/andybrook-ui/src/app/service/monitoring-service.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/static/main.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/static/main.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/static/main.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/static/main.js.map" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/static/main.js" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/static/main.js" afterDir="false" />

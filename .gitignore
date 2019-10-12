@@ -16,6 +16,7 @@ hs_err_pid*
 ### Java ###
 # Compiled class file
 *.class
+*.jar
 
 application.properties
 /home/yoni/Documents/projects/andybrook/src/main/resources/application.properties

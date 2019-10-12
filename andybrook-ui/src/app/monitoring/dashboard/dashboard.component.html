@@ -102,12 +102,12 @@
   </div>
   
   <div class="row">
-    <div *ngIf="logFile" class="col">
+    <div class="col">
       <div class="card bg-light shadow-sm mb-3">
         <div class="card-header">Andybrook Log
           <button class="btn btn-outline-dark" (click)="getLogFile()">GET</button>
         </div>
-        <div class="card-body">
+        <div *ngIf="logFile" class="card-body">
           <p class="card-text">{{ logFile }}</p>
         </div>
       </div>
