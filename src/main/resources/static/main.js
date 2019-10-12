@@ -486,7 +486,7 @@ module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"card mt-5 shadow-sm p-3 mb-5 bg-white rounded\" style=\"margin: auto; width: 35rem;\">\n  <div class=\"card-body\">\n    <img src=\"../../../assets/img/andybrook-logo.png\">\n    <form [formGroup]=\"loginForm\" (ngSubmit)=\"onSubmit()\">\n      <div class=\"form-group\">\n        <label for=\"username\">Username :</label>\n        <input type=\"text\" class=\"form-control\" formControlName=\"username\" id=\"username\" autocomplete=\"off\">\n        <div class=\"error\" *ngIf=\"loginForm.controls['username'].hasError('required') && loginForm.controls['username'].touched\">Username is required</div>\n      </div>\n      <div class=\"form-group\">\n        <label for=\"pwd\">Password :</label>\n        <input type=\"password\" class=\"form-control\" formControlName=\"password\" id=\"pwd\" autocomplete=\"off\">\n        <div class=\"error\" *ngIf=\"loginForm.controls['password'].hasError('required') && loginForm.controls['password'].touched\">Password is required</div>\n      </div>\n        <div class=\"row\">\n          <div class=\"col\">\n            <button class=\"btn btn-success\" [disabled]=\"loginForm.invalid\">Login</button>\n          </div>\n          <div class=\"col\">\n            <ngb-alert *ngIf=\"_errorMessage\" type=\"danger\" [dismissible]=\"true\" (close)=\"_errorMessage = null\">{{ _errorMessage }}</ngb-alert>\n          </div>\n        </div>\n    </form>\n  </div>\n</div>"
+module.exports = "<div class=\"card w-75 mt-5 shadow-sm p-3 mb-5 bg-white rounded\" style=\"margin: auto; max-width: 35em;\">\n  <div class=\"card-body\">\n    <picture>\n      <source media=\"(min-width: 1200px)\" srcset=\"../../../assets/img/andybrook-logo.png\" style=\"max-width: 100%\">\n      <source media=\"(min-width: 100px)\" srcset=\"../../../assets/img/andybrook-short-logo.png\" style=\"max-width: 100%\">\n      <img src=\"../../../assets/img/andybrook-logo.png\" style=\"max-width: 100%\">\n    </picture>\n    <form [formGroup]=\"loginForm\" (ngSubmit)=\"onSubmit()\">\n      <div class=\"form-group\">\n        <label for=\"username\">Username :</label>\n        <input type=\"text\" class=\"form-control\" formControlName=\"username\" id=\"username\" autocomplete=\"off\">\n        <div class=\"error\" *ngIf=\"loginForm.controls['username'].hasError('required') && loginForm.controls['username'].touched\">Username is required</div>\n      </div>\n      <div class=\"form-group\">\n        <label for=\"pwd\">Password :</label>\n        <input type=\"password\" class=\"form-control\" formControlName=\"password\" id=\"pwd\" autocomplete=\"off\">\n        <div class=\"error\" *ngIf=\"loginForm.controls['password'].hasError('required') && loginForm.controls['password'].touched\">Password is required</div>\n      </div>\n        <div class=\"row\">\n          <div class=\"col\">\n            <button class=\"btn btn-success\" [disabled]=\"loginForm.invalid\">Login</button>\n          </div>\n          <div class=\"col\">\n            <ngb-alert *ngIf=\"_errorMessage\" type=\"danger\" [dismissible]=\"true\" (close)=\"_errorMessage = null\">{{ _errorMessage }}</ngb-alert>\n          </div>\n        </div>\n    </form>\n  </div>\n</div>"
 
 /***/ }),
 
@@ -2837,6 +2837,66 @@ var ActuatorBasicResponse = /** @class */ (function () {
 
 /***/ }),
 
+/***/ "./src/app/model/monitoring/actuator/ActuatorDbHealth.ts":
+/*!***************************************************************!*\
+  !*** ./src/app/model/monitoring/actuator/ActuatorDbHealth.ts ***!
+  \***************************************************************/
+/*! exports provided: ActuatorDbHealth */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ActuatorDbHealth", function() { return ActuatorDbHealth; });
+var ActuatorDbHealth = /** @class */ (function () {
+    function ActuatorDbHealth() {
+    }
+    ActuatorDbHealth.fromJson = function (data) {
+        var health = new ActuatorDbHealth();
+        health.isUp = data.status == 'UP';
+        health.dbName = data.details.database == null ? '' : data.details.database;
+        health.error = data.details.error;
+        return health;
+    };
+    return ActuatorDbHealth;
+}());
+
+
+
+/***/ }),
+
+/***/ "./src/app/model/monitoring/actuator/ActuatorElasticsearchHealth.ts":
+/*!**************************************************************************!*\
+  !*** ./src/app/model/monitoring/actuator/ActuatorElasticsearchHealth.ts ***!
+  \**************************************************************************/
+/*! exports provided: ActuatorElasticsearchHealth */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ActuatorElasticsearchHealth", function() { return ActuatorElasticsearchHealth; });
+var ActuatorElasticsearchHealth = /** @class */ (function () {
+    function ActuatorElasticsearchHealth() {
+    }
+    ActuatorElasticsearchHealth.fromJson = function (data) {
+        var health = new ActuatorElasticsearchHealth();
+        health.isUp = data.status == 'UP';
+        health.clusterName = data.details.cluster_name;
+        health.elasticsearchStatus = data.details.status;
+        health.nodesNb = data.details.number_of_nodes;
+        health.dataNodesNb = data.details.number_of_data_nodes;
+        health.activePrimaryShardsNb = data.details.active_primary_shards;
+        health.activeShardsNb = data.details.active_shards;
+        health.pendingTaskNb = data.details.number_of_pending_tasks;
+        health.error = data.error;
+        return health;
+    };
+    return ActuatorElasticsearchHealth;
+}());
+
+
+
+/***/ }),
+
 /***/ "./src/app/model/request/customer/AddOrUpdateCustomerReq.ts":
 /*!******************************************************************!*\
   !*** ./src/app/model/request/customer/AddOrUpdateCustomerReq.ts ***!
@@ -3006,7 +3066,7 @@ var DeleteOrderItemsReq = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJzcmMvYXBwL21vbml0b3JpbmcvZGFzaGJvYXJkL2Rhc2hib2FyZC5jb21wb25lbnQuY3NzIn0= */"
+module.exports = ".center {\r\n    display: block;\r\n    margin-left: auto;\r\n    margin-right: auto;\r\n    width: 50%;\r\n}\r\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvbW9uaXRvcmluZy9kYXNoYm9hcmQvZGFzaGJvYXJkLmNvbXBvbmVudC5jc3MiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUE7SUFDSSxjQUFjO0lBQ2QsaUJBQWlCO0lBQ2pCLGtCQUFrQjtJQUNsQixVQUFVO0FBQ2QiLCJmaWxlIjoic3JjL2FwcC9tb25pdG9yaW5nL2Rhc2hib2FyZC9kYXNoYm9hcmQuY29tcG9uZW50LmNzcyIsInNvdXJjZXNDb250ZW50IjpbIi5jZW50ZXIge1xyXG4gICAgZGlzcGxheTogYmxvY2s7XHJcbiAgICBtYXJnaW4tbGVmdDogYXV0bztcclxuICAgIG1hcmdpbi1yaWdodDogYXV0bztcclxuICAgIHdpZHRoOiA1MCU7XHJcbn0iXX0= */"
 
 /***/ }),
 
@@ -3017,7 +3077,7 @@ module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"container-fluid\">\n  <div class=\"row justify-content-center\">\n\n    <div class=\"col\">\n      <div *ngIf=\"cpuSystemCount\" class=\"card bg-light shadow-sm mb-3\" style=\"width: 18rem; height: 18rem;\">\n        <div class=\"card-header\">System CPU count</div>\n        <div class=\"card-body\">\n          <h1 class=\"card-title\" style=\"font-size: 400%\">{{ cpuSystemCount.values[0] }}</h1>\n          <p class=\"card-text\">{{ cpuSystemCount.description }}</p>\n        </div>\n      </div>\n    </div>\n\n    <div class=\"col\">\n      <div *ngIf=\"cpuUsage\" class=\"card bg-light shadow-sm mb-3\" style=\"width: 18rem; height: 18rem;\">\n        <div class=\"card-header\">Process CPU Usage</div>\n        <div class=\"card-body\">\n          <h1 class=\"card-title\" style=\"font-size: 400%\">{{ (cpuUsage.values[0] * 100).toFixed(2) }} %</h1>\n          <p class=\"card-text\">{{ cpuUsage.description }}</p>\n        </div>\n      </div>\n    </div>\n\n    <div class=\"col\">\n      <div *ngIf=\"jvmMemoryUsed\" class=\"card bg-light shadow-sm mb-3\" style=\"width: 18rem; height: 18rem;\">\n        <div class=\"card-header\">JVM Memory Used</div>\n        <div class=\"card-body\">\n          <h1 class=\"card-title\" style=\"font-size: 400%\">{{ (jvmMemoryUsed.values[0] / 1000000).toFixed(0) }} MB</h1>\n          <p class=\"card-text\">{{ jvmMemoryUsed.description }}</p>\n        </div>\n      </div>\n    </div>\n\n    <div class=\"col\">\n      <div *ngIf=\"jvmThreadLive\" class=\"card bg-light shadow-sm mb-3\" style=\"width: 18rem; height: 18rem;\">\n        <div class=\"card-header\">JVM Live Threads</div>\n        <div class=\"card-body\">\n          <h1 class=\"card-title\" style=\"font-size: 400%\">{{ jvmThreadLive.values[0] }}</h1>\n          <p class=\"card-text\">{{ jvmThreadLive.description }}</p>\n        </div>\n      </div>\n    </div>\n\n  </div>\n  <div class=\"row justify-content-center\">\n    <div class=\"col\">\n        <div *ngIf=\"logFile\" class=\"card bg-light shadow-sm mb-3\">\n            <div class=\"card-header\">Andybrook Log</div>\n            <div class=\"card-body\">\n              <p class=\"card-text\">{{ logFile }}</p>\n            </div>\n          </div>\n    </div>\n  </div>\n</div>"
+module.exports = "<div class=\"container-fluid\">\n  <div class=\"row\">\n\n    <div class=\"col\">\n      <div class=\"card bg-light shadow-sm mb-3\" style=\"width: 19rem; height: 18rem;\">\n        <div class=\"card-header\">Mysql Database Health</div>\n        <div class=\"card-body\">\n          <h4 *ngIf=\"dbHealth\" class=\"card-title\">Status :\n            <img *ngIf=\"dbHealth.isUp\" src=\"../../../assets/icon/statusGreen.png\">\n            <img *ngIf=\"! dbHealth.isUp\" src=\"../../../assets/icon/statusRed.png\">\n          </h4>\n          <img *ngIf=\"! dbHealth\" class=\"center\" src=\"../../../assets/icon/loadingGrey.gif\">\n        </div>\n      </div>\n    </div>\n\n    <div class=\"col\">\n        <div class=\"card bg-light shadow-sm mb-3\" style=\"width: 19rem; height: 18rem;\">\n          <div class=\"card-header\">Elasticsearch Health</div>\n          <div class=\"card-body\">\n            <h4  *ngIf=\"elasticsearchHealth\" class=\"card-title\">Status :\n              <img *ngIf=\"getElasticsearchStatus() == 'G'\" src=\"../../../assets/icon/statusGreen.png\">\n              <img *ngIf=\"getElasticsearchStatus() == 'Y'\" src=\"../../../assets/icon/statusYellow.png\">\n              <img *ngIf=\"getElasticsearchStatus() == 'R'\" src=\"../../../assets/icon/statusRed.png\">\n            </h4>\n            <img *ngIf=\"! elasticsearchHealth\" class=\"center\" src=\"../../../assets/icon/loadingGrey.gif\">\n            <div *ngIf=\"elasticsearchHealth\">\n              <p *ngIf=\"elasticsearchHealth.clusterName\" class=\"card-text\">Cluster Name : {{ elasticsearchHealth.clusterName }} <br> Number of Nodes : {{ elasticsearchHealth.nodesNb }} <br> Number of Data Nodes : {{ elasticsearchHealth.dataNodesNb }} <br> Primary Active Shards : {{ elasticsearchHealth.activePrimaryShardsNb }} <br>Active Shards : {{ elasticsearchHealth.activeShardsNb }} <br> Pending Tasks : {{ elasticsearchHealth.pendingTaskNb }}</p>\n              <p *ngIf=\"elasticsearchHealth.error\" class=\"card-text\">Error : {{ elasticsearchHealth.error }}</p>\n            </div>\n          </div>\n        </div>\n      </div>\n\n    <div class=\"col\">\n      <div [ngClass]=\"(cpuUsage && cpuUsage.values[0] >= cpuUsageWarningLimit) ? 'card text-white bg-danger shadow-sm mb-3' : 'card bg-light shadow-sm mb-3'\" style=\"width: 19rem; height: 18rem;\">\n        <div class=\"card-header\">Process CPU Usage</div>\n        <div class=\"card-body\">\n          <div *ngIf=\"cpuUsage\">\n            <h1 class=\"card-title\" style=\"font-size: 400%\">{{ getPercentOfCpuUsage() }} %</h1>\n            <p class=\"card-text\">{{ cpuUsage.description }}</p>\n          </div>\n          <img *ngIf=\"! cpuUsage\" class=\"center\" src=\"../../../assets/icon/loadingGrey.gif\">\n        </div>\n      </div>\n    </div>\n\n    <!--<div *ngIf=\"jvmMemoryMax\" class=\"col\">\n      <div class=\"card bg-light shadow-sm mb-3\" style=\"width: 19rem; height: 18rem;\">\n        <div class=\"card-header\">JVM Max Memory</div>\n        <div class=\"card-body\">\n          <h1 class=\"card-title\" style=\"font-size: 400%\">{{ (jvmMemoryMax.values[0] / 1000000).toFixed(0) }} MB</h1>\n          <p class=\"card-text\">{{ jvmMemoryMax.description }}</p>\n        </div>\n      </div>\n    </div>-->\n\n    <div class=\"col\">\n      <div [ngClass]=\"(jvmMemoryUsed.values[0] >= memoryUsageWarningLimit) ? 'card text-white bg-danger shadow-sm mb-3' : 'card bg-light shadow-sm mb-3'\" style=\"width: 19rem; height: 18rem;\">\n        <div class=\"card-header\">JVM Memory Used</div>\n        <div class=\"card-body\">\n          <div *ngIf=\"jvmMemoryUsed && memoryUsageWarningLimit\">\n            <h1 class=\"card-title\" style=\"font-size: 400%\">{{ getPercentOfMemoryUsed() }} %</h1>\n            <h2 class=\"card-title\" style=\"font-size: 400%\">{{ getMemoryUsedInMb() }} MB</h2>\n            <p class=\"card-text\">{{ jvmMemoryUsed.description }}</p>\n          </div>\n          <img *ngIf=\"! (jvmMemoryUsed && memoryUsageWarningLimit)\" class=\"center\" src=\"../../../assets/icon/loadingGrey.gif\">\n        </div>\n      </div>\n    </div>\n\n  </div>\n  \n  <div class=\"row\">\n    \n    <div class=\"col\">\n      <div class=\"card bg-light shadow-sm mb-3\" style=\"width: 19rem; height: 18rem;\">\n        <div class=\"card-header\">System CPU count</div>\n        <div class=\"card-body\">\n          <div *ngIf=\"cpuSystemCount\">\n            <h1 class=\"card-title\" style=\"font-size: 400%\">{{ cpuSystemCount.values[0] }}</h1>\n            <p class=\"card-text\">{{ cpuSystemCount.description }}</p>\n          </div>\n          <img *ngIf=\"! cpuSystemCount\" class=\"center\" src=\"../../../assets/icon/loadingGrey.gif\">\n        </div>\n      </div>\n    </div>\n\n    <div class=\"col\">\n      <div class=\"card bg-light shadow-sm mb-3\" style=\"width: 19rem; height: 18rem;\">\n        <div class=\"card-header\">JVM Live Threads</div>\n        <div class=\"card-body\">\n          <div *ngIf=\"jvmThreadLive\">\n            <h1 class=\"card-title\" style=\"font-size: 400%\">{{ jvmThreadLive.values[0] }}</h1>\n            <p class=\"card-text\">{{ jvmThreadLive.description }}</p>\n          </div>\n          <img *ngIf=\"! jvmThreadLive\" class=\"center\" src=\"../../../assets/icon/loadingGrey.gif\">\n        </div>\n      </div>\n    </div>\n    \n  </div>\n  \n  <div class=\"row\">\n    <div *ngIf=\"logFile\" class=\"col\">\n      <div class=\"card bg-light shadow-sm mb-3\">\n        <div class=\"card-header\">Andybrook Log\n          <button class=\"btn btn-outline-dark\" (click)=\"getLogFile()\">GET</button>\n        </div>\n        <div class=\"card-body\">\n          <p class=\"card-text\">{{ logFile }}</p>\n        </div>\n      </div>\n    </div>\n  </div>\n</div>"
 
 /***/ }),
 
@@ -3036,6 +3096,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var rxjs__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! rxjs */ "./node_modules/rxjs/_esm5/index.js");
 /* harmony import */ var _service_monitoring_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../service/monitoring-service */ "./src/app/service/monitoring-service.ts");
 /* harmony import */ var _model_monitoring_actuator_ActuatorBasicResponse__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../model/monitoring/actuator/ActuatorBasicResponse */ "./src/app/model/monitoring/actuator/ActuatorBasicResponse.ts");
+/* harmony import */ var _model_monitoring_actuator_ActuatorDbHealth__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../model/monitoring/actuator/ActuatorDbHealth */ "./src/app/model/monitoring/actuator/ActuatorDbHealth.ts");
+/* harmony import */ var _model_monitoring_actuator_ActuatorElasticsearchHealth__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../model/monitoring/actuator/ActuatorElasticsearchHealth */ "./src/app/model/monitoring/actuator/ActuatorElasticsearchHealth.ts");
+
+
 
 
 
@@ -3044,16 +3108,38 @@ __webpack_require__.r(__webpack_exports__);
 var DashboardComponent = /** @class */ (function () {
     function DashboardComponent(monitoringService) {
         this.monitoringService = monitoringService;
+        this.cpuUsageWarningLimit = 0.85;
         this.timer = Object(rxjs__WEBPACK_IMPORTED_MODULE_2__["timer"])(0, 5000);
     }
     DashboardComponent.prototype.ngOnInit = function () {
         var _this = this;
-        this.timer.subscribe(function (event) {
+        this.timerSubscription = this.timer.subscribe(function (event) {
             _this.getCpuUsage();
             _this.getSystemCpuCount();
             _this.getJvmThreadsLive();
+            _this.getJvmMemoryMax();
             _this.getJvmMemoryUsed();
-            _this.getLogFile();
+            _this.getElasticsearchHealth();
+            _this.getDatabaseHealth();
+        });
+    };
+    DashboardComponent.prototype.ngOnDestroy = function () {
+        this.timerSubscription.unsubscribe();
+    };
+    DashboardComponent.prototype.getDatabaseHealth = function () {
+        var _this = this;
+        this.monitoringService.getDatabaseHealth().subscribe(function (res) {
+            _this.dbHealth = _model_monitoring_actuator_ActuatorDbHealth__WEBPACK_IMPORTED_MODULE_5__["ActuatorDbHealth"].fromJson(res);
+        }, function (error) {
+            _this.dbHealth = _model_monitoring_actuator_ActuatorDbHealth__WEBPACK_IMPORTED_MODULE_5__["ActuatorDbHealth"].fromJson(error.error);
+        });
+    };
+    DashboardComponent.prototype.getElasticsearchHealth = function () {
+        var _this = this;
+        this.monitoringService.getElasticsearchHealth().subscribe(function (res) {
+            _this.elasticsearchHealth = _model_monitoring_actuator_ActuatorElasticsearchHealth__WEBPACK_IMPORTED_MODULE_6__["ActuatorElasticsearchHealth"].fromJson(res);
+        }, function (error) {
+            _this.elasticsearchHealth = _model_monitoring_actuator_ActuatorElasticsearchHealth__WEBPACK_IMPORTED_MODULE_6__["ActuatorElasticsearchHealth"].fromJson(error.error);
         });
     };
     DashboardComponent.prototype.getLogFile = function () {
@@ -3066,6 +3152,13 @@ var DashboardComponent = /** @class */ (function () {
         var _this = this;
         this.monitoringService.getJvmMemoryUsed().subscribe(function (res) {
             _this.jvmMemoryUsed = _model_monitoring_actuator_ActuatorBasicResponse__WEBPACK_IMPORTED_MODULE_4__["ActuatorBasicResponse"].fromJson(res);
+        });
+    };
+    DashboardComponent.prototype.getJvmMemoryMax = function () {
+        var _this = this;
+        this.monitoringService.getJvmMemoryMax().subscribe(function (res) {
+            _this.jvmMemoryMax = _model_monitoring_actuator_ActuatorBasicResponse__WEBPACK_IMPORTED_MODULE_4__["ActuatorBasicResponse"].fromJson(res);
+            _this.memoryUsageWarningLimit = Number(_this.jvmMemoryMax.values[0]) * 0.85;
         });
     };
     DashboardComponent.prototype.getJvmThreadsLive = function () {
@@ -3085,6 +3178,28 @@ var DashboardComponent = /** @class */ (function () {
         this.monitoringService.getSystemCpuCount().subscribe(function (res) {
             _this.cpuSystemCount = _model_monitoring_actuator_ActuatorBasicResponse__WEBPACK_IMPORTED_MODULE_4__["ActuatorBasicResponse"].fromJson(res);
         });
+    };
+    DashboardComponent.prototype.getElasticsearchStatus = function () {
+        var status;
+        if (this.elasticsearchHealth.elasticsearchStatus == 'yellow') {
+            status = 'Y';
+        }
+        else if (this.elasticsearchHealth.elasticsearchStatus == 'green') {
+            status = 'G';
+        }
+        else {
+            status = 'R';
+        }
+        return status;
+    };
+    DashboardComponent.prototype.getPercentOfCpuUsage = function () {
+        return (Number(this.cpuUsage.values[0]) * 100).toFixed(2);
+    };
+    DashboardComponent.prototype.getPercentOfMemoryUsed = function () {
+        return (((Number(this.jvmMemoryUsed.values[0]) / 1000000) / (Number(this.jvmMemoryMax.values[0]) / 1000000)) * 100).toFixed(2);
+    };
+    DashboardComponent.prototype.getMemoryUsedInMb = function () {
+        return (Number(this.jvmMemoryUsed.values[0]) / 1000000).toFixed(0);
     };
     DashboardComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
@@ -4104,6 +4219,7 @@ var MonitoringService = /** @class */ (function () {
         this.httpApi = httpApi;
         this.ACTUATOR_URL = 'actuator/';
         this.ACTUATOR_METRICS_URL = this.ACTUATOR_URL + 'metrics/';
+        this.ACTUATOR_HEALTH_URL = this.ACTUATOR_URL + 'health/';
     }
     MonitoringService.prototype.getCpuUsage = function () {
         return this.httpApi.get(this.ACTUATOR_METRICS_URL + 'process.cpu.usage');
@@ -4116,6 +4232,15 @@ var MonitoringService = /** @class */ (function () {
     };
     MonitoringService.prototype.getJvmMemoryUsed = function () {
         return this.httpApi.get(this.ACTUATOR_METRICS_URL + 'jvm.memory.used');
+    };
+    MonitoringService.prototype.getJvmMemoryMax = function () {
+        return this.httpApi.get(this.ACTUATOR_METRICS_URL + 'jvm.memory.max');
+    };
+    MonitoringService.prototype.getElasticsearchHealth = function () {
+        return this.httpApi.get(this.ACTUATOR_HEALTH_URL + 'elasticsearchRest');
+    };
+    MonitoringService.prototype.getDatabaseHealth = function () {
+        return this.httpApi.get(this.ACTUATOR_HEALTH_URL + 'db');
     };
     MonitoringService.prototype.getServerLogFile = function () {
         var options = {

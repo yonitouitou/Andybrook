@@ -1,6 +1,10 @@
-<div class="card mt-5 shadow-sm p-3 mb-5 bg-white rounded" style="margin: auto; width: 35rem;">
+<div class="card w-75 mt-5 shadow-sm p-3 mb-5 bg-white rounded" style="margin: auto; max-width: 35em;">
   <div class="card-body">
-    <img src="../../../assets/img/andybrook-logo.png">
+    <picture>
+      <source media="(min-width: 1200px)" srcset="../../../assets/img/andybrook-logo.png" style="max-width: 100%">
+      <source media="(min-width: 100px)" srcset="../../../assets/img/andybrook-short-logo.png" style="max-width: 100%">
+      <img src="../../../assets/img/andybrook-logo.png" style="max-width: 100%">
+    </picture>
     <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
       <div class="form-group">
         <label for="username">Username :</label>
