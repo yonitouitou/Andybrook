@@ -2,71 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="68c8b49c-970c-40ab-ab2d-b486fbd977e4" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/andybrook-ui/src/app/customer/store/open-closed-orders-counter/open-closed-orders-counter.component.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/andybrook-ui/src/app/customer/store/open-closed-orders-counter/open-closed-orders-counter.component.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/andybrook-ui/src/app/customer/store/open-closed-orders-counter/open-closed-orders-counter.component.spec.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/andybrook-ui/src/app/customer/store/open-closed-orders-counter/open-closed-orders-counter.component.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/andybrook-ui/src/app/customer/store/store-dashboard/store-dashboard.component.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/andybrook-ui/src/app/customer/store/store-dashboard/store-dashboard.component.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/andybrook-ui/src/app/customer/store/store-dashboard/store-dashboard.component.spec.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/andybrook-ui/src/app/customer/store/store-dashboard/store-dashboard.component.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/andybrook-ui/src/app/customer/store/store-info/store-info.component.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/andybrook-ui/src/app/customer/store/store-info/store-info.component.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/andybrook-ui/src/app/customer/store/store-info/store-info.component.spec.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/andybrook-ui/src/app/customer/store/store-info/store-info.component.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/andybrook-ui/src/app/customer/store/store-orders/store-orders.component.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/andybrook-ui/src/app/customer/store/store-orders/store-orders.component.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/andybrook-ui/src/app/customer/store/store-orders/store-orders.component.spec.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/andybrook-ui/src/app/customer/store/store-orders/store-orders.component.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/andybrook-ui/src/app/model/statistic/OpenClosedOrdersCounter.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/andybrook-ui/src/app/service/orders-statistic-service.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/andybrook-ui/src/app/service/store-service.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/andybrook/api/rest/OrdersStatisticController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/andybrook/api/rest/StoreController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/andybrook/dao/jpa/repository/IOrdersStatisticCrudRepository.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/andybrook/dao/statistic/IOrdersStatisticDao.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/andybrook/dao/statistic/OrdersStatisticDao.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/andybrook/manager/statistic/IOrdersStatisticManager.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/andybrook/manager/statistic/OrdersStatisticManager.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/andybrook/model/statistic/order/OpenClosedOrdersCounter.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/andybrook/service/statistic/IOrdersStatisticService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/andybrook/service/statistic/OrdersStatisticService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/andybrook-ui/src/app/app.module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/andybrook-ui/src/app/app.module.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/andybrook-ui/src/app/customer/customer-orders/customer-orders.component.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/andybrook-ui/src/app/customer/customer-orders/customer-orders.component.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/andybrook-ui/src/app/customer/customer-orders/customer-orders.component.spec.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/andybrook-ui/src/app/customer/customer-orders/customer-orders.component.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/andybrook-ui/src/app/customer/customer-panel/customer-panel.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/andybrook-ui/src/app/customer/customer-panel/customer-panel.component.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/andybrook-ui/src/app/customer/list-customer/list-customer.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/andybrook-ui/src/app/customer/list-customer/list-customer.component.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/andybrook-ui/src/app/customer/list-customer/list-customer.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/andybrook-ui/src/app/customer/list-customer/list-customer.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/andybrook-ui/src/app/model/Owner.ts" beforeDir="false" afterPath="$PROJECT_DIR$/andybrook-ui/src/app/model/Owner.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/andybrook-ui/src/app/order-panel/show-order/show-order.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/andybrook-ui/src/app/order-panel/show-order/show-order.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/andybrook-ui/src/app/service/order-service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/andybrook-ui/src/app/service/order-service.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/andybrook/api/rest/OrderController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/andybrook/api/rest/OrderController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/andybrook/dao/jpa/repository/IOrderCrudRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/andybrook/dao/jpa/repository/IOrderCrudRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/andybrook/dao/order/IOrderDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/andybrook/dao/order/IOrderDao.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/andybrook/dao/order/OrderDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/andybrook/dao/order/OrderDao.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/andybrook/manager/order/IOrderManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/andybrook/manager/order/IOrderManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/andybrook/manager/order/OrderManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/andybrook/manager/order/OrderManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/andybrook/service/order/IOrderService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/andybrook/service/order/IOrderService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/andybrook/service/order/OrderService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/andybrook/service/order/OrderService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/static/assets/icon/connectionStatusFailed.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/static/assets/icon/connectionStatusOk.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/static/assets/img/Andybrook-short-logo.jpg" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/static/main.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/static/main.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/static/main.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/static/main.js.map" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/andybrook/api/rest/OrderController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/andybrook/api/rest/OrderController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/andybrook/dao/jpa/repository/IOrderCrudRepository.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/andybrook/dao/jpa/repository/IOrderCrudRepository.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/andybrook/dao/order/IOrderDao.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/andybrook/dao/order/IOrderDao.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/andybrook/dao/order/OrderDao.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/andybrook/dao/order/OrderDao.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/andybrook/manager/order/IOrderManager.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/andybrook/manager/order/IOrderManager.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/andybrook/manager/order/OrderManager.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/andybrook/manager/order/OrderManager.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/andybrook/service/order/IOrderService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/andybrook/service/order/IOrderService.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/andybrook/service/order/OrderService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/andybrook/service/order/OrderService.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/static/favicon.ico" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/static/favicon.ico" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/static/main.js" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/static/main.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/static/main.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/static/main.js.map" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />

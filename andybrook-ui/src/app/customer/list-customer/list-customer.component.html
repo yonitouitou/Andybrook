@@ -31,7 +31,7 @@
               <tr *ngFor="let customer of customers" (click)="onClickCustomer(customer)">
                 <td>{{ customer.id }}</td>
                 <td><a [routerLink]="['/store', customer.store.id]">{{ customer.store.name }}</a></td>
-                <td><a [routerLink]="['/owner', customer.store.owner.id]">{{ customer.store.owner.firstName + " " + customer.store.owner.lastName }}</a></td>
+                <td>{{ customer.store.owner.firstName + " " + customer.store.owner.lastName }}</td>
                 <td>{{ customer.store.address.streetNumber + ', ' + customer.store.address.streetName + ' ' + customer.store.address.zipCode + ' - ' + customer.store.address.city }}</td>
                 <td>{{ customer.store.phone }}</td>
                 <td>{{ customer.store.email }}</td>
