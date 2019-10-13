@@ -33,7 +33,6 @@ import { DeleteOrderItemsModalComponent } from './modal/delete-order-items-modal
 import { AddOrderItemModalComponent } from './modal/add-order-item-modal/add-order-item-modal.component';
 import { CookieService } from 'ngx-cookie-service';
 import { ListCustomerComponent } from './customer/list-customer/list-customer.component';
-import { CustomerOrdersComponent } from './customer/customer-orders/customer-orders.component';
 import { CustomerInfoComponent } from './customer/customer-info/customer-info.component';
 import { CustomerHeaderComponent } from './customer/customer-header/customer-header.component';
 import { NewCustomerComponent } from './customer/new-customer/new-customer.component';
@@ -46,6 +45,12 @@ import { LoginService } from './service/login-service';
 import { httpInterceptorProviders } from './http-interceptor/Interceptors-manager';
 import { DashboardComponent } from './monitoring/dashboard/dashboard.component';
 import { MonitoringService } from './service/monitoring-service';
+import { StoreDashboardComponent } from './customer/store/store-dashboard/store-dashboard.component';
+import { StoreService } from './service/store-service';
+import { StoreOrdersComponent } from './customer/store/store-orders/store-orders.component';
+import { StoreInfoComponent } from './customer/store/store-info/store-info.component';
+import { OrdersStatisticService } from './service/orders-statistic-service';
+import { OpenClosedOrdersCounterComponent } from './customer/store/open-closed-orders-counter/open-closed-orders-counter.component';
 
 const appRoutes: Routes = [
   { path: '', component: LoginComponent},
@@ -55,6 +60,7 @@ const appRoutes: Routes = [
   { path: 'admin', component: AdminPanelComponent },
   { path: 'new-customer/:id', component: NewCustomerComponent },
   { path: 'customer-dashboard', component: CustomerPanelComponent },
+  { path: 'store/:id', component: StoreDashboardComponent},
   { path: 'products', component: ProductsPanelComponent },
   { path: 'monitoring', component: DashboardComponent}
 ];
@@ -78,7 +84,7 @@ const appRoutes: Routes = [
     DeleteOrderItemsModalComponent,
     AddOrderItemModalComponent,
     ListCustomerComponent,
-    CustomerOrdersComponent,
+    StoreOrdersComponent,
     CustomerInfoComponent,
     CustomerHeaderComponent,
     NewCustomerComponent,
@@ -86,7 +92,10 @@ const appRoutes: Routes = [
     UploadProductFileModalComponent,
     ProductsPanelComponent,
     LoginComponent,
-    DashboardComponent
+    DashboardComponent,
+    StoreDashboardComponent,
+    StoreInfoComponent,
+    OpenClosedOrdersCounterComponent
   ],
   entryComponents: [
     CreateOrderModalComponent,
@@ -113,11 +122,13 @@ const appRoutes: Routes = [
   ],
   providers: [
     OrderService,
+    OrdersStatisticService,
     HttpService,
     AdminSettingService,
     NotificationService,
     ModalBuilder,
     CustomerService,
+    StoreService,
     ProductService,
     CookieService,
     LoginService,

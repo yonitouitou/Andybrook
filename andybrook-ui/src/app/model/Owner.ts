@@ -17,4 +17,8 @@ export class Owner {
         owner.email = data.email;
         return owner;
     }
+
+    getFullName(): string {
+        return this.firstName + ' ' + this.lastName 
+    }
 }

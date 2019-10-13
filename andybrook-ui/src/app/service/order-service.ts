@@ -37,6 +37,11 @@ export class OrderService {
         return this.httpApi.get("/v1/order/ordersOfCustomer/" + id);
     }
 
+    getOrdersOfStore(id: number): Observable<any> {
+        console.log("Get orders of store " + id);
+        return this.httpApi.get("/v1/order/ordersOfStore/" + id);
+    }
+
     addOrderItem(req: AddOrderItemReq) : Observable<any> {
         console.log("Add order item[ " + ", " + req.requestedQty + " to order " + req.orderId);
         return this.httpApi.post("/v1/order/addOrderItemByInfo", req);

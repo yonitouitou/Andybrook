@@ -85,35 +85,36 @@ public class OrderDao implements IOrderDao {
 
     @Override
     public List<Order> getOrdersOfCustomer(long customerId) {
-        List<Order> orders = new LinkedList<>();
         List<OrderEntity> entities = repository.getOrdersByCustomer(customerId);
-        for (OrderEntity entity : entities) {
-            Order order = entityFactory.createOrder(entity);
-            orders.add(order);
-        }
-        return orders;
+        return toOrders(entities);
+    }
+
+    @Override
+    public List<Order> getOrdersOfStore(long storeId) {
+        List<OrderEntity> entities = repository.getOrdersByStore(storeId);
+        return toOrders(entities);
     }
 
     @Override
     public List<Order> getByName(String name) {
         List<OrderEntity> ordersEntity = repository.findByName(name);
-        return ordersEntity.stream()
-                .map(entityFactory::createOrder)
-                .collect(Collectors.toList());
+        return toOrders(ordersEntity);
     }
 
     @Override
     public List<Order> getByNameContaining(String name) {
         List<OrderEntity> ordersEntity = repository.findByNameContaining(name);
-        return ordersEntity.stream()
-                .map(entityFactory::createOrder)
-                .collect(Collectors.toList());
+        return toOrders(ordersEntity);
     }
 
     @Override
     public List<Order> getOrders(List<Long> ids) {
         List<OrderEntity> ordersEntity = repository.findByIdIn(ids);
-        return ordersEntity.stream()
+        return toOrders(ordersEntity);
+    }
+
+    private List<Order> toOrders(List<OrderEntity> entities) {
+        return entities.stream()
                 .map(entityFactory::createOrder)
                 .collect(Collectors.toList());
     }

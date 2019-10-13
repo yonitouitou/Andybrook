@@ -86,6 +86,11 @@ public class OrderService implements IOrderService {
     }
 
     @Override
+    public List<Order> getOrdersOfStore(long storeId) {
+        return dao.getOrdersOfStore(storeId);
+    }
+
+    @Override
     public boolean canModifyOrder(long id) throws OrderNotFound {
         Order order = getOrder(id);
         return canModifyOrder(order);

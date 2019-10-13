@@ -78,6 +78,29 @@ public interface IOrderCrudRepository extends JpaRepository<OrderEntity, Long> {
                 COLUMN_CREATED_DATETIME +
             " DESC";
 
+    String SELECT_ORDERS_BY_STORE_QUERY =
+            "SELECT " +
+                    "o.* " +
+            "FROM " +
+                    TABLE_NAME + " o " +
+            "LEFT JOIN " +
+                    "customer c " +
+                "ON " +
+                    "c.id " +
+            "LEFT JOIN " +
+                    "store s " +
+                "ON " +
+                    "s.id " +
+            "WHERE " +
+                    "o.customerId = c.id " +
+                "AND " +
+                    "c.store_id = s.id " +
+                "AND " +
+                    "s.id = :storeId";
+
     @Query(value = SELECT_ORDERS_BY_CUSTOMER_QUERY, nativeQuery = true)
     List<OrderEntity> getOrdersByCustomer(@Param("customerId") long customerId);
+
+    @Query(value = SELECT_ORDERS_BY_STORE_QUERY, nativeQuery = true)
+    List<OrderEntity> getOrdersByStore(@Param("storeId") long storeId);
 }

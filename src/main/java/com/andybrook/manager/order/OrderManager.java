@@ -63,6 +63,11 @@ public class OrderManager implements IOrderManager {
     }
 
     @Override
+    public List<Order> getOrdersOfStore(long storeId) {
+        return orderService.getOrdersOfStore(storeId);
+    }
+
+    @Override
     public Set<Order> getAll() {
         return orderService.getAll();
     }

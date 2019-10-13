@@ -13,7 +13,6 @@ import { AggregatedOrder } from 'src/app/model/AggregatedOrder';
 })
 export class ShowOrderComponent implements OnInit {
 
-  reportId: number = 1;
   order: AggregatedOrder;
 
   constructor(private orderService: OrderService,

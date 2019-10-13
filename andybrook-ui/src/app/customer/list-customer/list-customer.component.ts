@@ -1,8 +1,6 @@
-import { Component, OnInit, EventEmitter, Output, Input, OnChanges } from '@angular/core';
+import { Component, OnInit, EventEmitter, Output, Input } from '@angular/core';
 import { Customer } from 'src/app/model/Customer';
-import { ModalBuilder } from 'src/app/common-components/modal-builder';
 import { CustomerService } from 'src/app/service/customer-service';
-import { InfoModalComponent } from 'src/app/modal/info-modal/info-modal.component';
 
 @Component({
   selector: 'list-customer',

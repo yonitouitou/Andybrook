@@ -1,0 +1,36 @@
+<div class="card w-100 shadow-sm p-3 mb-5 bg-white rounded">
+    <div class="card-header">
+      <h5>Store</h5>
+    </div>
+    <div class="card-body">
+      <div class="row">
+        <div class="col">
+          <div *ngIf="store" class="table-responsive">
+            <table class="table table-striped table-hover table-sm">
+              <thead>
+                <tr>
+                  <th>ID</th>
+                  <th>Name</th>
+                  <th>Owner</th>
+                  <th>Address</th>
+                  <th>Phone</th>
+                  <th>Email</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngIf="store">
+                  <td>{{ store.id }}</td>
+                  <td>{{ store.name }}</td>
+                  <td>{{ store.owner.getFullName() }}</td>
+                  <td>{{ store.address.format() }}</td>
+                  <td>{{ store.phone }}</td>
+                  <td>{{ store.email }}</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <img *ngIf="! store" class="center" src="../../../../assets/icon/LoadingGrey.gif">
+        </div>
+      </div>
+    </div>  
+  </div>
