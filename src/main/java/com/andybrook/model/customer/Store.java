@@ -11,6 +11,8 @@ public class Store {
     private Address address;
     private Owner owner;
 
+    private Store() {}
+
     public Store(String name, String email, String phone, Address address, Owner owner) {
         this.id = null;
         this.name = name;

@@ -51,6 +51,11 @@ public class StoreDao implements IStoreDao {
     }
 
     @Override
+    public boolean exists(long id) {
+        return repository.existsById(id);
+    }
+
+    @Override
     public Map<Long, Store> getStoresOfOwner(long ownerId) {
         Map<Long, Store> stores = new HashMap<>();
         OwnerEntity ownerEntity = ownerDao.getOne(ownerId);

@@ -1,6 +1,13 @@
 <div class="card shadow-sm p-3 mb-5 bg-white rounded">
     <div class="card-header">
-        <h5>Orders ({{ orders.length }})</h5>
+        <div class="row justify-content-between">
+            <div class="col-4">
+                <h5>Orders ({{ orders.length }})</h5>
+            </div>
+            <div class="col-4">
+                <button class="btn btn-info" (click)="onNewOrder()" style="float:right">New Order</button>
+            </div>
+        </div>
     </div>
     <div class="card-body">
         <div *ngIf="orders" class="table-responsive table-wrapper-scroll-y my-custom-scrollbar">

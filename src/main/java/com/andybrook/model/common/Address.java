@@ -13,6 +13,8 @@ public final class Address {
     private String country;
     private Integer zipCode;
 
+    private Address() {}
+
     public Address(String streetNumber, String streetName, String city, String country, Integer zipCode) {
         this.streetNumber = streetNumber;
         this.streetName = streetName;

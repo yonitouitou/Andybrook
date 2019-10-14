@@ -13,5 +13,7 @@ public interface IStoreDao {
 
     Store get(long id);
 
+    boolean exists(long id);
+
     Map<Long, Store> getStoresOfOwner(long ownerId);
 }

@@ -51,6 +51,7 @@ import { StoreOrdersComponent } from './customer/store/store-orders/store-orders
 import { StoreInfoComponent } from './customer/store/store-info/store-info.component';
 import { OrdersStatisticService } from './service/orders-statistic-service';
 import { OpenClosedOrdersCounterComponent } from './customer/store/open-closed-orders-counter/open-closed-orders-counter.component';
+import { EditStoreInfoModalComponent } from './modal/store/edit-store-info-modal/edit-store-info-modal.component';
 
 const appRoutes: Routes = [
   { path: '', component: LoginComponent},
@@ -95,7 +96,8 @@ const appRoutes: Routes = [
     DashboardComponent,
     StoreDashboardComponent,
     StoreInfoComponent,
-    OpenClosedOrdersCounterComponent
+    OpenClosedOrdersCounterComponent,
+    EditStoreInfoModalComponent
   ],
   entryComponents: [
     CreateOrderModalComponent,
@@ -104,6 +106,7 @@ const appRoutes: Routes = [
     ShowOrderItemsModalComponent,
     DeleteOrderItemsModalComponent,
     AddOrderItemModalComponent,
+    EditStoreInfoModalComponent,
     OrderNotificationModalComponent
   ],
   imports: [

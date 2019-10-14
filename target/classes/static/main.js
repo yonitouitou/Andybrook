@@ -334,6 +334,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _customer_store_store_info_store_info_component__WEBPACK_IMPORTED_MODULE_51__ = __webpack_require__(/*! ./customer/store/store-info/store-info.component */ "./src/app/customer/store/store-info/store-info.component.ts");
 /* harmony import */ var _service_orders_statistic_service__WEBPACK_IMPORTED_MODULE_52__ = __webpack_require__(/*! ./service/orders-statistic-service */ "./src/app/service/orders-statistic-service.ts");
 /* harmony import */ var _customer_store_open_closed_orders_counter_open_closed_orders_counter_component__WEBPACK_IMPORTED_MODULE_53__ = __webpack_require__(/*! ./customer/store/open-closed-orders-counter/open-closed-orders-counter.component */ "./src/app/customer/store/open-closed-orders-counter/open-closed-orders-counter.component.ts");
+/* harmony import */ var _modal_store_edit_store_info_modal_edit_store_info_modal_component__WEBPACK_IMPORTED_MODULE_54__ = __webpack_require__(/*! ./modal/store/edit-store-info-modal/edit-store-info-modal.component */ "./src/app/modal/store/edit-store-info-modal/edit-store-info-modal.component.ts");
+
 
 
 
@@ -434,7 +436,8 @@ var AppModule = /** @class */ (function () {
                 _monitoring_dashboard_dashboard_component__WEBPACK_IMPORTED_MODULE_46__["DashboardComponent"],
                 _customer_store_store_dashboard_store_dashboard_component__WEBPACK_IMPORTED_MODULE_48__["StoreDashboardComponent"],
                 _customer_store_store_info_store_info_component__WEBPACK_IMPORTED_MODULE_51__["StoreInfoComponent"],
-                _customer_store_open_closed_orders_counter_open_closed_orders_counter_component__WEBPACK_IMPORTED_MODULE_53__["OpenClosedOrdersCounterComponent"]
+                _customer_store_open_closed_orders_counter_open_closed_orders_counter_component__WEBPACK_IMPORTED_MODULE_53__["OpenClosedOrdersCounterComponent"],
+                _modal_store_edit_store_info_modal_edit_store_info_modal_component__WEBPACK_IMPORTED_MODULE_54__["EditStoreInfoModalComponent"]
             ],
             entryComponents: [
                 _modal_create_order_modal_create_order_modal_component__WEBPACK_IMPORTED_MODULE_26__["CreateOrderModalComponent"],
@@ -443,6 +446,7 @@ var AppModule = /** @class */ (function () {
                 _modal_show_order_items_modal_show_order_items_modal_component__WEBPACK_IMPORTED_MODULE_30__["ShowOrderItemsModalComponent"],
                 _modal_delete_order_items_modal_delete_order_items_modal_component__WEBPACK_IMPORTED_MODULE_32__["DeleteOrderItemsModalComponent"],
                 _modal_add_order_item_modal_add_order_item_modal_component__WEBPACK_IMPORTED_MODULE_33__["AddOrderItemModalComponent"],
+                _modal_store_edit_store_info_modal_edit_store_info_modal_component__WEBPACK_IMPORTED_MODULE_54__["EditStoreInfoModalComponent"],
                 _modal_order_notification_modal_order_notification_modal_component__WEBPACK_IMPORTED_MODULE_40__["OrderNotificationModalComponent"]
             ],
             imports: [
@@ -1193,7 +1197,7 @@ module.exports = ".center {\r\n    display: block;\r\n    margin-left: auto;\r\n
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"card shadow-sm p-3 mb-5 bg-white rounded\">\n  <div class=\"card-header\">\n      <h5>Closed Orders (%)</h5>\n  </div>\n  <div class=\"card-body\">\n    <div *ngIf=\"counters\">\n        <ngb-progressbar [showValue]=\"false\" type=\"info\" [value]=\"counters.calculatePercentOfClosedOrders()\"><b>{{ counters.closedOrdersCount }} of {{ counters.totalOrders() }} ({{ counters.calculatePercentOfClosedOrders() }}%)</b></ngb-progressbar>\n    </div>\n    <img *ngIf=\"! counters\" class=\"center\" src=\"../../../../assets/icon/LoadingGrey.gif\">\n  </div>\n</div>"
+module.exports = "<div class=\"card shadow-sm p-3 mb-5 bg-white rounded\">\n  <div class=\"card-header\">\n      <h5>Closed Orders</h5>\n  </div>\n  <div class=\"card-body\">\n    <div *ngIf=\"counters\">\n      <ngb-progressbar type=\"info\" [value]=\"counters.calculatePercentOfClosedOrders()\"><b>{{ counters.closedOrdersCount }} of {{ counters.totalOrders() }} ({{ counters.calculatePercentOfClosedOrders() }}%)</b></ngb-progressbar>\n    </div>  \n    <img *ngIf=\"! counters\" class=\"center\" src=\"../../../../assets/icon/LoadingGrey.gif\">\n  </div>\n</div>"
 
 /***/ }),
 
@@ -1211,13 +1215,21 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
 /* harmony import */ var _service_orders_statistic_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../service/orders-statistic-service */ "./src/app/service/orders-statistic-service.ts");
 /* harmony import */ var _model_statistic_OpenClosedOrdersCounter__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../model/statistic/OpenClosedOrdersCounter */ "./src/app/model/statistic/OpenClosedOrdersCounter.ts");
+/* harmony import */ var _ng_bootstrap_ng_bootstrap__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @ng-bootstrap/ng-bootstrap */ "./node_modules/@ng-bootstrap/ng-bootstrap/fesm5/ng-bootstrap.js");
+
 
 
 
 
 var OpenClosedOrdersCounterComponent = /** @class */ (function () {
-    function OpenClosedOrdersCounterComponent(ordersStatisticService) {
+    function OpenClosedOrdersCounterComponent(ordersStatisticService, config) {
         this.ordersStatisticService = ordersStatisticService;
+        config.max = 100;
+        config.showValue = false;
+        config.striped = false;
+        config.animated = false;
+        config.type = 'success';
+        config.height = '50px';
     }
     OpenClosedOrdersCounterComponent.prototype.ngOnChanges = function () {
         var _this = this;
@@ -1239,7 +1251,7 @@ var OpenClosedOrdersCounterComponent = /** @class */ (function () {
             template: __webpack_require__(/*! ./open-closed-orders-counter.component.html */ "./src/app/customer/store/open-closed-orders-counter/open-closed-orders-counter.component.html"),
             styles: [__webpack_require__(/*! ./open-closed-orders-counter.component.css */ "./src/app/customer/store/open-closed-orders-counter/open-closed-orders-counter.component.css")]
         }),
-        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_service_orders_statistic_service__WEBPACK_IMPORTED_MODULE_2__["OrdersStatisticService"]])
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_service_orders_statistic_service__WEBPACK_IMPORTED_MODULE_2__["OrdersStatisticService"], _ng_bootstrap_ng_bootstrap__WEBPACK_IMPORTED_MODULE_4__["NgbProgressbarConfig"]])
     ], OpenClosedOrdersCounterComponent);
     return OpenClosedOrdersCounterComponent;
 }());
@@ -1266,7 +1278,7 @@ module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"container-fluid\">\n  <div class=\"row\">\n    <div class=\"col\">\n      <store-info [storeId]=\"storeId\"></store-info>\n    </div>\n  </div>\n  <div class=\"row\">\n    <div class=\"col\">\n      <store-orders [storeId]=\"storeId\"></store-orders>\n    </div>\n    <div class=\"col\">\n      <open-closed-orders-counter [storeId]=\"storeId\"></open-closed-orders-counter>\n    </div>\n  </div>\n</div>"
+module.exports = "<div class=\"container-fluid\">\n  <div class=\"row \">\n    <div class=\"col\">\n      <store-info [storeId]=\"storeId\"></store-info>\n    </div>\n  </div>\n  <div class=\"row\">\n    <div class=\"col\">\n      <store-orders [storeId]=\"storeId\"></store-orders>\n    </div>\n    <div class=\"col\">\n      <open-closed-orders-counter [storeId]=\"storeId\"></open-closed-orders-counter>\n    </div>\n  </div>\n</div>"
 
 /***/ }),
 
@@ -1326,7 +1338,7 @@ module.exports = ".center {\r\n    display: block;\r\n    margin-left: auto;\r\n
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"card w-100 shadow-sm p-3 mb-5 bg-white rounded\">\n    <div class=\"card-header\">\n      <h5>Store</h5>\n    </div>\n    <div class=\"card-body\">\n      <div class=\"row\">\n        <div class=\"col\">\n          <div *ngIf=\"store\" class=\"table-responsive\">\n            <table class=\"table table-striped table-hover table-sm\">\n              <thead>\n                <tr>\n                  <th>ID</th>\n                  <th>Name</th>\n                  <th>Owner</th>\n                  <th>Address</th>\n                  <th>Phone</th>\n                  <th>Email</th>\n                </tr>\n              </thead>\n              <tbody>\n                <tr *ngIf=\"store\">\n                  <td>{{ store.id }}</td>\n                  <td>{{ store.name }}</td>\n                  <td>{{ store.owner.getFullName() }}</td>\n                  <td>{{ store.address.format() }}</td>\n                  <td>{{ store.phone }}</td>\n                  <td>{{ store.email }}</td>\n                </tr>\n              </tbody>\n            </table>\n          </div>\n          <img *ngIf=\"! store\" class=\"center\" src=\"../../../../assets/icon/LoadingGrey.gif\">\n        </div>\n      </div>\n    </div>  \n  </div>"
+module.exports = "<div class=\"card w-100 shadow-sm p-3 mb-5 bg-white rounded\">\n    <div class=\"card-header\">\n      <div class=\"row justify-content-between\">\n        <div class=\"col-10\">\n          <h5>Store</h5>\n        </div>\n        <div class=\"col-2\">\n          <button class=\"btn btn-success btn-sm\" (click)=\"editStoreInfo()\" style=\"float:right\">Edit</button>\n        </div>\n      </div>\n    </div>\n    <div class=\"card-body\">\n      <div class=\"row\">\n        <div class=\"col\">\n          <div *ngIf=\"store\" class=\"table-responsive\">\n            <table class=\"table table-striped table-hover table-sm\">\n              <thead>\n                <tr>\n                  <th>ID</th>\n                  <th>Name</th>\n                  <th>Owner</th>\n                  <th>Address</th>\n                  <th>City</th>\n                  <th>Country</th>\n                  <th>Phone</th>\n                  <th>Email</th>\n                </tr>\n              </thead>\n              <tbody>\n                <tr *ngIf=\"store\">\n                  <td>{{ store.id }}</td>\n                  <td>{{ store.name }}</td>\n                  <td>{{ store.owner.getFullName() }}</td>\n                  <td>{{ store.address.streetNumber + ' ' + store.address.streetName }}</td>\n                  <td>{{ store.address.city }}</td>\n                  <td>{{ store.address.country }}</td>\n                  <td>{{ store.phone }}</td>\n                  <td>{{ store.email }}</td>\n                </tr>\n              </tbody>\n            </table>\n          </div>\n          <img *ngIf=\"! store\" class=\"center\" src=\"../../../../assets/icon/LoadingGrey.gif\">\n        </div>\n      </div>\n    </div>  \n  </div>"
 
 /***/ }),
 
@@ -1343,22 +1355,41 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
 /* harmony import */ var _model_Store__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../model/Store */ "./src/app/model/Store.ts");
-/* harmony import */ var _service_store_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../service/store-service */ "./src/app/service/store-service.ts");
+/* harmony import */ var _common_components_modal_builder__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../common-components/modal-builder */ "./src/app/common-components/modal-builder.ts");
+/* harmony import */ var _service_store_service__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../../service/store-service */ "./src/app/service/store-service.ts");
+/* harmony import */ var _modal_store_edit_store_info_modal_edit_store_info_modal_component__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../../modal/store/edit-store-info-modal/edit-store-info-modal.component */ "./src/app/modal/store/edit-store-info-modal/edit-store-info-modal.component.ts");
+
+
 
 
 
 
 var StoreInfoComponent = /** @class */ (function () {
-    function StoreInfoComponent(storeService) {
+    function StoreInfoComponent(storeService, modalBuilder) {
         this.storeService = storeService;
+        this.modalBuilder = modalBuilder;
     }
     StoreInfoComponent.prototype.ngOnChanges = function () {
-        var _this = this;
         if (this.storeId != null) {
-            this.storeService.get(this.storeId).subscribe(function (data) {
-                _this.store = _model_Store__WEBPACK_IMPORTED_MODULE_2__["Store"].fromJson(data);
-            });
+            this.refresh();
         }
+    };
+    StoreInfoComponent.prototype.refresh = function () {
+        var _this = this;
+        this.store = null;
+        this.storeService.get(this.storeId).subscribe(function (data) {
+            _this.store = _model_Store__WEBPACK_IMPORTED_MODULE_2__["Store"].fromJson(data);
+        });
+    };
+    StoreInfoComponent.prototype.editStoreInfo = function () {
+        var _this = this;
+        var modal = this.modalBuilder.openCenteredModal(_modal_store_edit_store_info_modal_edit_store_info_modal_component__WEBPACK_IMPORTED_MODULE_5__["EditStoreInfoModalComponent"]);
+        modal.componentInstance.store = this.store;
+        modal.result.then(function (response) {
+            if (response) {
+                _this.refresh();
+            }
+        });
     };
     tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Input"])(),
@@ -1370,7 +1401,7 @@ var StoreInfoComponent = /** @class */ (function () {
             template: __webpack_require__(/*! ./store-info.component.html */ "./src/app/customer/store/store-info/store-info.component.html"),
             styles: [__webpack_require__(/*! ./store-info.component.css */ "./src/app/customer/store/store-info/store-info.component.css")]
         }),
-        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_service_store_service__WEBPACK_IMPORTED_MODULE_3__["StoreService"]])
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_service_store_service__WEBPACK_IMPORTED_MODULE_4__["StoreService"], _common_components_modal_builder__WEBPACK_IMPORTED_MODULE_3__["ModalBuilder"]])
     ], StoreInfoComponent);
     return StoreInfoComponent;
 }());
@@ -1397,7 +1428,7 @@ module.exports = "/* Scroll Bar Aggregated Order Item table */\r\n.my-custom-scr
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"card shadow-sm p-3 mb-5 bg-white rounded\">\r\n    <div class=\"card-header\">\r\n        <h5>Orders ({{ orders.length }})</h5>\r\n    </div>\r\n    <div class=\"card-body\">\r\n        <div *ngIf=\"orders\" class=\"table-responsive table-wrapper-scroll-y my-custom-scrollbar\">\r\n            <table class=\"table table-striped table-bordered table-sm\">\r\n                <thead>\r\n                    <tr>\r\n                        <th>ID</th>\r\n                        <th>Name</th>\r\n                        <th>Status</th>\r\n                        <th>Products</th>\r\n                        <th>Qty</th>\r\n                        <th>Amount</th>\r\n                        <th>Creation</th>\r\n                        <th>Closed</th>\r\n                        <th></th>\r\n                    </tr>\r\n                </thead>\r\n                <tbody>\r\n                    <tr *ngFor=\"let order of orders\">\r\n                        <td>{{ order.id }}</td>\r\n                        <td>{{ order.name }}</td>\r\n                        <td [ngClass]=\"order.status === 'OPEN' ? 'table-success' : 'table-danger'\">{{ order.status }}</td>\r\n                        <td>{{ order.aggregatedOrderInfo.productSize }}</td>\r\n                        <td>{{ order.aggregatedOrderInfo.orderItemSize }}</td>\r\n                        <td>{{ order.aggregatedOrderInfo.totalPrice }} €</td>\r\n                        <td>{{ order.createdDatetime  | date:'shortDate' }}</td>\r\n                        <td>{{ order.closeDatetime  | date:'shortDate' }}</td>\r\n                        <td>\r\n                            <button\r\n                                class=\"btn btn-success btn-sm\"\r\n                                [routerLink]=\"['/order', order.id]\"\r\n                            >See</button>\r\n                        </td>\r\n                    </tr>\r\n                </tbody>\r\n            </table>\r\n        </div>\r\n        <img *ngIf=\"! orders\" class=\"center\" src=\"../../../../assets/icon/LoadingGrey.gif\">\r\n    </div>\r\n</div>\r\n"
+module.exports = "<div class=\"card shadow-sm p-3 mb-5 bg-white rounded\">\r\n    <div class=\"card-header\">\r\n        <div class=\"row justify-content-between\">\r\n            <div class=\"col-4\">\r\n                <h5>Orders ({{ orders.length }})</h5>\r\n            </div>\r\n            <div class=\"col-4\">\r\n                <button class=\"btn btn-info\" (click)=\"onNewOrder()\" style=\"float:right\">New Order</button>\r\n            </div>\r\n        </div>\r\n    </div>\r\n    <div class=\"card-body\">\r\n        <div *ngIf=\"orders\" class=\"table-responsive table-wrapper-scroll-y my-custom-scrollbar\">\r\n            <table class=\"table table-striped table-bordered table-sm\">\r\n                <thead>\r\n                    <tr>\r\n                        <th>ID</th>\r\n                        <th>Name</th>\r\n                        <th>Status</th>\r\n                        <th>Products</th>\r\n                        <th>Qty</th>\r\n                        <th>Amount</th>\r\n                        <th>Creation</th>\r\n                        <th>Closed</th>\r\n                        <th></th>\r\n                    </tr>\r\n                </thead>\r\n                <tbody>\r\n                    <tr *ngFor=\"let order of orders\">\r\n                        <td>{{ order.id }}</td>\r\n                        <td>{{ order.name }}</td>\r\n                        <td [ngClass]=\"order.status === 'OPEN' ? 'table-success' : 'table-danger'\">{{ order.status }}</td>\r\n                        <td>{{ order.aggregatedOrderInfo.productSize }}</td>\r\n                        <td>{{ order.aggregatedOrderInfo.orderItemSize }}</td>\r\n                        <td>{{ order.aggregatedOrderInfo.totalPrice }} €</td>\r\n                        <td>{{ order.createdDatetime  | date:'shortDate' }}</td>\r\n                        <td>{{ order.closeDatetime  | date:'shortDate' }}</td>\r\n                        <td>\r\n                            <button\r\n                                class=\"btn btn-success btn-sm\"\r\n                                [routerLink]=\"['/order', order.id]\"\r\n                            >See</button>\r\n                        </td>\r\n                    </tr>\r\n                </tbody>\r\n            </table>\r\n        </div>\r\n        <img *ngIf=\"! orders\" class=\"center\" src=\"../../../../assets/icon/LoadingGrey.gif\">\r\n    </div>\r\n</div>\r\n"
 
 /***/ }),
 
@@ -1415,13 +1446,18 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
 /* harmony import */ var _service_order_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../service/order-service */ "./src/app/service/order-service.ts");
 /* harmony import */ var _model_AggregatedOrder__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../model/AggregatedOrder */ "./src/app/model/AggregatedOrder.ts");
+/* harmony import */ var _common_components_modal_builder__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../../common-components/modal-builder */ "./src/app/common-components/modal-builder.ts");
+/* harmony import */ var _modal_create_order_modal_create_order_modal_component__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../../modal/create-order-modal/create-order-modal.component */ "./src/app/modal/create-order-modal/create-order-modal.component.ts");
+
+
 
 
 
 
 var StoreOrdersComponent = /** @class */ (function () {
-    function StoreOrdersComponent(orderService) {
+    function StoreOrdersComponent(orderService, modalBuilder) {
         this.orderService = orderService;
+        this.modalBuilder = modalBuilder;
     }
     StoreOrdersComponent.prototype.ngOnChanges = function () {
         this.loadOrders();
@@ -1439,6 +1475,9 @@ var StoreOrdersComponent = /** @class */ (function () {
             });
         }
     };
+    StoreOrdersComponent.prototype.onNewOrder = function () {
+        this.modalBuilder.open(_modal_create_order_modal_create_order_modal_component__WEBPACK_IMPORTED_MODULE_5__["CreateOrderModalComponent"]);
+    };
     tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Input"])(),
         tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:type", Number)
@@ -1449,7 +1488,7 @@ var StoreOrdersComponent = /** @class */ (function () {
             template: __webpack_require__(/*! ./store-orders.component.html */ "./src/app/customer/store/store-orders/store-orders.component.html"),
             styles: [__webpack_require__(/*! ./store-orders.component.css */ "./src/app/customer/store/store-orders/store-orders.component.css")]
         }),
-        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_service_order_service__WEBPACK_IMPORTED_MODULE_2__["OrderService"]])
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_service_order_service__WEBPACK_IMPORTED_MODULE_2__["OrderService"], _common_components_modal_builder__WEBPACK_IMPORTED_MODULE_4__["ModalBuilder"]])
     ], StoreOrdersComponent);
     return StoreOrdersComponent;
 }());
@@ -2425,6 +2464,137 @@ var ShowOrderItemsModalComponent = /** @class */ (function () {
 
 /***/ }),
 
+/***/ "./src/app/modal/store/edit-store-info-modal/edit-store-info-modal.component.css":
+/*!***************************************************************************************!*\
+  !*** ./src/app/modal/store/edit-store-info-modal/edit-store-info-modal.component.css ***!
+  \***************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = ".ng-invalid:not(form)  {\r\n    border-left: 5px solid #a94442;\r\n}\r\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvbW9kYWwvc3RvcmUvZWRpdC1zdG9yZS1pbmZvLW1vZGFsL2VkaXQtc3RvcmUtaW5mby1tb2RhbC5jb21wb25lbnQuY3NzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBO0lBQ0ksOEJBQThCO0FBQ2xDIiwiZmlsZSI6InNyYy9hcHAvbW9kYWwvc3RvcmUvZWRpdC1zdG9yZS1pbmZvLW1vZGFsL2VkaXQtc3RvcmUtaW5mby1tb2RhbC5jb21wb25lbnQuY3NzIiwic291cmNlc0NvbnRlbnQiOlsiLm5nLWludmFsaWQ6bm90KGZvcm0pICB7XHJcbiAgICBib3JkZXItbGVmdDogNXB4IHNvbGlkICNhOTQ0NDI7XHJcbn0iXX0= */"
+
+/***/ }),
+
+/***/ "./src/app/modal/store/edit-store-info-modal/edit-store-info-modal.component.html":
+/*!****************************************************************************************!*\
+  !*** ./src/app/modal/store/edit-store-info-modal/edit-store-info-modal.component.html ***!
+  \****************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "<form [formGroup]=\"form\" (submit)=\"onSave()\">\n  <div class=\"modal-header\">\n      <h5 class=\"modal-title\" id=\"modal-basic-title\">Edit Store</h5>\n      <button type=\"button\" class=\"close\" aria-label=\"Close\" (click)=\"onClose(false)\">\n        <span aria-hidden=\"true\">&times;</span>\n      </button>\n  </div>\n  <div class=\"modal-body\">\n      <div class=\"form-row\">\n      <div class=\"form-group col-md-12\">\n          <label for=\"Name\">Name</label>\n          <input type=\"text\" formControlName=\"name\" class=\"form-control\" (blur)=onBlurStringFormControl($event)/>\n        </div>\n      </div>\n      <div class=\"form-row\">\n        <div class=\"form-group col-md-3\">\n          <label for=\"streetNumber\">Street Number</label>\n          <input type=\"text\" formControlName=\"streetNumber\" class=\"form-control\"/>\n        </div>\n        <div class=\"form-group col-md-9\">\n          <label for=\"street\">Street</label>\n          <input type=\"text\" formControlName=\"streetName\" class=\"form-control\"/>\n        </div>\n      </div>\n      <div class=\"form-row\">\n        <div class=\"form-group col-md-2\">\n          <label for=\"zipCode\">Zip Code</label>\n          <input type=\"text\" formControlName=\"zipCode\" class=\"form-control\"/>\n        </div>\n        <div class=\"form-group col-md-7\">\n          <label for=\"city\">City</label>\n          <input type=\"text\" formControlName=\"city\" class=\"form-control\" (blur)=onBlurStringFormControl($event)/>\n        </div>\n        <div class=\"form-group col-md-3\">\n          <label for=\"country\">Country</label>\n          <input type=\"text\" formControlName=\"country\" class=\"form-control\" (blur)=onBlurStringFormControl($event)/>\n        </div>\n      </div>\n      <div class=\"form-row\">\n        <div class=\"form-group col-md-6\">\n          <label for=\"phone\">Phone</label>\n          <input type=\"text\" formControlName=\"phone\" class=\"form-control\"/>\n        </div>\n        <div class=\"form-group col-md-6\">\n          <label for=\"email\">Email</label>\n          <input type=\"text\" formControlName=\"email\" class=\"form-control\"/>\n        </div>\n      </div>\n\n  </div>\n  <div class=\"modal-footer\">\n    <div class=\"row\">\n      <div class=\"col-md-auto\">\n        <ngb-alert *ngIf=\"errorMessage\" type=\"error\" [dismissible]=\"true\" (close)=\"errorMessage = null\">{{ errorMessage }}</ngb-alert>\n      </div>\n      <div class=\"col\">\n        <button type=\"submit\" class=\"btn btn-info\">\n            <span *ngIf=\"editInProgress\" class=\"spinner-border spinner-border-sm\" role=\"status\" aria-hidden=\"true\"></span>\n          Save</button>\n      </div>\n      <div class=\"col\">\n          <button type=\"button\" class=\"btn btn-secondary\" (click)=\"onClose(false)\">Cancel</button>\n      </div>\n    </div>\n  </div>\n</form>"
+
+/***/ }),
+
+/***/ "./src/app/modal/store/edit-store-info-modal/edit-store-info-modal.component.ts":
+/*!**************************************************************************************!*\
+  !*** ./src/app/modal/store/edit-store-info-modal/edit-store-info-modal.component.ts ***!
+  \**************************************************************************************/
+/*! exports provided: EditStoreInfoModalComponent */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "EditStoreInfoModalComponent", function() { return EditStoreInfoModalComponent; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var _angular_forms__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/forms */ "./node_modules/@angular/forms/fesm5/forms.js");
+/* harmony import */ var _ng_bootstrap_ng_bootstrap__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @ng-bootstrap/ng-bootstrap */ "./node_modules/@ng-bootstrap/ng-bootstrap/fesm5/ng-bootstrap.js");
+/* harmony import */ var _model_Store__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../../model/Store */ "./src/app/model/Store.ts");
+/* harmony import */ var _util_StringUtil__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../../util/StringUtil */ "./src/app/util/StringUtil.ts");
+/* harmony import */ var _service_store_service__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../../service/store-service */ "./src/app/service/store-service.ts");
+/* harmony import */ var _model_Address__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../../../model/Address */ "./src/app/model/Address.ts");
+/* harmony import */ var rxjs__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! rxjs */ "./node_modules/rxjs/_esm5/index.js");
+
+
+
+
+
+
+
+
+
+var EditStoreInfoModalComponent = /** @class */ (function () {
+    function EditStoreInfoModalComponent(modal, storeService, formBuilder) {
+        this.modal = modal;
+        this.storeService = storeService;
+        this.formBuilder = formBuilder;
+        this.editInProgress = false;
+        this._error = new rxjs__WEBPACK_IMPORTED_MODULE_8__["Subject"]();
+    }
+    EditStoreInfoModalComponent.prototype.ngOnInit = function () {
+        this.initForm();
+    };
+    EditStoreInfoModalComponent.prototype.initForm = function () {
+        this.form = this.formBuilder.group({
+            name: [this.store.name, _angular_forms__WEBPACK_IMPORTED_MODULE_2__["Validators"].required],
+            streetNumber: [this.store.address.streetNumber],
+            streetName: [this.store.address.streetName],
+            zipCode: [this.store.address.zipCode, [_angular_forms__WEBPACK_IMPORTED_MODULE_2__["Validators"].min(1), _angular_forms__WEBPACK_IMPORTED_MODULE_2__["Validators"].max(999999)]],
+            city: [this.store.address.city],
+            country: [this.store.address.country],
+            phone: [this.store.phone],
+            email: [this.store.email, _angular_forms__WEBPACK_IMPORTED_MODULE_2__["Validators"].email]
+        });
+    };
+    EditStoreInfoModalComponent.prototype.onBlurStringFormControl = function (event) {
+        event.srcElement.value = _util_StringUtil__WEBPACK_IMPORTED_MODULE_5__["StringUtil"].capitalFirstLetter(event.srcElement.value);
+    };
+    EditStoreInfoModalComponent.prototype.changeAlertMessage = function (errorMessage) {
+        this.errorMessage = errorMessage;
+        this._error.next(errorMessage);
+    };
+    EditStoreInfoModalComponent.prototype.onSave = function () {
+        var _this = this;
+        if (this.form.valid) {
+            this.editInProgress = true;
+            this.storeService.update(this.createStoreFromForm()).subscribe(function (data) {
+                _this.onClose(true);
+            }, function (error) {
+                _this.editInProgress = false;
+                _this.changeAlertMessage(error.message);
+            });
+        }
+    };
+    EditStoreInfoModalComponent.prototype.createStoreFromForm = function () {
+        var controls = this.form.controls;
+        var store = new _model_Store__WEBPACK_IMPORTED_MODULE_4__["Store"]();
+        store.id = this.store.id;
+        store.owner = this.store.owner;
+        store.address = this.createAddress();
+        store.name = controls.name.value;
+        store.email = controls.email.value;
+        store.phone = controls.phone.value;
+        return store;
+    };
+    EditStoreInfoModalComponent.prototype.createAddress = function () {
+        var controls = this.form.controls;
+        return new _model_Address__WEBPACK_IMPORTED_MODULE_7__["Address"](controls.streetNumber.value, controls.streetName.value, controls.zipCode.value, controls.city.value, controls.country.value);
+    };
+    EditStoreInfoModalComponent.prototype.onClose = function (success) {
+        this.modal.close(success);
+    };
+    tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Input"])(),
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:type", _model_Store__WEBPACK_IMPORTED_MODULE_4__["Store"])
+    ], EditStoreInfoModalComponent.prototype, "store", void 0);
+    EditStoreInfoModalComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
+            selector: 'edit-store-info-modal',
+            template: __webpack_require__(/*! ./edit-store-info-modal.component.html */ "./src/app/modal/store/edit-store-info-modal/edit-store-info-modal.component.html"),
+            styles: [__webpack_require__(/*! ./edit-store-info-modal.component.css */ "./src/app/modal/store/edit-store-info-modal/edit-store-info-modal.component.css")]
+        }),
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_ng_bootstrap_ng_bootstrap__WEBPACK_IMPORTED_MODULE_3__["NgbActiveModal"],
+            _service_store_service__WEBPACK_IMPORTED_MODULE_6__["StoreService"],
+            _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormBuilder"]])
+    ], EditStoreInfoModalComponent);
+    return EditStoreInfoModalComponent;
+}());
+
+
+
+/***/ }),
+
 /***/ "./src/app/modal/upload-product-file-modal/upload-product-file-modal.component.css":
 /*!*****************************************************************************************!*\
   !*** ./src/app/modal/upload-product-file-modal/upload-product-file-modal.component.css ***!
@@ -3332,7 +3502,7 @@ module.exports = ".center {\r\n    display: block;\r\n    margin-left: auto;\r\n
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"container-fluid\">\n  <div class=\"row\">\n\n    <div class=\"col\">\n      <div class=\"card bg-light shadow-sm mb-3\" style=\"width: 19rem; height: 18rem;\">\n        <div class=\"card-header\">Mysql Database Health</div>\n        <div class=\"card-body\">\n          <h4 *ngIf=\"dbHealth\" class=\"card-title\">Status :\n            <img *ngIf=\"dbHealth.isUp\" src=\"../../../assets/icon/statusGreen.png\">\n            <img *ngIf=\"! dbHealth.isUp\" src=\"../../../assets/icon/statusRed.png\">\n          </h4>\n          <img *ngIf=\"! dbHealth\" class=\"center\" src=\"../../../assets/icon/loadingGrey.gif\">\n        </div>\n      </div>\n    </div>\n\n    <div class=\"col\">\n        <div class=\"card bg-light shadow-sm mb-3\" style=\"width: 19rem; height: 18rem;\">\n          <div class=\"card-header\">Elasticsearch Health</div>\n          <div class=\"card-body\">\n            <h4  *ngIf=\"elasticsearchHealth\" class=\"card-title\">Status :\n              <img *ngIf=\"getElasticsearchStatus() == 'G'\" src=\"../../../assets/icon/statusGreen.png\">\n              <img *ngIf=\"getElasticsearchStatus() == 'Y'\" src=\"../../../assets/icon/statusYellow.png\">\n              <img *ngIf=\"getElasticsearchStatus() == 'R'\" src=\"../../../assets/icon/statusRed.png\">\n            </h4>\n            <img *ngIf=\"! elasticsearchHealth\" class=\"center\" src=\"../../../assets/icon/loadingGrey.gif\">\n            <div *ngIf=\"elasticsearchHealth\">\n              <p *ngIf=\"elasticsearchHealth.clusterName\" class=\"card-text\">Cluster Name : {{ elasticsearchHealth.clusterName }} <br> Number of Nodes : {{ elasticsearchHealth.nodesNb }} <br> Number of Data Nodes : {{ elasticsearchHealth.dataNodesNb }} <br> Primary Active Shards : {{ elasticsearchHealth.activePrimaryShardsNb }} <br>Active Shards : {{ elasticsearchHealth.activeShardsNb }} <br> Pending Tasks : {{ elasticsearchHealth.pendingTaskNb }}</p>\n              <p *ngIf=\"elasticsearchHealth.error\" class=\"card-text\">Error : {{ elasticsearchHealth.error }}</p>\n            </div>\n          </div>\n        </div>\n      </div>\n\n    <div class=\"col\">\n      <div [ngClass]=\"(cpuUsage && cpuUsage.values[0] >= cpuUsageWarningLimit) ? 'card text-white bg-danger shadow-sm mb-3' : 'card bg-light shadow-sm mb-3'\" style=\"width: 19rem; height: 18rem;\">\n        <div class=\"card-header\">Process CPU Usage</div>\n        <div class=\"card-body\">\n          <div *ngIf=\"cpuUsage\">\n            <h1 class=\"card-title\" style=\"font-size: 400%\">{{ getPercentOfCpuUsage() }} %</h1>\n            <p class=\"card-text\">{{ cpuUsage.description }}</p>\n          </div>\n          <img *ngIf=\"! cpuUsage\" class=\"center\" src=\"../../../assets/icon/loadingGrey.gif\">\n        </div>\n      </div>\n    </div>\n\n    <!--<div *ngIf=\"jvmMemoryMax\" class=\"col\">\n      <div class=\"card bg-light shadow-sm mb-3\" style=\"width: 19rem; height: 18rem;\">\n        <div class=\"card-header\">JVM Max Memory</div>\n        <div class=\"card-body\">\n          <h1 class=\"card-title\" style=\"font-size: 400%\">{{ (jvmMemoryMax.values[0] / 1000000).toFixed(0) }} MB</h1>\n          <p class=\"card-text\">{{ jvmMemoryMax.description }}</p>\n        </div>\n      </div>\n    </div>-->\n\n    <div class=\"col\">\n      <div [ngClass]=\"(jvmMemoryUsed.values[0] >= memoryUsageWarningLimit) ? 'card text-white bg-danger shadow-sm mb-3' : 'card bg-light shadow-sm mb-3'\" style=\"width: 19rem; height: 18rem;\">\n        <div class=\"card-header\">JVM Memory Used</div>\n        <div class=\"card-body\">\n          <div *ngIf=\"jvmMemoryUsed && memoryUsageWarningLimit\">\n            <h1 class=\"card-title\" style=\"font-size: 400%\">{{ getPercentOfMemoryUsed() }} %</h1>\n            <h2 class=\"card-title\" style=\"font-size: 400%\">{{ getMemoryUsedInMb() }} MB</h2>\n            <p class=\"card-text\">{{ jvmMemoryUsed.description }}</p>\n          </div>\n          <img *ngIf=\"! (jvmMemoryUsed && memoryUsageWarningLimit)\" class=\"center\" src=\"../../../assets/icon/loadingGrey.gif\">\n        </div>\n      </div>\n    </div>\n\n  </div>\n  \n  <div class=\"row\">\n    \n    <div class=\"col\">\n      <div class=\"card bg-light shadow-sm mb-3\" style=\"width: 19rem; height: 18rem;\">\n        <div class=\"card-header\">System CPU count</div>\n        <div class=\"card-body\">\n          <div *ngIf=\"cpuSystemCount\">\n            <h1 class=\"card-title\" style=\"font-size: 400%\">{{ cpuSystemCount.values[0] }}</h1>\n            <p class=\"card-text\">{{ cpuSystemCount.description }}</p>\n          </div>\n          <img *ngIf=\"! cpuSystemCount\" class=\"center\" src=\"../../../assets/icon/loadingGrey.gif\">\n        </div>\n      </div>\n    </div>\n\n    <div class=\"col\">\n      <div class=\"card bg-light shadow-sm mb-3\" style=\"width: 19rem; height: 18rem;\">\n        <div class=\"card-header\">JVM Live Threads</div>\n        <div class=\"card-body\">\n          <div *ngIf=\"jvmThreadLive\">\n            <h1 class=\"card-title\" style=\"font-size: 400%\">{{ jvmThreadLive.values[0] }}</h1>\n            <p class=\"card-text\">{{ jvmThreadLive.description }}</p>\n          </div>\n          <img *ngIf=\"! jvmThreadLive\" class=\"center\" src=\"../../../assets/icon/loadingGrey.gif\">\n        </div>\n      </div>\n    </div>\n    \n  </div>\n  \n  <div class=\"row\">\n    <div class=\"col\">\n      <div class=\"card bg-light shadow-sm mb-3\">\n        <div class=\"card-header\">Andybrook Log\n          <button class=\"btn btn-outline-dark\" (click)=\"getLogFile()\">GET</button>\n        </div>\n        <div *ngIf=\"logFile\" class=\"card-body\">\n          <p class=\"card-text\">{{ logFile }}</p>\n        </div>\n      </div>\n    </div>\n  </div>\n</div>"
+module.exports = "<div class=\"container-fluid\">\n  <div class=\"row\">\n\n    <div class=\"col\">\n      <div class=\"card bg-light shadow-sm mb-3\" style=\"width: 19rem; height: 18rem;\">\n        <div class=\"card-header\">Mysql Database Health</div>\n        <div class=\"card-body\">\n          <h4 *ngIf=\"dbHealth\" class=\"card-title\">Status :\n            <img *ngIf=\"dbHealth.isUp\" src=\"../../../assets/icon/statusGreen.png\">\n            <img *ngIf=\"! dbHealth.isUp\" src=\"../../../assets/icon/statusRed.png\">\n          </h4>\n          <img *ngIf=\"! dbHealth\" class=\"center\" src=\"../../../assets/icon/loadingGrey.gif\">\n        </div>\n      </div>\n    </div>\n\n    <div class=\"col\">\n      <div class=\"card bg-light shadow-sm mb-3\" style=\"width: 19rem; height: 18rem;\">\n        <div class=\"card-header\">Elasticsearch Health</div>\n        <div class=\"card-body\">\n          <h4  *ngIf=\"elasticsearchHealth\" class=\"card-title\">Status :\n            <img *ngIf=\"getElasticsearchStatus() == 'G'\" src=\"../../../assets/icon/statusGreen.png\">\n            <img *ngIf=\"getElasticsearchStatus() == 'Y'\" src=\"../../../assets/icon/statusYellow.png\">\n            <img *ngIf=\"getElasticsearchStatus() == 'R'\" src=\"../../../assets/icon/statusRed.png\">\n          </h4>\n          <img *ngIf=\"! elasticsearchHealth\" class=\"center\" src=\"../../../assets/icon/loadingGrey.gif\">\n          <div *ngIf=\"elasticsearchHealth\">\n            <p *ngIf=\"elasticsearchHealth.clusterName\" class=\"card-text\">Cluster Name : {{ elasticsearchHealth.clusterName }} <br> Number of Nodes : {{ elasticsearchHealth.nodesNb }} <br> Number of Data Nodes : {{ elasticsearchHealth.dataNodesNb }} <br> Primary Active Shards : {{ elasticsearchHealth.activePrimaryShardsNb }} <br>Active Shards : {{ elasticsearchHealth.activeShardsNb }} <br> Pending Tasks : {{ elasticsearchHealth.pendingTaskNb }}</p>\n            <p *ngIf=\"elasticsearchHealth.error\" class=\"card-text\">Error : {{ elasticsearchHealth.error }}</p>\n          </div>\n        </div>\n      </div>\n    </div>\n\n    <div class=\"col\">\n      <div class=\"card bg-light shadow-sm mb-3\" style=\"width: 19rem; height: 18rem;\">\n        <div class=\"card-header\">System CPU count</div>\n        <div class=\"card-body\">\n          <div *ngIf=\"cpuSystemCount\">\n            <h1 class=\"card-title\" style=\"font-size: 400%\">{{ cpuSystemCount.values[0] }}</h1>\n            <p class=\"card-text\">{{ cpuSystemCount.description }}</p>\n          </div>\n          <img *ngIf=\"! cpuSystemCount\" class=\"center\" src=\"../../../assets/icon/loadingGrey.gif\">\n        </div>\n      </div>\n    </div>\n\n    <!--<div *ngIf=\"jvmMemoryMax\" class=\"col\">\n      <div class=\"card bg-light shadow-sm mb-3\" style=\"width: 19rem; height: 18rem;\">\n        <div class=\"card-header\">JVM Max Memory</div>\n        <div class=\"card-body\">\n          <h1 class=\"card-title\" style=\"font-size: 400%\">{{ (jvmMemoryMax.values[0] / 1000000).toFixed(0) }} MB</h1>\n          <p class=\"card-text\">{{ jvmMemoryMax.description }}</p>\n        </div>\n      </div>\n    </div>-->\n\n  </div>\n  \n  <div class=\"row\">\n    \n    <div class=\"col\">\n      <div [ngClass]=\"(cpuUsage && cpuUsage.values[0] >= cpuUsageWarningLimit) ? 'card text-white bg-danger shadow-sm mb-3' : 'card bg-light shadow-sm mb-3'\" style=\"width: 19rem; height: 18rem;\">\n        <div class=\"card-header\">Process CPU Usage</div>\n        <div class=\"card-body\">\n          <div *ngIf=\"cpuUsage\">\n            <h1 class=\"card-title\" style=\"font-size: 400%\">{{ getPercentOfCpuUsage() }} %</h1>\n            <p class=\"card-text\">{{ cpuUsage.description }}</p>\n          </div>\n          <img *ngIf=\"! cpuUsage\" class=\"center\" src=\"../../../assets/icon/loadingGrey.gif\">\n        </div>\n      </div>\n    </div>\n\n    <div class=\"col\">\n      <div [ngClass]=\"(jvmMemoryUsed.values[0] >= memoryUsageWarningLimit) ? 'card text-white bg-danger shadow-sm mb-3' : 'card bg-light shadow-sm mb-3'\" style=\"width: 19rem; height: 18rem;\">\n        <div class=\"card-header\">JVM Memory Used</div>\n        <div class=\"card-body\">\n          <div *ngIf=\"jvmMemoryUsed && memoryUsageWarningLimit\">\n            <h1 class=\"card-title\" style=\"font-size: 400%\">{{ getPercentOfMemoryUsed() }} %</h1>\n            <h2 class=\"card-title\" style=\"font-size: 400%\">{{ getMemoryUsedInMb() }} MB</h2>\n            <p class=\"card-text\">{{ jvmMemoryUsed.description }}</p>\n          </div>\n          <img *ngIf=\"! (jvmMemoryUsed && memoryUsageWarningLimit)\" class=\"center\" src=\"../../../assets/icon/loadingGrey.gif\">\n        </div>\n      </div>\n    </div>\n\n    <div class=\"col\">\n      <div class=\"card bg-light shadow-sm mb-3\" style=\"width: 19rem; height: 18rem;\">\n        <div class=\"card-header\">JVM Live Threads</div>\n        <div class=\"card-body\">\n          <div *ngIf=\"jvmThreadLive\">\n            <h1 class=\"card-title\" style=\"font-size: 400%\">{{ jvmThreadLive.values[0] }}</h1>\n            <p class=\"card-text\">{{ jvmThreadLive.description }}</p>\n          </div>\n          <img *ngIf=\"! jvmThreadLive\" class=\"center\" src=\"../../../assets/icon/loadingGrey.gif\">\n        </div>\n      </div>\n    </div>\n    \n  </div>\n  \n  <div class=\"row\">\n    <div class=\"col\">\n      <div class=\"card bg-light shadow-sm mb-3\">\n        <div class=\"card-header\">Andybrook Log\n          <button class=\"btn btn-outline-dark\" (click)=\"getLogFile()\">GET</button>\n        </div>\n        <div *ngIf=\"logFile\" class=\"card-body\">\n          <p class=\"card-text\">{{ logFile }}</p>\n        </div>\n      </div>\n    </div>\n  </div>\n</div>"
 
 /***/ }),
 
@@ -4740,6 +4910,9 @@ var StoreService = /** @class */ (function () {
     }
     StoreService.prototype.get = function (id) {
         return this.httpApi.get(this.STORE_URL + '/get/' + id);
+    };
+    StoreService.prototype.update = function (store) {
+        return this.httpApi.post(this.STORE_URL + '/update', store);
     };
     StoreService = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Injectable"])(),

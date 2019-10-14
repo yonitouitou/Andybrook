@@ -7,5 +7,7 @@ public interface IStoreManager {
 
     Store newStore(Store store);
 
+    Store update(Store store);
+
     Store getById(long id) throws StoreNotFound;
 }

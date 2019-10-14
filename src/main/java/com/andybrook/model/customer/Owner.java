@@ -8,6 +8,8 @@ public class Owner {
     private String lastName;
     private String email;
 
+    private Owner() {}
+
     public Owner(String compagnyName, String firstName, String lastName, String email) {
         this.id = null;
         this.compagnyName = compagnyName;

@@ -1,6 +1,8 @@
 import { Component, OnInit, Input, OnChanges } from '@angular/core';
 import { OrderService } from '../../../service/order-service';
 import { AggregatedOrder } from '../../../model/AggregatedOrder';
+import { ModalBuilder } from '../../../common-components/modal-builder';
+import { CreateOrderModalComponent } from '../../../modal/create-order-modal/create-order-modal.component';
 
 @Component({
   selector: 'store-orders',
@@ -12,7 +14,7 @@ export class StoreOrdersComponent implements OnChanges {
   @Input() storeId: number
   private orders: AggregatedOrder[]
 
-  constructor(private orderService: OrderService) { }
+  constructor(private orderService: OrderService, private modalBuilder: ModalBuilder) { }
 
   ngOnChanges() {
     this.loadOrders()
@@ -30,5 +32,9 @@ export class StoreOrdersComponent implements OnChanges {
         }
       )
     }
+  }
+
+  private onNewOrder(): void {
+    this.modalBuilder.open(CreateOrderModalComponent)
   }
 }

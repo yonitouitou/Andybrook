@@ -18,6 +18,11 @@ public class StoreManager implements IStoreManager {
     }
 
     @Override
+    public Store update(Store store) {
+        return storeService.update(store);
+    }
+
+    @Override
     public Store getById(long id) throws StoreNotFound {
         return storeService.getById(id);
     }
