@@ -2,41 +2,120 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="68c8b49c-970c-40ab-ab2d-b486fbd977e4" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/andybrook-ui/src/app/modal/store/edit-store-info-modal/edit-store-info-modal.component.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/andybrook-ui/src/app/modal/store/edit-store-info-modal/edit-store-info-modal.component.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/andybrook-ui/src/app/modal/store/edit-store-info-modal/edit-store-info-modal.component.spec.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/andybrook-ui/src/app/modal/store/edit-store-info-modal/edit-store-info-modal.component.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/andybrook/api/rest/OwnerController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/andybrook/manager/owner/IOwnerManager.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/andybrook/manager/owner/OwnerManager.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/andybrook-ui/src/app/app.module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/andybrook-ui/src/app/app.module.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/andybrook-ui/src/app/customer/store/open-closed-orders-counter/open-closed-orders-counter.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/andybrook-ui/src/app/customer/store/open-closed-orders-counter/open-closed-orders-counter.component.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/andybrook-ui/src/app/customer/store/open-closed-orders-counter/open-closed-orders-counter.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/andybrook-ui/src/app/customer/store/open-closed-orders-counter/open-closed-orders-counter.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/andybrook-ui/src/app/customer/store/store-dashboard/store-dashboard.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/andybrook-ui/src/app/customer/store/store-dashboard/store-dashboard.component.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/andybrook-ui/src/app/customer/store/store-info/store-info.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/andybrook-ui/src/app/customer/store/store-info/store-info.component.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/andybrook-ui/src/app/customer/store/store-info/store-info.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/andybrook-ui/src/app/customer/store/store-info/store-info.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/andybrook-ui/src/app/customer/store/store-orders/store-orders.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/andybrook-ui/src/app/customer/store/store-orders/store-orders.component.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/andybrook-ui/src/app/customer/store/store-orders/store-orders.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/andybrook-ui/src/app/customer/store/store-orders/store-orders.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/andybrook-ui/src/app/monitoring/dashboard/dashboard.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/andybrook-ui/src/app/monitoring/dashboard/dashboard.component.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/andybrook-ui/src/app/service/store-service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/andybrook-ui/src/app/service/store-service.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/andybrook/api/pdf/CloseOrderPdfBuilder.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/andybrook/api/pdf/CloseOrderPdfBuilder.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/andybrook/api/rest/CustomerController.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/andybrook/api/rest/StoreController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/andybrook/api/rest/StoreController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/andybrook/api/rest/ctx/customer/AddOrUpdateCustomerRestRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/andybrook/api/rest/ctx/customer/AddOrUpdateStoreRestRequest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/andybrook/api/rest/jackson/AddOrUpdateCustomerRestRequestJsonDeserializer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/andybrook/api/rest/jackson/AddOrUpdateCustomerRestRequestJsonDeserializer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/andybrook/dao/customer/CustomerDao.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/andybrook/dao/customer/ICustomerDao.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/andybrook/dao/jpa/entity/customer/CustomerEntity.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/andybrook/dao/jpa/entity/customer/CustomerEntityConverter.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/andybrook/dao/jpa/entity/factory/EntityFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/andybrook/dao/jpa/entity/factory/EntityFactory.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/andybrook/dao/jpa/entity/order/OrderEntity.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/andybrook/dao/jpa/entity/order/OrderEntity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/andybrook/dao/jpa/entity/order/OrderEntityConverter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/andybrook/dao/jpa/entity/order/OrderEntityConverter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/andybrook/dao/jpa/repository/ICustomerJpaRepository.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/andybrook/dao/jpa/repository/IStoreJpaRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/andybrook/dao/jpa/repository/IStoreJpaRepository.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/andybrook/dao/store/IStoreDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/andybrook/dao/store/IStoreDao.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/andybrook/dao/store/StoreDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/andybrook/dao/store/StoreDao.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/andybrook/manager/customer/CustomerManager.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/andybrook/manager/customer/ICustomerManager.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/andybrook/manager/store/IStoreManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/andybrook/manager/store/IStoreManager.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/andybrook/manager/store/StoreManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/andybrook/manager/store/StoreManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/andybrook/model/common/Address.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/andybrook/model/common/Address.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/andybrook/model/customer/Owner.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/andybrook/model/customer/Owner.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/andybrook/model/customer/Store.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/andybrook/model/customer/Store.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/andybrook/model/api/AggregatedOrder.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/andybrook/model/api/AggregatedOrder.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/andybrook/model/customer/Customer.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/andybrook/model/notification/OrderClosedEmailNotification.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/andybrook/model/notification/OrderClosedEmailNotification.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/andybrook/model/order/Order.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/andybrook/model/order/Order.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/andybrook/model/request/customer/AddCustomerRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/andybrook/model/request/customer/AddStoreRequest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/andybrook/model/request/order/NewOrderRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/andybrook/model/request/order/NewOrderRequest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/andybrook/service/customer/CustomerService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/andybrook/service/customer/ICustomerService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/andybrook/service/order/OrderService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/andybrook/service/order/OrderService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/andybrook/service/store/IStoreService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/andybrook/service/store/IStoreService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/andybrook/service/store/StoreService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/andybrook/service/store/StoreService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/static/main.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/static/main.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/static/main.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/static/main.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/com/andybrook/assertor/CustomerAssertor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/andybrook/assertor/CustomerAssertor.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/com/andybrook/generator/CustomerGenerator.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/com/andybrook/generator/OrderGenerator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/andybrook/generator/OrderGenerator.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/com/andybrook/init/InitSystemTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/andybrook/init/InitSystemTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/com/andybrook/manager/ProductManagerTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/com/andybrook/manager/StoreManagerTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/com/andybrook/service/customer/CustomerServiceTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/com/andybrook/service/order/OrderServiceTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/andybrook/service/order/OrderServiceTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/com/andybrook/service/product/ProductServiceTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/andybrook/service/product/ProductServiceTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/andybrook-0.0.1-SNAPSHOT.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/andybrook-0.0.1-SNAPSHOT.jar.original" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/andybrook/api/pdf/CloseOrderPdfBuilder.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/andybrook/api/pdf/CloseOrderPdfBuilder.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/andybrook/api/rest/CustomerController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/andybrook/api/rest/ctx/customer/AddOrUpdateCustomerRestRequest.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/andybrook/dao/customer/CustomerDao.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/andybrook/dao/customer/ICustomerDao.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/andybrook/dao/jpa/entity/customer/CustomerEntity.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/andybrook/dao/jpa/entity/customer/CustomerEntityConverter.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/andybrook/dao/jpa/entity/factory/EntityFactory.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/andybrook/dao/jpa/entity/factory/EntityFactory.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/andybrook/dao/jpa/entity/order/OrderEntity.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/andybrook/dao/jpa/entity/order/OrderEntity.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/andybrook/dao/jpa/entity/order/OrderEntityConverter.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/andybrook/dao/jpa/entity/order/OrderEntityConverter.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/andybrook/dao/jpa/repository/ICustomerJpaRepository.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/andybrook/dao/jpa/repository/IStoreJpaRepository.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/andybrook/dao/jpa/repository/IStoreJpaRepository.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/andybrook/dao/store/IStoreDao.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/andybrook/dao/store/IStoreDao.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/andybrook/dao/store/StoreDao.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/andybrook/dao/store/StoreDao.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/andybrook/manager/customer/CustomerManager.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/andybrook/manager/customer/ICustomerManager.class" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/andybrook/manager/store/IStoreManager.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/andybrook/manager/store/IStoreManager.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/andybrook/manager/store/StoreManager.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/andybrook/manager/store/StoreManager.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/andybrook/model/api/AggregatedOrder.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/andybrook/model/api/AggregatedOrder.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/andybrook/model/customer/Customer.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/andybrook/model/notification/OrderClosedEmailNotification.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/andybrook/model/notification/OrderClosedEmailNotification.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/andybrook/model/order/Order.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/andybrook/model/order/Order.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/andybrook/model/request/customer/AddCustomerRequest$1.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/andybrook/model/request/customer/AddCustomerRequest$Builder.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/andybrook/model/request/customer/AddCustomerRequest.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/andybrook/model/request/order/NewOrderRequest.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/andybrook/model/request/order/NewOrderRequest.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/andybrook/service/customer/CustomerService.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/andybrook/service/customer/ICustomerService.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/andybrook/service/order/OrderService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/andybrook/service/order/OrderService.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/andybrook/service/store/IStoreService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/andybrook/service/store/IStoreService.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/andybrook/service/store/StoreService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/andybrook/service/store/StoreService.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/static/main.js" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/static/main.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/static/main.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/static/main.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/maven-archiver/pom.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/testCompile/default-testCompile/createdFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/testCompile/default-testCompile/createdFiles.lst" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/testCompile/default-testCompile/inputFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/testCompile/default-testCompile/inputFiles.lst" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/surefire-reports/2019-10-11T17-28-41_671-jvmRun1.dump" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/surefire-reports/TEST-com.andybrook.api.pdf.CloseOrderPdfBuilderTest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/surefire-reports/TEST-com.andybrook.api.pdf.CloseOrderPdfBuilderTest.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/surefire-reports/TEST-com.andybrook.init.InitSystemTest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/surefire-reports/TEST-com.andybrook.init.InitSystemTest.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/surefire-reports/TEST-com.andybrook.manager.ProductManagerTest.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/surefire-reports/TEST-com.andybrook.manager.StoreManagerTest.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/surefire-reports/TEST-com.andybrook.service.api.StockItemsFileParserServiceTest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/surefire-reports/TEST-com.andybrook.service.api.StockItemsFileParserServiceTest.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/surefire-reports/TEST-com.andybrook.service.customer.CustomerServiceTest.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/surefire-reports/TEST-com.andybrook.service.order.OrderServiceTest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/surefire-reports/TEST-com.andybrook.service.order.OrderServiceTest.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/surefire-reports/TEST-com.andybrook.service.product.ProductServiceTest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/surefire-reports/TEST-com.andybrook.service.product.ProductServiceTest.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/surefire-reports/TEST-com.andybrook.service.stock.ProductStockInfoServiceTest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/surefire-reports/TEST-com.andybrook.service.stock.ProductStockInfoServiceTest.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/surefire-reports/TEST-com.andybrook.service.stock.StockServiceTest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/surefire-reports/TEST-com.andybrook.service.stock.StockServiceTest.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/surefire-reports/TEST-com.andybrook.util.file.zip.Zip4jTest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/surefire-reports/TEST-com.andybrook.util.file.zip.Zip4jTest.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/surefire-reports/com.andybrook.api.pdf.CloseOrderPdfBuilderTest.txt" beforeDir="false" afterPath="$PROJECT_DIR$/target/surefire-reports/com.andybrook.api.pdf.CloseOrderPdfBuilderTest.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/surefire-reports/com.andybrook.init.InitSystemTest.txt" beforeDir="false" afterPath="$PROJECT_DIR$/target/surefire-reports/com.andybrook.init.InitSystemTest.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/surefire-reports/com.andybrook.manager.ProductManagerTest.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/surefire-reports/com.andybrook.manager.StoreManagerTest.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/surefire-reports/com.andybrook.service.api.StockItemsFileParserServiceTest.txt" beforeDir="false" afterPath="$PROJECT_DIR$/target/surefire-reports/com.andybrook.service.api.StockItemsFileParserServiceTest.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/surefire-reports/com.andybrook.service.customer.CustomerServiceTest.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/surefire-reports/com.andybrook.service.order.OrderServiceTest.txt" beforeDir="false" afterPath="$PROJECT_DIR$/target/surefire-reports/com.andybrook.service.order.OrderServiceTest.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/surefire-reports/com.andybrook.service.product.ProductServiceTest.txt" beforeDir="false" afterPath="$PROJECT_DIR$/target/surefire-reports/com.andybrook.service.product.ProductServiceTest.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/surefire-reports/com.andybrook.service.stock.ProductStockInfoServiceTest.txt" beforeDir="false" afterPath="$PROJECT_DIR$/target/surefire-reports/com.andybrook.service.stock.ProductStockInfoServiceTest.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/surefire-reports/com.andybrook.service.stock.StockServiceTest.txt" beforeDir="false" afterPath="$PROJECT_DIR$/target/surefire-reports/com.andybrook.service.stock.StockServiceTest.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/surefire-reports/com.andybrook.util.file.zip.Zip4jTest.txt" beforeDir="false" afterPath="$PROJECT_DIR$/target/surefire-reports/com.andybrook.util.file.zip.Zip4jTest.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/com/andybrook/assertor/CustomerAssertor.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/com/andybrook/assertor/CustomerAssertor.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/com/andybrook/generator/CustomerGenerator.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/com/andybrook/generator/OrderGenerator.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/com/andybrook/generator/OrderGenerator.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/com/andybrook/init/InitSystemTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/com/andybrook/init/InitSystemTest.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/com/andybrook/manager/ProductManagerTest.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/com/andybrook/manager/StoreManagerTest.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/com/andybrook/service/customer/CustomerServiceTest.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/com/andybrook/service/order/OrderServiceTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/com/andybrook/service/order/OrderServiceTest.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/com/andybrook/service/product/ProductServiceTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/com/andybrook/service/product/ProductServiceTest.class" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />

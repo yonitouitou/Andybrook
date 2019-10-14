@@ -5,16 +5,15 @@ import com.andybrook.dao.jpa.repository.IStoreJpaRepository;
 import com.andybrook.dao.jpa.entity.factory.EntityFactory;
 import com.andybrook.dao.jpa.entity.store.StoreEntity;
 import com.andybrook.dao.owner.IOwnerDao;
-import com.andybrook.model.customer.Owner;
 import com.andybrook.model.customer.Store;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Example;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Repository;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Optional;
+import java.util.*;
+import java.util.stream.Collectors;
 
 @Repository
 public class StoreDao implements IStoreDao {
@@ -53,6 +52,27 @@ public class StoreDao implements IStoreDao {
     @Override
     public boolean exists(long id) {
         return repository.existsById(id);
+    }
+
+    @Override
+    public List<Store> getByNameContaining(String name) {
+        List<StoreEntity> entities = repository.getStoreByNameContaining(name);
+        return entities.stream()
+                .map(entityFactory::createStore)
+                .collect(Collectors.toList());
+    }
+
+    @Override
+    public List<Store> getAll(OptionalInt limitOpt) {
+        Iterable<StoreEntity> entities = limitOpt.isPresent()
+                ? repository.findAll(PageRequest.of(0, limitOpt.getAsInt(), new Sort(Sort.Direction.ASC, "id")))
+                : repository.findAll();
+        List<Store> stores = new LinkedList<>();
+        entities.forEach(entity -> {
+            Store store = entityFactory.createStore(entity);
+            stores.add(store);
+        });
+        return stores;
     }
 
     @Override

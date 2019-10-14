@@ -3,7 +3,7 @@ package com.andybrook.model.order;
 import com.andybrook.enums.OrderStatus;
 import com.andybrook.exception.OrderClosed;
 import com.andybrook.model.api.AggregatedOrder;
-import com.andybrook.model.customer.Customer;
+import com.andybrook.model.customer.Store;
 
 import java.time.LocalDateTime;
 import java.util.*;
@@ -15,7 +15,7 @@ public class Order {
     private Long id;
     private String name;
     private String comment;
-    private final Customer customer;
+    private final Store store;
     private Map<Long, OrderItem> items;
     private Map<Long, List<OrderItem>> itemsMapByProductId;
     private LocalDateTime createdDateTime;
@@ -23,10 +23,10 @@ public class Order {
     private LocalDateTime closeDateTime;
     private OrderStatus status;
 
-    public Order(Long id, String name, Customer customer) {
+    public Order(Long id, String name, Store store) {
         this.id = id;
         this.name = name;
-        this.customer = customer;
+        this.store = store;
         this.items = new HashMap<>();
         this.itemsMapByProductId = new HashMap<>(PRODUCT_SIZE_1024);
         this.status = OrderStatus.OPEN;
@@ -95,8 +95,8 @@ public class Order {
                     .sum();
     }
 
-    public Customer getCustomer() {
-        return customer;
+    public Store getStore() {
+        return store;
     }
 
     public LocalDateTime getCloseDateTime() {
@@ -185,7 +185,7 @@ public class Order {
         sb.append("id=").append(id);
         sb.append(", name='").append(name).append('\'');
         sb.append(", comment='").append(comment).append('\'');
-        sb.append(", owner='").append(customer).append('\'');
+        sb.append(", store='").append(store).append('\'');
         sb.append(", items=").append(items);
         sb.append(", createdDateTime=").append(createdDateTime);
         sb.append(", closeDateTime=").append(closeDateTime);

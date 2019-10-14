@@ -102,11 +102,11 @@ public class OrderClosedEmailNotification implements IEmailNotification<Aggregat
         StringBuilder sb = new StringBuilder();
         if (ctx.isLiveEvent()) {
             sb.append("Order ").append(order.getName()).append(" (" ).append(order.getId()).append(") of store ")
-                    .append(order.getCustomer().getStore().getName()).append(" has been closed on ")
+                    .append(order.getStore().getName()).append(" has been closed on ")
                     .append(getFormattedDateTime(ZonedDateTime.now(applicationProperties.getZoneId())));
         } else {
             sb.append("Notification sent for order ").append(order.getName()).append(" (" ).append(order.getId()).append(") of store ")
-                    .append(order.getCustomer().getStore().getName()).append(" closed on ")
+                    .append(order.getStore().getName()).append(" closed on ")
                     .append(getFormattedDateTime(ZonedDateTime.of(order.getCloseDatetime(), applicationProperties.getZoneId())));
         }
         return sb.toString();

@@ -1,7 +1,7 @@
 package com.andybrook.model.api;
 
 import com.andybrook.enums.OrderStatus;
-import com.andybrook.model.customer.Customer;
+import com.andybrook.model.customer.Store;
 import com.andybrook.model.order.Order;
 import com.andybrook.model.order.OrderItem;
 
@@ -17,7 +17,7 @@ public final class AggregatedOrder {
     private final long id;
     private final String name;
     private final String comment;
-    private final Customer customer;
+    private final Store store;
     private final OrderStatus status;
     private final LocalDateTime createdDatetime;
     private final LocalDateTime lastModifiedDatetime;
@@ -25,13 +25,13 @@ public final class AggregatedOrder {
     private final AggregatedOrderInfo aggregatedOrderInfo;
     private final List<AggregatedOrderItem> aggregatedOrderItems;
 
-    private AggregatedOrder(long id, String name, Customer customer, OrderStatus status,
+    private AggregatedOrder(long id, String name, Store store, OrderStatus status,
                            String comment, LocalDateTime createdDatetime, LocalDateTime lastModifiedDatetime,
                            LocalDateTime closeDatetime, AggregatedOrderInfo aggregatedOrderInfo,
                            List<AggregatedOrderItem> aggregatedOrderItems) {
         this.id = id;
         this.name = name;
-        this.customer = customer;
+        this.store = store;
         this.comment = comment;
         this.status = status;
         this.createdDatetime = createdDatetime;
@@ -54,7 +54,7 @@ public final class AggregatedOrder {
             aggregatedOrderItems.add(new AggregatedOrderItem(v))
         );
         AggregatedOrderInfo info = AggregatedOrderInfo.toAggregatedOrderInfo(order);
-        return new AggregatedOrder(order.getId(), order.getName(), order.getCustomer(), order.getStatus(),
+        return new AggregatedOrder(order.getId(), order.getName(), order.getStore(), order.getStatus(),
                 order.getComment(), order.getCreatedDateTime(), order.getLastModifiedDateTime(),
                 order.getCloseDateTime(), info, aggregatedOrderItems);
     }
@@ -63,8 +63,8 @@ public final class AggregatedOrder {
         return id;
     }
 
-    public Customer getCustomer() {
-        return customer;
+    public Store getStore() {
+        return store;
     }
 
     public String getName() {

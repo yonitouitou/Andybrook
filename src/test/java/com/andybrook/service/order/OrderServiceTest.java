@@ -2,20 +2,20 @@ package com.andybrook.service.order;
 
 import com.andybrook.exception.InsufficientQuantityException;
 import com.andybrook.exception.OrderClosed;
-import com.andybrook.generator.CustomerGenerator;
 import com.andybrook.generator.OrderItemGenerator;
 import com.andybrook.generator.ProductGenerator;
 import com.andybrook.generator.ProductItemGenerator;
-import com.andybrook.model.customer.Customer;
+import com.andybrook.generator.StoreGenerator;
+import com.andybrook.model.customer.Store;
 import com.andybrook.model.order.Order;
 import com.andybrook.model.order.OrderItem;
 import com.andybrook.model.product.Product;
 import com.andybrook.model.request.order.NewOrderRequest;
 import com.andybrook.model.request.orderitem.ProductItemInfo;
 import com.andybrook.model.stock.ProductItem;
-import com.andybrook.service.customer.ICustomerService;
 import com.andybrook.service.product.IProductService;
 import com.andybrook.service.stock.IStockService;
+import com.andybrook.service.store.IStoreService;
 import com.andybrook.util.clock.Clock;
 import org.junit.Assert;
 import org.junit.Before;
@@ -27,15 +27,13 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import java.util.List;
 
-import static com.andybrook.generator.CustomerGenerator.createAddCustomerRequest;
-
 @SpringBootTest
 @RunWith(SpringJUnit4ClassRunner.class)
 public class OrderServiceTest {
 
     private static final int PRODUCT_QUANTITY = 20;
     private static final int ORDER_ITEM_QUANTITY = 5;
-    private Customer customer;
+    private Store store;
     private Order order;
     private Product product;
     private ProductItemInfo productItemInfo;
@@ -43,7 +41,7 @@ public class OrderServiceTest {
     @Autowired
     private IOrderService orderService;
     @Autowired
-    private ICustomerService customerService;
+    private IStoreService storeService;
     @Autowired
     private IProductService productService;
     @Autowired
@@ -51,8 +49,8 @@ public class OrderServiceTest {
 
     @Before
     public void init() {
-        customer = customerService.newCustomer(createAddCustomerRequest(Clock.millis()));
-        order = orderService.newOrder(createNewOrderRequest(customer));
+        store = storeService.newStore(StoreGenerator.generateStore());
+        order = orderService.newOrder(createNewOrderRequest(store));
         product = ProductGenerator.generateProduct();
         product = productService.addProduct(product);
         List<ProductItem> productItems = ProductItemGenerator.generateProductItem(product, PRODUCT_QUANTITY);
@@ -107,14 +105,14 @@ public class OrderServiceTest {
     @Test
     public void getOrdersOfCustomerTest() {
         int nbOfOrderForCustomer = 3;
-        Customer customer = customerService.newCustomer(createAddCustomerRequest(Clock.millis()));
+        Store store = storeService.newStore(StoreGenerator.generateStore());
         for (int i = 0; i < nbOfOrderForCustomer; i++) {
-            orderService.newOrder(createNewOrderRequest(customer));
+            orderService.newOrder(createNewOrderRequest(store));
         }
-        Customer customer2 = customerService.newCustomer(createAddCustomerRequest(Clock.millis()));
-        orderService.newOrder(createNewOrderRequest(customer2));
+        Store store2 = storeService.newStore(StoreGenerator.generateStore());
+        orderService.newOrder(createNewOrderRequest(store2));
 
-        List<Order> ordersOfCustomer = orderService.getOrdersOfCustomer(customer.getId());
+        List<Order> ordersOfCustomer = orderService.getOrdersOfCustomer(store.getId());
         Assert.assertEquals("OrderOfCustomerSize", nbOfOrderForCustomer, ordersOfCustomer.size());
     }
 
@@ -126,10 +124,10 @@ public class OrderServiceTest {
         orderService.deleteOrderItem(this.order.getId(), orderItemId);
     }
 
-    private NewOrderRequest createNewOrderRequest(Customer customer) {
+    private NewOrderRequest createNewOrderRequest(Store store) {
         NewOrderRequest request = new NewOrderRequest();
         request.setName("OrderName_" + System.currentTimeMillis());
-        request.setCustomerId(customer.getId());
+        request.setStoreId(store.getId());
         request.setComment("Comment_" + System.currentTimeMillis());
         return request;
     }

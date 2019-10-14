@@ -3,7 +3,7 @@ package com.andybrook.model.request.order;
 public final class NewOrderRequest {
 
     private String name;
-    private long customerId;
+    private long storeId;
     private String comment;
 
     public NewOrderRequest() {
@@ -25,19 +25,19 @@ public final class NewOrderRequest {
         this.comment = comment;
     }
 
-    public long getCustomerId() {
-        return customerId;
+    public long getStoreId() {
+        return storeId;
     }
 
-    public void setCustomerId(long customerId) {
-        this.customerId = customerId;
+    public void setStoreId(long storeId) {
+        this.storeId = storeId;
     }
 
     @Override
     public String toString() {
         final StringBuilder sb = new StringBuilder("NewOrderRequest{");
         sb.append("name='").append(name).append('\'');
-        sb.append(", customerId=").append(customerId);
+        sb.append(", customerId=").append(storeId);
         sb.append(", comment='").append(comment).append('\'');
         sb.append('}');
         return sb.toString();

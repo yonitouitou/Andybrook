@@ -3,14 +3,14 @@ package com.andybrook.service.order;
 import com.andybrook.dao.order.IOrderDao;
 import com.andybrook.exception.*;
 import com.andybrook.model.BarCode;
+import com.andybrook.model.customer.Store;
 import com.andybrook.model.order.Order;
 import com.andybrook.model.order.OrderItem;
-import com.andybrook.model.customer.Customer;
 import com.andybrook.model.request.order.NewOrderRequest;
 import com.andybrook.model.request.order.UpdateOrderRequest;
 import com.andybrook.model.request.orderitem.ProductItemInfo;
-import com.andybrook.service.customer.ICustomerService;
 import com.andybrook.service.setting.IAdminSettingService;
+import com.andybrook.service.store.IStoreService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -27,14 +27,14 @@ public class OrderService implements IOrderService {
     @Autowired
     private IOrderItemService orderItemService;
     @Autowired
-    private ICustomerService customerService;
+    private IStoreService storeService;
     @Autowired
     private IAdminSettingService adminSettingService;
 
     @Override
     public Order newOrder(NewOrderRequest request) {
-        Customer customer = customerService.getById(request.getCustomerId());
-        Order order = new Order(null, request.getName(), customer);
+        Store store = storeService.getById(request.getStoreId());
+        Order order = new Order(null, request.getName(), store);
         order.setComment(request.getComment());
         return dao.newOrder(order);
     }

@@ -1,12 +1,12 @@
 package com.andybrook.dao.jpa.entity.order;
 
 import com.andybrook.annotation.EntityConverter;
-import com.andybrook.dao.jpa.entity.customer.CustomerEntity;
 import com.andybrook.dao.jpa.entity.factory.EntityFactory;
 import com.andybrook.dao.jpa.entity.factory.IEntityConverter;
+import com.andybrook.dao.jpa.entity.store.StoreEntity;
+import com.andybrook.model.customer.Store;
 import com.andybrook.model.order.Order;
 import com.andybrook.model.order.OrderItem;
-import com.andybrook.model.customer.Customer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -22,7 +22,7 @@ public class OrderEntityConverter implements IEntityConverter<Order, OrderEntity
 
     @Override
     public Order toModel(OrderEntity entity) {
-        Customer customer = entityFactory.createCustomer(entity.getCustomerEntity());
+        Store customer = entityFactory.createStore(entity.getStoreEntity());
         Order order = new Order(entity.getId(), entity.getName(), customer);
         order.setStatus(entity.getStatus());
         order.setComment(entity.getComment());
@@ -38,8 +38,8 @@ public class OrderEntityConverter implements IEntityConverter<Order, OrderEntity
 
     @Override
     public OrderEntity toEntity(Order model) {
-        CustomerEntity customerEntity = entityFactory.createCustomerEntity(model.getCustomer());
-        OrderEntity orderEntity = new OrderEntity(model.getId(), model.getName(), customerEntity,
+        StoreEntity storeEntity = entityFactory.createStoreEntity(model.getStore());
+        OrderEntity orderEntity = new OrderEntity(model.getId(), model.getName(), storeEntity,
                 model.getStatus(), model.getComment(), model.getCreatedDateTime(), model.getCloseDateTime());
         List<OrderItemEntity> items = model.getItems()
                 .stream()

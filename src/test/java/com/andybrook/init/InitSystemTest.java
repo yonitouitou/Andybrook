@@ -3,20 +3,20 @@ package com.andybrook.init;
 import com.andybrook.exception.*;
 import com.andybrook.generator.OrderItemGenerator;
 import com.andybrook.generator.ProductGenerator;
+import com.andybrook.generator.StoreGenerator;
 import com.andybrook.manager.order.IOrderManager;
 import com.andybrook.manager.product.IProductManager;
 import com.andybrook.model.BarCode;
-import com.andybrook.model.customer.Customer;
+import com.andybrook.model.customer.Store;
 import com.andybrook.model.order.Order;
 import com.andybrook.model.order.OrderItem;
 import com.andybrook.model.product.Product;
-import com.andybrook.model.request.customer.AddCustomerRequest;
 import com.andybrook.model.request.order.NewOrderRequest;
 import com.andybrook.model.request.orderitem.OrderItemAddRequest;
 import com.andybrook.model.request.orderitem.ProductItemInfo;
 import com.andybrook.model.stock.ProductItem;
-import com.andybrook.service.customer.ICustomerService;
 import com.andybrook.service.stock.IStockService;
+import com.andybrook.service.store.IStoreService;
 import com.andybrook.util.clock.Clock;
 import org.junit.Ignore;
 import org.junit.Test;
@@ -27,8 +27,6 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import java.util.*;
 import java.util.concurrent.ThreadLocalRandom;
-
-import static com.andybrook.generator.CustomerGenerator.createAddCustomerRequest;
 
 @SpringBootTest
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -43,10 +41,10 @@ public class InitSystemTest {
 
     private List<Product> products;
     private Map<Long, List<Long>> productItemsIdMapByProductId;
-    private List<Customer> customers;
+    private List<Store> stores;
 
     @Autowired
-    private ICustomerService customerService;
+    private IStoreService storeService;
     @Autowired
     private IOrderManager orderManager;
     @Autowired
@@ -59,9 +57,9 @@ public class InitSystemTest {
     public void initSystem() {
         products = createProducts();
         productItemsIdMapByProductId = createProductItems(products);
-        customers = createCustomers();
-        for (Customer customer : customers) {
-            List<Long> orderIds = createOrders(customer);
+        stores = createStores();
+        for (Store store : stores) {
+            List<Long> orderIds = createOrders(store);
             for (Long id : orderIds) {
                 int itemToAddNb = RANDOM.nextInt(0, MAX_ITEM_IN_ORDER_35);
                 for (int i = 0; i < itemToAddNb; i++) {
@@ -102,13 +100,12 @@ public class InitSystemTest {
         return products;
     }
 
-    private List<Customer> createCustomers() {
-        List<Customer> customers = new LinkedList<>();
+    private List<Store> createStores() {
+        List<Store> stores = new LinkedList<>();
         for (int i = 0; i < CUSTOMER_NUMBER_2; i++) {
-            AddCustomerRequest request = createAddCustomerRequest(i);
-            customers.add(customerService.newCustomer(request));
+            stores.add(storeService.newStore(StoreGenerator.generateStore()));
         }
-        return customers;
+        return stores;
     }
 
     private void addOrderItem(long orderId, long productId)
@@ -122,13 +119,13 @@ public class InitSystemTest {
         orderManager.addOrderItems(request);
     }
 
-    private List<Long> createOrders(Customer customer) throws StoreNotFound {
+    private List<Long> createOrders(Store store) throws StoreNotFound {
         List<Long> orderIds = new LinkedList<>();
         for (int i = 0; i < ORDER_NUMBER_10; i++) {
             long suffix = Clock.nanos();
             NewOrderRequest request = new NewOrderRequest();
             request.setName("Order_" + suffix);
-            request.setCustomerId(customer.getId());
+            request.setStoreId(store.getId());
             request.setComment("Comment_" + suffix);
             Order order = orderManager.newOrder(request);
             orderIds.add(order.getId());

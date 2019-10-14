@@ -2,7 +2,6 @@ package com.andybrook.dao.jpa.entity.factory;
 
 import com.andybrook.annotation.EntityConverter;
 import com.andybrook.annotation.ProductConverterByProductType;
-import com.andybrook.dao.jpa.entity.customer.CustomerEntity;
 import com.andybrook.dao.jpa.entity.customer.OwnerEntity;
 import com.andybrook.dao.jpa.entity.order.OrderEntity;
 import com.andybrook.dao.jpa.entity.order.OrderItemEntity;
@@ -16,7 +15,6 @@ import com.andybrook.dao.jpa.entity.stock.StockItemFileUploadEntity;
 import com.andybrook.enums.ProductType;
 import com.andybrook.model.BarCode;
 import com.andybrook.model.api.StockItemsFileUpload;
-import com.andybrook.model.customer.Customer;
 import com.andybrook.model.customer.Owner;
 import com.andybrook.model.customer.Store;
 import com.andybrook.model.notification.NotificationPolicy;
@@ -155,16 +153,6 @@ public final class EntityFactory {
     public final Store createStore(StoreEntity entity) {
         IEntityConverter converter = entityConverterMapByEntityClass.get(entity.getClass());
         return (Store) converter.toModel(entity);
-    }
-
-    public final CustomerEntity createCustomerEntity(Customer model) {
-        IEntityConverter converter = entityConverterMapByModelClass.get(model.getClass());
-        return (CustomerEntity) converter.toEntity(model);
-    }
-
-    public final Customer createCustomer(CustomerEntity entity) {
-        IEntityConverter converter = entityConverterMapByEntityClass.get(entity.getClass());
-        return (Customer) converter.toModel(entity);
     }
 
     public final BarCodeEntity createBarCodeEntity(BarCode model, ProductItemEntity productItemEntity) {

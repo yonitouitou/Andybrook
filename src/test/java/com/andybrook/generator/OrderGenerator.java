@@ -9,6 +9,6 @@ public class OrderGenerator {
     private static final ThreadLocalRandom RANDOM = ThreadLocalRandom.current();
 
     public static final Order generateBasicOrder() {
-        return new Order(System.currentTimeMillis(), "MyReport", CustomerGenerator.generateCustomer());
+        return new Order(System.currentTimeMillis(), "MyReport", StoreGenerator.generateStore());
     }
 }

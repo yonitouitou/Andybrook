@@ -7,7 +7,7 @@ import { AddOrUpdateCustomerReq } from '../model/request/customer/AddOrUpdateCus
 @Injectable()
 export class CustomerService {
 
-    private url: string = "v1/customer";
+    private url: string = "v1/store";
 
     constructor(private http: HttpService) {
     }
@@ -41,6 +41,6 @@ export class CustomerService {
     }
 
     getAllOwnersIdsAndNames(): Observable<any>{
-        return this.http.get(this.url + "/allOwnerIdsAndNames");
+        return this.http.get("v1/owner/allOwnerIdsAndNames");
     }
 }

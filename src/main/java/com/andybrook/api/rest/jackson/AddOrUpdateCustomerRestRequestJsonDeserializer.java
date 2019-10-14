@@ -1,6 +1,6 @@
 package com.andybrook.api.rest.jackson;
 
-import com.andybrook.api.rest.ctx.customer.AddOrUpdateCustomerRestRequest;
+import com.andybrook.api.rest.ctx.customer.AddOrUpdateStoreRestRequest;
 import com.andybrook.model.common.Address;
 import com.fasterxml.jackson.core.JsonParser;
 import com.fasterxml.jackson.core.JsonProcessingException;
@@ -12,13 +12,13 @@ import org.springframework.util.StringUtils;
 
 import java.io.IOException;
 
-public class AddOrUpdateCustomerRestRequestJsonDeserializer extends JsonDeserializer<AddOrUpdateCustomerRestRequest> {
+public class AddOrUpdateCustomerRestRequestJsonDeserializer extends JsonDeserializer<AddOrUpdateStoreRestRequest> {
 
     @Override
-    public AddOrUpdateCustomerRestRequest deserialize(JsonParser jp, DeserializationContext deserializationContext) throws IOException, JsonProcessingException {
+    public AddOrUpdateStoreRestRequest deserialize(JsonParser jp, DeserializationContext deserializationContext) throws IOException, JsonProcessingException {
         ObjectCodec oc = jp.getCodec();
         JsonNode json = oc.readTree(jp);
-        AddOrUpdateCustomerRestRequest req = new AddOrUpdateCustomerRestRequest();
+        AddOrUpdateStoreRestRequest req = new AddOrUpdateStoreRestRequest();
         req.setCustomerId(hasNumericValue(json, "customerId") ? json.get("customerId").asLong() : null);
         req.setOwnerId(hasNumericValue(json, "ownerId") ? json.get("ownerId").asLong() : null);
         req.setOwnerCompagnyName(hasStringValue(json, "ownerCompagnyName") ? json.get("ownerCompagnyName").asText() : null);

@@ -1,6 +1,6 @@
 package com.andybrook.dao.jpa.entity.order;
 
-import com.andybrook.dao.jpa.entity.customer.CustomerEntity;
+import com.andybrook.dao.jpa.entity.store.StoreEntity;
 import com.andybrook.enums.OrderStatus;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
@@ -24,8 +24,8 @@ public class OrderEntity {
     protected String name;
 
     @ManyToOne
-    @JoinColumn(name = "customerid", nullable = false)
-    protected CustomerEntity customerEntity;
+    @JoinColumn(name = "storeid", nullable = false)
+    protected StoreEntity storeEntity;
 
     @Column(name = "comment", length = 256)
     protected String comment;
@@ -51,12 +51,12 @@ public class OrderEntity {
     public OrderEntity() {
     }
 
-    public OrderEntity(Long id, String name, CustomerEntity customerEntity,
+    public OrderEntity(Long id, String name, StoreEntity storeEntity,
                        OrderStatus status, String comment, LocalDateTime createdDatetime, LocalDateTime closeDateTime) {
         this.id = id;
         this.name = name;
-        this.customerEntity = customerEntity;
-        this.items = new ArrayList();
+        this.storeEntity = storeEntity;
+        this.items = new ArrayList<>();
         this.status = status;
         this.comment = comment;
         this.createdDatetime = createdDatetime;
@@ -127,11 +127,11 @@ public class OrderEntity {
         this.closeDatetime = closeDateTime;
     }
 
-    public CustomerEntity getCustomerEntity() {
-        return customerEntity;
+    public StoreEntity getStoreEntity() {
+        return storeEntity;
     }
 
-    public void setCustomerEntity(CustomerEntity customerEntity) {
-        this.customerEntity = customerEntity;
+    public void setStoreEntity(StoreEntity storeEntity) {
+        this.storeEntity = storeEntity;
     }
 }
