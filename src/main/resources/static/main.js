@@ -2430,6 +2430,9 @@ let AddOrderItemModalComponent = class AddOrderItemModalComponent {
         if (this.productStockInfo === null) {
             this.changeErrorMessage('Please select a product from the auto-complete list.');
         }
+        else if (this.isNoFreeQuantity()) {
+            this.changeErrorMessage('There is no available quantity for this product item');
+        }
         else if (!this.isValidQuantity(qty)) {
             this.changeErrorMessage('Please choose a quantity between 1 to ' + this.productStockInfo.getFreeQuantity());
         }
@@ -2456,6 +2459,9 @@ let AddOrderItemModalComponent = class AddOrderItemModalComponent {
     }
     changeErrorMessage(errorMessage) {
         this._error.next(errorMessage);
+    }
+    isNoFreeQuantity() {
+        return this.productStockInfo.getFreeQuantity() == 0;
     }
     isValidQuantity(qty) {
         return qty > 0 && qty <= this.productStockInfo.getFreeQuantity();

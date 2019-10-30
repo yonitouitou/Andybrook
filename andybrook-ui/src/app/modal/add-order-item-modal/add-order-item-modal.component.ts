@@ -179,6 +179,8 @@ export class AddOrderItemModalComponent implements OnInit {
     const qty = this.addOrderItemForm.get("quantity").value;
     if (this.productStockInfo === null) {
       this.changeErrorMessage('Please select a product from the auto-complete list.');
+    } else if (this.isNoFreeQuantity()) {
+      this.changeErrorMessage('There is no available quantity for this product item');
     } else if (! this.isValidQuantity(qty)) {
       this.changeErrorMessage('Please choose a quantity between 1 to ' + this.productStockInfo.getFreeQuantity());
     } else {
@@ -207,6 +209,10 @@ export class AddOrderItemModalComponent implements OnInit {
 
   private changeErrorMessage(errorMessage: string) {
     this._error.next(errorMessage);
+  }
+
+  private isNoFreeQuantity(): boolean {
+    return this.productStockInfo.getFreeQuantity() == 0
   }
 
   private isValidQuantity(qty: number): boolean {
