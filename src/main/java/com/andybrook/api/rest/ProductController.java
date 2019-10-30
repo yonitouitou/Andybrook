@@ -6,7 +6,6 @@ import com.andybrook.manager.product.IProductManager;
 import com.andybrook.model.BarCode;
 import com.andybrook.model.product.Product;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.util.Pair;
 import org.springframework.web.bind.annotation.*;
 
 import java.lang.System.Logger;
@@ -34,9 +33,9 @@ public class ProductController extends AbstractController {
         return productManager.getProductByBarCode(barCodeId);
     }
 
-    @GetMapping(path = "/getByNameContaining/{name}")
+    @GetMapping(path = "/getAvailableByNameContaining/{name}")
     public List<? extends Product> getAll(@PathVariable String name) {
-        LOGGER.log(Level.INFO, "Get all products request by subname : " + name);
+        LOGGER.log(Level.INFO, "Get all available products request by subname : " + name);
         return productManager.getByNameContaining(name);
     }
 

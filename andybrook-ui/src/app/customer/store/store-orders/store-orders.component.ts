@@ -3,6 +3,8 @@ import { OrderService } from '../../../service/order-service';
 import { AggregatedOrder } from '../../../model/AggregatedOrder';
 import { ModalBuilder } from '../../../common-components/modal-builder';
 import { CreateOrderModalComponent } from '../../../modal/create-order-modal/create-order-modal.component';
+import { StoreService } from '../../../service/store-service';
+import { Store } from '../../../model/Store';
 
 @Component({
   selector: 'store-orders',
@@ -12,9 +14,9 @@ import { CreateOrderModalComponent } from '../../../modal/create-order-modal/cre
 export class StoreOrdersComponent implements OnChanges {
 
   @Input() storeId: number
-  private orders: AggregatedOrder[]
+  private orders: AggregatedOrder[] = []
 
-  constructor(private orderService: OrderService, private modalBuilder: ModalBuilder) { }
+  constructor(private orderService: OrderService, private storeService: StoreService, private modalBuilder: ModalBuilder) { }
 
   ngOnChanges() {
     this.loadOrders()
@@ -35,6 +37,17 @@ export class StoreOrdersComponent implements OnChanges {
   }
 
   private onNewOrder(): void {
-    this.modalBuilder.open(CreateOrderModalComponent)
+    const modalRef = this.modalBuilder.open(CreateOrderModalComponent)
+    modalRef.componentInstance.storeForOrder = this.findStore()
+  }
+
+  private findStore(): Store {
+    let store
+    if (this.orders.length > 0) {
+      store = this.orders[0].store
+    } else {
+      store = this.storeService.get(this.storeId)
+    }
+    return store
   }
 }

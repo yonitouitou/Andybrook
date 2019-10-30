@@ -9,26 +9,26 @@
       <div class="form-group">
         <label for="Name">Name</label>
         <input type="text" formControlName="name"
-          (input)="settingChanged()"
           class="form-control"/>
           <label *ngIf="isFormSubmitted && createOrderForm.get('name').invalid" class="text-danger">A name is required.</label>
       </div>
+
       <div class="form-group">
         <label for="comment">Comment/Description</label>
         <input type="text" formControlName="comment"
-          (input)="settingChanged()"
           class="form-control"/>
       </div>
+
       <div class="form-group">
         <label for="store">Store</label>
         <select type="text" formControlName="stores"
-          (input)="settingChanged()"
           class="form-control">
           <option *ngFor="let store of storesArray"
-          [ngValue]="store">{{ store.id }} | {{ store.name }} | {{ store.owner.firstName }} {{ store.owner.lastName }}</option>
+            [ngValue]="store">{{ store.id }} | {{ store.name }} | {{ store.owner.firstName }} {{ store.owner.lastName }}</option>
         </select>
-        <label *ngIf="isFormSubmitted && createOrderForm.get('store').invalid" class="text-danger">A store is required.</label>
+        <label *ngIf="isFormSubmitted && createOrderForm.controls['stores'].invalid" class="text-danger">A store is required.</label>
       </div>
+      
       <div>
           <ngb-alert *ngIf="errorMessage" type="danger" [dismissible]="false" (close)="errorMessage = null">{{ errorMessage }}</ngb-alert>
       </div>
