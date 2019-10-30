@@ -108,13 +108,6 @@ public class OrderController extends AbstractController {
         }
     }
 
-    @GetMapping(path = "/ordersOfCustomer/{customerId}")
-    public List<AggregatedOrder> getOrdersOfCustomer(@PathVariable long customerId) {
-        LOGGER.log(Level.INFO, "Get orders of customer " + customerId);
-        List<Order> ordersOfCustomer = orderManager.getOrdersOfCustomer(customerId);
-        return AggregatedOrder.toAggregatedOrders(ordersOfCustomer.stream()).collect(Collectors.toList());
-    }
-
     @GetMapping(path = "/ordersOfStore/{storeId}")
     public List<AggregatedOrder> getOrdersOfStore(@PathVariable long storeId) {
         LOGGER.log(Level.INFO, "Get orders of store " + storeId);

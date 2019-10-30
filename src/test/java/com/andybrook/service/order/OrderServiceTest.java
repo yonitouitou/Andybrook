@@ -112,7 +112,7 @@ public class OrderServiceTest {
         Store store2 = storeService.newStore(StoreGenerator.generateStore());
         orderService.newOrder(createNewOrderRequest(store2));
 
-        List<Order> ordersOfCustomer = orderService.getOrdersOfCustomer(store.getId());
+        List<Order> ordersOfCustomer = orderService.getOrdersOfStore(store.getId());
         Assert.assertEquals("OrderOfCustomerSize", nbOfOrderForCustomer, ordersOfCustomer.size());
     }
 

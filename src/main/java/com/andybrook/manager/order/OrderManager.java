@@ -58,11 +58,6 @@ public class OrderManager implements IOrderManager {
     }
 
     @Override
-    public List<Order> getOrdersOfCustomer(long customerId) {
-        return orderService.getOrdersOfCustomer(customerId);
-    }
-
-    @Override
     public List<Order> getOrdersOfStore(long storeId) {
         return orderService.getOrdersOfStore(storeId);
     }

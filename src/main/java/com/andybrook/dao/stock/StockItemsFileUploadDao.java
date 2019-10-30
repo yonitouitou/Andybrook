@@ -37,7 +37,7 @@ public class StockItemsFileUploadDao implements IStockItemsFileUploadDao {
                     .source(data, XContentType.JSON);
             response = client.index(indexRequest, RequestOptions.DEFAULT);
         } catch (IOException e) {
-            throw new StockItemsFileUploadSaveException();
+            throw new StockItemsFileUploadSaveException(e);
         }
         return response.getId();
     }
@@ -58,6 +58,10 @@ public class StockItemsFileUploadDao implements IStockItemsFileUploadDao {
         return result;
     }
 
-    private class StockItemsFileUploadSaveException extends StockItemsFileUploadException {}
+    private class StockItemsFileUploadSaveException extends StockItemsFileUploadException {
+        public StockItemsFileUploadSaveException(Throwable cause) {
+            super(cause);
+        }
+    }
     private class StockItemsFileUploadGetException extends StockItemsFileUploadException {}
 }

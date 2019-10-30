@@ -20,7 +20,7 @@
             <tr *ngFor="let order of ordersArray">
                 <td>{{ order.id }}</td>
                 <td>{{ order.name }}</td>
-                <td>{{ order.customer.store.name }}</td>
+                <td>{{ order.store.name }}</td>
                 <td>{{ order.status }}</td>
                 <td>{{ order.aggregatedOrderInfo.productSize }}</td>
                 <td>{{ order.aggregatedOrderInfo.orderItemSize }}</td>

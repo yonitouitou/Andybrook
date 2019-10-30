@@ -23,7 +23,7 @@ public interface IOrderCrudRepository extends JpaRepository<OrderEntity, Long> {
     String COLUMN_CREATED_DATETIME = "createddatetime";
     String COLUMN_CLOSE_DATETIME = "closeDatetime";
     String COLUMN_LAST_MODIFIED_DATE_TIME = "lastModifiedDatetime";
-    String COLUMN_CUSTOMER_ID = "customerid";
+    String COLUMN_STORE_ID = "storeid";
 
     List<OrderEntity> findByName(String name);
     List<OrderEntity> findByNameContaining(String name);
@@ -67,39 +67,19 @@ public interface IOrderCrudRepository extends JpaRepository<OrderEntity, Long> {
     @Query(value = UPDATE_LAST_MODIFIED_DATE_TIME_QUERY)
     void updateOrderAuditing(@Param("id") long orderId, @Param("lastModifiedDatetime") LocalDateTime lastModifiedDateTime);
 
-    String SELECT_ORDERS_BY_CUSTOMER_QUERY =
-            "SELECT " +
-                "* " +
-            "FROM " +
-                TABLE_NAME +
-            " WHERE "  +
-                COLUMN_CUSTOMER_ID + " = :customerId" +
-            " ORDER BY " +
-                COLUMN_CREATED_DATETIME +
-            " DESC";
-
     String SELECT_ORDERS_BY_STORE_QUERY =
             "SELECT " +
                     "o.* " +
             "FROM " +
                     TABLE_NAME + " o " +
             "LEFT JOIN " +
-                    "customer c " +
-                "ON " +
-                    "c.id " +
-            "LEFT JOIN " +
                     "store s " +
                 "ON " +
                     "s.id " +
             "WHERE " +
-                    "o.customerId = c.id " +
-                "AND " +
-                    "c.store_id = s.id " +
+                    "o.storeId = s.id " +
                 "AND " +
                     "s.id = :storeId";
-
-    @Query(value = SELECT_ORDERS_BY_CUSTOMER_QUERY, nativeQuery = true)
-    List<OrderEntity> getOrdersByCustomer(@Param("customerId") long customerId);
 
     @Query(value = SELECT_ORDERS_BY_STORE_QUERY, nativeQuery = true)
     List<OrderEntity> getOrdersByStore(@Param("storeId") long storeId);

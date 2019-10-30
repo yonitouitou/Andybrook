@@ -11,12 +11,12 @@ import { AddOrderItemByBarCodeReq } from '../model/request/order/AddOrderItemByB
 @Injectable()
 export class OrderService {
 
-    constructor(private httpApi: HttpService){}
+    constructor(private httpApi: HttpService) {}
 
     addOrder(order: Order): Observable<any> {
         const request = {
             "name": order.name,
-            "customerId": order.customer.id,
+            "storeId": order.store.id,
             "comment": order.comment
         }
         return this.httpApi.post("/v1/order/add", request)

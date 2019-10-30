@@ -1,6 +1,6 @@
 import { Component, OnInit, EventEmitter, Output, Input } from '@angular/core';
-import { Customer } from 'src/app/model/Customer';
 import { CustomerService } from 'src/app/service/customer-service';
+import { Store } from '../../model/Store';
 
 @Component({
   selector: 'list-customer',
@@ -9,19 +9,19 @@ import { CustomerService } from 'src/app/service/customer-service';
 })
 export class ListCustomerComponent implements OnInit {
 
-  @Output() onCustomerSelected = new EventEmitter<Customer>()
-  @Input() customer: Customer
-  customers: Customer[] = [];
+  @Output() onStoreSelected = new EventEmitter<Store>()
+  @Input() store: Store
+  stores: Store[] = [];
 
   constructor(private customerService: CustomerService) { }
 
   ngOnInit() {
-    this.getCustomersList(null);
+    this.getStoresList(null);
   }
 
-  private getCustomersList(searchInput: string) {
+  private getStoresList(searchInput: string) {
     let obs;
-    this.customers = [];
+    this.stores = [];
     if (searchInput === null || searchInput.length == 0) {
       obs = this.customerService.getAllCustomers();
     } else {
@@ -29,21 +29,21 @@ export class ListCustomerComponent implements OnInit {
     }
     obs.subscribe(
       data => {
-        for (let customer of data) {
-          this.customers.push(Customer.fromJson(customer));
+        for (let store of data) {
+          this.stores.push(Store.fromJson(store));
         }
       },
       error => {
-        this.customers = [];
+        this.stores = [];
       }
     )
   }
 
-  onClickCustomer(customer: Customer) {
-    this.onCustomerSelected.emit(customer);
+  onClickStore(store: Store) {
+    this.onStoreSelected.emit(store);
   }
 
   onClickSearch(value: string) {
-    this.getCustomersList(value.trim());
+    this.getStoresList(value.trim());
   }
 }

@@ -4,11 +4,7 @@
   </div>
   <div class="row">
     <div class="col">
-      <list-customer [customer]="customer" (onCustomerSelected)="onCustomerSelected($event)"></list-customer>
+      <list-customer [store]="store" (onStoreSelected)="onStoreSelected($event)"></list-customer>
     </div>
   </div>
 </div>
-<!--<div class="col-md-auto">
-  <new-customer [customer]="customer" (onUpdateCustomerEvent)="onUpdateCustomer($event)" style="margin-bottom: 7px"></new-customer>
-  <customer-orders [customer]="customer"></customer-orders>
-</div>-->

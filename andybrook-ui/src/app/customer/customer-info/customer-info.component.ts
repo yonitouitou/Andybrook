@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { Customer } from 'src/app/model/Customer';
+import { Store } from '../../model/Store';
 
 @Component({
   selector: 'customer-info',
@@ -8,7 +8,7 @@ import { Customer } from 'src/app/model/Customer';
 })
 export class CustomerInfoComponent implements OnInit {
 
-  @Input() customer: Customer
+  @Input() store: Store
 
   constructor() { }
 

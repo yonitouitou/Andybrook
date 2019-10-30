@@ -4,12 +4,11 @@ import { CustomerService } from 'src/app/service/customer-service';
 import { Observable, Subject } from 'rxjs';
 import { debounceTime, distinctUntilChanged, map } from 'rxjs/operators';
 import { AddOrUpdateCustomerReq } from 'src/app/model/request/customer/AddOrUpdateCustomerReq';
-import { Store } from 'src/app/model/Store';
 import { ModalBuilder } from 'src/app/common-components/modal-builder';
 import { InfoModalComponent } from 'src/app/modal/info-modal/info-modal.component';
 import { StringUtil } from 'src/app/util/StringUtil';
-import { Customer } from 'src/app/model/Customer';
 import { Address } from 'src/app/model/Address';
+import { Store } from '../../model/Store';
 
 @Component({
   selector: 'new-customer',
@@ -18,8 +17,8 @@ import { Address } from 'src/app/model/Address';
 })
 export class NewCustomerComponent implements OnInit, OnChanges {
 
-  @Input() customer: Customer
-  @Output() onUpdateCustomerEvent = new EventEmitter<number>();
+  @Input() store: Store
+  @Output() onUpdateStoreEvent = new EventEmitter<number>();
 
   form: FormGroup
   inputOwnerName: string
@@ -43,7 +42,7 @@ export class NewCustomerComponent implements OnInit, OnChanges {
   }
 
   ngOnChanges(changes: SimpleChanges): void {
-    if (this.customer != null) {
+    if (this.store != null) {
       this.fillForm();
     }
   }
@@ -64,13 +63,13 @@ export class NewCustomerComponent implements OnInit, OnChanges {
       storePhone: '',
       storeEmail: ['', Validators.email]
     });
-    if (this.customer != null) {
+    if (this.store != null) {
       this.fillForm();
     }
   }
 
   private fillForm() {
-    const store = this.customer.store;
+    const store = this.store;
     this.form.setValue({
       ownerAutoComplete: this.getStringValue(store.owner.compagnyName),
       ownerFirstName: this.getStringValue(store.owner.firstName),
@@ -152,8 +151,8 @@ export class NewCustomerComponent implements OnInit, OnChanges {
     if (this.form.valid) {
       let ownerId = this.ownerIdMapByName.get(controls.ownerAutoComplete.value);
       let req = new AddOrUpdateCustomerReq(ownerId, controls.storeName.value);
-      if (this.customer != null) {
-        req.customerId = this.customer.id;
+      if (this.store != null) {
+        req.storeId = this.store.id;
       }
       req.ownerCompagnyName = controls.ownerAutoComplete.value;
       req.ownerFirstName = controls.ownerFirstName.value;
@@ -165,7 +164,7 @@ export class NewCustomerComponent implements OnInit, OnChanges {
       req.storeAddress = new Address(controls.storeStreetNumber.value, controls.storeStreetName.value,
                                 controls.storeZipCode.value, controls.storeCity.value, controls.storeCountry.value);
 
-      this.sendCustomerRequest(req, this.customer != null)
+      this.sendCustomerRequest(req, this.store != null)
     } else {
       this.changeAlertMessage("danger", "Form not valid.");
     }
@@ -175,8 +174,8 @@ export class NewCustomerComponent implements OnInit, OnChanges {
     let observable = isUpdateRequest ? this.customerService.updateCustomer(req) : this.customerService.addCustomer(req); 
     observable.subscribe(
       data => {
-        this.changeAlertMessage("success", "Customer successfully saved");
-        this.onUpdateCustomerEvent.emit(this.customer.id);
+        this.changeAlertMessage("success", "Store successfully saved");
+        this.onUpdateStoreEvent.emit(this.store.id);
       },
       error => {
         this.changeAlertMessage("danger", error.error);

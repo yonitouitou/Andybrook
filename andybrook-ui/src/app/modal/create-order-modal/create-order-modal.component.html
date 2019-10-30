@@ -20,14 +20,14 @@
           class="form-control"/>
       </div>
       <div class="form-group">
-        <label for="customer">Customer</label>
-        <select type="text" formControlName="customers"
+        <label for="store">Store</label>
+        <select type="text" formControlName="stores"
           (input)="settingChanged()"
           class="form-control">
-          <option *ngFor="let customer of customersArray"
-          [ngValue]="customer">{{customer.id}} | {{ customer.store.name }} | {{ customer.store.owner.firstName }} {{ customer.store.owner.lastName }}</option>
+          <option *ngFor="let store of storesArray"
+          [ngValue]="store">{{ store.id }} | {{ store.name }} | {{ store.owner.firstName }} {{ store.owner.lastName }}</option>
         </select>
-        <label *ngIf="isFormSubmitted && createOrderForm.get('customers').invalid" class="text-danger">A customer is required.</label>
+        <label *ngIf="isFormSubmitted && createOrderForm.get('store').invalid" class="text-danger">A store is required.</label>
       </div>
       <div>
           <ngb-alert *ngIf="errorMessage" type="danger" [dismissible]="false" (close)="errorMessage = null">{{ errorMessage }}</ngb-alert>

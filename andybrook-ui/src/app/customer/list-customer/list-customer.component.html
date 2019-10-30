@@ -2,7 +2,7 @@
   <div class="card-header">
     <div class="row">
       <div class="col">
-        <h5>Customers</h5>
+        <h5>Stores</h5>
       </div>
       <div class="col" style="float:right">
         <input #searchInput type="search"
@@ -23,18 +23,22 @@
                 <th>Name</th>
                 <th>Owner</th>
                 <th>Address</th>
+                <th>City</th>
+                <th>Country</th>
                 <th>Phone</th>
                 <th>Email</th>
               </tr>
             </thead>
             <tbody>
-              <tr *ngFor="let customer of customers" (click)="onClickCustomer(customer)">
-                <td>{{ customer.id }}</td>
-                <td><a [routerLink]="['/store', customer.store.id]">{{ customer.store.name }}</a></td>
-                <td>{{ customer.store.owner.firstName + " " + customer.store.owner.lastName }}</td>
-                <td>{{ customer.store.address.streetNumber + ', ' + customer.store.address.streetName + ' ' + customer.store.address.zipCode + ' - ' + customer.store.address.city }}</td>
-                <td>{{ customer.store.phone }}</td>
-                <td>{{ customer.store.email }}</td>
+              <tr *ngFor="let store of stores" (click)="onClickStore(store)">
+                <td>{{ store.id }}</td>
+                <td><a [routerLink]="['/store', store.id]">{{ store.name }}</a></td>
+                <td>{{ store.owner.firstName + " " + store.owner.lastName }}</td>
+                <td>{{ store.address.streetNumber + ', ' + store.address.streetName }}
+                <td>{{ store.address.city }}</td>
+                <td>{{ store.address.country }}</td>
+                <td>{{ store.phone }}</td>
+                <td>{{ store.email }}</td>
               </tr>
             </tbody>
           </table>

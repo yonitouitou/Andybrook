@@ -29,8 +29,6 @@ public interface IOrderManager {
 
     List<Order> getOrders(List<Long> ids);
 
-    List<Order> getOrdersOfCustomer(long customerId);
-
     List<Order> getOrdersOfStore(long storeId);
 
     List<OrderItem> addOrderItems(OrderItemAddRequest request) throws OrderNotFound, OrderClosed, ProductNotFound, InsufficientQuantityException, OrderItemNotFound, BarCodeNotFound;

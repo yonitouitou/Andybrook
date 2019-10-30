@@ -2,7 +2,7 @@ import { Address } from '../../Address';
 
 export class AddOrUpdateCustomerReq {
 
-    customerId: number
+    storeId: number
     ownerId: number
     ownerCompagnyName: string
     ownerFirstName: number

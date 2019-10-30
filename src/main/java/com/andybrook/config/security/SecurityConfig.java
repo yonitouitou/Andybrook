@@ -60,10 +60,11 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .httpBasic()
                 .and()
                 .csrf()
-                    .csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse())
-                .and()
+                    .disable();
+                    //.csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse())
+                /*.and()
                 .sessionManagement()
-                    .maximumSessions(1);
+                    .maximumSessions(1);*/
     }
 
     private AuthenticationEntryPoint getAuthenticationEntryPoint() {

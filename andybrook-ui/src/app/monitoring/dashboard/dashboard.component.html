@@ -2,84 +2,80 @@
   <div class="row">
 
     <div class="col">
-      <div class="card bg-light shadow-sm mb-3" style="width: 19rem; height: 18rem;">
+      <div class="card w-50 h-100 bg-light shadow-sm mb-3">
         <div class="card-header">Mysql Database Health</div>
-        <div class="card-body">
-          <h4 *ngIf="dbHealth" class="card-title">Status :
-            <img *ngIf="dbHealth.isUp" src="../../../assets/icon/statusGreen.png">
-            <img *ngIf="! dbHealth.isUp" src="../../../assets/icon/statusRed.png">
-          </h4>
-          <img *ngIf="! dbHealth" class="center" src="../../../assets/icon/loadingGrey.gif">
+        <div class="card-body py-1">
+          <div class="center">
+            <h5 *ngIf="dbHealth" class="card-title">
+              <img *ngIf="dbHealth.isUp" src="../../../assets/icon/statusGreen.png">
+              <img *ngIf="! dbHealth.isUp" src="../../../assets/icon/statusRed.png">
+            </h5>
+            <img *ngIf="! dbHealth" src="../../../assets/icon/loadingGrey.gif">
+          </div>
         </div>
       </div>
     </div>
 
     <div class="col">
-      <div class="card bg-light shadow-sm mb-3" style="width: 19rem; height: 18rem;">
+      <div class="card w-50 h-100 bg-light shadow-sm mb-3">
         <div class="card-header">Elasticsearch Health</div>
-        <div class="card-body">
-          <h4  *ngIf="elasticsearchHealth" class="card-title">Status :
-            <img *ngIf="getElasticsearchStatus() == 'G'" src="../../../assets/icon/statusGreen.png">
-            <img *ngIf="getElasticsearchStatus() == 'Y'" src="../../../assets/icon/statusYellow.png">
-            <img *ngIf="getElasticsearchStatus() == 'R'" src="../../../assets/icon/statusRed.png">
-          </h4>
-          <img *ngIf="! elasticsearchHealth" class="center" src="../../../assets/icon/loadingGrey.gif">
+        <div class="card-body py-1">
+          <div class="center">
+            <img *ngIf="! elasticsearchHealth" src="../../../assets/icon/loadingGrey.gif">
+            <h5 *ngIf="elasticsearchHealth" class="card-title center">
+              <img *ngIf="getElasticsearchStatus() == 'G'" src="../../../assets/icon/statusGreen.png">
+              <img *ngIf="getElasticsearchStatus() == 'Y'" src="../../../assets/icon/statusYellow.png">
+              <img *ngIf="getElasticsearchStatus() == 'R'" src="../../../assets/icon/statusRed.png">
+            </h5>
+          </div>
           <div *ngIf="elasticsearchHealth">
-            <p *ngIf="elasticsearchHealth.clusterName" class="card-text">Cluster Name : {{ elasticsearchHealth.clusterName }} <br> Number of Nodes : {{ elasticsearchHealth.nodesNb }} <br> Number of Data Nodes : {{ elasticsearchHealth.dataNodesNb }} <br> Primary Active Shards : {{ elasticsearchHealth.activePrimaryShardsNb }} <br>Active Shards : {{ elasticsearchHealth.activeShardsNb }} <br> Pending Tasks : {{ elasticsearchHealth.pendingTaskNb }}</p>
-            <p *ngIf="elasticsearchHealth.error" class="card-text">Error : {{ elasticsearchHealth.error }}</p>
+            <p *ngIf="elasticsearchHealth.clusterName" style="font-size: 0.6em" class="card-text">Cluster Name : {{ elasticsearchHealth.clusterName }} <br> Number of Nodes : {{ elasticsearchHealth.nodesNb }} <br> Number of Data Nodes : {{ elasticsearchHealth.dataNodesNb }} <br> Primary Active Shards : {{ elasticsearchHealth.activePrimaryShardsNb }} <br> Active Shards : {{ elasticsearchHealth.activeShardsNb }} <br> Pending Tasks : {{ elasticsearchHealth.pendingTaskNb }}</p>
+            <p *ngIf="elasticsearchHealth.error" style="font-size: 0.6em" class="card-text">Error : {{ elasticsearchHealth.error }}</p>
           </div>
         </div>
       </div>
     </div>
 
     <div class="col">
-      <div class="card bg-light shadow-sm mb-3" style="width: 19rem; height: 18rem;">
+      <div class="card w-50 h-100 bg-light shadow-sm mb-3">
         <div class="card-header">System CPU count</div>
-        <div class="card-body">
-          <div *ngIf="cpuSystemCount">
-            <h1 class="card-title" style="font-size: 400%">{{ cpuSystemCount.values[0] }}</h1>
-            <p class="card-text">{{ cpuSystemCount.description }}</p>
-          </div>
+        <div class="card-body py-1">
+          <h1 *ngIf="cpuSystemCount" class="card-title">{{ cpuSystemCount.values[0] }}</h1>
           <img *ngIf="! cpuSystemCount" class="center" src="../../../assets/icon/loadingGrey.gif">
         </div>
       </div>
     </div>
 
     <!--<div *ngIf="jvmMemoryMax" class="col">
-      <div class="card bg-light shadow-sm mb-3" style="width: 19rem; height: 18rem;">
+      <div class="card w-50 h-75 bg-light shadow-sm mb-3">
         <div class="card-header">JVM Max Memory</div>
-        <div class="card-body">
-          <h1 class="card-title" style="font-size: 400%">{{ (jvmMemoryMax.values[0] / 1000000).toFixed(0) }} MB</h1>
-          <p class="card-text">{{ jvmMemoryMax.description }}</p>
+        <div class="card-body py-1">
+          <h1 class="card-title">{{ (jvmMemoryMax.values[0] / 1000000).toFixed(0) }} MB</h1>
         </div>
       </div>
     </div>-->
 
   </div>
   
-  <div class="row">
+  <div class="row mt-2">
     
     <div class="col">
-      <div [ngClass]="(cpuUsage && cpuUsage.values[0] >= cpuUsageWarningLimit) ? 'card text-white bg-danger shadow-sm mb-3' : 'card bg-light shadow-sm mb-3'" style="width: 19rem; height: 18rem;">
+      <div [ngClass]="(cpuUsage && cpuUsage.values[0] >= cpuUsageWarningLimit) ? 'card w-50 h-100 text-white bg-danger shadow-sm mb-3' : 'card w-50 h-100 bg-light shadow-sm mb-3'">
         <div class="card-header">Process CPU Usage</div>
-        <div class="card-body">
-          <div *ngIf="cpuUsage">
-            <h1 class="card-title" style="font-size: 400%">{{ getPercentOfCpuUsage() }} %</h1>
-            <p class="card-text">{{ cpuUsage.description }}</p>
-          </div>
+        <div class="card-body py-1">
+          <h1 *ngIf="cpuUsage" class="card-title">{{ getPercentOfCpuUsage() }} %</h1>
           <img *ngIf="! cpuUsage" class="center" src="../../../assets/icon/loadingGrey.gif">
         </div>
       </div>
     </div>
 
     <div class="col">
-      <div [ngClass]="(jvmMemoryUsed.values[0] >= memoryUsageWarningLimit) ? 'card text-white bg-danger shadow-sm mb-3' : 'card bg-light shadow-sm mb-3'" style="width: 19rem; height: 18rem;">
+      <div [ngClass]="(jvmMemoryUsed.values[0] >= memoryUsageWarningLimit) ? 'card w-50 h-100 text-white bg-danger shadow-sm mb-3' : 'card w-50 h-100 bg-light shadow-sm mb-3'">
         <div class="card-header">JVM Memory Used</div>
-        <div class="card-body">
+        <div class="card-body py-1">
           <div *ngIf="jvmMemoryUsed && memoryUsageWarningLimit">
-            <h1 class="card-title" style="font-size: 400%">{{ getPercentOfMemoryUsed() }} %</h1>
-            <h2 class="card-title" style="font-size: 400%">{{ getMemoryUsedInMb() }} MB</h2>
-            <p class="card-text">{{ jvmMemoryUsed.description }}</p>
+            <h1 class="card-title">{{ getPercentOfMemoryUsed() }} %</h1>
+            <h3 class="card-subtitle">{{ getMemoryUsedInMb() }} MB</h3>
           </div>
           <img *ngIf="! (jvmMemoryUsed && memoryUsageWarningLimit)" class="center" src="../../../assets/icon/loadingGrey.gif">
         </div>
@@ -87,13 +83,10 @@
     </div>
 
     <div class="col">
-      <div class="card bg-light shadow-sm mb-3" style="width: 19rem; height: 18rem;">
+      <div class="card w-50 h-100 bg-light shadow-sm mb-3">
         <div class="card-header">JVM Live Threads</div>
-        <div class="card-body">
-          <div *ngIf="jvmThreadLive">
-            <h1 class="card-title" style="font-size: 400%">{{ jvmThreadLive.values[0] }}</h1>
-            <p class="card-text">{{ jvmThreadLive.description }}</p>
-          </div>
+        <div class="card-body py-1">
+          <h1 *ngIf="jvmThreadLive" class="card-title center">{{ jvmThreadLive.values[0] }}</h1>
           <img *ngIf="! jvmThreadLive" class="center" src="../../../assets/icon/loadingGrey.gif">
         </div>
       </div>
@@ -101,11 +94,11 @@
     
   </div>
   
-  <div class="row">
+  <div class="row mt-2">
     <div class="col">
-      <div class="card bg-light shadow-sm mb-3">
+      <div class="card w-100 bg-light shadow-sm mb-3">
         <div class="card-header">Andybrook Log
-          <button class="btn btn-outline-dark" (click)="getLogFile()">GET</button>
+          <button class="btn btn-outline-dark" style="float:right" (click)="getLogFile()">GET</button>
         </div>
         <div *ngIf="logFile" class="card-body">
           <p class="card-text">{{ logFile }}</p>

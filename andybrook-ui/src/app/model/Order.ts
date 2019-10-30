@@ -1,5 +1,5 @@
 import { OrderItem } from './OrderItem'
-import { Customer } from './Customer';
+import { Store } from './Store'
 
 export class Order {
     
@@ -7,7 +7,7 @@ export class Order {
     name: string
     comment: string
     status: string
-    customer: Customer = new Customer()
+    store: Store = new Store()
     createDatetime: Date
     closeDatetime: Date
     items: Map<number, OrderItem> = new Map()
@@ -24,7 +24,7 @@ export class Order {
         let sr = new Order()
         sr.id = data.id
         sr.name = data.name
-        sr.customer = data.customer
+        sr.store = data.store
         sr.status = data.status,
         sr.nbProduct = data.items.length
         sr.createDatetime = data.createdDateTime

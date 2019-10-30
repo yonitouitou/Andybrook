@@ -1,6 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { OrderService } from 'src/app/service/order-service';
-import { NotificationService } from 'src/app/service/notification-service';
 import { ModalBuilder } from 'src/app/common-components/modal-builder';
 import { ConfirmModalComponent } from 'src/app/modal/confirm-modal/confirm-modal-component';
 import { AggregatedOrder } from 'src/app/model/AggregatedOrder';
@@ -30,7 +29,7 @@ export class ListOrdersComponent implements OnInit {
     let modalRef = this.modalBuilder.open(ConfirmModalComponent);
     modalRef.componentInstance.title = "Close Order Confirmation";
     modalRef.componentInstance.message = "Are you sure you want to close the order "
-          + orderToClose.name + " for the store " + orderToClose.customer.store.name + ' ?';
+          + orderToClose.name + " for the store " + orderToClose.store.name + ' ?';
 
     modalRef.result.then((response) => {
       if (response) {

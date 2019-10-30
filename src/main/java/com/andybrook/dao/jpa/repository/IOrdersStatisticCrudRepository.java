@@ -17,17 +17,11 @@ public interface IOrdersStatisticCrudRepository extends CrudRepository<OrderEnti
             "FROM " +
                     TABLE_NAME + " o " +
             "LEFT JOIN " +
-                    "customer c " +
-                "ON " +
-                    "c.id " +
-            "LEFT JOIN " +
                     "store s " +
                 "ON " +
                     "s.id " +
             "WHERE " +
-                    "o.customerId = c.id " +
-                "AND " +
-                    "c.store_id = s.id " +
+                    "o.storeId = s.id " +
                 "AND " +
                     "s.id = :storeId " +
             "GROUP BY " +

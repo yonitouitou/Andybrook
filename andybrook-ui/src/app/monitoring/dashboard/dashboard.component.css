@@ -4,3 +4,11 @@
     margin-right: auto;
     width: 50%;
 }
+
+h1 {
+    font-size: 400%;
+    text-align: center
+}
+h4 {
+    text-align: center
+}

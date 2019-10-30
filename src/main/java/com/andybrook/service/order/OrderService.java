@@ -81,11 +81,6 @@ public class OrderService implements IOrderService {
     }
 
     @Override
-    public List<Order> getOrdersOfCustomer(long customerId) {
-        return dao.getOrdersOfCustomer(customerId);
-    }
-
-    @Override
     public List<Order> getOrdersOfStore(long storeId) {
         return dao.getOrdersOfStore(storeId);
     }

@@ -1,12 +1,12 @@
 import { AggregatedOrderInfo } from './AggregatedOrderInfo';
 import { AggregatedOrderItem } from './AggregatedOrderItem';
-import { Customer } from './Customer';
+import { Store } from './Store';
 
 export class AggregatedOrder {
     id: number;
     name: string;
     comment: string;
-    customer: Customer;
+    store: Store;
     status: string;
     createdDatetime: Date;
     lastModifiedDatetime: Date;
@@ -20,7 +20,7 @@ export class AggregatedOrder {
         let order = new AggregatedOrder();
         order.id = data.id;
         order.name = data.name;
-        order.customer = Customer.fromJson(data.customer);
+        order.store = Store.fromJson(data.store);
         order.status = data.status;
         order.comment = data.comment;
         order.createdDatetime = data.createdDatetime;

@@ -10,7 +10,7 @@ import { ProductService } from '../../service/product-service';
 })
 export class UploadProductFileModalComponent implements OnInit {
 
-  @ViewChild('fileInput') fileInput: ElementRef;
+  @ViewChild('fileInput', {static: false}) fileInput: ElementRef;
 
   private result: UploadProductsFileResult
  

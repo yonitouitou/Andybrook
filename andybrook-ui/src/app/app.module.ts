@@ -1,8 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { MatDialogModule } from '@angular/material'
-import { MatToolbarModule } from '@angular/material/toolbar';
 import { HttpClientModule } from '@angular/common/http'
 import { Routes, RouterModule } from '@angular/router'
 import { BrowserAnimationsModule, NoopAnimationsModule } from '@angular/platform-browser/animations';
@@ -52,6 +50,8 @@ import { StoreInfoComponent } from './customer/store/store-info/store-info.compo
 import { OrdersStatisticService } from './service/orders-statistic-service';
 import { OpenClosedOrdersCounterComponent } from './customer/store/open-closed-orders-counter/open-closed-orders-counter.component';
 import { EditStoreInfoModalComponent } from './modal/store/edit-store-info-modal/edit-store-info-modal.component';
+import { ToastComponent } from './common-components/toast/toast.component';
+import { ToastBuilder } from './common-components/toast/toast-builder';
 
 const appRoutes: Routes = [
   { path: '', component: LoginComponent},
@@ -97,7 +97,8 @@ const appRoutes: Routes = [
     StoreDashboardComponent,
     StoreInfoComponent,
     OpenClosedOrdersCounterComponent,
-    EditStoreInfoModalComponent
+    EditStoreInfoModalComponent,
+    ToastComponent
   ],
   entryComponents: [
     CreateOrderModalComponent,
@@ -113,8 +114,6 @@ const appRoutes: Routes = [
     BrowserModule,
     HttpClientModule,
     FormsModule,
-    MatToolbarModule,
-    MatDialogModule,
     BrowserAnimationsModule,
     NoopAnimationsModule,
     ReactiveFormsModule,
@@ -130,13 +129,14 @@ const appRoutes: Routes = [
     AdminSettingService,
     NotificationService,
     ModalBuilder,
+    ToastBuilder,
     CustomerService,
     StoreService,
     ProductService,
     CookieService,
     LoginService,
     MonitoringService,
-    httpInterceptorProviders
+    httpInterceptorProviders,
   ],
   bootstrap: [AppComponent]
 })

@@ -22,8 +22,6 @@ public interface IOrderDao {
 
     Optional<Order> findOrder(long id);
 
-    List<Order> getOrdersOfCustomer(long customerId);
-
     List<Order> getOrdersOfStore(long storeId);
 
     Set<Order> getAll(int limit);

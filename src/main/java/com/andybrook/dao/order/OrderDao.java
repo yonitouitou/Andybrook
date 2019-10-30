@@ -4,8 +4,6 @@ import com.andybrook.dao.jpa.entity.factory.EntityFactory;
 import com.andybrook.dao.jpa.entity.order.OrderEntity;
 import com.andybrook.dao.jpa.repository.IOrderCrudRepository;
 import com.andybrook.exception.OrderNotFound;
-import com.andybrook.language.LanguageResolver;
-import com.andybrook.language.Msg.Error;
 import com.andybrook.model.order.Order;
 import com.andybrook.model.request.order.UpdateOrderRequest;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,7 +12,6 @@ import org.springframework.data.domain.Sort;
 import org.springframework.data.domain.Sort.Direction;
 import org.springframework.stereotype.Repository;
 
-import java.time.LocalDateTime;
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -81,12 +78,6 @@ public class OrderDao implements IOrderDao {
             all.add(order);
         });
         return all;
-    }
-
-    @Override
-    public List<Order> getOrdersOfCustomer(long customerId) {
-        List<OrderEntity> entities = repository.getOrdersByCustomer(customerId);
-        return toOrders(entities);
     }
 
     @Override
