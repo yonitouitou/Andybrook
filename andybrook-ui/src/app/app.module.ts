@@ -52,6 +52,8 @@ import { OpenClosedOrdersCounterComponent } from './customer/store/open-closed-o
 import { EditStoreInfoModalComponent } from './modal/store/edit-store-info-modal/edit-store-info-modal.component';
 import { ToastComponent } from './common-components/toast/toast.component';
 import { ToastBuilder } from './common-components/toast/toast-builder';
+import { ChartsModule } from 'ng2-charts';
+import { BarChartComponent } from './common-components/chart/bar-chart/bar-chart.component';
 
 const appRoutes: Routes = [
   { path: '', component: LoginComponent},
@@ -98,7 +100,8 @@ const appRoutes: Routes = [
     StoreInfoComponent,
     OpenClosedOrdersCounterComponent,
     EditStoreInfoModalComponent,
-    ToastComponent
+    ToastComponent,
+    BarChartComponent
   ],
   entryComponents: [
     CreateOrderModalComponent,
@@ -118,6 +121,7 @@ const appRoutes: Routes = [
     NoopAnimationsModule,
     ReactiveFormsModule,
     NgbModule,
+    ChartsModule,
     SharedModule,
     FileUploadModule,
     RouterModule.forRoot(appRoutes)
