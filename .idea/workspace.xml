@@ -2,39 +2,80 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="68c8b49c-970c-40ab-ab2d-b486fbd977e4" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/andybrook-ui/src/app/common-components/chart/bar-chart/bar-chart.component.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/andybrook-ui/src/app/common-components/chart/bar-chart/bar-chart.component.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/andybrook-ui/src/app/common-components/chart/bar-chart/bar-chart.component.spec.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/andybrook-ui/src/app/common-components/chart/bar-chart/bar-chart.component.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/andybrook/model/statistic/order/AmountOrdersSet.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/andybrook-ui/src/app/admin/logged-users/logged-users.component.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/andybrook-ui/src/app/admin/logged-users/logged-users.component.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/andybrook-ui/src/app/admin/logged-users/logged-users.component.spec.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/andybrook-ui/src/app/admin/logged-users/logged-users.component.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/andybrook-ui/src/app/customer/store/amount-orders-chart/amount-orders-chart.component.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/andybrook-ui/src/app/customer/store/amount-orders-chart/amount-orders-chart.component.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/andybrook-ui/src/app/customer/store/amount-orders-chart/amount-orders-chart.component.spec.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/andybrook-ui/src/app/customer/store/amount-orders-chart/amount-orders-chart.component.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/andybrook-ui/src/app/model/admin/user/LoggedUser.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/andybrook-ui/src/app/model/admin/user/SessionInfo.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/andybrook/api/rest/UserController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/andybrook/manager/user/IUserManager.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/andybrook/manager/user/UserManager.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/andybrook/model/statistic/order/AmountAndProductsOrdersSet.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/andybrook/model/user/UserSessionsInfo.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/andybrook/service/user/IUserService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/andybrook/service/user/UserService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/andybrook-ui/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/andybrook-ui/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/andybrook-ui/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/andybrook-ui/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/andybrook-ui/src/app/app-nav-bar/app-nav-bar.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/andybrook-ui/src/app/app-nav-bar/app-nav-bar.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/andybrook-ui/src/app/app-nav-bar/app-nav-bar.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/andybrook-ui/src/app/app-nav-bar/app-nav-bar.component.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/andybrook-ui/src/app/app.module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/andybrook-ui/src/app/app.module.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/andybrook-ui/src/app/common-components/chart/bar-chart/bar-chart.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/andybrook-ui/src/app/common-components/chart/bar-chart/bar-chart.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/andybrook-ui/src/app/common-components/chart/bar-chart/bar-chart.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/andybrook-ui/src/app/common-components/chart/bar-chart/bar-chart.component.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/andybrook-ui/src/app/customer/store/store-dashboard/store-dashboard.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/andybrook-ui/src/app/customer/store/store-dashboard/store-dashboard.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/andybrook-ui/src/app/http-interceptor/SessionTimeoutHttpInterceptor.ts" beforeDir="false" afterPath="$PROJECT_DIR$/andybrook-ui/src/app/http-interceptor/SessionTimeoutHttpInterceptor.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/andybrook-ui/src/app/service/http-service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/andybrook-ui/src/app/service/http-service.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/andybrook-ui/src/app/service/login-service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/andybrook-ui/src/app/service/login-service.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/andybrook-ui/src/app/service/orders-statistic-service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/andybrook-ui/src/app/service/orders-statistic-service.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/andybrook/api/rest/OrdersStatisticController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/andybrook/api/rest/OrdersStatisticController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/andybrook/config/security/SecurityConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/andybrook/config/security/SecurityConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/andybrook/dao/jpa/repository/IOrderCrudRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/andybrook/dao/jpa/repository/IOrderCrudRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/andybrook/dao/order/IOrderDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/andybrook/dao/order/IOrderDao.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/andybrook/dao/order/OrderDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/andybrook/dao/order/OrderDao.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/andybrook/dao/statistic/IOrdersStatisticDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/andybrook/dao/statistic/IOrdersStatisticDao.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/andybrook/dao/statistic/OrdersStatisticDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/andybrook/dao/statistic/OrdersStatisticDao.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/andybrook/manager/statistic/IOrdersStatisticManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/andybrook/manager/statistic/IOrdersStatisticManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/andybrook/manager/statistic/OrdersStatisticManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/andybrook/manager/statistic/OrdersStatisticManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/andybrook/model/order/Order.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/andybrook/model/order/Order.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/andybrook/model/statistic/order/AmountOrdersSet.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/andybrook/service/order/IOrderService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/andybrook/service/order/IOrderService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/andybrook/service/order/OrderService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/andybrook/service/order/OrderService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/andybrook/service/statistic/IOrdersStatisticService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/andybrook/service/statistic/IOrdersStatisticService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/andybrook/service/statistic/OrdersStatisticService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/andybrook/service/statistic/OrdersStatisticService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/andybrook/util/Arg.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/andybrook/util/Arg.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.properties" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/static/main.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/static/main.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/static/main.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/static/main.js.map" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/static/styles.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/static/styles.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/static/styles.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/static/styles.js.map" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/static/vendor.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/static/vendor.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/static/vendor.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/static/vendor.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/andybrook/dao/jpa/repository/IOrderCrudRepository.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/andybrook/dao/jpa/repository/IOrderCrudRepository.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/andybrook/dao/order/IOrderDao.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/andybrook/dao/order/IOrderDao.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/andybrook/dao/order/OrderDao.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/andybrook/dao/order/OrderDao.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/andybrook/model/order/Order.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/andybrook/model/order/Order.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/andybrook/service/order/IOrderService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/andybrook/service/order/IOrderService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/andybrook/service/order/OrderService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/andybrook/service/order/OrderService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/andybrook/util/Arg.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/andybrook/util/Arg.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/static/main.js" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/static/main.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/static/main.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/static/main.js.map" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/static/styles.js" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/static/styles.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/static/styles.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/static/styles.js.map" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/static/vendor.js" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/static/vendor.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/static/vendor.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/static/vendor.js.map" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="CodeInsightWorkspaceSettings">
+    <option name="optimizeImportsOnTheFly" value="true" />
+  </component>
+  <component name="CompilerWorkspaceConfiguration">
+    <option name="MAKE_PROJECT_ON_SAVE" value="true" />
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -63,7 +104,21 @@
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="settings.editor.selected.configurable" value="preferences.keymap" />
+    <property name="node.js.detected.package.tslint" value="true" />
+    <property name="node.js.path.for.package.tslint" value="project" />
+    <property name="node.js.selected.package.tslint" value="(autodetect)" />
+    <property name="nodejs.protractor.protractor_package" value="$PROJECT_DIR$/andybrook-ui/node_modules/protractor" />
+    <property name="nodejs_package_manager_path" value="npm" />
+    <property name="project.structure.last.edited" value="Project" />
+    <property name="project.structure.proportion" value="0.0" />
+    <property name="project.structure.side.proportion" value="0.0" />
+    <property name="settings.editor.selected.configurable" value="debugger.hotswap" />
+    <property name="ts.external.directory.path" value="C:\Users\Yoni Touitou\Documents\projects\Andybrook\andybrook-ui\node_modules\typescript\lib" />
+  </component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\Yoni Touitou\Documents\projects\Andybrook\andybrook-ui\src\app\model\admin\user" />
+    </key>
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -100,9 +155,34 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="E2E Tests (andybrook-ui-e2e)" type="JavaScriptTestRunnerProtractor">
+      <config-file value="$PROJECT_DIR$/andybrook-ui/e2e/protractor.conf.js" />
+      <node-interpreter value="project" />
+      <protractor-package value="$PROJECT_DIR$/andybrook-ui/node_modules/protractor" />
+      <protractor-options value="" />
+      <envs />
+      <scope-kind value="ALL" />
+      <method v="2" />
+    </configuration>
+    <configuration name="Angular Application" type="JavascriptDebugType" uri="http://localhost:4200">
+      <method v="2" />
+    </configuration>
+    <configuration name="Angular CLI Server" type="js.build_tools.npm">
+      <package-json value="$PROJECT_DIR$/andybrook-ui/package.json" />
+      <command value="run" />
+      <scripts>
+        <script value="start" />
+      </scripts>
+      <node-interpreter value="project" />
+      <envs />
+      <method v="2" />
+    </configuration>
     <list>
       <item itemvalue="Application.Andybrook" />
+      <item itemvalue="JavaScript Debug.Angular Application" />
       <item itemvalue="JUnit.StockItemsFileGenerator" />
+      <item itemvalue="npm.Angular CLI Server" />
+      <item itemvalue="Protractor.E2E Tests (andybrook-ui-e2e)" />
     </list>
   </component>
   <component name="SvnConfiguration">
@@ -116,6 +196,8 @@
       <option name="presentableId" value="Default" />
       <updated>1565956612604</updated>
       <workItem from="1565956615805" duration="216000" />
+      <workItem from="1574269848059" duration="655000" />
+      <workItem from="1574358353553" duration="12344000" />
     </task>
     <servers />
   </component>

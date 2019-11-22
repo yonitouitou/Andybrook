@@ -83,4 +83,25 @@ public interface IOrderCrudRepository extends JpaRepository<OrderEntity, Long> {
 
     @Query(value = SELECT_ORDERS_BY_STORE_QUERY, nativeQuery = true)
     List<OrderEntity> getOrdersByStore(@Param("storeId") long storeId);
+
+    String SELECT_LAST_ORDERS_BY_STORE_QUERY =
+            "SELECT " +
+                    "o.* " +
+            "FROM " +
+                    TABLE_NAME + " o " +
+            "LEFT JOIN " +
+                    "store s " +
+               "ON " +
+                    "s.id " +
+            "WHERE " +
+                    "o.storeId = s.id " +
+               "AND " +
+                    "s.id = :storeId " +
+            "ORDER BY " +
+                    "o.createdDatetime " +
+                "ASC " +
+            "LIMIT :lastOrderNb";
+
+    @Query(value = SELECT_LAST_ORDERS_BY_STORE_QUERY, nativeQuery = true)
+    List<OrderEntity> getLastOrdersByStore(@Param("storeId") long storeId, @Param("lastOrderNb") int lastOrderNb);
 }

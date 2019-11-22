@@ -20,7 +20,12 @@ export class AppNavBarComponent implements OnInit {
   }
 
   onLogout() {
-    this.loginService.logout();
+    this.loginService.logout().subscribe(
+      data => alert(JSON.stringify(data)),
+      error => {
+        alert(JSON.stringify(error))
+      }
+    )
     this.router.navigateByUrl('/');
   }
 }

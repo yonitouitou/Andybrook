@@ -12,4 +12,8 @@ export class OrdersStatisticService {
     getOpenClosedOrdersOfStore(storeId: number): Observable<any> {
         return this.httpApi.get(this.ORDERS_STATISTIC_URL + "/openClosedByStore/" + storeId)
     }
+
+    getLastOrdersOfStore(storeId: number, lastOrderNb: number): Observable<any> {
+        return this.httpApi.get(this.ORDERS_STATISTIC_URL + "/lastOrdersByStore/" + storeId + '/' + lastOrderNb)
+    }
 }

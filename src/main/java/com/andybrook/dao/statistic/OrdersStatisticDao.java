@@ -2,7 +2,6 @@ package com.andybrook.dao.statistic;
 
 import com.andybrook.dao.jpa.repository.IOrdersStatisticCrudRepository;
 import com.andybrook.enums.OrderStatus;
-import com.andybrook.model.statistic.order.AmountOrdersSet;
 import com.andybrook.model.statistic.order.OpenClosedOrdersCounter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -29,10 +28,5 @@ public class OrdersStatisticDao implements IOrdersStatisticDao {
             }
         }
         return openClosedOrdersCounter;
-    }
-
-    @Override
-    public AmountOrdersSet getLastAmountOrders(long storeId, int nbOfLastOrders) {
-        return null;
     }
 }

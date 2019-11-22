@@ -17,13 +17,21 @@ export class LoginService {
             .set('Authorization', 'Basic ' + btoa(req.username + ':' + req.password))
         let options = {
             headers: httpHeaders
-        }; 
+        };
+        alert(JSON.stringify(options))
         return this.httpApi.get("/user", options)
     }
 
     logout() {
         window.sessionStorage.removeItem('username');
-        return this.httpApi.get("/logout");
+        let httpHeaders = new HttpHeaders()
+            .set('Content-Type', 'application/json')
+            .set('Authorization', 'Basic ' + btoa('admin:admin'))
+        let options = {
+            headers: httpHeaders
+        };
+        return this.httpApi.post("/logout", "", options);
+        this.setUserLoggedIn(false, 'admin')
     }
 
     isUserLoggedIn() : boolean {
@@ -37,5 +45,9 @@ export class LoginService {
 
     getUserLoggedObservable(): Observable<boolean> {
         return this.userLogged.asObservable()
+    }
+
+    getLoggedUsers(): Observable<any> {
+        return this.httpApi.get("/v1/user/loggedUsers");
     }
 }

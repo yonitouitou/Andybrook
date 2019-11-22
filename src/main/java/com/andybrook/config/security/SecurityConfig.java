@@ -1,36 +1,30 @@
 package com.andybrook.config.security;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
-import org.springframework.security.core.AuthenticationException;
+import org.springframework.security.core.session.SessionRegistry;
+import org.springframework.security.core.session.SessionRegistryImpl;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.AuthenticationEntryPoint;
-import org.springframework.security.web.csrf.CookieCsrfTokenRepository;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
-import javax.servlet.ServletException;
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.sql.DataSource;
-import java.io.IOException;
 
 @Configuration
 @EnableWebSecurity
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
-    @Autowired
-    private DataSource dataSource;
-
     @Override
     public void configure(AuthenticationManagerBuilder auth) throws Exception {
         auth.inMemoryAuthentication()
-                .withUser("admin").password(passwordEncoder().encode("admin")).roles("ADMIN");
+                .withUser("admin").password(passwordEncoder().encode("admin")).roles("ADMIN")
+                .and()
+                .withUser("yoni").password(passwordEncoder().encode("yoni")).roles("ADMIN");
     }
 
     @Bean
@@ -38,33 +32,37 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         return new BCryptPasswordEncoder();
     }
 
+    @Bean
+    public SessionRegistry sessionRegistry() {
+        return new SessionRegistryImpl();
+    }
+
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http
+                .httpBasic()
+                .authenticationEntryPoint(getAuthenticationEntryPoint())
+                .and()
                 .authorizeRequests()
-                    .antMatchers("/index.html", "/", "/home", "/login", "/*.js", "/assets/**", "/actuator/**")
+                    .antMatchers("/index.html", "/", "/home", "/*.js", "/assets/**", "/actuator/**")
                     .permitAll()
                 .anyRequest()
                     .authenticated()
                 .and()
-                .formLogin()
-                .and()
-                .logout().logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
-                    .logoutSuccessUrl("/logout.done")
+                .logout()
+                    .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
                     .deleteCookies("JSESSIONID")
                     .invalidateHttpSession(true)
                 .and()
                 .exceptionHandling()
                     .authenticationEntryPoint(getAuthenticationEntryPoint())
                 .and()
-                .httpBasic()
-                .and()
                 .csrf()
-                    .disable();
-                    //.csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse())
-                /*.and()
+                    .disable();//.csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse())
+                http
                 .sessionManagement()
-                    .maximumSessions(1);*/
+                    .maximumSessions(1)
+                    .sessionRegistry(sessionRegistry());
     }
 
     private AuthenticationEntryPoint getAuthenticationEntryPoint() {

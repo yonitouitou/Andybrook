@@ -54,10 +54,13 @@ import { ToastComponent } from './common-components/toast/toast.component';
 import { ToastBuilder } from './common-components/toast/toast-builder';
 import { ChartsModule } from 'ng2-charts';
 import { BarChartComponent } from './common-components/chart/bar-chart/bar-chart.component';
+import { AmountOrdersChartComponent } from './customer/store/amount-orders-chart/amount-orders-chart.component';
+import { LoggedUsersComponent } from './admin/logged-users/logged-users.component';
 
 const appRoutes: Routes = [
   { path: '', component: LoginComponent},
   { path: 'login', component: LoginComponent},
+  { path: 'logged-users', component: LoggedUsersComponent},
   { path: 'orders', component: OrdersManagerComponent},
   { path: 'order/:id', component: ShowOrderComponent },
   { path: 'admin', component: AdminPanelComponent },
@@ -101,7 +104,9 @@ const appRoutes: Routes = [
     OpenClosedOrdersCounterComponent,
     EditStoreInfoModalComponent,
     ToastComponent,
-    BarChartComponent
+    BarChartComponent,
+    AmountOrdersChartComponent,
+    LoggedUsersComponent
   ],
   entryComponents: [
     CreateOrderModalComponent,

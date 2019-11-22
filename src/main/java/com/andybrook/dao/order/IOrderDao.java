@@ -24,6 +24,8 @@ public interface IOrderDao {
 
     List<Order> getOrdersOfStore(long storeId);
 
+    List<Order> getLastOrdersOfStore(long storeId, int lastOrderNb);
+
     Set<Order> getAll(int limit);
 
     List<Order> getByName(String name);

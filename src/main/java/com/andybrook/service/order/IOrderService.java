@@ -30,6 +30,8 @@ public interface IOrderService {
 
     List<Order> getOrdersOfStore(long storeId);
 
+    List<Order> getLastOrdersOfStore(long storeId, int lastOrderNb);
+
     boolean canModifyOrder(long id) throws OrderNotFound;
 
     boolean canModifyOrder(Order order);

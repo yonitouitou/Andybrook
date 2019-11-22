@@ -12,6 +12,10 @@ export class SessionTimeoutHttpInterceptor implements HttpInterceptor {
     constructor(private modalBuilder: ModalBuilder, private router: Router) {}
 
     intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
+      if (req.url.includes('/user')) {
+        return next.handle(req)
+      }
+
       return next.handle(req).pipe(
         catchError(
           err =>
@@ -36,5 +40,5 @@ export class SessionTimeoutHttpInterceptor implements HttpInterceptor {
       modalRef.result.then((response) => {
         this.router.navigateByUrl("/");
       })
-    }    
+    }
 }

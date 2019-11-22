@@ -299,6 +299,19 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./node_modules/raw-loader/dist/cjs.js!./src/app/admin/logged-users/logged-users.component.html":
+/*!******************************************************************************************************!*\
+  !*** ./node_modules/raw-loader/dist/cjs.js!./src/app/admin/logged-users/logged-users.component.html ***!
+  \******************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony default export */ __webpack_exports__["default"] = ("<div class=\"container\">\n  <div *ngFor=\"let user of loggedUsers\">\n    <h5>{{ user.username }} :</h5>\n    <table class=\"table table-responsive table-striped table-hover\">\n      <thead>\n      <tr>\n        <th>#</th>\n        <th>Session ID</th>\n        <th>Last Login</th>\n      </tr>\n      </thead>\n      <tbody>\n      <tr *ngFor=\"let session of user.sessions; let i = index\">\n        <td>{{ i+1 }}</td>\n        <td>{{ session.sessionId }}</td>\n        <td>{{ session.lastLoginDatetime }}</td>\n      </tr>\n      </tbody>\n    </table>\n  </div>\n</div>\n<br>\n");
+
+/***/ }),
+
 /***/ "./node_modules/raw-loader/dist/cjs.js!./src/app/app-nav-bar/app-nav-bar.component.html":
 /*!**********************************************************************************************!*\
   !*** ./node_modules/raw-loader/dist/cjs.js!./src/app/app-nav-bar/app-nav-bar.component.html ***!
@@ -308,7 +321,7 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("<nav *ngIf=\"isLoggedIn$ | async\" class=\"navbar navbar-light navbar-expand-md fixed-top border-bottom\" style=\"background-color: white\">\r\n  <img src=\"../../assets/img/andybrook-logo-home.png\">\r\n  <button class=\"navbar-toggler hidden-sm-up\" type=\"button\" (click)=\"isNavbarCollapsed = !isNavbarCollapsed\" data-target=\"#navbarsDefault\" aria-controls=\"navbarsDefault\" aria-expanded=\"false\" aria-label=\"Toggle navigation\">\r\n    <span class=\"navbar-toggler-icon\"></span>\r\n  </button>\r\n  <div [ngbCollapse]=\"isNavbarCollapsed\" class=\"collapse navbar-collapse\" id=\"navbarsDefault\">\r\n    <ul class=\"navbar-nav mr-auto\">\r\n      <li class=\"nav-item\">\r\n        <a class=\"nav-link\"\r\n            routerLink=\"/orders\"\r\n        >Orders</a>\r\n      </li>\r\n      <li class=\"nav-item dropdown\" ngbDropdown>\r\n        <a class=\"nav-link dropdown-toggle\" id=\"id01\" ngbDropdownToggle>Customers</a>\r\n        <div class=\"dropdown-menu\" aria-labelledby=\"id01\" ngbDropdownMenu>\r\n          <a class=\"dropdown-item\" routerLink=\"/customer-dashboard\">Dashboard</a>\r\n          <a class=\"dropdown-item\" routerLink=\"/new-customer/-1\">New Customer</a>\r\n        </div>\r\n      </li>\r\n      <li class=\"nav-item\">\r\n        <a class=\"nav-link\"\r\n            routerLink=\"/products\"\r\n        >Products</a>\r\n      </li>\r\n      <li class=\"nav-item\">\r\n        <a class=\"nav-link\"\r\n            routerLink=\"/monitoring\"\r\n        >Monitoring</a>\r\n      </li>\r\n      <li class=\"nav-item\">\r\n        <a class=\"nav-link\"\r\n            routerLink=\"/admin\"\r\n        >Admin</a>\r\n      </li>\r\n    </ul>\r\n    <ul class=\"navbar-nav\">\r\n        <li class=\"nav-item\">\r\n            <a (click)=\"onLogout()\">\r\n              <img src=\"../../assets/icon/account-logout.png\">\r\n            </a>\r\n        </li>\r\n      </ul>\r\n  </div>\r\n</nav>");
+/* harmony default export */ __webpack_exports__["default"] = ("<nav *ngIf=\"isLoggedIn$ | async\" class=\"navbar navbar-light navbar-expand-md fixed-top border-bottom\" style=\"background-color: white\">\r\n  <img src=\"../../assets/img/andybrook-logo-home.png\">\r\n  <button class=\"navbar-toggler hidden-sm-up\" type=\"button\" (click)=\"isNavbarCollapsed = !isNavbarCollapsed\" data-target=\"#navbarsDefault\" aria-controls=\"navbarsDefault\" aria-expanded=\"false\" aria-label=\"Toggle navigation\">\r\n    <span class=\"navbar-toggler-icon\"></span>\r\n  </button>\r\n  <div [ngbCollapse]=\"isNavbarCollapsed\" class=\"collapse navbar-collapse\" id=\"navbarsDefault\">\r\n    <ul class=\"navbar-nav mr-auto\">\r\n      <li class=\"nav-item\">\r\n        <a class=\"nav-link\"\r\n            routerLink=\"/orders\"\r\n        >Orders</a>\r\n      </li>\r\n      <li class=\"nav-item dropdown\" ngbDropdown>\r\n        <a class=\"nav-link dropdown-toggle\" id=\"id01\" ngbDropdownToggle>Customers</a>\r\n        <div class=\"dropdown-menu\" aria-labelledby=\"id01\" ngbDropdownMenu>\r\n          <a class=\"dropdown-item\" routerLink=\"/customer-dashboard\">Dashboard</a>\r\n          <a class=\"dropdown-item\" routerLink=\"/new-customer/-1\">New Customer</a>\r\n        </div>\r\n      </li>\r\n      <li class=\"nav-item\">\r\n        <a class=\"nav-link\"\r\n            routerLink=\"/products\"\r\n        >Products</a>\r\n      </li>\r\n      <li class=\"nav-item\">\r\n        <a class=\"nav-link\"\r\n            routerLink=\"/monitoring\"\r\n        >Monitoring</a>\r\n      </li>\r\n      <li class=\"nav-item dropdown\" ngbDropdown>\r\n        <a class=\"nav-link dropdown-toggle\" id=\"admin\" ngbDropdownToggle>Admin</a>\r\n        <div class=\"dropdown-menu\" aria-labelledby=\"admin\" ngbDropdownMenu>\r\n          <a class=\"dropdown-item\" routerLink=\"/admin\">Dashboard</a>\r\n          <a class=\"dropdown-item\" routerLink=\"/logged-users\">Users</a>\r\n        </div>\r\n      </li>\r\n    </ul>\r\n    <ul class=\"navbar-nav\">\r\n        <li class=\"nav-item\">\r\n            <a (click)=\"onLogout()\">\r\n              <img src=\"../../assets/icon/account-logout.png\">\r\n            </a>\r\n        </li>\r\n      </ul>\r\n  </div>\r\n</nav>");
 
 /***/ }),
 
@@ -347,7 +360,7 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("<div>\n    <div>\n        <div style=\"display: block\">\n        <canvas baseChart\n            [datasets]=\"barChartData\"\n            [labels]=\"barChartLabels\"\n            [options]=\"barChartOptions\"\n            [plugins]=\"barChartPlugins\"\n            [legend]=\"barChartLegend\"\n            [chartType]=\"barChartType\">\n        </canvas>\n        </div>\n        <button mat-button mat-raised-button color=\"primary\" (click)=\"randomize()\">Update</button>\n    </div>\n</div>");
+/* harmony default export */ __webpack_exports__["default"] = ("<div>\n    <div>\n        <div *ngIf=\"isReady\" style=\"display: block\">\n            <canvas baseChart\n                [datasets]=\"barChartData\"\n                [labels]=\"barChartLabels\"\n                [options]=\"barChartOptions\"\n                [plugins]=\"barChartPlugins\"\n                [legend]=\"barChartLegend\"\n                [chartType]=\"barChartType\"\n                [colors]=\"barChartColors\"\n                >\n            </canvas>\n        </div>\n        <img *ngIf=\"!isReady\" src=\"../../../../assets/icon/LoadingGrey.gif\">\n    </div>\n</div>");
 
 /***/ }),
 
@@ -429,6 +442,19 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./node_modules/raw-loader/dist/cjs.js!./src/app/customer/store/amount-orders-chart/amount-orders-chart.component.html":
+/*!*****************************************************************************************************************************!*\
+  !*** ./node_modules/raw-loader/dist/cjs.js!./src/app/customer/store/amount-orders-chart/amount-orders-chart.component.html ***!
+  \*****************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony default export */ __webpack_exports__["default"] = ("<div class=\"card shadow-sm p-3 mb-5 bg-white rounded\">\n    <div class=\"card-header\">\n        <div class=\"row justify-content-between\">\n            <div class=\"col-10\">\n                <h5>Last Orders Amounts</h5>\n            </div>\n            <div class=\"col-2\">\n                <form [formGroup]=\"lastOrdersForm\" (ngSubmit)=\"onRefresh()\" class=\"form-inline\">\n                    <div class=\"form-group\">\n                        <label for=\"Name\">Last</label>\n                        <input type=\"text\" formControlName=\"lastOrderNumber\" class=\"form-control\"/>\n                    </div>\n                    <button type=\"submit\" class=\"btn btn-success btn-sm\" style=\"float:right\">Refresh</button>\n                </form>               \n            </div>\n        </div>\n    </div>\n    <div class=\"card-body\">\n        <bar-chart [barChartLabels]=\"xLabels\" [barChartData]=\"yValues\" [withBarLegend]=\"false\"></bar-chart>\n    </div>\n</div>\n");
+
+/***/ }),
+
 /***/ "./node_modules/raw-loader/dist/cjs.js!./src/app/customer/store/open-closed-orders-counter/open-closed-orders-counter.component.html":
 /*!*******************************************************************************************************************************************!*\
   !*** ./node_modules/raw-loader/dist/cjs.js!./src/app/customer/store/open-closed-orders-counter/open-closed-orders-counter.component.html ***!
@@ -451,7 +477,7 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("<div class=\"container-fluid\">\n  <div class=\"row\">\n    <div class=\"col\">\n      <store-info [storeId]=\"storeId\"></store-info>\n    </div>\n  </div>\n  <div class=\"row\">\n    <div class=\"col\">\n      <bar-chart></bar-chart>\n    </div>\n  </div>\n  <div class=\"row\">\n    <div class=\"col\">\n      <store-orders [storeId]=\"storeId\"></store-orders>\n    </div>\n    <div class=\"col\">\n      <open-closed-orders-counter [storeId]=\"storeId\"></open-closed-orders-counter>\n    </div>\n  </div>\n</div>");
+/* harmony default export */ __webpack_exports__["default"] = ("<div class=\"container-fluid\">\n  <div class=\"row\">\n    <div class=\"col\">\n      <store-info [storeId]=\"storeId\"></store-info>\n    </div>\n  </div>\n  <div class=\"row\">\n    <div class=\"col\">\n      <store-orders [storeId]=\"storeId\"></store-orders>\n    </div>\n    <div class=\"col\">\n      <open-closed-orders-counter [storeId]=\"storeId\"></open-closed-orders-counter>\n    </div>\n  </div>\n  <div class=\"row\">\n    <div class=\"col\">\n      <amount-orders-chart [storeId]=\"storeId\"></amount-orders-chart>\n    </div>\n    <div class=\"col\"></div>\n  </div>\n</div>");
 
 /***/ }),
 
@@ -963,7 +989,7 @@ webpackEmptyAsyncContext.id = "./src/$$_lazy_route_resource lazy recursive";
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJhZG1pbi9hZG1pbi1wYW5lbC9hZG1pbi1wYW5lbC5jb21wb25lbnQuY3NzIn0= */");
+/* harmony default export */ __webpack_exports__["default"] = ("\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJhcHAvYWRtaW4vYWRtaW4tcGFuZWwvYWRtaW4tcGFuZWwuY29tcG9uZW50LmNzcyJ9 */");
 
 /***/ }),
 
@@ -1067,6 +1093,80 @@ AdminPanelComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
 
 /***/ }),
 
+/***/ "./src/app/admin/logged-users/logged-users.component.css":
+/*!***************************************************************!*\
+  !*** ./src/app/admin/logged-users/logged-users.component.css ***!
+  \***************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony default export */ __webpack_exports__["default"] = ("\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJhcHAvYWRtaW4vbG9nZ2VkLXVzZXJzL2xvZ2dlZC11c2Vycy5jb21wb25lbnQuY3NzIn0= */");
+
+/***/ }),
+
+/***/ "./src/app/admin/logged-users/logged-users.component.ts":
+/*!**************************************************************!*\
+  !*** ./src/app/admin/logged-users/logged-users.component.ts ***!
+  \**************************************************************/
+/*! exports provided: LoggedUsersComponent */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "LoggedUsersComponent", function() { return LoggedUsersComponent; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm2015/core.js");
+/* harmony import */ var _service_login_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../service/login-service */ "./src/app/service/login-service.ts");
+/* harmony import */ var _model_admin_user_LoggedUser__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../model/admin/user/LoggedUser */ "./src/app/model/admin/user/LoggedUser.ts");
+/* harmony import */ var _common_components_modal_builder__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../common-components/modal-builder */ "./src/app/common-components/modal-builder.ts");
+/* harmony import */ var _modal_info_modal_info_modal_component__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../modal/info-modal/info-modal.component */ "./src/app/modal/info-modal/info-modal.component.ts");
+
+
+
+
+
+
+let LoggedUsersComponent = class LoggedUsersComponent {
+    constructor(loginService, modalBuilder) {
+        this.loginService = loginService;
+        this.modalBuilder = modalBuilder;
+        this.loggedUsers = [];
+    }
+    ngOnInit() {
+        this.getLoggedUsers();
+    }
+    getLoggedUsers() {
+        this.loginService.getLoggedUsers().subscribe(data => {
+            alert(JSON.stringify(data));
+            for (let user of data) {
+                this.loggedUsers.push(_model_admin_user_LoggedUser__WEBPACK_IMPORTED_MODULE_3__["LoggedUser"].fromJson(user));
+            }
+        }, error => {
+            let modalRef = this.modalBuilder.open(_modal_info_modal_info_modal_component__WEBPACK_IMPORTED_MODULE_5__["InfoModalComponent"]);
+            modalRef.componentInstance.title = 'Error';
+            modalRef.componentInstance.message = 'Cannot load the logged users : ' + JSON.stringify(error);
+        });
+    }
+};
+LoggedUsersComponent.ctorParameters = () => [
+    { type: _service_login_service__WEBPACK_IMPORTED_MODULE_2__["LoginService"] },
+    { type: _common_components_modal_builder__WEBPACK_IMPORTED_MODULE_4__["ModalBuilder"] }
+];
+LoggedUsersComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+    Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
+        selector: 'logged-users',
+        template: tslib__WEBPACK_IMPORTED_MODULE_0__["__importDefault"](__webpack_require__(/*! raw-loader!./logged-users.component.html */ "./node_modules/raw-loader/dist/cjs.js!./src/app/admin/logged-users/logged-users.component.html")).default,
+        styles: [tslib__WEBPACK_IMPORTED_MODULE_0__["__importDefault"](__webpack_require__(/*! ./logged-users.component.css */ "./src/app/admin/logged-users/logged-users.component.css")).default]
+    }),
+    tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_service_login_service__WEBPACK_IMPORTED_MODULE_2__["LoginService"], _common_components_modal_builder__WEBPACK_IMPORTED_MODULE_4__["ModalBuilder"]])
+], LoggedUsersComponent);
+
+
+
+/***/ }),
+
 /***/ "./src/app/app-nav-bar/app-nav-bar.component.css":
 /*!*******************************************************!*\
   !*** ./src/app/app-nav-bar/app-nav-bar.component.css ***!
@@ -1076,7 +1176,7 @@ AdminPanelComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("a {\r\n color: gray\r\n}\r\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbImFwcC1uYXYtYmFyL2FwcC1uYXYtYmFyLmNvbXBvbmVudC5jc3MiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUE7Q0FDQztBQUNEIiwiZmlsZSI6ImFwcC1uYXYtYmFyL2FwcC1uYXYtYmFyLmNvbXBvbmVudC5jc3MiLCJzb3VyY2VzQ29udGVudCI6WyJhIHtcclxuIGNvbG9yOiBncmF5XHJcbn0iXX0= */");
+/* harmony default export */ __webpack_exports__["default"] = ("a {\r\n color: gray\r\n}\r\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbImFwcC9hcHAtbmF2LWJhci9hcHAtbmF2LWJhci5jb21wb25lbnQuY3NzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBO0NBQ0M7QUFDRCIsImZpbGUiOiJhcHAvYXBwLW5hdi1iYXIvYXBwLW5hdi1iYXIuY29tcG9uZW50LmNzcyIsInNvdXJjZXNDb250ZW50IjpbImEge1xyXG4gY29sb3I6IGdyYXlcclxufSJdfQ== */");
 
 /***/ }),
 
@@ -1108,7 +1208,9 @@ let AppNavBarComponent = class AppNavBarComponent {
         this.isLoggedIn$ = this.loginService.getUserLoggedObservable();
     }
     onLogout() {
-        this.loginService.logout();
+        this.loginService.logout().subscribe(data => alert(JSON.stringify(data)), error => {
+            alert(JSON.stringify(error));
+        });
         this.router.navigateByUrl('/');
     }
 };
@@ -1138,7 +1240,7 @@ AppNavBarComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJhcHAuY29tcG9uZW50LmNzcyJ9 */");
+/* harmony default export */ __webpack_exports__["default"] = ("\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJhcHAvYXBwLmNvbXBvbmVudC5jc3MifQ== */");
 
 /***/ }),
 
@@ -1237,6 +1339,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _common_components_toast_toast_builder__WEBPACK_IMPORTED_MODULE_54__ = __webpack_require__(/*! ./common-components/toast/toast-builder */ "./src/app/common-components/toast/toast-builder.ts");
 /* harmony import */ var ng2_charts__WEBPACK_IMPORTED_MODULE_55__ = __webpack_require__(/*! ng2-charts */ "./node_modules/ng2-charts/fesm2015/ng2-charts.js");
 /* harmony import */ var _common_components_chart_bar_chart_bar_chart_component__WEBPACK_IMPORTED_MODULE_56__ = __webpack_require__(/*! ./common-components/chart/bar-chart/bar-chart.component */ "./src/app/common-components/chart/bar-chart/bar-chart.component.ts");
+/* harmony import */ var _customer_store_amount_orders_chart_amount_orders_chart_component__WEBPACK_IMPORTED_MODULE_57__ = __webpack_require__(/*! ./customer/store/amount-orders-chart/amount-orders-chart.component */ "./src/app/customer/store/amount-orders-chart/amount-orders-chart.component.ts");
+/* harmony import */ var _admin_logged_users_logged_users_component__WEBPACK_IMPORTED_MODULE_58__ = __webpack_require__(/*! ./admin/logged-users/logged-users.component */ "./src/app/admin/logged-users/logged-users.component.ts");
+
+
 
 
 
@@ -1297,6 +1403,7 @@ __webpack_require__.r(__webpack_exports__);
 const appRoutes = [
     { path: '', component: _authentication_login_login_component__WEBPACK_IMPORTED_MODULE_41__["LoginComponent"] },
     { path: 'login', component: _authentication_login_login_component__WEBPACK_IMPORTED_MODULE_41__["LoginComponent"] },
+    { path: 'logged-users', component: _admin_logged_users_logged_users_component__WEBPACK_IMPORTED_MODULE_58__["LoggedUsersComponent"] },
     { path: 'orders', component: _orders_manager_panel_orders_manager_orders_manager_component__WEBPACK_IMPORTED_MODULE_9__["OrdersManagerComponent"] },
     { path: 'order/:id', component: _order_panel_show_order_show_order_component__WEBPACK_IMPORTED_MODULE_10__["ShowOrderComponent"] },
     { path: 'admin', component: _admin_admin_panel_admin_panel_component__WEBPACK_IMPORTED_MODULE_17__["AdminPanelComponent"] },
@@ -1342,7 +1449,9 @@ AppModule = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
             _customer_store_open_closed_orders_counter_open_closed_orders_counter_component__WEBPACK_IMPORTED_MODULE_51__["OpenClosedOrdersCounterComponent"],
             _modal_store_edit_store_info_modal_edit_store_info_modal_component__WEBPACK_IMPORTED_MODULE_52__["EditStoreInfoModalComponent"],
             _common_components_toast_toast_component__WEBPACK_IMPORTED_MODULE_53__["ToastComponent"],
-            _common_components_chart_bar_chart_bar_chart_component__WEBPACK_IMPORTED_MODULE_56__["BarChartComponent"]
+            _common_components_chart_bar_chart_bar_chart_component__WEBPACK_IMPORTED_MODULE_56__["BarChartComponent"],
+            _customer_store_amount_orders_chart_amount_orders_chart_component__WEBPACK_IMPORTED_MODULE_57__["AmountOrdersChartComponent"],
+            _admin_logged_users_logged_users_component__WEBPACK_IMPORTED_MODULE_58__["LoggedUsersComponent"]
         ],
         entryComponents: [
             _modal_create_order_modal_create_order_modal_component__WEBPACK_IMPORTED_MODULE_24__["CreateOrderModalComponent"],
@@ -1400,7 +1509,7 @@ AppModule = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJhdXRoZW50aWNhdGlvbi9sb2dpbi9sb2dpbi5jb21wb25lbnQuY3NzIn0= */");
+/* harmony default export */ __webpack_exports__["default"] = ("\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJhcHAvYXV0aGVudGljYXRpb24vbG9naW4vbG9naW4uY29tcG9uZW50LmNzcyJ9 */");
 
 /***/ }),
 
@@ -1489,7 +1598,7 @@ LoginComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJjb21tb24tY29tcG9uZW50cy9jaGFydC9iYXItY2hhcnQvYmFyLWNoYXJ0LmNvbXBvbmVudC5jc3MifQ== */");
+/* harmony default export */ __webpack_exports__["default"] = ("\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJhcHAvY29tbW9uLWNvbXBvbmVudHMvY2hhcnQvYmFyLWNoYXJ0L2Jhci1jaGFydC5jb21wb25lbnQuY3NzIn0= */");
 
 /***/ }),
 
@@ -1512,6 +1621,11 @@ __webpack_require__.r(__webpack_exports__);
 
 let BarChartComponent = class BarChartComponent {
     constructor() {
+        //public barChartLabels: Label[] = ['2006', '2007', '2008', '2009', '2010', '2011', '2012'];
+        this.barChartLabels = [];
+        this.barChartData = [];
+        this.withBarLegend = false;
+        this.isReady = false;
         this.barChartOptions = {
             responsive: true,
             // We use these empty structures as placeholders for dynamic theming.
@@ -1523,17 +1637,22 @@ let BarChartComponent = class BarChartComponent {
                 }
             }
         };
-        this.barChartLabels = ['2006', '2007', '2008', '2009', '2010', '2011', '2012'];
-        this.barChartType = 'bar';
-        this.barChartLegend = true;
-        this.barChartPlugins = [chartjs_plugin_datalabels__WEBPACK_IMPORTED_MODULE_2__];
-        this.barChartData = [
-            { data: [65, 59, 80, 81, 56, 55, 40], label: 'Series A' },
-            { data: [28, 48, 40, 19, 86, 27, 90], label: 'Series B' }
+        this.barChartColors = [
+            {
+                backgroundColor: ['DarkTurquoise']
+            }
         ];
+        this.barChartType = 'bar';
+        this.barChartLegend = this.withBarLegend;
+        this.barChartPlugins = [chartjs_plugin_datalabels__WEBPACK_IMPORTED_MODULE_2__];
     }
-    ngOnInit() {
+    ngOnChanges() {
+        this.isReady = true;
     }
+    /*public barChartData: ChartDataSets[] = [
+      { data: [65, 59, 80, 81, 56, 55, 40], label: 'Series A' },
+      { data: [28, 48, 40, 19, 86, 27, 90], label: 'Series B' }
+    ];*/
     // events
     chartClicked({ event, active }) {
         console.log(event, active);
@@ -1541,20 +1660,19 @@ let BarChartComponent = class BarChartComponent {
     chartHovered({ event, active }) {
         console.log(event, active);
     }
-    randomize() {
-        // Only Change 3 values
-        const data = [
-            Math.round(Math.random() * 100),
-            59,
-            80,
-            (Math.random() * 100),
-            56,
-            (Math.random() * 100),
-            40
-        ];
-        this.barChartData[0].data = data;
-    }
 };
+tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+    Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Input"])(),
+    tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:type", Array)
+], BarChartComponent.prototype, "barChartLabels", void 0);
+tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+    Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Input"])(),
+    tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:type", Array)
+], BarChartComponent.prototype, "barChartData", void 0);
+tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+    Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Input"])(),
+    tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:type", Boolean)
+], BarChartComponent.prototype, "withBarLegend", void 0);
 BarChartComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
     Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
         selector: 'bar-chart',
@@ -1719,7 +1837,7 @@ ToastBuilder = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJjb21tb24tY29tcG9uZW50cy90b2FzdC90b2FzdC5jb21wb25lbnQuY3NzIn0= */");
+/* harmony default export */ __webpack_exports__["default"] = ("\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJhcHAvY29tbW9uLWNvbXBvbmVudHMvdG9hc3QvdG9hc3QuY29tcG9uZW50LmNzcyJ9 */");
 
 /***/ }),
 
@@ -1773,7 +1891,7 @@ ToastComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJjdXN0b21lci9jdXN0b21lci1oZWFkZXIvY3VzdG9tZXItaGVhZGVyLmNvbXBvbmVudC5jc3MifQ== */");
+/* harmony default export */ __webpack_exports__["default"] = ("\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJhcHAvY3VzdG9tZXIvY3VzdG9tZXItaGVhZGVyL2N1c3RvbWVyLWhlYWRlci5jb21wb25lbnQuY3NzIn0= */");
 
 /***/ }),
 
@@ -1818,7 +1936,7 @@ CustomerHeaderComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("label {\r\n    font-weight: bold;\r\n}\r\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbImN1c3RvbWVyL2N1c3RvbWVyLWluZm8vY3VzdG9tZXItaW5mby5jb21wb25lbnQuY3NzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBO0lBQ0ksaUJBQWlCO0FBQ3JCIiwiZmlsZSI6ImN1c3RvbWVyL2N1c3RvbWVyLWluZm8vY3VzdG9tZXItaW5mby5jb21wb25lbnQuY3NzIiwic291cmNlc0NvbnRlbnQiOlsibGFiZWwge1xyXG4gICAgZm9udC13ZWlnaHQ6IGJvbGQ7XHJcbn0iXX0= */");
+/* harmony default export */ __webpack_exports__["default"] = ("label {\r\n    font-weight: bold;\r\n}\r\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbImFwcC9jdXN0b21lci9jdXN0b21lci1pbmZvL2N1c3RvbWVyLWluZm8uY29tcG9uZW50LmNzcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQTtJQUNJLGlCQUFpQjtBQUNyQiIsImZpbGUiOiJhcHAvY3VzdG9tZXIvY3VzdG9tZXItaW5mby9jdXN0b21lci1pbmZvLmNvbXBvbmVudC5jc3MiLCJzb3VyY2VzQ29udGVudCI6WyJsYWJlbCB7XHJcbiAgICBmb250LXdlaWdodDogYm9sZDtcclxufSJdfQ== */");
 
 /***/ }),
 
@@ -1869,7 +1987,7 @@ CustomerInfoComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJjdXN0b21lci9jdXN0b21lci1wYW5lbC9jdXN0b21lci1wYW5lbC5jb21wb25lbnQuY3NzIn0= */");
+/* harmony default export */ __webpack_exports__["default"] = ("\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJhcHAvY3VzdG9tZXIvY3VzdG9tZXItcGFuZWwvY3VzdG9tZXItcGFuZWwuY29tcG9uZW50LmNzcyJ9 */");
 
 /***/ }),
 
@@ -1932,7 +2050,7 @@ CustomerPanelComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("/* Scroll Bar customer list table */\r\n.my-custom-scrollbar {\r\n    position: relative;\r\n    max-height: 750px;\r\n    overflow: auto;\r\n  }\r\n.table-wrapper-scroll-y {\r\n    display: block;\r\n  }\r\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbImN1c3RvbWVyL2xpc3QtY3VzdG9tZXIvbGlzdC1jdXN0b21lci5jb21wb25lbnQuY3NzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBLG1DQUFtQztBQUNuQztJQUNJLGtCQUFrQjtJQUNsQixpQkFBaUI7SUFDakIsY0FBYztFQUNoQjtBQUVBO0lBQ0UsY0FBYztFQUNoQiIsImZpbGUiOiJjdXN0b21lci9saXN0LWN1c3RvbWVyL2xpc3QtY3VzdG9tZXIuY29tcG9uZW50LmNzcyIsInNvdXJjZXNDb250ZW50IjpbIi8qIFNjcm9sbCBCYXIgY3VzdG9tZXIgbGlzdCB0YWJsZSAqL1xyXG4ubXktY3VzdG9tLXNjcm9sbGJhciB7XHJcbiAgICBwb3NpdGlvbjogcmVsYXRpdmU7XHJcbiAgICBtYXgtaGVpZ2h0OiA3NTBweDtcclxuICAgIG92ZXJmbG93OiBhdXRvO1xyXG4gIH1cclxuICBcclxuICAudGFibGUtd3JhcHBlci1zY3JvbGwteSB7XHJcbiAgICBkaXNwbGF5OiBibG9jaztcclxuICB9Il19 */");
+/* harmony default export */ __webpack_exports__["default"] = ("/* Scroll Bar customer list table */\r\n.my-custom-scrollbar {\r\n    position: relative;\r\n    max-height: 750px;\r\n    overflow: auto;\r\n  }\r\n.table-wrapper-scroll-y {\r\n    display: block;\r\n  }\r\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbImFwcC9jdXN0b21lci9saXN0LWN1c3RvbWVyL2xpc3QtY3VzdG9tZXIuY29tcG9uZW50LmNzcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQSxtQ0FBbUM7QUFDbkM7SUFDSSxrQkFBa0I7SUFDbEIsaUJBQWlCO0lBQ2pCLGNBQWM7RUFDaEI7QUFFQTtJQUNFLGNBQWM7RUFDaEIiLCJmaWxlIjoiYXBwL2N1c3RvbWVyL2xpc3QtY3VzdG9tZXIvbGlzdC1jdXN0b21lci5jb21wb25lbnQuY3NzIiwic291cmNlc0NvbnRlbnQiOlsiLyogU2Nyb2xsIEJhciBjdXN0b21lciBsaXN0IHRhYmxlICovXHJcbi5teS1jdXN0b20tc2Nyb2xsYmFyIHtcclxuICAgIHBvc2l0aW9uOiByZWxhdGl2ZTtcclxuICAgIG1heC1oZWlnaHQ6IDc1MHB4O1xyXG4gICAgb3ZlcmZsb3c6IGF1dG87XHJcbiAgfVxyXG4gIFxyXG4gIC50YWJsZS13cmFwcGVyLXNjcm9sbC15IHtcclxuICAgIGRpc3BsYXk6IGJsb2NrO1xyXG4gIH0iXX0= */");
 
 /***/ }),
 
@@ -2020,7 +2138,7 @@ ListCustomerComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = (".ng-invalid:not(form)  {\r\n    border-left: 5px solid #a94442; /* red */\r\n}\r\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbImN1c3RvbWVyL25ldy1jdXN0b21lci9uZXctY3VzdG9tZXIuY29tcG9uZW50LmNzcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQTtJQUNJLDhCQUE4QixFQUFFLFFBQVE7QUFDNUMiLCJmaWxlIjoiY3VzdG9tZXIvbmV3LWN1c3RvbWVyL25ldy1jdXN0b21lci5jb21wb25lbnQuY3NzIiwic291cmNlc0NvbnRlbnQiOlsiLm5nLWludmFsaWQ6bm90KGZvcm0pICB7XHJcbiAgICBib3JkZXItbGVmdDogNXB4IHNvbGlkICNhOTQ0NDI7IC8qIHJlZCAqL1xyXG59Il19 */");
+/* harmony default export */ __webpack_exports__["default"] = (".ng-invalid:not(form)  {\r\n    border-left: 5px solid #a94442; /* red */\r\n}\r\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbImFwcC9jdXN0b21lci9uZXctY3VzdG9tZXIvbmV3LWN1c3RvbWVyLmNvbXBvbmVudC5jc3MiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUE7SUFDSSw4QkFBOEIsRUFBRSxRQUFRO0FBQzVDIiwiZmlsZSI6ImFwcC9jdXN0b21lci9uZXctY3VzdG9tZXIvbmV3LWN1c3RvbWVyLmNvbXBvbmVudC5jc3MiLCJzb3VyY2VzQ29udGVudCI6WyIubmctaW52YWxpZDpub3QoZm9ybSkgIHtcclxuICAgIGJvcmRlci1sZWZ0OiA1cHggc29saWQgI2E5NDQ0MjsgLyogcmVkICovXHJcbn0iXX0= */");
 
 /***/ }),
 
@@ -2221,6 +2339,99 @@ NewCustomerComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
 
 /***/ }),
 
+/***/ "./src/app/customer/store/amount-orders-chart/amount-orders-chart.component.css":
+/*!**************************************************************************************!*\
+  !*** ./src/app/customer/store/amount-orders-chart/amount-orders-chart.component.css ***!
+  \**************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony default export */ __webpack_exports__["default"] = ("\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJhcHAvY3VzdG9tZXIvc3RvcmUvYW1vdW50LW9yZGVycy1jaGFydC9hbW91bnQtb3JkZXJzLWNoYXJ0LmNvbXBvbmVudC5jc3MifQ== */");
+
+/***/ }),
+
+/***/ "./src/app/customer/store/amount-orders-chart/amount-orders-chart.component.ts":
+/*!*************************************************************************************!*\
+  !*** ./src/app/customer/store/amount-orders-chart/amount-orders-chart.component.ts ***!
+  \*************************************************************************************/
+/*! exports provided: AmountOrdersChartComponent */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "AmountOrdersChartComponent", function() { return AmountOrdersChartComponent; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm2015/core.js");
+/* harmony import */ var _service_orders_statistic_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../service/orders-statistic-service */ "./src/app/service/orders-statistic-service.ts");
+/* harmony import */ var _angular_forms__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/forms */ "./node_modules/@angular/forms/fesm2015/forms.js");
+
+
+
+
+let AmountOrdersChartComponent = class AmountOrdersChartComponent {
+    constructor(ordersStatisticService, formBuilder) {
+        this.ordersStatisticService = ordersStatisticService;
+        this.formBuilder = formBuilder;
+        this.xLabels = [];
+        this.yValues = [];
+        this.lastOrdersNb = 10;
+    }
+    /*public barChartData: ChartDataSets[] = [
+        { data: [65, 59, 80, 81, 56, 55, 40], label: 'Series A' },
+        { data: [28, 48, 40, 19, 86, 27, 90], label: 'Series B' }
+      ];*/
+    ngOnInit() {
+        this.initForm();
+        this.loadData(10);
+    }
+    initForm() {
+        this.lastOrdersForm = this.formBuilder.group({
+            lastOrderNumber: [10, [_angular_forms__WEBPACK_IMPORTED_MODULE_3__["Validators"].min(1)]]
+        });
+    }
+    loadData(ordersToLoadNb) {
+        let amounts = [];
+        this.ordersStatisticService.getLastOrdersOfStore(this.storeId, ordersToLoadNb).subscribe(d => {
+            for (let item of d.items) {
+                this.xLabels.push(item.orderName);
+                amounts.push(item.amount);
+            }
+            this.yValues = [
+                { data: amounts, label: 'Amount' },
+            ];
+        }, error => {
+            console.log(JSON.stringify(error));
+            alert(JSON.stringify(error));
+        });
+    }
+    onRefresh() {
+        alert('OnRefresh');
+        this.loadData(this.lastOrdersForm.get("lastOrderNumber").value);
+    }
+};
+AmountOrdersChartComponent.ctorParameters = () => [
+    { type: _service_orders_statistic_service__WEBPACK_IMPORTED_MODULE_2__["OrdersStatisticService"] },
+    { type: _angular_forms__WEBPACK_IMPORTED_MODULE_3__["FormBuilder"] }
+];
+tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+    Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Input"])(),
+    tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:type", Number)
+], AmountOrdersChartComponent.prototype, "storeId", void 0);
+AmountOrdersChartComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+    Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
+        selector: 'amount-orders-chart',
+        template: tslib__WEBPACK_IMPORTED_MODULE_0__["__importDefault"](__webpack_require__(/*! raw-loader!./amount-orders-chart.component.html */ "./node_modules/raw-loader/dist/cjs.js!./src/app/customer/store/amount-orders-chart/amount-orders-chart.component.html")).default,
+        styles: [tslib__WEBPACK_IMPORTED_MODULE_0__["__importDefault"](__webpack_require__(/*! ./amount-orders-chart.component.css */ "./src/app/customer/store/amount-orders-chart/amount-orders-chart.component.css")).default]
+    }),
+    tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_service_orders_statistic_service__WEBPACK_IMPORTED_MODULE_2__["OrdersStatisticService"], _angular_forms__WEBPACK_IMPORTED_MODULE_3__["FormBuilder"]])
+], AmountOrdersChartComponent);
+
+
+
+/***/ }),
+
 /***/ "./src/app/customer/store/open-closed-orders-counter/open-closed-orders-counter.component.css":
 /*!****************************************************************************************************!*\
   !*** ./src/app/customer/store/open-closed-orders-counter/open-closed-orders-counter.component.css ***!
@@ -2230,7 +2441,7 @@ NewCustomerComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = (".center {\r\n    display: block;\r\n    margin-left: auto;\r\n    margin-right: auto;\r\n}\r\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbImN1c3RvbWVyL3N0b3JlL29wZW4tY2xvc2VkLW9yZGVycy1jb3VudGVyL29wZW4tY2xvc2VkLW9yZGVycy1jb3VudGVyLmNvbXBvbmVudC5jc3MiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUE7SUFDSSxjQUFjO0lBQ2QsaUJBQWlCO0lBQ2pCLGtCQUFrQjtBQUN0QiIsImZpbGUiOiJjdXN0b21lci9zdG9yZS9vcGVuLWNsb3NlZC1vcmRlcnMtY291bnRlci9vcGVuLWNsb3NlZC1vcmRlcnMtY291bnRlci5jb21wb25lbnQuY3NzIiwic291cmNlc0NvbnRlbnQiOlsiLmNlbnRlciB7XHJcbiAgICBkaXNwbGF5OiBibG9jaztcclxuICAgIG1hcmdpbi1sZWZ0OiBhdXRvO1xyXG4gICAgbWFyZ2luLXJpZ2h0OiBhdXRvO1xyXG59Il19 */");
+/* harmony default export */ __webpack_exports__["default"] = (".center {\r\n    display: block;\r\n    margin-left: auto;\r\n    margin-right: auto;\r\n}\r\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbImFwcC9jdXN0b21lci9zdG9yZS9vcGVuLWNsb3NlZC1vcmRlcnMtY291bnRlci9vcGVuLWNsb3NlZC1vcmRlcnMtY291bnRlci5jb21wb25lbnQuY3NzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBO0lBQ0ksY0FBYztJQUNkLGlCQUFpQjtJQUNqQixrQkFBa0I7QUFDdEIiLCJmaWxlIjoiYXBwL2N1c3RvbWVyL3N0b3JlL29wZW4tY2xvc2VkLW9yZGVycy1jb3VudGVyL29wZW4tY2xvc2VkLW9yZGVycy1jb3VudGVyLmNvbXBvbmVudC5jc3MiLCJzb3VyY2VzQ29udGVudCI6WyIuY2VudGVyIHtcclxuICAgIGRpc3BsYXk6IGJsb2NrO1xyXG4gICAgbWFyZ2luLWxlZnQ6IGF1dG87XHJcbiAgICBtYXJnaW4tcmlnaHQ6IGF1dG87XHJcbn0iXX0= */");
 
 /***/ }),
 
@@ -2304,7 +2515,7 @@ OpenClosedOrdersCounterComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorat
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJjdXN0b21lci9zdG9yZS9zdG9yZS1kYXNoYm9hcmQvc3RvcmUtZGFzaGJvYXJkLmNvbXBvbmVudC5jc3MifQ== */");
+/* harmony default export */ __webpack_exports__["default"] = ("\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJhcHAvY3VzdG9tZXIvc3RvcmUvc3RvcmUtZGFzaGJvYXJkL3N0b3JlLWRhc2hib2FyZC5jb21wb25lbnQuY3NzIn0= */");
 
 /***/ }),
 
@@ -2357,7 +2568,7 @@ StoreDashboardComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = (".center {\r\n    display: block;\r\n    margin-left: auto;\r\n    margin-right: auto;\r\n}\r\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbImN1c3RvbWVyL3N0b3JlL3N0b3JlLWluZm8vc3RvcmUtaW5mby5jb21wb25lbnQuY3NzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBO0lBQ0ksY0FBYztJQUNkLGlCQUFpQjtJQUNqQixrQkFBa0I7QUFDdEIiLCJmaWxlIjoiY3VzdG9tZXIvc3RvcmUvc3RvcmUtaW5mby9zdG9yZS1pbmZvLmNvbXBvbmVudC5jc3MiLCJzb3VyY2VzQ29udGVudCI6WyIuY2VudGVyIHtcclxuICAgIGRpc3BsYXk6IGJsb2NrO1xyXG4gICAgbWFyZ2luLWxlZnQ6IGF1dG87XHJcbiAgICBtYXJnaW4tcmlnaHQ6IGF1dG87XHJcbn0iXX0= */");
+/* harmony default export */ __webpack_exports__["default"] = (".center {\r\n    display: block;\r\n    margin-left: auto;\r\n    margin-right: auto;\r\n}\r\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbImFwcC9jdXN0b21lci9zdG9yZS9zdG9yZS1pbmZvL3N0b3JlLWluZm8uY29tcG9uZW50LmNzcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQTtJQUNJLGNBQWM7SUFDZCxpQkFBaUI7SUFDakIsa0JBQWtCO0FBQ3RCIiwiZmlsZSI6ImFwcC9jdXN0b21lci9zdG9yZS9zdG9yZS1pbmZvL3N0b3JlLWluZm8uY29tcG9uZW50LmNzcyIsInNvdXJjZXNDb250ZW50IjpbIi5jZW50ZXIge1xyXG4gICAgZGlzcGxheTogYmxvY2s7XHJcbiAgICBtYXJnaW4tbGVmdDogYXV0bztcclxuICAgIG1hcmdpbi1yaWdodDogYXV0bztcclxufSJdfQ== */");
 
 /***/ }),
 
@@ -2439,7 +2650,7 @@ StoreInfoComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("/* Scroll Bar Aggregated Order Item table */\r\n.my-custom-scrollbar {\r\n    position: relative;\r\n    max-height: 300px;\r\n    overflow: auto;\r\n  }\r\n.table-wrapper-scroll-y {\r\n  display: block;\r\n}\r\n.center {\r\n  display: block;\r\n  margin-left: auto;\r\n  margin-right: auto;\r\n}\r\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbImN1c3RvbWVyL3N0b3JlL3N0b3JlLW9yZGVycy9zdG9yZS1vcmRlcnMuY29tcG9uZW50LmNzcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQSwyQ0FBMkM7QUFDM0M7SUFDSSxrQkFBa0I7SUFDbEIsaUJBQWlCO0lBQ2pCLGNBQWM7RUFDaEI7QUFFRjtFQUNFLGNBQWM7QUFDaEI7QUFFQTtFQUNFLGNBQWM7RUFDZCxpQkFBaUI7RUFDakIsa0JBQWtCO0FBQ3BCIiwiZmlsZSI6ImN1c3RvbWVyL3N0b3JlL3N0b3JlLW9yZGVycy9zdG9yZS1vcmRlcnMuY29tcG9uZW50LmNzcyIsInNvdXJjZXNDb250ZW50IjpbIi8qIFNjcm9sbCBCYXIgQWdncmVnYXRlZCBPcmRlciBJdGVtIHRhYmxlICovXHJcbi5teS1jdXN0b20tc2Nyb2xsYmFyIHtcclxuICAgIHBvc2l0aW9uOiByZWxhdGl2ZTtcclxuICAgIG1heC1oZWlnaHQ6IDMwMHB4O1xyXG4gICAgb3ZlcmZsb3c6IGF1dG87XHJcbiAgfVxyXG4gIFxyXG4udGFibGUtd3JhcHBlci1zY3JvbGwteSB7XHJcbiAgZGlzcGxheTogYmxvY2s7XHJcbn1cclxuXHJcbi5jZW50ZXIge1xyXG4gIGRpc3BsYXk6IGJsb2NrO1xyXG4gIG1hcmdpbi1sZWZ0OiBhdXRvO1xyXG4gIG1hcmdpbi1yaWdodDogYXV0bztcclxufSJdfQ== */");
+/* harmony default export */ __webpack_exports__["default"] = ("/* Scroll Bar Aggregated Order Item table */\r\n.my-custom-scrollbar {\r\n    position: relative;\r\n    max-height: 300px;\r\n    overflow: auto;\r\n  }\r\n.table-wrapper-scroll-y {\r\n  display: block;\r\n}\r\n.center {\r\n  display: block;\r\n  margin-left: auto;\r\n  margin-right: auto;\r\n}\r\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbImFwcC9jdXN0b21lci9zdG9yZS9zdG9yZS1vcmRlcnMvc3RvcmUtb3JkZXJzLmNvbXBvbmVudC5jc3MiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUEsMkNBQTJDO0FBQzNDO0lBQ0ksa0JBQWtCO0lBQ2xCLGlCQUFpQjtJQUNqQixjQUFjO0VBQ2hCO0FBRUY7RUFDRSxjQUFjO0FBQ2hCO0FBRUE7RUFDRSxjQUFjO0VBQ2QsaUJBQWlCO0VBQ2pCLGtCQUFrQjtBQUNwQiIsImZpbGUiOiJhcHAvY3VzdG9tZXIvc3RvcmUvc3RvcmUtb3JkZXJzL3N0b3JlLW9yZGVycy5jb21wb25lbnQuY3NzIiwic291cmNlc0NvbnRlbnQiOlsiLyogU2Nyb2xsIEJhciBBZ2dyZWdhdGVkIE9yZGVyIEl0ZW0gdGFibGUgKi9cclxuLm15LWN1c3RvbS1zY3JvbGxiYXIge1xyXG4gICAgcG9zaXRpb246IHJlbGF0aXZlO1xyXG4gICAgbWF4LWhlaWdodDogMzAwcHg7XHJcbiAgICBvdmVyZmxvdzogYXV0bztcclxuICB9XHJcbiAgXHJcbi50YWJsZS13cmFwcGVyLXNjcm9sbC15IHtcclxuICBkaXNwbGF5OiBibG9jaztcclxufVxyXG5cclxuLmNlbnRlciB7XHJcbiAgZGlzcGxheTogYmxvY2s7XHJcbiAgbWFyZ2luLWxlZnQ6IGF1dG87XHJcbiAgbWFyZ2luLXJpZ2h0OiBhdXRvO1xyXG59Il19 */");
 
 /***/ }),
 
@@ -2613,6 +2824,9 @@ let SessionTimeoutHttpInterceptor = class SessionTimeoutHttpInterceptor {
         this.router = router;
     }
     intercept(req, next) {
+        if (req.url.includes('/user')) {
+            return next.handle(req);
+        }
         return next.handle(req).pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["catchError"])(err => new rxjs__WEBPACK_IMPORTED_MODULE_2__["Observable"](observer => {
             if (err instanceof _angular_common_http__WEBPACK_IMPORTED_MODULE_1__["HttpErrorResponse"]) {
                 const errResp = err;
@@ -2655,7 +2869,7 @@ SessionTimeoutHttpInterceptor = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJtb2RhbC9hZGQtb3JkZXItaXRlbS1tb2RhbC9hZGQtb3JkZXItaXRlbS1tb2RhbC5jb21wb25lbnQuY3NzIn0= */");
+/* harmony default export */ __webpack_exports__["default"] = ("\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJhcHAvbW9kYWwvYWRkLW9yZGVyLWl0ZW0tbW9kYWwvYWRkLW9yZGVyLWl0ZW0tbW9kYWwuY29tcG9uZW50LmNzcyJ9 */");
 
 /***/ }),
 
@@ -2912,7 +3126,7 @@ AddOrderItemModalComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJtb2RhbC9jb25maXJtLW1vZGFsL2NvbmZpcm0tbW9kYWwtY29tcG9uZW50LmNzcyJ9 */");
+/* harmony default export */ __webpack_exports__["default"] = ("\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJhcHAvbW9kYWwvY29uZmlybS1tb2RhbC9jb25maXJtLW1vZGFsLWNvbXBvbmVudC5jc3MifQ== */");
 
 /***/ }),
 
@@ -2978,7 +3192,7 @@ ConfirmModalComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJtb2RhbC9jcmVhdGUtb3JkZXItbW9kYWwvY3JlYXRlLW9yZGVyLW1vZGFsLmNvbXBvbmVudC5jc3MifQ== */");
+/* harmony default export */ __webpack_exports__["default"] = ("\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJhcHAvbW9kYWwvY3JlYXRlLW9yZGVyLW1vZGFsL2NyZWF0ZS1vcmRlci1tb2RhbC5jb21wb25lbnQuY3NzIn0= */");
 
 /***/ }),
 
@@ -3113,7 +3327,7 @@ CreateOrderModalComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = (".my-custom-scrollbar {\r\n    position: relative;\r\n    max-height: 500px;\r\n    overflow: auto;\r\n}\r\n\r\n.table-wrapper-scroll-y {\r\n    display: block;\r\n}\r\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIm1vZGFsL2RlbGV0ZS1vcmRlci1pdGVtcy1tb2RhbC9kZWxldGUtb3JkZXItaXRlbXMtbW9kYWwuY29tcG9uZW50LmNzcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQTtJQUNJLGtCQUFrQjtJQUNsQixpQkFBaUI7SUFDakIsY0FBYztBQUNsQjs7QUFFQTtJQUNJLGNBQWM7QUFDbEIiLCJmaWxlIjoibW9kYWwvZGVsZXRlLW9yZGVyLWl0ZW1zLW1vZGFsL2RlbGV0ZS1vcmRlci1pdGVtcy1tb2RhbC5jb21wb25lbnQuY3NzIiwic291cmNlc0NvbnRlbnQiOlsiLm15LWN1c3RvbS1zY3JvbGxiYXIge1xyXG4gICAgcG9zaXRpb246IHJlbGF0aXZlO1xyXG4gICAgbWF4LWhlaWdodDogNTAwcHg7XHJcbiAgICBvdmVyZmxvdzogYXV0bztcclxufVxyXG5cclxuLnRhYmxlLXdyYXBwZXItc2Nyb2xsLXkge1xyXG4gICAgZGlzcGxheTogYmxvY2s7XHJcbn0iXX0= */");
+/* harmony default export */ __webpack_exports__["default"] = (".my-custom-scrollbar {\r\n    position: relative;\r\n    max-height: 500px;\r\n    overflow: auto;\r\n}\r\n\r\n.table-wrapper-scroll-y {\r\n    display: block;\r\n}\r\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbImFwcC9tb2RhbC9kZWxldGUtb3JkZXItaXRlbXMtbW9kYWwvZGVsZXRlLW9yZGVyLWl0ZW1zLW1vZGFsLmNvbXBvbmVudC5jc3MiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUE7SUFDSSxrQkFBa0I7SUFDbEIsaUJBQWlCO0lBQ2pCLGNBQWM7QUFDbEI7O0FBRUE7SUFDSSxjQUFjO0FBQ2xCIiwiZmlsZSI6ImFwcC9tb2RhbC9kZWxldGUtb3JkZXItaXRlbXMtbW9kYWwvZGVsZXRlLW9yZGVyLWl0ZW1zLW1vZGFsLmNvbXBvbmVudC5jc3MiLCJzb3VyY2VzQ29udGVudCI6WyIubXktY3VzdG9tLXNjcm9sbGJhciB7XHJcbiAgICBwb3NpdGlvbjogcmVsYXRpdmU7XHJcbiAgICBtYXgtaGVpZ2h0OiA1MDBweDtcclxuICAgIG92ZXJmbG93OiBhdXRvO1xyXG59XHJcblxyXG4udGFibGUtd3JhcHBlci1zY3JvbGwteSB7XHJcbiAgICBkaXNwbGF5OiBibG9jaztcclxufSJdfQ== */");
 
 /***/ }),
 
@@ -3179,7 +3393,7 @@ DeleteOrderItemsModalComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJtb2RhbC9pbmZvLW1vZGFsL2luZm8tbW9kYWwuY29tcG9uZW50LmNzcyJ9 */");
+/* harmony default export */ __webpack_exports__["default"] = ("\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJhcHAvbW9kYWwvaW5mby1tb2RhbC9pbmZvLW1vZGFsLmNvbXBvbmVudC5jc3MifQ== */");
 
 /***/ }),
 
@@ -3242,7 +3456,7 @@ InfoModalComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = (".ng-invalid:not(form)  {\r\n    border-left: 5px solid #a94442; /* red */\r\n}\r\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIm1vZGFsL29yZGVyLW5vdGlmaWNhdGlvbi1tb2RhbC9vcmRlci1ub3RpZmljYXRpb24tbW9kYWwuY29tcG9uZW50LmNzcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQTtJQUNJLDhCQUE4QixFQUFFLFFBQVE7QUFDNUMiLCJmaWxlIjoibW9kYWwvb3JkZXItbm90aWZpY2F0aW9uLW1vZGFsL29yZGVyLW5vdGlmaWNhdGlvbi1tb2RhbC5jb21wb25lbnQuY3NzIiwic291cmNlc0NvbnRlbnQiOlsiLm5nLWludmFsaWQ6bm90KGZvcm0pICB7XHJcbiAgICBib3JkZXItbGVmdDogNXB4IHNvbGlkICNhOTQ0NDI7IC8qIHJlZCAqL1xyXG59Il19 */");
+/* harmony default export */ __webpack_exports__["default"] = (".ng-invalid:not(form)  {\r\n    border-left: 5px solid #a94442; /* red */\r\n}\r\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbImFwcC9tb2RhbC9vcmRlci1ub3RpZmljYXRpb24tbW9kYWwvb3JkZXItbm90aWZpY2F0aW9uLW1vZGFsLmNvbXBvbmVudC5jc3MiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUE7SUFDSSw4QkFBOEIsRUFBRSxRQUFRO0FBQzVDIiwiZmlsZSI6ImFwcC9tb2RhbC9vcmRlci1ub3RpZmljYXRpb24tbW9kYWwvb3JkZXItbm90aWZpY2F0aW9uLW1vZGFsLmNvbXBvbmVudC5jc3MiLCJzb3VyY2VzQ29udGVudCI6WyIubmctaW52YWxpZDpub3QoZm9ybSkgIHtcclxuICAgIGJvcmRlci1sZWZ0OiA1cHggc29saWQgI2E5NDQ0MjsgLyogcmVkICovXHJcbn0iXX0= */");
 
 /***/ }),
 
@@ -3403,7 +3617,7 @@ OrderNotificationModalComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJtb2RhbC9zaG93LW9yZGVyLWl0ZW1zLW1vZGFsL3Nob3ctb3JkZXItaXRlbXMtbW9kYWwuY29tcG9uZW50LmNzcyJ9 */");
+/* harmony default export */ __webpack_exports__["default"] = ("\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJhcHAvbW9kYWwvc2hvdy1vcmRlci1pdGVtcy1tb2RhbC9zaG93LW9yZGVyLWl0ZW1zLW1vZGFsLmNvbXBvbmVudC5jc3MifQ== */");
 
 /***/ }),
 
@@ -3462,7 +3676,7 @@ ShowOrderItemsModalComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"](
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = (".ng-invalid:not(form)  {\r\n    border-left: 5px solid #a94442;\r\n}\r\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIm1vZGFsL3N0b3JlL2VkaXQtc3RvcmUtaW5mby1tb2RhbC9lZGl0LXN0b3JlLWluZm8tbW9kYWwuY29tcG9uZW50LmNzcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQTtJQUNJLDhCQUE4QjtBQUNsQyIsImZpbGUiOiJtb2RhbC9zdG9yZS9lZGl0LXN0b3JlLWluZm8tbW9kYWwvZWRpdC1zdG9yZS1pbmZvLW1vZGFsLmNvbXBvbmVudC5jc3MiLCJzb3VyY2VzQ29udGVudCI6WyIubmctaW52YWxpZDpub3QoZm9ybSkgIHtcclxuICAgIGJvcmRlci1sZWZ0OiA1cHggc29saWQgI2E5NDQ0MjtcclxufSJdfQ== */");
+/* harmony default export */ __webpack_exports__["default"] = (".ng-invalid:not(form)  {\r\n    border-left: 5px solid #a94442;\r\n}\r\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbImFwcC9tb2RhbC9zdG9yZS9lZGl0LXN0b3JlLWluZm8tbW9kYWwvZWRpdC1zdG9yZS1pbmZvLW1vZGFsLmNvbXBvbmVudC5jc3MiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUE7SUFDSSw4QkFBOEI7QUFDbEMiLCJmaWxlIjoiYXBwL21vZGFsL3N0b3JlL2VkaXQtc3RvcmUtaW5mby1tb2RhbC9lZGl0LXN0b3JlLWluZm8tbW9kYWwuY29tcG9uZW50LmNzcyIsInNvdXJjZXNDb250ZW50IjpbIi5uZy1pbnZhbGlkOm5vdChmb3JtKSAge1xyXG4gICAgYm9yZGVyLWxlZnQ6IDVweCBzb2xpZCAjYTk0NDQyO1xyXG59Il19 */");
 
 /***/ }),
 
@@ -3587,7 +3801,7 @@ EditStoreInfoModalComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = (".my-custom-scrollbar {\r\n  position: relative;\r\n  height: 450px;\r\n  overflow: auto;\r\n}\r\n\r\n.table-wrapper-scroll-y {\r\n  display: block;\r\n}\r\n\r\n.drop-box {\r\n  cursor: pointer;\r\n  background: #F8F8F8;\r\n  border: 5px dashed #DDD;\r\n  text-align: center;\r\n  padding: 40px;\r\n}\r\n\r\n.drag-over-title {\r\n  display: none;\r\n}\r\n\r\n.drop-box.dragover {\r\n  opacity: 0.6;\r\n}\r\n\r\n.drop-box.dragover .drag-over-title {\r\n  display: block;\r\n}\r\n\r\n.drop-box.dragover .drag-in-title {\r\n  display: none;\r\n}\r\n\r\ninput[type='file'] {\r\n  display: none;\r\n}\r\n\r\np { display: inline }\r\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIm1vZGFsL3VwbG9hZC1wcm9kdWN0LWZpbGUtbW9kYWwvdXBsb2FkLXByb2R1Y3QtZmlsZS1tb2RhbC5jb21wb25lbnQuY3NzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBO0VBQ0Usa0JBQWtCO0VBQ2xCLGFBQWE7RUFDYixjQUFjO0FBQ2hCOztBQUVBO0VBQ0UsY0FBYztBQUNoQjs7QUFFQTtFQUNFLGVBQWU7RUFDZixtQkFBbUI7RUFDbkIsdUJBQXVCO0VBQ3ZCLGtCQUFrQjtFQUNsQixhQUFhO0FBQ2Y7O0FBRUE7RUFDRSxhQUFhO0FBQ2Y7O0FBRUE7RUFDRSxZQUFZO0FBQ2Q7O0FBRUE7RUFDRSxjQUFjO0FBQ2hCOztBQUVBO0VBQ0UsYUFBYTtBQUNmOztBQUVBO0VBQ0UsYUFBYTtBQUNmOztBQUVBLElBQUksZ0JBQWdCIiwiZmlsZSI6Im1vZGFsL3VwbG9hZC1wcm9kdWN0LWZpbGUtbW9kYWwvdXBsb2FkLXByb2R1Y3QtZmlsZS1tb2RhbC5jb21wb25lbnQuY3NzIiwic291cmNlc0NvbnRlbnQiOlsiLm15LWN1c3RvbS1zY3JvbGxiYXIge1xyXG4gIHBvc2l0aW9uOiByZWxhdGl2ZTtcclxuICBoZWlnaHQ6IDQ1MHB4O1xyXG4gIG92ZXJmbG93OiBhdXRvO1xyXG59XHJcblxyXG4udGFibGUtd3JhcHBlci1zY3JvbGwteSB7XHJcbiAgZGlzcGxheTogYmxvY2s7XHJcbn1cclxuXHJcbi5kcm9wLWJveCB7XHJcbiAgY3Vyc29yOiBwb2ludGVyO1xyXG4gIGJhY2tncm91bmQ6ICNGOEY4Rjg7XHJcbiAgYm9yZGVyOiA1cHggZGFzaGVkICNEREQ7XHJcbiAgdGV4dC1hbGlnbjogY2VudGVyO1xyXG4gIHBhZGRpbmc6IDQwcHg7XHJcbn1cclxuICBcclxuLmRyYWctb3Zlci10aXRsZSB7XHJcbiAgZGlzcGxheTogbm9uZTtcclxufVxyXG4gIFxyXG4uZHJvcC1ib3guZHJhZ292ZXIge1xyXG4gIG9wYWNpdHk6IDAuNjtcclxufVxyXG4gIFxyXG4uZHJvcC1ib3guZHJhZ292ZXIgLmRyYWctb3Zlci10aXRsZSB7XHJcbiAgZGlzcGxheTogYmxvY2s7XHJcbn1cclxuICBcclxuLmRyb3AtYm94LmRyYWdvdmVyIC5kcmFnLWluLXRpdGxlIHtcclxuICBkaXNwbGF5OiBub25lO1xyXG59XHJcbiAgXHJcbmlucHV0W3R5cGU9J2ZpbGUnXSB7XHJcbiAgZGlzcGxheTogbm9uZTtcclxufVxyXG5cclxucCB7IGRpc3BsYXk6IGlubGluZSB9Il19 */");
+/* harmony default export */ __webpack_exports__["default"] = (".my-custom-scrollbar {\r\n  position: relative;\r\n  height: 450px;\r\n  overflow: auto;\r\n}\r\n\r\n.table-wrapper-scroll-y {\r\n  display: block;\r\n}\r\n\r\n.drop-box {\r\n  cursor: pointer;\r\n  background: #F8F8F8;\r\n  border: 5px dashed #DDD;\r\n  text-align: center;\r\n  padding: 40px;\r\n}\r\n\r\n.drag-over-title {\r\n  display: none;\r\n}\r\n\r\n.drop-box.dragover {\r\n  opacity: 0.6;\r\n}\r\n\r\n.drop-box.dragover .drag-over-title {\r\n  display: block;\r\n}\r\n\r\n.drop-box.dragover .drag-in-title {\r\n  display: none;\r\n}\r\n\r\ninput[type='file'] {\r\n  display: none;\r\n}\r\n\r\np { display: inline }\r\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbImFwcC9tb2RhbC91cGxvYWQtcHJvZHVjdC1maWxlLW1vZGFsL3VwbG9hZC1wcm9kdWN0LWZpbGUtbW9kYWwuY29tcG9uZW50LmNzcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQTtFQUNFLGtCQUFrQjtFQUNsQixhQUFhO0VBQ2IsY0FBYztBQUNoQjs7QUFFQTtFQUNFLGNBQWM7QUFDaEI7O0FBRUE7RUFDRSxlQUFlO0VBQ2YsbUJBQW1CO0VBQ25CLHVCQUF1QjtFQUN2QixrQkFBa0I7RUFDbEIsYUFBYTtBQUNmOztBQUVBO0VBQ0UsYUFBYTtBQUNmOztBQUVBO0VBQ0UsWUFBWTtBQUNkOztBQUVBO0VBQ0UsY0FBYztBQUNoQjs7QUFFQTtFQUNFLGFBQWE7QUFDZjs7QUFFQTtFQUNFLGFBQWE7QUFDZjs7QUFFQSxJQUFJLGdCQUFnQiIsImZpbGUiOiJhcHAvbW9kYWwvdXBsb2FkLXByb2R1Y3QtZmlsZS1tb2RhbC91cGxvYWQtcHJvZHVjdC1maWxlLW1vZGFsLmNvbXBvbmVudC5jc3MiLCJzb3VyY2VzQ29udGVudCI6WyIubXktY3VzdG9tLXNjcm9sbGJhciB7XHJcbiAgcG9zaXRpb246IHJlbGF0aXZlO1xyXG4gIGhlaWdodDogNDUwcHg7XHJcbiAgb3ZlcmZsb3c6IGF1dG87XHJcbn1cclxuXHJcbi50YWJsZS13cmFwcGVyLXNjcm9sbC15IHtcclxuICBkaXNwbGF5OiBibG9jaztcclxufVxyXG5cclxuLmRyb3AtYm94IHtcclxuICBjdXJzb3I6IHBvaW50ZXI7XHJcbiAgYmFja2dyb3VuZDogI0Y4RjhGODtcclxuICBib3JkZXI6IDVweCBkYXNoZWQgI0RERDtcclxuICB0ZXh0LWFsaWduOiBjZW50ZXI7XHJcbiAgcGFkZGluZzogNDBweDtcclxufVxyXG4gIFxyXG4uZHJhZy1vdmVyLXRpdGxlIHtcclxuICBkaXNwbGF5OiBub25lO1xyXG59XHJcbiAgXHJcbi5kcm9wLWJveC5kcmFnb3ZlciB7XHJcbiAgb3BhY2l0eTogMC42O1xyXG59XHJcbiAgXHJcbi5kcm9wLWJveC5kcmFnb3ZlciAuZHJhZy1vdmVyLXRpdGxlIHtcclxuICBkaXNwbGF5OiBibG9jaztcclxufVxyXG4gIFxyXG4uZHJvcC1ib3guZHJhZ292ZXIgLmRyYWctaW4tdGl0bGUge1xyXG4gIGRpc3BsYXk6IG5vbmU7XHJcbn1cclxuICBcclxuaW5wdXRbdHlwZT0nZmlsZSddIHtcclxuICBkaXNwbGF5OiBub25lO1xyXG59XHJcblxyXG5wIHsgZGlzcGxheTogaW5saW5lIH0iXX0= */");
 
 /***/ }),
 
@@ -4129,6 +4343,62 @@ class AdminSetting {
 
 /***/ }),
 
+/***/ "./src/app/model/admin/user/LoggedUser.ts":
+/*!************************************************!*\
+  !*** ./src/app/model/admin/user/LoggedUser.ts ***!
+  \************************************************/
+/*! exports provided: LoggedUser */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "LoggedUser", function() { return LoggedUser; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
+/* harmony import */ var _SessionInfo__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./SessionInfo */ "./src/app/model/admin/user/SessionInfo.ts");
+
+
+class LoggedUser {
+    constructor() {
+        this.sessions = [];
+    }
+    static fromJson(data) {
+        let loggedUser = new LoggedUser();
+        loggedUser.username = data.username;
+        for (let sessionInfo of data.sessionsInfo) {
+            loggedUser.sessions.push(_SessionInfo__WEBPACK_IMPORTED_MODULE_1__["SessionInfo"].fromJson(sessionInfo));
+        }
+        return loggedUser;
+    }
+}
+
+
+/***/ }),
+
+/***/ "./src/app/model/admin/user/SessionInfo.ts":
+/*!*************************************************!*\
+  !*** ./src/app/model/admin/user/SessionInfo.ts ***!
+  \*************************************************/
+/*! exports provided: SessionInfo */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "SessionInfo", function() { return SessionInfo; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
+
+class SessionInfo {
+    constructor() { }
+    static fromJson(data) {
+        let session = new SessionInfo();
+        session.sessionId = data.sessionId;
+        session.lastLoginDatetime = new Date(data.lastLoginDatetime);
+        return session;
+    }
+}
+
+
+/***/ }),
+
 /***/ "./src/app/model/monitoring/actuator/ActuatorBasicResponse.ts":
 /*!********************************************************************!*\
   !*** ./src/app/model/monitoring/actuator/ActuatorBasicResponse.ts ***!
@@ -4421,7 +4691,7 @@ class OpenClosedOrdersCounter {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = (".center {\r\n    display: block;\r\n    margin-left: auto;\r\n    margin-right: auto;\r\n    width: 50%;\r\n}\r\n\r\nh1 {\r\n    font-size: 400%;\r\n    text-align: center\r\n}\r\n\r\nh4 {\r\n    text-align: center\r\n}\r\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIm1vbml0b3JpbmcvZGFzaGJvYXJkL2Rhc2hib2FyZC5jb21wb25lbnQuY3NzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBO0lBQ0ksY0FBYztJQUNkLGlCQUFpQjtJQUNqQixrQkFBa0I7SUFDbEIsVUFBVTtBQUNkOztBQUVBO0lBQ0ksZUFBZTtJQUNmO0FBQ0o7O0FBQ0E7SUFDSTtBQUNKIiwiZmlsZSI6Im1vbml0b3JpbmcvZGFzaGJvYXJkL2Rhc2hib2FyZC5jb21wb25lbnQuY3NzIiwic291cmNlc0NvbnRlbnQiOlsiLmNlbnRlciB7XHJcbiAgICBkaXNwbGF5OiBibG9jaztcclxuICAgIG1hcmdpbi1sZWZ0OiBhdXRvO1xyXG4gICAgbWFyZ2luLXJpZ2h0OiBhdXRvO1xyXG4gICAgd2lkdGg6IDUwJTtcclxufVxyXG5cclxuaDEge1xyXG4gICAgZm9udC1zaXplOiA0MDAlO1xyXG4gICAgdGV4dC1hbGlnbjogY2VudGVyXHJcbn1cclxuaDQge1xyXG4gICAgdGV4dC1hbGlnbjogY2VudGVyXHJcbn0iXX0= */");
+/* harmony default export */ __webpack_exports__["default"] = (".center {\r\n    display: block;\r\n    margin-left: auto;\r\n    margin-right: auto;\r\n    width: 50%;\r\n}\r\n\r\nh1 {\r\n    font-size: 400%;\r\n    text-align: center\r\n}\r\n\r\nh4 {\r\n    text-align: center\r\n}\r\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbImFwcC9tb25pdG9yaW5nL2Rhc2hib2FyZC9kYXNoYm9hcmQuY29tcG9uZW50LmNzcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQTtJQUNJLGNBQWM7SUFDZCxpQkFBaUI7SUFDakIsa0JBQWtCO0lBQ2xCLFVBQVU7QUFDZDs7QUFFQTtJQUNJLGVBQWU7SUFDZjtBQUNKOztBQUNBO0lBQ0k7QUFDSiIsImZpbGUiOiJhcHAvbW9uaXRvcmluZy9kYXNoYm9hcmQvZGFzaGJvYXJkLmNvbXBvbmVudC5jc3MiLCJzb3VyY2VzQ29udGVudCI6WyIuY2VudGVyIHtcclxuICAgIGRpc3BsYXk6IGJsb2NrO1xyXG4gICAgbWFyZ2luLWxlZnQ6IGF1dG87XHJcbiAgICBtYXJnaW4tcmlnaHQ6IGF1dG87XHJcbiAgICB3aWR0aDogNTAlO1xyXG59XHJcblxyXG5oMSB7XHJcbiAgICBmb250LXNpemU6IDQwMCU7XHJcbiAgICB0ZXh0LWFsaWduOiBjZW50ZXJcclxufVxyXG5oNCB7XHJcbiAgICB0ZXh0LWFsaWduOiBjZW50ZXJcclxufSJdfQ== */");
 
 /***/ }),
 
@@ -4562,7 +4832,7 @@ DashboardComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = (".table tr.active td {\r\n    background-color:#275e94 !important;\r\n    color: white;\r\n    font-weight: bold;\r\n    white-space: nowrap;\r\n  }\r\n\r\n.table table-striped tr td {\r\n  padding: 1.5%;\r\n}\r\n\r\n/* Scroll Bar Aggregated Order Item table */\r\n\r\n.my-custom-scrollbar {\r\n  position: relative;\r\n  max-height: 450px;\r\n  overflow: auto;\r\n}\r\n\r\n.table-wrapper-scroll-y {\r\n  display: block;\r\n}\r\n\r\n\r\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIm9yZGVyLXBhbmVsL2xpc3Qtb3JkZXItaXRlbS9saXN0LW9yZGVyLWl0ZW0uY29tcG9uZW50LmNzcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQTtJQUNJLG1DQUFtQztJQUNuQyxZQUFZO0lBQ1osaUJBQWlCO0lBQ2pCLG1CQUFtQjtFQUNyQjs7QUFFRjtFQUNFLGFBQWE7QUFDZjs7QUFFQSwyQ0FBMkM7O0FBQzNDO0VBQ0Usa0JBQWtCO0VBQ2xCLGlCQUFpQjtFQUNqQixjQUFjO0FBQ2hCOztBQUVBO0VBQ0UsY0FBYztBQUNoQiIsImZpbGUiOiJvcmRlci1wYW5lbC9saXN0LW9yZGVyLWl0ZW0vbGlzdC1vcmRlci1pdGVtLmNvbXBvbmVudC5jc3MiLCJzb3VyY2VzQ29udGVudCI6WyIudGFibGUgdHIuYWN0aXZlIHRkIHtcclxuICAgIGJhY2tncm91bmQtY29sb3I6IzI3NWU5NCAhaW1wb3J0YW50O1xyXG4gICAgY29sb3I6IHdoaXRlO1xyXG4gICAgZm9udC13ZWlnaHQ6IGJvbGQ7XHJcbiAgICB3aGl0ZS1zcGFjZTogbm93cmFwO1xyXG4gIH1cclxuXHJcbi50YWJsZSB0YWJsZS1zdHJpcGVkIHRyIHRkIHtcclxuICBwYWRkaW5nOiAxLjUlO1xyXG59XHJcblxyXG4vKiBTY3JvbGwgQmFyIEFnZ3JlZ2F0ZWQgT3JkZXIgSXRlbSB0YWJsZSAqL1xyXG4ubXktY3VzdG9tLXNjcm9sbGJhciB7XHJcbiAgcG9zaXRpb246IHJlbGF0aXZlO1xyXG4gIG1heC1oZWlnaHQ6IDQ1MHB4O1xyXG4gIG92ZXJmbG93OiBhdXRvO1xyXG59XHJcblxyXG4udGFibGUtd3JhcHBlci1zY3JvbGwteSB7XHJcbiAgZGlzcGxheTogYmxvY2s7XHJcbn1cclxuXHJcbiJdfQ== */");
+/* harmony default export */ __webpack_exports__["default"] = (".table tr.active td {\r\n    background-color:#275e94 !important;\r\n    color: white;\r\n    font-weight: bold;\r\n    white-space: nowrap;\r\n  }\r\n\r\n.table table-striped tr td {\r\n  padding: 1.5%;\r\n}\r\n\r\n/* Scroll Bar Aggregated Order Item table */\r\n\r\n.my-custom-scrollbar {\r\n  position: relative;\r\n  max-height: 450px;\r\n  overflow: auto;\r\n}\r\n\r\n.table-wrapper-scroll-y {\r\n  display: block;\r\n}\r\n\r\n\r\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbImFwcC9vcmRlci1wYW5lbC9saXN0LW9yZGVyLWl0ZW0vbGlzdC1vcmRlci1pdGVtLmNvbXBvbmVudC5jc3MiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUE7SUFDSSxtQ0FBbUM7SUFDbkMsWUFBWTtJQUNaLGlCQUFpQjtJQUNqQixtQkFBbUI7RUFDckI7O0FBRUY7RUFDRSxhQUFhO0FBQ2Y7O0FBRUEsMkNBQTJDOztBQUMzQztFQUNFLGtCQUFrQjtFQUNsQixpQkFBaUI7RUFDakIsY0FBYztBQUNoQjs7QUFFQTtFQUNFLGNBQWM7QUFDaEIiLCJmaWxlIjoiYXBwL29yZGVyLXBhbmVsL2xpc3Qtb3JkZXItaXRlbS9saXN0LW9yZGVyLWl0ZW0uY29tcG9uZW50LmNzcyIsInNvdXJjZXNDb250ZW50IjpbIi50YWJsZSB0ci5hY3RpdmUgdGQge1xyXG4gICAgYmFja2dyb3VuZC1jb2xvcjojMjc1ZTk0ICFpbXBvcnRhbnQ7XHJcbiAgICBjb2xvcjogd2hpdGU7XHJcbiAgICBmb250LXdlaWdodDogYm9sZDtcclxuICAgIHdoaXRlLXNwYWNlOiBub3dyYXA7XHJcbiAgfVxyXG5cclxuLnRhYmxlIHRhYmxlLXN0cmlwZWQgdHIgdGQge1xyXG4gIHBhZGRpbmc6IDEuNSU7XHJcbn1cclxuXHJcbi8qIFNjcm9sbCBCYXIgQWdncmVnYXRlZCBPcmRlciBJdGVtIHRhYmxlICovXHJcbi5teS1jdXN0b20tc2Nyb2xsYmFyIHtcclxuICBwb3NpdGlvbjogcmVsYXRpdmU7XHJcbiAgbWF4LWhlaWdodDogNDUwcHg7XHJcbiAgb3ZlcmZsb3c6IGF1dG87XHJcbn1cclxuXHJcbi50YWJsZS13cmFwcGVyLXNjcm9sbC15IHtcclxuICBkaXNwbGF5OiBibG9jaztcclxufVxyXG5cclxuIl19 */");
 
 /***/ }),
 
@@ -4733,7 +5003,7 @@ ListOrderItemComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("/* Scroll Bar Aggregated Order Item table */\r\n.my-custom-scrollbar {\r\n    position: relative;\r\n    max-height: 200px;\r\n    overflow: auto;\r\n  }\r\n.table-wrapper-scroll-y {\r\n    display: block;\r\n  }\r\n  \r\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIm9yZGVyLXBhbmVsL3NlbGVjdGVkLW9yZGVyLWl0ZW1zLWxpc3Qvc2VsZWN0ZWQtb3JkZXItaXRlbXMtbGlzdC5jb21wb25lbnQuY3NzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBLDJDQUEyQztBQUMzQztJQUNJLGtCQUFrQjtJQUNsQixpQkFBaUI7SUFDakIsY0FBYztFQUNoQjtBQUVBO0lBQ0UsY0FBYztFQUNoQiIsImZpbGUiOiJvcmRlci1wYW5lbC9zZWxlY3RlZC1vcmRlci1pdGVtcy1saXN0L3NlbGVjdGVkLW9yZGVyLWl0ZW1zLWxpc3QuY29tcG9uZW50LmNzcyIsInNvdXJjZXNDb250ZW50IjpbIi8qIFNjcm9sbCBCYXIgQWdncmVnYXRlZCBPcmRlciBJdGVtIHRhYmxlICovXHJcbi5teS1jdXN0b20tc2Nyb2xsYmFyIHtcclxuICAgIHBvc2l0aW9uOiByZWxhdGl2ZTtcclxuICAgIG1heC1oZWlnaHQ6IDIwMHB4O1xyXG4gICAgb3ZlcmZsb3c6IGF1dG87XHJcbiAgfVxyXG4gIFxyXG4gIC50YWJsZS13cmFwcGVyLXNjcm9sbC15IHtcclxuICAgIGRpc3BsYXk6IGJsb2NrO1xyXG4gIH1cclxuICAiXX0= */");
+/* harmony default export */ __webpack_exports__["default"] = ("/* Scroll Bar Aggregated Order Item table */\r\n.my-custom-scrollbar {\r\n    position: relative;\r\n    max-height: 200px;\r\n    overflow: auto;\r\n  }\r\n.table-wrapper-scroll-y {\r\n    display: block;\r\n  }\r\n  \r\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbImFwcC9vcmRlci1wYW5lbC9zZWxlY3RlZC1vcmRlci1pdGVtcy1saXN0L3NlbGVjdGVkLW9yZGVyLWl0ZW1zLWxpc3QuY29tcG9uZW50LmNzcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQSwyQ0FBMkM7QUFDM0M7SUFDSSxrQkFBa0I7SUFDbEIsaUJBQWlCO0lBQ2pCLGNBQWM7RUFDaEI7QUFFQTtJQUNFLGNBQWM7RUFDaEIiLCJmaWxlIjoiYXBwL29yZGVyLXBhbmVsL3NlbGVjdGVkLW9yZGVyLWl0ZW1zLWxpc3Qvc2VsZWN0ZWQtb3JkZXItaXRlbXMtbGlzdC5jb21wb25lbnQuY3NzIiwic291cmNlc0NvbnRlbnQiOlsiLyogU2Nyb2xsIEJhciBBZ2dyZWdhdGVkIE9yZGVyIEl0ZW0gdGFibGUgKi9cclxuLm15LWN1c3RvbS1zY3JvbGxiYXIge1xyXG4gICAgcG9zaXRpb246IHJlbGF0aXZlO1xyXG4gICAgbWF4LWhlaWdodDogMjAwcHg7XHJcbiAgICBvdmVyZmxvdzogYXV0bztcclxuICB9XHJcbiAgXHJcbiAgLnRhYmxlLXdyYXBwZXItc2Nyb2xsLXkge1xyXG4gICAgZGlzcGxheTogYmxvY2s7XHJcbiAgfVxyXG4gICJdfQ== */");
 
 /***/ }),
 
@@ -4851,7 +5121,7 @@ SelectedOrderItemsListComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJvcmRlci1wYW5lbC9zaG93LW9yZGVyLWhlYWRlci9zaG93LW9yZGVyLWhlYWRlci5jb21wb25lbnQuY3NzIn0= */");
+/* harmony default export */ __webpack_exports__["default"] = ("\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJhcHAvb3JkZXItcGFuZWwvc2hvdy1vcmRlci1oZWFkZXIvc2hvdy1vcmRlci1oZWFkZXIuY29tcG9uZW50LmNzcyJ9 */");
 
 /***/ }),
 
@@ -4949,7 +5219,7 @@ OrderHeaderComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJvcmRlci1wYW5lbC9zaG93LW9yZGVyL3Nob3ctb3JkZXIuY29tcG9uZW50LmNzcyJ9 */");
+/* harmony default export */ __webpack_exports__["default"] = ("\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJhcHAvb3JkZXItcGFuZWwvc2hvdy1vcmRlci9zaG93LW9yZGVyLmNvbXBvbmVudC5jc3MifQ== */");
 
 /***/ }),
 
@@ -5032,7 +5302,7 @@ ShowOrderComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJvcmRlcnMtbWFuYWdlci1wYW5lbC9saXN0LW9yZGVycy9saXN0LW9yZGVycy5jb21wb25lbnQuY3NzIn0= */");
+/* harmony default export */ __webpack_exports__["default"] = ("\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJhcHAvb3JkZXJzLW1hbmFnZXItcGFuZWwvbGlzdC1vcmRlcnMvbGlzdC1vcmRlcnMuY29tcG9uZW50LmNzcyJ9 */");
 
 /***/ }),
 
@@ -5122,7 +5392,7 @@ ListOrdersComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJvcmRlcnMtbWFuYWdlci1wYW5lbC9vcmRlcnMtbWFuYWdlci9vcmRlcnMtbWFuYWdlci5jb21wb25lbnQuY3NzIn0= */");
+/* harmony default export */ __webpack_exports__["default"] = ("\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJhcHAvb3JkZXJzLW1hbmFnZXItcGFuZWwvb3JkZXJzLW1hbmFnZXIvb3JkZXJzLW1hbmFnZXIuY29tcG9uZW50LmNzcyJ9 */");
 
 /***/ }),
 
@@ -5228,7 +5498,7 @@ OrdersManagerComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJwcm9kdWN0L3Byb2R1Y3RzLXBhbmVsL3Byb2R1Y3RzLXBhbmVsLmNvbXBvbmVudC5jc3MifQ== */");
+/* harmony default export */ __webpack_exports__["default"] = ("\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJhcHAvcHJvZHVjdC9wcm9kdWN0cy1wYW5lbC9wcm9kdWN0cy1wYW5lbC5jb21wb25lbnQuY3NzIn0= */");
 
 /***/ }),
 
@@ -5388,6 +5658,7 @@ let HttpService = class HttpService {
     }
     post(url, body, options) {
         const req = this.http.post(url, body, options != null ? options : this.getHeaders());
+        alert(JSON.stringify(options));
         return req;
     }
     delete(url) {
@@ -5449,11 +5720,19 @@ let LoginService = class LoginService {
         let options = {
             headers: httpHeaders
         };
+        alert(JSON.stringify(options));
         return this.httpApi.get("/user", options);
     }
     logout() {
         window.sessionStorage.removeItem('username');
-        return this.httpApi.get("/logout");
+        let httpHeaders = new _angular_common_http__WEBPACK_IMPORTED_MODULE_3__["HttpHeaders"]()
+            .set('Content-Type', 'application/json')
+            .set('Authorization', 'Basic ' + btoa('admin:admin'));
+        let options = {
+            headers: httpHeaders
+        };
+        return this.httpApi.post("/logout", "", options);
+        this.setUserLoggedIn(false, 'admin');
     }
     isUserLoggedIn() {
         return sessionStorage.getItem('username') != null;
@@ -5464,6 +5743,9 @@ let LoginService = class LoginService {
     }
     getUserLoggedObservable() {
         return this.userLogged.asObservable();
+    }
+    getLoggedUsers() {
+        return this.httpApi.get("/v1/user/loggedUsers");
     }
 };
 LoginService.ctorParameters = () => [
@@ -5691,6 +5973,9 @@ let OrdersStatisticService = class OrdersStatisticService {
     }
     getOpenClosedOrdersOfStore(storeId) {
         return this.httpApi.get(this.ORDERS_STATISTIC_URL + "/openClosedByStore/" + storeId);
+    }
+    getLastOrdersOfStore(storeId, lastOrderNb) {
+        return this.httpApi.get(this.ORDERS_STATISTIC_URL + "/lastOrdersByStore/" + storeId + '/' + lastOrderNb);
     }
 };
 OrdersStatisticService.ctorParameters = () => [

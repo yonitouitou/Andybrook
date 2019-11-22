@@ -13,6 +13,7 @@ export class HttpService {
 
     post(url: string, body: any, options?) : Observable<any> {
         const req = this.http.post(url, body, options != null ? options : this.getHeaders());
+        alert(JSON.stringify(options))
         return req;
     }
 
@@ -29,7 +30,7 @@ export class HttpService {
             .set('Content-Type', 'application/json')
         let options = {
             headers: httpHeaders
-        }; 
+        };
         return options
     }
 }

@@ -15,4 +15,16 @@ public final class Arg {
             throw new IllegalArgumentException(errMsg);
         }
     }
+
+    public static void requireStrictPositiveNumber(int nb) {
+        if (nb <= 0) {
+            throw new IllegalArgumentException("The argument must be a strict positive number");
+        }
+    }
+
+    public static void requireStrictPositiveNumber(long nb) {
+        if (nb > 0) {
+            throw new IllegalArgumentException("The argument must be a strict positive number");
+        }
+    }
 }

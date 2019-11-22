@@ -1,6 +1,7 @@
 package com.andybrook.api.rest;
 
 import com.andybrook.manager.statistic.IOrdersStatisticManager;
+import com.andybrook.model.statistic.order.AmountAndProductsOrdersSet;
 import com.andybrook.model.statistic.order.OpenClosedOrdersCounter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -18,5 +19,10 @@ public class OrdersStatisticController {
     @GetMapping(path = "/openClosedByStore/{storeId}")
     public OpenClosedOrdersCounter openClosedOrdersOfStoreCounter(@PathVariable Long storeId) {
         return ordersStatisticManager.getOpenClosedOrdersCounterByStore(storeId);
+    }
+
+    @GetMapping(path = "/lastOrdersByStore/{storeId}/{lastOrderNb}")
+    public AmountAndProductsOrdersSet openClosedOrdersOfStoreCounter(@PathVariable Long storeId, @PathVariable Integer lastOrderNb) {
+        return ordersStatisticManager.getLastAmountOrders(storeId, lastOrderNb);
     }
 }

@@ -87,6 +87,12 @@ public class OrderDao implements IOrderDao {
     }
 
     @Override
+    public List<Order> getLastOrdersOfStore(long storeId, int lastOrderNb) {
+        List<OrderEntity> entities = repository.getLastOrdersByStore(storeId, lastOrderNb);
+        return toOrders(entities);
+    }
+
+    @Override
     public List<Order> getByName(String name) {
         List<OrderEntity> ordersEntity = repository.findByName(name);
         return toOrders(ordersEntity);

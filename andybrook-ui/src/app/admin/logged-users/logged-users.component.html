@@ -1,0 +1,22 @@
+<div class="container">
+  <div *ngFor="let user of loggedUsers">
+    <h5>{{ user.username }} :</h5>
+    <table class="table table-responsive table-striped table-hover">
+      <thead>
+      <tr>
+        <th>#</th>
+        <th>Session ID</th>
+        <th>Last Login</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let session of user.sessions; let i = index">
+        <td>{{ i+1 }}</td>
+        <td>{{ session.sessionId }}</td>
+        <td>{{ session.lastLoginDatetime }}</td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+<br>

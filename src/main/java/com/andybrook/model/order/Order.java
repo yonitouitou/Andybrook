@@ -71,6 +71,21 @@ public class Order {
         return items.values().size();
     }
 
+    public long getDistinctProductQty() {
+        return items.values()
+                .stream()
+                .map(OrderItem::getProductId)
+                .distinct()
+                .count();
+    }
+
+    public double getTotalAmount() {
+        return items.values()
+                .stream()
+                .mapToDouble(OrderItem::getProductPrice)
+                .sum();
+    }
+
     public double calculateTotalPrice() {
         return items.values().stream()
                 .mapToDouble(OrderItem::getProductPrice)

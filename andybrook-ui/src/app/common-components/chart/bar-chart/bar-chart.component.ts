@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input, OnChanges } from '@angular/core';
 import { ChartOptions, ChartType, ChartDataSets } from 'chart.js';
 import { Label } from 'ng2-charts';
 import * as pluginDataLabels from 'chartjs-plugin-datalabels';
@@ -8,7 +8,19 @@ import * as pluginDataLabels from 'chartjs-plugin-datalabels';
   templateUrl: './bar-chart.component.html',
   styleUrls: ['./bar-chart.component.css']
 })
-export class BarChartComponent implements OnInit {
+export class BarChartComponent implements OnChanges {
+
+  //public barChartLabels: Label[] = ['2006', '2007', '2008', '2009', '2010', '2011', '2012'];
+  @Input() barChartLabels: Label[] = [];
+  @Input() barChartData: ChartDataSets[] = []
+  @Input() withBarLegend: boolean = false
+  private isReady: boolean = false
+
+  constructor() { }
+
+  ngOnChanges() {
+    this.isReady = true
+  }
 
   public barChartOptions: ChartOptions = {
     responsive: true,
@@ -21,20 +33,21 @@ export class BarChartComponent implements OnInit {
       }
     }
   };
-  public barChartLabels: Label[] = ['2006', '2007', '2008', '2009', '2010', '2011', '2012'];
+
+  public barChartColors: Array<any> = [
+    {
+      backgroundColor: ['DarkTurquoise']
+    }
+]
+  
   public barChartType: ChartType = 'bar';
-  public barChartLegend = true;
+  public barChartLegend = this.withBarLegend;
   public barChartPlugins = [pluginDataLabels];
 
-  public barChartData: ChartDataSets[] = [
+  /*public barChartData: ChartDataSets[] = [
     { data: [65, 59, 80, 81, 56, 55, 40], label: 'Series A' },
     { data: [28, 48, 40, 19, 86, 27, 90], label: 'Series B' }
-  ];
-
-  constructor() { }
-
-  ngOnInit() {
-  }
+  ];*/
 
   // events
   public chartClicked({ event, active }: { event: MouseEvent, active: {}[] }): void {
@@ -44,18 +57,4 @@ export class BarChartComponent implements OnInit {
   public chartHovered({ event, active }: { event: MouseEvent, active: {}[] }): void {
     console.log(event, active);
   }
-
-  public randomize(): void {
-    // Only Change 3 values
-    const data = [
-      Math.round(Math.random() * 100),
-      59,
-      80,
-      (Math.random() * 100),
-      56,
-      (Math.random() * 100),
-      40];
-    this.barChartData[0].data = data;
-  }
-
 }

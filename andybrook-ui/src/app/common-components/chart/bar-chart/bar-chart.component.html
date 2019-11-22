@@ -1,15 +1,17 @@
 <div>
     <div>
-        <div style="display: block">
-        <canvas baseChart
-            [datasets]="barChartData"
-            [labels]="barChartLabels"
-            [options]="barChartOptions"
-            [plugins]="barChartPlugins"
-            [legend]="barChartLegend"
-            [chartType]="barChartType">
-        </canvas>
+        <div *ngIf="isReady" style="display: block">
+            <canvas baseChart
+                [datasets]="barChartData"
+                [labels]="barChartLabels"
+                [options]="barChartOptions"
+                [plugins]="barChartPlugins"
+                [legend]="barChartLegend"
+                [chartType]="barChartType"
+                [colors]="barChartColors"
+                >
+            </canvas>
         </div>
-        <button mat-button mat-raised-button color="primary" (click)="randomize()">Update</button>
+        <img *ngIf="!isReady" src="../../../../assets/icon/LoadingGrey.gif">
     </div>
 </div>
