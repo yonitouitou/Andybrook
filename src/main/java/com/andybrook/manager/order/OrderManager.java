@@ -48,6 +48,16 @@ public class OrderManager implements IOrderManager {
     }
 
     @Override
+    public AggregatedOrder aggregate(Order order) {
+        return orderService.aggregate(order);
+    }
+
+    @Override
+    public AggregatedOrder aggregate(long orderId) {
+        return orderService.aggregate(orderId);
+    }
+
+    @Override
     public List<Order> getOrdersByNameContaining(String name) {
         return orderService.getOrderByNameContaining(name);
     }

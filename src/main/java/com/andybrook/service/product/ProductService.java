@@ -1,9 +1,11 @@
 package com.andybrook.service.product;
 
 import com.andybrook.dao.product.IProductDao;
-import com.andybrook.exception.ProductNotFound;
+import com.andybrook.model.BarCode;
 import com.andybrook.model.product.Product;
+import com.andybrook.model.product.ProductId;
 import com.andybrook.service.stock.IProductStockInfoService;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -16,18 +18,24 @@ public class ProductService implements IProductService {
     @Autowired
     private IProductDao dao;
     @Autowired
-    private IBarCodeService barCodeService;
-    @Autowired
     private IProductStockInfoService productStockInfoService;
 
     @Override
-    public Product get(long id) throws ProductNotFound {
-        Product product;
+    public Product get(ProductId id) {
+        Product product = null;
         Optional<Product> productOpt = dao.get(id);
         if (productOpt.isPresent()) {
             product = productOpt.get();
-        } else {
-            throw new ProductNotFound(id);
+        }
+        return product;
+    }
+
+    @Override
+    public Product getByBarCode(BarCode barCode) {
+        Product product = null;
+        Optional<Product> productOpt = dao.getByBarCode(barCode);
+        if (productOpt.isPresent()) {
+            product = productOpt.get();
         }
         return product;
     }
@@ -38,29 +46,18 @@ public class ProductService implements IProductService {
     }
 
     @Override
-    public boolean isExist(long id) {
+    public boolean isExist(ProductId id) {
         return dao.isExist(id);
     }
 
     @Override
-    public Product getByBarCode(String barCodeId) {
-        return barCodeService.getProduct(barCodeId);
-    }
-
-    @Override
-    public Product update(Product product) {
-        return dao.save(product);
-    }
-
-    @Override
-    public List<? extends Product> getByNameContaining(String subName) {
+    public List<Product> getByNameContaining(String subName) {
         return dao.getByNameContaining(subName);
     }
 
     @Override
-    public Product addProduct(Product product) {
-        Product productAdded = dao.update(product);
-        productStockInfoService.add(productAdded.getId());
-        return productAdded;
+    public void add(Product product) {
+        dao.save(product);
+        productStockInfoService.add(product.getId());
     }
 }

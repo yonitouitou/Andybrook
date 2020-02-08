@@ -29,7 +29,8 @@ public class OrdersStatisticService implements IOrdersStatisticService {
         AmountAndProductsOrdersSet set = new AmountAndProductsOrdersSet();
         List<Order> orders = orderService.getLastOrdersOfStore(storeId, nbOfLastOrders);
         for (Order order : orders) {
-            AmountOrderSetItem item = new AmountOrderSetItem(order.getId(), order.getName(), order.getTotalAmount());
+            double amount = orderService.getAmount(order);
+            AmountOrderSetItem item = new AmountOrderSetItem(order.getId(), order.getName(), amount);
             set.addAmountOrderSetItem(item);
         }
         return set;

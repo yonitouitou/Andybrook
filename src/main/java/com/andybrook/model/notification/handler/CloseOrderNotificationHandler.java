@@ -16,6 +16,8 @@ import com.andybrook.model.notification.request.ctx.OrderDocumentCtx;
 import com.andybrook.model.notification.request.setting.EmailSetting;
 import com.andybrook.model.order.Order;
 import com.andybrook.model.product.Product;
+import com.andybrook.service.order.IOrderService;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.stereotype.Component;
@@ -38,6 +40,8 @@ public class CloseOrderNotificationHandler implements IDocumentHandler<Order> {
 
     @Autowired
     private ApplicationContext applicationContext;
+    @Autowired
+    private IOrderService orderService;
 
     @Override
     public Email generateEmail(EmailSetting setting, DocumentCtx ctx, List<Path> attachments) {
@@ -53,10 +57,12 @@ public class CloseOrderNotificationHandler implements IDocumentHandler<Order> {
         Order order = docCtx.getOrder();
         switch (format) {
             case PDF:
-                path = generatePdfFile(order.aggregate(), docCtx);
+                AggregatedOrder aggregatedOrder = orderService.aggregate(order);
+                path = generatePdfFile(aggregatedOrder, docCtx);
                 break;
             case CSV:
-                path = generateCsvFile(order.aggregate());
+                aggregatedOrder = orderService.aggregate(order);
+                path = generateCsvFile(aggregatedOrder);
                 break;
             default:
                 throw new UnsupportedFormatFile(format);

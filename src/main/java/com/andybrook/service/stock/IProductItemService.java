@@ -1,5 +1,6 @@
 package com.andybrook.service.stock;
 
+import com.andybrook.model.product.ProductId;
 import com.andybrook.model.stock.ProductItem;
 
 import java.util.Optional;
@@ -12,9 +13,9 @@ interface IProductItemService {
 
     ProductItem getByBarCodeId(String barCodeId);
 
-    int getProductItemSize(long productId);
+    int getProductItemSize(ProductId productId);
 
     void update(ProductItem productItem);
 
-    Optional<ProductItem> findFreeProductItemOf(long productId);
+    Optional<ProductItem> findFreeProductItemOf(ProductId productId);
 }

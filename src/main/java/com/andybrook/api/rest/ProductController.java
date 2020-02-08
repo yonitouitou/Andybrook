@@ -5,8 +5,14 @@ import com.andybrook.exception.ProductNotFound;
 import com.andybrook.manager.product.IProductManager;
 import com.andybrook.model.BarCode;
 import com.andybrook.model.product.Product;
+import com.andybrook.model.product.ProductId;
+
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 import java.lang.System.Logger;
 import java.lang.System.Logger.Level;
@@ -24,13 +30,13 @@ public class ProductController extends AbstractController {
     @GetMapping(path = "/get/{id}")
     public Product get(@PathVariable long id) throws ProductNotFound {
         LOGGER.log(Level.INFO, "Get Product by id : " + id);
-        return productManager.getProduct(id);
+        return productManager.getProduct(new ProductId(id));
     }
 
     @GetMapping(path = "/getByBarCode/{barCodeId}")
     public Product get(@PathVariable String barCodeId) {
         LOGGER.log(Level.INFO, "Get Product by barCodeId : " + barCodeId);
-        return productManager.getProductByBarCode(barCodeId);
+        return productManager.getProductByBarCode(new BarCode(barCodeId));
     }
 
     @GetMapping(path = "/getAvailableByNameContaining/{name}")

@@ -13,8 +13,8 @@ public final class OrderItemGenerator {
 
     private static final ThreadLocalRandom RANDOM = ThreadLocalRandom.current();
 
-    public static OrderItem generateOrderItem(ProductItem productItem) {
-        return new OrderItem(productItem);
+    public static OrderItem generateOrderItem(long orderId, ProductItem productItem) {
+        return new OrderItem(orderId, productItem.getId());
     }
 
     public static ProductItemInfo generateOrderItemInfo(Product product, int requestedQuantity) {

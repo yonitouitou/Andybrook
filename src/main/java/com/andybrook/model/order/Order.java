@@ -2,13 +2,13 @@ package com.andybrook.model.order;
 
 import com.andybrook.enums.OrderStatus;
 import com.andybrook.exception.OrderClosed;
-import com.andybrook.model.api.AggregatedOrder;
 import com.andybrook.model.customer.Store;
 
 import java.time.LocalDateTime;
-import java.util.*;
-
-import static com.andybrook.util.PerfConst.PRODUCT_SIZE_1024;
+import java.util.Collection;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 public class Order {
 
@@ -17,7 +17,6 @@ public class Order {
     private String comment;
     private final Store store;
     private Map<Long, OrderItem> items;
-    private Map<Long, List<OrderItem>> itemsMapByProductId;
     private LocalDateTime createdDateTime;
     private LocalDateTime lastModifiedDateTime;
     private LocalDateTime closeDateTime;
@@ -28,17 +27,12 @@ public class Order {
         this.name = name;
         this.store = store;
         this.items = new HashMap<>();
-        this.itemsMapByProductId = new HashMap<>(PRODUCT_SIZE_1024);
         this.status = OrderStatus.OPEN;
         this.comment = "";
     }
 
     public void addOrderItem(OrderItem item) {
-        synchronized (this) {
-            items.put(item.getId(), item);
-            List<OrderItem> orderItems = itemsMapByProductId.computeIfAbsent(item.getProductItem().getId(), l -> new LinkedList<>());
-            orderItems.add(item);
-        }
+        items.put(item.getId(), item);
     }
 
     public void addOrderItems(List<OrderItem> orderItems) {
@@ -61,53 +55,6 @@ public class Order {
         }
         status = OrderStatus.CLOSED;
         closeDateTime = LocalDateTime.now();
-    }
-
-    public AggregatedOrder aggregate() {
-        return AggregatedOrder.toAggregatedOrder(this);
-    }
-
-    public int getTotalQuantity() {
-        return items.values().size();
-    }
-
-    public long getDistinctProductQty() {
-        return items.values()
-                .stream()
-                .map(OrderItem::getProductId)
-                .distinct()
-                .count();
-    }
-
-    public double getTotalAmount() {
-        return items.values()
-                .stream()
-                .mapToDouble(OrderItem::getProductPrice)
-                .sum();
-    }
-
-    public double calculateTotalPrice() {
-        return items.values().stream()
-                .mapToDouble(OrderItem::getProductPrice)
-                .sum();
-    }
-
-    public List<OrderItem> getOrderItemsByProductId(long productId) {
-        return itemsMapByProductId.get(productId);
-    }
-
-    public int calculateQuantityOfProduct(long productId) {
-        List<OrderItem> orderItems = itemsMapByProductId.get(productId);
-        return orderItems != null ? orderItems.size() : 0;
-    }
-
-    public double calculateTotalPriceByProduct(long productId) {
-        List<OrderItem> orderItems = itemsMapByProductId.get(productId);
-        return orderItems == null
-                ? 0d
-                : orderItems.stream()
-                    .mapToDouble(OrderItem::getProductPrice)
-                    .sum();
     }
 
     public Store getStore() {

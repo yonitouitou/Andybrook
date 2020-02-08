@@ -4,9 +4,6 @@ import com.andybrook.model.api.AggregatedOrder;
 import com.andybrook.model.order.Order;
 
 import java.time.ZonedDateTime;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
 
 public class OrderDocumentCtx extends DocumentCtx {
 
@@ -14,15 +11,15 @@ public class OrderDocumentCtx extends DocumentCtx {
     private final Order order;
     private final AggregatedOrder aggregatedOrder;
 
-    private OrderDocumentCtx(boolean isLiveEvent, Order order, ZonedDateTime dateDocument) {
+    private OrderDocumentCtx(boolean isLiveEvent, Order order, AggregatedOrder aggregatedOrder, ZonedDateTime dateDocument) {
         super(dateDocument);
         this.isLiveEvent = isLiveEvent;
         this.order = order;
-        this.aggregatedOrder = order.aggregate();
+        this.aggregatedOrder = aggregatedOrder;
     }
 
-    public static Builder builder(boolean isLiveEvent, Order order) {
-        return new Builder(isLiveEvent, order);
+    public static Builder builder(boolean isLiveEvent, Order order, AggregatedOrder aggregatedOrder) {
+        return new Builder(isLiveEvent, order, aggregatedOrder);
     }
 
     public Order getOrder() {
@@ -41,15 +38,16 @@ public class OrderDocumentCtx extends DocumentCtx {
 
         private boolean isLiveEvent;
         private Order order;
+        private AggregatedOrder aggregatedOrder;
         private ZonedDateTime dateDocument;
 
-        private Builder(boolean isLiveEvent, Order order) {
+        private Builder(boolean isLiveEvent, Order order, AggregatedOrder aggregatedOrder) {
             this.isLiveEvent = isLiveEvent;
             this.order = order;
         }
 
         public OrderDocumentCtx build() {
-            return new OrderDocumentCtx(isLiveEvent, order, dateDocument);
+            return new OrderDocumentCtx(isLiveEvent, order, aggregatedOrder, dateDocument);
         }
 
         public ZonedDateTime getDateDocument() {

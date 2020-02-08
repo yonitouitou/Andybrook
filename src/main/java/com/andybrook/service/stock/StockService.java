@@ -1,9 +1,12 @@
 package com.andybrook.service.stock;
 
+import com.andybrook.exception.ProductNotFound;
 import com.andybrook.model.product.Product;
+import com.andybrook.model.product.ProductId;
 import com.andybrook.model.stock.ProductItem;
 import com.andybrook.model.stock.ProductStockInfo;
 import com.andybrook.service.product.IProductService;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.util.Pair;
 import org.springframework.stereotype.Service;
@@ -22,12 +25,12 @@ public class StockService implements IStockService {
     private IProductItemService productItemService;
 
     @Override
-    public void addProductItem(ProductItem productItem, boolean addProductIfNotExist) {
-        long productId = productItem.getProductId();
-        boolean productExist = productService.isExist(productId);
-        Product product = productExist || ! addProductIfNotExist
-                ? productService.get(productId)
-                : productService.addProduct(productItem.getProduct());
+    public void addProductItem(ProductItem productItem) {
+        ProductId productId = productItem.getProductId();
+        Product product = productService.get(productId);
+        if (product == null) {
+            throw new ProductNotFound(productId);
+        }
         productItemService.add(productItem);
         productStockInfoService.incrementQuantityCreated(product.getId());
     }
@@ -43,7 +46,7 @@ public class StockService implements IStockService {
     }
 
     @Override
-    public ProductStockInfo getProductStockInfo(long productId) {
+    public ProductStockInfo getProductStockInfo(ProductId productId) {
         return productStockInfoService.get(productId);
     }
 
@@ -65,17 +68,17 @@ public class StockService implements IStockService {
     }
 
     @Override
-    public int getFreeQuantity(long productId) {
+    public int getFreeQuantity(ProductId productId) {
         return productStockInfoService.getFreeQuantity(productId);
     }
 
     @Override
-    public void decrementQuantityUsed(long productId) {
+    public void decrementQuantityUsed(ProductId productId) {
         productStockInfoService.decrementQuantityUsed(productId);
     }
 
     @Override
-    public Optional<ProductItem> findFreeProductItemOf(long productId) {
+    public Optional<ProductItem> findFreeProductItemOf(ProductId productId) {
         return productItemService.findFreeProductItemOf(productId);
     }
 
@@ -85,7 +88,7 @@ public class StockService implements IStockService {
     }
 
     @Override
-    public int getProductItemSizeOfProduct(long productId) {
+    public int getProductItemSizeOfProduct(ProductId productId) {
         return productItemService.getProductItemSize(productId);
     }
 }

@@ -1,6 +1,12 @@
 package com.andybrook.init;
 
-import com.andybrook.exception.*;
+import com.andybrook.exception.BarCodeNotFound;
+import com.andybrook.exception.InsufficientQuantityException;
+import com.andybrook.exception.OrderClosed;
+import com.andybrook.exception.OrderItemNotFound;
+import com.andybrook.exception.OrderNotFound;
+import com.andybrook.exception.ProductNotFound;
+import com.andybrook.exception.StoreNotFound;
 import com.andybrook.generator.OrderItemGenerator;
 import com.andybrook.generator.ProductGenerator;
 import com.andybrook.generator.StoreGenerator;
@@ -11,6 +17,7 @@ import com.andybrook.model.customer.Store;
 import com.andybrook.model.order.Order;
 import com.andybrook.model.order.OrderItem;
 import com.andybrook.model.product.Product;
+import com.andybrook.model.product.ProductId;
 import com.andybrook.model.request.order.NewOrderRequest;
 import com.andybrook.model.request.orderitem.OrderItemAddRequest;
 import com.andybrook.model.request.orderitem.ProductItemInfo;
@@ -18,14 +25,19 @@ import com.andybrook.model.stock.ProductItem;
 import com.andybrook.service.stock.IStockService;
 import com.andybrook.service.store.IStoreService;
 import com.andybrook.util.clock.Clock;
-import org.junit.Ignore;
+
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Map;
+import java.util.UUID;
 import java.util.concurrent.ThreadLocalRandom;
 
 @SpringBootTest
@@ -40,7 +52,7 @@ public class InitSystemTest {
     private static final int MAX_ITEM_IN_ORDER_35 = 20;
 
     private List<Product> products;
-    private Map<Long, List<Long>> productItemsIdMapByProductId;
+    private Map<ProductId, List<Long>> productItemsIdMapByProductId;
     private List<Store> stores;
 
     @Autowired
@@ -53,7 +65,7 @@ public class InitSystemTest {
     private IStockService stockService;
 
     @Test
-    @Ignore
+    //@Ignore
     public void initSystem() {
         products = createProducts();
         productItemsIdMapByProductId = createProductItems(products);
@@ -76,13 +88,13 @@ public class InitSystemTest {
         }
     }
 
-    private Map<Long, List<Long>> createProductItems(List<Product> products) {
+    private Map<ProductId, List<Long>> createProductItems(List<Product> products) {
         productItemsIdMapByProductId = new HashMap<>(PRODUCT_NUMBER_70);
         for (Product product : products) {
             List<Long> productItemIds = new ArrayList<>(PRODUCT_ITEM_FOR_EACH_PRODUCT_100);
             for (int i = 0; i < PRODUCT_ITEM_FOR_EACH_PRODUCT_100; i++) {
                 ProductItem productItem = new ProductItem(product, new BarCode(UUID.randomUUID().toString()));
-                stockService.addProductItem(productItem, false);
+                stockService.addProductItem(productItem);
                 productItemIds.add(productItem.getId());
             }
             productItemsIdMapByProductId.put(product.getId(), productItemIds);
@@ -94,7 +106,7 @@ public class InitSystemTest {
         List<Product> products = new ArrayList<>(PRODUCT_NUMBER_70);
         for (int i = 0; i < PRODUCT_NUMBER_70; i++) {
             Product product = ProductGenerator.generateProduct();
-            product = productManager.addProduct(product);
+            productManager.addProduct(product);
             products.add(product);
         }
         return products;
@@ -108,11 +120,11 @@ public class InitSystemTest {
         return stores;
     }
 
-    private void addOrderItem(long orderId, long productId)
+    private void addOrderItem(long orderId, ProductId productId)
             throws OrderNotFound, OrderClosed, ProductNotFound, InsufficientQuantityException, OrderItemNotFound, BarCodeNotFound {
         Long productItemId = productItemsIdMapByProductId.get(productId).get(RANDOM.nextInt(0, PRODUCT_ITEM_FOR_EACH_PRODUCT_100));
         ProductItem productItem = stockService.getProductItem(productItemId);
-        OrderItem item = OrderItemGenerator.generateOrderItem(productItem);
+        OrderItem item = OrderItemGenerator.generateOrderItem(orderId, productItem);
         ProductItemInfo info = new ProductItemInfo(item.getId(), productItem.getProductId(), RANDOM.nextInt(1, 5));
         OrderItemAddRequest request = new OrderItemAddRequest(orderId, info);
         System.out.println("Add " + request.getQuantityRequested() + " order items of product " + productId + " into order " + orderId);

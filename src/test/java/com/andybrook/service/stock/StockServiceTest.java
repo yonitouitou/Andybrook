@@ -29,7 +29,7 @@ public class StockServiceTest {
 
     @Before
     public void init() {
-        product = productService.addProduct(ProductGenerator.generateProduct());;
+        productService.add(ProductGenerator.generateProduct());;
         productItem = ProductItemGenerator.generateSingleProductItem(product);
     }
 
@@ -57,7 +57,7 @@ public class StockServiceTest {
     }
 
     private ProductItem addAndAssertSingleProductItem(ProductItem productItem) {
-        stockService.addProductItem(productItem, false);
+        stockService.addProductItem(productItem);
         ProductItem productItemSaved = stockService.getProductItem(productItem.getId());
         assertProductItem(productItem, productItemSaved);
         return productItemSaved;
@@ -68,7 +68,7 @@ public class StockServiceTest {
         Assert.assertNotNull(actual.getId());
         Assert.assertNotNull(actual.getLastModifiedDatetime());
         Assert.assertNotNull(actual.getCreatedDatetime());
-        Assert.assertFalse(actual.getOrderItemId() != null);
+        Assert.assertNull(actual.getOrderItemId());
 
     }
 }

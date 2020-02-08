@@ -4,7 +4,9 @@ import com.andybrook.ApplicationProperties;
 import com.andybrook.enums.DocType;
 import com.andybrook.enums.NotificationType;
 import com.andybrook.manager.notification.INotificationManager;
+import com.andybrook.manager.order.IOrderManager;
 import com.andybrook.manager.setting.IAdminSettingManager;
+import com.andybrook.model.api.AggregatedOrder;
 import com.andybrook.model.notification.event.OrderClosedEvent;
 import com.andybrook.model.notification.request.DocumentRequest;
 import com.andybrook.model.notification.request.NotificationRequest;
@@ -26,6 +28,8 @@ public class OrderClosedEventManager implements ICloseOrderEventManager {
     private IAdminSettingManager adminSettingManager;
     @Autowired
     private INotificationManager notificationManager;
+    @Autowired
+    private IOrderManager orderManager;
 
     @Override
     @EventListener
@@ -36,7 +40,8 @@ public class OrderClosedEventManager implements ICloseOrderEventManager {
     }
 
     private void notify(Order order) {
-        OrderDocumentCtx ctx = OrderDocumentCtx.builder(true, order)
+        AggregatedOrder aggregatedOrder = orderManager.aggregate(order);
+        OrderDocumentCtx ctx = OrderDocumentCtx.builder(true, order, aggregatedOrder)
                 .setDateDocument(ZonedDateTime.now(applicationProperties.getZoneId()))
                 .build();
         DocumentRequest documentRequest = new DocumentRequest(DocType.ORDER_FORM, ctx, DocType.ORDER_FORM.getSupportedFormat());

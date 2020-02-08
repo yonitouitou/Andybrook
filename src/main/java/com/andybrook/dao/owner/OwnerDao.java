@@ -1,6 +1,5 @@
 package com.andybrook.dao.owner;
 
-import com.andybrook.dao.jpa.repository.IOwnerJpaRepository;
 import com.andybrook.dao.jpa.entity.customer.OwnerEntity;
 import com.andybrook.dao.jpa.entity.factory.EntityFactory;
 import com.andybrook.model.customer.Owner;

@@ -2,15 +2,9 @@ package com.andybrook.model.api;
 
 import com.andybrook.enums.OrderStatus;
 import com.andybrook.model.customer.Store;
-import com.andybrook.model.order.Order;
-import com.andybrook.model.order.OrderItem;
 
 import java.time.LocalDateTime;
-import java.util.LinkedList;
 import java.util.List;
-import java.util.Map;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 public final class AggregatedOrder {
 
@@ -25,7 +19,7 @@ public final class AggregatedOrder {
     private final AggregatedOrderInfo aggregatedOrderInfo;
     private final List<AggregatedOrderItem> aggregatedOrderItems;
 
-    private AggregatedOrder(long id, String name, Store store, OrderStatus status,
+    public AggregatedOrder(long id, String name, Store store, OrderStatus status,
                            String comment, LocalDateTime createdDatetime, LocalDateTime lastModifiedDatetime,
                            LocalDateTime closeDatetime, AggregatedOrderInfo aggregatedOrderInfo,
                            List<AggregatedOrderItem> aggregatedOrderItems) {
@@ -39,24 +33,6 @@ public final class AggregatedOrder {
         this.closeDatetime = closeDatetime;
         this.aggregatedOrderInfo = aggregatedOrderInfo;
         this.aggregatedOrderItems = aggregatedOrderItems;
-    }
-
-    public static Stream<AggregatedOrder> toAggregatedOrders(Stream<Order> orders) {
-        return orders.map(AggregatedOrder::toAggregatedOrder);
-    }
-
-    public static AggregatedOrder toAggregatedOrder(Order order) {
-        Map<Long, List<OrderItem>> orderItemByProductId = order.getItems()
-                .stream()
-                .collect(Collectors.groupingBy(OrderItem::getProductId));
-        List<AggregatedOrderItem> aggregatedOrderItems = new LinkedList<>();
-        orderItemByProductId.forEach((k, v) ->
-            aggregatedOrderItems.add(new AggregatedOrderItem(v))
-        );
-        AggregatedOrderInfo info = AggregatedOrderInfo.toAggregatedOrderInfo(order);
-        return new AggregatedOrder(order.getId(), order.getName(), order.getStore(), order.getStatus(),
-                order.getComment(), order.getCreatedDateTime(), order.getLastModifiedDateTime(),
-                order.getCloseDateTime(), info, aggregatedOrderItems);
     }
 
     public long getId() {

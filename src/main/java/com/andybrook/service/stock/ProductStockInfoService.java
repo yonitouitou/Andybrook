@@ -1,14 +1,18 @@
 package com.andybrook.service.stock;
 
-import com.andybrook.dao.stock.IProductStockInfoDao;
+import com.andybrook.dao.product.IProductStockInfoDao;
+import com.andybrook.exception.ValidationRuntimeException;
 import com.andybrook.model.product.Product;
+import com.andybrook.model.product.ProductId;
 import com.andybrook.model.stock.ProductStockInfo;
 import com.andybrook.service.product.IProductService;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.util.Pair;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 class ProductStockInfoService implements IProductStockInfoService {
@@ -19,9 +23,9 @@ class ProductStockInfoService implements IProductStockInfoService {
     private IProductService productService;
 
     @Override
-    public void add(long productId) {
+    public void add(ProductId productId) {
         Product product = productService.get(productId);
-        dao.update(new ProductStockInfo(product, 0, 0));
+        dao.save(new ProductStockInfo(product, 0, 0));
     }
 
     @Override
@@ -30,59 +34,67 @@ class ProductStockInfoService implements IProductStockInfoService {
     }
 
     @Override
-    public int getFreeQuantity(long productId) {
+    public int getFreeQuantity(ProductId productId) {
         ProductStockInfo productStockInfo = get(productId);
         return productStockInfo.getQuantityUnused();
     }
 
     @Override
-    public int getCreatedQuantity(long productId) {
+    public int getCreatedQuantity(ProductId productId) {
         ProductStockInfo productStockInfo = get(productId);
         return productStockInfo.getQuantityCreated();
     }
 
     @Override
-    public int getUsedQuantity(long productId) {
+    public int getUsedQuantity(ProductId productId) {
         ProductStockInfo productStockInfo = get(productId);
         return productStockInfo.getQuantityUsed();
     }
 
     @Override
-    public boolean isFreeQuantityExist(long productId) {
+    public boolean isFreeQuantityExist(ProductId productId) {
         ProductStockInfo productStockInfo = get(productId);
         return productStockInfo.getQuantityUnused() > 0;
     }
 
     @Override
-    public void incrementQuantityUsed(long productId) {
+    public void incrementQuantityUsed(ProductId productId) {
         ProductStockInfo productStockInfo = get(productId);
         productStockInfo.incrementQuantityUsed();
-        dao.update(productStockInfo);
+        dao.save(productStockInfo);
     }
 
     @Override
-    public void incrementQuantityCreated(long productId) {
+    public void incrementQuantityCreated(ProductId productId) {
         ProductStockInfo productStockInfo = get(productId);
         productStockInfo.incrementQuantityCreated();
-        dao.update(productStockInfo);
+        dao.save(productStockInfo);
     }
 
     @Override
-    public void decrementQuantityUsed(long productId) {
+    public void decrementQuantityUsed(ProductId productId) {
         ProductStockInfo productStockInfo = get(productId);
         productStockInfo.decrementQuantityUsed();
-        dao.update(productStockInfo);
+        dao.save(productStockInfo);
     }
 
     @Override
-    public void decrementQuantityCreated(long productId) {
+    public void decrementQuantityCreated(ProductId productId) {
         ProductStockInfo productStockInfo = get(productId);
         productStockInfo.decrementQuantityCreated();
-        dao.update(productStockInfo);
+        dao.save(productStockInfo);
     }
 
     @Override
-    public ProductStockInfo get(long productId) {
-        return dao.get(productId);
+    public ProductStockInfo get(ProductId productId) {
+        Optional<ProductStockInfo> stockInfoOpt = dao.get(productId);
+        return stockInfoOpt.orElseThrow(() -> new ProductStockInfoNotFound(productId));
+    }
+
+    private class ProductStockInfoNotFound extends ValidationRuntimeException {
+
+        private ProductStockInfoNotFound(ProductId productId) {
+            super("Product Stock Info not found for product " + productId.get());
+        }
     }
 }

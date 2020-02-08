@@ -1,11 +1,12 @@
 package com.andybrook.api.rest.ctx;
 
+import com.andybrook.model.product.ProductId;
 import com.andybrook.model.request.orderitem.ProductItemInfo;
 
 public class OrderItemAddRequestByInfo extends OrderItemRestRequest {
 
     private int requestedQty;
-    private long productId;
+    private ProductId productId;
     private String barCode;
     private ProductItemInfo productItemInfo = null;
 
@@ -28,11 +29,11 @@ public class OrderItemAddRequestByInfo extends OrderItemRestRequest {
         this.requestedQty = requestedQty;
     }
 
-    public long getProductId() {
+    public ProductId getProductId() {
         return productId;
     }
 
-    public void setProductId(long productId) {
+    public void setProductId(ProductId productId) {
         this.productId = productId;
     }
 

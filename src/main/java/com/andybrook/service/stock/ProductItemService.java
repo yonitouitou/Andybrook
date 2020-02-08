@@ -1,11 +1,13 @@
 package com.andybrook.service.stock;
 
-import com.andybrook.dao.stock.IProductItemDao;
+import com.andybrook.dao.stock.productitem.IProductItemDao;
 import com.andybrook.exception.BarCodeNotFound;
 import com.andybrook.exception.BarCodeNotLinked;
 import com.andybrook.exception.ProductItemNotFound;
+import com.andybrook.model.product.ProductId;
 import com.andybrook.model.stock.ProductItem;
 import com.andybrook.service.product.IBarCodeService;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -26,7 +28,7 @@ class ProductItemService implements IProductItemService {
 
     @Override
     public ProductItem get(long productItemId) {
-        Optional<ProductItem> productItemOpt = dao.find(productItemId);
+        Optional<ProductItem> productItemOpt = dao.get(productItemId);
         return productItemOpt.orElseThrow(() -> new ProductItemNotFound(productItemId));
     }
 
@@ -44,7 +46,7 @@ class ProductItemService implements IProductItemService {
     }
 
     @Override
-    public int getProductItemSize(long productId) {
+    public int getProductItemSize(ProductId productId) {
         return dao.getProductItemSize(productId);
     }
 
@@ -54,11 +56,11 @@ class ProductItemService implements IProductItemService {
     }
 
     @Override
-    public Optional<ProductItem> findFreeProductItemOf(long productId) {
+    public Optional<ProductItem> findFreeProductItemOf(ProductId productId) {
         return dao.findFreeProductItemOf(productId);
     }
 
     private void updateProductItem(ProductItem productItem) {
-        dao.update(productItem);
+        dao.save(productItem);
     }
 }

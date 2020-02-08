@@ -1,7 +1,6 @@
 package com.andybrook.dao.store;
 
 import com.andybrook.dao.jpa.entity.customer.OwnerEntity;
-import com.andybrook.dao.jpa.repository.IStoreJpaRepository;
 import com.andybrook.dao.jpa.entity.factory.EntityFactory;
 import com.andybrook.dao.jpa.entity.store.StoreEntity;
 import com.andybrook.dao.owner.IOwnerDao;
@@ -65,7 +64,7 @@ public class StoreDao implements IStoreDao {
     @Override
     public List<Store> getAll(OptionalInt limitOpt) {
         Iterable<StoreEntity> entities = limitOpt.isPresent()
-                ? repository.findAll(PageRequest.of(0, limitOpt.getAsInt(), new Sort(Sort.Direction.ASC, "id")))
+                ? repository.findAll(PageRequest.of(0, limitOpt.getAsInt(), Sort.by(Sort.Direction.ASC, "id")))
                 : repository.findAll();
         List<Store> stores = new LinkedList<>();
         entities.forEach(entity -> {

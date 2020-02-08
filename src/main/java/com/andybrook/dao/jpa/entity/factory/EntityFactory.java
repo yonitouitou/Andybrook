@@ -3,38 +3,27 @@ package com.andybrook.dao.jpa.entity.factory;
 import com.andybrook.annotation.EntityConverter;
 import com.andybrook.annotation.ProductConverterByProductType;
 import com.andybrook.dao.jpa.entity.customer.OwnerEntity;
-import com.andybrook.dao.jpa.entity.order.OrderEntity;
-import com.andybrook.dao.jpa.entity.order.OrderItemEntity;
-import com.andybrook.dao.jpa.entity.order.OrderItemEntityConverter;
-import com.andybrook.dao.jpa.entity.product.ProductEntity;
 import com.andybrook.dao.jpa.entity.setting.AdminSettingEntity;
 import com.andybrook.dao.jpa.entity.setting.notification.NotificationPolicyEntity;
-import com.andybrook.dao.jpa.entity.stock.*;
 import com.andybrook.dao.jpa.entity.store.StoreEntity;
-import com.andybrook.dao.jpa.entity.stock.StockItemFileUploadEntity;
 import com.andybrook.enums.ProductType;
-import com.andybrook.model.BarCode;
-import com.andybrook.model.api.StockItemsFileUpload;
 import com.andybrook.model.customer.Owner;
 import com.andybrook.model.customer.Store;
 import com.andybrook.model.notification.NotificationPolicy;
-import com.andybrook.model.order.Order;
-import com.andybrook.model.order.OrderItem;
-import com.andybrook.model.product.Product;
 import com.andybrook.model.setting.AdminSetting;
-import com.andybrook.model.stock.ProductItem;
-import com.andybrook.model.stock.ProductStockInfo;
+
 import org.hibernate.Hibernate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.stereotype.Component;
 
-import javax.annotation.PostConstruct;
 import java.lang.System.Logger;
 import java.lang.System.Logger.Level;
 import java.util.EnumMap;
 import java.util.HashMap;
 import java.util.Map;
+
+import javax.annotation.PostConstruct;
 
 @Component
 @SuppressWarnings("unchecked")
@@ -75,46 +64,6 @@ public final class EntityFactory {
         }
     }
 
-    public final <T extends Product> T createProduct(ProductEntity entity) {
-        IEntityConverter converter = entityConverterMapByProductType.get(entity.getType());
-        return (T) converter.toModel(entity);
-    }
-
-    public final <T extends ProductEntity> T createProductEntity(Product model) {
-        IEntityConverter converter = entityConverterMapByProductType.get(model.getType());
-        return (T) converter.toEntity(model);
-    }
-
-    public final <T extends ProductItem> T createProductItem(ProductItemEntity entity) {
-        IEntityConverter converter = entityConverterMapByEntityClass.get(entity.getClass());
-        return (T) converter.toModel(entity);
-    }
-
-    public final ProductItemEntity createProductItemEntity(ProductItem model, OrderItemEntity orderItemEntity) {
-        ProductItemEntityConverter converter = (ProductItemEntityConverter) entityConverterMapByModelClass.get(model.getClass());
-        return converter.toEntity(model, orderItemEntity);
-    }
-
-    public final <T extends Product> OrderItem createOrderItem(OrderItemEntity entity) {
-        OrderItemEntityConverter converter = (OrderItemEntityConverter) entityConverterMapByEntityClass.get(entity.getClass());
-        return converter.toModel(entity);
-    }
-
-    public final OrderItemEntity createOrderItemEntityByProductType(OrderEntity orderEntity, OrderItem orderItem) {
-        OrderItemEntityConverter converter = (OrderItemEntityConverter) entityConverterMapByModelClass.get(orderItem.getClass());
-        return converter.toEntity(orderEntity, orderItem);
-    }
-
-    public final OrderEntity createOrderEntity(Order model) {
-        IEntityConverter converter = entityConverterMapByModelClass.get(model.getClass());
-        return (OrderEntity) converter.toEntity(model);
-    }
-
-    public final Order createOrder(OrderEntity entity) {
-        IEntityConverter converter = entityConverterMapByEntityClass.get(Hibernate.getClass(entity));
-        return (Order) converter.toModel(entity);
-    }
-
     public final AdminSetting createAdminSetting(AdminSettingEntity entity) {
         IEntityConverter converter = entityConverterMapByEntityClass.get(entity.getClass());
         return (AdminSetting) converter.toModel(entity);
@@ -153,35 +102,5 @@ public final class EntityFactory {
     public final Store createStore(StoreEntity entity) {
         IEntityConverter converter = entityConverterMapByEntityClass.get(entity.getClass());
         return (Store) converter.toModel(entity);
-    }
-
-    public final BarCodeEntity createBarCodeEntity(BarCode model, ProductItemEntity productItemEntity) {
-        BarCodeEntityConverter converter = (BarCodeEntityConverter) entityConverterMapByModelClass.get(model.getClass());
-        return converter.toEntity(model, productItemEntity);
-    }
-
-    public final BarCode createBarCode(BarCodeEntity entity) {
-        IEntityConverter converter = entityConverterMapByEntityClass.get(entity.getClass());
-        return (BarCode) converter.toModel(entity);
-    }
-
-    public final ProductStockInfo createProductStockInfo(ProductStockInfoEntity entity) {
-        IEntityConverter converter = entityConverterMapByEntityClass.get(entity.getClass());
-        return (ProductStockInfo) converter.toModel(entity);
-    }
-
-    public final ProductStockInfoEntity createProductStockInfoEntity(ProductStockInfo model) {
-        IEntityConverter converter = entityConverterMapByModelClass.get(model.getClass());
-        return (ProductStockInfoEntity) converter.toEntity(model);
-    }
-
-    public final StockItemFileUploadEntity createStockItemFileUploadEntity(StockItemsFileUpload model) {
-        IEntityConverter converter = entityConverterMapByModelClass.get(model.getClass());
-        return (StockItemFileUploadEntity) converter.toEntity(model);
-    }
-
-    public final StockItemsFileUpload createStockItemFileUpload(StockItemFileUploadEntity entity) {
-        IEntityConverter converter = entityConverterMapByEntityClass.get(entity.getClass());
-        return (StockItemsFileUpload) converter.toModel(entity);
     }
 }

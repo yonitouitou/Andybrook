@@ -1,8 +1,6 @@
 package com.andybrook.model.order;
 
-import com.andybrook.model.BarCode;
-import com.andybrook.model.product.Product;
-import com.andybrook.model.stock.ProductItem;
+import com.andybrook.util.IdGenerator;
 
 import java.time.LocalDateTime;
 import java.util.Objects;
@@ -10,30 +8,27 @@ import java.util.Objects;
 public final class OrderItem {
 
     protected Long id;
-    protected ProductItem productItem;
-    protected LocalDateTime createdDatetime;
+    protected final long orderId;
+    protected final long productItemId;
+    protected final LocalDateTime createdDatetime;
     protected LocalDateTime lastModifiedDatetime;
 
-    public OrderItem(Long id, ProductItem productItem) {
-        this.id = id;
-        this.productItem = productItem;
+    public OrderItem(long orderId, long productItemId) {
+        this.id = IdGenerator.generateId();
+        this.orderId = orderId;
+        this.productItemId = productItemId;
+        this.createdDatetime = LocalDateTime.now();
     }
 
-    public OrderItem(ProductItem productItem) {
-        this.id = null;
-        this.productItem = productItem;
+    public OrderItem(long id, long orderId, long productItemId) {
+        this.id = id;
+        this.orderId = orderId;
+        this.productItemId = productItemId;
+        this.createdDatetime = LocalDateTime.now();
     }
 
     public boolean exist() {
         return id != null;
-    }
-
-    public String getProductName() {
-        return productItem.getName();
-    }
-
-    public double getProductPrice() {
-        return productItem.getPrice();
     }
 
     public Long getId() {
@@ -44,24 +39,16 @@ public final class OrderItem {
         this.id = id;
     }
 
-    public long getProductId() {
-        return productItem.getProductId();
+    public long getOrderId() {
+        return orderId;
     }
 
-    public ProductItem getProductItem() {
-        return productItem;
-    }
-
-    public void setProductItem(ProductItem productItem) {
-        this.productItem = productItem;
+    public long getProductItemId() {
+        return productItemId;
     }
 
     public LocalDateTime getCreatedDatetime() {
         return createdDatetime;
-    }
-
-    public void setCreatedDatetime(LocalDateTime createdDatetime) {
-        this.createdDatetime = createdDatetime;
     }
 
     public LocalDateTime getLastModifiedDatetime() {
@@ -89,7 +76,7 @@ public final class OrderItem {
     public String toString() {
         return "OrderItem{" +
                 "id=" + id +
-                ", productItem=" + productItem +
+                ", productItemId=" + productItemId +
                 ", createdDatetime=" + createdDatetime +
                 ", lastModifiedDatetime=" + lastModifiedDatetime +
                 '}';

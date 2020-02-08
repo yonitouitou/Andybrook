@@ -10,17 +10,13 @@ import java.util.Set;
 
 public interface IOrderDao {
 
-    Order newOrder(Order order);
-
-    Order updateOrder(Order order);
+    Order save(Order order);
 
     void updateOrderAudit(Order order);
 
     void updateOrder(UpdateOrderRequest request, boolean checkIfExist) throws OrderNotFound;
 
-    Order get(long id);
-
-    Optional<Order> findOrder(long id);
+    Optional<Order> get(long id);
 
     List<Order> getOrdersOfStore(long storeId);
 

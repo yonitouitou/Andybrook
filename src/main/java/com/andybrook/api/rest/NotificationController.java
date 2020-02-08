@@ -7,20 +7,25 @@ import com.andybrook.enums.DocType;
 import com.andybrook.enums.NotificationType;
 import com.andybrook.manager.notification.INotificationManager;
 import com.andybrook.manager.order.IOrderManager;
+import com.andybrook.model.api.AggregatedOrder;
 import com.andybrook.model.notification.request.DocumentRequest;
 import com.andybrook.model.notification.request.NotificationRequest;
 import com.andybrook.model.notification.request.ctx.OrderDocumentCtx;
 import com.andybrook.model.notification.request.setting.EmailSetting;
 import com.andybrook.model.order.Order;
 import com.andybrook.util.file.FileUtil;
-import org.apache.commons.io.FilenameUtils;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.FileUrlResource;
 import org.springframework.core.io.Resource;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 import java.io.File;
 import java.io.IOException;
@@ -28,8 +33,6 @@ import java.lang.System.Logger;
 import java.lang.System.Logger.Level;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
@@ -51,7 +54,8 @@ public class NotificationController extends AbstractController {
     @PostMapping(path = "/notify")
     public ResponseEntity<Resource> downloadFile(@RequestBody OrderDocumentRestRequest request) throws IOException {
         Order order = orderManager.getOrder(request.getOrderId());
-        OrderDocumentCtx ctx = OrderDocumentCtx.builder(false, order)
+        AggregatedOrder aggregatedOrder = orderManager.aggregate(order);
+        OrderDocumentCtx ctx = OrderDocumentCtx.builder(false, order, aggregatedOrder)
                 .setDateDocument(epochTimeInMillisToZdt(request.getDateDocument(), applicationProperties.getZoneId()))
                 .build();
         DocumentRequest documentRequest = new DocumentRequest(request.getDocType(), ctx, request.getFileFormats());

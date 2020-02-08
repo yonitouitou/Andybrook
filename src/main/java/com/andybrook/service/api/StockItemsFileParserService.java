@@ -11,7 +11,6 @@ import com.andybrook.model.product.Glasses;
 import com.andybrook.model.product.Product;
 import com.andybrook.model.stock.ProductItem;
 import com.andybrook.service.product.IProductService;
-import com.andybrook.service.product.ProductService;
 import com.andybrook.service.stock.IStockService;
 import com.andybrook.util.IdGenerator;
 import com.andybrook.util.clock.Clock;
@@ -24,11 +23,9 @@ import java.io.IOException;
 import java.lang.System.Logger;
 import java.lang.System.Logger.Level;
 import java.nio.file.Files;
-import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
-import java.util.stream.Collectors;
 
 @Service
 public class StockItemsFileParserService implements IStockItemsFileParserService {
@@ -62,7 +59,7 @@ public class StockItemsFileParserService implements IStockItemsFileParserService
             try {
                 Product product = getOrCreateProduct(item.getProduct());
                 item.setProduct(product);
-                stockService.addProductItem(item, false);
+                stockService.addProductItem(item);
             } catch (Exception e) {
                 LOGGER.log(Level.ERROR, "ProductItem " + item.getName() + " not added because error occurred", e);
             }
@@ -90,9 +87,15 @@ public class StockItemsFileParserService implements IStockItemsFileParserService
         return new StockItemsFileUpload(null, productItemRowsInFile, rowsProcessed, productItemsList, Clock.millis());
     }
 
-    private Product getOrCreateProduct(Product product) {
-        Optional<Product> productOpt = productService.getByName(product.getName());
-        return productOpt.orElseGet(() -> productService.addProduct(product));
+    private Product getOrCreateProduct(Product productToAdd) {
+        Product product = null;
+        Optional<Product> productOpt = productService.getByName(productToAdd.getName());
+        if (productOpt.isPresent()) {
+            product = productOpt.get();
+        } else {
+            productService.add(product);
+        }
+        return product;
     }
 
     private void addProductItems(List<ProductItem> items, String line) throws CsvBadFormat, SizeFileLimitExceeded {

@@ -1,8 +1,11 @@
 package com.andybrook.manager.product;
 
 import com.andybrook.exception.ProductNotFound;
+import com.andybrook.model.BarCode;
 import com.andybrook.model.product.Product;
+import com.andybrook.model.product.ProductId;
 import com.andybrook.service.product.IProductService;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -15,17 +18,17 @@ public class ProductManager implements IProductManager {
     private IProductService productService;
 
     @Override
-    public Product addProduct(Product product) {
-        return productService.addProduct(product);
+    public void addProduct(Product product) {
+        productService.add(product);
     }
 
     @Override
-    public Product getProductByBarCode(String barCodeId) {
-        return productService.getByBarCode(barCodeId);
+    public Product getProductByBarCode(BarCode barCode) {
+        return productService.getByBarCode(barCode);
     }
 
     @Override
-    public Product getProduct(long id) throws ProductNotFound {
+    public Product getProduct(ProductId id) throws ProductNotFound {
         return productService.get(id);
     }
 

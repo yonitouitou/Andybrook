@@ -1,15 +1,16 @@
 package com.andybrook.service.order;
 
-import com.andybrook.dao.stock.IOrderItemDao;
+import com.andybrook.dao.order.IOrderItemDao;
 import com.andybrook.exception.InsufficientQuantityException;
 import com.andybrook.exception.ProductItemNotFree;
 import com.andybrook.model.BarCode;
 import com.andybrook.model.order.Order;
 import com.andybrook.model.order.OrderItem;
+import com.andybrook.model.product.ProductId;
 import com.andybrook.model.request.orderitem.ProductItemInfo;
 import com.andybrook.model.stock.ProductItem;
 import com.andybrook.service.stock.IStockService;
-import com.andybrook.util.IdGenerator;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -38,8 +39,8 @@ public class OrderItemService implements IOrderItemService {
                 Optional<ProductItem> productItemOpt = stockService.findFreeProductItemOf(info.getProductId());
                 if (productItemOpt.isPresent()) {
                     ProductItem productItem = productItemOpt.get();
-                    OrderItem orderItem = buildOrderItem(productItem);
-                    persist(order, orderItem);
+                    OrderItem orderItem = buildOrderItem(order.getId(), productItem.getId());
+                    persist(orderItem);
                     productItem.markAsUsed(orderItem.getId());
                     orderItems.add(orderItem);
                     stockService.onProductItemLinked(productItem);
@@ -54,12 +55,12 @@ public class OrderItemService implements IOrderItemService {
     }
 
     @Override
-    public OrderItem createSingleItemByBarCode(BarCode barCode) {
+    public OrderItem createSingleOrderItemByBarCode(Order order, BarCode barCode) {
         ProductItem productItem = stockService.getProductItemByBarCode(barCode.getId());
         if (productItem.isInOrder()) {
             throw new ProductItemNotFree(productItem.getId());
         }
-        return buildOrderItem(productItem);
+        return buildOrderItem(order.getId(), productItem.getId());
     }
 
     @Override
@@ -74,20 +75,21 @@ public class OrderItemService implements IOrderItemService {
     }
 
     private void updateStockOnDelete(OrderItem orderItemToDelete) {
-        ProductItem productItem = orderItemToDelete.getProductItem();
+        long productItemId = orderItemToDelete.getProductItemId();
+        ProductItem productItem = stockService.getProductItem(productItemId);
         productItem.setOrderItemId(null);
         stockService.onProductItemUnlinked(productItem);
     }
 
-    private OrderItem buildOrderItem(ProductItem productItem) {
-        return new OrderItem(IdGenerator.generateId(), productItem);
+    private OrderItem buildOrderItem(long orderId, long productItemId) {
+        return new OrderItem(orderId, productItemId);
     }
 
-    private void persist(Order order, OrderItem orderItem) {
-        dao.update(order, orderItem);
+    private void persist(OrderItem orderItem) {
+        dao.save(orderItem);
     }
 
-    private void logFreeQuantityError(int freeQty, int requestedQty, long productId) {
+    private void logFreeQuantityError(int freeQty, int requestedQty, ProductId productId) {
         LOGGER.log(Level.ERROR, "FreeQuantity (" + freeQty + ")" +
                 " > QuantityRequested(" + requestedQty + ")" +
                 " , but no free product item found for productId : " + productId);

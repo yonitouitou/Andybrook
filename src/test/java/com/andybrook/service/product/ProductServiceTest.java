@@ -27,8 +27,8 @@ public class ProductServiceTest {
 
     @Test
     public void addProductTest() {
-        Product savedProduct = productService.addProduct(product);
-        ProductAssertor.assertEqualsStaticField(product, savedProduct);
-        Assert.assertNotNull("Id", savedProduct.getId());
+        productService.add(product);
+        ProductAssertor.assertEqualsStaticField(product, product);
+        Assert.assertNotNull("Id", product.getId());
     }
 }

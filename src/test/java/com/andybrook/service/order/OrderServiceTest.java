@@ -16,7 +16,7 @@ import com.andybrook.model.stock.ProductItem;
 import com.andybrook.service.product.IProductService;
 import com.andybrook.service.stock.IStockService;
 import com.andybrook.service.store.IStoreService;
-import com.andybrook.util.clock.Clock;
+
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -52,10 +52,10 @@ public class OrderServiceTest {
         store = storeService.newStore(StoreGenerator.generateStore());
         order = orderService.newOrder(createNewOrderRequest(store));
         product = ProductGenerator.generateProduct();
-        product = productService.addProduct(product);
+        productService.add(product);
         List<ProductItem> productItems = ProductItemGenerator.generateProductItem(product, PRODUCT_QUANTITY);
         for (ProductItem item : productItems) {
-            stockService.addProductItem(item, false);
+            stockService.addProductItem(item);
         }
         productItemInfo = OrderItemGenerator.generateOrderItemInfo(product, PRODUCT_QUANTITY -1);
     }
@@ -66,7 +66,6 @@ public class OrderServiceTest {
         OrderItem orderItemAdded = addOrderItems(productItemInfo).get(0);
         Order updatedOrder = orderService.getOrder(order.getId());
         Assert.assertTrue("Order.HasItem", updatedOrder.hasItem(orderItemAdded.getId()));
-        Assert.assertEquals("ProductId", product.getId(), updatedOrder.getItem(orderItemAdded.getId()).getProductId(), 0);
     }
 
     @Test
@@ -76,7 +75,6 @@ public class OrderServiceTest {
         Order updatedOrder = orderService.getOrder(order.getId());
         for (OrderItem orderItem : orderItems) {
             Assert.assertTrue("Order.HasItem", updatedOrder.hasItem(orderItem.getId()));
-            Assert.assertEquals("ProductId", product.getId(), updatedOrder.getItem(orderItem.getId()).getProductId(), 0);
         }
     }
 

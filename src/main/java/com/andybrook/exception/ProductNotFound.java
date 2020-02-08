@@ -1,8 +1,10 @@
 package com.andybrook.exception;
 
+import com.andybrook.model.product.ProductId;
+
 public class ProductNotFound extends ValidationRuntimeException {
 
-    public ProductNotFound(long id) {
-        super("Product not found : " + String.valueOf(id));
+    public ProductNotFound(ProductId id) {
+        super("Product not found : " + id);
     }
 }

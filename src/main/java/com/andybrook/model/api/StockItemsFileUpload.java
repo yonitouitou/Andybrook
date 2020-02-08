@@ -2,10 +2,15 @@ package com.andybrook.model.api;
 
 import com.andybrook.model.stock.ProductItem;
 
+import org.springframework.data.annotation.Id;
+import org.springframework.data.elasticsearch.annotations.Document;
+
 import java.util.List;
 
+@Document(indexName = "stock_items_file_upload", type = "fileupload")
 public final class StockItemsFileUpload {
 
+    @Id
     private String id;
     private int rowsInFile;
     private int rowsProcessed;
@@ -46,6 +51,10 @@ public final class StockItemsFileUpload {
         this.id = id;
     }
 
+    /**
+     *
+     * @param rowsInFile
+     */
     public void setRowsInFile(int rowsInFile) {
         this.rowsInFile = rowsInFile;
     }

@@ -1,6 +1,5 @@
 package com.andybrook.dao.statistic;
 
-import com.andybrook.dao.jpa.repository.IOrdersStatisticCrudRepository;
 import com.andybrook.enums.OrderStatus;
 import com.andybrook.model.statistic.order.OpenClosedOrdersCounter;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,7 +12,7 @@ import java.util.List;
 public class OrdersStatisticDao implements IOrdersStatisticDao {
 
     @Autowired
-    private IOrdersStatisticCrudRepository repository;
+    private IOrdersStatisticRepository repository;
 
     @Override
     public OpenClosedOrdersCounter getOpenClosedOrdersCounterByStore(long storeId) {

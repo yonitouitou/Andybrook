@@ -1,79 +1,54 @@
 package com.andybrook.dao.product;
 
-import com.andybrook.dao.jpa.repository.IProductCrudRepository;
-import com.andybrook.dao.jpa.entity.factory.EntityFactory;
-import com.andybrook.dao.jpa.entity.product.ProductEntity;
-import com.andybrook.model.product.Glasses;
+import com.andybrook.model.BarCode;
 import com.andybrook.model.product.Product;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
+import com.andybrook.model.product.ProductId;
 
-import java.util.LinkedList;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
+
 import java.util.List;
 import java.util.Optional;
 
-@Service
+@Repository
 public class ProductDao implements IProductDao {
 
     @Autowired
-    private IProductCrudRepository repository;
-    @Autowired
-    private EntityFactory entityFactory;
+    private IProductRepository repository;
 
     @Override
-    public Product save(Product product) {
-        ProductEntity productEntity = entityFactory.createProductEntity(product);
-        ProductEntity savedEntity = repository.save(productEntity);
-        return entityFactory.createProduct(savedEntity);
+    public void save(Product product) {
+        repository.save(product);
     }
 
     @Override
-    public Optional<Product> get(Long id) {
-        Optional<Product> glassesOpt = Optional.empty();
-        Optional<ProductEntity> productEntityOpt = repository.findById(id);
-        if (productEntityOpt.isPresent()) {
-            Glasses glasses = entityFactory.createProduct(productEntityOpt.get());
-            glassesOpt = Optional.of(glasses);
-        }
-        return glassesOpt;
+    public Optional<Product> get(ProductId id) {
+        return repository.findById(id.get());
+    }
+
+    @Override
+    public Optional<Product> getByBarCode(BarCode barCode) {
+        throw new UnsupportedOperationException();
     }
 
     @Override
     public Optional<Product> getByName(String name) {
-        Optional<Product> productOpt = Optional.empty();
-        Optional<ProductEntity> entityOpt = repository.findByName(name);
-        if (entityOpt.isPresent()) {
-            Product product = entityFactory.createProduct(entityOpt.get());
-            productOpt = Optional.of(product);
-        }
-        return productOpt;
+        throw new UnsupportedOperationException();
     }
 
     @Override
-    public boolean isExist(long id) {
-        return repository.existsById(id);
+    public boolean isExist(ProductId id) {
+        return repository.existsById(id.get());
     }
 
     @Override
-    public List<? extends Product> getByNameContaining(String name) {
-        List<ProductEntity> productEntities = repository.findByNameContaining(name);
-        List<Product> products = new LinkedList<>();
-        for (ProductEntity entity : productEntities) {
-            products.add(entityFactory.createProduct(entity));
-        }
-        return products;
+    public List<Product> getByNameContaining(String name) {
+        throw new UnsupportedOperationException();
     }
 
     @Override
-    public Product update(Product glasses) {
-        ProductEntity entity = entityFactory.createProductEntity(glasses);
-        ProductEntity savedEntity = repository.save(entity);
-        return entityFactory.createProduct(savedEntity);
-    }
-
-    @Override
-    public boolean delete(long id) {
-        repository.deleteById(id);
+    public boolean delete(ProductId id) {
+        repository.deleteById(id.get());
         return true;
     }
 }

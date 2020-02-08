@@ -4,12 +4,15 @@ import com.andybrook.enums.ProductType;
 import com.andybrook.serialization.jackson.custom.ProductDeserializer;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 
+import org.springframework.data.annotation.Id;
+
 import java.util.Objects;
 
 @JsonDeserialize(using = ProductDeserializer.class)
 public abstract class Product {
 
-    protected Long id;
+    @Id
+    protected ProductId id;
     protected String name;
     protected double price;
 
@@ -19,23 +22,17 @@ public abstract class Product {
     }
 
     public Product(Long id, String name, double price) {
-        this.id = id;
+        this.id = new ProductId(id);
         this.name = name;
         this.price = price;
     }
 
-    public Product(String name, double price) {
-        this.name = name;
-        this.price = price;
-    }
-
-
-    public Long getId() {
+    public ProductId getId() {
         return id;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public void setId(long id) {
+        this.id = new ProductId(id);
     }
 
     public String getName() {

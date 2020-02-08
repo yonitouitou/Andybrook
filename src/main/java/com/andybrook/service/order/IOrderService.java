@@ -1,6 +1,7 @@
 package com.andybrook.service.order;
 
 import com.andybrook.exception.*;
+import com.andybrook.model.api.AggregatedOrder;
 import com.andybrook.model.order.Order;
 import com.andybrook.model.order.OrderItem;
 import com.andybrook.model.request.order.NewOrderRequest;
@@ -19,6 +20,10 @@ public interface IOrderService {
     Order getOrder(long id) throws OrderNotFound;
 
     Set<Order> getAll();
+
+    AggregatedOrder aggregate(Order order);
+
+    AggregatedOrder aggregate(long orderId);
 
     Order closeOrder(long id) throws OrderNotFound, OrderClosed;
 
@@ -41,4 +46,6 @@ public interface IOrderService {
     OrderItem addSingleOrderItemByBarCode(long orderId, String barCodeId);
 
     Order deleteOrderItem(long orderId, long orderItemId) throws OrderNotFound, OrderClosed, OrderItemNotFound;
+
+    double getAmount(Order order);
 }

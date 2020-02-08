@@ -1,11 +1,13 @@
 package com.andybrook.api.pdf;
 
 import com.andybrook.ApplicationProperties;
-import com.andybrook.dao.jpa.repository.IAdminSettingRepository;
+import com.andybrook.dao.setting.IAdminSettingRepository;
 import com.andybrook.dao.jpa.entity.factory.EntityFactory;
 import com.andybrook.dao.setting.AdminSettingDao;
 import com.andybrook.dao.setting.IAdminSettingDao;
 import com.andybrook.language.LanguageResolver;
+import com.andybrook.manager.order.IOrderManager;
+import com.andybrook.manager.order.OrderManager;
 import com.andybrook.model.setting.AdminSetting;
 import com.andybrook.service.setting.AdminSettingService;
 import com.andybrook.service.setting.IAdminSettingService;
@@ -71,6 +73,11 @@ public class PdfTestConfig {
     @Bean
     IAdminSettingRepository adminSettingRepository() {
         return null;
+    }
+
+    @Bean
+    IOrderManager orderManager() {
+        return new OrderManager();
     }
 
     @Bean

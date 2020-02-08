@@ -1,24 +1,25 @@
 package com.andybrook.dao.product;
 
+import com.andybrook.model.BarCode;
 import com.andybrook.model.product.Product;
-import org.springframework.data.util.Pair;
+import com.andybrook.model.product.ProductId;
 
 import java.util.List;
 import java.util.Optional;
 
 public interface IProductDao {
 
-    Product save(Product product);
+    void save(Product product);
 
-    Optional<Product> get(Long id);
+    Optional<Product> get(ProductId id);
+
+    Optional<Product> getByBarCode(BarCode barCode);
 
     Optional<Product> getByName(String name);
 
-    boolean isExist(long id);
+    boolean isExist(ProductId id);
 
-    List<? extends Product> getByNameContaining(String name);
+    List<Product> getByNameContaining(String name);
 
-    Product update(Product product);
-
-    boolean delete(long id);
+    boolean delete(ProductId id);
 }

@@ -1,4 +1,0 @@
--------------------------------------------------------------------------------
-Test set: com.andybrook.init.InitSystemTest
--------------------------------------------------------------------------------
-Tests run: 1, Failures: 0, Errors: 0, Skipped: 1, Time elapsed: 0.276 s - in com.andybrook.init.InitSystemTest

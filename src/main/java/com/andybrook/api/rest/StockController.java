@@ -1,8 +1,10 @@
 package com.andybrook.api.rest;
 
 import com.andybrook.manager.stock.IStockManager;
+import com.andybrook.model.product.ProductId;
 import com.andybrook.model.stock.ProductItem;
 import com.andybrook.model.stock.ProductStockInfo;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.util.Pair;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -26,7 +28,7 @@ public class StockController extends AbstractController {
     @GetMapping(path = "/productStockInfo/{productId}")
     public ProductStockInfo getProductStockInfo(@PathVariable long productId) {
         LOGGER.log(Level.INFO, "Get product stock info for product : " + productId);
-        return stockManager.getProductStockInfo(productId);
+        return stockManager.getProductStockInfo(new ProductId(productId));
     }
 
     @GetMapping(path = "/productItemByBarCode/{barCode}")

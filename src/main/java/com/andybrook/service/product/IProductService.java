@@ -1,24 +1,23 @@
 package com.andybrook.service.product;
 
-import com.andybrook.exception.ProductNotFound;
+import com.andybrook.model.BarCode;
 import com.andybrook.model.product.Product;
+import com.andybrook.model.product.ProductId;
 
 import java.util.List;
 import java.util.Optional;
 
 public interface IProductService {
 
-    Product get(long id) throws ProductNotFound;
+    void add(Product product);
+
+    Product get(ProductId id);
+
+    Product getByBarCode(BarCode barCode);
+
+    boolean isExist(ProductId id);
 
     Optional<Product> getByName(String name);
 
-    boolean isExist(long id);
-
-    Product getByBarCode(String barCodeId);
-
-    Product update(Product product);
-
-    List<? extends Product> getByNameContaining(String subName);
-
-    Product addProduct(Product product);
+    List<Product> getByNameContaining(String subName);
 }

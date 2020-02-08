@@ -12,7 +12,7 @@ public interface IOrderItemService {
 
     List<OrderItem> createOrderItems(Order order, ProductItemInfo info, int quantityRequested);
 
-    OrderItem createSingleItemByBarCode(BarCode barCode);
+    OrderItem createSingleOrderItemByBarCode(Order order, BarCode barCode);
 
     void delete(OrderItem orderItemId) throws OrderItemNotFound;
 

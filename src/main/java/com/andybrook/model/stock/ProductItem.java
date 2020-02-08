@@ -3,6 +3,7 @@ package com.andybrook.model.stock;
 import com.andybrook.enums.ProductType;
 import com.andybrook.model.BarCode;
 import com.andybrook.model.product.Product;
+import com.andybrook.model.product.ProductId;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import java.time.LocalDateTime;
@@ -51,7 +52,7 @@ public class ProductItem {
     }
 
     @JsonIgnore
-    public long getProductId() {
+    public ProductId getProductId() {
         return product.getId();
     }
 

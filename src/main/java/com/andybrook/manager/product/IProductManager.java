@@ -1,20 +1,19 @@
 package com.andybrook.manager.product;
 
-import com.andybrook.exception.BarCodeAlreadyExist;
 import com.andybrook.exception.ProductNotFound;
 import com.andybrook.model.BarCode;
 import com.andybrook.model.product.Product;
-import org.springframework.data.util.Pair;
+import com.andybrook.model.product.ProductId;
 
 import java.util.List;
 
 public interface IProductManager {
 
-    Product addProduct(Product product);
+    void addProduct(Product product);
 
-    Product getProductByBarCode(String barCodeId);
+    Product getProductByBarCode(BarCode barCode);
 
     List<? extends Product> getByNameContaining(String name);
 
-    Product getProduct(long id) throws ProductNotFound;
+    Product getProduct(ProductId id) throws ProductNotFound;
 }

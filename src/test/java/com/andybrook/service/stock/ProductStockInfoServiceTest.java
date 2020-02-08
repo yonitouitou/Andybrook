@@ -3,9 +3,11 @@ package com.andybrook.service.stock;
 import com.andybrook.generator.ProductGenerator;
 import com.andybrook.generator.ProductItemGenerator;
 import com.andybrook.model.product.Product;
+import com.andybrook.model.product.ProductId;
 import com.andybrook.model.stock.ProductItem;
 import com.andybrook.model.stock.ProductStockInfo;
 import com.andybrook.service.product.IProductService;
+
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -32,7 +34,7 @@ public class ProductStockInfoServiceTest {
     @Before
     public void init() {
         product = ProductGenerator.generateProduct();
-        product = productService.addProduct(product);
+        productService.add(product);
     }
 
     @Test
@@ -48,7 +50,7 @@ public class ProductStockInfoServiceTest {
         int qty = 20;
         List<ProductItem> productItems = ProductItemGenerator.generateProductItem(product, qty);
         for (ProductItem item : productItems) {
-            stockService.addProductItem(item, false);
+            stockService.addProductItem(item);
         }
         ProductStockInfo stockInfo = get(product.getId());
         assertCreatedQuantity(qty, stockInfo.getQuantityCreated());
@@ -56,8 +58,8 @@ public class ProductStockInfoServiceTest {
         assertFreeQuantity(qty, stockInfo.getQuantityUnused());
     }
 
-    private ProductStockInfo get(long productId) {
-        return ((ProductStockInfoService) productStockInfoService).get(productId);
+    private ProductStockInfo get(ProductId productId) {
+        return productStockInfoService.get(productId);
     }
 
     private static void assertCreatedQuantity(int expected, int actual) {

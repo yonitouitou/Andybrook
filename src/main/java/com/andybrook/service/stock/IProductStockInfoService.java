@@ -1,31 +1,33 @@
 package com.andybrook.service.stock;
 
+import com.andybrook.model.product.ProductId;
 import com.andybrook.model.stock.ProductStockInfo;
+
 import org.springframework.data.util.Pair;
 
 import java.util.List;
 
 public interface IProductStockInfoService {
 
-    void add(long productId);
+    void add(ProductId productId);
 
-    ProductStockInfo get(long productId);
+    ProductStockInfo get(ProductId productId);
 
     List<Pair<Long, String>> getAllProductNamesWithQuantityMoreThan(int quantity);
 
-    int getFreeQuantity(long productId);
+    int getFreeQuantity(ProductId productId);
 
-    int getCreatedQuantity(long productId);
+    int getCreatedQuantity(ProductId productId);
 
-    int getUsedQuantity(long productId);
+    int getUsedQuantity(ProductId productId);
 
-    boolean isFreeQuantityExist(long productId);
+    boolean isFreeQuantityExist(ProductId productId);
 
-    void incrementQuantityUsed(long productId);
+    void incrementQuantityUsed(ProductId productId);
 
-    void incrementQuantityCreated(long productId);
+    void incrementQuantityCreated(ProductId productId);
 
-    void decrementQuantityUsed(long productId);
+    void decrementQuantityUsed(ProductId productId);
 
-    void decrementQuantityCreated(long productId);
+    void decrementQuantityCreated(ProductId productId);
 }
