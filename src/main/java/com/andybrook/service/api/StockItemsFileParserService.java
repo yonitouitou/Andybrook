@@ -2,6 +2,7 @@ package com.andybrook.service.api;
 
 import com.andybrook.ApplicationProperties;
 import com.andybrook.dao.stock.IStockItemsFileUploadDao;
+import com.andybrook.exception.ValidationRuntimeException;
 import com.andybrook.exception.fileupload.CsvBadFormat;
 import com.andybrook.exception.fileupload.EmptyFileException;
 import com.andybrook.exception.fileupload.SizeFileLimitExceeded;
@@ -54,15 +55,20 @@ public class StockItemsFileParserService implements IStockItemsFileParserService
 
     @Override
     public void processUpload(String uploadId) {
-        StockItemsFileUpload fileUpload = dao.getById(uploadId);
-        for (ProductToUpload item : fileUpload.getProductsForUpload()) {
-            try {
-                Product product = getOrCreateProductByName(item.getName());
-                ProductItem productItem = new ProductItem(product, item.getBarCode());
-                stockService.addProductItem(productItem);
-            } catch (Exception e) {
-                LOGGER.log(Level.ERROR, "ProductItem " + item.getName() + " not added because error occurred", e);
+        Optional<StockItemsFileUpload> fileUploadOpt = dao.getById(uploadId);
+        if (fileUploadOpt.isPresent()) {
+            StockItemsFileUpload fileUpload = fileUploadOpt.get();
+            for (ProductToUpload item : fileUpload.getProductsForUpload()) {
+                try {
+                    Product product = getOrCreateProductByName(item.getName());
+                    ProductItem productItem = new ProductItem(product, item.getBarCode());
+                    stockService.addProductItem(productItem);
+                } catch (Exception e) {
+                    LOGGER.log(Level.ERROR, "ProductItem " + item.getName() + " not added because error occurred", e);
+                }
             }
+        } else {
+            throw new StockItemsUploadNotFound(uploadId);
         }
     }
 
@@ -116,6 +122,13 @@ public class StockItemsFileParserService implements IStockItemsFileParserService
             throw e;
         } catch (Exception e) {
             throw new CsvBadFormat(line);
+        }
+    }
+
+    private static class StockItemsUploadNotFound extends ValidationRuntimeException {
+
+        public StockItemsUploadNotFound(String uploadId) {
+            super(uploadId);
         }
     }
 }

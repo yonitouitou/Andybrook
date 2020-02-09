@@ -15,8 +15,8 @@ public class BarCodeService implements IBarCodeService {
     private IBarCodeDao dao;
 
     @Override
-    public BarCode get(String id) {
-        Optional<BarCode> barCodeOpt = dao.get(id);
+    public BarCode get(BarCode barCode) {
+        Optional<BarCode> barCodeOpt = dao.get(barCode);
         return barCodeOpt.isPresent() ? barCodeOpt.get() : null;
     }
 
@@ -26,7 +26,7 @@ public class BarCodeService implements IBarCodeService {
     }
 
     @Override
-    public boolean isBarCodeExist(String barCodeId) {
-        return dao.get(barCodeId).isPresent();
+    public boolean isBarCodeExist(BarCode barCode) {
+        return dao.get(barCode).isPresent();
     }
 }

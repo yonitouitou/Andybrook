@@ -1,9 +1,14 @@
 package com.andybrook.model;
 
+import org.springframework.data.annotation.Id;
+import org.springframework.data.elasticsearch.annotations.Document;
+
 import java.util.Objects;
 
+@Document(indexName = "barcodes")
 public class BarCode {
 
+    @Id
     private final String id;
     private boolean isUsed;
 
@@ -17,7 +22,7 @@ public class BarCode {
         isUsed = false;
     }
 
-    public String getId() {
+    public String get() {
         return id;
     }
 

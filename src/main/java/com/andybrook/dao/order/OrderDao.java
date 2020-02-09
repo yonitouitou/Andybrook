@@ -4,38 +4,35 @@ import com.andybrook.exception.OrderNotFound;
 import com.andybrook.model.order.Order;
 import com.andybrook.model.request.order.UpdateOrderRequest;
 
+import org.elasticsearch.index.query.QueryBuilders;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.domain.Sort.Direction;
+import org.springframework.data.elasticsearch.core.ElasticsearchOperations;
+import org.springframework.data.elasticsearch.core.query.Criteria;
+import org.springframework.data.elasticsearch.core.query.CriteriaQuery;
+import org.springframework.data.elasticsearch.core.query.NativeSearchQueryBuilder;
+import org.springframework.data.elasticsearch.core.query.SearchQuery;
+import org.springframework.data.elasticsearch.repository.ElasticsearchRepository;
 import org.springframework.stereotype.Repository;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
-import java.util.Set;
 
 @Repository
 public class OrderDao implements IOrderDao {
 
     @Autowired
-    private IOrderRepository repository;
+    private ElasticsearchOperations template;
+    @Autowired
+    private ElasticsearchRepository<Order, Long> repository;
 
     @Override
-    public Order save(Order order) {
-        return repository.save(order);
-    }
-
-    @Override
-    public void updateOrderAudit(Order order) {
-        repository.updateOrderAuditing(order.getId(), order.getLastModifiedDateTime());
-    }
-
-    @Override
-    public void updateOrder(UpdateOrderRequest request, boolean checkIfExist) throws OrderNotFound {
-        if (checkIfExist) {
-            boolean isExist = repository.existsById(request.getId());
-            if (! isExist) {
-                throw new OrderNotFound(request.getId());
-            }
-        }
-        repository.updateExistingOrder(request.getId(), request.getName(), request.getComment());
+    public void save(Order order) {
+        repository.save(order);
     }
 
     @Override
@@ -44,32 +41,64 @@ public class OrderDao implements IOrderDao {
     }
 
     @Override
-    public Set<Order> getAll(int limit) {
-        throw new UnsupportedOperationException();
-    }
-
-    @Override
-    public List<Order> getOrdersOfStore(long storeId) {
-        throw new UnsupportedOperationException();
-    }
-
-    @Override
-    public List<Order> getLastOrdersOfStore(long storeId, int lastOrderNb) {
-        throw new UnsupportedOperationException();
-    }
-
-    @Override
     public List<Order> getByName(String name) {
-        throw new UnsupportedOperationException();
+        SearchQuery query = new NativeSearchQueryBuilder()
+                .withQuery(QueryBuilders.termQuery("name", name))
+                .withIndices("orders")
+                .build();
+        return template.queryForList(query, Order.class);
     }
 
     @Override
     public List<Order> getByNameContaining(String name) {
-        throw new UnsupportedOperationException();
+        SearchQuery query = new NativeSearchQueryBuilder()
+                .withQuery(QueryBuilders.wildcardQuery("name", name))
+                .withIndices("orders")
+                .build();
+        return template.queryForList(query, Order.class);
     }
 
     @Override
     public List<Order> getOrders(List<Long> ids) {
-        throw new UnsupportedOperationException();
+        Iterable<Order> orderIterable = repository.findAllById(ids);
+        List<Order> orderList = new ArrayList<>();
+        orderIterable.forEach(orderList::add);
+        return orderList;
+
+    }
+
+    @Override
+    public List<Order> getAll(int limit) {
+        Pageable pageable = PageRequest.of(1, limit, Sort.by(Direction.DESC, "status", "lastModifiedDateTime"));
+        CriteriaQuery query = new CriteriaQuery(new Criteria(), pageable);
+        return template.queryForList(query, Order.class);
+    }
+
+    @Override
+    public List<Order> getOrdersOfStore(long storeId) {
+        CriteriaQuery query = new CriteriaQuery(
+                new Criteria("storeId").is(storeId)
+        );
+        return template.queryForList(query, Order.class);
+    }
+
+    @Override
+    public List<Order> getLastOrdersOfStore(long storeId, int lastOrderNb) {
+        Pageable pageable = PageRequest.of(1, lastOrderNb, Sort.by(Direction.DESC, "status", "lastModifiedDateTime"));
+        CriteriaQuery query = new CriteriaQuery(
+                new Criteria("storeId").is(storeId),
+                pageable
+        );
+        return template.queryForList(query, Order.class);
+    }
+
+    @Override
+    public void updateOrderAudit(Order order) {
+
+    }
+
+    @Override
+    public void updateOrder(UpdateOrderRequest request, boolean checkIfExist) throws OrderNotFound {
+
     }
 }

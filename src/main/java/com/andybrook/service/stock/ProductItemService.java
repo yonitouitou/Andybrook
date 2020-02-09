@@ -4,6 +4,7 @@ import com.andybrook.dao.stock.productitem.IProductItemDao;
 import com.andybrook.exception.BarCodeNotFound;
 import com.andybrook.exception.BarCodeNotLinked;
 import com.andybrook.exception.ProductItemNotFound;
+import com.andybrook.model.BarCode;
 import com.andybrook.model.product.Product;
 import com.andybrook.model.product.ProductId;
 import com.andybrook.model.stock.ProductItem;
@@ -37,14 +38,14 @@ class ProductItemService implements IProductItemService {
     }
 
     @Override
-    public ProductItem getByBarCodeId(String barCodeId) {
+    public ProductItem getByBarCode(BarCode barCode) {
         ProductItem productItem;
-        boolean isExist = barCodeService.isBarCodeExist(barCodeId);
+        boolean isExist = barCodeService.isBarCodeExist(barCode);
         if (isExist) {
-            Optional<ProductItem> productItemOpt = dao.findByBarCodeId(barCodeId);
-            productItem = productItemOpt.orElseThrow(() -> new BarCodeNotLinked(barCodeId));
+            Optional<ProductItem> productItemOpt = dao.findByBarCode(barCode);
+            productItem = productItemOpt.orElseThrow(() -> new BarCodeNotLinked(barCode));
         } else {
-            throw new BarCodeNotFound(barCodeId);
+            throw new BarCodeNotFound(barCode);
         }
         return productItem;
     }

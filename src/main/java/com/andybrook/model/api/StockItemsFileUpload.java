@@ -7,7 +7,7 @@ import org.springframework.data.elasticsearch.annotations.Document;
 
 import java.util.List;
 
-@Document(indexName = "stock_items_file_upload", type = "fileupload")
+@Document(indexName = "stock_items_file_upload")
 public final class StockItemsFileUpload {
 
     @Id

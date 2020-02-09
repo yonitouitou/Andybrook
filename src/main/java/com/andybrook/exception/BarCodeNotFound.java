@@ -1,8 +1,10 @@
 package com.andybrook.exception;
 
+import com.andybrook.model.BarCode;
+
 public class BarCodeNotFound extends ValidationRuntimeException {
 
-    public BarCodeNotFound(String barCodeId) {
-        super(String.valueOf(barCodeId));
+    public BarCodeNotFound(BarCode barCode) {
+        super(barCode.get());
     }
 }

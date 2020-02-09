@@ -1,12 +1,12 @@
 package com.andybrook.manager.stock;
 
+import com.andybrook.model.BarCode;
 import com.andybrook.model.product.ProductId;
 import com.andybrook.model.stock.ProductItem;
 import com.andybrook.model.stock.ProductStockInfo;
 import com.andybrook.service.stock.IStockService;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.util.Pair;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -23,12 +23,12 @@ public class StockManager implements IStockManager {
     }
 
     @Override
-    public ProductItem getProductItemByBarCodeId(String barCodeId) {
-        return stockService.getProductItemByBarCodeId(barCodeId);
+    public ProductItem getProductItemByBarCodeId(BarCode barCode) {
+        return stockService.getProductItemByBarCode(barCode);
     }
 
     @Override
-    public List<Pair<Long, String>> getAllProductNamesWithQuantityMoreThan(int quantity) {
+    public List<ProductStockInfo> getAllProductNamesWithQuantityMoreThan(int quantity) {
         return stockService.getAllProductNamesWithQuantityMoreThan(quantity);
     }
 }

@@ -1,10 +1,13 @@
 package com.andybrook.dao.stock.productitem;
 
+import com.andybrook.model.BarCode;
 import com.andybrook.model.product.ProductId;
 import com.andybrook.model.stock.ProductItem;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.elasticsearch.core.ElasticsearchTemplate;
+import org.springframework.data.elasticsearch.core.ElasticsearchOperations;
+import org.springframework.data.elasticsearch.core.query.Criteria;
+import org.springframework.data.elasticsearch.core.query.CriteriaQuery;
 import org.springframework.stereotype.Repository;
 
 import java.util.Optional;
@@ -13,7 +16,7 @@ import java.util.Optional;
 public class ProductItemDao implements IProductItemDao {
 
     @Autowired
-    private ElasticsearchTemplate template;
+    private ElasticsearchOperations template;
     @Autowired
     private IProductItemRepository repository;
 
@@ -24,21 +27,24 @@ public class ProductItemDao implements IProductItemDao {
 
     @Override
     public Optional<ProductItem> get(long id) {
-        return repository.get(id);
+        return repository.findById(id);
     }
 
     @Override
     public int getProductItemSize(ProductId productId) {
-        return repository.countByProductId(productId);
+        return (int) template.count(new CriteriaQuery(
+                new Criteria("productId").is(productId.get()))
+        );
     }
 
     @Override
     public boolean delete(long id) {
-        return repository.delete(id);
+        repository.deleteById(id);
+        return true;
     }
 
     @Override
-    public Optional<ProductItem> findByBarCodeId(String barCodeId) {
+    public Optional<ProductItem> findByBarCode(BarCode barCode) {
         throw new UnsupportedOperationException();
     }
 

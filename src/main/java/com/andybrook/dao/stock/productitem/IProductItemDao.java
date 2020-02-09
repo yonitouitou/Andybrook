@@ -1,5 +1,6 @@
 package com.andybrook.dao.stock.productitem;
 
+import com.andybrook.model.BarCode;
 import com.andybrook.model.product.ProductId;
 import com.andybrook.model.stock.ProductItem;
 
@@ -15,7 +16,7 @@ public interface IProductItemDao {
 
     int getProductItemSize(ProductId productId);
 
-    Optional<ProductItem> findByBarCodeId(String barCodeId);
+    Optional<ProductItem> findByBarCode(BarCode barCode);
 
     Optional<ProductItem> findFreeProductItemOf(ProductId productId);
 }

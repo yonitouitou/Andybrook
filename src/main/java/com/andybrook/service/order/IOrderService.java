@@ -1,6 +1,9 @@
 package com.andybrook.service.order;
 
-import com.andybrook.exception.*;
+import com.andybrook.exception.OrderClosed;
+import com.andybrook.exception.OrderItemNotFound;
+import com.andybrook.exception.OrderNotFound;
+import com.andybrook.exception.StoreNotFound;
 import com.andybrook.model.api.AggregatedOrder;
 import com.andybrook.model.order.Order;
 import com.andybrook.model.order.OrderItem;
@@ -9,7 +12,6 @@ import com.andybrook.model.request.order.UpdateOrderRequest;
 import com.andybrook.model.request.orderitem.ProductItemInfo;
 
 import java.util.List;
-import java.util.Set;
 
 public interface IOrderService {
 
@@ -19,7 +21,7 @@ public interface IOrderService {
 
     Order getOrder(long id) throws OrderNotFound;
 
-    Set<Order> getAll();
+    List<Order> getAll();
 
     AggregatedOrder aggregate(Order order);
 

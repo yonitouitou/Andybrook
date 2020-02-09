@@ -6,11 +6,10 @@ import com.andybrook.model.request.order.UpdateOrderRequest;
 
 import java.util.List;
 import java.util.Optional;
-import java.util.Set;
 
 public interface IOrderDao {
 
-    Order save(Order order);
+    void save(Order order);
 
     void updateOrderAudit(Order order);
 
@@ -22,7 +21,7 @@ public interface IOrderDao {
 
     List<Order> getLastOrdersOfStore(long storeId, int lastOrderNb);
 
-    Set<Order> getAll(int limit);
+    List<Order> getAll(int limit);
 
     List<Order> getByName(String name);
 

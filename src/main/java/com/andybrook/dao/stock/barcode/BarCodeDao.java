@@ -14,13 +14,13 @@ public class BarCodeDao implements IBarCodeDao {
     private IBarCodeRepository repository;
 
     @Override
-    public boolean isExist(String id) {
-        return repository.existsById(id);
+    public boolean isExist(BarCode barCode) {
+        return repository.existsById(barCode.get());
     }
 
     @Override
-    public Optional<BarCode> get(String id) {
-        return repository.findById(id);
+    public Optional<BarCode> get(BarCode barCode) {
+        return repository.findById(barCode.get());
     }
 
     @Override

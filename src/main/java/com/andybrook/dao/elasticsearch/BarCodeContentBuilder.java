@@ -19,7 +19,7 @@ public final class BarCodeContentBuilder implements IContentBuilder<BarCode> {
     @Override
     public XContentBuilder builder(XContentBuilder builder, BarCode entity) throws IOException {
         return builder
-                .field("id", entity.getId())
+                .field("id", entity.get())
                 .field("isUsed", entity.isUsed());
     }
 }

@@ -17,7 +17,6 @@ import com.andybrook.model.request.orderitem.OrderItemAddRequestByBarCode;
 import com.andybrook.model.request.orderitem.OrderItemDeleteRequest;
 
 import java.util.List;
-import java.util.Set;
 
 public interface IOrderManager {
 
@@ -31,7 +30,7 @@ public interface IOrderManager {
 
     AggregatedOrder aggregate(long orderId);
 
-    Set<Order> getAll();
+    List<Order> getAll();
 
     Order closeOrder(long id) throws OrderNotFound, OrderClosed;
 

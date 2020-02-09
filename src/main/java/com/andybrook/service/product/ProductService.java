@@ -31,16 +31,6 @@ public class ProductService implements IProductService {
     }
 
     @Override
-    public Product getByBarCode(BarCode barCode) {
-        Product product = null;
-        Optional<Product> productOpt = dao.getByBarCode(barCode);
-        if (productOpt.isPresent()) {
-            product = productOpt.get();
-        }
-        return product;
-    }
-
-    @Override
     public Optional<Product> getByName(String name) {
         return dao.getByName(name);
     }

@@ -3,6 +3,9 @@ package com.andybrook.model.order;
 import com.andybrook.enums.OrderStatus;
 import com.andybrook.exception.OrderClosed;
 import com.andybrook.model.customer.Store;
+import com.andybrook.util.IdGenerator;
+
+import org.springframework.data.elasticsearch.annotations.Document;
 
 import java.time.LocalDateTime;
 import java.util.Collection;
@@ -10,6 +13,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+@Document(indexName = "orders")
 public class Order {
 
     private Long id;
@@ -29,6 +33,10 @@ public class Order {
         this.items = new HashMap<>();
         this.status = OrderStatus.OPEN;
         this.comment = "";
+    }
+
+    public Order(String name, Store store) {
+        this(IdGenerator.generateId(), name, store);
     }
 
     public void addOrderItem(OrderItem item) {

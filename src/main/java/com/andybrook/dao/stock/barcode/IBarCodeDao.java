@@ -6,9 +6,9 @@ import java.util.Optional;
 
 public interface IBarCodeDao {
 
-    boolean isExist(String id);
+    boolean isExist(BarCode barCode);
 
     void save(BarCode barCode);
 
-    Optional<BarCode> get(String id);
+    Optional<BarCode> get(BarCode barCode);
 }

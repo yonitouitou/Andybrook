@@ -1,6 +1,5 @@
 package com.andybrook.service.product;
 
-import com.andybrook.model.BarCode;
 import com.andybrook.model.product.Product;
 import com.andybrook.model.product.ProductId;
 
@@ -12,8 +11,6 @@ public interface IProductService {
     void add(Product product);
 
     Product get(ProductId id);
-
-    Product getByBarCode(BarCode barCode);
 
     boolean isExist(ProductId id);
 

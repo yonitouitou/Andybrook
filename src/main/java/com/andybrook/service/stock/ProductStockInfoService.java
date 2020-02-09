@@ -2,13 +2,10 @@ package com.andybrook.service.stock;
 
 import com.andybrook.dao.product.IProductStockInfoDao;
 import com.andybrook.exception.ValidationRuntimeException;
-import com.andybrook.model.product.Product;
 import com.andybrook.model.product.ProductId;
 import com.andybrook.model.stock.ProductStockInfo;
-import com.andybrook.service.product.IProductService;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.util.Pair;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -19,17 +16,14 @@ class ProductStockInfoService implements IProductStockInfoService {
 
     @Autowired
     private IProductStockInfoDao dao;
-    @Autowired
-    private IProductService productService;
 
     @Override
     public void add(ProductId productId) {
-        Product product = productService.get(productId);
-        dao.save(new ProductStockInfo(product, 0, 0));
+        dao.save(new ProductStockInfo(productId, 0, 0));
     }
 
     @Override
-    public List<Pair<Long, String>> getAllProductNamesWithQuantityMoreThan(int quantity) {
+    public List<ProductStockInfo> getAllProductNamesWithQuantityMoreThan(int quantity) {
         return dao.getAllProductNamesWithQuantityMoreThan(quantity);
     }
 

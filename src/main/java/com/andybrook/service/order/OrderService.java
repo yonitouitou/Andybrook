@@ -30,7 +30,6 @@ import org.springframework.stereotype.Service;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
-import java.util.Set;
 
 @Service
 public class OrderService implements IOrderService {
@@ -53,9 +52,10 @@ public class OrderService implements IOrderService {
     @Override
     public Order newOrder(NewOrderRequest request) {
         Store store = storeService.getById(request.getStoreId());
-        Order order = new Order(null, request.getName(), store);
+        Order order = new Order(request.getName(), store);
         order.setComment(request.getComment());
-        return dao.save(order);
+        dao.save(order);
+        return order;
     }
 
     @Override
@@ -73,7 +73,7 @@ public class OrderService implements IOrderService {
     }
 
     @Override
-    public Set<Order> getAll() {
+    public List<Order> getAll() {
         return dao.getAll(adminSettingService.getLoadItemsLimit());
     }
 
@@ -93,7 +93,8 @@ public class OrderService implements IOrderService {
     public Order closeOrder(long id) throws OrderNotFound, OrderClosed {
         Order order = getOrder(id);
         order.close();
-        return dao.save(order);
+        dao.save(order);
+        return order;
     }
 
     @Override

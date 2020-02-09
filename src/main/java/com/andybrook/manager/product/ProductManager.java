@@ -1,7 +1,6 @@
 package com.andybrook.manager.product;
 
 import com.andybrook.exception.ProductNotFound;
-import com.andybrook.model.BarCode;
 import com.andybrook.model.product.Product;
 import com.andybrook.model.product.ProductId;
 import com.andybrook.service.product.IProductService;
@@ -20,11 +19,6 @@ public class ProductManager implements IProductManager {
     @Override
     public void addProduct(Product product) {
         productService.add(product);
-    }
-
-    @Override
-    public Product getProductByBarCode(BarCode barCode) {
-        return productService.getByBarCode(barCode);
     }
 
     @Override

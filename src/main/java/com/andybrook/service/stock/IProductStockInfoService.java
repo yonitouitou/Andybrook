@@ -3,8 +3,6 @@ package com.andybrook.service.stock;
 import com.andybrook.model.product.ProductId;
 import com.andybrook.model.stock.ProductStockInfo;
 
-import org.springframework.data.util.Pair;
-
 import java.util.List;
 
 public interface IProductStockInfoService {
@@ -13,7 +11,7 @@ public interface IProductStockInfoService {
 
     ProductStockInfo get(ProductId productId);
 
-    List<Pair<Long, String>> getAllProductNamesWithQuantityMoreThan(int quantity);
+    List<ProductStockInfo> getAllProductNamesWithQuantityMoreThan(int quantity);
 
     int getFreeQuantity(ProductId productId);
 

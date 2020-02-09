@@ -1,6 +1,12 @@
 package com.andybrook.manager.order;
 
-import com.andybrook.exception.*;
+import com.andybrook.exception.BarCodeNotFound;
+import com.andybrook.exception.InsufficientQuantityException;
+import com.andybrook.exception.OrderClosed;
+import com.andybrook.exception.OrderItemNotFound;
+import com.andybrook.exception.OrderNotFound;
+import com.andybrook.exception.ProductNotFound;
+import com.andybrook.exception.StoreNotFound;
 import com.andybrook.manager.notification.INotificationManager;
 import com.andybrook.manager.setting.IAdminSettingManager;
 import com.andybrook.model.api.AggregatedOrder;
@@ -13,12 +19,12 @@ import com.andybrook.model.request.orderitem.OrderItemAddRequest;
 import com.andybrook.model.request.orderitem.OrderItemAddRequestByBarCode;
 import com.andybrook.model.request.orderitem.OrderItemDeleteRequest;
 import com.andybrook.service.order.IOrderService;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Set;
 
 @Service
 public class OrderManager implements IOrderManager {
@@ -73,7 +79,7 @@ public class OrderManager implements IOrderManager {
     }
 
     @Override
-    public Set<Order> getAll() {
+    public List<Order> getAll() {
         return orderService.getAll();
     }
 

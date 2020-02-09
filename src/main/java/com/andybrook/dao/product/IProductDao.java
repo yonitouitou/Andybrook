@@ -1,6 +1,5 @@
 package com.andybrook.dao.product;
 
-import com.andybrook.model.BarCode;
 import com.andybrook.model.product.Product;
 import com.andybrook.model.product.ProductId;
 
@@ -12,8 +11,6 @@ public interface IProductDao {
     void save(Product product);
 
     Optional<Product> get(ProductId id);
-
-    Optional<Product> getByBarCode(BarCode barCode);
 
     Optional<Product> getByName(String name);
 

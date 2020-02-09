@@ -6,7 +6,7 @@ public interface IBarCodeService {
 
     void newBarCode(BarCode barCode);
 
-    BarCode get(String id);
+    BarCode get(BarCode barCode);
 
-    boolean isBarCodeExist(String barCodeId);
+    boolean isBarCodeExist(BarCode barCode);
 }

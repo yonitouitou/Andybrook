@@ -126,7 +126,7 @@ public class StockItemsFileParserServiceTest {
     private void assertContentResult(ProductToUpload actual, String name, double price, String barCode) {
         Assert.assertEquals("Name", name, actual.getName());
         Assert.assertEquals("Price", price, actual.getPrice(), 0d);
-        Assert.assertEquals("BarCode", barCode, actual.getBarCode().getId());
+        Assert.assertEquals("BarCode", barCode, actual.getBarCode().get());
     }
 
     public static String getColumnsRow() {

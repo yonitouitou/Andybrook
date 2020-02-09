@@ -2,38 +2,96 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="68c8b49c-970c-40ab-ab2d-b486fbd977e4" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/andybrook/dao/stock/productitem/ProductItemRepository.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/andybrook/dao/elasticsearch/ProductItemContentBuilder.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/andybrook/dao/elasticsearch/ProductItemContentBuilder.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/andybrook/dao/elasticsearch/StockItemsFileUploadContentBuilder.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/andybrook/dao/elasticsearch/StockItemsFileUploadContentBuilder.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/andybrook/api/rest/ProductController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/andybrook/api/rest/ProductController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/andybrook/api/rest/StockController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/andybrook/api/rest/StockController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/andybrook/config/ElasticsearchConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/andybrook/config/ElasticsearchConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/andybrook/dao/elasticsearch/BarCodeContentBuilder.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/andybrook/dao/elasticsearch/BarCodeContentBuilder.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/andybrook/dao/order/IOrderDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/andybrook/dao/order/IOrderDao.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/andybrook/dao/order/IOrderRepository.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/andybrook/dao/order/OrderDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/andybrook/dao/order/OrderDao.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/andybrook/dao/order/OrderItemDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/andybrook/dao/order/OrderItemDao.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/andybrook/dao/product/IProductDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/andybrook/dao/product/IProductDao.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/andybrook/dao/product/IProductStockInfoDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/andybrook/dao/product/IProductStockInfoDao.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/andybrook/dao/product/IProductStockInfoRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/andybrook/dao/product/IProductStockInfoRepository.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/andybrook/dao/product/ProductDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/andybrook/dao/product/ProductDao.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/andybrook/dao/product/ProductStockInfoDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/andybrook/dao/product/ProductStockInfoDao.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/andybrook/dao/statistic/IOrdersStatisticRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/andybrook/dao/statistic/IOrdersStatisticRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/andybrook/dao/statistic/OrdersStatisticDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/andybrook/dao/statistic/OrdersStatisticDao.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/andybrook/dao/stock/IStockItemsFileUploadDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/andybrook/dao/stock/IStockItemsFileUploadDao.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/andybrook/dao/stock/StockItemsFileUploadDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/andybrook/dao/stock/StockItemsFileUploadDao.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/andybrook/dao/stock/barcode/BarCodeDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/andybrook/dao/stock/barcode/BarCodeDao.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/andybrook/dao/stock/barcode/IBarCodeDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/andybrook/dao/stock/barcode/IBarCodeDao.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/andybrook/dao/stock/productitem/IProductItemDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/andybrook/dao/stock/productitem/IProductItemDao.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/andybrook/dao/stock/productitem/IProductItemRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/andybrook/dao/stock/productitem/IProductItemRepository.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/andybrook/dao/stock/productitem/ProductItemDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/andybrook/dao/stock/productitem/ProductItemDao.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/andybrook/dao/stock/productitem/ProductItemRepository.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/andybrook/exception/BarCodeNotFound.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/andybrook/exception/BarCodeNotFound.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/andybrook/exception/BarCodeNotLinked.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/andybrook/exception/BarCodeNotLinked.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/andybrook/manager/order/IOrderManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/andybrook/manager/order/IOrderManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/andybrook/manager/order/OrderManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/andybrook/manager/order/OrderManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/andybrook/manager/product/IProductManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/andybrook/manager/product/IProductManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/andybrook/manager/product/ProductManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/andybrook/manager/product/ProductManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/andybrook/manager/stock/IStockManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/andybrook/manager/stock/IStockManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/andybrook/manager/stock/StockManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/andybrook/manager/stock/StockManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/andybrook/model/BarCode.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/andybrook/model/BarCode.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/andybrook/model/api/StockItemsFileUpload.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/andybrook/model/api/StockItemsFileUpload.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/andybrook/model/order/OrderAggregator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/andybrook/model/order/OrderAggregator.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/andybrook/model/product/Product.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/andybrook/model/product/Product.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/andybrook/model/product/ProductId.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/andybrook/model/product/ProductId.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/andybrook/model/order/Order.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/andybrook/model/order/Order.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/andybrook/model/order/OrderItem.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/andybrook/model/order/OrderItem.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/andybrook/model/product/Glasses.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/andybrook/model/product/Glasses.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/andybrook/model/stock/ProductItem.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/andybrook/model/stock/ProductItem.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/andybrook/model/stock/ProductStockInfo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/andybrook/model/stock/ProductStockInfo.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/andybrook/service/api/StockItemsFileParserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/andybrook/service/api/StockItemsFileParserService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/andybrook/service/order/IOrderService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/andybrook/service/order/IOrderService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/andybrook/service/order/OrderItemService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/andybrook/service/order/OrderItemService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/andybrook/service/order/OrderService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/andybrook/service/order/OrderService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/andybrook/service/product/BarCodeService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/andybrook/service/product/BarCodeService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/andybrook/service/product/IBarCodeService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/andybrook/service/product/IBarCodeService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/andybrook/service/product/IProductService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/andybrook/service/product/IProductService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/andybrook/service/product/ProductService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/andybrook/service/product/ProductService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/andybrook/service/stock/IProductItemService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/andybrook/service/stock/IProductItemService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/andybrook/service/stock/IProductStockInfoService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/andybrook/service/stock/IProductStockInfoService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/andybrook/service/stock/IStockService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/andybrook/service/stock/IStockService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/andybrook/service/stock/ProductItemService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/andybrook/service/stock/ProductItemService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/andybrook/service/stock/ProductStockInfoService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/andybrook/service/stock/ProductStockInfoService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/andybrook/service/stock/StockService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/andybrook/service/stock/StockService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/com/andybrook/assertor/ProductItemAssertor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/andybrook/assertor/ProductItemAssertor.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/com/andybrook/assertor/BarCodeAssertor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/andybrook/assertor/BarCodeAssertor.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/java/com/andybrook/service/api/StockItemsFileParserServiceTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/andybrook/service/api/StockItemsFileParserServiceTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/andybrook/api/rest/OrderController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/andybrook/api/rest/OrderController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/andybrook/api/rest/ProductController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/andybrook/api/rest/ProductController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/andybrook/api/rest/StockController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/andybrook/api/rest/StockController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/andybrook/dao/order/IOrderDao.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/andybrook/dao/order/IOrderDao.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/andybrook/dao/order/OrderDao.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/andybrook/dao/order/OrderDao.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/andybrook/dao/product/IProductDao.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/andybrook/dao/product/IProductDao.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/andybrook/dao/product/ProductDao.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/andybrook/dao/product/ProductDao.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/andybrook/model/product/Product.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/andybrook/model/product/Product.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/andybrook/exception/BarCodeNotFound.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/andybrook/exception/BarCodeNotFound.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/andybrook/exception/BarCodeNotLinked.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/andybrook/exception/BarCodeNotLinked.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/andybrook/manager/order/IOrderManager.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/andybrook/manager/order/IOrderManager.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/andybrook/manager/order/OrderManager.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/andybrook/manager/order/OrderManager.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/andybrook/manager/product/IProductManager.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/andybrook/manager/product/IProductManager.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/andybrook/manager/product/ProductManager.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/andybrook/manager/product/ProductManager.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/andybrook/manager/stock/IStockManager.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/andybrook/manager/stock/IStockManager.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/andybrook/manager/stock/StockManager.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/andybrook/manager/stock/StockManager.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/andybrook/model/BarCode.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/andybrook/model/BarCode.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/andybrook/model/order/Order.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/andybrook/model/order/Order.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/andybrook/model/order/OrderItem.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/andybrook/model/order/OrderItem.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/andybrook/model/product/Glasses.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/andybrook/model/product/Glasses.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/andybrook/model/stock/ProductItem.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/andybrook/model/stock/ProductItem.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/andybrook/model/stock/ProductStockInfo.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/andybrook/model/stock/ProductStockInfo.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/andybrook/service/order/IOrderService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/andybrook/service/order/IOrderService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/andybrook/service/order/OrderItemService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/andybrook/service/order/OrderItemService.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/andybrook/service/order/OrderService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/andybrook/service/order/OrderService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/andybrook/service/product/BarCodeService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/andybrook/service/product/BarCodeService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/andybrook/service/product/IBarCodeService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/andybrook/service/product/IBarCodeService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/andybrook/service/product/IProductService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/andybrook/service/product/IProductService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/andybrook/service/product/ProductService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/andybrook/service/product/ProductService.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/andybrook/service/stock/IProductItemService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/andybrook/service/stock/IProductItemService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/andybrook/service/stock/IProductStockInfoService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/andybrook/service/stock/IProductStockInfoService.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/andybrook/service/stock/IStockService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/andybrook/service/stock/IStockService.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/andybrook/service/stock/ProductItemService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/andybrook/service/stock/ProductItemService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/andybrook/service/stock/ProductStockInfoService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/andybrook/service/stock/ProductStockInfoService.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/andybrook/service/stock/StockService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/andybrook/service/stock/StockService.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/test-classes/com/andybrook/assertor/ProductItemAssertor.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/com/andybrook/assertor/ProductItemAssertor.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/test-classes/com/andybrook/service/stock/ProductStockInfoServiceTest.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/test-classes/com/andybrook/service/stock/StockServiceTest.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/com/andybrook/assertor/BarCodeAssertor.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/com/andybrook/assertor/BarCodeAssertor.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -49,8 +107,8 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Class" />
         <option value="Interface" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -115,6 +173,22 @@
       <option name="PACKAGE_NAME" value="com.andybrook.init" />
       <option name="MAIN_CLASS_NAME" value="com.andybrook.init.InitSystemTest" />
       <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="OrderServiceTest.addOrderItemIntoClosedOrder" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="Andybrook" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.andybrook.service.order.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.andybrook.service.order" />
+      <option name="MAIN_CLASS_NAME" value="com.andybrook.service.order.OrderServiceTest" />
+      <option name="METHOD_NAME" value="addOrderItemIntoClosedOrder" />
+      <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -205,9 +279,11 @@
       <item itemvalue="npm.Angular CLI Server" />
       <item itemvalue="Protractor.E2E Tests (andybrook-ui-e2e)" />
       <item itemvalue="Spring Boot.Andybrook" />
+      <item itemvalue="JUnit.OrderServiceTest.addOrderItemIntoClosedOrder" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.OrderServiceTest.addOrderItemIntoClosedOrder" />
         <item itemvalue="JUnit.StockItemsFileParserServiceTest.generateStockItemFileUpload" />
         <item itemvalue="JUnit.StockItemsFileParserServiceTest.processFileUntilLimitItems" />
         <item itemvalue="JUnit.InitSystemTest" />
@@ -229,7 +305,7 @@
       <workItem from="1574358353553" duration="12344000" />
       <workItem from="1581013210514" duration="4797000" />
       <workItem from="1581019968110" duration="2490000" />
-      <workItem from="1581053328128" duration="32579000" />
+      <workItem from="1581053328128" duration="45919000" />
     </task>
     <servers />
   </component>
@@ -271,10 +347,10 @@
       <screen x="0" y="23" width="1440" height="802" />
     </state>
     <state x="184" y="23" width="1071" height="802" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.23.1440.802@0.23.1440.802" timestamp="1581056346764" />
-    <state x="711" y="161" key="#com.intellij.ide.util.MemberChooser" timestamp="1581244481825">
+    <state x="711" y="161" key="#com.intellij.ide.util.MemberChooser" timestamp="1581260809346">
       <screen x="0" y="23" width="1920" height="982" />
     </state>
-    <state x="711" y="161" key="#com.intellij.ide.util.MemberChooser/-1440.203.1440.877/1920.23.1920.1057/0.23.1920.982@0.23.1920.982" timestamp="1581244481825" />
+    <state x="711" y="161" key="#com.intellij.ide.util.MemberChooser/-1440.203.1440.877/1920.23.1920.1057/0.23.1920.982@0.23.1920.982" timestamp="1581260809346" />
     <state x="533" y="136" key="#com.intellij.ide.util.MemberChooser/0.23.1440.802@0.23.1440.802" timestamp="1581177397797" />
     <state x="457" y="217" key="#com.intellij.ide.util.TreeClassChooserDialog" timestamp="1581019433286">
       <screen x="0" y="23" width="1440" height="802" />
@@ -289,91 +365,112 @@
     </state>
     <state x="528" y="23" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/-1440.203.1440.877/1920.23.1920.1057/0.23.1920.982@0.23.1920.982" timestamp="1581244401681" />
     <state x="396" y="23" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/0.23.1440.802@0.23.1440.802" timestamp="1581110122713" />
-    <state x="458" y="179" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1581156260278">
-      <screen x="0" y="23" width="1440" height="802" />
+    <state x="611" y="214" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1581262762220">
+      <screen x="0" y="23" width="1920" height="982" />
     </state>
+    <state x="611" y="214" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/-1440.203.1440.877/1920.23.1920.1057/0.23.1920.982@0.23.1920.982" timestamp="1581262762220" />
     <state x="458" y="179" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.23.1440.802@0.23.1440.802" timestamp="1581156260278" />
     <state width="470" height="466" key="DebuggerActiveHint" timestamp="1581021526697">
       <screen x="0" y="23" width="1440" height="802" />
     </state>
     <state width="470" height="466" key="DebuggerActiveHint/0.23.1440.802@0.23.1440.802" timestamp="1581021526697" />
-    <state width="1398" height="181" key="GridCell.Tab.0.bottom" timestamp="1581108430281">
-      <screen x="0" y="23" width="1440" height="802" />
+    <state x="100" y="123" width="1720" height="782" key="DiffContextDialog" timestamp="1581263707389">
+      <screen x="0" y="23" width="1920" height="982" />
     </state>
+    <state x="100" y="123" width="1720" height="782" key="DiffContextDialog/-1440.203.1440.877/1920.23.1920.1057/0.23.1920.982@0.23.1920.982" timestamp="1581263707389" />
+    <state width="1878" height="351" key="GridCell.Tab.0.bottom" timestamp="1581265855457">
+      <screen x="0" y="23" width="1920" height="982" />
+    </state>
+    <state width="1878" height="351" key="GridCell.Tab.0.bottom/-1440.203.1440.877/1920.23.1920.1057/0.23.1920.982@0.23.1920.982" timestamp="1581265855457" />
     <state width="1398" height="181" key="GridCell.Tab.0.bottom/0.23.1440.802@0.23.1440.802" timestamp="1581108430281" />
-    <state width="1398" height="181" key="GridCell.Tab.0.center" timestamp="1581108430281">
-      <screen x="0" y="23" width="1440" height="802" />
+    <state width="1878" height="351" key="GridCell.Tab.0.center" timestamp="1581265855455">
+      <screen x="0" y="23" width="1920" height="982" />
     </state>
+    <state width="1878" height="351" key="GridCell.Tab.0.center/-1440.203.1440.877/1920.23.1920.1057/0.23.1920.982@0.23.1920.982" timestamp="1581265855455" />
     <state width="1398" height="181" key="GridCell.Tab.0.center/0.23.1440.802@0.23.1440.802" timestamp="1581108430281" />
-    <state width="1398" height="181" key="GridCell.Tab.0.left" timestamp="1581108430281">
-      <screen x="0" y="23" width="1440" height="802" />
+    <state width="1878" height="351" key="GridCell.Tab.0.left" timestamp="1581265855454">
+      <screen x="0" y="23" width="1920" height="982" />
     </state>
+    <state width="1878" height="351" key="GridCell.Tab.0.left/-1440.203.1440.877/1920.23.1920.1057/0.23.1920.982@0.23.1920.982" timestamp="1581265855454" />
     <state width="1398" height="181" key="GridCell.Tab.0.left/0.23.1440.802@0.23.1440.802" timestamp="1581108430281" />
-    <state width="1398" height="181" key="GridCell.Tab.0.right" timestamp="1581108430281">
-      <screen x="0" y="23" width="1440" height="802" />
+    <state width="1878" height="351" key="GridCell.Tab.0.right" timestamp="1581265855457">
+      <screen x="0" y="23" width="1920" height="982" />
     </state>
+    <state width="1878" height="351" key="GridCell.Tab.0.right/-1440.203.1440.877/1920.23.1920.1057/0.23.1920.982@0.23.1920.982" timestamp="1581265855457" />
     <state width="1398" height="181" key="GridCell.Tab.0.right/0.23.1440.802@0.23.1440.802" timestamp="1581108430281" />
-    <state width="1398" height="181" key="GridCell.Tab.1.bottom" timestamp="1581108430283">
-      <screen x="0" y="23" width="1440" height="802" />
+    <state width="1878" height="351" key="GridCell.Tab.1.bottom" timestamp="1581265855337">
+      <screen x="0" y="23" width="1920" height="982" />
     </state>
+    <state width="1878" height="351" key="GridCell.Tab.1.bottom/-1440.203.1440.877/1920.23.1920.1057/0.23.1920.982@0.23.1920.982" timestamp="1581265855337" />
     <state width="1398" height="181" key="GridCell.Tab.1.bottom/0.23.1440.802@0.23.1440.802" timestamp="1581108430283" />
-    <state width="1398" height="181" key="GridCell.Tab.1.center" timestamp="1581108430282">
-      <screen x="0" y="23" width="1440" height="802" />
+    <state width="1878" height="351" key="GridCell.Tab.1.center" timestamp="1581265855335">
+      <screen x="0" y="23" width="1920" height="982" />
     </state>
+    <state width="1878" height="351" key="GridCell.Tab.1.center/-1440.203.1440.877/1920.23.1920.1057/0.23.1920.982@0.23.1920.982" timestamp="1581265855335" />
     <state width="1398" height="181" key="GridCell.Tab.1.center/0.23.1440.802@0.23.1440.802" timestamp="1581108430282" />
-    <state width="1398" height="181" key="GridCell.Tab.1.left" timestamp="1581108430282">
-      <screen x="0" y="23" width="1440" height="802" />
+    <state width="1878" height="351" key="GridCell.Tab.1.left" timestamp="1581265855334">
+      <screen x="0" y="23" width="1920" height="982" />
     </state>
+    <state width="1878" height="351" key="GridCell.Tab.1.left/-1440.203.1440.877/1920.23.1920.1057/0.23.1920.982@0.23.1920.982" timestamp="1581265855334" />
     <state width="1398" height="181" key="GridCell.Tab.1.left/0.23.1440.802@0.23.1440.802" timestamp="1581108430282" />
-    <state width="1398" height="181" key="GridCell.Tab.1.right" timestamp="1581108430282">
-      <screen x="0" y="23" width="1440" height="802" />
+    <state width="1878" height="351" key="GridCell.Tab.1.right" timestamp="1581265855336">
+      <screen x="0" y="23" width="1920" height="982" />
     </state>
+    <state width="1878" height="351" key="GridCell.Tab.1.right/-1440.203.1440.877/1920.23.1920.1057/0.23.1920.982@0.23.1920.982" timestamp="1581265855336" />
     <state width="1398" height="181" key="GridCell.Tab.1.right/0.23.1440.802@0.23.1440.802" timestamp="1581108430282" />
-    <state width="1398" height="181" key="GridCell.Tab.2.bottom" timestamp="1581108430283">
-      <screen x="0" y="23" width="1440" height="802" />
+    <state width="1878" height="351" key="GridCell.Tab.2.bottom" timestamp="1581265855339">
+      <screen x="0" y="23" width="1920" height="982" />
     </state>
+    <state width="1878" height="351" key="GridCell.Tab.2.bottom/-1440.203.1440.877/1920.23.1920.1057/0.23.1920.982@0.23.1920.982" timestamp="1581265855339" />
     <state width="1398" height="181" key="GridCell.Tab.2.bottom/0.23.1440.802@0.23.1440.802" timestamp="1581108430283" />
-    <state width="1398" height="181" key="GridCell.Tab.2.center" timestamp="1581108430283">
-      <screen x="0" y="23" width="1440" height="802" />
+    <state width="1878" height="351" key="GridCell.Tab.2.center" timestamp="1581265855338">
+      <screen x="0" y="23" width="1920" height="982" />
     </state>
+    <state width="1878" height="351" key="GridCell.Tab.2.center/-1440.203.1440.877/1920.23.1920.1057/0.23.1920.982@0.23.1920.982" timestamp="1581265855338" />
     <state width="1398" height="181" key="GridCell.Tab.2.center/0.23.1440.802@0.23.1440.802" timestamp="1581108430283" />
-    <state width="1398" height="181" key="GridCell.Tab.2.left" timestamp="1581108430283">
-      <screen x="0" y="23" width="1440" height="802" />
+    <state width="1878" height="351" key="GridCell.Tab.2.left" timestamp="1581265855337">
+      <screen x="0" y="23" width="1920" height="982" />
     </state>
+    <state width="1878" height="351" key="GridCell.Tab.2.left/-1440.203.1440.877/1920.23.1920.1057/0.23.1920.982@0.23.1920.982" timestamp="1581265855337" />
     <state width="1398" height="181" key="GridCell.Tab.2.left/0.23.1440.802@0.23.1440.802" timestamp="1581108430283" />
-    <state width="1398" height="181" key="GridCell.Tab.2.right" timestamp="1581108430283">
-      <screen x="0" y="23" width="1440" height="802" />
+    <state width="1878" height="351" key="GridCell.Tab.2.right" timestamp="1581265855338">
+      <screen x="0" y="23" width="1920" height="982" />
     </state>
+    <state width="1878" height="351" key="GridCell.Tab.2.right/-1440.203.1440.877/1920.23.1920.1057/0.23.1920.982@0.23.1920.982" timestamp="1581265855338" />
     <state width="1398" height="181" key="GridCell.Tab.2.right/0.23.1440.802@0.23.1440.802" timestamp="1581108430283" />
     <state x="747" y="143" key="SettingsEditor" timestamp="1581245093870">
       <screen x="0" y="23" width="1920" height="982" />
     </state>
     <state x="747" y="143" key="SettingsEditor/-1440.203.1440.877/1920.23.1920.1057/0.23.1920.982@0.23.1920.982" timestamp="1581245093870" />
     <state x="208" y="23" key="SettingsEditor/0.23.1440.802@0.23.1440.802" timestamp="1581151989269" />
-    <state x="690" y="253" width="540" height="524" key="StructurePopup" timestamp="1581236906025">
+    <state x="690" y="253" width="543" height="524" key="StructurePopup" timestamp="1581260515474">
       <screen x="0" y="23" width="1920" height="982" />
     </state>
-    <state x="690" y="253" width="540" height="524" key="StructurePopup/-1440.203.1440.877/1920.23.1920.1057/0.23.1920.982@0.23.1920.982" timestamp="1581236906025" />
-    <state x="100" y="123" width="1240" height="602" key="com.intellij.history.integration.ui.views.DirectoryHistoryDialog" timestamp="1581177108884">
-      <screen x="0" y="23" width="1440" height="802" />
+    <state x="690" y="253" width="543" height="524" key="StructurePopup/-1440.203.1440.877/1920.23.1920.1057/0.23.1920.982@0.23.1920.982" timestamp="1581260515474" />
+    <state x="133" y="145" width="1654" height="738" key="com.intellij.history.integration.ui.views.DirectoryHistoryDialog" timestamp="1581263707390">
+      <screen x="0" y="23" width="1920" height="982" />
     </state>
+    <state x="133" y="145" width="1654" height="738" key="com.intellij.history.integration.ui.views.DirectoryHistoryDialog/-1440.203.1440.877/1920.23.1920.1057/0.23.1920.982@0.23.1920.982" timestamp="1581263707390" />
     <state x="100" y="123" width="1240" height="602" key="com.intellij.history.integration.ui.views.DirectoryHistoryDialog/0.23.1440.802@0.23.1440.802" timestamp="1581177108884" />
-    <state x="100" y="123" width="1240" height="602" key="com.intellij.history.integration.ui.views.FileHistoryDialog" timestamp="1581112039027">
-      <screen x="0" y="23" width="1440" height="802" />
-    </state>
-    <state x="100" y="123" width="1240" height="602" key="com.intellij.history.integration.ui.views.FileHistoryDialog/0.23.1440.802@0.23.1440.802" timestamp="1581112039027" />
-    <state x="383" y="188" width="673" height="472" key="find.popup" timestamp="1581158422651">
-      <screen x="0" y="23" width="1440" height="802" />
-    </state>
-    <state x="383" y="188" width="673" height="472" key="find.popup/0.23.1440.802@0.23.1440.802" timestamp="1581158422651" />
-    <state width="651" height="239" key="javadoc.popup" timestamp="1581110510546">
-      <screen x="0" y="23" width="1440" height="802" />
-    </state>
-    <state width="651" height="239" key="javadoc.popup/0.23.1440.802@0.23.1440.802" timestamp="1581110510546" />
-    <state x="513" y="177" width="894" height="828" key="search.everywhere.popup" timestamp="1581244480542">
+    <state x="133" y="145" width="1654" height="738" key="com.intellij.history.integration.ui.views.FileHistoryDialog" timestamp="1581263707391">
       <screen x="0" y="23" width="1920" height="982" />
     </state>
-    <state x="513" y="177" width="894" height="828" key="search.everywhere.popup/-1440.203.1440.877/1920.23.1920.1057/0.23.1920.982@0.23.1920.982" timestamp="1581244480542" />
+    <state x="133" y="145" width="1654" height="738" key="com.intellij.history.integration.ui.views.FileHistoryDialog/-1440.203.1440.877/1920.23.1920.1057/0.23.1920.982@0.23.1920.982" timestamp="1581263707391" />
+    <state x="100" y="123" width="1240" height="602" key="com.intellij.history.integration.ui.views.FileHistoryDialog/0.23.1440.802@0.23.1440.802" timestamp="1581112039027" />
+    <state x="511" y="225" width="898" height="578" key="find.popup" timestamp="1581264250282">
+      <screen x="0" y="23" width="1920" height="982" />
+    </state>
+    <state x="511" y="225" width="898" height="578" key="find.popup/-1440.203.1440.877/1920.23.1920.1057/0.23.1920.982@0.23.1920.982" timestamp="1581264250282" />
+    <state x="383" y="188" width="673" height="472" key="find.popup/0.23.1440.802@0.23.1440.802" timestamp="1581158422651" />
+    <state width="868" height="293" key="javadoc.popup" timestamp="1581257171582">
+      <screen x="0" y="23" width="1920" height="982" />
+    </state>
+    <state width="868" height="293" key="javadoc.popup/-1440.203.1440.877/1920.23.1920.1057/0.23.1920.982@0.23.1920.982" timestamp="1581257171582" />
+    <state width="651" height="239" key="javadoc.popup/0.23.1440.802@0.23.1440.802" timestamp="1581110510546" />
+    <state x="513" y="177" width="894" height="828" key="search.everywhere.popup" timestamp="1581265393720">
+      <screen x="0" y="23" width="1920" height="982" />
+    </state>
+    <state x="513" y="177" width="894" height="828" key="search.everywhere.popup/-1440.203.1440.877/1920.23.1920.1057/0.23.1920.982@0.23.1920.982" timestamp="1581265393720" />
     <state x="385" y="149" width="670" height="676" key="search.everywhere.popup/0.23.1440.802@0.23.1440.802" timestamp="1581178684511" />
     <state x="310" y="119" key="spring file set editor" timestamp="1581054159832">
       <screen x="0" y="23" width="1440" height="802" />

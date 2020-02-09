@@ -1,7 +1,7 @@
 package com.andybrook.service.stock;
 
-import com.andybrook.enums.ProductType;
 import com.andybrook.exception.ProductNotFound;
+import com.andybrook.model.BarCode;
 import com.andybrook.model.product.Product;
 import com.andybrook.model.product.ProductId;
 import com.andybrook.model.stock.ProductItem;
@@ -9,7 +9,6 @@ import com.andybrook.model.stock.ProductStockInfo;
 import com.andybrook.service.product.IProductService;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.util.Pair;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -47,18 +46,13 @@ public class StockService implements IStockService {
     }
 
     @Override
-    public ProductItem getProductItemByBarCode(String barCodeId) {
-        return productItemService.getByBarCodeId(barCodeId);
+    public ProductItem getProductItemByBarCode(BarCode barCode) {
+        return productItemService.getByBarCode(barCode);
     }
 
     @Override
     public ProductStockInfo getProductStockInfo(ProductId productId) {
         return productStockInfoService.get(productId);
-    }
-
-    @Override
-    public ProductItem getProductItemByBarCodeId(String barCodeId) {
-        return productItemService.getByBarCodeId(barCodeId);
     }
 
     @Override
@@ -89,7 +83,7 @@ public class StockService implements IStockService {
     }
 
     @Override
-    public List<Pair<Long, String>> getAllProductNamesWithQuantityMoreThan(int quantity) {
+    public List<ProductStockInfo> getAllProductNamesWithQuantityMoreThan(int quantity) {
         return productStockInfoService.getAllProductNamesWithQuantityMoreThan(quantity);
     }
 

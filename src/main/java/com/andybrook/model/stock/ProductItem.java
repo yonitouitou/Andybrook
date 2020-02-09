@@ -5,10 +5,12 @@ import com.andybrook.model.product.Product;
 import com.andybrook.model.product.ProductId;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
+import org.springframework.data.elasticsearch.annotations.Document;
 import org.springframework.util.Assert;
 
 import java.time.LocalDateTime;
 
+@Document(indexName = "product_items")
 public class ProductItem {
 
     private Long id;

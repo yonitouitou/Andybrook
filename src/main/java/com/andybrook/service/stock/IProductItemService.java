@@ -1,5 +1,6 @@
 package com.andybrook.service.stock;
 
+import com.andybrook.model.BarCode;
 import com.andybrook.model.product.ProductId;
 import com.andybrook.model.stock.ProductItem;
 
@@ -11,7 +12,7 @@ interface IProductItemService {
 
     ProductItem get(long productItemId);
 
-    ProductItem getByBarCodeId(String barCodeId);
+    ProductItem getByBarCode(BarCode barCode);
 
     int getProductItemSize(ProductId productId);
 

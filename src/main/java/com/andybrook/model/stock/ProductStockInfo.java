@@ -1,15 +1,20 @@
 package com.andybrook.model.stock;
 
-import com.andybrook.model.product.Product;
+import com.andybrook.model.product.ProductId;
 
+import org.springframework.data.annotation.Id;
+import org.springframework.data.elasticsearch.annotations.Document;
+
+@Document(indexName = "products_stock_info")
 public final class ProductStockInfo {
 
-    protected Product product;
+    @Id
+    protected ProductId productId;
     protected int quantityCreated;
     protected int quantityUsed;
 
-    public ProductStockInfo(Product product, int quantityCreated, int quantityUsed) {
-        this.product = product;
+    public ProductStockInfo(ProductId productId, int quantityCreated, int quantityUsed) {
+        this.productId = productId;
         this.quantityCreated = quantityCreated;
         this.quantityUsed = quantityUsed;
     }
@@ -67,11 +72,11 @@ public final class ProductStockInfo {
         return quantityCreated - quantityUsed;
     }
 
-    public Product getProduct() {
-        return product;
+    public ProductId getProductId() {
+        return productId;
     }
 
-    public void setProduct(Product product) {
-        this.product = product;
+    public void setProduct(ProductId productId) {
+        this.productId = productId;
     }
 }

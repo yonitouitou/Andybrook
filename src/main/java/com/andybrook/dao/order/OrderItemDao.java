@@ -1,6 +1,5 @@
 package com.andybrook.dao.order;
 
-import com.andybrook.dao.jpa.entity.factory.EntityFactory;
 import com.andybrook.model.order.OrderItem;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,8 +12,6 @@ public class OrderItemDao implements IOrderItemDao {
 
     @Autowired
     private IOrderItemRepository repository;
-    @Autowired
-    private EntityFactory entityFactory;
 
     @Override
     public void save(OrderItem item) {

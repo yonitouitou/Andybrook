@@ -56,7 +56,7 @@ public class OrderItemService implements IOrderItemService {
 
     @Override
     public OrderItem createSingleOrderItemByBarCode(Order order, BarCode barCode) {
-        ProductItem productItem = stockService.getProductItemByBarCode(barCode.getId());
+        ProductItem productItem = stockService.getProductItemByBarCode(barCode);
         if (productItem.isInOrder()) {
             throw new ProductItemNotFree(productItem.getId());
         }

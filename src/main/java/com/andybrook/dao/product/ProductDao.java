@@ -1,6 +1,5 @@
 package com.andybrook.dao.product;
 
-import com.andybrook.model.BarCode;
 import com.andybrook.model.product.Product;
 import com.andybrook.model.product.ProductId;
 
@@ -24,11 +23,6 @@ public class ProductDao implements IProductDao {
     @Override
     public Optional<Product> get(ProductId id) {
         return repository.findById(id.get());
-    }
-
-    @Override
-    public Optional<Product> getByBarCode(BarCode barCode) {
-        throw new UnsupportedOperationException();
     }
 
     @Override

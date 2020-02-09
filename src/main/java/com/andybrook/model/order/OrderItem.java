@@ -2,9 +2,12 @@ package com.andybrook.model.order;
 
 import com.andybrook.util.IdGenerator;
 
+import org.springframework.data.elasticsearch.annotations.Document;
+
 import java.time.LocalDateTime;
 import java.util.Objects;
 
+@Document(indexName = "order_items")
 public final class OrderItem {
 
     protected Long id;
