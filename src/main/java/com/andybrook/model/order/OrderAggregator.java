@@ -71,8 +71,9 @@ public class OrderAggregator implements IOrderAggregator {
     }
 
     private double calculateTotalPrice(List<ProductItem> productItems) {
-        ProductItem productItem = productItems.get(0);
-        return productItems.size() * productItem.getPrice();
+        return productItems.stream()
+                .mapToDouble(item -> stockService.getPrice(item))
+                .sum();
     }
 
     private double calculateOrderItemsTotalPrice(List<OrderItem> orderItems) {
@@ -84,7 +85,8 @@ public class OrderAggregator implements IOrderAggregator {
 
     private int getDistinctProductsSize(List<ProductItem> productItems) {
         return (int) productItems.stream()
-                .map(ProductItem::getProductType)
+                .map(item -> productService.get(item.getProductId()))
+                .map(Product::getType)
                 .distinct()
                 .count();
     }

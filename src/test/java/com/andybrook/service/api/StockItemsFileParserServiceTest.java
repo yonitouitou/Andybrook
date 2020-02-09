@@ -2,12 +2,13 @@ package com.andybrook.service.api;
 
 import com.andybrook.ApplicationProperties;
 import com.andybrook.model.api.StockItemsFileUpload;
-import com.andybrook.model.stock.ProductItem;
+import com.andybrook.model.api.StockItemsFileUpload.ProductToUpload;
+import com.andybrook.service.product.ProductService;
 import com.andybrook.util.ProductItemFileUploadGenerator;
 import com.andybrook.util.clock.Clock;
 import com.andybrook.util.file.FileUtil;
+
 import org.junit.Assert;
-import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,6 +27,8 @@ public class StockItemsFileParserServiceTest {
     private ApplicationProperties applicationProperties;
     @Autowired
     private StockItemsFileParserService stockItemsFileParserService;
+    @Autowired
+    private ProductService productService;
 
     @Test
     public void processValidFileTest() throws IOException {
@@ -40,7 +43,7 @@ public class StockItemsFileParserServiceTest {
             StockItemsFileUpload result = stockItemsFileParserService.parseFile(file);
             Assert.assertEquals("RowsInFile", 3, result.getRowsInFile());
             Assert.assertEquals("RowsProcessed", 3, result.getRowsProcessed());
-            Assert.assertEquals("ProductItemSize", 13, result.getProductItems().size());
+            Assert.assertEquals("ProductItemSize", 13, result.getProductsForUpload().size());
         } finally {
             if (file != null) {
                 file.delete();
@@ -63,10 +66,10 @@ public class StockItemsFileParserServiceTest {
             file = File.createTempFile("" + System.currentTimeMillis(), ".csv");
             FileUtil.writeToFile(file, sb.toString());
             StockItemsFileUpload result = stockItemsFileParserService.parseFile(file);
-            Assert.assertEquals("ProductItemSize", 3, result.getProductItems().size());
-            assertContentResult(result.getProductItems().get(0), name, price, bc1);
-            assertContentResult(result.getProductItems().get(1), name, price, bc2);
-            assertContentResult(result.getProductItems().get(2), name, price, bc3);
+            Assert.assertEquals("ProductItemSize", 3, result.getProductsForUpload().size());
+            assertContentResult(result.getProductsForUpload().get(0), name, price, bc1);
+            assertContentResult(result.getProductsForUpload().get(1), name, price, bc2);
+            assertContentResult(result.getProductsForUpload().get(2), name, price, bc3);
         } finally {
             if (file != null) {
                 file.delete();
@@ -87,7 +90,7 @@ public class StockItemsFileParserServiceTest {
             StockItemsFileUpload result = stockItemsFileParserService.parseFile(file);
             Assert.assertEquals("RowsInFile", 3, result.getRowsInFile());
             Assert.assertEquals("RowsProcessed", 2, result.getRowsProcessed());
-            Assert.assertEquals("ProductItemSize", 8, result.getProductItems().size());
+            Assert.assertEquals("ProductItemSize", 8, result.getProductsForUpload().size());
         } finally {
             if (file != null) {
                 file.delete();
@@ -100,7 +103,7 @@ public class StockItemsFileParserServiceTest {
         File file = ProductItemFileUploadGenerator.generateProductFile(applicationProperties.getStockItemFileUploadLimitItems() + 100);
         try {
             StockItemsFileUpload result = stockItemsFileParserService.parseFile(file);
-            Assert.assertEquals("ProductItemSize", applicationProperties.getStockItemFileUploadLimitItems(), result.getProductItems().size());
+            Assert.assertEquals("ProductItemSize", applicationProperties.getStockItemFileUploadLimitItems(), result.getProductsForUpload().size());
         } finally {
             if (file != null) {
                 file.delete();
@@ -120,7 +123,7 @@ public class StockItemsFileParserServiceTest {
         System.out.println(file.getAbsolutePath());
     }
 
-    private void assertContentResult(ProductItem actual, String name, double price, String barCode) {
+    private void assertContentResult(ProductToUpload actual, String name, double price, String barCode) {
         Assert.assertEquals("Name", name, actual.getName());
         Assert.assertEquals("Price", price, actual.getPrice(), 0d);
         Assert.assertEquals("BarCode", barCode, actual.getBarCode().getId());

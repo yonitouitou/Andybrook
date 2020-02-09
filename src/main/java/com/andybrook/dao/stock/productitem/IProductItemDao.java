@@ -9,11 +9,11 @@ public interface IProductItemDao {
 
     void save(ProductItem productItem);
 
-    ProductItem delete(long id);
+    Optional<ProductItem> get(long id);
+
+    boolean delete(long id);
 
     int getProductItemSize(ProductId productId);
-
-    Optional<ProductItem> get(long id);
 
     Optional<ProductItem> findByBarCodeId(String barCodeId);
 

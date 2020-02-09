@@ -1,17 +1,18 @@
 package com.andybrook.model.stock;
 
-import com.andybrook.enums.ProductType;
 import com.andybrook.model.BarCode;
 import com.andybrook.model.product.Product;
 import com.andybrook.model.product.ProductId;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+
+import org.springframework.util.Assert;
 
 import java.time.LocalDateTime;
 
 public class ProductItem {
 
     private Long id;
-    private Product product;
+    private ProductId productId;
     private BarCode barCode;
     private Long orderItemId;
     protected LocalDateTime createdDatetime;
@@ -19,17 +20,20 @@ public class ProductItem {
 
     private ProductItem() {}
 
-    public ProductItem(Product product, BarCode barCode) {
-        this.product = product;
+    public ProductItem(ProductId productId, BarCode barCode) {
+        Assert.notNull(productId, "The product ID cannot be null");
+        this.productId = productId;
         this.barCode = barCode;
         this.orderItemId = null;
     }
 
+    public ProductItem(Product product, BarCode barCode) {
+        this(product.getId(), barCode);
+    }
+
     public ProductItem(Long id, Product product, BarCode barCode) {
+        this(product.getId(), barCode);
         this.id = id;
-        this.product = product;
-        this.barCode = barCode;
-        this.orderItemId = null;
     }
 
     public void markAsUsed(long orderItemId) {
@@ -42,31 +46,12 @@ public class ProductItem {
     }
 
     @JsonIgnore
-    public double getPrice() {
-        return product.getPrice();
-    }
-
-    @JsonIgnore
-    public String getName() {
-        return product.getName();
-    }
-
-    @JsonIgnore
     public ProductId getProductId() {
-        return product.getId();
-    }
-
-    @JsonIgnore
-    public ProductType getProductType() {
-        return product.getType();
+        return productId;
     }
 
     public Long getId() {
         return id;
-    }
-
-    public Product getProduct() {
-        return product;
     }
 
     public BarCode getBarCode() {
@@ -77,8 +62,8 @@ public class ProductItem {
         this.id = id;
     }
 
-    public void setProduct(Product product) {
-        this.product = product;
+    public void setProductId(ProductId id) {
+        this.productId = id;
     }
 
     public void setBarCode(BarCode barCode) {
@@ -113,7 +98,7 @@ public class ProductItem {
     public String toString() {
         return "ProductItem{" +
                 "id=" + id +
-                ", product=" + product +
+                ", productId=" + productId +
                 ", barCode=" + barCode +
                 ", orderItemId=" + orderItemId +
                 ", createdDatetime=" + createdDatetime +

@@ -1,7 +1,12 @@
 package com.andybrook.service.order;
 
 import com.andybrook.dao.order.IOrderDao;
-import com.andybrook.exception.*;
+import com.andybrook.exception.BarCodeNotFound;
+import com.andybrook.exception.InsufficientQuantityException;
+import com.andybrook.exception.OrderClosed;
+import com.andybrook.exception.OrderItemNotFound;
+import com.andybrook.exception.OrderNotFound;
+import com.andybrook.exception.ProductNotFound;
 import com.andybrook.model.BarCode;
 import com.andybrook.model.api.AggregatedOrder;
 import com.andybrook.model.customer.Store;
@@ -9,13 +14,15 @@ import com.andybrook.model.order.IOrderAggregator;
 import com.andybrook.model.order.Order;
 import com.andybrook.model.order.OrderAggregator;
 import com.andybrook.model.order.OrderItem;
+import com.andybrook.model.product.Product;
 import com.andybrook.model.request.order.NewOrderRequest;
 import com.andybrook.model.request.order.UpdateOrderRequest;
 import com.andybrook.model.request.orderitem.ProductItemInfo;
-import com.andybrook.model.stock.ProductItem;
+import com.andybrook.service.product.IProductService;
 import com.andybrook.service.setting.IAdminSettingService;
 import com.andybrook.service.stock.IStockService;
 import com.andybrook.service.store.IStoreService;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.stereotype.Service;
@@ -38,6 +45,8 @@ public class OrderService implements IOrderService {
     private IStoreService storeService;
     @Autowired
     private IStockService stockService;
+    @Autowired
+    private IProductService productService;
     @Autowired
     private IAdminSettingService adminSettingService;
 
@@ -174,7 +183,8 @@ public class OrderService implements IOrderService {
         return order.getItems()
                 .stream()
                 .map(orderItem -> stockService.getProductItem(orderItem.getProductItemId()))
-                .mapToDouble(ProductItem::getPrice)
+                .map(productItem -> productService.get(productItem.getProductId()))
+                .mapToDouble(Product::getPrice)
                 .sum();
     }
 

@@ -4,9 +4,11 @@ import com.andybrook.dao.stock.productitem.IProductItemDao;
 import com.andybrook.exception.BarCodeNotFound;
 import com.andybrook.exception.BarCodeNotLinked;
 import com.andybrook.exception.ProductItemNotFound;
+import com.andybrook.model.product.Product;
 import com.andybrook.model.product.ProductId;
 import com.andybrook.model.stock.ProductItem;
 import com.andybrook.service.product.IBarCodeService;
+import com.andybrook.service.product.IProductService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -18,6 +20,8 @@ class ProductItemService implements IProductItemService {
 
     @Autowired
     private IProductItemDao dao;
+    @Autowired
+    private IProductService productService;
     @Autowired
     private IBarCodeService barCodeService;
 
@@ -58,6 +62,12 @@ class ProductItemService implements IProductItemService {
     @Override
     public Optional<ProductItem> findFreeProductItemOf(ProductId productId) {
         return dao.findFreeProductItemOf(productId);
+    }
+
+    @Override
+    public double getPrice(ProductItem productItem) {
+        Product product = productService.get(productItem.getProductId());
+        return product.getPrice();
     }
 
     private void updateProductItem(ProductItem productItem) {

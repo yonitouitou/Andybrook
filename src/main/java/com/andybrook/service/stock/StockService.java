@@ -1,5 +1,6 @@
 package com.andybrook.service.stock;
 
+import com.andybrook.enums.ProductType;
 import com.andybrook.exception.ProductNotFound;
 import com.andybrook.model.product.Product;
 import com.andybrook.model.product.ProductId;
@@ -38,6 +39,11 @@ public class StockService implements IStockService {
     @Override
     public ProductItem getProductItem(long productItemId) {
         return productItemService.get(productItemId);
+    }
+
+    @Override
+    public double getPrice(ProductItem productItem) {
+        return productItemService.getPrice(productItem);
     }
 
     @Override

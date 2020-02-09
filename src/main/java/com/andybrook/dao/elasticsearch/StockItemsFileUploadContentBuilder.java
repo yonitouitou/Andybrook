@@ -1,7 +1,7 @@
 package com.andybrook.dao.elasticsearch;
 
 import com.andybrook.model.api.StockItemsFileUpload;
-import com.andybrook.model.stock.ProductItem;
+
 import org.elasticsearch.common.xcontent.XContentBuilder;
 import org.elasticsearch.common.xcontent.XContentFactory;
 
@@ -21,16 +21,17 @@ public final class StockItemsFileUploadContentBuilder implements IContentBuilder
 
     @Override
     public XContentBuilder builder(XContentBuilder builder, StockItemsFileUpload entity) throws IOException {
-        builder
+        return null;
+       /* builder
                 .field("id", entity.getId())
                 .field("rowsInFile", entity.getRowsInFile())
                 .field("rowsProcessed", entity.getRowsProcessed())
                 .field("uploadDateTime", entity.getUploadTimestamp())
-                .field("productItems", entity.getProductItems());
-        for (ProductItem productItem : entity.getProductItems()) {
+                .field("productItems", entity.getProductsForUpload());
+        for (ProductItem productItem : entity.getProductsForUpload()) {
             PRODUCT_ITEM_BUILDER.builder(builder, productItem);
         }
         builder.endArray();
-        return builder;
+        return builder;*/
     }
 }

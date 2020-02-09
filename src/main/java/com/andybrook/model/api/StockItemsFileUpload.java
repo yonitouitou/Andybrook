@@ -1,6 +1,6 @@
 package com.andybrook.model.api;
 
-import com.andybrook.model.stock.ProductItem;
+import com.andybrook.model.BarCode;
 
 import org.springframework.data.annotation.Id;
 import org.springframework.data.elasticsearch.annotations.Document;
@@ -14,16 +14,16 @@ public final class StockItemsFileUpload {
     private String id;
     private int rowsInFile;
     private int rowsProcessed;
-    private List<ProductItem> productItems;
+    private List<ProductToUpload> productsForUpload;
     private long uploadTimestamp;
 
     private StockItemsFileUpload() {}
 
-    public StockItemsFileUpload(String id, int rowsInFile, int rowsProcessed, List<ProductItem> productItems, long uploadTimestamp) {
+    public StockItemsFileUpload(String id, int rowsInFile, int rowsProcessed, List<ProductToUpload> productsForUpload, long uploadTimestamp) {
         this.id = id;
         this.rowsInFile = rowsInFile;
         this.rowsProcessed = rowsProcessed;
-        this.productItems = productItems;
+        this.productsForUpload = productsForUpload;
         this.uploadTimestamp = uploadTimestamp;
     }
 
@@ -35,8 +35,8 @@ public final class StockItemsFileUpload {
         return rowsProcessed;
     }
 
-    public List<ProductItem> getProductItems() {
-        return productItems;
+    public List<ProductToUpload> getProductsForUpload() {
+        return productsForUpload;
     }
 
     public long getUploadTimestamp() {
@@ -51,10 +51,6 @@ public final class StockItemsFileUpload {
         this.id = id;
     }
 
-    /**
-     *
-     * @param rowsInFile
-     */
     public void setRowsInFile(int rowsInFile) {
         this.rowsInFile = rowsInFile;
     }
@@ -63,12 +59,37 @@ public final class StockItemsFileUpload {
         this.rowsProcessed = rowsProcessed;
     }
 
-    public void setProductItems(List<ProductItem> productItems) {
-        this.productItems = productItems;
+    public void setProductsForUpload(List<ProductToUpload> productsForUpload) {
+        this.productsForUpload = productsForUpload;
     }
 
     public void setUploadTimestamp(long uploadTimestamp) {
         this.uploadTimestamp = uploadTimestamp;
+    }
+
+    public static class ProductToUpload {
+
+        private final String name;
+        private final double price;
+        private final BarCode barCode;
+
+        public ProductToUpload(String name, double price, BarCode barCode) {
+            this.name = name;
+            this.price = price;
+            this.barCode = barCode;
+        }
+
+        public String getName() {
+            return name;
+        }
+
+        public double getPrice() {
+            return price;
+        }
+
+        public BarCode getBarCode() {
+            return barCode;
+        }
     }
 
     @Override
@@ -76,7 +97,7 @@ public final class StockItemsFileUpload {
         final StringBuilder sb = new StringBuilder("StockItemsFileUpload{");
         sb.append("rowsInFile=").append(rowsInFile);
         sb.append(", rowsProcessed=").append(rowsProcessed);
-        sb.append(", productItems=").append(productItems);
+        sb.append(", productItems=").append(productsForUpload);
         sb.append(", uploadDateTime=").append(uploadTimestamp);
         sb.append('}');
         return sb.toString();

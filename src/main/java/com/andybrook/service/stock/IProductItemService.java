@@ -18,4 +18,6 @@ interface IProductItemService {
     void update(ProductItem productItem);
 
     Optional<ProductItem> findFreeProductItemOf(ProductId productId);
+
+    double getPrice(ProductItem productItem);
 }

@@ -9,11 +9,11 @@ public final class ProductItemAssertor {
         Assert.assertEquals("Id", expected.getId(), actual.getId());
         Assert.assertEquals("CreatedDatetime", expected.getCreatedDatetime(), actual.getCreatedDatetime());
         Assert.assertEquals("LastModifiedDatetime", expected.getLastModifiedDatetime(), actual.getLastModifiedDatetime());
+        Assert.assertEquals("ProductId", expected.getProductId(), actual.getProductId());
         assertEqualsStaticField(expected, actual);
     }
 
     public static void assertEqualsStaticField(ProductItem expected, ProductItem actual) {
-        ProductAssertor.assertEqualsStaticField(expected.getProduct(), actual.getProduct());
         BarCodeAssertor.assertEquals(expected.getBarCode(), actual.getBarCode());
     }
 }

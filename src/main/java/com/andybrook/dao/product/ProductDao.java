@@ -33,7 +33,7 @@ public class ProductDao implements IProductDao {
 
     @Override
     public Optional<Product> getByName(String name) {
-        throw new UnsupportedOperationException();
+        return repository.findByName(name);
     }
 
     @Override
@@ -43,7 +43,7 @@ public class ProductDao implements IProductDao {
 
     @Override
     public List<Product> getByNameContaining(String name) {
-        throw new UnsupportedOperationException();
+        return repository.findByNameContaining(name);
     }
 
     @Override

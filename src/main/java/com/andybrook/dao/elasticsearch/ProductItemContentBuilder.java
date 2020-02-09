@@ -22,12 +22,13 @@ public final class ProductItemContentBuilder implements IContentBuilder<ProductI
 
     @Override
     public XContentBuilder builder(XContentBuilder builder, ProductItem entity) throws IOException {
-        builder.field("id", entity.getId())
+        return null;
+        /*builder.field("id", entity.getId())
                 .field("orderItemId", entity.getOrderItemId())
                 .timeField("createdDateTime", entity.getCreatedDatetime())
                 .timeField("lastModifiedDateTime", entity.getLastModifiedDatetime());
         PRODUCT_BUILDER.builder(builder, entity.getProduct());
         BAR_CODE_BUILDER.builder(builder, entity.getBarCode());
-        return builder;
+        return builder;*/
     }
 }

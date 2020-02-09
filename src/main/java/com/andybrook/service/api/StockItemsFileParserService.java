@@ -7,13 +7,13 @@ import com.andybrook.exception.fileupload.EmptyFileException;
 import com.andybrook.exception.fileupload.SizeFileLimitExceeded;
 import com.andybrook.model.BarCode;
 import com.andybrook.model.api.StockItemsFileUpload;
-import com.andybrook.model.product.Glasses;
+import com.andybrook.model.api.StockItemsFileUpload.ProductToUpload;
 import com.andybrook.model.product.Product;
 import com.andybrook.model.stock.ProductItem;
 import com.andybrook.service.product.IProductService;
 import com.andybrook.service.stock.IStockService;
-import com.andybrook.util.IdGenerator;
 import com.andybrook.util.clock.Clock;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -55,11 +55,11 @@ public class StockItemsFileParserService implements IStockItemsFileParserService
     @Override
     public void processUpload(String uploadId) {
         StockItemsFileUpload fileUpload = dao.getById(uploadId);
-        for (ProductItem item : fileUpload.getProductItems()) {
+        for (ProductToUpload item : fileUpload.getProductsForUpload()) {
             try {
-                Product product = getOrCreateProduct(item.getProduct());
-                item.setProduct(product);
-                stockService.addProductItem(item);
+                Product product = getOrCreateProductByName(item.getName());
+                ProductItem productItem = new ProductItem(product, item.getBarCode());
+                stockService.addProductItem(productItem);
             } catch (Exception e) {
                 LOGGER.log(Level.ERROR, "ProductItem " + item.getName() + " not added because error occurred", e);
             }
@@ -73,10 +73,10 @@ public class StockItemsFileParserService implements IStockItemsFileParserService
         }
         int productItemRowsInFile = lines.size() - 1;
         int rowsProcessed = 0;
-        List<ProductItem> productItemsList = new ArrayList<>(productItemRowsInFile);
+        List<ProductToUpload> productItemsList = new ArrayList<>(productItemRowsInFile);
         for (int i = 1; i < lines.size(); i++) {
             try {
-                addProductItems(productItemsList, lines.get(i));
+                addProductForUpload(productItemsList, lines.get(i));
                 rowsProcessed++;
             } catch (CsvBadFormat e) {
                 LOGGER.log(Level.ERROR, "Bad Csv row : " + lines.get(i), e);
@@ -87,9 +87,9 @@ public class StockItemsFileParserService implements IStockItemsFileParserService
         return new StockItemsFileUpload(null, productItemRowsInFile, rowsProcessed, productItemsList, Clock.millis());
     }
 
-    private Product getOrCreateProduct(Product productToAdd) {
+    private Product getOrCreateProductByName(String productName) {
         Product product = null;
-        Optional<Product> productOpt = productService.getByName(productToAdd.getName());
+        Optional<Product> productOpt = productService.getByName(productName);
         if (productOpt.isPresent()) {
             product = productOpt.get();
         } else {
@@ -98,17 +98,16 @@ public class StockItemsFileParserService implements IStockItemsFileParserService
         return product;
     }
 
-    private void addProductItems(List<ProductItem> items, String line) throws CsvBadFormat, SizeFileLimitExceeded {
+    private void addProductForUpload(List<ProductToUpload> items, String line) throws CsvBadFormat, SizeFileLimitExceeded {
         try {
             String[] parts = line.split(";");
             if (parts.length == 3) {
-                Product product = new Glasses(IdGenerator.generateId(), parts[0], Double.parseDouble(parts[1]));
                 String[] barCodeStr = parts[2].split(",");
                 for (String bc : barCodeStr) {
                     if (items.size() == applicationProperties.getStockItemFileUploadLimitItems()) {
                         throw new SizeFileLimitExceeded("Limit ProductItem by file : " + applicationProperties.getStockItemFileUploadLimitItems());
                     }
-                    items.add(new ProductItem(product, new BarCode(bc)));
+                    items.add(new ProductToUpload(parts[0], Double.parseDouble(parts[1]), new BarCode(bc)));
                 }
             } else {
                 throw new CsvBadFormat(line);

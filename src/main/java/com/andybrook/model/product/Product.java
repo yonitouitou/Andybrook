@@ -5,9 +5,11 @@ import com.andybrook.serialization.jackson.custom.ProductDeserializer;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 
 import org.springframework.data.annotation.Id;
+import org.springframework.data.elasticsearch.annotations.Document;
 
 import java.util.Objects;
 
+@Document(indexName = "products")
 @JsonDeserialize(using = ProductDeserializer.class)
 public abstract class Product {
 
