@@ -9,9 +9,9 @@ import java.util.OptionalInt;
 
 public interface IStoreService {
 
-    Store newStore(Store store);
+    void newStore(Store store);
 
-    Store update(Store store) throws StoreNotFound;
+    void update(Store store) throws StoreNotFound;
 
     Store getById(long id) throws StoreNotFound;
 

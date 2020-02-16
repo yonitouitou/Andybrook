@@ -12,6 +12,8 @@ public interface IProductItemDao {
 
     Optional<ProductItem> get(long id);
 
+    boolean exist(long id);
+
     boolean delete(long id);
 
     int getProductItemSize(ProductId productId);

@@ -9,7 +9,6 @@ import com.andybrook.exception.OrderNotFound;
 import com.andybrook.exception.ProductNotFound;
 import com.andybrook.model.BarCode;
 import com.andybrook.model.api.AggregatedOrder;
-import com.andybrook.model.customer.Store;
 import com.andybrook.model.order.IOrderAggregator;
 import com.andybrook.model.order.Order;
 import com.andybrook.model.order.OrderAggregator;
@@ -17,17 +16,16 @@ import com.andybrook.model.order.OrderItem;
 import com.andybrook.model.product.Product;
 import com.andybrook.model.request.order.NewOrderRequest;
 import com.andybrook.model.request.order.UpdateOrderRequest;
-import com.andybrook.model.request.orderitem.ProductItemInfo;
+import com.andybrook.model.request.orderitem.OrderItemInfo;
 import com.andybrook.service.product.IProductService;
 import com.andybrook.service.setting.IAdminSettingService;
 import com.andybrook.service.stock.IStockService;
-import com.andybrook.service.store.IStoreService;
+import com.andybrook.util.clock.Clock;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.stereotype.Service;
 
-import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 
@@ -41,8 +39,6 @@ public class OrderService implements IOrderService {
     @Autowired
     private IOrderItemService orderItemService;
     @Autowired
-    private IStoreService storeService;
-    @Autowired
     private IStockService stockService;
     @Autowired
     private IProductService productService;
@@ -51,8 +47,7 @@ public class OrderService implements IOrderService {
 
     @Override
     public Order newOrder(NewOrderRequest request) {
-        Store store = storeService.getById(request.getStoreId());
-        Order order = new Order(request.getName(), store);
+        Order order = new Order(request.getName(), request.getStoreId());
         order.setComment(request.getComment());
         dao.save(order);
         return order;
@@ -134,7 +129,7 @@ public class OrderService implements IOrderService {
     }
 
     @Override
-    public List<OrderItem> addOrderItems(long orderId, ProductItemInfo info, int quantity)
+    public List<OrderItem> addOrderItems(long orderId, OrderItemInfo info, int quantity)
             throws OrderNotFound, OrderClosed, ProductNotFound, OrderItemNotFound, InsufficientQuantityException, BarCodeNotFound {
         List<OrderItem> orderItems;
         Order order = getOrderById(orderId);
@@ -163,7 +158,7 @@ public class OrderService implements IOrderService {
     }
 
     @Override
-    public Order deleteOrderItem(long orderId, long orderItemId) throws OrderNotFound, OrderClosed, OrderItemNotFound {
+    public Order deleteOrderItem(long orderId, String orderItemId) throws OrderNotFound, OrderClosed, OrderItemNotFound {
         Order order = getOrderById(orderId);
         if (canModifyOrder(order)) {
             if (order.getItem(orderItemId) != null) {
@@ -181,7 +176,7 @@ public class OrderService implements IOrderService {
 
     @Override
     public double getAmount(Order order) {
-        return order.getItems()
+        return order.getOrderItems()
                 .stream()
                 .map(orderItem -> stockService.getProductItem(orderItem.getProductItemId()))
                 .map(productItem -> productService.get(productItem.getProductId()))
@@ -198,7 +193,7 @@ public class OrderService implements IOrderService {
     }
 
     private void updateAudit(Order order) {
-        order.setLastModifiedDateTime(LocalDateTime.now());
-        dao.updateOrderAudit(order);
+        order.setLastModifiedDateTime(Clock.millis());
+        dao.save(order);
     }
 }

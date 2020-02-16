@@ -54,7 +54,8 @@ public class StoreController extends AbstractController {
     @PostMapping(path = "/update")
     public Store update(@RequestBody Store store) {
         LOGGER.log(System.Logger.Level.INFO, "Update store : " + store.toString());
-        return storeManager.update(store);
+        storeManager.update(store);
+        return store;
     }
 
     @GetMapping(path = "/all")

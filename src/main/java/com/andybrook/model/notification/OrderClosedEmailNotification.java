@@ -7,8 +7,9 @@ import com.andybrook.model.api.Email;
 import com.andybrook.model.notification.request.ctx.DocumentCtx;
 import com.andybrook.model.notification.request.ctx.OrderDocumentCtx;
 import com.andybrook.model.notification.request.setting.EmailSetting;
-import com.andybrook.model.notification.request.setting.NotifSetting;
 import com.andybrook.model.product.Product;
+import com.andybrook.util.DateUtil;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.config.BeanDefinition;
 import org.springframework.context.annotation.Scope;
@@ -107,7 +108,7 @@ public class OrderClosedEmailNotification implements IEmailNotification<Aggregat
         } else {
             sb.append("Notification sent for order ").append(order.getName()).append(" (" ).append(order.getId()).append(") of store ")
                     .append(order.getStore().getName()).append(" closed on ")
-                    .append(getFormattedDateTime(ZonedDateTime.of(order.getCloseDatetime(), applicationProperties.getZoneId())));
+                    .append(getFormattedDateTime(DateUtil.epochTimeInMillisToZdt(order.getCloseDatetime(), applicationProperties.getZoneId())));
         }
         return sb.toString();
     }

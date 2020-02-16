@@ -3,14 +3,13 @@ package com.andybrook.model.api;
 import com.andybrook.model.order.OrderItem;
 import com.andybrook.model.product.Product;
 
-import java.time.LocalDateTime;
 import java.util.List;
 
 public class AggregatedOrderItem {
 
     private final int quantity;
     private final double ttlPrice;
-    private final LocalDateTime lastModifiedDatetime;
+    private final long lastModifiedDatetime;
     private final Product product;
     private final List<OrderItem> orderItems;
 
@@ -22,7 +21,7 @@ public class AggregatedOrderItem {
         this.lastModifiedDatetime = findLastModifiedDatetime();
     }
 
-    public LocalDateTime findLastModifiedDatetime() {
+    public long findLastModifiedDatetime() {
         return orderItems.stream()
                 .map(OrderItem::getLastModifiedDatetime)
                 .sorted()
@@ -42,7 +41,7 @@ public class AggregatedOrderItem {
         return ttlPrice;
     }
 
-    public LocalDateTime getLastModifiedDatetime() {
+    public long getLastModifiedDatetime() {
         return lastModifiedDatetime;
     }
 

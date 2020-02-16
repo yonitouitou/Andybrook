@@ -23,8 +23,8 @@ public abstract class Product {
     protected Product() {
     }
 
-    public Product(Long id, String name, double price) {
-        this.id = new ProductId(id);
+    public Product(long id, String name, double price) {
+        this.id = new ProductId(getType(), id);
         this.name = name;
         this.price = price;
     }
@@ -33,8 +33,8 @@ public abstract class Product {
         return id;
     }
 
-    public void setId(long id) {
-        this.id = new ProductId(id);
+    public void setId(ProductId id) {
+        this.id = id;
     }
 
     public String getName() {

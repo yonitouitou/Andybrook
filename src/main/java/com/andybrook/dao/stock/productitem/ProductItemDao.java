@@ -4,12 +4,16 @@ import com.andybrook.model.BarCode;
 import com.andybrook.model.product.ProductId;
 import com.andybrook.model.stock.ProductItem;
 
+import org.elasticsearch.index.query.QueryBuilder;
+import org.elasticsearch.index.query.QueryBuilders;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.data.elasticsearch.core.ElasticsearchOperations;
-import org.springframework.data.elasticsearch.core.query.Criteria;
-import org.springframework.data.elasticsearch.core.query.CriteriaQuery;
+import org.springframework.data.elasticsearch.core.query.NativeSearchQueryBuilder;
+import org.springframework.data.elasticsearch.core.query.SearchQuery;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
 import java.util.Optional;
 
 @Repository
@@ -31,10 +35,17 @@ public class ProductItemDao implements IProductItemDao {
     }
 
     @Override
+    public boolean exist(long id) {
+        return repository.existsById(id);
+    }
+
+    @Override
     public int getProductItemSize(ProductId productId) {
-        return (int) template.count(new CriteriaQuery(
-                new Criteria("productId").is(productId.get()))
-        );
+        SearchQuery query = new NativeSearchQueryBuilder()
+                .withIndices("product_items")
+                .withQuery(QueryBuilders.termQuery("productId.id", productId.get()))
+                .build();
+        return (int) template.count(query);
     }
 
     @Override
@@ -45,11 +56,26 @@ public class ProductItemDao implements IProductItemDao {
 
     @Override
     public Optional<ProductItem> findByBarCode(BarCode barCode) {
-        throw new UnsupportedOperationException();
+        SearchQuery query = new NativeSearchQueryBuilder()
+                .withIndices("product_items")
+                .withQuery(QueryBuilders.termQuery("barCode.id", barCode.get()))
+                .withPageable(PageRequest.of(0, 1))
+                .build();
+        List<ProductItem> productItems = template.queryForList(query, ProductItem.class);
+        return ! productItems.isEmpty()
+                ? Optional.of(productItems.get(0))
+                : Optional.empty();
     }
 
     @Override
     public Optional<ProductItem> findFreeProductItemOf(ProductId productId) {
-        throw new UnsupportedOperationException();
+        QueryBuilder query = QueryBuilders.boolQuery()
+                .mustNot(QueryBuilders.existsQuery("orderItemId"));
+        SearchQuery search = new NativeSearchQueryBuilder()
+                .withQuery(query)
+                .withPageable(PageRequest.of(0, 1))
+                .build();
+        List<ProductItem> productItems = template.queryForList(search, ProductItem.class);
+        return productItems.isEmpty() ? Optional.empty() : Optional.ofNullable(productItems.get(0));
     }
 }

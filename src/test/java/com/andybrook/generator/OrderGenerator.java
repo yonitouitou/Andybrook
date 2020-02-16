@@ -1,14 +1,16 @@
 package com.andybrook.generator;
 
+import com.andybrook.model.customer.Store;
 import com.andybrook.model.order.Order;
-
-import java.util.concurrent.ThreadLocalRandom;
 
 public class OrderGenerator {
 
-    private static final ThreadLocalRandom RANDOM = ThreadLocalRandom.current();
+    public static Order generateBasicOrder() {
+        Store store = StoreGenerator.generateStore();
+        return new Order(System.currentTimeMillis(), "MyReport", store.getId());
+    }
 
-    public static final Order generateBasicOrder() {
-        return new Order(System.currentTimeMillis(), "MyReport", StoreGenerator.generateStore());
+    public static Order generateOrder(long storeId) {
+        return new Order(System.currentTimeMillis(), "MyReport", storeId);
     }
 }

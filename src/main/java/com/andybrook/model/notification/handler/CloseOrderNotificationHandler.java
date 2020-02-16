@@ -1,5 +1,6 @@
 package com.andybrook.model.notification.handler;
 
+import com.andybrook.ApplicationProperties;
 import com.andybrook.annotation.DocumentHandler;
 import com.andybrook.api.pdf.CloseOrderPdfBuilder;
 import com.andybrook.api.pdf.IPdfBuilder;
@@ -17,6 +18,7 @@ import com.andybrook.model.notification.request.setting.EmailSetting;
 import com.andybrook.model.order.Order;
 import com.andybrook.model.product.Product;
 import com.andybrook.service.order.IOrderService;
+import com.andybrook.util.DateUtil;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
@@ -28,6 +30,7 @@ import java.io.IOException;
 import java.lang.System.Logger;
 import java.lang.System.Logger.Level;
 import java.nio.file.Path;
+import java.time.ZonedDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
 
@@ -38,6 +41,8 @@ public class CloseOrderNotificationHandler implements IDocumentHandler<Order> {
     private static final Logger LOGGER = System.getLogger(CloseOrderNotificationHandler.class.getSimpleName());
     private static final DateTimeFormatter DATE_TIME_FORMATTER_FILE_NAME = DateTimeFormatter.ofPattern("yyyy-MM-dd-hh-mm-ss");
 
+    @Autowired
+    private ApplicationProperties applicationProperties;
     @Autowired
     private ApplicationContext applicationContext;
     @Autowired
@@ -96,7 +101,8 @@ public class CloseOrderNotificationHandler implements IDocumentHandler<Order> {
     }
 
     private Path writeCsvInFile(AggregatedOrder order, String csv) throws IOException {
-        String fileName = order.getName() + "-" + order.getCreatedDatetime().format(DATE_TIME_FORMATTER_FILE_NAME);
+        ZonedDateTime datetime = DateUtil.epochTimeInMillisToZdt(order.getCreatedDatetime(), applicationProperties.getZoneId());
+        String fileName = order.getName() + "-" + datetime.format(DATE_TIME_FORMATTER_FILE_NAME);
         File tmpFile = File.createTempFile(fileName, ".csv");
         try (FileWriter writer = new FileWriter(tmpFile)) {
             writer.write(csv);

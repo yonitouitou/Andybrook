@@ -7,7 +7,7 @@ import com.andybrook.model.BarCode;
 import com.andybrook.model.order.Order;
 import com.andybrook.model.order.OrderItem;
 import com.andybrook.model.product.ProductId;
-import com.andybrook.model.request.orderitem.ProductItemInfo;
+import com.andybrook.model.request.orderitem.OrderItemInfo;
 import com.andybrook.model.stock.ProductItem;
 import com.andybrook.service.stock.IStockService;
 
@@ -31,7 +31,7 @@ public class OrderItemService implements IOrderItemService {
     private IStockService stockService;
 
     @Override
-    public List<OrderItem> createOrderItems(Order order, ProductItemInfo info, int quantityRequested) {
+    public List<OrderItem> createOrderItems(Order order, OrderItemInfo info, int quantityRequested) {
         List<OrderItem> orderItems = new LinkedList<>();
         int freeQuantity = stockService.getFreeQuantity(info.getProductId());
         if (freeQuantity >= quantityRequested) {
@@ -70,7 +70,7 @@ public class OrderItemService implements IOrderItemService {
     }
 
     @Override
-    public boolean isExist(long id) {
+    public boolean isExist(String id) {
         return dao.isExist(id);
     }
 

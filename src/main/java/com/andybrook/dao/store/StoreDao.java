@@ -1,17 +1,21 @@
 package com.andybrook.dao.store;
 
-import com.andybrook.dao.jpa.entity.customer.OwnerEntity;
 import com.andybrook.dao.jpa.entity.factory.EntityFactory;
 import com.andybrook.dao.jpa.entity.store.StoreEntity;
 import com.andybrook.dao.owner.IOwnerDao;
 import com.andybrook.model.customer.Store;
+
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Example;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Repository;
 
-import java.util.*;
+import java.util.HashMap;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Map;
+import java.util.Optional;
+import java.util.OptionalInt;
 import java.util.stream.Collectors;
 
 @Repository
@@ -25,11 +29,11 @@ public class StoreDao implements IStoreDao {
     private EntityFactory entityFactory;
 
     @Override
-    public Store update(Store store) {
-        ownerDao.update(store.getOwner());
+    public void save(Store store) {
+        ownerDao.save(store.getOwner());
         StoreEntity entity = entityFactory.createStoreEntity(store);
         StoreEntity savedEntity = repository.save(entity);
-        return entityFactory.createStore(savedEntity);
+        store.setId(savedEntity.getId());
     }
 
     @Override
@@ -77,12 +81,13 @@ public class StoreDao implements IStoreDao {
     @Override
     public Map<Long, Store> getStoresOfOwner(long ownerId) {
         Map<Long, Store> stores = new HashMap<>();
+        List<StoreEntity> storesOfOwner = repository.getStoresOfOwner(ownerId);
+        /*;
         OwnerEntity ownerEntity = ownerDao.getOne(ownerId);
         StoreEntity storeEntity = new StoreEntity();
         storeEntity.setOwnerEntity(ownerEntity);
-        List<StoreEntity> entities = repository.findAll(Example.of(storeEntity));
-        entities.stream()
-                .forEach(e -> {
+        List<StoreEntity> entities = repository.findAll(Example.of(storeEntity));*/
+        storesOfOwner.forEach(e -> {
                     Store store = entityFactory.createStore(e);
                     stores.put(store.getId(), store);
                 });

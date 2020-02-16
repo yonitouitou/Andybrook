@@ -19,17 +19,17 @@ public class OrderItemDao implements IOrderItemDao {
     }
 
     @Override
-    public boolean isExist(long id) {
+    public boolean isExist(String id) {
         return repository.existsById(id);
     }
 
     @Override
-    public Optional<OrderItem> get(long orderItemId) {
+    public Optional<OrderItem> get(String orderItemId) {
         return repository.findById(orderItemId);
     }
 
     @Override
-    public void delete(long orderItemId) {
+    public void delete(String orderItemId) {
         repository.deleteById(orderItemId);
     }
 }

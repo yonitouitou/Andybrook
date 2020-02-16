@@ -2,13 +2,11 @@ package com.andybrook.service.stock;
 
 import com.andybrook.dao.stock.productitem.IProductItemDao;
 import com.andybrook.exception.BarCodeNotFound;
-import com.andybrook.exception.BarCodeNotLinked;
 import com.andybrook.exception.ProductItemNotFound;
 import com.andybrook.model.BarCode;
 import com.andybrook.model.product.Product;
 import com.andybrook.model.product.ProductId;
 import com.andybrook.model.stock.ProductItem;
-import com.andybrook.service.product.IBarCodeService;
 import com.andybrook.service.product.IProductService;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,12 +21,10 @@ class ProductItemService implements IProductItemService {
     private IProductItemDao dao;
     @Autowired
     private IProductService productService;
-    @Autowired
-    private IBarCodeService barCodeService;
 
     @Override
     public void add(ProductItem productItem) {
-        updateProductItem(productItem);
+        dao.save(productItem);
     }
 
     @Override
@@ -39,15 +35,8 @@ class ProductItemService implements IProductItemService {
 
     @Override
     public ProductItem getByBarCode(BarCode barCode) {
-        ProductItem productItem;
-        boolean isExist = barCodeService.isBarCodeExist(barCode);
-        if (isExist) {
-            Optional<ProductItem> productItemOpt = dao.findByBarCode(barCode);
-            productItem = productItemOpt.orElseThrow(() -> new BarCodeNotLinked(barCode));
-        } else {
-            throw new BarCodeNotFound(barCode);
-        }
-        return productItem;
+        Optional<ProductItem> productItemOpt = dao.findByBarCode(barCode);
+        return productItemOpt.orElseThrow(() -> new BarCodeNotFound(barCode));
     }
 
     @Override
@@ -57,7 +46,11 @@ class ProductItemService implements IProductItemService {
 
     @Override
     public void update(ProductItem productItem) {
-        updateProductItem(productItem);
+        if (dao.exist(productItem.getId())) {
+            dao.save(productItem);
+        } else {
+            throw new ProductItemNotFound(productItem.getId());
+        }
     }
 
     @Override
@@ -69,9 +62,5 @@ class ProductItemService implements IProductItemService {
     public double getPrice(ProductItem productItem) {
         Product product = productService.get(productItem.getProductId());
         return product.getPrice();
-    }
-
-    private void updateProductItem(ProductItem productItem) {
-        dao.save(productItem);
     }
 }

@@ -2,6 +2,7 @@ package com.andybrook.service.api;
 
 import com.andybrook.ApplicationProperties;
 import com.andybrook.dao.stock.IStockItemsFileUploadDao;
+import com.andybrook.enums.ProductType;
 import com.andybrook.exception.ValidationRuntimeException;
 import com.andybrook.exception.fileupload.CsvBadFormat;
 import com.andybrook.exception.fileupload.EmptyFileException;
@@ -60,7 +61,7 @@ public class StockItemsFileParserService implements IStockItemsFileParserService
             StockItemsFileUpload fileUpload = fileUploadOpt.get();
             for (ProductToUpload item : fileUpload.getProductsForUpload()) {
                 try {
-                    Product product = getOrCreateProductByName(item.getName());
+                    Product product = getOrCreateProductByName(ProductType.GLASSES, item.getName());
                     ProductItem productItem = new ProductItem(product, item.getBarCode());
                     stockService.addProductItem(productItem);
                 } catch (Exception e) {
@@ -93,12 +94,9 @@ public class StockItemsFileParserService implements IStockItemsFileParserService
         return new StockItemsFileUpload(null, productItemRowsInFile, rowsProcessed, productItemsList, Clock.millis());
     }
 
-    private Product getOrCreateProductByName(String productName) {
-        Product product = null;
-        Optional<Product> productOpt = productService.getByName(productName);
-        if (productOpt.isPresent()) {
-            product = productOpt.get();
-        } else {
+    private Product getOrCreateProductByName(ProductType productType, String productName) {
+        Product product = productService.getByName(productType, productName);
+        if (product == null) {
             productService.add(product);
         }
         return product;

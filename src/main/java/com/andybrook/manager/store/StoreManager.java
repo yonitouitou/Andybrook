@@ -21,15 +21,15 @@ public class StoreManager implements IStoreManager {
     public Store newStore(AddStoreRequest req) {
         Owner owner = new Owner(req.getOwnerCompagnyName(), req.getOwnerFirstName(),
                 req.getOwnerLastName(), req.getOwnerEmail());
-        Store store = new Store(
-                req.getStoreName(), req.getStoreEmail(), req.getStorePhone(),
+        Store store = new Store(req.getStoreName(), req.getStoreEmail(), req.getStorePhone(),
                 req.getStoreAddress(), owner);
-        return storeService.newStore(store);
+        storeService.newStore(store);
+        return store;
     }
 
     @Override
-    public Store update(Store store) {
-        return storeService.update(store);
+    public void update(Store store) {
+        storeService.update(store);
     }
 
     @Override

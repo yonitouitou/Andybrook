@@ -3,11 +3,13 @@ package com.andybrook.model.order;
 import com.andybrook.model.api.AggregatedOrder;
 import com.andybrook.model.api.AggregatedOrderInfo;
 import com.andybrook.model.api.AggregatedOrderItem;
+import com.andybrook.model.customer.Store;
 import com.andybrook.model.product.Product;
 import com.andybrook.model.product.ProductId;
 import com.andybrook.model.stock.ProductItem;
 import com.andybrook.service.product.IProductService;
 import com.andybrook.service.stock.IStockService;
+import com.andybrook.service.store.IStoreService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -26,10 +28,12 @@ public class OrderAggregator implements IOrderAggregator {
     private IProductService productService;
     @Autowired
     private IStockService stockService;
+    @Autowired
+    private IStoreService storeService;
 
     @Override
     public AggregatedOrder aggregate(Order order) {
-        Map<ProductId, List<OrderItem>> orderItemByProductId = groupByProduct(order.getItems());
+        Map<ProductId, List<OrderItem>> orderItemByProductId = groupByProduct(order.getOrderItems());
 
         List<AggregatedOrderItem> aggregatedOrderItems = new LinkedList<>();
         orderItemByProductId.forEach((k, v) -> {
@@ -38,8 +42,10 @@ public class OrderAggregator implements IOrderAggregator {
             aggregatedOrderItems.add(new AggregatedOrderItem(v, product, ttlPrice));
         });
 
+        Store store = storeService.getById(order.getStoreId());
+
         AggregatedOrderInfo info = toAggregatedOrderInfo(order);
-        return new AggregatedOrder(order.getId(), order.getName(), order.getStore(), order.getStatus(),
+        return new AggregatedOrder(order.getId(), order.getName(), store, order.getStatus(),
                 order.getComment(), order.getCreatedDateTime(), order.getLastModifiedDateTime(),
                 order.getCloseDateTime(), info, aggregatedOrderItems);
     }
@@ -56,8 +62,8 @@ public class OrderAggregator implements IOrderAggregator {
     }
 
     private AggregatedOrderInfo toAggregatedOrderInfo(Order order) {
-        int orderItemsSize = order.getItems().size();
-        List<ProductItem> productItems = toProductItemList(order.getItems());
+        int orderItemsSize = order.getOrderItems().size();
+        List<ProductItem> productItems = toProductItemList(order.getOrderItems());
         int productsSize = getDistinctProductsSize(productItems);
         double ttlPrice = calculateTotalPrice(productItems);
         return new AggregatedOrderInfo(orderItemsSize, productsSize, ttlPrice);

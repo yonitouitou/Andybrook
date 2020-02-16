@@ -9,7 +9,7 @@ import java.util.OptionalInt;
 
 public interface IStoreDao {
 
-    Store update(Store store);
+    void save(Store store);
 
     Optional<Store> find(long id);
 

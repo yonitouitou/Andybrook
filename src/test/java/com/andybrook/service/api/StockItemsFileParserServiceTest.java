@@ -3,7 +3,6 @@ package com.andybrook.service.api;
 import com.andybrook.ApplicationProperties;
 import com.andybrook.model.api.StockItemsFileUpload;
 import com.andybrook.model.api.StockItemsFileUpload.ProductToUpload;
-import com.andybrook.service.product.ProductService;
 import com.andybrook.util.ProductItemFileUploadGenerator;
 import com.andybrook.util.clock.Clock;
 import com.andybrook.util.file.FileUtil;
@@ -27,8 +26,6 @@ public class StockItemsFileParserServiceTest {
     private ApplicationProperties applicationProperties;
     @Autowired
     private StockItemsFileParserService stockItemsFileParserService;
-    @Autowired
-    private ProductService productService;
 
     @Test
     public void processValidFileTest() throws IOException {

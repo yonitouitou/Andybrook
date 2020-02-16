@@ -9,7 +9,7 @@ import com.andybrook.model.order.Order;
 import com.andybrook.model.order.OrderItem;
 import com.andybrook.model.request.order.NewOrderRequest;
 import com.andybrook.model.request.order.UpdateOrderRequest;
-import com.andybrook.model.request.orderitem.ProductItemInfo;
+import com.andybrook.model.request.orderitem.OrderItemInfo;
 
 import java.util.List;
 
@@ -43,11 +43,11 @@ public interface IOrderService {
 
     boolean canModifyOrder(Order order);
 
-    List<OrderItem> addOrderItems(long orderId, ProductItemInfo info, int quantity);
+    List<OrderItem> addOrderItems(long orderId, OrderItemInfo info, int quantity);
 
     OrderItem addSingleOrderItemByBarCode(long orderId, String barCodeId);
 
-    Order deleteOrderItem(long orderId, long orderItemId) throws OrderNotFound, OrderClosed, OrderItemNotFound;
+    Order deleteOrderItem(long orderId, String orderItemId) throws OrderNotFound, OrderClosed, OrderItemNotFound;
 
     double getAmount(Order order);
 }

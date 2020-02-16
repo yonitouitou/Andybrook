@@ -1,5 +1,6 @@
 package com.andybrook.manager.product;
 
+import com.andybrook.enums.ProductType;
 import com.andybrook.exception.ProductNotFound;
 import com.andybrook.model.product.Product;
 import com.andybrook.model.product.ProductId;
@@ -27,7 +28,7 @@ public class ProductManager implements IProductManager {
     }
 
     @Override
-    public List<? extends Product> getByNameContaining(String name) {
-        return productService.getByNameContaining(name);
+    public List<? extends Product> getByNameContaining(ProductType productType, String name) {
+        return productService.getByNameContaining(productType, name);
     }
 }

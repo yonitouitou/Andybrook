@@ -3,7 +3,7 @@ package com.andybrook.generator;
 import com.andybrook.model.BarCode;
 import com.andybrook.model.order.OrderItem;
 import com.andybrook.model.product.Product;
-import com.andybrook.model.request.orderitem.ProductItemInfo;
+import com.andybrook.model.request.orderitem.OrderItemInfo;
 import com.andybrook.model.stock.ProductItem;
 
 import java.util.*;
@@ -17,8 +17,8 @@ public final class OrderItemGenerator {
         return new OrderItem(orderId, productItem.getId());
     }
 
-    public static ProductItemInfo generateOrderItemInfo(Product product, int requestedQuantity) {
-        return new ProductItemInfo(product.getId(), requestedQuantity);
+    public static OrderItemInfo generateOrderItemInfo(Product product, int requestedQuantity) {
+        return new OrderItemInfo(product.getId(), requestedQuantity);
     }
 
     private static BarCode getRandomBarCode(Collection<BarCode> barCodes) {

@@ -6,17 +6,29 @@ import com.andybrook.model.api.AggregatedOrderItem;
 import com.andybrook.model.customer.Owner;
 import com.andybrook.model.customer.Store;
 import com.andybrook.model.notification.request.ctx.OrderDocumentCtx;
+import com.andybrook.util.DateUtil;
 import com.andybrook.util.clock.Clock;
-import com.itextpdf.text.*;
+import com.itextpdf.text.BaseColor;
+import com.itextpdf.text.Chunk;
+import com.itextpdf.text.Document;
+import com.itextpdf.text.DocumentException;
+import com.itextpdf.text.Element;
+import com.itextpdf.text.Font;
 import com.itextpdf.text.Font.FontFamily;
+import com.itextpdf.text.FontFactory;
+import com.itextpdf.text.Image;
+import com.itextpdf.text.PageSize;
+import com.itextpdf.text.Paragraph;
+import com.itextpdf.text.Phrase;
+import com.itextpdf.text.Rectangle;
 import com.itextpdf.text.pdf.BaseFont;
 import com.itextpdf.text.pdf.PdfPCell;
 import com.itextpdf.text.pdf.PdfPTable;
 import com.itextpdf.text.pdf.PdfWriter;
+
 import org.springframework.stereotype.Component;
 import org.springframework.util.ResourceUtils;
 
-import javax.annotation.PostConstruct;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.lang.System.Logger;
@@ -29,6 +41,8 @@ import java.time.LocalDateTime;
 import java.time.ZonedDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.stream.Stream;
+
+import javax.annotation.PostConstruct;
 
 import static com.itextpdf.text.html.HtmlTags.FONT;
 
@@ -261,7 +275,7 @@ public class CloseOrderPdfBuilder extends AbstractPdfBuilder implements IPdfBuil
 
     private Element createDoneDate(OrderDocumentCtx ctx, AggregatedOrder order) {
         Paragraph p = new Paragraph();
-        ZonedDateTime dateDocument = ctx.getDateDocument() != null ? ctx.getDateDocument() : ZonedDateTime.of(order.getCloseDatetime(), applicationProperties.getZoneId());
+        ZonedDateTime dateDocument = ctx.getDateDocument() != null ? ctx.getDateDocument() : DateUtil.epochTimeInMillisToZdt(order.getCloseDatetime(), applicationProperties.getZoneId());
         String msg = languageResolver.get(Pdf.DONE_ON_DATE) + " " + dateDocument.format(DATE_FORMATTER);
         Element phrase = new Phrase(msg, new Font(FontFamily.TIMES_ROMAN, TEXT_FONT_SIZE_11, Font.ITALIC));
         p.add(phrase);

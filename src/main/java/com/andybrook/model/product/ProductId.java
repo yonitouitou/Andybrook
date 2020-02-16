@@ -1,17 +1,40 @@
 package com.andybrook.model.product;
 
+import com.andybrook.enums.ProductType;
+
 import java.util.Objects;
 
 public final class ProductId {
 
-    private final long id;
+    private static final String SEPARATOR = "-";
+    private final String id;
+    private final ProductType productType;
 
-    public ProductId(long id) {
-        this.id = id;
+    private ProductId() {
+        this.id = null;
+        this.productType = null;
     }
 
-    public long get() {
+    public ProductId(ProductType type, long id) {
+        this.id = type.getSymbol() + "-" + id;
+        this.productType = type;
+    }
+
+    private ProductId(ProductType type, String id) {
+        this.id = type.getSymbol() + SEPARATOR + id;
+        this.productType = type;
+    }
+
+    public static ProductId from(String id) {
+        String[] split = id.split(SEPARATOR);
+        return new ProductId(ProductType.getBySymbol(split[0]), split[1]);
+    }
+    public String get() {
         return id;
+    }
+
+    public ProductType getProductType() {
+        return productType;
     }
 
     @Override
@@ -19,7 +42,7 @@ public final class ProductId {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         ProductId productId = (ProductId) o;
-        return id == productId.id;
+        return id.equals(productId.id);
     }
 
     @Override

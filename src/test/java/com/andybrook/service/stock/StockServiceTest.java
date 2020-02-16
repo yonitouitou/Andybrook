@@ -7,6 +7,7 @@ import com.andybrook.generator.ProductItemGenerator;
 import com.andybrook.model.product.Product;
 import com.andybrook.model.stock.ProductItem;
 import com.andybrook.service.product.IProductService;
+
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -29,7 +30,8 @@ public class StockServiceTest {
 
     @Before
     public void init() {
-        productService.add(ProductGenerator.generateProduct());;
+        product = ProductGenerator.generateProduct();
+        productService.add(product);
         productItem = ProductItemGenerator.generateSingleProductItem(product);
     }
 

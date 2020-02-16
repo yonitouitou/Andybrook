@@ -1,10 +1,10 @@
 package com.andybrook.service.product;
 
+import com.andybrook.enums.ProductType;
 import com.andybrook.model.product.Product;
 import com.andybrook.model.product.ProductId;
 
 import java.util.List;
-import java.util.Optional;
 
 public interface IProductService {
 
@@ -14,7 +14,7 @@ public interface IProductService {
 
     boolean isExist(ProductId id);
 
-    Optional<Product> getByName(String name);
+    Product getByName(ProductType type, String name);
 
-    List<Product> getByNameContaining(String subName);
+    List<? extends Product> getByNameContaining(ProductType type, String subName);
 }

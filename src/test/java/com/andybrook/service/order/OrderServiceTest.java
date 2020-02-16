@@ -11,7 +11,7 @@ import com.andybrook.model.order.Order;
 import com.andybrook.model.order.OrderItem;
 import com.andybrook.model.product.Product;
 import com.andybrook.model.request.order.NewOrderRequest;
-import com.andybrook.model.request.orderitem.ProductItemInfo;
+import com.andybrook.model.request.orderitem.OrderItemInfo;
 import com.andybrook.model.stock.ProductItem;
 import com.andybrook.service.product.IProductService;
 import com.andybrook.service.stock.IStockService;
@@ -32,11 +32,10 @@ import java.util.List;
 public class OrderServiceTest {
 
     private static final int PRODUCT_QUANTITY = 20;
-    private static final int ORDER_ITEM_QUANTITY = 5;
     private Store store;
     private Order order;
     private Product product;
-    private ProductItemInfo productItemInfo;
+    private OrderItemInfo orderItemInfo;
 
     @Autowired
     private IOrderService orderService;
@@ -49,7 +48,8 @@ public class OrderServiceTest {
 
     @Before
     public void init() {
-        store = storeService.newStore(StoreGenerator.generateStore());
+        store = StoreGenerator.generateStore();
+        storeService.newStore(store);
         order = orderService.newOrder(createNewOrderRequest(store));
         product = ProductGenerator.generateProduct();
         productService.add(product);
@@ -57,21 +57,21 @@ public class OrderServiceTest {
         for (ProductItem item : productItems) {
             stockService.addProductItem(item);
         }
-        productItemInfo = OrderItemGenerator.generateOrderItemInfo(product, PRODUCT_QUANTITY -1);
+        orderItemInfo = OrderItemGenerator.generateOrderItemInfo(product, PRODUCT_QUANTITY -1);
     }
 
     @Test
     public void addSingleOrderItemSingleQuantityTest() {
-        productItemInfo = OrderItemGenerator.generateOrderItemInfo(product, 1);
-        OrderItem orderItemAdded = addOrderItems(productItemInfo).get(0);
+        orderItemInfo = OrderItemGenerator.generateOrderItemInfo(product, 1);
+        OrderItem orderItemAdded = addOrderItems(orderItemInfo).get(0);
         Order updatedOrder = orderService.getOrder(order.getId());
         Assert.assertTrue("Order.HasItem", updatedOrder.hasItem(orderItemAdded.getId()));
     }
 
     @Test
     public void addSingleOrderItemMultipleQuantityTest() {
-        productItemInfo = OrderItemGenerator.generateOrderItemInfo(product, 2);
-        List<OrderItem> orderItems = addOrderItems(productItemInfo);
+        orderItemInfo = OrderItemGenerator.generateOrderItemInfo(product, 2);
+        List<OrderItem> orderItems = addOrderItems(orderItemInfo);
         Order updatedOrder = orderService.getOrder(order.getId());
         for (OrderItem orderItem : orderItems) {
             Assert.assertTrue("Order.HasItem", updatedOrder.hasItem(orderItem.getId()));
@@ -80,19 +80,19 @@ public class OrderServiceTest {
 
     @Test(expected = InsufficientQuantityException.class)
     public void addOrderItemQuantityExceededTest() {
-        productItemInfo = OrderItemGenerator.generateOrderItemInfo(product, PRODUCT_QUANTITY + 1);
-        addOrderItems(productItemInfo).get(0);
+        orderItemInfo = OrderItemGenerator.generateOrderItemInfo(product, PRODUCT_QUANTITY + 1);
+        addOrderItems(orderItemInfo);
     }
 
     @Test(expected = OrderClosed.class)
     public void addOrderItemIntoClosedOrder() {
         orderService.closeOrder(this.order.getId());
-        addOrderItems(productItemInfo).get(0);
+        addOrderItems(orderItemInfo);
     }
 
     @Test
     public void deleteOrderItemTest() {
-        OrderItem orderItem = addOrderItems(productItemInfo).get(0);
+        OrderItem orderItem = addOrderItems(orderItemInfo).get(0);
         deleteOrderItem(orderItem.getId());
         Assert.assertFalse(order.hasItem(orderItem.getId()));
 
@@ -103,22 +103,24 @@ public class OrderServiceTest {
     @Test
     public void getOrdersOfCustomerTest() {
         int nbOfOrderForCustomer = 3;
-        Store store = storeService.newStore(StoreGenerator.generateStore());
+        Store store = StoreGenerator.generateStore();
+        storeService.newStore(store);
         for (int i = 0; i < nbOfOrderForCustomer; i++) {
             orderService.newOrder(createNewOrderRequest(store));
         }
-        Store store2 = storeService.newStore(StoreGenerator.generateStore());
+        Store store2 = StoreGenerator.generateStore();
+        storeService.newStore(store2);
         orderService.newOrder(createNewOrderRequest(store2));
 
         List<Order> ordersOfCustomer = orderService.getOrdersOfStore(store.getId());
         Assert.assertEquals("OrderOfCustomerSize", nbOfOrderForCustomer, ordersOfCustomer.size());
     }
 
-    private List<OrderItem> addOrderItems(ProductItemInfo productItemInfo) {
-        return orderService.addOrderItems(order.getId(), productItemInfo, productItemInfo.getRequestedQuantity());
+    private List<OrderItem> addOrderItems(OrderItemInfo orderItemInfo) {
+        return orderService.addOrderItems(order.getId(), orderItemInfo, orderItemInfo.getRequestedQuantity());
     }
 
-    private void deleteOrderItem(long orderItemId) {
+    private void deleteOrderItem(String orderItemId) {
         orderService.deleteOrderItem(this.order.getId(), orderItemId);
     }
 

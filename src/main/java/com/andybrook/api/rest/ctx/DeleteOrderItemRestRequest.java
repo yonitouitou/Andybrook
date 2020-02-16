@@ -6,7 +6,7 @@ import java.util.Arrays;
 
 public class DeleteOrderItemRestRequest extends OrderItemRequest {
 
-    private Long[] orderItemsId;
+    private String[] orderItemsId;
 
     private DeleteOrderItemRestRequest() {
         super(-1);
@@ -16,7 +16,7 @@ public class DeleteOrderItemRestRequest extends OrderItemRequest {
         super(orderId);
     }
 
-    public Long[] getOrderItemsId() {
+    public String[] getOrderItemsId() {
         return orderItemsId;
     }
 

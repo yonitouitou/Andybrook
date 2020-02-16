@@ -1,5 +1,6 @@
 package com.andybrook.api.rest;
 
+import com.andybrook.enums.ProductType;
 import com.andybrook.exception.BarCodeAlreadyExist;
 import com.andybrook.exception.ProductNotFound;
 import com.andybrook.manager.product.IProductManager;
@@ -32,22 +33,22 @@ public class ProductController extends AbstractController {
     private IStockManager stockManager;
 
     @GetMapping(path = "/get/{id}")
-    public Product get(@PathVariable long id) throws ProductNotFound {
+    public Product get(@PathVariable String id) throws ProductNotFound {
         LOGGER.log(Level.INFO, "Get Product by id : " + id);
-        return productManager.getProduct(new ProductId(id));
+        return productManager.getProduct(ProductId.from(id));
     }
 
     @GetMapping(path = "/getByBarCode/{barCodeId}")
-    public Product get(@PathVariable String barCodeId) {
+    public Product getByBarCode(@PathVariable String barCodeId) {
         LOGGER.log(Level.INFO, "Get Product by barCodeId : " + barCodeId);
         ProductItem productItem = stockManager.getProductItemByBarCodeId(new BarCode(barCodeId));
         return productManager.getProduct(productItem.getProductId());
     }
 
-    @GetMapping(path = "/getAvailableByNameContaining/{name}")
-    public List<? extends Product> getAll(@PathVariable String name) {
-        LOGGER.log(Level.INFO, "Get all available products request by subname : " + name);
-        return productManager.getByNameContaining(name);
+    @GetMapping(path = "/getAvailableByNameContaining/{productType}/{name}")
+    public List<? extends Product> getAll(@PathVariable ProductType productType, @PathVariable String name) {
+        LOGGER.log(Level.INFO, "Get all available products " + productType + " request by subname : " + name);
+        return productManager.getByNameContaining(productType, name);
     }
 
     @PostMapping(path = "/addBarcode")

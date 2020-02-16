@@ -20,12 +20,13 @@ import com.andybrook.model.product.Product;
 import com.andybrook.model.product.ProductId;
 import com.andybrook.model.request.order.NewOrderRequest;
 import com.andybrook.model.request.orderitem.OrderItemAddRequest;
-import com.andybrook.model.request.orderitem.ProductItemInfo;
+import com.andybrook.model.request.orderitem.OrderItemInfo;
 import com.andybrook.model.stock.ProductItem;
 import com.andybrook.service.stock.IStockService;
 import com.andybrook.service.store.IStoreService;
 import com.andybrook.util.clock.Clock;
 
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -65,7 +66,7 @@ public class InitSystemTest {
     private IStockService stockService;
 
     @Test
-    //@Ignore
+    @Ignore
     public void initSystem() {
         products = createProducts();
         productItemsIdMapByProductId = createProductItems(products);
@@ -115,7 +116,9 @@ public class InitSystemTest {
     private List<Store> createStores() {
         List<Store> stores = new LinkedList<>();
         for (int i = 0; i < CUSTOMER_NUMBER_2; i++) {
-            stores.add(storeService.newStore(StoreGenerator.generateStore()));
+            Store store = StoreGenerator.generateStore();
+            storeService.newStore(store);
+            stores.add(store);
         }
         return stores;
     }
@@ -125,7 +128,7 @@ public class InitSystemTest {
         Long productItemId = productItemsIdMapByProductId.get(productId).get(RANDOM.nextInt(0, PRODUCT_ITEM_FOR_EACH_PRODUCT_100));
         ProductItem productItem = stockService.getProductItem(productItemId);
         OrderItem item = OrderItemGenerator.generateOrderItem(orderId, productItem);
-        ProductItemInfo info = new ProductItemInfo(item.getId(), productItem.getProductId(), RANDOM.nextInt(1, 5));
+        OrderItemInfo info = new OrderItemInfo(item.getId(), productItem.getProductId(), RANDOM.nextInt(1, 5));
         OrderItemAddRequest request = new OrderItemAddRequest(orderId, info);
         System.out.println("Add " + request.getQuantityRequested() + " order items of product " + productId + " into order " + orderId);
         orderManager.addOrderItems(request);

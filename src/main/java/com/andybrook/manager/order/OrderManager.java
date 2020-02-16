@@ -7,8 +7,6 @@ import com.andybrook.exception.OrderItemNotFound;
 import com.andybrook.exception.OrderNotFound;
 import com.andybrook.exception.ProductNotFound;
 import com.andybrook.exception.StoreNotFound;
-import com.andybrook.manager.notification.INotificationManager;
-import com.andybrook.manager.setting.IAdminSettingManager;
 import com.andybrook.model.api.AggregatedOrder;
 import com.andybrook.model.notification.event.OrderClosedEvent;
 import com.andybrook.model.order.Order;
@@ -31,10 +29,6 @@ public class OrderManager implements IOrderManager {
 
     @Autowired
     private IOrderService orderService;
-    @Autowired
-    private INotificationManager notificationManager;
-    @Autowired
-    private IAdminSettingManager adminSettingManager;
     @Autowired
     private ApplicationEventPublisher publisher;
 
@@ -96,7 +90,7 @@ public class OrderManager implements IOrderManager {
         if (! OrderItemAddRequest.isValid(request)) {
             throw new IllegalArgumentException("Order item add request is not valid : " + request.toString());
         }
-        return orderService.addOrderItems(request.getOrderId(), request.getProductItemInfo(), request.getQuantityRequested());
+        return orderService.addOrderItems(request.getOrderId(), request.getOrderItemInfo(), request.getQuantityRequested());
     }
 
     @Override

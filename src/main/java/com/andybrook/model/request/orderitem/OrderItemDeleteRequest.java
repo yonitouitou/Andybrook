@@ -2,9 +2,9 @@ package com.andybrook.model.request.orderitem;
 
 public class OrderItemDeleteRequest extends OrderItemRequest {
 
-    protected long orderItemId;
+    protected String orderItemId;
 
-    public OrderItemDeleteRequest(long orderId, long orderItemId) {
+    public OrderItemDeleteRequest(long orderId, String orderItemId) {
         super(orderId);
         this.orderItemId = orderItemId;
     }
@@ -13,7 +13,7 @@ public class OrderItemDeleteRequest extends OrderItemRequest {
         return request != null;
     }
 
-    public long getOrderItemId() {
+    public String getOrderItemId() {
         return orderItemId;
     }
 

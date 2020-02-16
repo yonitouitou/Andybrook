@@ -21,6 +21,13 @@ public class OwnerDao implements IOwnerDao {
     private EntityFactory entityFactory;
 
     @Override
+    public void save(Owner owner) {
+        OwnerEntity entity = entityFactory.createOwnerEntity(owner);
+        OwnerEntity savedEntity = repository.save(entity);
+        owner.setId(savedEntity.getId());
+    }
+
+    @Override
     public Optional<Owner> get(long ownerId) {
         Optional<Owner> ownerOpt = Optional.empty();
         Optional<OwnerEntity> entityOpt = repository.findById(ownerId);
@@ -28,6 +35,11 @@ public class OwnerDao implements IOwnerDao {
             ownerOpt = Optional.of(entityFactory.createOwner(entityOpt.get()));
         }
         return ownerOpt;
+    }
+
+    @Override
+    public boolean exist(long ownerId) {
+        return repository.existsById(ownerId);
     }
 
     @Override
@@ -44,12 +56,5 @@ public class OwnerDao implements IOwnerDao {
             owners.put(owner.getId(), owner);
         });
         return owners;
-    }
-
-    @Override
-    public void update(Owner owner) {
-        OwnerEntity entity = entityFactory.createOwnerEntity(owner);
-        OwnerEntity savedEntity = repository.save(entity);
-        owner.setId(entity.getId());
     }
 }

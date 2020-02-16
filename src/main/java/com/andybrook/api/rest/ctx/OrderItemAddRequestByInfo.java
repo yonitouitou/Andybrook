@@ -1,24 +1,24 @@
 package com.andybrook.api.rest.ctx;
 
 import com.andybrook.model.product.ProductId;
-import com.andybrook.model.request.orderitem.ProductItemInfo;
+import com.andybrook.model.request.orderitem.OrderItemInfo;
 
 public class OrderItemAddRequestByInfo extends OrderItemRestRequest {
 
     private int requestedQty;
     private ProductId productId;
     private String barCode;
-    private ProductItemInfo productItemInfo = null;
+    private OrderItemInfo orderItemInfo = null;
 
-    public void setProductItemInfo(ProductItemInfo productItemInfo) {
-        this.productItemInfo = productItemInfo;
+    public void setOrderItemInfo(OrderItemInfo orderItemInfo) {
+        this.orderItemInfo = orderItemInfo;
     }
 
-    public ProductItemInfo getProductItemInfo() {
-        if (productItemInfo == null) {
-            productItemInfo = new ProductItemInfo(productId, requestedQty);
+    public OrderItemInfo getOrderItemInfo() {
+        if (orderItemInfo == null) {
+            orderItemInfo = new OrderItemInfo(productId, requestedQty);
         }
-        return productItemInfo;
+        return orderItemInfo;
     }
 
     public int getRequestedQty() {
@@ -48,7 +48,7 @@ public class OrderItemAddRequestByInfo extends OrderItemRestRequest {
     @Override
     public String toString() {
         return "OrderItemAddRequestByInfo{" +
-                "productItemInfo=" + productItemInfo +
+                "productItemInfo=" + orderItemInfo +
                 '}';
     }
 }

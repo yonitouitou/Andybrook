@@ -1,45 +1,38 @@
 package com.andybrook.model.order;
 
 import com.andybrook.util.IdGenerator;
+import com.andybrook.util.clock.Clock;
 
 import org.springframework.data.elasticsearch.annotations.Document;
 
-import java.time.LocalDateTime;
 import java.util.Objects;
 
 @Document(indexName = "order_items")
 public final class OrderItem {
 
-    protected Long id;
+    protected final String id;
     protected final long orderId;
     protected final long productItemId;
-    protected final LocalDateTime createdDatetime;
-    protected LocalDateTime lastModifiedDatetime;
+    protected final long createdDatetime;
+    protected long lastModifiedDatetime;
+
+    private OrderItem() {
+        this.id = null;
+        this.orderId = 0L;
+        this.productItemId = 0L;
+        this.createdDatetime = 0L;
+    }
 
     public OrderItem(long orderId, long productItemId) {
-        this.id = IdGenerator.generateId();
+        this.id = IdGenerator.generateAlfaNumericId();
         this.orderId = orderId;
         this.productItemId = productItemId;
-        this.createdDatetime = LocalDateTime.now();
+        this.createdDatetime = Clock.millis();
+        this.lastModifiedDatetime = createdDatetime;
     }
 
-    public OrderItem(long id, long orderId, long productItemId) {
-        this.id = id;
-        this.orderId = orderId;
-        this.productItemId = productItemId;
-        this.createdDatetime = LocalDateTime.now();
-    }
-
-    public boolean exist() {
-        return id != null;
-    }
-
-    public Long getId() {
+    public String getId() {
         return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
     }
 
     public long getOrderId() {
@@ -50,16 +43,12 @@ public final class OrderItem {
         return productItemId;
     }
 
-    public LocalDateTime getCreatedDatetime() {
+    public long getCreatedDatetime() {
         return createdDatetime;
     }
 
-    public LocalDateTime getLastModifiedDatetime() {
+    public long getLastModifiedDatetime() {
         return lastModifiedDatetime;
-    }
-
-    public void setLastModifiedDatetime(LocalDateTime lastModifiedDatetime) {
-        this.lastModifiedDatetime = lastModifiedDatetime;
     }
 
     @Override

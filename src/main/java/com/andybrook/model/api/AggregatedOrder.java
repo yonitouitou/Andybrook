@@ -3,7 +3,6 @@ package com.andybrook.model.api;
 import com.andybrook.enums.OrderStatus;
 import com.andybrook.model.customer.Store;
 
-import java.time.LocalDateTime;
 import java.util.List;
 
 public final class AggregatedOrder {
@@ -13,15 +12,15 @@ public final class AggregatedOrder {
     private final String comment;
     private final Store store;
     private final OrderStatus status;
-    private final LocalDateTime createdDatetime;
-    private final LocalDateTime lastModifiedDatetime;
-    private final LocalDateTime closeDatetime;
+    private final long createdDatetime;
+    private final long lastModifiedDatetime;
+    private final long closeDatetime;
     private final AggregatedOrderInfo aggregatedOrderInfo;
     private final List<AggregatedOrderItem> aggregatedOrderItems;
 
     public AggregatedOrder(long id, String name, Store store, OrderStatus status,
-                           String comment, LocalDateTime createdDatetime, LocalDateTime lastModifiedDatetime,
-                           LocalDateTime closeDatetime, AggregatedOrderInfo aggregatedOrderInfo,
+                           String comment, long createdDatetime, long lastModifiedDatetime,
+                           long closeDatetime, AggregatedOrderInfo aggregatedOrderInfo,
                            List<AggregatedOrderItem> aggregatedOrderItems) {
         this.id = id;
         this.name = name;
@@ -51,15 +50,15 @@ public final class AggregatedOrder {
         return status;
     }
 
-    public LocalDateTime getCreatedDatetime() {
+    public long getCreatedDatetime() {
         return createdDatetime;
     }
 
-    public LocalDateTime getLastModifiedDatetime() {
+    public long getLastModifiedDatetime() {
         return lastModifiedDatetime;
     }
 
-    public LocalDateTime getCloseDatetime() {
+    public long getCloseDatetime() {
         return closeDatetime;
     }
 

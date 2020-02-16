@@ -2,21 +2,21 @@ package com.andybrook.model.request.orderitem;
 
 public class OrderItemAddRequest extends OrderItemRequest {
 
-    private final ProductItemInfo productItemInfo;
+    private final OrderItemInfo orderItemInfo;
     private final int quantityRequested;
 
-    public OrderItemAddRequest(long orderId, ProductItemInfo productItemInfo) {
+    public OrderItemAddRequest(long orderId, OrderItemInfo orderItemInfo) {
         super(orderId);
-        this.productItemInfo = productItemInfo;
-        this.quantityRequested = productItemInfo.getRequestedQuantity();
+        this.orderItemInfo = orderItemInfo;
+        this.quantityRequested = orderItemInfo.getRequestedQuantity();
     }
 
     public static boolean isValid(OrderItemAddRequest request) {
-        return request != null && request.getProductItemInfo() != null && request.getQuantityRequested() > 0;
+        return request != null && request.getOrderItemInfo() != null && request.getQuantityRequested() > 0;
     }
 
-    public ProductItemInfo getProductItemInfo() {
-        return productItemInfo;
+    public OrderItemInfo getOrderItemInfo() {
+        return orderItemInfo;
     }
 
     public int getQuantityRequested() {
@@ -26,7 +26,7 @@ public class OrderItemAddRequest extends OrderItemRequest {
     @Override
     public String toString() {
         return "OrderItemAddRequest{" +
-                "productItemInfo=" + productItemInfo +
+                "productItemInfo=" + orderItemInfo +
                 ", orderId=" + orderId +
                 '}';
     }

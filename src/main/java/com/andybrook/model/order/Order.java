@@ -2,12 +2,11 @@ package com.andybrook.model.order;
 
 import com.andybrook.enums.OrderStatus;
 import com.andybrook.exception.OrderClosed;
-import com.andybrook.model.customer.Store;
 import com.andybrook.util.IdGenerator;
+import com.andybrook.util.clock.Clock;
 
 import org.springframework.data.elasticsearch.annotations.Document;
 
-import java.time.LocalDateTime;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
@@ -19,28 +18,34 @@ public class Order {
     private Long id;
     private String name;
     private String comment;
-    private final Store store;
-    private Map<Long, OrderItem> items;
-    private LocalDateTime createdDateTime;
-    private LocalDateTime lastModifiedDateTime;
-    private LocalDateTime closeDateTime;
+    private final long storeId;
+    private Map<String, OrderItem> orderItems;
+    private long createdDateTime;
+    private long lastModifiedDateTime;
+    private long closeDateTime;
     private OrderStatus status;
 
-    public Order(Long id, String name, Store store) {
+    private Order() {
+        storeId = 0L;
+    }
+
+    public Order(Long id, String name, long storeId) {
         this.id = id;
         this.name = name;
-        this.store = store;
-        this.items = new HashMap<>();
+        this.storeId = storeId;
+        this.orderItems = new HashMap<>();
         this.status = OrderStatus.OPEN;
+        this.createdDateTime = Clock.millis();
+        this.lastModifiedDateTime = createdDateTime;
         this.comment = "";
     }
 
-    public Order(String name, Store store) {
-        this(IdGenerator.generateId(), name, store);
+    public Order(String name, long storeId) {
+        this(IdGenerator.generateId(), name, storeId);
     }
 
     public void addOrderItem(OrderItem item) {
-        items.put(item.getId(), item);
+        orderItems.put(item.getId(), item);
     }
 
     public void addOrderItems(List<OrderItem> orderItems) {
@@ -49,12 +54,8 @@ public class Order {
         }
     }
 
-    public OrderItem deleteItem(long orderItemId) {
-        OrderItem orderItemDeleted;
-        synchronized (this) {
-            orderItemDeleted = items.remove(orderItemId);
-        }
-        return orderItemDeleted;
+    public OrderItem deleteItem(String orderItemId) {
+        return orderItems.remove(orderItemId);
     }
 
     public void close() throws OrderClosed {
@@ -62,22 +63,24 @@ public class Order {
             throw new OrderClosed(id);
         }
         status = OrderStatus.CLOSED;
-        closeDateTime = LocalDateTime.now();
+        long now = Clock.millis();
+        closeDateTime = now;
+        lastModifiedDateTime = now;
     }
 
-    public Store getStore() {
-        return store;
+    public long getStoreId() {
+        return storeId;
     }
 
-    public LocalDateTime getCloseDateTime() {
+    public long getCloseDateTime() {
         return closeDateTime;
     }
 
-    public OrderItem getItem(long orderItemId) {
-        return items.get(orderItemId);
+    public OrderItem getItem(String orderItemId) {
+        return orderItems.get(orderItemId);
     }
 
-    public boolean hasItem(long orderItemId) {
+    public boolean hasItem(String orderItemId) {
         return getItem(orderItemId) != null;
     }
 
@@ -113,31 +116,31 @@ public class Order {
         this.comment = comment;
     }
 
-    public void setItems(Map<Long, OrderItem> items) {
-        this.items = items;
+    public void setOrderItems(Map<String, OrderItem> orderItems) {
+        this.orderItems = orderItems;
     }
 
     public void setStatus(OrderStatus status) {
         this.status = status;
     }
 
-    public Collection<OrderItem> getItems() {
-        return items.values();
+    public Collection<OrderItem> getOrderItems() {
+        return orderItems.values();
     }
 
-    public LocalDateTime getCreatedDateTime() {
+    public long getCreatedDateTime() {
         return createdDateTime;
     }
 
-    public void setCreatedDateTime(LocalDateTime createdDateTime) {
+    public void setCreatedDateTime(long createdDateTime) {
         this.createdDateTime = createdDateTime;
     }
 
-    public LocalDateTime getLastModifiedDateTime() {
+    public long getLastModifiedDateTime() {
         return lastModifiedDateTime;
     }
 
-    public void setLastModifiedDateTime(LocalDateTime lastModifiedDateTime) {
+    public void setLastModifiedDateTime(long lastModifiedDateTime) {
         this.lastModifiedDateTime = lastModifiedDateTime;
     }
 
@@ -145,7 +148,7 @@ public class Order {
         return status;
     }
 
-    public void setCloseDateTime(LocalDateTime closeDateTime) {
+    public void setCloseDateTime(long closeDateTime) {
         this.closeDateTime = closeDateTime;
     }
 
@@ -155,8 +158,8 @@ public class Order {
         sb.append("id=").append(id);
         sb.append(", name='").append(name).append('\'');
         sb.append(", comment='").append(comment).append('\'');
-        sb.append(", store='").append(store).append('\'');
-        sb.append(", items=").append(items);
+        sb.append(", storeId='").append(storeId).append('\'');
+        sb.append(", items=").append(orderItems);
         sb.append(", createdDateTime=").append(createdDateTime);
         sb.append(", closeDateTime=").append(closeDateTime);
         sb.append(", status=").append(status);

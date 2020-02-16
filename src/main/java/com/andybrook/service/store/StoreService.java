@@ -21,23 +21,21 @@ public class StoreService implements IStoreService {
     private IOwnerService ownerService;
 
     @Override
-    public Store newStore(Store store) {
+    public void newStore(Store store) {
         if (shouldCreateOwner(store)) {
-            ownerService.update(store.getOwner());
+            ownerService.newOwner(store.getOwner());
         }
-        return dao.update(store);
+        dao.save(store);
     }
 
     @Override
-    public Store update(Store store) throws StoreNotFound {
-        Store updated;
+    public void update(Store store) throws StoreNotFound {
         boolean exists = exists(store.getId());
         if (exists) {
-            updated = dao.update(store);
+            dao.save(store);
         } else {
             throw new StoreNotFound(store.getId());
         }
-        return updated;
     }
 
     @Override

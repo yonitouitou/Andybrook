@@ -8,9 +8,9 @@ public interface IOrderItemDao {
 
     void save(OrderItem item);
 
-    Optional<OrderItem> get(long orderItemId);
+    Optional<OrderItem> get(String orderItemId);
 
-    void delete(long orderItemId);
+    void delete(String orderItemId);
 
-    boolean isExist(long id);
+    boolean isExist(String id);
 }

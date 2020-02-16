@@ -2,29 +2,29 @@ package com.andybrook.model.request.orderitem;
 
 import com.andybrook.model.product.ProductId;
 
-public class ProductItemInfo {
+public class OrderItemInfo {
 
-    protected Long id;
+    protected String id;
     protected ProductId productId;
     protected int requestedQuantity;
 
-    public ProductItemInfo(ProductId productId, int requestedQuantity) {
+    public OrderItemInfo(ProductId productId, int requestedQuantity) {
         this.id = null;
         this.productId = productId;
         this.requestedQuantity = requestedQuantity;
     }
 
-    public ProductItemInfo(Long id, ProductId productId, int requestedQuantity) {
+    public OrderItemInfo(String id, ProductId productId, int requestedQuantity) {
         this.id = id;
         this.productId = productId;
         this.requestedQuantity = requestedQuantity;
     }
 
-    public Long getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(String id) {
         this.id = id;
     }
 

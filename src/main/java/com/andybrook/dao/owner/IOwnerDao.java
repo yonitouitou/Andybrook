@@ -8,11 +8,13 @@ import java.util.Optional;
 
 public interface IOwnerDao {
 
+    void save(Owner owner);
+
     Optional<Owner> get(long ownerId);
+
+    boolean exist(long ownerId);
 
     OwnerEntity getOne(long ownerId);
 
     Map<Long, Owner> getAll();
-
-    void update(Owner owner);
 }

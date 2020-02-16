@@ -15,6 +15,11 @@ public class OwnerService implements IOwnerService {
     private IOwnerDao dao;
 
     @Override
+    public void newOwner(Owner owner) {
+        dao.save(owner);
+    }
+
+    @Override
     public Owner get(long ownerId) {
         return dao.get(ownerId).orElseThrow(() -> new OwnerNotFound(ownerId));
     }
@@ -25,7 +30,11 @@ public class OwnerService implements IOwnerService {
     }
 
     @Override
-    public void update(Owner owner) {
-        dao.update(owner);
+    public void update(Owner owner) throws OwnerNotFound {
+        if (dao.exist(owner.getId())) {
+            dao.save(owner);
+        } else {
+            throw new OwnerNotFound(owner.getId());
+        }
     }
 }

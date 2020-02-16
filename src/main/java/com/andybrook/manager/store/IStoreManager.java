@@ -11,7 +11,7 @@ public interface IStoreManager {
 
     Store newStore(AddStoreRequest req);
 
-    Store update(Store store);
+    void update(Store store);
 
     List<Store> getAll(OptionalInt limit);
 

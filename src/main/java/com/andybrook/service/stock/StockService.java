@@ -2,7 +2,6 @@ package com.andybrook.service.stock;
 
 import com.andybrook.exception.ProductNotFound;
 import com.andybrook.model.BarCode;
-import com.andybrook.model.product.Product;
 import com.andybrook.model.product.ProductId;
 import com.andybrook.model.stock.ProductItem;
 import com.andybrook.model.stock.ProductStockInfo;
@@ -27,12 +26,11 @@ public class StockService implements IStockService {
     @Override
     public void addProductItem(ProductItem productItem) {
         ProductId productId = productItem.getProductId();
-        Product product = productService.get(productId);
-        if (product == null) {
+        if (! productService.isExist(productId)) {
             throw new ProductNotFound(productId);
         }
         productItemService.add(productItem);
-        productStockInfoService.incrementQuantityCreated(product.getId());
+        productStockInfoService.incrementQuantityCreated(productId);
     }
 
     @Override

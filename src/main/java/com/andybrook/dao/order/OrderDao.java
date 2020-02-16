@@ -71,7 +71,7 @@ public class OrderDao implements IOrderDao {
     public List<Order> getAll(int limit) {
         Pageable pageable = PageRequest.of(1, limit, Sort.by(Direction.DESC, "status", "lastModifiedDateTime"));
         CriteriaQuery query = new CriteriaQuery(new Criteria(), pageable);
-        return template.queryForList(query, Order.class);
+        return template.  queryForList(query, Order.class);
     }
 
     @Override

@@ -26,13 +26,13 @@ public class StockController extends AbstractController {
     private IStockManager stockManager;
 
     @GetMapping(path = "/productStockInfo/{productId}")
-    public ProductStockInfo getProductStockInfo(@PathVariable long productId) {
+    public ProductStockInfo getProductStockInfo(@PathVariable String productId) {
         LOGGER.log(Level.INFO, "Get product stock info for product : " + productId);
-        return stockManager.getProductStockInfo(new ProductId(productId));
+        return stockManager.getProductStockInfo(ProductId.from(productId));
     }
 
     @GetMapping(path = "/productItemByBarCode/{barCode}")
-    public ProductItem getProductStockInfo(@PathVariable String barCode) {
+    public ProductItem getProductStockInfoByBarCode(@PathVariable String barCode) {
         LOGGER.log(Level.INFO, "Get product item by barCode : " + barCode);
         return stockManager.getProductItemByBarCodeId(new BarCode(barCode));
     }

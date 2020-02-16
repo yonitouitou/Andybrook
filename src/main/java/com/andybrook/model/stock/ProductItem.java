@@ -3,42 +3,39 @@ package com.andybrook.model.stock;
 import com.andybrook.model.BarCode;
 import com.andybrook.model.product.Product;
 import com.andybrook.model.product.ProductId;
+import com.andybrook.util.clock.Clock;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import org.springframework.data.elasticsearch.annotations.Document;
 import org.springframework.util.Assert;
 
-import java.time.LocalDateTime;
-
 @Document(indexName = "product_items")
 public class ProductItem {
 
-    private Long id;
+    private long id;
     private ProductId productId;
     private BarCode barCode;
-    private Long orderItemId;
-    protected LocalDateTime createdDatetime;
-    protected LocalDateTime lastModifiedDatetime;
+    private String orderItemId;
+    private long createdDatetime;
+    private long lastModifiedDatetime;
 
     private ProductItem() {}
 
     public ProductItem(ProductId productId, BarCode barCode) {
         Assert.notNull(productId, "The product ID cannot be null");
+        this.id = Clock.nanos();
         this.productId = productId;
         this.barCode = barCode;
         this.orderItemId = null;
+        this.createdDatetime = Clock.millis();
+        this.lastModifiedDatetime = createdDatetime;
     }
 
     public ProductItem(Product product, BarCode barCode) {
         this(product.getId(), barCode);
     }
 
-    public ProductItem(Long id, Product product, BarCode barCode) {
-        this(product.getId(), barCode);
-        this.id = id;
-    }
-
-    public void markAsUsed(long orderItemId) {
+    public void markAsUsed(String orderItemId) {
         this.orderItemId = orderItemId;
     }
 
@@ -60,40 +57,21 @@ public class ProductItem {
         return barCode;
     }
 
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public void setProductId(ProductId id) {
-        this.productId = id;
-    }
-
-    public void setBarCode(BarCode barCode) {
-        this.barCode = barCode;
-    }
-
-    public LocalDateTime getCreatedDatetime() {
+    public long getCreatedDatetime() {
         return createdDatetime;
     }
 
-    public void setCreatedDatetime(LocalDateTime createdDatetime) {
-        this.createdDatetime = createdDatetime;
-    }
-
-    public LocalDateTime getLastModifiedDatetime() {
+    public long getLastModifiedDatetime() {
         return lastModifiedDatetime;
     }
 
-    public void setLastModifiedDatetime(LocalDateTime lastModifiedDatetime) {
-        this.lastModifiedDatetime = lastModifiedDatetime;
-    }
-
-    public Long getOrderItemId() {
+    public String getOrderItemId() {
         return orderItemId;
     }
 
-    public void setOrderItemId(Long orderItemId) {
+    public void setOrderItemId(String orderItemId) {
         this.orderItemId = orderItemId;
+        this.lastModifiedDatetime = Clock.millis();
     }
 
     @Override
