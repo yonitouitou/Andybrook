@@ -1,7 +1,7 @@
-package com.andybrook.model.notification.handler;
+package com.andybrook.model.notification.handler.document;
 
 import com.andybrook.ApplicationProperties;
-import com.andybrook.annotation.DocumentHandler;
+import com.andybrook.annotation.DocumentGenerator;
 import com.andybrook.api.pdf.CloseOrderPdfBuilder;
 import com.andybrook.api.pdf.IPdfBuilder;
 import com.andybrook.enums.DocType;
@@ -9,12 +9,9 @@ import com.andybrook.enums.FileFormat;
 import com.andybrook.exception.UnsupportedFormatFile;
 import com.andybrook.model.api.AggregatedOrder;
 import com.andybrook.model.api.AggregatedOrderItem;
-import com.andybrook.model.api.Email;
-import com.andybrook.model.notification.IEmailNotification;
-import com.andybrook.model.notification.OrderClosedEmailNotification;
 import com.andybrook.model.notification.request.ctx.DocumentCtx;
+import com.andybrook.model.notification.request.ctx.DocumentRequest;
 import com.andybrook.model.notification.request.ctx.OrderDocumentCtx;
-import com.andybrook.model.notification.request.setting.EmailSetting;
 import com.andybrook.model.order.Order;
 import com.andybrook.model.product.Product;
 import com.andybrook.service.order.IOrderService;
@@ -33,12 +30,13 @@ import java.nio.file.Path;
 import java.time.ZonedDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Component
-@DocumentHandler(type = DocType.ORDER_FORM)
-public class CloseOrderNotificationHandler implements IDocumentHandler<Order> {
+@DocumentGenerator(type = DocType.ORDER_FORM)
+public class CloseOrderDocumentGenerator implements IDocumentGenerator {
 
-    private static final Logger LOGGER = System.getLogger(CloseOrderNotificationHandler.class.getSimpleName());
+    private static final Logger LOGGER = System.getLogger(CloseOrderDocumentGenerator.class.getSimpleName());
     private static final DateTimeFormatter DATE_TIME_FORMATTER_FILE_NAME = DateTimeFormatter.ofPattern("yyyy-MM-dd-hh-mm-ss");
 
     @Autowired
@@ -49,13 +47,13 @@ public class CloseOrderNotificationHandler implements IDocumentHandler<Order> {
     private IOrderService orderService;
 
     @Override
-    public Email generateEmail(EmailSetting setting, DocumentCtx ctx, List<Path> attachments) {
-        OrderDocumentCtx docCtx = (OrderDocumentCtx) ctx;
-        IEmailNotification<AggregatedOrder> emailHandler = applicationContext.getBean(OrderClosedEmailNotification.class);
-        return emailHandler.createEmail(setting, docCtx, attachments);
+    public List<Path> generate(DocumentRequest request) {
+        return request.getFormats()
+                .stream()
+                .map(f -> generateDocument(f, request.getCtx()))
+                .collect(Collectors.toList());
     }
 
-    @Override
     public Path generateDocument(FileFormat format, DocumentCtx ctx) {
         Path path;
         OrderDocumentCtx docCtx = (OrderDocumentCtx) ctx;

@@ -2,147 +2,53 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="68c8b49c-970c-40ab-ab2d-b486fbd977e4" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/andybrook/config/elasticsearch/EntityConverters.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/andybrook/dao/IEntityConverter.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/andybrook/dao/order/OrderEntity.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/andybrook/dao/product/IGlassesDao.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/andybrook/dao/product/glasses/GlassesDao.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/andybrook/dao/product/glasses/IGlassesRepository.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/andybrook/service/product/IProductTypeService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/andybrook/service/product/glasses/GlassesService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/com/andybrook/generator/OwnerGenerator.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/com/andybrook/service/StoreServiceTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/andybrook/annotation/EmailOf.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/andybrook/annotation/NotificationProtocolHandler.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/andybrook/model/notification/DownloadNotification.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/andybrook/model/notification/EmailNotification.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/andybrook/model/notification/Notification.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/andybrook/model/notification/handler/protocol/INotificationProtocolHandler.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/andybrook/model/notification/handler/protocol/email/EmailProtocolHandler.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/andybrook/model/notification/handler/protocol/email/IEmailCreator.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/andybrook/model/notification/handler/protocol/email/OrderEmailCreator.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/andybrook/model/notification/handler/protocol/rest/DownloadProtocolHandler.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/andybrook/model/notification/request/DownloadNotificationRequest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/andybrook/model/notification/request/EmailNotificationRequest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/andybrook/service/notification/documentgenerator/DocumentGeneratorService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/andybrook/service/notification/documentgenerator/IDocumentGeneratorService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/andybrook/service/notification/protocol/INotificationProtocolHandlerService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/andybrook/service/notification/protocol/NotificationProtocolHandlerService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/andybrook/service/notification/protocol/email/EmailCreatorService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/andybrook/service/notification/protocol/email/IEmailCreatorService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/andybrook/AndybrookApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/andybrook/AndybrookApplication.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/andybrook/api/pdf/CloseOrderPdfBuilder.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/andybrook/api/pdf/CloseOrderPdfBuilder.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/andybrook/api/rest/OrderController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/andybrook/api/rest/OrderController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/andybrook/api/rest/ProductController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/andybrook/api/rest/ProductController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/andybrook/api/rest/StockController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/andybrook/api/rest/StockController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/andybrook/api/rest/StoreController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/andybrook/api/rest/StoreController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/andybrook/api/rest/ctx/DeleteOrderItemRestRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/andybrook/api/rest/ctx/DeleteOrderItemRestRequest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/andybrook/api/rest/ctx/OrderItemAddRequestByInfo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/andybrook/api/rest/ctx/OrderItemAddRequestByInfo.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/andybrook/config/ElasticsearchConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/andybrook/config/elasticsearch/ElasticsearchConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/andybrook/dao/elasticsearch/BarCodeContentBuilder.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/andybrook/dao/elasticsearch/IContentBuilder.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/andybrook/dao/elasticsearch/ProductContentBuilder.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/andybrook/dao/elasticsearch/ProductItemContentBuilder.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/andybrook/dao/elasticsearch/StockItemsFileUploadContentBuilder.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/andybrook/dao/order/IOrderItemDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/andybrook/dao/order/IOrderItemDao.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/andybrook/dao/order/IOrderItemRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/andybrook/dao/order/IOrderItemRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/andybrook/dao/order/OrderDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/andybrook/dao/order/OrderDao.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/andybrook/dao/order/OrderItemDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/andybrook/dao/order/OrderItemDao.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/andybrook/dao/owner/IOwnerDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/andybrook/dao/owner/IOwnerDao.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/andybrook/dao/owner/OwnerDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/andybrook/dao/owner/OwnerDao.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/andybrook/dao/product/IProductRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/andybrook/dao/product/IProductRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/andybrook/dao/product/IProductStockInfoRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/andybrook/dao/product/IProductStockInfoRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/andybrook/dao/stock/barcode/BarCodeDao.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/andybrook/dao/stock/barcode/IBarCodeDao.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/andybrook/dao/stock/barcode/IBarCodeRepository.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/andybrook/dao/stock/productitem/IProductItemDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/andybrook/dao/stock/productitem/IProductItemDao.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/andybrook/dao/stock/productitem/ProductItemDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/andybrook/dao/stock/productitem/ProductItemDao.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/andybrook/dao/store/IStoreDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/andybrook/dao/store/IStoreDao.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/andybrook/dao/store/IStoreJpaRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/andybrook/dao/store/IStoreJpaRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/andybrook/dao/store/StoreDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/andybrook/dao/store/StoreDao.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/andybrook/enums/ProductType.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/andybrook/enums/ProductType.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/andybrook/manager/order/OrderManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/andybrook/manager/order/OrderManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/andybrook/manager/product/IProductManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/andybrook/manager/product/IProductManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/andybrook/manager/product/ProductManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/andybrook/manager/product/ProductManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/andybrook/manager/store/IStoreManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/andybrook/manager/store/IStoreManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/andybrook/manager/store/StoreManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/andybrook/manager/store/StoreManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/andybrook/model/api/AggregatedOrder.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/andybrook/model/api/AggregatedOrder.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/andybrook/model/api/AggregatedOrderItem.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/andybrook/model/api/AggregatedOrderItem.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/andybrook/model/notification/OrderClosedEmailNotification.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/andybrook/model/notification/OrderClosedEmailNotification.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/andybrook/model/notification/handler/CloseOrderNotificationHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/andybrook/model/notification/handler/CloseOrderNotificationHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/andybrook/model/order/Order.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/andybrook/model/order/Order.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/andybrook/model/order/OrderAggregator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/andybrook/model/order/OrderAggregator.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/andybrook/model/order/OrderItem.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/andybrook/model/order/OrderItem.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/andybrook/model/product/Glasses.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/andybrook/model/product/Glasses.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/andybrook/model/product/Product.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/andybrook/model/product/Product.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/andybrook/model/product/ProductId.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/andybrook/model/product/ProductId.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/andybrook/model/request/orderitem/OrderItemAddRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/andybrook/model/request/orderitem/OrderItemAddRequest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/andybrook/model/request/orderitem/OrderItemDeleteRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/andybrook/model/request/orderitem/OrderItemDeleteRequest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/andybrook/model/request/orderitem/OrderItemUpdateRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/andybrook/model/request/orderitem/OrderItemUpdateRequest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/andybrook/model/request/orderitem/ProductItemInfo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/andybrook/model/request/orderitem/OrderItemInfo.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/andybrook/model/stock/ProductItem.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/andybrook/model/stock/ProductItem.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/andybrook/service/api/StockItemsFileParserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/andybrook/service/api/StockItemsFileParserService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/andybrook/service/order/IOrderItemService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/andybrook/service/order/IOrderItemService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/andybrook/service/order/IOrderService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/andybrook/service/order/IOrderService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/andybrook/service/order/OrderItemService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/andybrook/service/order/OrderItemService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/andybrook/service/order/OrderService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/andybrook/service/order/OrderService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/andybrook/service/owner/IOwnerService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/andybrook/service/owner/IOwnerService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/andybrook/service/owner/OwnerService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/andybrook/service/owner/OwnerService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/andybrook/service/product/BarCodeService.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/andybrook/service/product/IBarCodeService.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/andybrook/service/product/IProductService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/andybrook/service/product/IProductService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/andybrook/service/product/ProductService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/andybrook/service/product/ProductService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/andybrook/service/stock/ProductItemService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/andybrook/service/stock/ProductItemService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/andybrook/service/stock/StockService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/andybrook/service/stock/StockService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/andybrook/service/store/IStoreService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/andybrook/service/store/IStoreService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/andybrook/service/store/StoreService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/andybrook/service/store/StoreService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/com/andybrook/api/pdf/CloseOrderPdfBuilderTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/andybrook/api/pdf/CloseOrderPdfBuilderTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/com/andybrook/api/pdf/PdfTestConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/andybrook/api/pdf/PdfTestConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/com/andybrook/generator/OrderGenerator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/andybrook/generator/OrderGenerator.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/com/andybrook/generator/OrderItemGenerator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/andybrook/generator/OrderItemGenerator.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/com/andybrook/generator/ProductGenerator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/andybrook/generator/ProductGenerator.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/com/andybrook/generator/StoreGenerator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/andybrook/generator/StoreGenerator.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/com/andybrook/init/InitSystemTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/andybrook/init/InitSystemTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/com/andybrook/service/api/StockItemsFileParserServiceTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/andybrook/service/api/StockItemsFileParserServiceTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/com/andybrook/service/order/OrderServiceTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/andybrook/service/order/OrderServiceTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/com/andybrook/service/stock/StockServiceTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/andybrook/service/stock/StockServiceTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/andybrook/AndybrookApplication.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/andybrook/AndybrookApplication.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/andybrook/api/pdf/CloseOrderPdfBuilder.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/andybrook/api/pdf/CloseOrderPdfBuilder.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/andybrook/api/rest/OrderController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/andybrook/api/rest/OrderController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/andybrook/api/rest/ProductController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/andybrook/api/rest/ProductController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/andybrook/api/rest/StockController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/andybrook/api/rest/StockController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/andybrook/api/rest/ctx/DeleteOrderItemRestRequest.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/andybrook/api/rest/ctx/DeleteOrderItemRestRequest.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/andybrook/api/rest/ctx/OrderItemAddRequestByInfo.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/andybrook/api/rest/ctx/OrderItemAddRequestByInfo.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/andybrook/dao/owner/IOwnerDao.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/andybrook/dao/owner/IOwnerDao.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/andybrook/dao/owner/OwnerDao.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/andybrook/dao/owner/OwnerDao.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/andybrook/dao/product/ProductDao.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/andybrook/dao/product/ProductDao.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/andybrook/dao/store/IStoreDao.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/andybrook/dao/store/IStoreDao.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/andybrook/dao/store/StoreDao.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/andybrook/dao/store/StoreDao.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/andybrook/enums/ProductType.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/andybrook/enums/ProductType.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/andybrook/manager/order/OrderManager.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/andybrook/manager/order/OrderManager.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/andybrook/manager/product/IProductManager.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/andybrook/manager/product/IProductManager.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/andybrook/manager/product/ProductManager.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/andybrook/manager/product/ProductManager.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/andybrook/manager/store/IStoreManager.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/andybrook/manager/store/IStoreManager.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/andybrook/manager/store/StoreManager.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/andybrook/manager/store/StoreManager.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/andybrook/model/api/AggregatedOrder.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/andybrook/model/api/AggregatedOrder.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/andybrook/model/api/AggregatedOrderItem.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/andybrook/model/api/AggregatedOrderItem.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/andybrook/model/notification/OrderClosedEmailNotification.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/andybrook/model/notification/OrderClosedEmailNotification.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/andybrook/model/order/Order.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/andybrook/model/order/Order.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/andybrook/model/order/OrderItem.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/andybrook/model/order/OrderItem.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/andybrook/model/product/Glasses.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/andybrook/model/product/Glasses.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/andybrook/model/product/Product.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/andybrook/model/product/Product.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/andybrook/model/request/orderitem/OrderItemAddRequest.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/andybrook/model/request/orderitem/OrderItemAddRequest.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/andybrook/model/request/orderitem/OrderItemDeleteRequest.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/andybrook/model/request/orderitem/OrderItemDeleteRequest.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/andybrook/model/request/orderitem/OrderItemUpdateRequest.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/andybrook/model/request/orderitem/OrderItemUpdateRequest.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/andybrook/model/request/orderitem/ProductItemInfo.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/andybrook/model/stock/ProductItem.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/andybrook/model/stock/ProductItem.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/andybrook/service/order/IOrderItemService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/andybrook/service/order/IOrderItemService.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/andybrook/service/order/IOrderService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/andybrook/service/order/IOrderService.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/andybrook/service/order/OrderItemService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/andybrook/service/order/OrderItemService.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/andybrook/service/order/OrderService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/andybrook/service/order/OrderService.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/andybrook/service/owner/IOwnerService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/andybrook/service/owner/IOwnerService.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/andybrook/service/owner/OwnerService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/andybrook/service/owner/OwnerService.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/andybrook/service/product/IProductService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/andybrook/service/product/IProductService.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/andybrook/service/product/ProductService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/andybrook/service/product/ProductService.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/andybrook/service/stock/StockService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/andybrook/service/stock/StockService.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/andybrook/service/store/IStoreService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/andybrook/service/store/IStoreService.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/andybrook/service/store/StoreService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/andybrook/service/store/StoreService.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/test-classes/com/andybrook/api/pdf/CloseOrderPdfBuilderTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/com/andybrook/api/pdf/CloseOrderPdfBuilderTest.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/test-classes/com/andybrook/api/pdf/PdfTestConfig.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/com/andybrook/api/pdf/PdfTestConfig.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/test-classes/com/andybrook/assertor/OrderItemAssertor.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/com/andybrook/assertor/OrderItemAssertor.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/test-classes/com/andybrook/assertor/ProductItemAssertor.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/com/andybrook/assertor/ProductItemAssertor.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/test-classes/com/andybrook/generator/OrderGenerator.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/com/andybrook/generator/OrderGenerator.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/test-classes/com/andybrook/generator/OrderItemGenerator.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/com/andybrook/generator/OrderItemGenerator.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/test-classes/com/andybrook/generator/ProductGenerator.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/com/andybrook/generator/ProductGenerator.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/test-classes/com/andybrook/generator/StoreGenerator.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/com/andybrook/generator/StoreGenerator.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/test-classes/com/andybrook/init/InitSystemTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/com/andybrook/init/InitSystemTest.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/test-classes/com/andybrook/service/order/OrderServiceTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/com/andybrook/service/order/OrderServiceTest.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/test-classes/com/andybrook/service/stock/StockServiceTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/com/andybrook/service/stock/StockServiceTest.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/andybrook/annotation/DocumentHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/andybrook/annotation/DocumentGenerator.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/andybrook/api/pdf/IPdfBuilder.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/andybrook/api/pdf/IPdfBuilder.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/andybrook/api/rest/NotificationController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/andybrook/api/rest/NotificationController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/andybrook/enums/NotificationType.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/andybrook/enums/NotificationType.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/andybrook/manager/event/OrderClosedEventManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/andybrook/manager/event/OrderClosedEventManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/andybrook/manager/notification/INotificationManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/andybrook/manager/notification/INotificationManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/andybrook/manager/notification/NotificationManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/andybrook/manager/notification/NotificationManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/andybrook/model/notification/IEmailNotification.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/andybrook/model/notification/OrderClosedEmailNotification.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/andybrook/model/notification/handler/CloseOrderNotificationHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/andybrook/model/notification/handler/document/CloseOrderDocumentGenerator.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/andybrook/model/notification/handler/IDocumentHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/andybrook/model/notification/handler/document/IDocumentGenerator.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/andybrook/model/notification/request/DocumentRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/andybrook/model/notification/request/ctx/DocumentRequest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/andybrook/model/notification/request/NotificationRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/andybrook/model/notification/request/NotificationRequest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/andybrook/model/notification/request/setting/EmailSetting.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/andybrook/model/notification/request/setting/NotifSetting.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/andybrook/service/notification/DocumentHandlerService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/andybrook/service/notification/IDocumentHandlerService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/andybrook/service/notification/INotificationService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/andybrook/service/notification/INotificationService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/andybrook/service/notification/NotificationService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/andybrook/service/notification/NotificationService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/andybrook/api/pdf/CloseOrderPdfBuilder.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/andybrook/api/pdf/IPdfBuilder.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/andybrook/api/rest/NotificationController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/andybrook/manager/notification/INotificationManager.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/andybrook/manager/notification/NotificationManager.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/andybrook/model/notification/IEmailNotification.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/andybrook/model/notification/OrderClosedEmailNotification.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/andybrook/service/notification/INotificationService.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/andybrook/service/notification/NotificationService.class" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -158,6 +64,7 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
+        <option value="AnnotationType" />
         <option value="Interface" />
         <option value="Class" />
       </list>
@@ -377,7 +284,8 @@
       <workItem from="1581616013702" duration="10023000" />
       <workItem from="1581663341390" duration="1871000" />
       <workItem from="1581746356344" duration="5486000" />
-      <workItem from="1581830811696" duration="1603000" />
+      <workItem from="1581830811696" duration="9145000" />
+      <workItem from="1581946101169" duration="8258000" />
     </task>
     <servers />
   </component>
@@ -397,6 +305,63 @@
   <component name="Vcs.Log.Tabs.Properties">
     <option name="TAB_STATES">
       <map>
+        <entry key="1">
+          <value>
+            <State>
+              <option name="SHOW_ONLY_AFFECTED_CHANGES" value="true" />
+              <option name="FILTERS">
+                <map>
+                  <entry key="branch">
+                    <value>
+                      <list>
+                        <option value="HEAD" />
+                      </list>
+                    </value>
+                  </entry>
+                  <entry key="structure">
+                    <value>
+                      <list>
+                        <option value="dir:/Users/yoni.touitou/dev/Andybrook/src/main/java/com/andybrook/model" />
+                      </list>
+                    </value>
+                  </entry>
+                </map>
+              </option>
+            </State>
+          </value>
+        </entry>
+        <entry key="2">
+          <value>
+            <State>
+              <option name="SHOW_ONLY_AFFECTED_CHANGES" value="true" />
+              <option name="FILTERS">
+                <map>
+                  <entry key="branch">
+                    <value>
+                      <list>
+                        <option value="HEAD" />
+                      </list>
+                    </value>
+                  </entry>
+                  <entry key="structure">
+                    <value>
+                      <list>
+                        <option value="dir:/Users/yoni.touitou/dev/Andybrook/src/main/java/com/andybrook" />
+                      </list>
+                    </value>
+                  </entry>
+                  <entry key="text">
+                    <value>
+                      <list>
+                        <option value="email" />
+                      </list>
+                    </value>
+                  </entry>
+                </map>
+              </option>
+            </State>
+          </value>
+        </entry>
         <entry key="MAIN">
           <value>
             <State>
@@ -405,6 +370,12 @@
           </value>
         </entry>
       </map>
+    </option>
+    <option name="OPEN_TABS">
+      <set>
+        <option value="1" />
+        <option value="2" />
+      </set>
     </option>
   </component>
   <component name="VcsManagerConfiguration">
@@ -423,11 +394,11 @@
       <screen x="0" y="23" width="1440" height="802" />
     </state>
     <state x="184" y="23" width="1071" height="802" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.23.1440.802@0.23.1440.802" timestamp="1581056346764" />
-    <state x="533" y="136" key="#com.intellij.ide.util.MemberChooser" timestamp="1581832346193">
+    <state x="533" y="136" key="#com.intellij.ide.util.MemberChooser" timestamp="1581953871331">
       <screen x="0" y="23" width="1440" height="802" />
     </state>
     <state x="711" y="161" key="#com.intellij.ide.util.MemberChooser/-1440.203.1440.877/1920.23.1920.1057/0.23.1920.982@0.23.1920.982" timestamp="1581581385827" />
-    <state x="533" y="136" key="#com.intellij.ide.util.MemberChooser/0.23.1440.802@0.23.1440.802" timestamp="1581832346193" />
+    <state x="533" y="136" key="#com.intellij.ide.util.MemberChooser/0.23.1440.802@0.23.1440.802" timestamp="1581953871331" />
     <state x="457" y="217" key="#com.intellij.ide.util.TreeClassChooserDialog" timestamp="1581019433286">
       <screen x="0" y="23" width="1440" height="802" />
     </state>
@@ -440,11 +411,11 @@
       <screen x="0" y="23" width="1440" height="802" />
     </state>
     <state x="451" y="289" width="538" height="273" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.classes/0.23.1440.802@0.23.1440.802" timestamp="1581448986276" />
-    <state x="396" y="23" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog" timestamp="1581748034174">
+    <state x="216" y="23" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog" timestamp="1581950902143">
       <screen x="0" y="23" width="1440" height="802" />
     </state>
     <state x="528" y="23" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/-1440.203.1440.877/1920.23.1920.1057/0.23.1920.982@0.23.1920.982" timestamp="1581244401681" />
-    <state x="396" y="23" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/0.23.1440.802@0.23.1440.802" timestamp="1581748034174" />
+    <state x="216" y="23" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/0.23.1440.802@0.23.1440.802" timestamp="1581950902143" />
     <state x="458" y="179" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1581831903963">
       <screen x="0" y="23" width="1440" height="802" />
     </state>
@@ -460,31 +431,31 @@
     </state>
     <state width="627" height="571" key="DebuggerActiveHint/-1440.203.1440.877/1920.23.1920.1057/0.23.1920.982@0.23.1920.982" timestamp="1581582689612" />
     <state width="470" height="466" key="DebuggerActiveHint/0.23.1440.802@0.23.1440.802" timestamp="1581625634048" />
-    <state x="75" y="105" width="1290" height="639" key="DiffContextDialog" timestamp="1581453416091">
+    <state x="75" y="105" width="1290" height="639" key="DiffContextDialog" timestamp="1581950577211">
       <screen x="0" y="23" width="1440" height="802" />
     </state>
     <state x="100" y="123" width="1720" height="782" key="DiffContextDialog/-1440.203.1440.877/1920.23.1920.1057/0.23.1920.982@0.23.1920.982" timestamp="1581263707389" />
-    <state x="75" y="105" width="1290" height="639" key="DiffContextDialog/0.23.1440.802@0.23.1440.802" timestamp="1581453416091" />
-    <state width="1398" height="234" key="GridCell.Tab.0.bottom" timestamp="1581831943943">
+    <state x="75" y="105" width="1290" height="639" key="DiffContextDialog/0.23.1440.802@0.23.1440.802" timestamp="1581950577211" />
+    <state width="1398" height="234" key="GridCell.Tab.0.bottom" timestamp="1581929688113">
       <screen x="0" y="23" width="1440" height="802" />
     </state>
     <state width="1878" height="309" key="GridCell.Tab.0.bottom/-1440.203.1440.877/1920.23.1920.1057/0.23.1920.982@0.23.1920.982" timestamp="1581582698434" />
-    <state width="1398" height="234" key="GridCell.Tab.0.bottom/0.23.1440.802@0.23.1440.802" timestamp="1581831943943" />
-    <state width="1398" height="234" key="GridCell.Tab.0.center" timestamp="1581831943942">
+    <state width="1398" height="234" key="GridCell.Tab.0.bottom/0.23.1440.802@0.23.1440.802" timestamp="1581929688113" />
+    <state width="1398" height="234" key="GridCell.Tab.0.center" timestamp="1581929688113">
       <screen x="0" y="23" width="1440" height="802" />
     </state>
     <state width="1878" height="309" key="GridCell.Tab.0.center/-1440.203.1440.877/1920.23.1920.1057/0.23.1920.982@0.23.1920.982" timestamp="1581582698434" />
-    <state width="1398" height="234" key="GridCell.Tab.0.center/0.23.1440.802@0.23.1440.802" timestamp="1581831943942" />
-    <state width="1398" height="234" key="GridCell.Tab.0.left" timestamp="1581831943942">
+    <state width="1398" height="234" key="GridCell.Tab.0.center/0.23.1440.802@0.23.1440.802" timestamp="1581929688113" />
+    <state width="1398" height="234" key="GridCell.Tab.0.left" timestamp="1581929688113">
       <screen x="0" y="23" width="1440" height="802" />
     </state>
     <state width="1878" height="309" key="GridCell.Tab.0.left/-1440.203.1440.877/1920.23.1920.1057/0.23.1920.982@0.23.1920.982" timestamp="1581582698433" />
-    <state width="1398" height="234" key="GridCell.Tab.0.left/0.23.1440.802@0.23.1440.802" timestamp="1581831943942" />
-    <state width="1398" height="234" key="GridCell.Tab.0.right" timestamp="1581831943942">
+    <state width="1398" height="234" key="GridCell.Tab.0.left/0.23.1440.802@0.23.1440.802" timestamp="1581929688113" />
+    <state width="1398" height="234" key="GridCell.Tab.0.right" timestamp="1581929688113">
       <screen x="0" y="23" width="1440" height="802" />
     </state>
     <state width="1878" height="309" key="GridCell.Tab.0.right/-1440.203.1440.877/1920.23.1920.1057/0.23.1920.982@0.23.1920.982" timestamp="1581582698434" />
-    <state width="1398" height="234" key="GridCell.Tab.0.right/0.23.1440.802@0.23.1440.802" timestamp="1581831943942" />
+    <state width="1398" height="234" key="GridCell.Tab.0.right/0.23.1440.802@0.23.1440.802" timestamp="1581929688113" />
     <state width="1398" height="212" key="GridCell.Tab.1.bottom" timestamp="1581759841612">
       <screen x="0" y="23" width="1440" height="802" />
     </state>
@@ -558,11 +529,15 @@
     </state>
     <state width="868" height="293" key="javadoc.popup/-1440.203.1440.877/1920.23.1920.1057/0.23.1920.982@0.23.1920.982" timestamp="1581257171582" />
     <state width="651" height="239" key="javadoc.popup/0.23.1440.802@0.23.1440.802" timestamp="1581453372117" />
-    <state x="385" y="149" width="670" height="676" key="search.everywhere.popup" timestamp="1581832014462">
+    <state x="385" y="192" key="run.anything.popup" timestamp="1581950558796">
+      <screen x="0" y="23" width="1440" height="802" />
+    </state>
+    <state x="385" y="192" key="run.anything.popup/0.23.1440.802@0.23.1440.802" timestamp="1581950558796" />
+    <state x="385" y="149" width="670" height="676" key="search.everywhere.popup" timestamp="1581954216151">
       <screen x="0" y="23" width="1440" height="802" />
     </state>
     <state x="513" y="177" width="894" height="828" key="search.everywhere.popup/-1440.203.1440.877/1920.23.1920.1057/0.23.1920.982@0.23.1920.982" timestamp="1581581754328" />
-    <state x="385" y="149" width="670" height="676" key="search.everywhere.popup/0.23.1440.802@0.23.1440.802" timestamp="1581832014462" />
+    <state x="385" y="149" width="670" height="676" key="search.everywhere.popup/0.23.1440.802@0.23.1440.802" timestamp="1581954216151" />
     <state x="310" y="119" key="spring file set editor" timestamp="1581054159832">
       <screen x="0" y="23" width="1440" height="802" />
     </state>

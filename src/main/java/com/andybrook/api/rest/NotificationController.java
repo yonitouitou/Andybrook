@@ -8,10 +8,11 @@ import com.andybrook.enums.NotificationType;
 import com.andybrook.manager.notification.INotificationManager;
 import com.andybrook.manager.order.IOrderManager;
 import com.andybrook.model.api.AggregatedOrder;
-import com.andybrook.model.notification.request.DocumentRequest;
-import com.andybrook.model.notification.request.NotificationRequest;
+import com.andybrook.model.notification.DownloadNotification;
+import com.andybrook.model.notification.request.DownloadNotificationRequest;
+import com.andybrook.model.notification.request.EmailNotificationRequest;
+import com.andybrook.model.notification.request.ctx.DocumentRequest;
 import com.andybrook.model.notification.request.ctx.OrderDocumentCtx;
-import com.andybrook.model.notification.request.setting.EmailSetting;
 import com.andybrook.model.order.Order;
 import com.andybrook.util.file.FileUtil;
 
@@ -27,14 +28,12 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.io.File;
 import java.io.IOException;
 import java.lang.System.Logger;
 import java.lang.System.Logger.Level;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.util.Collections;
-import java.util.List;
+import java.util.Arrays;
 
 import static com.andybrook.util.DateUtil.epochTimeInMillisToZdt;
 
@@ -54,22 +53,21 @@ public class NotificationController extends AbstractController {
     @PostMapping(path = "/notify")
     public ResponseEntity<Resource> downloadFile(@RequestBody OrderDocumentRestRequest request) throws IOException {
         Order order = orderManager.getOrder(request.getOrderId());
-        AggregatedOrder aggregatedOrder = orderManager.aggregate(order);
+        AggregatedOrder aggregatedOrder = orderManager.aggregate(request.getOrderId());
         OrderDocumentCtx ctx = OrderDocumentCtx.builder(false, order, aggregatedOrder)
                 .setDateDocument(epochTimeInMillisToZdt(request.getDateDocument(), applicationProperties.getZoneId()))
                 .build();
-        DocumentRequest documentRequest = new DocumentRequest(request.getDocType(), ctx, request.getFileFormats());
-        NotificationRequest req = new NotificationRequest(false, documentRequest);
-        if (request.getEmails().length > 0) {
-            req.addNotificationType(NotificationType.EMAIL, new EmailSetting(request.getEmails()));
-        }
-        req.addNotificationType(NotificationType.DOWNLOAD, null);
 
-        List<Path> paths = notificationManager.notify(req);
-        paths = zipIfNecessary(order.getName(), paths);
-        Resource resource = new FileUrlResource(paths.get(0).toFile().getAbsolutePath());
+        DocumentRequest documentRequest = new DocumentRequest(request.getDocType(), ctx, Arrays.asList(request.getFileFormats()));
+        if (request.getEmails().length > 0) {
+            sendEmailNotification(request, documentRequest);
+        }
+        DownloadNotification downloadNotification = sendDownloadNotification(documentRequest);
+        Path fileToDownload = downloadNotification.getDownloadedFiles().get(0);
+
+        Resource resource = new FileUrlResource(fileToDownload.toString());
         return ResponseEntity.ok()
-                .contentType(MediaType.parseMediaType(extractContentType(paths.get(0))))
+                .contentType(MediaType.parseMediaType(extractContentType(fileToDownload)))
                 .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"" + resource.getFilename() + "\"")
                 .header("filename", order.getName() + "." + FileUtil.getExtension(resource.getFilename()))
                 .body(resource);
@@ -90,12 +88,17 @@ public class NotificationController extends AbstractController {
         return NotificationType.values();
     }
 
-    private static List<Path> zipIfNecessary(String fileName, List<Path> paths) {
-        File zip = null;
-        if (paths.size() > 1) {
-            zip = FileUtil.zip(FileUtil.TMP_DIRECTORY.toPath(), fileName, paths);
+    private void sendEmailNotification(OrderDocumentRestRequest req, DocumentRequest documentRequest) {
+        EmailNotificationRequest emailReq = new EmailNotificationRequest(false, documentRequest);
+        for (String address : req.getEmails()) {
+            emailReq.addAddress(address);
         }
-        return paths.size() > 1 ? Collections.singletonList(zip.toPath()) : paths;
+        notificationManager.notify(emailReq);
+    }
+
+    private DownloadNotification sendDownloadNotification(DocumentRequest documentRequest) {
+        DownloadNotificationRequest downloadRequest = new DownloadNotificationRequest(false, documentRequest);
+        return (DownloadNotification) notificationManager.notify(downloadRequest);
     }
 
     private static String extractContentType(Path path) {

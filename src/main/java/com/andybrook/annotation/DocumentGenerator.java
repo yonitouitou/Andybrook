@@ -9,7 +9,7 @@ import java.lang.annotation.Target;
 
 @Target(ElementType.TYPE)
 @Retention(RetentionPolicy.RUNTIME)
-public @interface DocumentHandler {
+public @interface DocumentGenerator {
 
     DocType type();
 }
