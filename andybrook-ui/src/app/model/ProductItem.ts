@@ -1,8 +1,9 @@
 import { Product } from './Product';
+import {ProductId} from "./ProductId";
 
 export class ProductItem {
 
-    id: number
+    id: ProductId
     product: Product
     barCode: string
     orderItemId : boolean
@@ -13,7 +14,7 @@ export class ProductItem {
 
     static fromJson(data: any): ProductItem {
         let productItem = new ProductItem();
-        productItem.id = data.id;
+        productItem.id = ProductId.fromJson(data.productId);
         productItem.orderItemId = data.orderItemId;
         productItem.product = Product.fromJson(data.product);
         productItem.createdDatetime = data.createdDatetime;

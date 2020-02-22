@@ -2,53 +2,15 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="68c8b49c-970c-40ab-ab2d-b486fbd977e4" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/andybrook/annotation/EmailOf.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/andybrook/annotation/NotificationProtocolHandler.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/andybrook/model/notification/DownloadNotification.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/andybrook/model/notification/EmailNotification.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/andybrook/model/notification/Notification.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/andybrook/model/notification/handler/protocol/INotificationProtocolHandler.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/andybrook/model/notification/handler/protocol/email/EmailProtocolHandler.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/andybrook/model/notification/handler/protocol/email/IEmailCreator.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/andybrook/model/notification/handler/protocol/email/OrderEmailCreator.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/andybrook/model/notification/handler/protocol/rest/DownloadProtocolHandler.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/andybrook/model/notification/request/DownloadNotificationRequest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/andybrook/model/notification/request/EmailNotificationRequest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/andybrook/service/notification/documentgenerator/DocumentGeneratorService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/andybrook/service/notification/documentgenerator/IDocumentGeneratorService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/andybrook/service/notification/protocol/INotificationProtocolHandlerService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/andybrook/service/notification/protocol/NotificationProtocolHandlerService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/andybrook/service/notification/protocol/email/EmailCreatorService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/andybrook/service/notification/protocol/email/IEmailCreatorService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/andybrook-ui/src/app/model/ProductId.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/andybrook-ui/src/app/model/ProductType.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/andybrook/annotation/DocumentHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/andybrook/annotation/DocumentGenerator.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/andybrook/api/pdf/IPdfBuilder.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/andybrook/api/pdf/IPdfBuilder.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/andybrook/api/rest/NotificationController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/andybrook/api/rest/NotificationController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/andybrook/enums/NotificationType.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/andybrook/enums/NotificationType.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/andybrook/manager/event/OrderClosedEventManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/andybrook/manager/event/OrderClosedEventManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/andybrook/manager/notification/INotificationManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/andybrook/manager/notification/INotificationManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/andybrook/manager/notification/NotificationManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/andybrook/manager/notification/NotificationManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/andybrook/model/notification/IEmailNotification.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/andybrook/model/notification/OrderClosedEmailNotification.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/andybrook/model/notification/handler/CloseOrderNotificationHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/andybrook/model/notification/handler/document/CloseOrderDocumentGenerator.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/andybrook/model/notification/handler/IDocumentHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/andybrook/model/notification/handler/document/IDocumentGenerator.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/andybrook/model/notification/request/DocumentRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/andybrook/model/notification/request/ctx/DocumentRequest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/andybrook/model/notification/request/NotificationRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/andybrook/model/notification/request/NotificationRequest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/andybrook/model/notification/request/setting/EmailSetting.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/andybrook/model/notification/request/setting/NotifSetting.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/andybrook/service/notification/DocumentHandlerService.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/andybrook/service/notification/IDocumentHandlerService.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/andybrook/service/notification/INotificationService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/andybrook/service/notification/INotificationService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/andybrook/service/notification/NotificationService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/andybrook/service/notification/NotificationService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/andybrook/api/pdf/CloseOrderPdfBuilder.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/andybrook/api/pdf/IPdfBuilder.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/andybrook/api/rest/NotificationController.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/andybrook/manager/notification/INotificationManager.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/andybrook/manager/notification/NotificationManager.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/andybrook/model/notification/IEmailNotification.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/andybrook/model/notification/OrderClosedEmailNotification.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/andybrook/service/notification/INotificationService.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/andybrook/service/notification/NotificationService.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/andybrook-ui/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/andybrook-ui/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/andybrook-ui/src/app/model/ProductItem.ts" beforeDir="false" afterPath="$PROJECT_DIR$/andybrook-ui/src/app/model/ProductItem.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/andybrook/annotation/EmailOf.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/andybrook/annotation/EmailOf.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/andybrook/annotation/NotificationProtocolHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/andybrook/annotation/NotificationProtocolHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/andybrook/dao/order/OrderDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/andybrook/dao/order/OrderDao.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/andybrook/dao/order/OrderDao.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/andybrook/dao/order/OrderDao.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -67,6 +29,7 @@
         <option value="AnnotationType" />
         <option value="Interface" />
         <option value="Class" />
+        <option value="TypeScript File" />
       </list>
     </option>
   </component>
@@ -114,7 +77,7 @@
     <property name="project.structure.last.edited" value="Project" />
     <property name="project.structure.proportion" value="0.0" />
     <property name="project.structure.side.proportion" value="0.0" />
-    <property name="settings.editor.selected.configurable" value="Errors" />
+    <property name="settings.editor.selected.configurable" value="settings.typescriptcompiler" />
     <property name="ts.external.directory.path" value="$APPLICATION_HOME_DIR$/plugins/JavaScriptLanguage/jsLanguageServicesImpl/external" />
   </component>
   <component name="RecentsManager">
@@ -125,7 +88,7 @@
       <recent name="C:\Users\Yoni Touitou\Documents\projects\Andybrook\andybrook-ui\src\app\model\admin\user" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.CloseOrderPdfBuilderTest.generatePdfTest">
+  <component name="RunManager" selected="Spring Boot.Andybrook">
     <configuration name="All in Andybrook (1)" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="Andybrook" />
       <option name="PACKAGE_NAME" value="" />
@@ -248,10 +211,10 @@
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.All in Andybrook" />
         <item itemvalue="JUnit.CloseOrderPdfBuilderTest.generatePdfTest" />
         <item itemvalue="JUnit.All in Andybrook (1)" />
         <item itemvalue="JUnit.StockServiceTest.addSingleProductItemTest" />
-        <item itemvalue="JUnit.All in Andybrook" />
         <item itemvalue="JUnit.OrderServiceTest" />
       </list>
     </recent_temporary>
@@ -286,6 +249,10 @@
       <workItem from="1581746356344" duration="5486000" />
       <workItem from="1581830811696" duration="9145000" />
       <workItem from="1581946101169" duration="8258000" />
+      <workItem from="1582011280484" duration="539000" />
+      <workItem from="1582221659719" duration="578000" />
+      <workItem from="1582303265033" duration="983000" />
+      <workItem from="1582352031246" duration="3628000" />
     </task>
     <servers />
   </component>
@@ -426,85 +393,85 @@
     </state>
     <state x="197" y="229" width="1000" height="570" key="#xdebugger.evaluate/-1440.203.1440.877/1920.23.1920.1057/0.23.1920.982@0.23.1920.982" timestamp="1581517522785" />
     <state x="148" y="191" key="#xdebugger.evaluate/0.23.1440.802@0.23.1440.802" timestamp="1581749639172" />
-    <state width="470" height="466" key="DebuggerActiveHint" timestamp="1581625634048">
-      <screen x="0" y="23" width="1440" height="802" />
+    <state width="627" height="571" key="DebuggerActiveHint" timestamp="1582222124528">
+      <screen x="0" y="23" width="1920" height="982" />
     </state>
-    <state width="627" height="571" key="DebuggerActiveHint/-1440.203.1440.877/1920.23.1920.1057/0.23.1920.982@0.23.1920.982" timestamp="1581582689612" />
+    <state width="627" height="571" key="DebuggerActiveHint/-1440.203.1440.877/1920.23.1920.1057/0.23.1920.982@0.23.1920.982" timestamp="1582222124528" />
     <state width="470" height="466" key="DebuggerActiveHint/0.23.1440.802@0.23.1440.802" timestamp="1581625634048" />
     <state x="75" y="105" width="1290" height="639" key="DiffContextDialog" timestamp="1581950577211">
       <screen x="0" y="23" width="1440" height="802" />
     </state>
     <state x="100" y="123" width="1720" height="782" key="DiffContextDialog/-1440.203.1440.877/1920.23.1920.1057/0.23.1920.982@0.23.1920.982" timestamp="1581263707389" />
     <state x="75" y="105" width="1290" height="639" key="DiffContextDialog/0.23.1440.802@0.23.1440.802" timestamp="1581950577211" />
-    <state width="1398" height="234" key="GridCell.Tab.0.bottom" timestamp="1581929688113">
+    <state width="1398" height="233" key="GridCell.Tab.0.bottom" timestamp="1582355248941">
       <screen x="0" y="23" width="1440" height="802" />
     </state>
-    <state width="1878" height="309" key="GridCell.Tab.0.bottom/-1440.203.1440.877/1920.23.1920.1057/0.23.1920.982@0.23.1920.982" timestamp="1581582698434" />
-    <state width="1398" height="234" key="GridCell.Tab.0.bottom/0.23.1440.802@0.23.1440.802" timestamp="1581929688113" />
-    <state width="1398" height="234" key="GridCell.Tab.0.center" timestamp="1581929688113">
+    <state width="1878" height="601" key="GridCell.Tab.0.bottom/-1440.203.1440.877/1920.23.1920.1057/0.23.1920.982@0.23.1920.982" timestamp="1582222238958" />
+    <state width="1398" height="233" key="GridCell.Tab.0.bottom/0.23.1440.802@0.23.1440.802" timestamp="1582355248941" />
+    <state width="1398" height="233" key="GridCell.Tab.0.center" timestamp="1582355248940">
       <screen x="0" y="23" width="1440" height="802" />
     </state>
-    <state width="1878" height="309" key="GridCell.Tab.0.center/-1440.203.1440.877/1920.23.1920.1057/0.23.1920.982@0.23.1920.982" timestamp="1581582698434" />
-    <state width="1398" height="234" key="GridCell.Tab.0.center/0.23.1440.802@0.23.1440.802" timestamp="1581929688113" />
-    <state width="1398" height="234" key="GridCell.Tab.0.left" timestamp="1581929688113">
+    <state width="1878" height="601" key="GridCell.Tab.0.center/-1440.203.1440.877/1920.23.1920.1057/0.23.1920.982@0.23.1920.982" timestamp="1582222238958" />
+    <state width="1398" height="233" key="GridCell.Tab.0.center/0.23.1440.802@0.23.1440.802" timestamp="1582355248940" />
+    <state width="1398" height="233" key="GridCell.Tab.0.left" timestamp="1582355248940">
       <screen x="0" y="23" width="1440" height="802" />
     </state>
-    <state width="1878" height="309" key="GridCell.Tab.0.left/-1440.203.1440.877/1920.23.1920.1057/0.23.1920.982@0.23.1920.982" timestamp="1581582698433" />
-    <state width="1398" height="234" key="GridCell.Tab.0.left/0.23.1440.802@0.23.1440.802" timestamp="1581929688113" />
-    <state width="1398" height="234" key="GridCell.Tab.0.right" timestamp="1581929688113">
+    <state width="1878" height="601" key="GridCell.Tab.0.left/-1440.203.1440.877/1920.23.1920.1057/0.23.1920.982@0.23.1920.982" timestamp="1582222238958" />
+    <state width="1398" height="233" key="GridCell.Tab.0.left/0.23.1440.802@0.23.1440.802" timestamp="1582355248940" />
+    <state width="1398" height="233" key="GridCell.Tab.0.right" timestamp="1582355248941">
       <screen x="0" y="23" width="1440" height="802" />
     </state>
-    <state width="1878" height="309" key="GridCell.Tab.0.right/-1440.203.1440.877/1920.23.1920.1057/0.23.1920.982@0.23.1920.982" timestamp="1581582698434" />
-    <state width="1398" height="234" key="GridCell.Tab.0.right/0.23.1440.802@0.23.1440.802" timestamp="1581929688113" />
-    <state width="1398" height="212" key="GridCell.Tab.1.bottom" timestamp="1581759841612">
+    <state width="1878" height="601" key="GridCell.Tab.0.right/-1440.203.1440.877/1920.23.1920.1057/0.23.1920.982@0.23.1920.982" timestamp="1582222238958" />
+    <state width="1398" height="233" key="GridCell.Tab.0.right/0.23.1440.802@0.23.1440.802" timestamp="1582355248941" />
+    <state width="1398" height="155" key="GridCell.Tab.1.bottom" timestamp="1582352770183">
       <screen x="0" y="23" width="1440" height="802" />
     </state>
-    <state width="1878" height="272" key="GridCell.Tab.1.bottom/-1440.203.1440.877/1920.23.1920.1057/0.23.1920.982@0.23.1920.982" timestamp="1581582698429" />
-    <state width="1398" height="212" key="GridCell.Tab.1.bottom/0.23.1440.802@0.23.1440.802" timestamp="1581759841612" />
-    <state width="1398" height="212" key="GridCell.Tab.1.center" timestamp="1581759841612">
+    <state width="1878" height="601" key="GridCell.Tab.1.bottom/-1440.203.1440.877/1920.23.1920.1057/0.23.1920.982@0.23.1920.982" timestamp="1582222238960" />
+    <state width="1398" height="155" key="GridCell.Tab.1.bottom/0.23.1440.802@0.23.1440.802" timestamp="1582352770183" />
+    <state width="1398" height="155" key="GridCell.Tab.1.center" timestamp="1582352770182">
       <screen x="0" y="23" width="1440" height="802" />
     </state>
-    <state width="1878" height="272" key="GridCell.Tab.1.center/-1440.203.1440.877/1920.23.1920.1057/0.23.1920.982@0.23.1920.982" timestamp="1581582698429" />
-    <state width="1398" height="212" key="GridCell.Tab.1.center/0.23.1440.802@0.23.1440.802" timestamp="1581759841612" />
-    <state width="1398" height="212" key="GridCell.Tab.1.left" timestamp="1581759841612">
+    <state width="1878" height="601" key="GridCell.Tab.1.center/-1440.203.1440.877/1920.23.1920.1057/0.23.1920.982@0.23.1920.982" timestamp="1582222238959" />
+    <state width="1398" height="155" key="GridCell.Tab.1.center/0.23.1440.802@0.23.1440.802" timestamp="1582352770182" />
+    <state width="1398" height="155" key="GridCell.Tab.1.left" timestamp="1582352770181">
       <screen x="0" y="23" width="1440" height="802" />
     </state>
-    <state width="1878" height="272" key="GridCell.Tab.1.left/-1440.203.1440.877/1920.23.1920.1057/0.23.1920.982@0.23.1920.982" timestamp="1581582698428" />
-    <state width="1398" height="212" key="GridCell.Tab.1.left/0.23.1440.802@0.23.1440.802" timestamp="1581759841612" />
-    <state width="1398" height="212" key="GridCell.Tab.1.right" timestamp="1581759841612">
+    <state width="1878" height="601" key="GridCell.Tab.1.left/-1440.203.1440.877/1920.23.1920.1057/0.23.1920.982@0.23.1920.982" timestamp="1582222238959" />
+    <state width="1398" height="155" key="GridCell.Tab.1.left/0.23.1440.802@0.23.1440.802" timestamp="1582352770181" />
+    <state width="1398" height="155" key="GridCell.Tab.1.right" timestamp="1582352770182">
       <screen x="0" y="23" width="1440" height="802" />
     </state>
-    <state width="1878" height="272" key="GridCell.Tab.1.right/-1440.203.1440.877/1920.23.1920.1057/0.23.1920.982@0.23.1920.982" timestamp="1581582698429" />
-    <state width="1398" height="212" key="GridCell.Tab.1.right/0.23.1440.802@0.23.1440.802" timestamp="1581759841612" />
-    <state width="1398" height="169" key="GridCell.Tab.2.bottom" timestamp="1581626121178">
+    <state width="1878" height="601" key="GridCell.Tab.1.right/-1440.203.1440.877/1920.23.1920.1057/0.23.1920.982@0.23.1920.982" timestamp="1582222238959" />
+    <state width="1398" height="155" key="GridCell.Tab.1.right/0.23.1440.802@0.23.1440.802" timestamp="1582352770182" />
+    <state width="1398" height="155" key="GridCell.Tab.2.bottom" timestamp="1582352770184">
       <screen x="0" y="23" width="1440" height="802" />
     </state>
     <state width="1878" height="351" key="GridCell.Tab.2.bottom/-1440.203.1440.877/1920.23.1920.1057/0.23.1920.982@0.23.1920.982" timestamp="1581265902698" />
-    <state width="1398" height="169" key="GridCell.Tab.2.bottom/0.23.1440.802@0.23.1440.802" timestamp="1581626121178" />
-    <state width="1398" height="169" key="GridCell.Tab.2.center" timestamp="1581626121177">
+    <state width="1398" height="155" key="GridCell.Tab.2.bottom/0.23.1440.802@0.23.1440.802" timestamp="1582352770184" />
+    <state width="1398" height="155" key="GridCell.Tab.2.center" timestamp="1582352770183">
       <screen x="0" y="23" width="1440" height="802" />
     </state>
     <state width="1878" height="351" key="GridCell.Tab.2.center/-1440.203.1440.877/1920.23.1920.1057/0.23.1920.982@0.23.1920.982" timestamp="1581265902697" />
-    <state width="1398" height="169" key="GridCell.Tab.2.center/0.23.1440.802@0.23.1440.802" timestamp="1581626121177" />
-    <state width="1398" height="169" key="GridCell.Tab.2.left" timestamp="1581626121177">
+    <state width="1398" height="155" key="GridCell.Tab.2.center/0.23.1440.802@0.23.1440.802" timestamp="1582352770183" />
+    <state width="1398" height="155" key="GridCell.Tab.2.left" timestamp="1582352770183">
       <screen x="0" y="23" width="1440" height="802" />
     </state>
     <state width="1878" height="351" key="GridCell.Tab.2.left/-1440.203.1440.877/1920.23.1920.1057/0.23.1920.982@0.23.1920.982" timestamp="1581265902697" />
-    <state width="1398" height="169" key="GridCell.Tab.2.left/0.23.1440.802@0.23.1440.802" timestamp="1581626121177" />
-    <state width="1398" height="169" key="GridCell.Tab.2.right" timestamp="1581626121178">
+    <state width="1398" height="155" key="GridCell.Tab.2.left/0.23.1440.802@0.23.1440.802" timestamp="1582352770183" />
+    <state width="1398" height="155" key="GridCell.Tab.2.right" timestamp="1582352770184">
       <screen x="0" y="23" width="1440" height="802" />
     </state>
     <state width="1878" height="351" key="GridCell.Tab.2.right/-1440.203.1440.877/1920.23.1920.1057/0.23.1920.982@0.23.1920.982" timestamp="1581265902697" />
-    <state width="1398" height="169" key="GridCell.Tab.2.right/0.23.1440.802@0.23.1440.802" timestamp="1581626121178" />
+    <state width="1398" height="155" key="GridCell.Tab.2.right/0.23.1440.802@0.23.1440.802" timestamp="1582352770184" />
     <state x="258" y="87" key="Maven.ArtifactSearchDialog" timestamp="1581830874232">
       <screen x="0" y="23" width="1440" height="802" />
     </state>
     <state x="258" y="87" key="Maven.ArtifactSearchDialog/0.23.1440.802@0.23.1440.802" timestamp="1581830874232" />
-    <state x="747" y="143" key="SettingsEditor" timestamp="1581245093870">
-      <screen x="0" y="23" width="1920" height="982" />
+    <state x="208" y="23" key="SettingsEditor" timestamp="1582353726322">
+      <screen x="0" y="23" width="1440" height="802" />
     </state>
     <state x="747" y="143" key="SettingsEditor/-1440.203.1440.877/1920.23.1920.1057/0.23.1920.982@0.23.1920.982" timestamp="1581245093870" />
-    <state x="208" y="23" key="SettingsEditor/0.23.1440.802@0.23.1440.802" timestamp="1581151989269" />
+    <state x="208" y="23" key="SettingsEditor/0.23.1440.802@0.23.1440.802" timestamp="1582353726322" />
     <state x="690" y="253" width="543" height="524" key="StructurePopup" timestamp="1581513678081">
       <screen x="0" y="23" width="1920" height="982" />
     </state>
@@ -533,11 +500,11 @@
       <screen x="0" y="23" width="1440" height="802" />
     </state>
     <state x="385" y="192" key="run.anything.popup/0.23.1440.802@0.23.1440.802" timestamp="1581950558796" />
-    <state x="385" y="149" width="670" height="676" key="search.everywhere.popup" timestamp="1581954216151">
+    <state x="385" y="149" width="670" height="676" key="search.everywhere.popup" timestamp="1582352612995">
       <screen x="0" y="23" width="1440" height="802" />
     </state>
-    <state x="513" y="177" width="894" height="828" key="search.everywhere.popup/-1440.203.1440.877/1920.23.1920.1057/0.23.1920.982@0.23.1920.982" timestamp="1581581754328" />
-    <state x="385" y="149" width="670" height="676" key="search.everywhere.popup/0.23.1440.802@0.23.1440.802" timestamp="1581954216151" />
+    <state x="513" y="177" width="894" height="828" key="search.everywhere.popup/-1440.203.1440.877/1920.23.1920.1057/0.23.1920.982@0.23.1920.982" timestamp="1582222131430" />
+    <state x="385" y="149" width="670" height="676" key="search.everywhere.popup/0.23.1440.802@0.23.1440.802" timestamp="1582352612995" />
     <state x="310" y="119" key="spring file set editor" timestamp="1581054159832">
       <screen x="0" y="23" width="1440" height="802" />
     </state>
@@ -555,6 +522,11 @@
           <url>file://$PROJECT_DIR$/src/main/java/com/andybrook/serialization/jackson/custom/ProductDeserializer.java</url>
           <line>23</line>
           <option name="timeStamp" value="14" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/andybrook/service/notification/protocol/email/EmailCreatorService.java</url>
+          <line>34</line>
+          <option name="timeStamp" value="15" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
