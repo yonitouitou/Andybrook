@@ -1,21 +1,21 @@
 <div class="container-fluid">
   <div class="row">
     <div class="col">
-      <h5>{{ order.name }}</h5>
+      <h5>{{ order.aggregatedOrderInfo.name }}</h5>
     </div>
     <div class="col">
-      <p>Comment : {{ order.comment }}</p>
+      <p>Comment : {{ order.aggregatedOrderInfo.comment }}</p>
     </div>
     <div class="col">
       <div style="overflow: hidden;">
         <p style="float: left">Store : &nbsp;</p>
-        <p style="float: left; font-weight: bold"> {{ order.store.name }}</p>
+        <p style="float: left; font-weight: bold"> {{ order.aggregatedOrderInfo.store.name }}</p>
       </div>
     </div>
     <div class="col">
       <div style="overflow: hidden;">
         <p style="float: left;">Status :&nbsp;</p>
-        <p style="float: left; font-weight: bold"> {{ order.status }}</p>
+        <p style="float: left; font-weight: bold"> {{ order.aggregatedOrderInfo.status }}</p>
       </div>
     </div>
   </div>

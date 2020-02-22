@@ -8,6 +8,7 @@ import com.andybrook.enums.DocType;
 import com.andybrook.enums.FileFormat;
 import com.andybrook.exception.UnsupportedFormatFile;
 import com.andybrook.model.api.AggregatedOrder;
+import com.andybrook.model.api.AggregatedOrderInfo;
 import com.andybrook.model.api.AggregatedOrderItem;
 import com.andybrook.model.notification.request.ctx.DocumentCtx;
 import com.andybrook.model.notification.request.ctx.DocumentRequest;
@@ -79,13 +80,14 @@ public class CloseOrderDocumentGenerator implements IDocumentGenerator {
     }
 
     private Path generateCsvFile(AggregatedOrder order) {
+        AggregatedOrderInfo orderInfo = order.getAggregatedOrderInfo();
         Path csvFilePath = null;
         try {
             String content = generateCsvFileContent(order);
             csvFilePath = writeCsvInFile(order, content);
         } catch (IOException e) {
             LOGGER.log(Level.ERROR, "Exception occurred generating the attachment CSV file for report : ["
-                    + order.getId() + ", " + order.getName() + "]");
+                    + orderInfo.getId() + ", " + orderInfo.getName() + "]");
         }
         return csvFilePath;
     }
@@ -99,8 +101,9 @@ public class CloseOrderDocumentGenerator implements IDocumentGenerator {
     }
 
     private Path writeCsvInFile(AggregatedOrder order, String csv) throws IOException {
-        ZonedDateTime datetime = DateUtil.epochTimeInMillisToZdt(order.getCreatedDatetime(), applicationProperties.getZoneId());
-        String fileName = order.getName() + "-" + datetime.format(DATE_TIME_FORMATTER_FILE_NAME);
+        AggregatedOrderInfo orderInfo = order.getAggregatedOrderInfo();
+        ZonedDateTime datetime = DateUtil.epochTimeInMillisToZdt(orderInfo.getCreatedDatetime(), applicationProperties.getZoneId());
+        String fileName = orderInfo.getName() + "-" + datetime.format(DATE_TIME_FORMATTER_FILE_NAME);
         File tmpFile = File.createTempFile(fileName, ".csv");
         try (FileWriter writer = new FileWriter(tmpFile)) {
             writer.write(csv);

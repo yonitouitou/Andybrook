@@ -2,33 +2,23 @@ package com.andybrook.api.pdf;
 
 import com.andybrook.language.Msg.Pdf;
 import com.andybrook.model.api.AggregatedOrder;
+import com.andybrook.model.api.AggregatedOrderInfo;
 import com.andybrook.model.api.AggregatedOrderItem;
 import com.andybrook.model.customer.Owner;
 import com.andybrook.model.customer.Store;
 import com.andybrook.model.notification.request.ctx.OrderDocumentCtx;
 import com.andybrook.util.DateUtil;
 import com.andybrook.util.clock.Clock;
-import com.itextpdf.text.BaseColor;
-import com.itextpdf.text.Chunk;
-import com.itextpdf.text.Document;
-import com.itextpdf.text.DocumentException;
-import com.itextpdf.text.Element;
-import com.itextpdf.text.Font;
+import com.itextpdf.text.*;
 import com.itextpdf.text.Font.FontFamily;
-import com.itextpdf.text.FontFactory;
-import com.itextpdf.text.Image;
-import com.itextpdf.text.PageSize;
-import com.itextpdf.text.Paragraph;
-import com.itextpdf.text.Phrase;
-import com.itextpdf.text.Rectangle;
 import com.itextpdf.text.pdf.BaseFont;
 import com.itextpdf.text.pdf.PdfPCell;
 import com.itextpdf.text.pdf.PdfPTable;
 import com.itextpdf.text.pdf.PdfWriter;
-
 import org.springframework.stereotype.Component;
 import org.springframework.util.ResourceUtils;
 
+import javax.annotation.PostConstruct;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.lang.System.Logger;
@@ -41,8 +31,6 @@ import java.time.LocalDateTime;
 import java.time.ZonedDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.stream.Stream;
-
-import javax.annotation.PostConstruct;
 
 import static com.itextpdf.text.html.HtmlTags.FONT;
 
@@ -78,7 +66,9 @@ public class CloseOrderPdfBuilder extends AbstractPdfBuilder implements IPdfBuil
     @Override
     public Path generatePdf(OrderDocumentCtx ctx) {
         AggregatedOrder order = ctx.getAggregatedOrder();
-        String fileName = order.getName() + LocalDateTime.now().format(DateTimeFormatter.ISO_LOCAL_DATE) + "-" + Clock.millis();
+        java.util.List<AggregatedOrderItem> orderItems = order.getAggregatedOrderItems();
+        AggregatedOrderInfo orderInfo = order.getAggregatedOrderInfo();
+        String fileName = orderInfo.getName() + LocalDateTime.now().format(DateTimeFormatter.ISO_LOCAL_DATE) + "-" + Clock.millis();
         Path pdfFilePath = null;
         Document document = new Document(PageSize.A4, 20f, 20f, 7f, 7f);
         PdfWriter writer = null;
@@ -90,11 +80,11 @@ public class CloseOrderPdfBuilder extends AbstractPdfBuilder implements IPdfBuil
             document.open();
 
             Element logo = importLogoAndybrook();
-            Element title = createTitle(order);
-            Element customerTable1 = createCustomerMainDetailsTable(order);
-            Element customerTable2 = createCustomerContactDetailsTable(order);
+            Element title = createTitle(orderInfo);
+            Element customerTable1 = createCustomerMainDetailsTable(orderInfo);
+            Element customerTable2 = createCustomerContactDetailsTable(orderInfo);
             Element itemsTable = createItemsTable(order);
-            Element doneDate = createDoneDate(ctx, order);
+            Element doneDate = createDoneDate(ctx, orderInfo);
             Element signature = createSignatureTable();
 
             document.add(logo);
@@ -157,7 +147,7 @@ public class CloseOrderPdfBuilder extends AbstractPdfBuilder implements IPdfBuil
     }
 
 
-    private Element createTitle(AggregatedOrder order) {
+    private Element createTitle(AggregatedOrderInfo order) {
         Paragraph title = new Paragraph();
 
         Chunk subTitleId = new Chunk(languageResolver.get(Pdf.ORDER_FORM).toUpperCase() + " #" + order.getId());
@@ -175,7 +165,7 @@ public class CloseOrderPdfBuilder extends AbstractPdfBuilder implements IPdfBuil
         return title;
     }
 
-    private Element createCustomerMainDetailsTable(AggregatedOrder order) throws DocumentException {
+    private Element createCustomerMainDetailsTable(AggregatedOrderInfo order) throws DocumentException {
         PdfPTable table = new PdfPTable(2);
         table.setWidthPercentage(100);
         table.setSpacingBefore(10f);
@@ -187,7 +177,7 @@ public class CloseOrderPdfBuilder extends AbstractPdfBuilder implements IPdfBuil
         return table;
     }
 
-    private Element createCustomerContactDetailsTable(AggregatedOrder order) throws DocumentException {
+    private Element createCustomerContactDetailsTable(AggregatedOrderInfo order) throws DocumentException {
         PdfPTable table2 = new PdfPTable(4);
         table2.setWidthPercentage(100);
         table2.setSpacingAfter(10f);
@@ -213,14 +203,14 @@ public class CloseOrderPdfBuilder extends AbstractPdfBuilder implements IPdfBuil
         return table;
     }
 
-    private void addCustomerDetailsFirstRow(PdfPTable table, AggregatedOrder order) {
+    private void addCustomerDetailsFirstRow(PdfPTable table, AggregatedOrderInfo order) {
         Store store = order.getStore();
         Owner owner = store.getOwner();
         table.addCell(getStringCell(owner.getCompagnyName()));
         table.addCell(getStringCell(owner.getFirstName() + " " + owner.getLastName()));
     }
 
-    private void addCustomerDetailsSecondRow(PdfPTable table, AggregatedOrder order) {
+    private void addCustomerDetailsSecondRow(PdfPTable table, AggregatedOrderInfo order) {
         Store store = order.getStore();
         table.addCell(getStringCell(store.getName()));
         table.addCell(getStringCell(store.getAddress().format(applicationProperties.getLocale())));
@@ -273,7 +263,7 @@ public class CloseOrderPdfBuilder extends AbstractPdfBuilder implements IPdfBuil
         table.addCell(ttlPriceCell);
     }
 
-    private Element createDoneDate(OrderDocumentCtx ctx, AggregatedOrder order) {
+    private Element createDoneDate(OrderDocumentCtx ctx, AggregatedOrderInfo order) {
         Paragraph p = new Paragraph();
         ZonedDateTime dateDocument = ctx.getDateDocument() != null ? ctx.getDateDocument() : DateUtil.epochTimeInMillisToZdt(order.getCloseDatetime(), applicationProperties.getZoneId());
         String msg = languageResolver.get(Pdf.DONE_ON_DATE) + " " + dateDocument.format(DATE_FORMATTER);

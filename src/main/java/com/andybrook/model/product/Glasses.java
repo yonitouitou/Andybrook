@@ -1,27 +1,27 @@
 package com.andybrook.model.product;
 
 import com.andybrook.enums.ProductType;
-import com.andybrook.util.IdGenerator;
-
 import org.springframework.data.elasticsearch.annotations.Document;
 
 @Document(indexName = "product_glasses")
 public class Glasses extends Product {
+
+    private static final ProductType PRODUCT_TYPE = ProductType.GLASSES;
 
     private Glasses() {
         super();
     }
 
     public Glasses(String name, double price) {
-        super(IdGenerator.generateId(), name, price);
+        super(ProductId.generate(PRODUCT_TYPE), name, price);
     }
 
-    public Glasses(long id, String name, double price) {
-        super(id, name, price);
+    public Glasses(ProductId productId, String name, double price) {
+        super(productId, name, price);
     }
 
     @Override
     public ProductType getType() {
-        return ProductType.GLASSES;
+        return PRODUCT_TYPE;
     }
 }

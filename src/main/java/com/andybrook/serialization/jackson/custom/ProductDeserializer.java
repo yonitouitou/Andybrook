@@ -3,8 +3,8 @@ package com.andybrook.serialization.jackson.custom;
 import com.andybrook.enums.ProductType;
 import com.andybrook.model.product.Glasses;
 import com.andybrook.model.product.Product;
+import com.andybrook.model.product.ProductId;
 import com.fasterxml.jackson.core.JsonParser;
-import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.ObjectCodec;
 import com.fasterxml.jackson.databind.DeserializationContext;
 import com.fasterxml.jackson.databind.JsonDeserializer;
@@ -15,20 +15,21 @@ import java.io.IOException;
 public class ProductDeserializer extends JsonDeserializer<Product> {
 
     @Override
-    public Product deserialize(JsonParser jp, DeserializationContext deserializationContext) throws IOException, JsonProcessingException {
+    public Product deserialize(JsonParser jp, DeserializationContext deserializationContext) throws IOException {
         ObjectCodec oc = jp.getCodec();
         JsonNode json = oc.readTree(jp);
         long id = json.get("id").asLong();
+        ProductType productType = ProductType.valueOf(json.get("productId.productType").asText());
+        ProductId productId = new ProductId(productType, id);
         String name = json.get("name").asText();
         double price = json.get("price").asDouble();
-        ProductType type = ProductType.valueOf(json.get("type").asText());
         Product product;
-        switch (type) {
+        switch (productType) {
             case GLASSES:
-                product = new Glasses(id, name, price);
+                product = new Glasses(productId, name, price);
                 break;
             default:
-                throw new UnsupportedOperationException("Unknown ProductType : " + type);
+                throw new UnsupportedOperationException("Unknown ProductType : " + productType);
         }
         return product;
     }

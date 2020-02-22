@@ -55,7 +55,7 @@ export class SelectedOrderItemsListComponent implements OnInit {
 
   deleteOrderItem(orderItem: OrderItem) {
     const id: number[] = [orderItem.id];
-    const req = new DeleteOrderItemsReq(this.order.id, id);
+    const req = new DeleteOrderItemsReq(this.order.aggregatedOrderInfo.id, id);
     this.orderService.deleteOrderItems(req).subscribe(
       data => {
           this.selectedOrderItems.delete(orderItem.id);

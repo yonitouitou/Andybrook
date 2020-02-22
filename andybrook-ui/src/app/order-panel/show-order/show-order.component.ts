@@ -21,8 +21,8 @@ export class ShowOrderComponent implements OnInit {
 
   ngOnInit() {
     this.order = new AggregatedOrder();
-    this.order.id = parseInt(this.route.snapshot.paramMap.get('id'));
-    this.refreshOrder();
+    const orderId = parseInt(this.route.snapshot.paramMap.get('id'));
+    this.loadOrder(orderId);
   }
 
   onOrderItemAdded(orderItem: OrderItem) {
@@ -41,9 +41,13 @@ export class ShowOrderComponent implements OnInit {
     this.router.navigate(['/orders'])
   }
 
-  private refreshOrder() {
-    this.orderService.getOrder(this.order.id).subscribe(data => {
+  private loadOrder(orderId: number) {
+    this.orderService.getOrder(orderId).subscribe(data => {
       this.order = AggregatedOrder.fromJson(data);
     })  
+  }
+
+  private refreshOrder() {
+    this.loadOrder(this.order.aggregatedOrderInfo.id) 
   }
 }

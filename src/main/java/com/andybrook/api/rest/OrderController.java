@@ -1,12 +1,9 @@
 package com.andybrook.api.rest;
 
-import com.andybrook.api.rest.ctx.DeleteOrderItemRestRequest;
-import com.andybrook.api.rest.ctx.GenericRequestById;
-import com.andybrook.api.rest.ctx.GenericRequestByIds;
-import com.andybrook.api.rest.ctx.OrderItemAddByBarCodeRestRequest;
-import com.andybrook.api.rest.ctx.OrderItemAddRequestByInfo;
+import com.andybrook.api.rest.ctx.*;
 import com.andybrook.manager.order.IOrderManager;
 import com.andybrook.model.api.AggregatedOrder;
+import com.andybrook.model.api.AggregatedOrderInfo;
 import com.andybrook.model.order.Order;
 import com.andybrook.model.order.OrderItem;
 import com.andybrook.model.request.order.NewOrderRequest;
@@ -15,15 +12,8 @@ import com.andybrook.model.request.orderitem.OrderItemAddRequest;
 import com.andybrook.model.request.orderitem.OrderItemAddRequestByBarCode;
 import com.andybrook.model.request.orderitem.OrderItemDeleteRequest;
 import com.andybrook.util.NumberUtil;
-
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.lang.System.Logger;
 import java.lang.System.Logger.Level;
@@ -88,10 +78,10 @@ public class OrderController extends AbstractController {
         return orders;
     }
 
-    @GetMapping(path = "/all")
-    public List<AggregatedOrder> getAll() {
+    @GetMapping(path = "/allOrdersInfo")
+    public List<AggregatedOrderInfo> getAll() {
         LOGGER.log(Level.INFO, "Get all aggregated orders request received");
-        return aggregateOrders(orderManager.getAll());
+        return aggregateOrdersInfo(orderManager.getAll());
     }
 
     @PostMapping(path = "/addOrderItemByInfo")
@@ -130,6 +120,13 @@ public class OrderController extends AbstractController {
     private List<AggregatedOrder> aggregateOrders(Collection<Order> orders) {
         return orders.stream()
                 .map(order -> orderManager.aggregate(order))
+                .collect(Collectors.toList());
+    }
+
+    private List<AggregatedOrderInfo> aggregateOrdersInfo(Collection<Order> orders) {
+        return orders.stream()
+                .map(order -> orderManager.aggregate(order))
+                .map(AggregatedOrder::getAggregatedOrderInfo)
                 .collect(Collectors.toList());
     }
 }

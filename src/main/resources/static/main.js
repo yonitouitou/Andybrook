@@ -451,7 +451,7 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("<div class=\"card shadow-sm p-3 mb-5 bg-white rounded\">\n    <div class=\"card-header\">\n        <div class=\"row justify-content-between\">\n            <div class=\"col-10\">\n                <h5>Last Orders Amounts</h5>\n            </div>\n            <div class=\"col-2\">\n                <form [formGroup]=\"lastOrdersForm\" (ngSubmit)=\"onRefresh()\" class=\"form-inline\">\n                    <div class=\"form-group\">\n                        <label for=\"Name\">Last</label>\n                        <input type=\"text\" formControlName=\"lastOrderNumber\" class=\"form-control\"/>\n                    </div>\n                    <button type=\"submit\" class=\"btn btn-success btn-sm\" style=\"float:right\">Refresh</button>\n                </form>               \n            </div>\n        </div>\n    </div>\n    <div class=\"card-body\">\n        <bar-chart [barChartLabels]=\"xLabels\" [barChartData]=\"yValues\" [withBarLegend]=\"false\"></bar-chart>\n    </div>\n</div>\n");
+/* harmony default export */ __webpack_exports__["default"] = ("<div class=\"card shadow-sm p-3 mb-5 bg-white rounded\">\r\n    <div class=\"card-header\">\r\n        <div class=\"row justify-content-between\">\r\n            <div class=\"col-10\">\r\n                <h5>Last Orders Amounts</h5>\r\n            </div>\r\n            <div class=\"col-2\">\r\n                <form [formGroup]=\"lastOrdersForm\" (ngSubmit)=\"onRefresh()\" class=\"form-inline\">\r\n                    <div class=\"form-group\">\r\n                        <label for=\"Name\">Last</label>\r\n                        <input type=\"text\" formControlName=\"lastOrderNumber\" class=\"form-control\"/>\r\n                    </div>\r\n                    <button type=\"submit\" class=\"btn btn-success btn-sm\" style=\"float:right\">Refresh</button>\r\n                </form>               \r\n            </div>\r\n        </div>\r\n    </div>\r\n    <div class=\"card-body\">\r\n        <bar-chart [barChartLabels]=\"xLabels\" [barChartData]=\"yValues\" [withBarLegend]=\"false\"></bar-chart>\r\n    </div>\r\n</div>\r\n");
 
 /***/ }),
 
@@ -672,7 +672,7 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("<div class=\"container-fluid\">\r\n  <div class=\"row\">\r\n    <div class=\"col\">\r\n      <h5>{{ order.name }}</h5>\r\n    </div>\r\n    <div class=\"col\">\r\n      <p>Comment : {{ order.comment }}</p>\r\n    </div>\r\n    <div class=\"col\">\r\n      <div style=\"overflow: hidden;\">\r\n        <p style=\"float: left\">Store : &nbsp;</p>\r\n        <p style=\"float: left; font-weight: bold\"> {{ order.store.name }}</p>\r\n      </div>\r\n    </div>\r\n    <div class=\"col\">\r\n      <div style=\"overflow: hidden;\">\r\n        <p style=\"float: left;\">Status :&nbsp;</p>\r\n        <p style=\"float: left; font-weight: bold\"> {{ order.status }}</p>\r\n      </div>\r\n    </div>\r\n  </div>\r\n  <div class=\"row\">\r\n    <div class=\"col\">\r\n      <div class=\"row justify-content-between\">\r\n          <div class=\"col-4\">\r\n              <button\r\n                class=\"btn btn-outline-primary\"\r\n                (click)=\"onClickAddOrderItem()\"\r\n                [disabled]=\"order.status === 'CLOSED'\"\r\n              >Add Order Item</button>\r\n          </div>\r\n          <div class=\"col-4\">\r\n              <button\r\n                style=\"float: right\"\r\n                class=\"btn btn-outline-info\"\r\n                (click)=\"onClickCloseOrder()\"\r\n                [disabled]=\"order.status === 'CLOSED'\"\r\n              >Close the order</button>\r\n          </div>\r\n      </div>\r\n    </div>\r\n  </div>    \r\n  <br>\r\n</div>");
+/* harmony default export */ __webpack_exports__["default"] = ("<div class=\"container-fluid\">\r\n  <div class=\"row\">\r\n    <div class=\"col\">\r\n      <h5>{{ order.aggregatedOrderInfo.name }}</h5>\r\n    </div>\r\n    <div class=\"col\">\r\n      <p>Comment : {{ order.aggregatedOrderInfo.comment }}</p>\r\n    </div>\r\n    <div class=\"col\">\r\n      <div style=\"overflow: hidden;\">\r\n        <p style=\"float: left\">Store : &nbsp;</p>\r\n        <p style=\"float: left; font-weight: bold\"> {{ order.aggregatedOrderInfo.store.name }}</p>\r\n      </div>\r\n    </div>\r\n    <div class=\"col\">\r\n      <div style=\"overflow: hidden;\">\r\n        <p style=\"float: left;\">Status :&nbsp;</p>\r\n        <p style=\"float: left; font-weight: bold\"> {{ order.aggregatedOrderInfo.status }}</p>\r\n      </div>\r\n    </div>\r\n  </div>\r\n  <div class=\"row\">\r\n    <div class=\"col\">\r\n      <div class=\"row justify-content-between\">\r\n          <div class=\"col-4\">\r\n              <button\r\n                class=\"btn btn-outline-primary\"\r\n                (click)=\"onClickAddOrderItem()\"\r\n                [disabled]=\"order.status === 'CLOSED'\"\r\n              >Add Order Item</button>\r\n          </div>\r\n          <div class=\"col-4\">\r\n              <button\r\n                style=\"float: right\"\r\n                class=\"btn btn-outline-info\"\r\n                (click)=\"onClickCloseOrder()\"\r\n                [disabled]=\"order.status === 'CLOSED'\"\r\n              >Close the order</button>\r\n          </div>\r\n      </div>\r\n    </div>\r\n  </div>    \r\n  <br>\r\n</div>");
 
 /***/ }),
 
@@ -698,7 +698,7 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("<div class=\"table-responsive\">\r\n    <table class=\"table table-striped\">\r\n        <thead>\r\n            <tr>\r\n                <th>ID</th>\r\n                <th>Name</th>\r\n                <th>Store</th>\r\n                <th>Status</th>\r\n                <th>Total Product</th>\r\n                <th>Total Qty</th>\r\n                <th>Total Price</th>\r\n                <th>Creation Date</th>\r\n                <th>Last Modified Date</th>\r\n                <th>Close Date</th>\r\n                <th></th>\r\n                <th></th>\r\n            </tr>\r\n        </thead>\r\n        <tbody>\r\n            <tr *ngFor=\"let order of ordersArray\">\r\n                <td>{{ order.id }}</td>\r\n                <td>{{ order.name }}</td>\r\n                <td>{{ order.store.name }}</td>\r\n                <td>{{ order.status }}</td>\r\n                <td>{{ order.aggregatedOrderInfo.productSize }}</td>\r\n                <td>{{ order.aggregatedOrderInfo.orderItemSize }}</td>\r\n                <td>{{ order.aggregatedOrderInfo.totalPrice }} €</td>\r\n                <td>{{ order.createdDatetime  | date:'medium' }}</td>\r\n                <td>{{ order.lastModifiedDatetime  | date:'medium' }}</td>\r\n                <td>{{ order.closeDatetime  | date:'medium' }}</td>\r\n                <td><button\r\n                    class=\"btn btn-success\"\r\n                    [routerLink]=\"['/order', order.id]\"\r\n                    >See</button>\r\n                </td>\r\n                <td><button\r\n                    *ngIf=\"order.status !== 'CLOSED'\"\r\n                    class=\"btn btn-info\"\r\n                    (click)=\"onClickCloseOrder(order)\"\r\n                    >Close Order</button>\r\n                    <button\r\n                        *ngIf=\"order.status === 'CLOSED'\"\r\n                        class=\"btn btn-primary\"\r\n                        (click)=\"onClickNotify(order)\"\r\n                    >Notify</button>\r\n                </td>\r\n            </tr>\r\n        </tbody>\r\n    </table>\r\n</div>\r\n<div class=\"row justify-content-between\">\r\n    <div class=\"col-4\">\r\n        <ngb-pagination [collectionSize]=\"collectionSize\" [(page)]=\"page\" [pageSize]=\"pageSize\"></ngb-pagination>\r\n    </div>\r\n    <div class=\"col-2\">\r\n        <select class=\"custom-select\" [(ngModel)]=\"pageSize\">\r\n            <option [ngValue]=\"5\">5 items per page</option>\r\n            <option [ngValue]=\"10\">10 items per page</option>\r\n            <option [ngValue]=\"20\">20 items per page</option>\r\n        </select>\r\n    </div>\r\n</div>\r\n");
+/* harmony default export */ __webpack_exports__["default"] = ("<div class=\"table-responsive\">\r\n    <table class=\"table table-striped\">\r\n        <thead>\r\n            <tr>\r\n                <th>ID</th>\r\n                <th>Name</th>\r\n                <th>Store</th>\r\n                <th>Status</th>\r\n                <th>Total Product</th>\r\n                <th>Total Qty</th>\r\n                <th>Total Price</th>\r\n                <th>Creation Date</th>\r\n                <th>Last Modified Date</th>\r\n                <th>Close Date</th>\r\n                <th></th>\r\n                <th></th>\r\n            </tr>\r\n        </thead>\r\n        <tbody>\r\n            <tr *ngFor=\"let order of ordersArray\">\r\n                <td>{{ order.id }}</td>\r\n                <td>{{ order.name }}</td>\r\n                <td>{{ order.store.name }}</td>\r\n                <td>{{ order.status }}</td>\r\n                <td>{{ order.productSize }}</td>\r\n                <td>{{ order.orderItemSize }}</td>\r\n                <td>{{ order.totalPrice }} €</td>\r\n                <td>{{ order.createdDatetime  | date:'medium' }}</td>\r\n                <td>{{ order.lastModifiedDatetime  | date:'medium' }}</td>\r\n                <td>{{ order.closeDatetime  | date:'medium' }}</td>\r\n                <td><button\r\n                    class=\"btn btn-success\"\r\n                    [routerLink]=\"['/order', order.id]\"\r\n                    >See</button>\r\n                </td>\r\n                <td><button\r\n                    *ngIf=\"order.status !== 'CLOSED'\"\r\n                    class=\"btn btn-info\"\r\n                    (click)=\"onClickCloseOrder(order)\"\r\n                    >Close Order</button>\r\n                    <button\r\n                        *ngIf=\"order.status === 'CLOSED'\"\r\n                        class=\"btn btn-primary\"\r\n                        (click)=\"onClickNotify(order)\"\r\n                    >Notify</button>\r\n                </td>\r\n            </tr>\r\n        </tbody>\r\n    </table>\r\n</div>\r\n<div class=\"row justify-content-between\">\r\n    <div class=\"col-4\">\r\n        <ngb-pagination [collectionSize]=\"collectionSize\" [(page)]=\"page\" [pageSize]=\"pageSize\"></ngb-pagination>\r\n    </div>\r\n    <div class=\"col-2\">\r\n        <select class=\"custom-select\" [(ngModel)]=\"pageSize\">\r\n            <option [ngValue]=\"5\">5 items per page</option>\r\n            <option [ngValue]=\"10\">10 items per page</option>\r\n            <option [ngValue]=\"20\">20 items per page</option>\r\n        </select>\r\n    </div>\r\n</div>\r\n");
 
 /***/ }),
 
@@ -732,7 +732,7 @@ __webpack_require__.r(__webpack_exports__);
 /*!*****************************************!*\
   !*** ./node_modules/tslib/tslib.es6.js ***!
   \*****************************************/
-/*! exports provided: __extends, __assign, __rest, __decorate, __param, __metadata, __awaiter, __generator, __exportStar, __values, __read, __spread, __spreadArrays, __await, __asyncGenerator, __asyncDelegator, __asyncValues, __makeTemplateObject, __importStar, __importDefault */
+/*! exports provided: __extends, __assign, __rest, __decorate, __param, __metadata, __awaiter, __generator, __exportStar, __values, __read, __spread, __spreadArrays, __await, __asyncGenerator, __asyncDelegator, __asyncValues, __makeTemplateObject, __importStar, __importDefault, __classPrivateFieldGet, __classPrivateFieldSet */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -757,6 +757,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "__makeTemplateObject", function() { return __makeTemplateObject; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "__importStar", function() { return __importStar; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "__importDefault", function() { return __importDefault; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "__classPrivateFieldGet", function() { return __classPrivateFieldGet; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "__classPrivateFieldSet", function() { return __classPrivateFieldSet; });
 /*! *****************************************************************************
 Copyright (c) Microsoft Corporation. All rights reserved.
 Licensed under the Apache License, Version 2.0 (the "License"); you may not use
@@ -825,10 +827,11 @@ function __metadata(metadataKey, metadataValue) {
 }
 
 function __awaiter(thisArg, _arguments, P, generator) {
+    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
     return new (P || (P = Promise))(function (resolve, reject) {
         function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
         function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
-        function step(result) { result.done ? resolve(result.value) : new P(function (resolve) { resolve(result.value); }).then(fulfilled, rejected); }
+        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 }
@@ -866,14 +869,15 @@ function __exportStar(m, exports) {
 }
 
 function __values(o) {
-    var m = typeof Symbol === "function" && o[Symbol.iterator], i = 0;
+    var s = typeof Symbol === "function" && Symbol.iterator, m = s && o[s], i = 0;
     if (m) return m.call(o);
-    return {
+    if (o && typeof o.length === "number") return {
         next: function () {
             if (o && i >= o.length) o = void 0;
             return { value: o && o[i++], done: !o };
         }
     };
+    throw new TypeError(s ? "Object is not iterable." : "Symbol.iterator is not defined.");
 }
 
 function __read(o, n) {
@@ -952,6 +956,21 @@ function __importStar(mod) {
 
 function __importDefault(mod) {
     return (mod && mod.__esModule) ? mod : { default: mod };
+}
+
+function __classPrivateFieldGet(receiver, privateMap) {
+    if (!privateMap.has(receiver)) {
+        throw new TypeError("attempted to get private field on non-instance");
+    }
+    return privateMap.get(receiver);
+}
+
+function __classPrivateFieldSet(receiver, privateMap, value) {
+    if (!privateMap.has(receiver)) {
+        throw new TypeError("attempted to set private field on non-instance");
+    }
+    privateMap.set(receiver, value);
+    return value;
 }
 
 
@@ -2706,7 +2725,7 @@ let StoreOrdersComponent = class StoreOrdersComponent {
     findStore() {
         let store;
         if (this.orders.length > 0) {
-            store = this.orders[0].store;
+            store = this.orders[0].aggregatedOrderInfo.store;
         }
         else {
             store = this.storeService.get(this.storeId);
@@ -3931,8 +3950,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
 /* harmony import */ var _AggregatedOrderInfo__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./AggregatedOrderInfo */ "./src/app/model/AggregatedOrderInfo.ts");
 /* harmony import */ var _AggregatedOrderItem__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./AggregatedOrderItem */ "./src/app/model/AggregatedOrderItem.ts");
-/* harmony import */ var _Store__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./Store */ "./src/app/model/Store.ts");
-
 
 
 
@@ -3941,15 +3958,8 @@ class AggregatedOrder {
         this.aggregatedOrderItems = [];
     }
     static fromJson(data) {
+        console.debug();
         let order = new AggregatedOrder();
-        order.id = data.id;
-        order.name = data.name;
-        order.store = _Store__WEBPACK_IMPORTED_MODULE_3__["Store"].fromJson(data.store);
-        order.status = data.status;
-        order.comment = data.comment;
-        order.createdDatetime = data.createdDatetime;
-        order.lastModifiedDatetime = data.lastModifiedDatetime;
-        order.closeDatetime = data.closeDatetime;
         order.aggregatedOrderInfo = _AggregatedOrderInfo__WEBPACK_IMPORTED_MODULE_1__["AggregatedOrderInfo"].fromJson(data.aggregatedOrderInfo);
         for (let item of data.aggregatedOrderItems) {
             order.aggregatedOrderItems.push(_AggregatedOrderItem__WEBPACK_IMPORTED_MODULE_2__["AggregatedOrderItem"].fromJson(item));
@@ -3972,11 +3982,21 @@ class AggregatedOrder {
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "AggregatedOrderInfo", function() { return AggregatedOrderInfo; });
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
+/* harmony import */ var _Store__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Store */ "./src/app/model/Store.ts");
+
 
 class AggregatedOrderInfo {
     constructor() { }
     static fromJson(data) {
         let order = new AggregatedOrderInfo();
+        order.id = data.id;
+        order.name = data.name;
+        order.store = _Store__WEBPACK_IMPORTED_MODULE_1__["Store"].fromJson(data.store);
+        order.status = data.status;
+        order.comment = data.comment;
+        order.createdDatetime = data.createdDatetime;
+        order.lastModifiedDatetime = data.lastModifiedDatetime;
+        order.closeDatetime = data.closeDatetime;
         order.orderItemSize = data.orderItemSize;
         order.productSize = data.productSize;
         order.totalPrice = data.totalPrice;
@@ -4173,6 +4193,10 @@ class Owner {
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Product", function() { return Product; });
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
+/* harmony import */ var _ProductId__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./ProductId */ "./src/app/model/ProductId.ts");
+/* harmony import */ var _ProductType__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./ProductType */ "./src/app/model/ProductType.ts");
+
+
 
 class Product {
     constructor(id, name, price) {
@@ -4181,10 +4205,35 @@ class Product {
         this.price = price;
     }
     static fromJson(data) {
-        const productId = data.id;
+        const productId = new _ProductId__WEBPACK_IMPORTED_MODULE_1__["ProductId"](data.id, _ProductType__WEBPACK_IMPORTED_MODULE_2__["ProductType"].GLASSES);
         const productName = data.name;
         const productPrice = data.price;
         return new Product(productId, productName, productPrice);
+    }
+}
+
+
+/***/ }),
+
+/***/ "./src/app/model/ProductId.ts":
+/*!************************************!*\
+  !*** ./src/app/model/ProductId.ts ***!
+  \************************************/
+/*! exports provided: ProductId */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ProductId", function() { return ProductId; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
+
+class ProductId {
+    constructor(id, productType) {
+        this.id = id;
+        this.productType = productType;
+    }
+    static fromJson(data) {
+        return new ProductId(data.id, data.productType);
     }
 }
 
@@ -4203,13 +4252,15 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ProductItem", function() { return ProductItem; });
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
 /* harmony import */ var _Product__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Product */ "./src/app/model/Product.ts");
+/* harmony import */ var _ProductId__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./ProductId */ "./src/app/model/ProductId.ts");
+
 
 
 class ProductItem {
     constructor() { }
     static fromJson(data) {
         let productItem = new ProductItem();
-        productItem.id = data.id;
+        productItem.id = _ProductId__WEBPACK_IMPORTED_MODULE_2__["ProductId"].fromJson(data.id);
         productItem.orderItemId = data.orderItemId;
         productItem.product = _Product__WEBPACK_IMPORTED_MODULE_1__["Product"].fromJson(data.product);
         productItem.createdDatetime = data.createdDatetime;
@@ -4251,6 +4302,26 @@ class ProductStockInfo {
         return this.createdQuantity - this.usedQuantity;
     }
 }
+
+
+/***/ }),
+
+/***/ "./src/app/model/ProductType.ts":
+/*!**************************************!*\
+  !*** ./src/app/model/ProductType.ts ***!
+  \**************************************/
+/*! exports provided: ProductType */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ProductType", function() { return ProductType; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
+
+var ProductType;
+(function (ProductType) {
+    ProductType[ProductType["GLASSES"] = 0] = "GLASSES";
+})(ProductType || (ProductType = {}));
 
 
 /***/ }),
@@ -4851,12 +4922,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var src_app_service_order_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! src/app/service/order-service */ "./src/app/service/order-service.ts");
 /* harmony import */ var src_app_common_components_modal_builder__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! src/app/common-components/modal-builder */ "./src/app/common-components/modal-builder.ts");
 /* harmony import */ var src_app_modal_info_modal_info_modal_component__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! src/app/modal/info-modal/info-modal.component */ "./src/app/modal/info-modal/info-modal.component.ts");
-/* harmony import */ var src_app_service_product_service__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! src/app/service/product-service */ "./src/app/service/product-service.ts");
-/* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! rxjs/operators */ "./node_modules/rxjs/_esm2015/operators/index.js");
-/* harmony import */ var src_app_model_AggregatedOrder__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! src/app/model/AggregatedOrder */ "./src/app/model/AggregatedOrder.ts");
-/* harmony import */ var src_app_modal_delete_order_items_modal_delete_order_items_modal_component__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! src/app/modal/delete-order-items-modal/delete-order-items-modal.component */ "./src/app/modal/delete-order-items-modal/delete-order-items-modal.component.ts");
-/* harmony import */ var src_app_model_request_order_DeleteOrderItemsReq__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! src/app/model/request/order/DeleteOrderItemsReq */ "./src/app/model/request/order/DeleteOrderItemsReq.ts");
-
+/* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! rxjs/operators */ "./node_modules/rxjs/_esm2015/operators/index.js");
+/* harmony import */ var src_app_model_AggregatedOrder__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! src/app/model/AggregatedOrder */ "./src/app/model/AggregatedOrder.ts");
+/* harmony import */ var src_app_modal_delete_order_items_modal_delete_order_items_modal_component__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! src/app/modal/delete-order-items-modal/delete-order-items-modal.component */ "./src/app/modal/delete-order-items-modal/delete-order-items-modal.component.ts");
+/* harmony import */ var src_app_model_request_order_DeleteOrderItemsReq__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! src/app/model/request/order/DeleteOrderItemsReq */ "./src/app/model/request/order/DeleteOrderItemsReq.ts");
 
 
 
@@ -4867,9 +4936,8 @@ __webpack_require__.r(__webpack_exports__);
 
 
 let ListOrderItemComponent = class ListOrderItemComponent {
-    constructor(orderService, productService, modalBuilder) {
+    constructor(orderService, modalBuilder) {
         this.orderService = orderService;
-        this.productService = productService;
         this.modalBuilder = modalBuilder;
         this.onCreateOrderItemEvent = new _angular_core__WEBPACK_IMPORTED_MODULE_1__["EventEmitter"]();
         this.onChangeOrderItemEvent = new _angular_core__WEBPACK_IMPORTED_MODULE_1__["EventEmitter"]();
@@ -4879,7 +4947,7 @@ let ListOrderItemComponent = class ListOrderItemComponent {
         this.productNames = [];
         this.deleteOrderItemInProgressArray = [];
         this.productIdMapByName = new Map();
-        this.search = (text$) => text$.pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_6__["debounceTime"])(200), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_6__["distinctUntilChanged"])(), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_6__["map"])(term => term.length < 1 ? []
+        this.search = (text$) => text$.pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_5__["debounceTime"])(200), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_5__["distinctUntilChanged"])(), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_5__["map"])(term => term.length < 1 ? []
             : this.productNames.filter(v => v.toLowerCase().indexOf(term.toLowerCase()) > -1).slice(0, 10)));
     }
     ngOnInit() {
@@ -4902,7 +4970,7 @@ let ListOrderItemComponent = class ListOrderItemComponent {
     }
     deleteOrderItem(orderItems) {
         const ids = orderItems.map(item => item.id);
-        const req = new src_app_model_request_order_DeleteOrderItemsReq__WEBPACK_IMPORTED_MODULE_9__["DeleteOrderItemsReq"](this.order.id, ids);
+        const req = new src_app_model_request_order_DeleteOrderItemsReq__WEBPACK_IMPORTED_MODULE_8__["DeleteOrderItemsReq"](this.order.aggregatedOrderInfo.id, ids);
         this.orderService.deleteOrderItems(req).subscribe(data => {
             this.onDeleteOrderItemEvent.emit(ids);
             this.deleteFromSelectedOrderItem(ids);
@@ -4922,7 +4990,7 @@ let ListOrderItemComponent = class ListOrderItemComponent {
         this.displayDeletionConfirmationModal(rowTableIndex, orderItems);
     }
     displayDeletionConfirmationModal(rowTableIndex, orderItems) {
-        const modalRef = this.modalBuilder.openCenteredLargeModal(src_app_modal_delete_order_items_modal_delete_order_items_modal_component__WEBPACK_IMPORTED_MODULE_8__["DeleteOrderItemsModalComponent"]);
+        const modalRef = this.modalBuilder.openCenteredLargeModal(src_app_modal_delete_order_items_modal_delete_order_items_modal_component__WEBPACK_IMPORTED_MODULE_7__["DeleteOrderItemsModalComponent"]);
         modalRef.componentInstance.title = "Are you sure you want to delete the following order items ?";
         modalRef.componentInstance.orderItems = orderItems;
         modalRef.result.then((response) => {
@@ -4956,7 +5024,6 @@ let ListOrderItemComponent = class ListOrderItemComponent {
 };
 ListOrderItemComponent.ctorParameters = () => [
     { type: src_app_service_order_service__WEBPACK_IMPORTED_MODULE_2__["OrderService"] },
-    { type: src_app_service_product_service__WEBPACK_IMPORTED_MODULE_5__["ProductService"] },
     { type: src_app_common_components_modal_builder__WEBPACK_IMPORTED_MODULE_3__["ModalBuilder"] }
 ];
 tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
@@ -4965,7 +5032,7 @@ tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
 ], ListOrderItemComponent.prototype, "orderItems", void 0);
 tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
     Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Input"])(),
-    tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:type", src_app_model_AggregatedOrder__WEBPACK_IMPORTED_MODULE_7__["AggregatedOrder"])
+    tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:type", src_app_model_AggregatedOrder__WEBPACK_IMPORTED_MODULE_6__["AggregatedOrder"])
 ], ListOrderItemComponent.prototype, "order", void 0);
 tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
     Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Output"])(),
@@ -4986,7 +5053,6 @@ ListOrderItemComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         styles: [tslib__WEBPACK_IMPORTED_MODULE_0__["__importDefault"](__webpack_require__(/*! ./list-order-item.component.css */ "./src/app/order-panel/list-order-item/list-order-item.component.css")).default]
     }),
     tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [src_app_service_order_service__WEBPACK_IMPORTED_MODULE_2__["OrderService"],
-        src_app_service_product_service__WEBPACK_IMPORTED_MODULE_5__["ProductService"],
         src_app_common_components_modal_builder__WEBPACK_IMPORTED_MODULE_3__["ModalBuilder"]])
 ], ListOrderItemComponent);
 
@@ -5069,7 +5135,7 @@ let SelectedOrderItemsListComponent = class SelectedOrderItemsListComponent {
     }
     deleteOrderItem(orderItem) {
         const id = [orderItem.id];
-        const req = new src_app_model_request_order_DeleteOrderItemsReq__WEBPACK_IMPORTED_MODULE_5__["DeleteOrderItemsReq"](this.order.id, id);
+        const req = new src_app_model_request_order_DeleteOrderItemsReq__WEBPACK_IMPORTED_MODULE_5__["DeleteOrderItemsReq"](this.order.aggregatedOrderInfo.id, id);
         this.orderService.deleteOrderItems(req).subscribe(data => {
             this.selectedOrderItems.delete(orderItem.id);
         }, error => {
@@ -5160,7 +5226,7 @@ let OrderHeaderComponent = class OrderHeaderComponent {
     }
     onClickAddOrderItem() {
         let modalRef = this.modalBuilder.openCenteredLargeModal(src_app_modal_add_order_item_modal_add_order_item_modal_component__WEBPACK_IMPORTED_MODULE_6__["AddOrderItemModalComponent"]);
-        modalRef.componentInstance.orderId = this.order.id;
+        modalRef.componentInstance.orderId = this.order.aggregatedOrderInfo.id;
         modalRef.componentInstance.addOrderItemEvent.subscribe(($e) => {
             this.onAddOrderItemEvent.emit();
         });
@@ -5169,12 +5235,12 @@ let OrderHeaderComponent = class OrderHeaderComponent {
         let modalRef = this.modalBuilder.open(src_app_modal_confirm_modal_confirm_modal_component__WEBPACK_IMPORTED_MODULE_3__["ConfirmModalComponent"]);
         modalRef.componentInstance.title = "Close Order Confirmation";
         modalRef.componentInstance.message = "Are you sure you want to close the order "
-            + this.order.name + " for the store " + this.order.store.name + " ?";
+            + this.order.aggregatedOrderInfo.name + " for the store " + this.order.aggregatedOrderInfo.store.name + " ?";
         modalRef.result.then((response) => {
             if (response) {
-                this.orderService.closeOrder(this.order.id).subscribe(data => {
-                    this.order.closeDatetime = data.closeDateTime;
-                    this.order.status = data.status;
+                this.orderService.closeOrder(this.order.aggregatedOrderInfo.id).subscribe(data => {
+                    this.order.aggregatedOrderInfo.closeDatetime = data.closeDateTime;
+                    this.order.aggregatedOrderInfo.status = data.status;
                 });
             }
         });
@@ -5251,8 +5317,8 @@ let ShowOrderComponent = class ShowOrderComponent {
     }
     ngOnInit() {
         this.order = new src_app_model_AggregatedOrder__WEBPACK_IMPORTED_MODULE_4__["AggregatedOrder"]();
-        this.order.id = parseInt(this.route.snapshot.paramMap.get('id'));
-        this.refreshOrder();
+        const orderId = parseInt(this.route.snapshot.paramMap.get('id'));
+        this.loadOrder(orderId);
     }
     onOrderItemAdded(orderItem) {
         this.refreshOrder();
@@ -5266,10 +5332,13 @@ let ShowOrderComponent = class ShowOrderComponent {
     onClickBack() {
         this.router.navigate(['/orders']);
     }
-    refreshOrder() {
-        this.orderService.getOrder(this.order.id).subscribe(data => {
+    loadOrder(orderId) {
+        this.orderService.getOrder(orderId).subscribe(data => {
             this.order = src_app_model_AggregatedOrder__WEBPACK_IMPORTED_MODULE_4__["AggregatedOrder"].fromJson(data);
         });
+    }
+    refreshOrder() {
+        this.loadOrder(this.order.aggregatedOrderInfo.id);
     }
 };
 ShowOrderComponent.ctorParameters = () => [
@@ -5411,7 +5480,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var src_app_service_order_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! src/app/service/order-service */ "./src/app/service/order-service.ts");
 /* harmony import */ var src_app_common_components_modal_builder__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! src/app/common-components/modal-builder */ "./src/app/common-components/modal-builder.ts");
 /* harmony import */ var src_app_modal_create_order_modal_create_order_modal_component__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! src/app/modal/create-order-modal/create-order-modal.component */ "./src/app/modal/create-order-modal/create-order-modal.component.ts");
-/* harmony import */ var src_app_model_AggregatedOrder__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! src/app/model/AggregatedOrder */ "./src/app/model/AggregatedOrder.ts");
+/* harmony import */ var _model_AggregatedOrderInfo__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../model/AggregatedOrderInfo */ "./src/app/model/AggregatedOrderInfo.ts");
 
 
 
@@ -5452,7 +5521,7 @@ let OrdersManagerComponent = class OrdersManagerComponent {
         });
     }
     getAllOrders() {
-        this.orderService.getAllOrders().subscribe(data => {
+        this.orderService.getAllOrdersInfo().subscribe(data => {
             this.orders = this.parseOrderIntoArray(data);
             if (this.orders.length == 0) {
                 this.noOrdersFoundMessage = "No order found";
@@ -5462,7 +5531,7 @@ let OrdersManagerComponent = class OrdersManagerComponent {
     parseOrderIntoArray(data) {
         let orders = [];
         for (let i = 0; i < data.length; i++) {
-            let item = src_app_model_AggregatedOrder__WEBPACK_IMPORTED_MODULE_5__["AggregatedOrder"].fromJson(data[i]);
+            let item = _model_AggregatedOrderInfo__WEBPACK_IMPORTED_MODULE_5__["AggregatedOrderInfo"].fromJson(data[i]);
             orders.push(item);
         }
         return orders;
@@ -5933,9 +6002,9 @@ let OrderService = class OrderService {
         let request = { "id": orderId };
         return this.httpApi.post("/v1/order/close", request);
     }
-    getAllOrders() {
-        console.log("Get all reports");
-        return this.httpApi.get("/v1/order/all");
+    getAllOrdersInfo() {
+        console.log("Get all orders info");
+        return this.httpApi.get("/v1/order/allOrdersInfo");
     }
 };
 OrderService.ctorParameters = () => [

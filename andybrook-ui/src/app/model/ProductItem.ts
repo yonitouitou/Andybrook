@@ -14,7 +14,7 @@ export class ProductItem {
 
     static fromJson(data: any): ProductItem {
         let productItem = new ProductItem();
-        productItem.id = ProductId.fromJson(data.productId);
+        productItem.id = ProductId.fromJson(data.id);
         productItem.orderItemId = data.orderItemId;
         productItem.product = Product.fromJson(data.product);
         productItem.createdDatetime = data.createdDatetime;

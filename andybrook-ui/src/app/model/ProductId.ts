@@ -2,8 +2,8 @@ import { ProductType } from './ProductType';
 
 export class ProductId {
 
-  private id: String
-  private productType: ProductType;
+  id: String
+  productType: ProductType;
 
   constructor(id: String, productType: ProductType) {
     this.id = id

@@ -1,9 +1,13 @@
 package com.andybrook.model.product;
 
 import com.andybrook.enums.ProductType;
+import com.andybrook.serialization.jackson.custom.ProductIdSerializer;
+import com.andybrook.util.IdGenerator;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 
 import java.util.Objects;
 
+@JsonSerialize(using = ProductIdSerializer.class)
 public final class ProductId {
 
     private static final String SEPARATOR = "-";
@@ -25,10 +29,15 @@ public final class ProductId {
         this.productType = type;
     }
 
+    public static ProductId generate(ProductType type) {
+        return new ProductId(type, IdGenerator.generateAlfaNumericId());
+    }
+
     public static ProductId from(String id) {
         String[] split = id.split(SEPARATOR);
         return new ProductId(ProductType.getBySymbol(split[0]), split[1]);
     }
+
     public String get() {
         return id;
     }

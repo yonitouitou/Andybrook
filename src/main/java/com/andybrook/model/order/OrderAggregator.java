@@ -44,10 +44,8 @@ public class OrderAggregator implements IOrderAggregator {
 
         Store store = storeService.getById(order.getStoreId());
 
-        AggregatedOrderInfo info = toAggregatedOrderInfo(order);
-        return new AggregatedOrder(order.getId(), order.getName(), store, order.getStatus(),
-                order.getComment(), order.getCreatedDateTime(), order.getLastModifiedDateTime(),
-                order.getCloseDateTime(), info, aggregatedOrderItems);
+        AggregatedOrderInfo orderInfo = toAggregatedOrderInfo(order, store);
+        return new AggregatedOrder(orderInfo, aggregatedOrderItems);
     }
 
     private Map<ProductId, List<OrderItem>> groupByProduct(Collection<OrderItem> orderItems) {
@@ -61,12 +59,14 @@ public class OrderAggregator implements IOrderAggregator {
         return orderItemByProductId;
     }
 
-    private AggregatedOrderInfo toAggregatedOrderInfo(Order order) {
+    private AggregatedOrderInfo toAggregatedOrderInfo(Order order, Store store) {
         int orderItemsSize = order.getOrderItems().size();
         List<ProductItem> productItems = toProductItemList(order.getOrderItems());
         int productsSize = getDistinctProductsSize(productItems);
         double ttlPrice = calculateTotalPrice(productItems);
-        return new AggregatedOrderInfo(orderItemsSize, productsSize, ttlPrice);
+        return new AggregatedOrderInfo(order.getId(), order.getName(), order.getComment(),
+                store, order.getStatus(), order.getCreatedDateTime(), order.getLastModifiedDateTime(),
+                order.getCloseDateTime(), orderItemsSize, productsSize, ttlPrice);
     }
 
     private List<ProductItem> toProductItemList(Collection<OrderItem> orderItems) {

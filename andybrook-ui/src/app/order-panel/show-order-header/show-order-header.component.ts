@@ -25,7 +25,7 @@ export class OrderHeaderComponent implements OnInit {
 
   onClickAddOrderItem() {
     let modalRef = this.modalBuilder.openCenteredLargeModal(AddOrderItemModalComponent);
-    modalRef.componentInstance.orderId = this.order.id;
+    modalRef.componentInstance.orderId = this.order.aggregatedOrderInfo.id;
     modalRef.componentInstance.addOrderItemEvent.subscribe(($e) => {
       this.onAddOrderItemEvent.emit();
     })
@@ -35,14 +35,14 @@ export class OrderHeaderComponent implements OnInit {
     let modalRef = this.modalBuilder.open(ConfirmModalComponent);
     modalRef.componentInstance.title = "Close Order Confirmation";
     modalRef.componentInstance.message = "Are you sure you want to close the order "
-          + this.order.name + " for the store " + this.order.store.name + " ?";
+          + this.order.aggregatedOrderInfo.name + " for the store " + this.order.aggregatedOrderInfo.store.name + " ?";
 
     modalRef.result.then((response) => {
       if (response) {
-        this.orderService.closeOrder(this.order.id).subscribe(
+        this.orderService.closeOrder(this.order.aggregatedOrderInfo.id).subscribe(
           data => {
-            this.order.closeDatetime = data.closeDateTime;
-            this.order.status = data.status;
+            this.order.aggregatedOrderInfo.closeDatetime = data.closeDateTime;
+            this.order.aggregatedOrderInfo.status = data.status;
           }
         )
       }

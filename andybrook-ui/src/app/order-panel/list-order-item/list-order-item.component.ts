@@ -48,7 +48,6 @@ export class ListOrderItemComponent implements OnInit {
     )
 
   constructor(private orderService: OrderService,
-              private productService: ProductService,
               private modalBuilder: ModalBuilder) {}
 
   ngOnInit() {
@@ -75,7 +74,7 @@ export class ListOrderItemComponent implements OnInit {
 
   deleteOrderItem(orderItems: OrderItem[]) {
     const ids = orderItems.map(item => item.id);
-    const req = new DeleteOrderItemsReq(this.order.id, ids);
+    const req = new DeleteOrderItemsReq(this.order.aggregatedOrderInfo.id, ids);
     this.orderService.deleteOrderItems(req).subscribe(
       data => {
           this.onDeleteOrderItemEvent.emit(ids);

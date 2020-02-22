@@ -4,6 +4,7 @@ import com.andybrook.ApplicationProperties;
 import com.andybrook.annotation.EmailOf;
 import com.andybrook.enums.DocType;
 import com.andybrook.model.api.AggregatedOrder;
+import com.andybrook.model.api.AggregatedOrderInfo;
 import com.andybrook.model.api.AggregatedOrderItem;
 import com.andybrook.model.api.Email;
 import com.andybrook.model.notification.request.EmailNotificationRequest;
@@ -44,8 +45,9 @@ public class OrderEmailCreator implements IEmailCreator {
     private String getBody(EmailNotificationRequest notification) {
         OrderDocumentCtx ctx = (OrderDocumentCtx) notification.getDocumentRequest().getCtx();
         AggregatedOrder order = ctx.getAggregatedOrder();
+        AggregatedOrderInfo orderInfo = order.getAggregatedOrderInfo();
         StringBuilder sb = new StringBuilder();
-        sb.append(getHeaderOfBody(notification, order));
+        sb.append(getHeaderOfBody(notification, orderInfo));
         sb.append("</br></br>");
 
         sb.append(
@@ -60,10 +62,10 @@ public class OrderEmailCreator implements IEmailCreator {
 
         sb.append(
                 "<tr align='center'>"
-                        + "<td>" + order.getId() + "</td>"
-                        + "<td>" + order.getName() + "</td>"
-                        + "<td>" + order.getAggregatedOrderInfo().getOrderItemSize() + "</td>"
-                        + "<td>" + order.getAggregatedOrderInfo().getTotalPrice() + " €</td>"
+                        + "<td>" + orderInfo.getId() + "</td>"
+                        + "<td>" + orderInfo.getName() + "</td>"
+                        + "<td>" + orderInfo.getOrderItemSize() + "</td>"
+                        + "<td>" + orderInfo.getTotalPrice() + " €</td>"
                         + "</tr>"
         );
 
@@ -96,16 +98,17 @@ public class OrderEmailCreator implements IEmailCreator {
         return sb.toString();
     }
 
-    private String getHeaderOfBody(EmailNotificationRequest req, AggregatedOrder order) {
+    private String getHeaderOfBody(EmailNotificationRequest req, AggregatedOrderInfo orderInfo) {
         StringBuilder sb = new StringBuilder();
         if (req.isLiveEvent()) {
-            sb.append("Order ").append(order.getName()).append(" (" ).append(order.getId()).append(") of store ")
-                    .append(order.getStore().getName()).append(" has been closed on ")
+            sb.append("Order ").append(orderInfo.getName()).append(" (" ).append(orderInfo.getId()).append(") of store ")
+                    .append(orderInfo.getStore().getName()).append(" has been closed on ")
                     .append(getFormattedDateTime(ZonedDateTime.now(applicationProperties.getZoneId())));
         } else {
-            sb.append("Notification sent for order ").append(order.getName()).append(" (" ).append(order.getId()).append(") of store ")
-                    .append(order.getStore().getName()).append(" closed on ")
-                    .append(getFormattedDateTime(DateUtil.epochTimeInMillisToZdt(order.getCloseDatetime(), applicationProperties.getZoneId())));
+            sb.append("Notification sent for order ").append(orderInfo.getName()).append(" (" )
+                    .append(orderInfo.getId()).append(") of store ")
+                    .append(orderInfo.getStore().getName()).append(" closed on ")
+                    .append(getFormattedDateTime(DateUtil.epochTimeInMillisToZdt(orderInfo.getCloseDatetime(), applicationProperties.getZoneId())));
         }
         return sb.toString();
     }

@@ -1,12 +1,6 @@
 package com.andybrook.init;
 
-import com.andybrook.exception.BarCodeNotFound;
-import com.andybrook.exception.InsufficientQuantityException;
-import com.andybrook.exception.OrderClosed;
-import com.andybrook.exception.OrderItemNotFound;
-import com.andybrook.exception.OrderNotFound;
-import com.andybrook.exception.ProductNotFound;
-import com.andybrook.exception.StoreNotFound;
+import com.andybrook.exception.*;
 import com.andybrook.generator.OrderItemGenerator;
 import com.andybrook.generator.ProductGenerator;
 import com.andybrook.generator.StoreGenerator;
@@ -25,20 +19,13 @@ import com.andybrook.model.stock.ProductItem;
 import com.andybrook.service.stock.IStockService;
 import com.andybrook.service.store.IStoreService;
 import com.andybrook.util.clock.Clock;
-
-import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Map;
-import java.util.UUID;
+import java.util.*;
 import java.util.concurrent.ThreadLocalRandom;
 
 @SpringBootTest
@@ -47,10 +34,10 @@ public class InitSystemTest {
 
     private static final ThreadLocalRandom RANDOM = ThreadLocalRandom.current();
     private static final int CUSTOMER_NUMBER_2 = 2;
-    private static final int PRODUCT_NUMBER_70 = 90;
-    private static final int PRODUCT_ITEM_FOR_EACH_PRODUCT_100 = 100;
-    private static final int ORDER_NUMBER_10 = 1000;
-    private static final int MAX_ITEM_IN_ORDER_35 = 20;
+    private static final int PRODUCT_NUMBER_70 = 10;
+    private static final int PRODUCT_ITEM_FOR_EACH_PRODUCT_100 = 10;
+    private static final int ORDER_NUMBER_10 = 10;
+    private static final int MAX_ITEM_IN_ORDER_35 = 5;
 
     private List<Product> products;
     private Map<ProductId, List<Long>> productItemsIdMapByProductId;
@@ -66,7 +53,7 @@ public class InitSystemTest {
     private IStockService stockService;
 
     @Test
-    @Ignore
+    //@Ignore
     public void initSystem() {
         products = createProducts();
         productItemsIdMapByProductId = createProductItems(products);

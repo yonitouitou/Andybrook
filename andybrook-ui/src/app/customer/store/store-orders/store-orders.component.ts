@@ -44,7 +44,7 @@ export class StoreOrdersComponent implements OnChanges {
   private findStore(): Store {
     let store
     if (this.orders.length > 0) {
-      store = this.orders[0].store
+      store = this.orders[0].aggregatedOrderInfo.store
     } else {
       store = this.storeService.get(this.storeId)
     }

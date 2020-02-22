@@ -69,8 +69,8 @@ export class OrderService {
         return this.httpApi.post("/v1/order/close", request);
     }
 
-    getAllOrders(): Observable<any> {
-        console.log("Get all reports")
-        return this.httpApi.get("/v1/order/all")
+    getAllOrdersInfo(): Observable<any> {
+        console.log("Get all orders info")
+        return this.httpApi.get("/v1/order/allOrdersInfo")
     } 
 }
